@@ -9,7 +9,9 @@ Foreign filers (20-F / 40-F, no 10-Q) are skipped.
 import json, os, sys, time, datetime as dt
 import urllib.request
 
-UA = (os.environ.get("SEC_UA") or "").strip() or "Wallstreeter sagirozio@users.noreply.github.com"
+import re as _re
+UA = " ".join(_re.sub(r"[^\x20-\x7e]", " ", os.environ.get("SEC_UA") or "").split()) or "Wallstreeter sagirozio@users.noreply.github.com"
+if "@" not in UA: print("warning: SEC_UA has no email after cleanup", flush=True)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "fund")
 NQ = 20
