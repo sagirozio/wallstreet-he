@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>וולסטריטר – השוק האמריקאי, בגובה העיניים</title>
+<title>וולסטריטר Wallstreeter – השוק האמריקאי, בגובה העיניים</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <meta name="description" content="וולסטריטר: חדשות, דוחות, סקטורים ומניות חמות מוול סטריט, בעברית ובגובה העיניים.">
-<meta property="og:title" content="וולסטריטר – השוק האמריקאי, בגובה העיניים">
+<meta property="og:title" content="וולסטריטר Wallstreeter – השוק האמריקאי, בגובה העיניים">
 <meta property="og:site_name" content="וולסטריטר">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -77,7 +78,8 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .br th.dt{background:var(--panel2)}
 .brk{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
 .brk .card{padding:12px 14px}.brk b{display:block;font-size:24px;font-family:'JetBrains Mono',monospace}.brk span{color:var(--muted);font-size:12px}
-.logo .tagline{display:block;font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:2px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}.logo .lgi{width:46px;height:46px;flex:none}.lgt{display:flex;flex-direction:column}.lgn{color:#fff;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;line-height:1.05}.lge{font:700 12px Arial,sans-serif;letter-spacing:2.5px;color:var(--green);direction:ltr}
+.logo .tagline{display:block;font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:3px}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -328,7 +330,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <div class="strip" id="stripWrap"><div class="in" id="strip"></div></div>
 <div class="mvstrip hidden" id="mvWrap"><span class="mvl">🚀 עולות 10%+ היום</span><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
 <header><div class="wrap">
-  <div class="top"><a class="logo" href="#" style="text-decoration:none;color:inherit">וולסטריטר<small class="tagline">השוק האמריקאי, בגובה העיניים</small></a>
+  <div class="top"><a class="logo" href="#" aria-label="וולסטריטר Wallstreeter – לעמוד הראשי"><svg class="lgi" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg><span class="lgt"><span class="lgn">וולסטריטר <b class="lge">WALLSTREETER</b></span><small class="tagline">השוק האמריקאי, בגובה העיניים</small></span></a>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><button class="bell" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
 </div></header>
 <div class="navbar"><div class="wrap">
