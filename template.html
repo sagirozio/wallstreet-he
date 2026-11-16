@@ -139,6 +139,10 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .subnav a{color:var(--text);text-decoration:none;padding:5px 11px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);font-size:13.5px;white-space:nowrap}
 .subnav a:hover{border-color:var(--accent)}
 .surp{font-size:13px;color:var(--muted);margin-top:2px}.surp b{direction:ltr;display:inline-block}
+body.pg-news main>section:not(#newsArchive){display:none}
+body:not(.pg-news) #newsArchive{display:none}
+.nday{margin:18px 0 8px;font-size:15px;color:var(--muted);font-weight:700}
+.news .src{font-size:12px;color:var(--muted);margin-top:6px}.news .src a{color:var(--accent)}
 .tscroll{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;background:var(--panel)}
 th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:15px;white-space:nowrap}
@@ -403,24 +407,17 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 
 <section id="news">
   <h2>חדשות מניות</h2>
-  <p class="sub">מה הזיז את השוק בשבוע האחרון.</p>
-  <div class="news">
-    <article class="card"><div class="bar neg"></div><div><div class="tag">Nvidia · 12.11</div>
-      <h3>ג׳נסן הואנג עזב את תפקיד המנכ״ל של Nvidia</h3>
-      <p>הואנג התפטר אחרי דיווחים על רומנים מחוץ לנישואים. המניה ירדה בכ-12.75% בשבוע, ומאז 6.11 נמחקו ממנה כ-493 מיליארד דולר בשווי שוק. אנליסטים מזהירים שייתכן תיקון של עד 20%.</p></div></article>
-    <article class="card"><div class="bar"></div><div><div class="tag">שבבים · 13.11</div>
-      <h3>המתחרות של Nvidia נהנו מהמשבר, עד יום שישי</h3>
-      <p>AMD וברודקום הוסיפו יחד כ-561 מיליארד דולר לשווי, יותר ממה ש-Nvidia איבדה. ביום שישי המגמה התהפכה: AMD צנחה ב-8.75% ומדד השבבים ירד ב-3.4%. מניית ARM ירדה ב-4.63%, אחרי דיווח ב-FT שדירקטוריון Nvidia פנה למנכ״ל שלה, רנה האס, כמחליף אפשרי.</p></div></article>
-    <article class="card"><div class="bar pos"></div><div><div class="tag">CoreWeave · 11.11</div>
-      <h3>CoreWeave זינקה בכמעט 25% והחזירה את טרייד ה-AI</h3>
-      <p>אחרי דוח חזק והעלאת התחזית ל-2026, הנאסד״ק עלה ב-1.6% באותו יום. גם הביקוש להנפקה של Anthropic תרם לאופטימיות בסקטור.</p></div></article>
-    <article class="card"><div class="bar neg"></div><div><div class="tag">מאקרו · 13.11</div>
-      <h3>האינפלציה בשיא של כמעט 4 שנים, השוק מתמחר העלאת ריבית</h3>
-      <p>מדד המחירים ליצרן עלה ב-6.5% בשנה, הקצב המהיר ביותר מאז נובמבר 2022. השוק מתמחר במלואה העלאת ריבית בדצמבר, ו-BofA צופה העלאות בשלוש הישיבות הבאות של הפד. מדד PCE יתפרסם ב-25.11.</p></div></article>
-    <article class="card"><div class="bar pos"></div><div><div class="tag">Cisco · 12.11</div>
-      <h3>Cisco רשמה את הצמיחה החזקה ביותר שלה מזה 15 שנה</h3>
-      <p>החברה העלתה את התחזית השנתית ואת היעד להכנסות מתשתיות AI לענקיות הענן, ל-9 מיליארד דולר בשנת הכספים 2027.</p></div></article>
-  </div>
+  <p class="sub">מה הזיז את השוק לאחרונה.</p>
+  <div class="news" id="newsLatest"></div>
+  <a class="ewmore toall" href="#news-all">למאגר החדשות המלא (<span id="newsN"></span>) ←</a>
+</section>
+
+<section id="newsArchive">
+  <a class="back" href="#">→ חזרה לעמוד הראשי</a>
+  <h2>מאגר חדשות</h2>
+  <p class="sub">כל הידיעות שפורסמו באתר, מהחדשה לישנה. אפשר לחפש לפי חברה, טיקר או נושא, ולסנן לפי קטגוריה.</p>
+  <div class="controls"><input class="search" id="nq" type="search" placeholder="🔍 חיפוש: Nvidia, ריבית, הנפקה..."><select id="ntag"><option value="">כל הנושאים</option></select></div>
+  <div id="newsAll"></div>
 </section>
 
 <section id="glossary">
@@ -565,9 +562,10 @@ function renderToday(){
 
 function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=REPORTS.length; renderToday(); }
 function route(){
-  const rep = location.hash==='#reports';
+  const rep = location.hash==='#reports', nw = location.hash==='#news-all';
   document.body.classList.toggle('pg-rep',rep);
-  if(rep) window.scrollTo(0,0);
+  document.body.classList.toggle('pg-news',nw);
+  if(rep||nw) window.scrollTo(0,0);
   else if(location.hash.length>1){ const el=document.getElementById(location.hash.slice(1)); if(el) requestAnimationFrame(()=>el.scrollIntoView()); }
 }
 window.addEventListener('hashchange',route);
@@ -580,7 +578,7 @@ const NAV={
   rep:[['#top-reports','בולטים והיום'],['#reports','כל הדוחות'],['#upcoming','לוח דוחות השבוע'],['#ipos','הנפקות']],
   mkt:[['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק']],
   stk:[['#gainers','מניות שזינקו'],['#ytd','הכפילו ב-2026']],
-  news:[['#news','חדשות'],['#glossary','מילון מונחים']]
+  news:[['#news','חדשות'],['#news-all','מאגר חדשות'],['#glossary','מילון מונחים']]
 };
 function setNav(g,h){
   [...$('nav').querySelectorAll('a')].forEach(x=>x.classList.toggle('on',x.dataset.g===g));
@@ -590,6 +588,24 @@ function setNav(g,h){
 $('nav').addEventListener('click',e=>{ const a=e.target.closest('a[data-g]'); if(a) setNav(a.dataset.g,a.getAttribute('href')); });
 $('subnav').addEventListener('click',e=>{ const a=e.target.closest('a'); if(!a) return;
   [...$('subnav').querySelectorAll('a')].forEach(x=>x.classList.toggle('on',x===a)); });
+
+
+/* ---------- news ---------- */
+const NEWS = (FALLBACK.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
+  return `<article class="card"><div class="bar ${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></div><div><div class="tag">${esc(n.tag)} · ${+dd}.${+m}</div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p>${n.url?`<div class="src">מקור: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.src||'לכתבה')}</a></div>`:''}</div></article>`; }
+function renderNews(){
+  $('newsLatest').innerHTML = NEWS.slice(0,6).map(newsCard).join('');
+  $('newsN').textContent = NEWS.length;
+  const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
+  $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
+  const q=$('nq').value.trim().toLowerCase(), tg=$('ntag').value;
+  const list=NEWS.filter(n=>(!tg||n.tag===tg)&&(!q||`${n.tag} ${n.title} ${n.body}`.toLowerCase().includes(q)));
+  let html='',prev=null;
+  list.forEach(n=>{ if(n.date!==prev){ const [y,m,dd]=n.date.split('-'); html+=(prev?'</div>':'')+`<div class="nday">${+dd}.${+m}.${y}</div><div class="news">`; prev=n.date; } html+=newsCard(n); });
+  $('newsAll').innerHTML = (html?html+'</div>':'<div class="empty">לא נמצאו ידיעות.</div>');
+}
+['nq','ntag'].forEach(id=>$(id).addEventListener('input',renderNews));
 
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
@@ -821,7 +837,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
-route(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts();
+route(); renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts();
 (async () => {
   let db = null;
   try { db = window.claude && await window.claude.use("db"); } catch(e) {}
