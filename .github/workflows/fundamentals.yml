@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       tickers: { description: "Optional space-separated tickers (test run)", required: false, default: "" }
-concurrency: { group: data-update, cancel-in-progress: false }
+concurrency: { group: fundamentals, cancel-in-progress: false }
 permissions:
   contents: write
 jobs:

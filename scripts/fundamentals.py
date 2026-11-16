@@ -120,6 +120,9 @@ def build(facts):
             v = at(k, e); out[k].append(None if v is None else (round(v, 3) if k == "eps" else round(v)))
         cfo, cap = at("cfo", e), at("capex", e)
         out["fcf"].append(None if cfo is None else round(cfo - (cap or 0)))
+    # sanity: values that can't be negative (revenue, gross-profit-free lines, assets, liabilities)
+    for k in ("rev", "assets", "liab"):
+        out[k] = [None if (v is not None and v < 0) else v for v in out[k]]
     # if no opex tag but have gp and op: opex = gp - op
     for i in range(len(uniq)):
         if out["opex"][i] is None and out["gp"][i] is not None and out["op"][i] is not None:
