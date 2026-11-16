@@ -774,7 +774,7 @@ function renderStock(t){
   const peers=s.ind?((THEMES.stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
   $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
     <div class="spchips">${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
-    <p class="spdesc">${prof.desc?esc(prof.desc):'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
+    <p class="spdesc">${prof.desc?esc(prof.desc):(s.indHe||secHe)?`<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.`:'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
     <div class="sptoday"><div class="sptl">היום <span>(מתעדכן בזמן אמת, בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div>${s.r&&s.r.d!=null?`<div id="spTodayS" class="flat">שינוי אחרון במערכת: <b class="num ${s.r.d>=0?'up':'down'}" style="direction:ltr;display:inline-block">${pct(s.r.d,1)}</b></div>`:''}</div>
     ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
     <div class="spchart" id="spChart"></div>

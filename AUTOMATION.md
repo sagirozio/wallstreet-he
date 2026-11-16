@@ -84,12 +84,14 @@ Read the existing entries first and copy their exact shape.
 
 `profiles` holds the stock profile pages ("תעודת זהות", at `#stock/TICKER`): `{"TICKER": {"desc": "<one or two Hebrew sentences: what the company does>"}}`.
 
-- Add a Hebrew `desc` for up to 15 stocks per run that don't have one yet.
+- Add a Hebrew `desc` (one sentence) for up to 80 stocks per run that don't have one yet. The goal is that every stock in `themes.stocks` and `reports` gets one; until then the page shows an automatic fallback ("X היא חברה בתחום … בסקטור …").
 - Priority order:
   1. companies in new report cards;
   2. this week's `calendar`;
   3. stocks named in today's news;
-  4. the top of `ytd`.
+  4. the top of `ytd`, `movers` and the November gainers;
+  5. then the rest of `themes.stocks`, largest market cap first.
+- Only write what you are confident about. If unsure what a small company does, skip it and leave the fallback.
 - Keep it factual and neutral: business lines, main products and customers. No opinions or valuations.
 - Never change an existing `desc` unless it is factually wrong.
 
