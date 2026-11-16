@@ -130,6 +130,17 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .ewt{font-weight:700;font-size:13.5px;margin-bottom:6px}
 .ewg{margin:6px 0}.ewh{color:var(--muted);font-size:12px;margin-bottom:5px}
 .ewl{display:flex;flex-wrap:wrap;gap:6px}
+.ewgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.ewday{border-inline-start:1px solid var(--line);display:flex;flex-direction:column}.ewday:first-child{border-inline-start:0}
+.ewdh{text-align:center;padding:12px 4px 8px}.ewdh b{display:block;font-size:16px}.ewdh span{color:var(--muted);font-size:13px}
+.ewcols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);flex:1}.ewcol{display:flex;flex-direction:column;border-top:1px solid var(--line)}.ewcols .ewcol+.ewcol{border-inline-start:1px solid var(--line)}
+.ewch{font-size:11px;white-space:nowrap;letter-spacing:.3px;color:var(--muted);text-align:center;padding:7px 2px;font-weight:600}
+.ewt2{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;text-decoration:none;color:var(--text);border-top:1px solid rgba(255,255,255,.04);transition:background .15s}
+.ewt2:hover{background:var(--panel2)}.ewt2 b{font:700 12.5px 'JetBrains Mono',monospace;direction:ltr}.ewt2 small{color:var(--muted);font-size:10.5px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}
+.ewt2.il b{color:var(--accent)}.ewe{color:var(--muted);text-align:center;padding:12px 0;opacity:.5}
+.ewunk .ewt2{flex-direction:row;justify-content:center}.econ2{font-size:11.5px;color:var(--muted);padding:8px;border-top:1px solid var(--line);text-align:center;line-height:1.5}
+@media(max-width:900px){.ewgrid{grid-template-columns:1fr;border:0;background:none;gap:12px}.ewday{border:1px solid var(--line);border-radius:12px;background:var(--panel)}.ewday:first-child{border-inline-start:1px solid var(--line)}
+.ewcol:not(.ewunk) .ewt2{flex-direction:row;justify-content:flex-start;padding:8px 10px}.ewdh{display:flex;gap:8px;justify-content:center;align-items:baseline}.ewdh b{display:inline}}
 .ewc{display:inline-flex;flex-direction:column;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:4px 9px;max-width:170px;direction:ltr;text-align:left}
 .ewc b{font:700 12.5px 'JetBrains Mono',monospace}.ewc small{color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ewc.il{border-color:rgba(91,140,255,.6)}
@@ -896,21 +907,15 @@ function renderCal(){
       <div><span class="lbl">צפי מכירות</span><b class="num">${typeof i.rev==='number'?money(i.rev):'—'}</b></div>
       ${i.n?`<div class="n">${esc(i.n)}</div>`:''}</div>`;
   const chip = i=>`<span class="ewc${i.il?' il':''}" title="${esc(i.co)}"><b>${i.il?'🇮🇱 ':''}${esc(i.t)}</b><small>${esc(i.co)}</small></span>`;
-  $('week').innerHTML = (c.days||[]).map((day,di)=>{
-    const its=day.items||[], big=its.filter(full), rest=its.filter(i=>!full(i));
-    const open = calOpen.has(di), LIM=24;
-    const grp = (k,l)=>{ const g=rest.filter(i=>i.time===k); return g.length?`<div class="ewg"><div class="ewh">${l} · ${g.length}</div><div class="ewl">${g.map(chip).join('')}</div></div>`:''; };
-    let restHtml='';
-    if (rest.length){
-      const shown = open ? rest : rest.slice(0,LIM);
-      const sub = {...day, items:shown};
-      const g = k => shown.filter(i=>i.time===k);
-      restHtml = `<div class="ewall"><div class="ewt">עוד ${rest.length} דוחות מצופים</div>`+
-        [['bmo','☀️ לפני הפתיחה'],['amc','🌙 אחרי הסגירה'],['','שעה תפורסם']].map(([k,l])=>{ const x=g(k); return x.length?`<div class="ewg"><div class="ewh">${l}</div><div class="ewl">${x.map(chip).join('')}</div></div>`:''; }).join('')+
-        (rest.length>LIM?`<button class="ewmore" data-cal="${di}">${open?'הצג פחות':`הצג את כל ${rest.length}`}</button>`:'')+`</div>`;
-    }
-    return `<div class="day"><h3><span>${esc(day.d)} <small class="flat">· ${its.length} דוחות</small></span>${day.econ?`<span class="econ">📅 ${esc(day.econ)}</span>`:''}</h3>${big.map(row).join('')}${restHtml}${!its.length?'<div class="row"><span class="flat">אין דוחות</span></div>':''}</div>`;
-  }).join('');
+  const tile = i=>`<a class="ewt2${i.il?' il':''}" href="#stock/${encodeURIComponent(i.t)}" title="${esc(i.co)}${typeof i.eps==='number'?' · צפי EPS '+eps(i.eps):''}${typeof i.rev==='number'?' · צפי מכירות '+money(i.rev):''}${i.n?' · '+esc(i.n):''}">${mono(i.t)}<b>${i.il?'🇮🇱 ':''}${esc(i.t)}</b><small>${esc(i.co)}</small></a>`;
+  const col = (its,k)=>{ const g=its.filter(i=>(i.time||'')===k); return g.length?g.map(tile).join(''):'<span class="ewe">—</span>'; };
+  $('week').innerHTML = `<div class="ewgrid">`+(c.days||[]).map(day=>{
+    const its=day.items||[], [dn,dd]=(day.d||'').split(' '), unk=its.filter(i=>!i.time||(i.time!=='bmo'&&i.time!=='amc'));
+    return `<div class="ewday"><div class="ewdh"><b>${esc(dn||'')}</b><span class="num">${esc(dd||'')}</span></div>
+      <div class="ewcols"><div class="ewcol"><div class="ewch">☀️ לפני הפתיחה</div>${col(its,'bmo')}</div><div class="ewcol"><div class="ewch">🌙 אחרי הסגירה</div>${col(its,'amc')}</div></div>
+      ${unk.length?`<div class="ewcol ewunk"><div class="ewch">שעה תפורסם</div>${unk.map(tile).join('')}</div>`:''}
+      ${day.econ?`<div class="econ2">📅 ${esc(day.econ)}</div>`:''}</div>`;
+  }).join('')+`</div>`;
 }
 function renderVix(){
   const v=(OVERVIEW||{}).vix; if(!v){ $('vixCard').innerHTML=''; return; }
