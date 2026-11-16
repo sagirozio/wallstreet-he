@@ -170,6 +170,7 @@ body:not(.pg-stock) #stockPage{display:none}
 .sph3{font-size:17px;margin:18px 0 8px}
 a.tlink{color:inherit;text-decoration:none}a.tlink:hover .tick,a.tlink:hover{text-decoration:underline}
 tr.rowlink{cursor:pointer}tr.rowlink:hover td{background:rgba(255,255,255,.03)}
+.seclive{margin:0 0 12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px}.seclive summary{cursor:pointer;font-weight:700;font-size:14px}.seclw{height:470px;direction:ltr;margin-top:8px}
 .tscroll{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;background:var(--panel)}
 th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:15px;white-space:nowrap}
@@ -385,6 +386,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <section id="sectors">
   <h2>ביצועי הסקטורים</h2>
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
+    <details class="seclive" open><summary>🔴 היום בזמן אמת (בעיכוב של עד 15 דקות)</summary><div class="seclw"><div class="tradingview-widget-container" style="height:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>{"width": "100%", "height": "100%", "symbolsGroups": [{"name": "סקטורים", "symbols": [{"name": "AMEX:XLE", "displayName": "אנרגיה (XLE)"}, {"name": "AMEX:XLP", "displayName": "צריכה בסיסית (XLP)"}, {"name": "AMEX:XLU", "displayName": "תשתיות (XLU)"}, {"name": "AMEX:XLF", "displayName": "פיננסים (XLF)"}, {"name": "AMEX:XLC", "displayName": "תקשורת (XLC)"}, {"name": "AMEX:XLV", "displayName": "בריאות (XLV)"}, {"name": "AMEX:XLI", "displayName": "תעשייה (XLI)"}, {"name": "AMEX:XLRE", "displayName": "נדל״ן (XLRE)"}, {"name": "AMEX:XLK", "displayName": "טכנולוגיה (XLK)"}, {"name": "AMEX:XLB", "displayName": "חומרי גלם (XLB)"}, {"name": "AMEX:XLY", "displayName": "צריכה מחזורית (XLY)"}]}], "showSymbolLogo": false, "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></details>
   <div class="tabs" id="secTabs"></div>
   <div class="tscroll"><table class="sec" id="secTable"></table></div>
   <div class="legend">ירוק = עלייה, אדום = ירידה. ככל שהצבע חזק יותר, השינוי גדול יותר. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
@@ -700,7 +702,7 @@ $('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCas
 
 document.addEventListener('click',e=>{ const tr=e.target.closest&&e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
 /* ---------- sectors ---------- */
-const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
+const PER = [['d','סגירה אחרונה'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
 let secKey = 'w';
 function heat(v){ const a=Math.min(Math.abs(v)/ (secKey==='d'?2:secKey==='w'?5:secKey==='m'?10:25), 1)*.55+.08;
   return v>=0?`background:rgba(34,197,94,${a.toFixed(2)})`:`background:rgba(239,68,68,${a.toFixed(2)})`; }
