@@ -10,6 +10,7 @@ data = json.loads((root / "data.json").read_text(encoding="utf-8"))
 cache_p = root / "industries.json"
 cache = json.loads(cache_p.read_text(encoding="utf-8")) if cache_p.exists() else {}
 
+EXCH = {"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"}  # Nasdaq / NYSE / NYSE American / Arca / Cboe
 # 1) universe
 q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]),
                         EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
@@ -18,7 +19,7 @@ while True:
     r = yf.screen(q, offset=off, size=250, sortField="intradaymarketcap", sortAsc=False)
     qs = r.get("quotes", [])
     for x in qs:
-        if x.get("quoteType") == "EQUITY" and x.get("marketCap"):
+        if x.get("quoteType") == "EQUITY" and x.get("marketCap") and x.get("exchange") in EXCH:
             uni[x["symbol"]] = x
     off += 250
     total = r.get("total", 0)
@@ -32,7 +33,7 @@ for s, x in uni.items():
     if s in cache: continue
     if x.get("industry"):
         cache[s] = [x["industry"], x.get("sector", "")]; continue
-    if fetched >= 900: continue
+    if fetched >= 1500: continue
     try:
         info = yf.Ticker(s).info
         cache[s] = [info.get("industry") or "", info.get("sector") or ""]
@@ -43,6 +44,10 @@ for s, x in uni.items():
 cache_p.write_text(json.dumps(cache, ensure_ascii=False, indent=0), encoding="utf-8")
 known = [s for s in uni if cache.get(s, [""])[0]]
 print("info fetched", fetched, "with industry", len(known), "/", len(uni))
+cover = len([s for s in uni if s in cache]) / max(len(uni), 1)
+print("coverage", round(cover, 3))
+if cover < 0.95:
+    print("industry cache still filling - keeping previous themes/ytd data"); raise SystemExit(0)
 
 # 3) prices
 frames = []
