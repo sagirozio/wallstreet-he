@@ -15,16 +15,20 @@ OUT = os.path.join(ROOT, "fund")
 NQ = 20
 
 def get(url, tries=3):
+    import gzip
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "identity"})
+            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "gzip, deflate"})
             with urllib.request.urlopen(req, timeout=30) as r:
-                return json.loads(r.read())
+                b = r.read()
+                if r.headers.get("Content-Encoding") == "gzip" or b[:2] == b"\x1f\x8b": b = gzip.decompress(b)
+                return json.loads(b)
         except urllib.error.HTTPError as e:
             print("http", e.code, url, flush=True)
             if e.code == 404: return None
             time.sleep(1.5 * (i + 1))
-        except Exception:
+        except Exception as e:
+            print("fail", type(e).__name__, str(e)[:120], url, flush=True)
             time.sleep(1.5 * (i + 1))
     return None
 
