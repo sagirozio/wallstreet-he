@@ -74,6 +74,16 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .br th.dt{background:var(--panel2)}
 .brk{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
 .brk .card{padding:12px 14px}.brk b{display:block;font-size:24px;font-family:'JetBrains Mono',monospace}.brk span{color:var(--muted);font-size:12px}
+.ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
+.ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
+.ipoboard .ipo{margin:0;padding:12px;background:var(--panel2);border:1px solid var(--line)}.ipoboard .ipo.star{border-color:var(--amber)}
+.ipoboard .ipo .top{flex-wrap:wrap}.ipoboard .ipo .dt{font-size:13px}
+.ipoboard .ipo .kv{grid-template-columns:1fr;gap:0;margin:8px 0;border-top:1px solid var(--line)}
+.ipoboard .ipo .kv div{display:flex;justify-content:space-between;align-items:baseline;background:none;border-radius:0;padding:6px 0;border-bottom:1px solid var(--line)}
+.ipoboard .ipo .kv span{display:inline;font-size:12px}.ipoboard .ipo .kv b{font-size:13.5px}
+.ipoboard .ipo p{font-size:13px}
+@media(max-width:900px){.ipoboard{grid-template-columns:1fr;border:0;background:none;gap:14px;overflow:visible}.ipocol{border:1px solid var(--line)!important;border-radius:12px;background:var(--panel)}}
 .ipog{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:18px}
 .ipoh{font-size:15px;color:var(--muted);margin:6px 0 10px;font-weight:700}
 .ipo{position:relative}.ipo.star{border-color:rgba(245,185,66,.55)}
@@ -999,7 +1009,8 @@ function renderIpos(){
   const card = x => `<div class="card ipo${x.star?' star':''}"><div class="top">${mono(x.t)}<div><b>${esc(x.co)}</b><small>${esc(x.tk||x.t)}${x.ex?' · '+esc(x.ex):''}</small></div><div class="dt">${esc(x.date)}</div></div>`+
     (x.kv&&x.kv.length?`<div class="kv">${x.kv.map(([k,v])=>`<div><span>${esc(k)}</span><b>${bd(v)}</b></div>`).join('')}</div>`:'')+
     `<p>${bd(x.desc)}</p></div>`;
-  $('ipoBody').innerHTML = groups.map(([g,h])=>{ const it=d.items.filter(x=>x.g===g); return it.length?`<div class="ipoh">${h}</div><div class="ipog">${it.map(card).join('')}</div>`:''; }).join('');
+  const cols = groups.map(([g,h])=>[h,d.items.filter(x=>x.g===g)]).filter(c=>c[1].length);
+  $('ipoBody').innerHTML = `<div class="ipoboard" style="--n:${cols.length}">`+cols.map(([h,it])=>`<div class="ipocol"><div class="ipoh">${h} <span class="num">${it.length}</span></div>${it.map(card).join('')}</div>`).join('')+`</div>`;
   $('ipoSub').textContent = `מעודכן ל-${d.asOf}. ההנפקות המעניינות בוול סטריט: מה נכנס למסחר בקרוב, מי כבר הגישה בקשה, ואירועים שיכולים להזיז מניות שהונפקו לאחרונה.`;
 }
 // ===== Theme tracker =====
