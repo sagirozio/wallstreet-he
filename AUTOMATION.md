@@ -80,6 +80,19 @@ Read the existing entries first and copy their exact shape.
 - **`rev`:** bump `calendar.rev` (YYYYMMDDHHMM).
 - **`week`:** set it, e.g. `"16–20.11"`.
 
+### `profiles` (every run)
+
+`profiles` holds the stock profile pages ("תעודת זהות", at `#stock/TICKER`): `{"TICKER": {"desc": "<one or two Hebrew sentences: what the company does>"}}`.
+
+- Add a Hebrew `desc` for up to 15 stocks per run that don't have one yet.
+- Priority order:
+  1. companies in new report cards;
+  2. this week's `calendar`;
+  3. stocks named in today's news;
+  4. the top of `ytd`.
+- Keep it factual and neutral: business lines, main products and customers. No opinions or valuations.
+- Never change an existing `desc` unless it is factually wrong.
+
 ### `ipos` (when there is news)
 
 Update `items` when an IPO is priced or listed, or a big filing happens. Shape: as existing.
