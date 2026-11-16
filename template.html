@@ -772,7 +772,7 @@ function renderBreadth(){
            {v:`${f(last.hi)} / ${f(last.lo)}`,l:'בשיא / בשפל של 52 שבועות',good:(last.hi||0)>=(last.lo||0)}];
   $('brKpi').innerHTML = k.map(x=>`<div class="card"><b style="color:var(--${x.good?'green':'red'})"><bdi dir="ltr">${x.v}</bdi></b><span>${x.l}</span></div>`).join('');
   $('brSub').textContent = `רוחב השוק בתוך ה-S&P 500, נכון ל${b.asOf}. כמה מתוך 500 המניות באמת משתתפות בתנועה: המדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות.`;
-  $('brLegend').textContent = '"—" = אין עדיין נתון ממקור אמין. הטבלה תתמלא ותתעדכן כל ערב כשהאתר יעבור לדומיין עצמאי. מקורות: Trefis (שיאים ושפלים), TatiTrades (ממוצע 200 יום), OptionsTradingIQ (ממוצע 50 יום, S5FI).';
+  $('brLegend').textContent = 'חישוב עצמי מנתוני Yahoo Finance, מתעדכן אוטומטית כל ערב אחרי הסגירה. שיא/שפל = המניה נגעה במהלך היום בשיא/שפל של 52 השבועות הקודמים. "—" = אין נתון לאותו יום.';
 }
 // ===== IPOs =====
 let IPOS = FALLBACK.ipos;
