@@ -9,7 +9,7 @@ Foreign filers (20-F / 40-F, no 10-Q) are skipped.
 import json, os, sys, time, datetime as dt
 import urllib.request
 
-UA = os.environ.get("SEC_UA", "Wallstreeter research bot (github.com/sagirozio/wallstreet-he)")
+UA = os.environ.get("SEC_UA", "Wallstreeter sagirozio@users.noreply.github.com")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "fund")
 NQ = 20
@@ -21,6 +21,7 @@ def get(url, tries=3):
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.loads(r.read())
         except urllib.error.HTTPError as e:
+            print("http", e.code, url, flush=True)
             if e.code == 404: return None
             time.sleep(1.5 * (i + 1))
         except Exception:
