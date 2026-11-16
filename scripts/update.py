@@ -60,7 +60,12 @@ for srow in data["sectors"]["rows"]:
     for k, s in R.items():
         v = s.reindex(members).dropna()
         if len(v): srow[k] = round(float(v.mean()), 2)
-data["sectors"]["asOf"] = f"סגירת {last.day}.{last.month}.{last.year} (ממוצע מניות ה-S&P 500 בכל סקטור)"
+import datetime, zoneinfo
+now = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem"))
+live = now.date() == last.date() and now.hour < 23
+stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון ישראל, בעיכוב של כ-15 דקות)" if live
+         else f"סגירת {last.day}.{last.month}.{last.year}")
+data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
 
 data_path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("breadth", row)

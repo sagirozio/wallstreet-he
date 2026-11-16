@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: "30 21 * * 1-5"   # 23:30 Israel (winter) — after US close
   workflow_dispatch:
+concurrency: { group: data-update, cancel-in-progress: false }
 permissions:
   contents: write
 jobs:

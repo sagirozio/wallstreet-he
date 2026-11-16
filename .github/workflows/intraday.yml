@@ -1,0 +1,26 @@
+name: Intraday sectors & breadth (every ~15 min while US market is open)
+on:
+  schedule:
+    - cron: "*/15 14-21 * * 1-5"   # UTC; US session is 14:30-21:00 UTC in winter
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: data-update, cancel-in-progress: false }
+jobs:
+  intraday:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install yfinance pandas
+      - run: python scripts/update.py
+      - run: python scripts/build.py
+      - name: Commit
+        run: |
+          git config user.name "wallstreet-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data.json index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Intraday update"
+          git pull --rebase origin main && git push
