@@ -96,6 +96,16 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .thm .hn{font-weight:600;direction:ltr;unicode-bidi:isolate}.thm .en{display:block;color:var(--muted);font-size:12px}
 .thm td.nm{position:sticky;right:0;background:var(--panel);z-index:1;min-width:170px}
 .thm th.nm{position:sticky;right:0;z-index:2}
+@media(max-width:640px){
+.thm{min-width:0;font-size:13px;table-layout:fixed}
+.thm th:not(.nm):not(.active),.thm td.v:not(.active){display:none}
+.thm th.active,.thm td.v.active{width:86px}
+.thm td.nm{position:static;min-width:0;word-break:break-word}.thm th.nm{position:static}
+.thm td.v.active{outline:none;font-size:14px}
+.thm tr.sub td{padding:8px}.thm .stks{grid-template-columns:1fr!important}
+.thctl{flex-wrap:wrap}.thctl input{min-width:0;flex:1 1 100%}
+#thTabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}#thTabs button{flex:none}
+}
 .thmore{display:block;margin:12px auto 0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font:inherit;font-size:14px;cursor:pointer}
 .thm tr.has td.nm{cursor:pointer}
 .thm .car{display:inline-block;width:14px;color:var(--accent);transition:transform .15s;font-size:11px}
