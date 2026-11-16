@@ -1,6 +1,6 @@
 # Daily content update — instructions for the scheduled run
 
-Site: "וול סטריט בעברית", a Hebrew site about the US stock market.
+Site: "וולסטריטר" (tagline: "השוק האמריקאי, בגובה העיניים"), a Hebrew site about the US stock market.
 Repo: `sagirozio/wallstreet-he`. GitHub Pages serves `index.html` from `main`.
 `index.html` is generated: edit `data.json` (content) and run `python3 scripts/build.py`.
 
