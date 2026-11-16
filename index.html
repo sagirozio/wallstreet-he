@@ -160,6 +160,9 @@ body:not(.pg-stock) #stockPage{display:none}
 .spchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
 .spchips a,.spchips span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;color:var(--text);text-decoration:none}
 .spdesc{font-size:15.5px;line-height:1.6;margin:0 0 14px}
+.sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
+.sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
+#spTodayW{direction:ltr;min-height:0}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
 .spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
 .spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
@@ -674,10 +677,18 @@ function renderStock(t){
   $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
     <div class="spchips">${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
     <p class="spdesc">${prof.desc?esc(prof.desc):'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
-    ${s.r?`<div class="spperf">${PER.map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
+    <div class="sptoday"><div class="sptl">היום <span>(מתעדכן בזמן אמת, בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div>${s.r&&s.r.d!=null?`<div id="spTodayS" class="flat">שינוי אחרון במערכת: <b class="num ${s.r.d>=0?'up':'down'}" style="direction:ltr;display:inline-block">${pct(s.r.d,1)}</b></div>`:''}</div>
+    ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
     <div class="spchart" id="spChart"></div>
     <h3 class="sph3">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
     ${peers.length?`<h3 class="sph3">חברות נוספות באותה קבוצה</h3><div class="spchips">${peers.map(p=>`<a href="#stock/${encodeURIComponent(p[0])}">${esc(p[0])} · ${esc(p[1])}</a>`).join('')}</div>`:''}`;
+  { const q=$('spTodayW'), w2=document.createElement('div'); w2.className='tradingview-widget-container';
+    w2.innerHTML='<div class="tradingview-widget-container__widget"></div>';
+    const s2=document.createElement('script'); s2.src='https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js'; s2.async=true;
+    s2.textContent=JSON.stringify({symbol:(s.ex?s.ex+':':'')+s.t.replace('-','.'),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
+    w2.appendChild(s2); q.appendChild(w2);
+    const mo=new MutationObserver(()=>{ if(q.querySelector('iframe')){ const st=$('spTodayS'); if(st) st.style.display='none'; mo.disconnect(); } });
+    mo.observe(q,{childList:true,subtree:true}); }
   const box=$('spChart'), w=document.createElement('div'); w.className='tradingview-widget-container'; w.style.height='100%';
   w.innerHTML='<div class="tradingview-widget-container__widget" style="height:calc(100% - 32px)"></div>';
   const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js'; sc.async=true;
