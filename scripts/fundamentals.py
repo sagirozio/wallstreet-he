@@ -9,7 +9,7 @@ Foreign filers (20-F / 40-F, no 10-Q) are skipped.
 import json, os, sys, time, datetime as dt
 import urllib.request
 
-UA = os.environ.get("SEC_UA") or "Wallstreeter sagirozio@users.noreply.github.com"
+UA = (os.environ.get("SEC_UA") or "").strip() or "Wallstreeter sagirozio@users.noreply.github.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "fund")
 NQ = 20
