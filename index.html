@@ -84,7 +84,6 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
 .fcl{display:flex;gap:12px;justify-content:center;font-size:12px;color:var(--muted);margin-top:4px}.fcl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:5px}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
-.wash{display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#06281a;border:0;border-radius:999px;padding:7px 13px;font:700 13.5px inherit;font-family:inherit;cursor:pointer}.wash:hover{filter:brightness(1.08)}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -336,7 +335,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <div class="mvstrip hidden" id="mvWrap"><span class="mvl">🚀 עולות 10%+ היום</span><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
 <header><div class="wrap">
   <div class="top"><a class="logo" href="#" aria-label="וולסטריטר Wallstreeter – לעמוד הראשי"><svg class="lgi" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg><span class="lgt"><span class="lgn">וולסטריטר <b class="lge">WALLSTREETER</b></span><small class="tagline">השוק האמריקאי, בגובה העיניים</small></span></a>
-  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="wash" type="button" onclick="shareWA()" aria-label="שיתוף בוואטסאפ"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span>שתפו</span></button><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><button class="bell" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><button class="bell" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
 </div></header>
 <div class="navbar"><div class="wrap">
   <nav id="nav">
@@ -582,7 +581,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
     <li>מאקרו ומחירים: <a href="https://www.bls.gov/">BLS</a> · <a href="https://www.cnbc.com/2026/11/09/october-cpi-report-2026-inflation.html">CNBC – CPI</a> · <a href="https://thehill.com/business/6201764-us-jobs-report-october/">The Hill – תעסוקה</a> · <a href="https://news.bitcoin.com/market-updates/fed-rate-hike-odds-reach-near-certainty-as-bitcoin-price-falls-to-65k/">FedWatch (14.11)</a> · <a href="https://finance.yahoo.com/economy/policy/articles/fed-hike-rates-december-prediction-075612146.html">החלטת אוקטובר</a> · <a href="https://www.israel.com/shekel-to-dollar">דולר-שקל (ECB)</a> · <a href="https://tradingeconomics.com/commodity/gold">זהב</a> · <a href="https://energynow.com/2026/11/oil-prices-fall-for-second-straight-week-as-global-supply-surplus-emerges-wti-closes-at-88-56-brent-at-95-84/">נפט</a> · <a href="https://cryptoticker.io/en/bitcoin-price-overnight-low-weekly-close-november-15-2026/">ביטקוין</a></li>
     <li><a href="https://www.cmelitegroup.com/knowledge-hub/nvidia-earnings-date-fiscal-q3-2027-report-time-guidance-and-expected-move/?nocache=1">מועד הדוח של Nvidia</a> · <a href="https://www.earningswhispers.com/stocks/Nvda">Earnings Whispers</a> · <a href="https://www.stocktitan.net/rankings/stock-gains-monthly/2026/november">StockTitan – העולות של נובמבר</a></li>
   </ul>
-  <p class="flinks"><a href="#" onclick="shareWA();return false">📲 שתפו את וולסטריטר בוואטסאפ</a> · <a href="#terms">תנאי שימוש</a> · <a href="#accessibility">הצהרת נגישות</a></p>
+  <p class="flinks"><a href="#terms">תנאי שימוש</a> · <a href="#accessibility">הצהרת נגישות</a></p>
   <p>האתר מיועד למידע ולמידה בלבד ואינו ייעוץ השקעות. נתונים מאתרים חיצוניים עשויים להשתנות. כדאי לאמת מול המקור לפני כל החלטה.</p>
 </div></footer>
 
@@ -591,272 +590,6 @@ const FALLBACK = {"sectors": {"asOf": "16.11.2026 בשעה 21:41 (שעון יש�
 let REPORTS = FALLBACK.reports, SECTORS = FALLBACK.sectors;
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
-/* ---------- WhatsApp share ---------- */
-const SITE_URL = 'https://claude.ai/artifact/Qin88ee6MNLquPbYeeixkP';
-const WA_SVG = document.querySelector('#briefWa svg') ? document.querySelector('#briefWa svg').outerHTML : '';
-const waLink = txt => 'https://wa.me/?text=' + encodeURIComponent(txt);
-function reportText(r){
-  const ch = (v, note) => note ? note.replace(/\s*\(.*\)\s*$/,'') : (typeof v==='number' ? pct(v) : '');
-  const ln = (lbl, val, v, note) => { const c=ch(v,note); return `${lbl}: ${val}${c?` · ${c}`:''}`; };
-  return `📊 ${r.co} (${r.t})\n`+
-    ln('רווח למניה', eps(r.epsAct), r.epsYoy, r.epsYoyNote)+'\n'+
-    ln('מכירות', money(r.revAct), r.revYoy, null)+
-    (r.hook?`\n\n💬 ${r.hook}`:'')+
-    `\n\n${SITE_URL}`;
-}
-function briefText(){ const o=OVERVIEW||{};
-  return `⚡ השוק ב-30 שניות${o.asOf?` (${o.asOf})`:''}\n\n`+(o.brief||[]).map(b=>'• '+b).join('\n')+`\n\nכל הדוחות והנתונים בעברית:\n${SITE_URL}`; }
-
-/* ---------- earnings ---------- */
-const surp = (a,e) => (typeof a==='number' && typeof e==='number' && e!==0) ? (a-e)/Math.abs(e)*100 : null;
-function resultOf(r){ if(typeof r.revAct!=='number') return r.epsAct>r.epsEst?'beat':'miss'; const v=r.revAct>r.revEst; if(typeof r.epsEst!=='number') return v?'beat':'miss'; const e=r.epsAct>r.epsEst; return e&&v?'beat':(!e&&!v?'miss':'mix'); }
-function money(x){ if(typeof x!=='number') return '—'; const n=x<0?'-':'';
-  const a=Math.abs(x); return a>=1 ? `${n}$${a>=100?a.toFixed(1):a.toFixed(2).replace(/0$/,'')}B` : `${n}$${(a*1000).toFixed(1)}M`; }
-const eps = x => typeof x==='number' ? (x<0?'-$':'$')+Math.abs(x).toFixed(2) : '—';
-const pct = (x,d=0) => (x>0?'+':'')+x.toFixed(d)+'%';
-function metric(lbl, act, est, yoy, yoyNote, fmt, basis, noteGood){
-  const hasEst = typeof est==='number', ok = hasEst ? act>est : (typeof yoy==='number' ? yoy>=0 : !!noteGood), s = surp(act,est);
-  let y;
-  if (typeof yoy==='number') y = `<b class="${yoy>0?'up':yoy<0?'down':'flat'} num">${yoy===0?'ללא שינוי':pct(yoy)}</b>`;
-  else y = '<b class="flat">—</b>';
-  return `<div class="m"><div class="lbl">${lbl}${basis?` · ${esc(basis)}`:''}</div>
-    <div class="act num ${ok?'up':'down'}">${fmt(act)}</div>
-    ${hasEst ? `<div class="est">צפי: <span class="num">${fmt(est)}</span></div>
-    <div class="res ${ok?'up':'down'}">${ok?'▲ מעל הצפי':'▼ מתחת לצפי'}</div>${s!==null?`<div class="surp">Surprise <b class="num ${s>=0?'up':'down'}">${pct(s,1)}</b></div>`:''}` : `<div class="est">צפי: לא פורסם צפי אחיד</div>`}
-    <div class="yoy">לעומת אשתקד: ${y}</div></div>`;
-}
-const GUIDE = {raised:['🔼','התחזית הועלתה'],above:['✅','התחזית מעל הצפי'],inline:['➖','התחזית בקו הצפי'],below:['🔽','התחזית מתחת לצפי'],given:['📋','תחזית ההנהלה'],none:['—','לא ניתנה תחזית מעודכנת']};
-const BADGE = {beat:['b-beat','עקפה בשניהם'],mix:['b-mix','מעורב'],miss:['b-miss','החטיאה בשניהם']};
-function fmtDate(d){ const [y,m,dd]=String(d).split('-'); return `${dd}.${m}.${y}`; }
-function card(r){
-  const res = resultOf(r), g = GUIDE[r.guide]||GUIDE.none;
-  return `<div class="card">
-    <div class="ehead"><div class="cohead">${tl(r.t,mono(r.t))}<div><div class="co">${tl(r.t,esc(r.co)+'<span class="tick">'+esc(r.t)+'</span>')}</div>
-      <div class="date">${fmtDate(r.date)} · ${esc(r.q)} · ${esc(r.sector)}</div></div></div>
-      <span class="badge ${BADGE[res][0]}">${typeof r.revAct!=='number'?(res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי'):BADGE[res][1]}</span></div>
-    <div class="metrics">${metric('רווח למניה (EPS)', r.epsAct, r.epsEst, r.epsYoy, r.epsYoyNote, eps, r.epsBasis, r.epsYoyGood)}
-      ${typeof r.revAct==='number'?metric('מכירות (Revenue)', r.revAct, r.revEst, r.revYoy, null, money):'<div class="m"><div class="lbl">מכירות (Revenue)</div><div class="est">אין הכנסות ממכירות. חברה בשלב קליני.</div></div>'}</div>
-    <div class="guide g-${esc(r.guide||'none')}"><div class="gt">${g[0]} ${g[1]}</div>${r.guideText?esc(r.guideText):''}</div>
-    ${r.note?`<p class="note">${esc(r.note)}</p>`:''}${r.react?`<div class="react">📈 ${esc(r.react)}</div>`:''}
-    <div class="actions">${/^https:\/\//.test(r.ir||'')?`<a class="irlink" href="${esc(r.ir)}" target="_blank" rel="noopener">📊 מצגת וחומרי הדוח ↗</a>`:''}
-      <a class="wa" href="${waLink(reportText(r))}" target="_blank" rel="noopener">${WA_SVG}שתף בוואטסאפ</a></div>
-  </div>`;
-}
-function renderEarn(){
-  const q = $('q').value.trim().toLowerCase(), fs=$('fSector').value, fr=$('fResult').value, fg=$('fGuide').value, so=$('sort').value;
-  let list = REPORTS.filter(r => {
-    if (q && !(`${r.t} ${r.co} ${r.sector} ${r.note} ${r.guideText}`.toLowerCase().includes(q))) return false;
-    if (fs && r.sector!==fs) return false;
-    if (fr && resultOf(r)!==fr) return false;
-    if (fg==='pos' && !['raised','above'].includes(r.guide)) return false;
-    if (fg && fg!=='pos' && r.guide!==fg) return false;
-    return true;
-  });
-  const key = {group:r=>r.date, date:r=>r.date, epsSurp:r=>surp(r.epsAct,r.epsEst)??-1e9, revSurp:r=>surp(r.revAct,r.revEst)??-1e9, revYoy:r=>r.revYoy??-1e9, epsYoy:r=>r.epsYoy??-1e9}[so];
-  if (so==='group') {
-    const cnt={}; list.forEach(r=>cnt[r.sector]=(cnt[r.sector]||0)+1);
-    list.sort((a,b)=> (cnt[b.sector]-cnt[a.sector]) || a.sector.localeCompare(b.sector,'he') || String(b.date).localeCompare(String(a.date)));
-    let prev=null, html='';
-    list.forEach(r=>{ if(r.sector!==prev){ const g=list.filter(x=>x.sector===r.sector); const bt=g.filter(x=>resultOf(x)==='beat').length;
-      html+=`<h3 class="grph">${esc(r.sector)} <span>${g.length===1?'דוח אחד':g.length+' דוחות'} · ${bt} עקפו בשניהם</span></h3>`; prev=r.sector; }
-      html+=card(r); });
-    $('earnGrid').innerHTML = html || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>';
-  } else {
-  list.sort((a,b)=> key(a)<key(b)?1:key(a)>key(b)?-1:0);
-  $('earnGrid').innerHTML = list.map(card).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>';
-  }
-  const all={}; REPORTS.forEach(r=>all[r.sector]=(all[r.sector]||0)+1);
-  $('secChips').innerHTML = `<button data-sec="" class="${fs?'':'on'}">הכל<b>${REPORTS.length}</b></button>`+Object.entries(all).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<button data-sec="${esc(s)}" class="${fs===s?'on':''}">${esc(s)}<b>${n}</b></button>`).join('');
-  $('count').textContent = `מוצגים ${list.length} מתוך ${REPORTS.length} דוחות`;
-}
-function fillSectors(){
-  const cur=$('fSector').value, s=[...new Set(REPORTS.map(r=>r.sector))].sort();
-  $('fSector').innerHTML = '<option value="">כל הסקטורים</option>'+s.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
-}
-['q','fSector','fResult','fGuide','sort'].forEach(id=>$(id).addEventListener('input',renderEarn));
-
-
-/* ---------- top reports + page routing ---------- */
-function reactScore(s){ s=s||''; const m=s.match(/(\d+(?:\.\d+)?)%/); const v=m?+m[1]:3;
-  if(/צנח|ירד/.test(s)) return -v; if(/זינק|קפצ|עלת|עלה/.test(s)) return /לפני הפתיחה.*ננעלה בירידה/.test(s)?-1:v; return 0; }
-function topReports(){
-  const dates=REPORTS.map(r=>r.date).sort(), last=dates[dates.length-1]||'';
-  const cut=new Date(new Date(last).getTime()-21*864e5).toISOString().slice(0,10);
-  const sc=r=>{ const e=Math.min(surp(r.epsAct,r.epsEst)??0,40), v=Math.min(surp(r.revAct,r.revEst)??0,15);
-    return e*0.6+v*2+(r.guide==='raised'?8:r.guide==='above'?6:r.guide==='below'?-8:0)+reactScore(r.react)*0.8+Math.min(r.revYoy||0,60)*0.1; };
-  return REPORTS.filter(r=>r.date>=cut && resultOf(r)==='beat' && r.guide!=='below' && reactScore(r.react)>=-1)
-    .sort((a,b)=>sc(b)-sc(a)).slice(0,3);
-}
-
-function renderToday(){
-  const iso=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'});
-  let done=REPORTS.filter(r=>r.date===iso), isToday=true;
-  if(!done.length){ const last=REPORTS.map(r=>r.date).sort().pop(); done=REPORTS.filter(r=>r.date===last); isToday=false; }
-  const dt=done[0]?done[0].date.split('-'):null, lbl=dt?`${+dt[2]}.${+dt[1]}`:'';
-  $('todayH').textContent = isToday?`הדוחות של היום · ${lbl}`:`הדוחות האחרונים · ${lbl}`;
-  $('todaySub').textContent = isToday?`${done.length===1?'דוח אחד פורסם':done.length+' דוחות פורסמו'} עד עכשיו. דוחות נוספים יופיעו כאן במהלך היום.`:'עוד לא פורסמו דוחות היום, אז מוצגים הדוחות מיום המסחר האחרון.';
-  $('todayGrid').innerHTML = done.map(card).join('');
-}
-
-function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=REPORTS.length; renderToday(); }
-function route(){
-  const rep = location.hash==='#reports', nw = location.hash==='#news-all', st = location.hash.startsWith('#stock/');
-  document.body.classList.toggle('pg-rep',rep);
-  document.body.classList.toggle('pg-news',nw);
-  document.body.classList.toggle('pg-stock',st);
-  const lg = location.hash==='#terms'?'termsPage':location.hash==='#accessibility'?'accessPage':'';
-  document.body.classList.toggle('pg-legal',!!lg);
-  document.querySelectorAll('section.legal').forEach(s=>s.classList.toggle('on',s.id===lg));
-  if(lg){ window.scrollTo(0,0); return; }
-  if(st) renderStock(decodeURIComponent(location.hash.slice(7)).toUpperCase());
-  if(rep||nw||st) window.scrollTo(0,0);
-  else if(location.hash.length>1){ const el=document.getElementById(location.hash.slice(1)); if(el) requestAnimationFrame(()=>el.scrollIntoView()); }
-}
-window.addEventListener('hashchange',route);
-
-
-
-/* ---------- nav: direct link + group sub-row ---------- */
-const NAV={
-  today:[['#brief','ב-30 שניות'],['#market','מצב השוק'],['#macro','מאקרו וריבית']],
-  rep:[['#top-reports','בולטים והיום'],['#reports','כל הדוחות'],['#upcoming','לוח דוחות השבוע'],['#ipos','הנפקות']],
-  mkt:[['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק']],
-  stk:[['#gainers','מניות שזינקו'],['#ytd','הכפילו ב-2026']],
-  news:[['#news','חדשות'],['#news-all','מאגר חדשות'],['#glossary','מילון מונחים']]
-};
-function setNav(g,h){
-  [...$('nav').querySelectorAll('a')].forEach(x=>x.classList.toggle('on',x.dataset.g===g));
-  $('subnav').classList.toggle('hidden',!g);
-  $('subnav').innerHTML = g?NAV[g].map(([hh,l])=>`<a href="${hh}" class="${hh===h?'on':''}">${l}</a>`).join(''):'';
-}
-$('nav').addEventListener('click',e=>{ const a=e.target.closest('a[data-g]'); if(a) setNav(a.dataset.g,a.getAttribute('href')); });
-$('subnav').addEventListener('click',e=>{ const a=e.target.closest('a'); if(!a) return;
-  [...$('subnav').querySelectorAll('a')].forEach(x=>x.classList.toggle('on',x===a)); });
-
-
-/* ---------- news ---------- */
-const NEWS = (FALLBACK.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
-function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
-  return `<article class="card"><div class="bar ${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></div><div><div class="tag">${esc(n.tag)} · ${+dd}.${+m}</div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p>${n.url?`<div class="src">מקור: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.src||'לכתבה')}</a></div>`:''}</div></article>`; }
-function renderNews(){
-  $('newsLatest').innerHTML = NEWS.slice(0,6).map(newsCard).join('');
-  $('newsN').textContent = NEWS.length;
-  const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
-  $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
-  const q=$('nq').value.trim().toLowerCase(), tg=$('ntag').value;
-  const list=NEWS.filter(n=>(!tg||n.tag===tg)&&(!q||`${n.tag} ${n.title} ${n.body}`.toLowerCase().includes(q)));
-  let html='',prev=null;
-  list.forEach(n=>{ if(n.date!==prev){ const [y,m,dd]=n.date.split('-'); html+=(prev?'</div>':'')+`<div class="nday">${+dd}.${+m}.${y}</div><div class="news">`; prev=n.date; } html+=newsCard(n); });
-  $('newsAll').innerHTML = (html?html+'</div>':'<div class="empty">לא נמצאו ידיעות.</div>');
-}
-['nq','ntag'].forEach(id=>$(id).addEventListener('input',renderNews));
-
-
-/* ---------- TradingView live widgets: show when loaded (phones can be slow), else keep static strip ---------- */
-(function(){
-  const has = el => el && el.querySelector('iframe');
-  const check = () => {
-    if (has($('tvTape'))) { $('tvTape').classList.remove('off'); $('stripWrap').style.display='none'; }
-    if (has($('tvLive'))) $('tvLive').classList.remove('off');
-  };
-  new MutationObserver(check).observe(document.body,{childList:true,subtree:true});
-  setTimeout(()=>{ check(); if(!has($('tvTape'))) $('tvTape').classList.add('off'); if(!has($('tvLive'))) $('tvLive').classList.add('off'); }, 25000);
-})();
-
-
-/* ---------- stock profile ("תעודת זהות") ---------- */
-const SEC_HE={"Technology":"טכנולוגיה","Healthcare":"בריאות","Financial Services":"פיננסים","Consumer Cyclical":"צריכה מחזורית","Consumer Defensive":"צריכה בסיסית","Industrials":"תעשייה","Energy":"אנרגיה","Basic Materials":"חומרי גלם","Real Estate":"נדל״ן","Utilities":"תשתיות","Communication Services":"תקשורת"};
-let STOCKIX=null;
-function stockIndex(){
-  if(STOCKIX) return STOCKIX; STOCKIX={};
-  const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
-  Object.entries(T.stocks||{}).forEach(([ind,lst])=>lst.forEach(s=>{ STOCKIX[s[0]]={t:s[0],co:s[1],cap:s[2],r:typeof s[3]==='object'?s[3]:null,ind,indHe:he[ind]||'',sec:(T.indSector||{})[ind]||'',ex:(T.ex||{})[s[0]]||''}; }));
-  (REPORTS||[]).forEach(r=>{ if(!STOCKIX[r.t]) STOCKIX[r.t]={t:r.t,co:r.co,cap:'',r:null,ind:'',indHe:'',sec:'',secHe:r.sector,ex:''}; });
-  return STOCKIX;
-}
-function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent(t)}">${inner}</a>`; }
-function renderStock(t){
-  const ix=stockIndex(), s=ix[t], prof=((FALLBACK.profiles||{})[t])||{};
-  $('spList').innerHTML=Object.values(ix).slice(0,4000).map(x=>`<option value="${esc(x.t)}">${esc(x.co)}</option>`).join('');
-  if(!s){ $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)} (באתר מוצגות רק חברות מעל מיליארד דולר).</div>`; return; }
-  const rep=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
-  const secHe=SEC_HE[s.sec]||s.secHe||'';
-  const peers=s.ind?((THEMES.stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
-  $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
-    <div class="spchips">${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
-    <p class="spdesc">${prof.desc?esc(prof.desc):(s.indHe||secHe)?`<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.`:'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
-    <div class="sptoday"><div class="sptl">היום <span>(מתעדכן בזמן אמת, בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div>${s.r&&s.r.d!=null?`<div id="spTodayS" class="flat">שינוי אחרון במערכת: <b class="num ${s.r.d>=0?'up':'down'}" style="direction:ltr;display:inline-block">${pct(s.r.d,1)}</b></div>`:''}</div>
-    ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
-    <div class="spchart" id="spChart"></div>
-    <div id="spFund"></div>
-    <h3 class="sph3">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
-    ${peers.length?`<h3 class="sph3">חברות נוספות באותה קבוצה</h3><div class="spchips">${peers.map(p=>`<a href="#stock/${encodeURIComponent(p[0])}">${esc(p[0])} · ${esc(p[1])}</a>`).join('')}</div>`:''}`;
-  { const q=$('spTodayW'), w2=document.createElement('div'); w2.className='tradingview-widget-container';
-    w2.innerHTML='<div class="tradingview-widget-container__widget"></div>';
-    const s2=document.createElement('script'); s2.src='https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js'; s2.async=true;
-    s2.textContent=JSON.stringify({symbol:(s.ex?s.ex+':':'')+s.t.replace('-','.'),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
-    w2.appendChild(s2); q.appendChild(w2);
-    const mo=new MutationObserver(()=>{ if(q.querySelector('iframe')){ const st=$('spTodayS'); if(st) st.style.display='none'; mo.disconnect(); } });
-    mo.observe(q,{childList:true,subtree:true}); }
-  const box=$('spChart'), w=document.createElement('div'); w.className='tradingview-widget-container'; w.style.height='100%';
-  w.innerHTML='<div class="tradingview-widget-container__widget" style="height:calc(100% - 32px)"></div>';
-  const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'; sc.async=true;
-  sc.textContent=JSON.stringify({symbol:(s.ex?s.ex+':':'')+s.t.replace('-','.'),interval:'D',style:'2',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',autosize:true,backgroundColor:'rgba(0,0,0,0)',allow_symbol_change:false,hide_side_toolbar:true,withdateranges:false,save_image:false,calendar:false,support_host:'https://www.tradingview.com'});
-  w.appendChild(sc); box.appendChild(w);
-  loadFund(s.t);
-}
-$('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCase(); if(v) location.hash='#stock/'+v; });
-
-document.addEventListener('click',e=>{ const tr=e.target.closest&&e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
-
-
-
-/* ---------- quarterly fundamentals (SEC EDGAR, US filers) ---------- */
-function fmtBig(v){ if(v===0) return '$0'; const a=Math.abs(v); const s=v<0?'-':''; return a>=1e12?s+'$'+(a/1e12).toFixed(2)+'T':a>=1e9?s+'$'+(a/1e9).toFixed(a>=1e11?0:1)+'B':a>=1e6?s+'$'+(a/1e6).toFixed(0)+'M':s+'$'+Math.round(a/1e3)+'K'; }
-function qLbl(e){ const d=new Date(e+'T00:00:00'); return 'Q'+(Math.floor(d.getMonth()/3)+1)+' '+String(d.getFullYear()).slice(2); }
-function fundChart(title,q,series,isEps){
-  const W=340,H=170,L=46,R=6,T=8,B=22, n=q.length, all=series.flatMap(s=>s.v).filter(v=>v!=null);
-  if(!all.length) return '';
-  let mx=Math.max(0,...all), mn=Math.min(0,...all); if(mx===mn) mx=mn+1;
-  const y=v=>T+(mx-v)/(mx-mn)*(H-T-B), gw=(W-L-R)/n, bw=Math.max(2,(gw*0.72)/series.length);
-  const ticks=[mn,0,(mx+mn)/2,mx].filter((v,i,a)=>a.indexOf(v)===i&&(v===0||Math.abs(v)>=(mx-mn)*0.15));
-  const fmt=v=>isEps?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
-  let g=ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?'#3a4660':'#1f2a3d'}" stroke-dasharray="${v===0?'':'3 3'}"/><text x="${L-5}" y="${y(v)+3.5}" text-anchor="end">${fmt(v)}</text>`).join('');
-  series.forEach((s,si)=>s.v.forEach((v,i)=>{ if(v==null) return; const x=L+i*gw+(gw-bw*series.length)/2+si*bw, y0=y(0), y1=y(v);
-    g+=`<rect x="${x.toFixed(1)}" y="${Math.min(y0,y1).toFixed(1)}" width="${(bw-0.6).toFixed(1)}" height="${Math.max(0.8,Math.abs(y1-y0)).toFixed(1)}" rx="1" fill="${v<0&&series.length===1?'#ef4444':s.c}"><title>${qLbl(q[i])} · ${s.n}: ${fmt(v)}</title></rect>`; }));
-  q.forEach((e,i)=>{ if(i%4===n%4||i===n-1) g+=`<text x="${(i===n-1?W-R:L+i*gw+gw/2).toFixed(1)}" y="${H-6}" text-anchor="${i===n-1?'end':'middle'}">${qLbl(e)}</text>`; });
-  return `<div class="fch"><div class="fct">${title}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">${g}</svg><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
-}
-async function loadFund(t){
-  const box=$('spFund'); if(!box) return;
-  try{
-    const r=await fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}); if(!r.ok) return;
-    const f=await r.json(); if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
-    const q=f.q;
-    const ch=[
-      fundChart('הכנסות ורווח תפעולי',q,[{n:'הכנסות',c:'#5b8cff',v:f.rev},{n:'רווח תפעולי',c:'#f59e0b',v:f.op}]),
-      fundChart('רווח נקי',q,[{n:'רווח נקי',c:'#eab308',v:f.ni}]),
-      fundChart('תזרים מזומנים חופשי',q,[{n:'תזרים חופשי',c:'#22b8cf',v:f.fcf}]),
-      fundChart('רווח גולמי והוצאות תפעול',q,[{n:'רווח גולמי',c:'#5b8cff',v:f.gp},{n:'הוצאות תפעול',c:'#ef4444',v:f.opex}]),
-      fundChart('רווח למניה (EPS)',q,[{n:'EPS מדולל',c:'#a855f7',v:f.eps}],true),
-      fundChart('מאזן',q,[{n:'נכסים',c:'#22c55e',v:f.assets},{n:'התחייבויות',c:'#ec4899',v:f.liab}])
-    ].filter(Boolean);
-    if(!ch.length) return;
-    box.innerHTML=`<h3 class="sph3">נתונים רבעוניים</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
-  }catch(e){}
-}
-
-
-/* ---------- WhatsApp share (shares the current page; stock pages share that stock) ---------- */
-function shareWA(){
-  const base=location.origin+location.pathname, h=location.hash, m=h.match(/^#stock\/(.+)$/);
-  let text, url=base+(m?h:'');
-  if(m){ const t=decodeURIComponent(m[1]).toUpperCase(), s=(typeof stockIndex==='function'?stockIndex()[t]:null);
-    text=`${t}${s&&s.co?' – '+s.co:''}: תעודת זהות, גרף ונתונים רבעוניים בוולסטריטר 📈`; }
-  else text='וולסטריטר – השוק האמריקאי, בגובה העיניים 📈 דוחות, מניות חמות, סקטורים ותעודת זהות לכל מניה. בחינם, בעברית.';
-  window.open('https://wa.me/?text='+encodeURIComponent(text+'\n'+url),'_blank','noopener');
-}
 
 /* ---------- today's 10%+ movers strip ---------- */
 function renderMovers(){
