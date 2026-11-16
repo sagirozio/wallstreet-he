@@ -258,6 +258,12 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .strip .in{display:flex;width:max-content;padding:8px 0;animation:tick var(--dur,35s) linear infinite}
 .strip:hover .in,.strip:active .in{animation-play-state:paused}
+.mvstrip{display:flex;align-items:center;background:#0a1a12;border-bottom:1px solid var(--line);font-size:12.5px;white-space:nowrap}
+.mvstrip .mvl{flex:none;padding:5px 10px;font-weight:700;color:var(--green);background:#0a1a12;z-index:1;border-inline-end:1px solid var(--line)}
+.mvstrip .mvs{overflow:hidden;flex:1}
+.mvstrip .in{display:flex;width:max-content;padding:5px 0;animation:tick var(--dur,40s) linear infinite}
+.mvstrip a{color:var(--text);text-decoration:none;margin:0 12px;direction:ltr}.mvstrip a b{color:var(--green);margin-inline-start:5px}
+@media(prefers-reduced-motion:reduce){.mvstrip .in{animation:none}.mvstrip .mvs{overflow-x:auto}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
 @media(prefers-reduced-motion:reduce){.strip .in{animation:none}.strip{overflow-x:auto}}
 .strip .it{display:inline-flex;gap:6px;align-items:baseline;padding:0 18px;border-inline-end:1px solid var(--line)}
@@ -281,6 +287,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <body>
 <div class="tv-tape" id="tvTape"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols": [{"proName": "AMEX:SPY", "title": "S&P 500 (SPY)"}, {"proName": "NASDAQ:QQQ", "title": "נאסד״ק 100 (QQQ)"}, {"proName": "AMEX:DIA", "title": "דאו (DIA)"}, {"proName": "AMEX:IWM", "title": "ראסל 2000 (IWM)"}, {"proName": "FX_IDC:USDILS", "title": "דולר/שקל"}, {"proName": "TVC:GOLD", "title": "זהב"}, {"proName": "TVC:USOIL", "title": "נפט"}, {"proName": "BITSTAMP:BTCUSD", "title": "ביטקוין"}, {"proName": "CAPITALCOM:VIX", "title": "VIX"}], "showSymbolLogo": true, "isTransparent": true, "displayMode": "adaptive", "colorTheme": "dark", "locale": "he_IL"}</script></div></div>
 <div class="strip" id="stripWrap"><div class="in" id="strip"></div></div>
+<div class="mvstrip hidden" id="mvWrap"><span class="mvl">🚀 עולות 10%+ היום</span><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
 <header><div class="wrap">
   <div class="top"><div class="logo">וול סטריט <span>בעברית</span></div>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><button class="bell" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
@@ -701,6 +708,17 @@ $('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCas
 
 document.addEventListener('click',e=>{ const tr=e.target.closest&&e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
 
+
+/* ---------- today's 10%+ movers strip ---------- */
+function renderMovers(){
+  const m=FALLBACK.movers, rows=(m&&m.rows)||[];
+  $('mvWrap').classList.toggle('hidden',!rows.length); if(!rows.length) return;
+  let one=rows.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b>+${r.p.toFixed(1)}%</b></a>`).join('');
+  let row=one; while((row.match(/<a /g)||[]).length<12) row+=one;
+  $('mvStrip').innerHTML=row+row; $('mvStrip').style.setProperty('--dur',Math.max(20,(row.match(/<a /g)||[]).length*3)+'s');
+}
+renderMovers();
+
 /* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
 async function refreshLive(){
   if (document.hidden || location.protocol==='file:') return;
@@ -709,6 +727,7 @@ async function refreshLive(){
     const d = await r.json();
     if (d.sectors && JSON.stringify(d.sectors)!==JSON.stringify(SECTORS)) { SECTORS=d.sectors; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
+    if (d.movers) { FALLBACK.movers=d.movers; renderMovers(); }
   } catch(e) {}
 }
 setInterval(refreshLive, 5*60*1000);

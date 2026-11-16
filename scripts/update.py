@@ -67,5 +67,21 @@ stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון י
          else f"סגירת {last.day}.{last.month}.{last.year}")
 data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
 
+# ---- today's big movers: up 10%+ (cap > $1B, avg volume > 800k, major US exchanges) ----
+try:
+    r = yf.screen("day_gainers", count=250)
+    EX = {"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"}
+    mv = []
+    for q in r.get("quotes", []):
+        p = q.get("regularMarketChangePercent") or 0
+        if p >= 10 and (q.get("marketCap") or 0) >= 1e9 and (q.get("averageDailyVolume3Month") or 0) >= 800_000 \
+           and q.get("exchange") in EX and q.get("quoteType") == "EQUITY":
+            mv.append({"t": q["symbol"], "n": q.get("shortName") or q["symbol"], "p": round(float(p), 1)})
+    mv.sort(key=lambda x: -x["p"])
+    data["movers"] = {"asOf": stamp, "rows": mv[:40]}
+    print("movers", len(mv))
+except Exception as e:
+    print("movers failed", e)
+
 data_path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("breadth", row)
