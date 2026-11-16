@@ -93,6 +93,7 @@ print("industries matched", len(stocks), "unmatched", missing[:30])
 dbl = []
 for s in close.columns:
     v = R["ytd"].get(s); x = uni[s]
+    if close[s].iloc[-260:].notna().sum() < 230: continue   # skip recent IPOs / thin history
     if pd.notna(v) and v >= 100 and (x.get("averageDailyVolume3Month") or 0) >= 800_000:
         dbl.append({"t": s, "n": x.get("shortName") or s, "p": round(float(v), 1),
                     "cap": round(x["marketCap"] / 1e9, 2), "il": x.get("region") == "IL",
