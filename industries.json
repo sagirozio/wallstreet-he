@@ -1,0 +1,3602 @@
+{
+"AAPL": [
+"Consumer Electronics",
+"Technology"
+],
+"MSFT": [
+"Software - Infrastructure",
+"Technology"
+],
+"NVDA": [
+"Semiconductors",
+"Technology"
+],
+"GOOGL": [
+"Internet Content & Information",
+"Communication Services"
+],
+"GOOG": [
+"Internet Content & Information",
+"Communication Services"
+],
+"AMZN": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"TSM": [
+"Semiconductors",
+"Technology"
+],
+"SPCX": [
+"Aerospace & Defense",
+"Industrials"
+],
+"META": [
+"Internet Content & Information",
+"Communication Services"
+],
+"AVGO": [
+"Semiconductors",
+"Technology"
+],
+"TSLA": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"LLY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"BRK-A": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"BRK-B": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"WMT": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"JPM": [
+"Banks - Diversified",
+"Financial Services"
+],
+"SKHY": [
+"Semiconductors",
+"Technology"
+],
+"AMD": [
+"Semiconductors",
+"Technology"
+],
+"MU": [
+"Semiconductors",
+"Technology"
+],
+"V": [
+"Credit Services",
+"Financial Services"
+],
+"JNJ": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"XOM": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"MA": [
+"Credit Services",
+"Financial Services"
+],
+"ASMLF": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"ASML": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"ABBV": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"COST": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"IDCBY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"IDCBF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"TCEHY": [
+"Internet Content & Information",
+"Communication Services"
+],
+"TCTZF": [
+"Internet Content & Information",
+"Communication Services"
+],
+"KO": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"SSNLF": [
+"Consumer Electronics",
+"Technology"
+],
+"CVX": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"PG": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"PLTR": [
+"Software - Infrastructure",
+"Technology"
+],
+"RHHBF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"RHHBY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"RHHVF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"ORCL": [
+"Software - Infrastructure",
+"Technology"
+],
+"CSCO": [
+"Communication Equipment",
+"Technology"
+],
+"UNH": [
+"Healthcare Plans",
+"Healthcare"
+],
+"MRK": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"CICHY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"BAC": [
+"Banks - Diversified",
+"Financial Services"
+],
+"HD": [
+"Home Improvement Retail",
+"Consumer Cyclical"
+],
+"GE": [
+"Aerospace & Defense",
+"Industrials"
+],
+"CICHF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"PCCYF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"PM": [
+"Tobacco",
+"Consumer Defensive"
+],
+"NVS": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"ACGBY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"HSBC": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ACGBF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"INTC": [
+"Semiconductors",
+"Technology"
+],
+"MS": [
+"Capital Markets",
+"Financial Services"
+],
+"AZN": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"HBCYF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"RY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"RYDAF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"SHEL": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"AMAT": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"SAP": [
+"Software - Application",
+"Technology"
+],
+"NSRGF": [
+"Packaged Foods",
+"Consumer Defensive"
+],
+"SAPGF": [
+"Software - Application",
+"Technology"
+],
+"RTX": [
+"Aerospace & Defense",
+"Industrials"
+],
+"NSRGY": [
+"Packaged Foods",
+"Consumer Defensive"
+],
+"CAT": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"CGXYY": [
+"Financial Conglomerates",
+"Financial Services"
+],
+"LRLCY": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"TXN": [
+"Semiconductors",
+"Technology"
+],
+"LRCX": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"GS": [
+"Capital Markets",
+"Financial Services"
+],
+"TMO": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"PANW": [
+"Software - Infrastructure",
+"Technology"
+],
+"WFC": [
+"Banks - Diversified",
+"Financial Services"
+],
+"BACHY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"NVSEF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"AMGN": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"LRLCF": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"BACHF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"NFLX": [
+"Entertainment",
+"Communication Services"
+],
+"TM": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"TOYOF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"MBFJF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"LIN": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"MUFG": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ANET": [
+"Computer Hardware",
+"Technology"
+],
+"SIEGY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"BABAF": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"IBM": [
+"Information Technology Services",
+"Technology"
+],
+"SMAWF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"BABA": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"CRWD": [
+"Software - Infrastructure",
+"Technology"
+],
+"LVMHF": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"LVMUY": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"CYATY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"AXP": [
+"Credit Services",
+"Financial Services"
+],
+"CTATF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"GILD": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"IDEXF": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"GEV": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"DELL": [
+"Computer Hardware",
+"Technology"
+],
+"DIS": [
+"Entertainment",
+"Communication Services"
+],
+"IDEXY": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"C": [
+"Banks - Diversified",
+"Financial Services"
+],
+"TD": [
+"Banks - Diversified",
+"Financial Services"
+],
+"PEP": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"TTE": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"BHPLF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"ALIZF": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"ALIZY": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"BHP": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"MCD": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"VZ": [
+"Telecom Services",
+"Communication Services"
+],
+"CMWAY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ARM": [
+"Semiconductors",
+"Technology"
+],
+"ABT": [
+"Medical Devices",
+"Healthcare"
+],
+"CBAUF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"BLK": [
+"Asset Management",
+"Financial Services"
+],
+"SHOP": [
+"Software - Application",
+"Technology"
+],
+"KLAC": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"APH": [
+"Electronic Components",
+"Technology"
+],
+"NVO": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"ADI": [
+"Semiconductors",
+"Technology"
+],
+"TMUS": [
+"Telecom Services",
+"Communication Services"
+],
+"WELL": [
+"REIT - Healthcare Facilities",
+"Real Estate"
+],
+"UNP": [
+"Railroads",
+"Industrials"
+],
+"DE": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"EADSF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"QCOM": [
+"Semiconductors",
+"Technology"
+],
+"CRM": [
+"Software - Application",
+"Technology"
+],
+"NEE": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"EADSY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"NONOF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"SAN": [
+"Banks - Diversified",
+"Financial Services"
+],
+"IBDSF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"IBDRY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"CIHKY": [
+"Banks - Regional",
+"Financial Services"
+],
+"BCDRF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"BUD": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"RTNTF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"CIHHF": [
+"Banks - Regional",
+"Financial Services"
+],
+"PFE": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"COP": [
+"Oil & Gas E&P",
+"Energy"
+],
+"BUDFF": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"DHR": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"SCHW": [
+"Capital Markets",
+"Financial Services"
+],
+"FRCOF": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"SNEJF": [
+"Consumer Electronics",
+"Technology"
+],
+"FRCOY": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"DBSDF": [
+"Banks - Regional",
+"Financial Services"
+],
+"SBGSY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"SONY": [
+"Consumer Electronics",
+"Technology"
+],
+"SBGSF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"DBSDY": [
+"Banks - Regional",
+"Financial Services"
+],
+"RCRRF": [
+"Internet Content & Information",
+"Communication Services"
+],
+"HESAY": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"SMFG": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ISRG": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"HESAF": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"RCRUY": [
+"Internet Content & Information",
+"Communication Services"
+],
+"T": [
+"Telecom Services",
+"Communication Services"
+],
+"SMFNF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ABBNY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"ACN": [
+"Information Technology Services",
+"Technology"
+],
+"ABLZF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"TJX": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"UBS": [
+"Banks - Diversified",
+"Financial Services"
+],
+"RYCEY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"CB": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"RYCEF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"UL": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"DTEGF": [
+"Telecom Services",
+"Communication Services"
+],
+"BBVA": [
+"Banks - Diversified",
+"Financial Services"
+],
+"BBVXF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"UBER": [
+"Software - Application",
+"Technology"
+],
+"DTEGY": [
+"Telecom Services",
+"Communication Services"
+],
+"UNLYF": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"SAFRY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"UNCFF": [
+"Banks - Regional",
+"Financial Services"
+],
+"VRTX": [
+"Biotechnology",
+"Healthcare"
+],
+"UNCRY": [
+"Banks - Regional",
+"Financial Services"
+],
+"ADTTF": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"PGR": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"SPGI": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"LMT": [
+"Aerospace & Defense",
+"Industrials"
+],
+"AIQUF": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"HTHIY": [
+"Conglomerates",
+"Industrials"
+],
+"HTHIF": [
+"Conglomerates",
+"Industrials"
+],
+"APP": [
+"Advertising Agencies",
+"Communication Services"
+],
+"AIQUY": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"SAFRF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"HDB": [
+"Banks - Regional",
+"Financial Services"
+],
+"BTI": [
+"Tobacco",
+"Consumer Defensive"
+],
+"BA": [
+"Aerospace & Defense",
+"Industrials"
+],
+"ATEYY": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"RTPPF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"SCCO": [
+"Copper",
+"Basic Materials"
+],
+"MDT": [
+"Medical Devices",
+"Healthcare"
+],
+"ETN": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"RIO": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"MO": [
+"Tobacco",
+"Consumer Defensive"
+],
+"BMY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"IVSBF": [
+"Asset Management",
+"Financial Services"
+],
+"TELWY": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"MRVL": [
+"Semiconductors",
+"Technology"
+],
+"TOELF": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"MCK": [
+"Medical Distribution",
+"Healthcare"
+],
+"BTAFF": [
+"Tobacco",
+"Consumer Defensive"
+],
+"LOW": [
+"Home Improvement Retail",
+"Consumer Cyclical"
+],
+"IVSXF": [
+"Asset Management",
+"Financial Services"
+],
+"SPOT": [
+"Internet Content & Information",
+"Communication Services"
+],
+"SFTBF": [
+"Telecom Services",
+"Communication Services"
+],
+"SFTBY": [
+"Telecom Services",
+"Communication Services"
+],
+"IBN": [
+"Banks - Regional",
+"Financial Services"
+],
+"MFG": [
+"Banks - Regional",
+"Financial Services"
+],
+"SBUX": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"MTSUY": [
+"Conglomerates",
+"Industrials"
+],
+"ADP": [
+"Software - Application",
+"Technology"
+],
+"SMEGF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"MZHOF": [
+"Banks - Regional",
+"Financial Services"
+],
+"SMERY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"MSBHF": [
+"Conglomerates",
+"Industrials"
+],
+"PLD": [
+"REIT - Industrial",
+"Real Estate"
+],
+"CFRHF": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"PIAIF": [
+"Insurance - Life",
+"Financial Services"
+],
+"CSUAY": [
+"Thermal Coal",
+"Energy"
+],
+"BMO": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ISNPY": [
+"Banks - Regional",
+"Financial Services"
+],
+"IITSF": [
+"Banks - Regional",
+"Financial Services"
+],
+"PH": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"PNGAY": [
+"Insurance - Life",
+"Financial Services"
+],
+"CUAEF": [
+"Thermal Coal",
+"Energy"
+],
+"SYK": [
+"Medical Devices",
+"Healthcare"
+],
+"CFRUY": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"BKNG": [
+"Travel Services",
+"Consumer Cyclical"
+],
+"BPAQF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"SNY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"COF": [
+"Credit Services",
+"Financial Services"
+],
+"ZURVY": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"NEM": [
+"Gold",
+"Basic Materials"
+],
+"BNPQY": [
+"Banks - Regional",
+"Financial Services"
+],
+"ZFSVF": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"BP": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"CVS": [
+"Healthcare Plans",
+"Healthcare"
+],
+"CME": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"PBR": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"NEMCL": [
+"Gold",
+"Basic Materials"
+],
+"SNDK": [
+"Computer Hardware",
+"Technology"
+],
+"BNPQF": [
+"Banks - Regional",
+"Financial Services"
+],
+"STX": [
+"Computer Hardware",
+"Technology"
+],
+"KYCCF": [
+"Scientific & Technical Instruments",
+"Technology"
+],
+"PDD": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"BNS": [
+"Banks - Diversified",
+"Financial Services"
+],
+"MPC": [
+"Oil & Gas Refining & Marketing",
+"Energy"
+],
+"MAR": [
+"Lodging",
+"Consumer Cyclical"
+],
+"SO": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"AXAHY": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"ENLAY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"ABNB": [
+"Travel Services",
+"Consumer Cyclical"
+],
+"ESOCF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"HCA": [
+"Medical Care Facilities",
+"Healthcare"
+],
+"AXAHF": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"NET": [
+"Software - Infrastructure",
+"Technology"
+],
+"ENB": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"PBR-A": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"ITOCF": [
+"Conglomerates",
+"Industrials"
+],
+"TKOMY": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"NOW": [
+"Software - Application",
+"Technology"
+],
+"TKOMF": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"CM": [
+"Banks - Diversified",
+"Financial Services"
+],
+"SBKFF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ITOCY": [
+"Conglomerates",
+"Industrials"
+],
+"EQIX": [
+"REIT - Specialty",
+"Real Estate"
+],
+"VLO": [
+"Oil & Gas Refining & Marketing",
+"Energy"
+],
+"WDC": [
+"Computer Hardware",
+"Technology"
+],
+"GSK": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"BNY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"AAGIY": [
+"Insurance - Life",
+"Financial Services"
+],
+"AAIGF": [
+"Insurance - Life",
+"Financial Services"
+],
+"PSX": [
+"Oil & Gas Refining & Marketing",
+"Energy"
+],
+"WFC-PC": [
+"Banks - Diversified",
+"Financial Services"
+],
+"DUK": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"GLAXF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"OVCHF": [
+"Banks - Regional",
+"Financial Services"
+],
+"SNOW": [
+"Software - Application",
+"Technology"
+],
+"MRSH": [
+"Insurance Brokers",
+"Financial Services"
+],
+"ICE": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"SNYNF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"REGN": [
+"Biotechnology",
+"Healthcare"
+],
+"BCMXY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"OVCHY": [
+"Banks - Regional",
+"Financial Services"
+],
+"HNHPF": [
+"Electronic Components",
+"Technology"
+],
+"CNQ": [
+"Oil & Gas E&P",
+"Energy"
+],
+"MGCLY": [
+"Furnishings, Fixtures & Appliances",
+"Consumer Cyclical"
+],
+"GD": [
+"Aerospace & Defense",
+"Industrials"
+],
+"CEG": [
+"Utilities - Independent Power Producers",
+"Utilities"
+],
+"WM": [
+"Waste Management",
+"Industrials"
+],
+"EQNR": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"PSTVY": [
+"Banks - Regional",
+"Financial Services"
+],
+"CSX": [
+"Railroads",
+"Industrials"
+],
+"BKFCF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ADBE": [
+"Software - Application",
+"Technology"
+],
+"ELV": [
+"Healthcare Plans",
+"Healthcare"
+],
+"USB": [
+"Banks - Regional",
+"Financial Services"
+],
+"BX": [
+"Asset Management",
+"Financial Services"
+],
+"MMM": [
+"Conglomerates",
+"Industrials"
+],
+"XIACY": [
+"Consumer Electronics",
+"Technology"
+],
+"STOHF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"ING": [
+"Banks - Diversified",
+"Financial Services"
+],
+"UPS": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"CIXPF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ATLPF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"XIACF": [
+"Consumer Electronics",
+"Technology"
+],
+"ATLKY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"INTU": [
+"Software - Application",
+"Technology"
+],
+"FTNT": [
+"Software - Infrastructure",
+"Technology"
+],
+"GPMXY": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"ESLOF": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"KXHCF": [
+"Semiconductors",
+"Technology"
+],
+"CAIXY": [
+"Banks - Regional",
+"Financial Services"
+],
+"GMBXF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"MNST": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"PNC": [
+"Banks - Regional",
+"Financial Services"
+],
+"ESLOY": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"GLW": [
+"Electronic Components",
+"Technology"
+],
+"INGVF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"TT": [
+"Building Products & Equipment",
+"Industrials"
+],
+"BN": [
+"Asset Management",
+"Financial Services"
+],
+"CHDRF": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"MITSY": [
+"Conglomerates",
+"Industrials"
+],
+"CTAS": [
+"Specialty Business Services",
+"Industrials"
+],
+"CMCSA": [
+"Telecom Services",
+"Communication Services"
+],
+"ZIJMY": [
+"Gold",
+"Basic Materials"
+],
+"ZIJMF": [
+"Gold",
+"Basic Materials"
+],
+"MITSF": [
+"Conglomerates",
+"Industrials"
+],
+"WAT": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"EMR": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"PROSF": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"AMT": [
+"REIT - Specialty",
+"Real Estate"
+],
+"PWR": [
+"Engineering & Construction",
+"Industrials"
+],
+"WEBNF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"WBKCY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"AEM": [
+"Gold",
+"Basic Materials"
+],
+"MSI": [
+"Communication Equipment",
+"Technology"
+],
+"MRNA": [
+"Biotechnology",
+"Healthcare"
+],
+"PSBKF": [
+"Banks - Regional",
+"Financial Services"
+],
+"MCO": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"KKR": [
+"Asset Management",
+"Financial Services"
+],
+"ECL": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"MDLZ": [
+"Confectioners",
+"Consumer Defensive"
+],
+"HWM": [
+"Aerospace & Defense",
+"Industrials"
+],
+"SNHIY": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"CHDRY": [
+"Luxury Goods",
+"Consumer Cyclical"
+],
+"RCL": [
+"Travel Services",
+"Consumer Cyclical"
+],
+"ATLFF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"WMB": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"SHW": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"CILJF": [
+"Insurance - Life",
+"Financial Services"
+],
+"NGG": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"NTTYY": [
+"Telecom Services",
+"Communication Services"
+],
+"CDNS": [
+"Software - Application",
+"Technology"
+],
+"SNPS": [
+"Software - Infrastructure",
+"Technology"
+],
+"NABZY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"NGGTF": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"HLT": [
+"Lodging",
+"Consumer Cyclical"
+],
+"EIPAF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"TRV": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"JCI": [
+"Building Products & Equipment",
+"Industrials"
+],
+"NPPXF": [
+"Telecom Services",
+"Communication Services"
+],
+"KXIAY": [
+"Semiconductors",
+"Technology"
+],
+"ANZGY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"PROSY": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"ZHILF": [
+"Communication Equipment",
+"Technology"
+],
+"CP": [
+"Railroads",
+"Industrials"
+],
+"BAM": [
+"Asset Management",
+"Financial Services"
+],
+"MURGY": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"EPD": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"ITW": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"FCX": [
+"Copper",
+"Basic Materials"
+],
+"ATLCY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"E": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"EOG": [
+"Oil & Gas E&P",
+"Energy"
+],
+"CL": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"NAUBF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"ITUB": [
+"Banks - Regional",
+"Financial Services"
+],
+"ANZGF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"CI": [
+"Healthcare Plans",
+"Healthcare"
+],
+"CVNA": [
+"Auto & Truck Dealerships",
+"Consumer Cyclical"
+],
+"NTES": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"NOC": [
+"Aerospace & Defense",
+"Industrials"
+],
+"GLNCY": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"SU": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"RSG": [
+"Waste Management",
+"Industrials"
+],
+"GLCNF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"MURGF": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"AMXOF": [
+"Telecom Services",
+"Communication Services"
+],
+"CNI": [
+"Railroads",
+"Industrials"
+],
+"AMX": [
+"Telecom Services",
+"Communication Services"
+],
+"BYDDF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"BYDDY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"BAESF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"FDX": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"BCS": [
+"Banks - Diversified",
+"Financial Services"
+],
+"SPG": [
+"REIT - Retail",
+"Real Estate"
+],
+"DPSTF": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"MELI": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"CHGCF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"ORLY": [
+"Auto Parts",
+"Consumer Cyclical"
+],
+"BCLYF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"WUXIF": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"SLB": [
+"Oil & Gas Equipment & Services",
+"Energy"
+],
+"DHLGY": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"IFNNF": [
+"Semiconductors",
+"Technology"
+],
+"NSC": [
+"Railroads",
+"Industrials"
+],
+"CHGCY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"LLDTF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ROST": [
+"Apparel Retail",
+"Consumer Cyclical"
+],
+"AJG": [
+"Insurance Brokers",
+"Financial Services"
+],
+"LYG": [
+"Banks - Regional",
+"Financial Services"
+],
+"DASH": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"WUXAY": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"NETTF": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"ARZGY": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"JPSTF": [
+"Banks - Regional",
+"Financial Services"
+],
+"VRT": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"TGT": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"MFC": [
+"Insurance - Life",
+"Financial Services"
+],
+"BAESY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"AON": [
+"Insurance Brokers",
+"Financial Services"
+],
+"APO": [
+"Asset Management",
+"Financial Services"
+],
+"MKGAF": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"IFNNY": [
+"Semiconductors",
+"Technology"
+],
+"SNPMF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"GM": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"MKKGY": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"SOBKY": [
+"Telecom Services",
+"Communication Services"
+],
+"RACE": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"ASX": [
+"Semiconductors",
+"Technology"
+],
+"AEP": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"RELX": [
+"Specialty Business Services",
+"Industrials"
+],
+"RLXXF": [
+"Specialty Business Services",
+"Industrials"
+],
+"VCISF": [
+"Engineering & Construction",
+"Industrials"
+],
+"ENGIY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"KMI": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"APD": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"HON": [
+"Conglomerates",
+"Industrials"
+],
+"WFAFF": [
+"Home Improvement Retail",
+"Consumer Cyclical"
+],
+"GWW": [
+"Industrial Distribution",
+"Industrials"
+],
+"VCISY": [
+"Engineering & Construction",
+"Industrials"
+],
+"SFBQF": [
+"Telecom Services",
+"Communication Services"
+],
+"TAK": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"COR": [
+"Medical Distribution",
+"Healthcare"
+],
+"URI": [
+"Rental & Leasing Services",
+"Industrials"
+],
+"TKPHF": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"DLEGF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"BHKLY": [
+"Banks - Regional",
+"Financial Services"
+],
+"JPPTY": [
+"Banks - Regional",
+"Financial Services"
+],
+"DB": [
+"Banks - Regional",
+"Financial Services"
+],
+"KMB": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"DLR": [
+"REIT - Specialty",
+"Real Estate"
+],
+"HOOD": [
+"Capital Markets",
+"Financial Services"
+],
+"TRP": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"AVIKF": [
+"Telecom Services",
+"Communication Services"
+],
+"ALL": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"TDG": [
+"Aerospace & Defense",
+"Industrials"
+],
+"ET": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"NOGFY": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"CSLLY": [
+"Biotechnology",
+"Healthcare"
+],
+"MCQEF": [
+"Capital Markets",
+"Financial Services"
+],
+"JAPAY": [
+"Tobacco",
+"Consumer Defensive"
+],
+"KDDIY": [
+"Telecom Services",
+"Communication Services"
+],
+"CAH": [
+"Medical Distribution",
+"Healthcare"
+],
+"VLVLY": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"ENGQF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"MET": [
+"Insurance - Life",
+"Financial Services"
+],
+"BSX": [
+"Medical Devices",
+"Healthcare"
+],
+"CMXHF": [
+"Biotechnology",
+"Healthcare"
+],
+"DBOEY": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"DBOEF": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"SHECY": [
+"Chemicals",
+"Basic Materials"
+],
+"KDDIF": [
+"Telecom Services",
+"Communication Services"
+],
+"NXPI": [
+"Semiconductors",
+"Technology"
+],
+"DDOG": [
+"Software - Application",
+"Technology"
+],
+"NRDBY": [
+"Banks - Regional",
+"Financial Services"
+],
+"SHECF": [
+"Chemicals",
+"Basic Materials"
+],
+"FAST": [
+"Industrial Distribution",
+"Industrials"
+],
+"SCBFY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"SCBFF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"AFL": [
+"Insurance - Life",
+"Financial Services"
+],
+"VOLVF": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"NU": [
+"Banks - Regional",
+"Financial Services"
+],
+"MQBKY": [
+"Capital Markets",
+"Financial Services"
+],
+"NTDOY": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"MPWR": [
+"Semiconductors",
+"Technology"
+],
+"NTDOF": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"TRGP": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"BNKHF": [
+"Banks - Regional",
+"Financial Services"
+],
+"LNG": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"PSA": [
+"REIT - Industrial",
+"Real Estate"
+],
+"NWG": [
+"Banks - Regional",
+"Financial Services"
+],
+"UCBJY": [
+"Biotechnology",
+"Healthcare"
+],
+"RBSPF": [
+"Banks - Regional",
+"Financial Services"
+],
+"LDNXF": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"WFAFY": [
+"Home Improvement Retail",
+"Consumer Cyclical"
+],
+"EW": [
+"Medical Devices",
+"Healthcare"
+],
+"CRH": [
+"Building Materials",
+"Basic Materials"
+],
+"LSEGY": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"HKXCF": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"MPNGF": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"ARGX": [
+"Biotechnology",
+"Healthcare"
+],
+"BAYRY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"MHVYF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"HKXCY": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"MHVIY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"BAYZF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"HPE": [
+"Communication Equipment",
+"Technology"
+],
+"CMI": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"B": [
+"Gold",
+"Basic Materials"
+],
+"TEL": [
+"Electronic Components",
+"Technology"
+],
+"UCBJF": [
+"Biotechnology",
+"Healthcare"
+],
+"ARGNF": [
+"Biotechnology",
+"Healthcare"
+],
+"CHBJF": [
+"Banks - Regional",
+"Financial Services"
+],
+"NDAQ": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"MIELY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"NBNKF": [
+"Banks - Regional",
+"Financial Services"
+],
+"MIELF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"TFC": [
+"Banks - Regional",
+"Financial Services"
+],
+"BDX": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"D": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"LTOUF": [
+"Engineering & Construction",
+"Industrials"
+],
+"IMO": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"NNFSF": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"WPM": [
+"Gold",
+"Basic Materials"
+],
+"CHCJY": [
+"Banks - Regional",
+"Financial Services"
+],
+"GWLIF": [
+"Insurance - Life",
+"Financial Services"
+],
+"LOBLY": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"MRAAY": [
+"Electronic Components",
+"Technology"
+],
+"CMPGY": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"NTIOF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"MPLX": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"OXY": [
+"Oil & Gas E&P",
+"Energy"
+],
+"DAL": [
+"Airlines",
+"Industrials"
+],
+"MRAAF": [
+"Electronic Components",
+"Technology"
+],
+"NUE": [
+"Steel",
+"Basic Materials"
+],
+"DEO": [
+"Beverages - Wineries & Distilleries",
+"Consumer Defensive"
+],
+"NKE": [
+"Footwear & Accessories",
+"Consumer Cyclical"
+],
+"LBLCF": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"O": [
+"REIT - Retail",
+"Real Estate"
+],
+"LZAGY": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"PCAR": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"ENAKF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"OKE": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"EONGY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"ADSK": [
+"Software - Application",
+"Technology"
+],
+"IDXX": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"CMPGF": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"LZAGF": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"MPNGY": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"CRARF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"AME": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"GRMN": [
+"Scientific & Technical Instruments",
+"Technology"
+],
+"HUM": [
+"Healthcare Plans",
+"Healthcare"
+],
+"SSREF": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"JAPAF": [
+"Tobacco",
+"Consumer Defensive"
+],
+"AAUKF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"SMMNY": [
+"Medical Devices",
+"Healthcare"
+],
+"SEMHF": [
+"Medical Devices",
+"Healthcare"
+],
+"SSREY": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"ANCTF": [
+"Specialty Retail",
+"Consumer Cyclical"
+],
+"SCGLF": [
+"Banks - Regional",
+"Financial Services"
+],
+"GALDY": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"NGLOY": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"AZO": [
+"Auto Parts",
+"Consumer Cyclical"
+],
+"SCGLY": [
+"Banks - Regional",
+"Financial Services"
+],
+"EBAY": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"SNGNF": [
+"Telecom Services",
+"Communication Services"
+],
+"HONA": [
+"Aerospace & Defense",
+"Industrials"
+],
+"ETR": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"SSUMF": [
+"Conglomerates",
+"Industrials"
+],
+"MARUY": [
+"Conglomerates",
+"Industrials"
+],
+"XEL": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"BE": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"CCEP": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"CRARY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"HINKF": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"GDERF": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"SRE": [
+"Utilities - Diversified",
+"Utilities"
+],
+"SWRAY": [
+"Conglomerates",
+"Industrials"
+],
+"MARUF": [
+"Conglomerates",
+"Industrials"
+],
+"HEINY": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"DSDVY": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"CNSWF": [
+"Software - Application",
+"Technology"
+],
+"DVN": [
+"Oil & Gas E&P",
+"Energy"
+],
+"SGAPY": [
+"Telecom Services",
+"Communication Services"
+],
+"ZJNGF": [
+"Gold",
+"Basic Materials"
+],
+"TEVA": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"DGEAF": [
+"Beverages - Wineries & Distilleries",
+"Consumer Defensive"
+],
+"BASFY": [
+"Chemicals",
+"Basic Materials"
+],
+"CNSWY": [
+"Software - Application",
+"Technology"
+],
+"DSDVF": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"SSUMY": [
+"Conglomerates",
+"Industrials"
+],
+"THLLY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"ELEZY": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"KBCSY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"RWEOY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"WMMVY": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"BSQKZ": [
+"Software - Infrastructure",
+"Technology"
+],
+"THLEF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"CVE": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"RWNFF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"WMMVF": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"XYZ": [
+"Software - Infrastructure",
+"Technology"
+],
+"KBCSF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"HCMLF": [
+"Building Materials",
+"Basic Materials"
+],
+"VMRK": [
+"REIT - Residential",
+"Real Estate"
+],
+"INFY": [
+"Information Technology Services",
+"Technology"
+],
+"BFFAF": [
+"Chemicals",
+"Basic Materials"
+],
+"KDP": [
+"Beverages - Non-Alcoholic",
+"Consumer Defensive"
+],
+"DANOY": [
+"Packaged Foods",
+"Consumer Defensive"
+],
+"EBKDY": [
+"Banks - Regional",
+"Financial Services"
+],
+"HOCPF": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"ELEZF": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"FANG": [
+"Oil & Gas E&P",
+"Energy"
+],
+"WAB": [
+"Railroads",
+"Industrials"
+],
+"HOCPY": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"FERG": [
+"Industrial Distribution",
+"Industrials"
+],
+"LHX": [
+"Aerospace & Defense",
+"Industrials"
+],
+"PYPL": [
+"Credit Services",
+"Financial Services"
+],
+"SWRAF": [
+"Conglomerates",
+"Industrials"
+],
+"FITB": [
+"Banks - Regional",
+"Financial Services"
+],
+"LITE": [
+"Communication Equipment",
+"Technology"
+],
+"HCMLY": [
+"Building Materials",
+"Basic Materials"
+],
+"WCN": [
+"Waste Management",
+"Industrials"
+],
+"A": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"VEEV": [
+"Health Information Services",
+"Healthcare"
+],
+"VYLR": [
+"Shell Companies",
+"Financial Services"
+],
+"SDVKF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"KEYS": [
+"Scientific & Technical Instruments",
+"Technology"
+],
+"DNBBY": [
+"Banks - Regional",
+"Financial Services"
+],
+"UOVEY": [
+"Banks - Regional",
+"Financial Services"
+],
+"SWDBF": [
+"Banks - Regional",
+"Financial Services"
+],
+"CRZBF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ROP": [
+"Software - Application",
+"Technology"
+],
+"RBGPF": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"EXC": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"PPCCY": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"FMXUF": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"RBGLY": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"MSADF": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"TRI": [
+"Specialty Business Services",
+"Industrials"
+],
+"BKR": [
+"Oil & Gas Equipment & Services",
+"Energy"
+],
+"ONC": [
+"Biotechnology",
+"Healthcare"
+],
+"EBKOF": [
+"Banks - Regional",
+"Financial Services"
+],
+"WDAY": [
+"Software - Application",
+"Technology"
+],
+"VTR": [
+"REIT - Healthcare Facilities",
+"Real Estate"
+],
+"CRZBY": [
+"Banks - Regional",
+"Financial Services"
+],
+"ANNSF": [
+"Airports & Air Services",
+"Industrials"
+],
+"MSADY": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"TSCDF": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"HEI": [
+"Aerospace & Defense",
+"Industrials"
+],
+"F": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"SWDBY": [
+"Banks - Regional",
+"Financial Services"
+],
+"PCRFF": [
+"Consumer Electronics",
+"Technology"
+],
+"ANYYY": [
+"Airports & Air Services",
+"Industrials"
+],
+"MSCI": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"AMSYF": [
+"Steel",
+"Basic Materials"
+],
+"FNV": [
+"Gold",
+"Basic Materials"
+],
+"SWZCF": [
+"Telecom Services",
+"Communication Services"
+],
+"STT": [
+"Asset Management",
+"Financial Services"
+],
+"DNBBF": [
+"Banks - Regional",
+"Financial Services"
+],
+"MT": [
+"Steel",
+"Basic Materials"
+],
+"PCRHY": [
+"Consumer Electronics",
+"Technology"
+],
+"GVDBF": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"TSCDY": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"UOVEF": [
+"Banks - Regional",
+"Financial Services"
+],
+"HNIKF": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"WOPEF": [
+"Oil & Gas E&P",
+"Energy"
+],
+"HNHAF": [
+"Electronic Components",
+"Technology"
+],
+"CTPCY": [
+"Conglomerates",
+"Industrials"
+],
+"VALE": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"ORANY": [
+"Telecom Services",
+"Communication Services"
+],
+"CMG": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"DRPRF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"PTPIF": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"PSKOF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"DRPRY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"NOKBF": [
+"Communication Equipment",
+"Technology"
+],
+"SDVKY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"ED": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"GVDNY": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"FER": [
+"Engineering & Construction",
+"Industrials"
+],
+"FMX": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"AMP": [
+"Asset Management",
+"Financial Services"
+],
+"NTRA": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"SCMWY": [
+"Telecom Services",
+"Communication Services"
+],
+"FNCTF": [
+"Telecom Services",
+"Communication Services"
+],
+"CTPCF": [
+"Conglomerates",
+"Industrials"
+],
+"HMC": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"SE": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"HNDAF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"SSEZF": [
+"Utilities - Diversified",
+"Utilities"
+],
+"MSTR": [
+"Software - Application",
+"Technology"
+],
+"NOK": [
+"Communication Equipment",
+"Technology"
+],
+"VLKPF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"VST": [
+"Utilities - Independent Power Producers",
+"Utilities"
+],
+"CARR": [
+"Building Products & Equipment",
+"Industrials"
+],
+"DNKEY": [
+"Banks - Regional",
+"Financial Services"
+],
+"SSEZY": [
+"Utilities - Diversified",
+"Utilities"
+],
+"YUM": [
+"Restaurants",
+"Consumer Cyclical"
+],
+"SDZNY": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"ASAZF": [
+"Security & Protection Services",
+"Industrials"
+],
+"IQV": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"GPDNF": [
+"Packaged Foods",
+"Consumer Defensive"
+],
+"ASAZY": [
+"Security & Protection Services",
+"Industrials"
+],
+"AU": [
+"Gold",
+"Basic Materials"
+],
+"AIG": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"DNSKF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ROK": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"AMKBY": [
+"Marine Shipping",
+"Industrials"
+],
+"PITAF": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"SDZXF": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"MBGAF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"PRU": [
+"Insurance - Life",
+"Financial Services"
+],
+"MBGYY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"ANFGF": [
+"Copper",
+"Basic Materials"
+],
+"KR": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"TTWO": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"JPHLF": [
+"Banks - Regional",
+"Financial Services"
+],
+"ABEV": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"KB": [
+"Banks - Regional",
+"Financial Services"
+],
+"PAYX": [
+"Software - Application",
+"Technology"
+],
+"LYV": [
+"Entertainment",
+"Communication Services"
+],
+"DLMAF": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"AMKBF": [
+"Marine Shipping",
+"Industrials"
+],
+"SVKEF": [
+"Banks - Regional",
+"Financial Services"
+],
+"SUHJY": [
+"Real Estate - Development",
+"Real Estate"
+],
+"GMGSF": [
+"REIT - Diversified",
+"Real Estate"
+],
+"CIIHY": [
+"Capital Markets",
+"Financial Services"
+],
+"AMKAF": [
+"Marine Shipping",
+"Industrials"
+],
+"STMEF": [
+"Semiconductors",
+"Technology"
+],
+"PWCDF": [
+"Insurance - Life",
+"Financial Services"
+],
+"HLN": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"SHLAF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"DLICY": [
+"Insurance - Life",
+"Financial Services"
+],
+"DKILY": [
+"Building Products & Equipment",
+"Industrials"
+],
+"DCNSF": [
+"Insurance - Life",
+"Financial Services"
+],
+"VIK": [
+"Travel Services",
+"Consumer Cyclical"
+],
+"JPPHY": [
+"Banks - Regional",
+"Financial Services"
+],
+"TLLXY": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"JHPCY": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"CODYY": [
+"Building Products & Equipment",
+"Industrials"
+],
+"SUHJF": [
+"Real Estate - Development",
+"Real Estate"
+],
+"SLF": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"RKLB": [
+"Aerospace & Defense",
+"Industrials"
+],
+"OTSKY": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"FRFHF": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"STM": [
+"Semiconductors",
+"Technology"
+],
+"SMPNY": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"NHOLF": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"EL": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"PINXY": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"LGRVF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"HLNCF": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"DHI": [
+"Residential Construction",
+"Consumer Cyclical"
+],
+"HVRRY": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"HVRRF": [
+"Insurance - Reinsurance",
+"Financial Services"
+],
+"CBOE": [
+"Financial Data & Stock Exchanges",
+"Financial Services"
+],
+"UI": [
+"Communication Equipment",
+"Technology"
+],
+"LGRDY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"RNMBY": [
+"Aerospace & Defense",
+"Industrials"
+],
+"CCL": [
+"Travel Services",
+"Consumer Cyclical"
+],
+"DKILF": [
+"Building Products & Equipment",
+"Industrials"
+],
+"TYHOY": [
+"Conglomerates",
+"Industrials"
+],
+"TYHOF": [
+"Conglomerates",
+"Industrials"
+],
+"ERBKY": [
+"Banks - Regional",
+"Financial Services"
+],
+"RNMBF": [
+"Aerospace & Defense",
+"Industrials"
+],
+"OLCLY": [
+"Leisure",
+"Consumer Cyclical"
+],
+"HENOF": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"WEC": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"DLMAY": [
+"Discount Stores",
+"Consumer Defensive"
+],
+"COHR": [
+"Scientific & Technical Instruments",
+"Technology"
+],
+"ASMXF": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"HENOY": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"FOXA": [
+"Entertainment",
+"Communication Services"
+],
+"CCI": [
+"REIT - Specialty",
+"Real Estate"
+],
+"CHT": [
+"Telecom Services",
+"Communication Services"
+],
+"CMCLY": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"EQBBF": [
+"Asset Management",
+"Financial Services"
+],
+"TLGPY": [
+"Telecom Services",
+"Communication Services"
+],
+"CBRE": [
+"Real Estate Services",
+"Real Estate"
+],
+"SYY": [
+"Food Distribution",
+"Consumer Defensive"
+],
+"RKT": [
+"Mortgage Finance",
+"Financial Services"
+],
+"WEGZY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"JDCMF": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"BMPSY": [
+"Banks - Regional",
+"Financial Services"
+],
+"TTRAF": [
+"Telecom Services",
+"Communication Services"
+],
+"FJTSF": [
+"Information Technology Services",
+"Technology"
+],
+"SHNDY": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"GEHC": [
+"Medical Devices",
+"Healthcare"
+],
+"PEG": [
+"Utilities - Regulated Electric",
+"Utilities"
+],
+"AAVMY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"PSZKY": [
+"Banks - Regional",
+"Financial Services"
+],
+"PSZKF": [
+"Banks - Regional",
+"Financial Services"
+],
+"BSBR": [
+"Banks - Regional",
+"Financial Services"
+],
+"FIX": [
+"Engineering & Construction",
+"Industrials"
+],
+"DASTY": [
+"Software - Application",
+"Technology"
+],
+"OLCLF": [
+"Leisure",
+"Consumer Cyclical"
+],
+"OTSKF": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"ASMIY": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"SKYD": [
+"Entertainment",
+"Communication Services"
+],
+"BIIB": [
+"Drug Manufacturers - General",
+"Healthcare"
+],
+"CMCLF": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
+],
+"TEAM": [
+"Software - Application",
+"Technology"
+],
+"ABMRF": [
+"Banks - Diversified",
+"Financial Services"
+],
+"RVMD": [
+"Biotechnology",
+"Healthcare"
+],
+"BMWKY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"DASTF": [
+"Software - Application",
+"Technology"
+],
+"JD": [
+"Internet Retail",
+"Consumer Cyclical"
+],
+"HIG": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"BAMXF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"CIEN": [
+"Communication Equipment",
+"Technology"
+],
+"SHLRF": [
+"Specialty Industrial Machinery",
+"Industrials"
+],
+"NIPNF": [
+"Information Technology Services",
+"Technology"
+],
+"VWAPY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"CNC": [
+"Healthcare Plans",
+"Healthcare"
+],
+"ORXCF": [
+"Financial Conglomerates",
+"Financial Services"
+],
+"CODGF": [
+"Building Products & Equipment",
+"Industrials"
+],
+"VLKAF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"FJTSY": [
+"Information Technology Services",
+"Technology"
+],
+"BMDPF": [
+"Banks - Regional",
+"Financial Services"
+],
+"MLM": [
+"Building Materials",
+"Basic Materials"
+],
+"VWAGY": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"SXYAY": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"NMPGY": [
+"Marine Shipping",
+"Industrials"
+],
+"IX": [
+"Financial Conglomerates",
+"Financial Services"
+],
+"WOLWF": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"IBKR": [
+"Capital Markets",
+"Financial Services"
+],
+"PBCRY": [
+"Banks - Regional",
+"Financial Services"
+],
+"EXPGF": [
+"Consulting Services",
+"Industrials"
+],
+"SKFOF": [
+"Specialty Chemicals",
+"Basic Materials"
+],
+"REPYY": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"ACGL": [
+"Insurance - Diversified",
+"Financial Services"
+],
+"UAL": [
+"Airlines",
+"Industrials"
+],
+"MAHMF": [
+"Auto Manufacturers",
+"Consumer Cyclical"
+],
+"ODFL": [
+"Trucking",
+"Industrials"
+],
+"VOD": [
+"Telecom Services",
+"Communication Services"
+],
+"NECPY": [
+"Information Technology Services",
+"Technology"
+],
+"TER": [
+"Semiconductor Equipment & Materials",
+"Technology"
+],
+"HELKF": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"UMC": [
+"Semiconductors",
+"Technology"
+],
+"VMC": [
+"Building Materials",
+"Basic Materials"
+],
+"ALC": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"HSY": [
+"Confectioners",
+"Consumer Defensive"
+],
+"PRYMY": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"HEI-A": [
+"Aerospace & Defense",
+"Industrials"
+],
+"TGOPF": [
+"Asset Management",
+"Financial Services"
+],
+"DTRUY": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"PRYMF": [
+"Electrical Equipment & Parts",
+"Industrials"
+],
+"HENKY": [
+"Household & Personal Products",
+"Consumer Defensive"
+],
+"ALAB": [
+"Semiconductors",
+"Technology"
+],
+"TGOPY": [
+"Asset Management",
+"Financial Services"
+],
+"GUOSF": [
+"Capital Markets",
+"Financial Services"
+],
+"VODPF": [
+"Telecom Services",
+"Communication Services"
+],
+"BKHPF": [
+"Banks - Regional",
+"Financial Services"
+],
+"CKHUF": [
+"Conglomerates",
+"Industrials"
+],
+"UMGNF": [
+"Entertainment",
+"Communication Services"
+],
+"UNVGY": [
+"Entertainment",
+"Communication Services"
+],
+"BRDCF": [
+"Auto Parts",
+"Consumer Cyclical"
+],
+"NTAP": [
+"Software - Infrastructure",
+"Technology"
+],
+"ADRNY": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"FISV": [
+"",
+""
+],
+"IFCZF": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"MTD": [
+"Diagnostics & Research",
+"Healthcare"
+],
+"EXPGY": [
+"Consulting Services",
+"Industrials"
+],
+"AHODF": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"CICOF": [
+"Marine Shipping",
+"Industrials"
+],
+"REPYF": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"HDLMY": [
+"Building Materials",
+"Basic Materials"
+],
+"ADM": [
+"Farm Products",
+"Consumer Defensive"
+],
+"P": [
+"Computer Hardware",
+"Technology"
+],
+"ERIC": [
+"Communication Equipment",
+"Technology"
+],
+"FANDY": [
+"Banks - Diversified",
+"Financial Services"
+],
+"HLBZF": [
+"Building Materials",
+"Basic Materials"
+],
+"MDLN": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"ZTS": [
+"Drug Manufacturers - Specialty & Generic",
+"Healthcare"
+],
+"KMTUY": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"KHNGF": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"BLMIF": [
+"Banks - Regional",
+"Financial Services"
+],
+"RMD": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"ADDDF": [
+"Footwear & Accessories",
+"Consumer Cyclical"
+],
+"CKHGY": [
+"Banks - Regional",
+"Financial Services"
+],
+"KMTUF": [
+"Farm & Heavy Construction Machinery",
+"Industrials"
+],
+"BRDCY": [
+"Auto Parts",
+"Consumer Cyclical"
+],
+"RSMDF": [
+"Medical Instruments & Supplies",
+"Healthcare"
+],
+"AVIFY": [
+"Telecom Services",
+"Communication Services"
+],
+"RBLX": [
+"Electronic Gaming & Multimedia",
+"Communication Services"
+],
+"PUTRY": [
+"Oil & Gas Integrated",
+"Energy"
+],
+"SZLMY": [
+"Insurance - Diversified",
+"Financial Services"
+]
+}
