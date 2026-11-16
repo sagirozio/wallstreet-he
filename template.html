@@ -791,6 +791,10 @@ let thOpen=new Set();
 let THEMES = FALLBACK.themes, thKey='m', thAsc=false, thAll=false, thQ='';
 const TH_SCALE = {d:2,w:5,m:12,q:20,h:25,ytd:30,y:30};
 function thHeat(k,v){ const a=Math.min(Math.abs(v)/TH_SCALE[k],1)*.55+.06; return v>=0?`background:rgba(34,197,94,${a.toFixed(2)})`:`background:rgba(239,68,68,${a.toFixed(2)})`; }
+function thStocks(st){
+  if(!st.length||typeof st[0][3]!=='object') return st;
+  return st.filter(s=>s[3][thKey]!=null).sort((a,b)=>b[3][thKey]-a[3][thKey]).slice(0,8).map(([tk,co,mc,r])=>[tk,co,mc,r[thKey]]);
+}
 function renderThemes(){
   const T=THEMES; if(!T||!T.rows) return;
   $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${l}</button>`).join('');
@@ -801,7 +805,7 @@ function renderThemes(){
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown = (thAll||q) ? rows : rows.slice(0,20);
   $('thTable').innerHTML = `<thead><tr><th class="nm">#&nbsp; תעשייה</th>${COLS.map(([k,l])=>`<th data-tk="${k}" class="${k===thKey?'active':''}">${l}${k===thKey?(thAsc?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>`+
-    (shown.length?shown.map(r=>{ const st=(T.stocks||{})[r.en], op=thOpen.has(r.en); return `<tr class="${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><td class="nm">${st?'<span class="car">◀</span>':''}<span class="flat num">${rank.get(r.en)}.</span> <span class="hn">${esc(r.en)}</span><span class="en">${esc(r.n)}</span></td>${COLS.map(([k])=>`<td class="v ${k===thKey?'active':''}" style="${thHeat(k,r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`+(st&&op?`<tr class="sub"><td colspan="8"><div class="subw"><div class="stks">${st.map(([tk,co,mc,ch])=>`<div class="stk2"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,2)}</span></div>`).join('')}</div><div class="stknote">המניות הגדולות בקבוצה לפי שווי שוק, עם השינוי ביום המסחר האחרון. הסיווג לפי ${esc(T.stocksSrc||'')}, ועשוי להיות שונה מעט מהסיווג של הטבלה.</div></div></td></tr>`:''); }).join(''):`<tr><td colspan="8" class="flat" style="text-align:center;padding:18px">לא נמצאה תעשייה בשם הזה</td></tr>`)+'</tbody>';
+    (shown.length?shown.map(r=>{ const st=(T.stocks||{})[r.en], op=thOpen.has(r.en); return `<tr class="${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><td class="nm">${st?'<span class="car">◀</span>':''}<span class="flat num">${rank.get(r.en)}.</span> <span class="hn">${esc(r.en)}</span><span class="en">${esc(r.n)}</span></td>${COLS.map(([k])=>`<td class="v ${k===thKey?'active':''}" style="${thHeat(k,r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`+(st&&op?`<tr class="sub"><td colspan="8"><div class="subw"><div class="stks">${thStocks(st).map(([tk,co,mc,ch])=>`<div class="stk2"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,2)}</span></div>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה לפי הביצועים בטווח שנבחר (${(PER.find(p=>p[0]===thKey)||[])[1]||''}). רק חברות מעל מיליארד דולר.`:'המניות הגדולות בקבוצה לפי שווי שוק, עם השינוי ביום המסחר האחרון.'} מקור: ${esc(T.stocksSrc||'')}.</div></div></td></tr>`:''); }).join(''):`<tr><td colspan="8" class="flat" style="text-align:center;padding:18px">לא נמצאה תעשייה בשם הזה</td></tr>`)+'</tbody>';
   $('thDir').textContent = thAsc ? '⬆ המפגרות' : '⬇ המובילות';
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק 20' : `הצג את כל ${T.rows.length} התעשיות`;
