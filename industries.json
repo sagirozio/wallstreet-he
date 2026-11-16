@@ -12094,5 +12094,17 @@
 "LCLN": [
 "Capital Markets",
 "Financial Services"
+],
+"HIPO": [
+"Insurance - Property & Casualty",
+"Financial Services"
+],
+"CYRX": [
+"Integrated Freight & Logistics",
+"Industrials"
+],
+"TMC": [
+"Other Industrial Metals & Mining",
+"Basic Materials"
 ]
 }
