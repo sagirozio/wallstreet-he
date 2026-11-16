@@ -152,6 +152,20 @@ body:not(.pg-news) #newsArchive{display:none}
 .tvc{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .tvn{direction:rtl;padding:8px 12px 0;font-weight:700;font-size:14px}.tvn span{color:var(--muted);font:500 12px 'JetBrains Mono',monospace;margin-inline-start:4px}
 .tvq .tradingview-widget-container{min-height:76px}
+body.pg-stock main>section:not(#stockPage){display:none}
+body:not(.pg-stock) #stockPage{display:none}
+.sphead{display:flex;align-items:center;gap:12px;margin:10px 0}
+.sphead .mono{width:52px;height:52px;font-size:14px}
+.sphead h2{margin:0}.sphead .meta{color:var(--muted);font-size:13px}
+.spchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.spchips a,.spchips span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;color:var(--text);text-decoration:none}
+.spdesc{font-size:15.5px;line-height:1.6;margin:0 0 14px}
+.spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
+.spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
+.spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
+.spchart{height:360px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}
+.sph3{font-size:17px;margin:18px 0 8px}
+a.tlink{color:inherit;text-decoration:none}a.tlink:hover .tick,a.tlink:hover{text-decoration:underline}
 .tscroll{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;background:var(--panel)}
 th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:15px;white-space:nowrap}
@@ -431,6 +445,12 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
   <div id="newsAll"></div>
 </section>
 
+<section id="stockPage">
+  <a class="back" href="#">→ חזרה לעמוד הראשי</a>
+  <div class="controls"><input class="search" id="spq" list="spList" type="search" placeholder="🔍 חיפוש מניה לפי טיקר או שם, למשל NVDA"><datalist id="spList"></datalist></div>
+  <div id="spBody"></div>
+</section>
+
 <section id="glossary">
   <h2>מילון מונחים</h2>
   <div class="gl">
@@ -504,7 +524,7 @@ function fmtDate(d){ const [y,m,dd]=String(d).split('-'); return `${dd}.${m}.${y
 function card(r){
   const res = resultOf(r), g = GUIDE[r.guide]||GUIDE.none;
   return `<div class="card">
-    <div class="ehead"><div class="cohead">${mono(r.t)}<div><div class="co">${esc(r.co)}<span class="tick">${esc(r.t)}</span></div>
+    <div class="ehead"><div class="cohead">${tl(r.t,mono(r.t))}<div><div class="co">${tl(r.t,esc(r.co)+'<span class="tick">'+esc(r.t)+'</span>')}</div>
       <div class="date">${fmtDate(r.date)} · ${esc(r.q)} · ${esc(r.sector)}</div></div></div>
       <span class="badge ${BADGE[res][0]}">${BADGE[res][1]}</span></div>
     <div class="metrics">${metric('רווח למניה (EPS)', r.epsAct, r.epsEst, r.epsYoy, r.epsYoyNote, eps, r.epsBasis, r.epsYoyGood)}
@@ -573,10 +593,12 @@ function renderToday(){
 
 function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=REPORTS.length; renderToday(); }
 function route(){
-  const rep = location.hash==='#reports', nw = location.hash==='#news-all';
+  const rep = location.hash==='#reports', nw = location.hash==='#news-all', st = location.hash.startsWith('#stock/');
   document.body.classList.toggle('pg-rep',rep);
   document.body.classList.toggle('pg-news',nw);
-  if(rep||nw) window.scrollTo(0,0);
+  document.body.classList.toggle('pg-stock',st);
+  if(st) renderStock(decodeURIComponent(location.hash.slice(7)).toUpperCase());
+  if(rep||nw||st) window.scrollTo(0,0);
   else if(location.hash.length>1){ const el=document.getElementById(location.hash.slice(1)); if(el) requestAnimationFrame(()=>el.scrollIntoView()); }
 }
 window.addEventListener('hashchange',route);
@@ -630,6 +652,40 @@ function renderNews(){
   setTimeout(()=>{ check(); if(!has($('tvTape'))) $('tvTape').classList.add('off'); if(!has($('tvLive'))) $('tvLive').classList.add('off'); }, 25000);
 })();
 
+
+/* ---------- stock profile ("תעודת זהות") ---------- */
+const SEC_HE={"Technology":"טכנולוגיה","Healthcare":"בריאות","Financial Services":"פיננסים","Consumer Cyclical":"צריכה מחזורית","Consumer Defensive":"צריכה בסיסית","Industrials":"תעשייה","Energy":"אנרגיה","Basic Materials":"חומרי גלם","Real Estate":"נדל״ן","Utilities":"תשתיות","Communication Services":"תקשורת"};
+let STOCKIX=null;
+function stockIndex(){
+  if(STOCKIX) return STOCKIX; STOCKIX={};
+  const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
+  Object.entries(T.stocks||{}).forEach(([ind,lst])=>lst.forEach(s=>{ STOCKIX[s[0]]={t:s[0],co:s[1],cap:s[2],r:typeof s[3]==='object'?s[3]:null,ind,indHe:he[ind]||'',sec:(T.indSector||{})[ind]||'',ex:(T.ex||{})[s[0]]||''}; }));
+  (REPORTS||[]).forEach(r=>{ if(!STOCKIX[r.t]) STOCKIX[r.t]={t:r.t,co:r.co,cap:'',r:null,ind:'',indHe:'',sec:'',secHe:r.sector,ex:''}; });
+  return STOCKIX;
+}
+function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent(t)}">${inner}</a>`; }
+function renderStock(t){
+  const ix=stockIndex(), s=ix[t], prof=((FALLBACK.profiles||{})[t])||{};
+  $('spList').innerHTML=Object.values(ix).slice(0,4000).map(x=>`<option value="${esc(x.t)}">${esc(x.co)}</option>`).join('');
+  if(!s){ $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)} (באתר מוצגות רק חברות מעל מיליארד דולר).</div>`; return; }
+  const rep=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
+  const secHe=SEC_HE[s.sec]||s.secHe||'';
+  const peers=s.ind?((THEMES.stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
+  $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2>${esc(s.co)}</h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
+    <div class="spchips">${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
+    <p class="spdesc">${prof.desc?esc(prof.desc):'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
+    ${s.r?`<div class="spperf">${PER.map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
+    <div class="spchart" id="spChart"></div>
+    <h3 class="sph3">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
+    ${peers.length?`<h3 class="sph3">חברות נוספות באותה קבוצה</h3><div class="spchips">${peers.map(p=>`<a href="#stock/${encodeURIComponent(p[0])}">${esc(p[0])} · ${esc(p[1])}</a>`).join('')}</div>`:''}`;
+  const box=$('spChart'), w=document.createElement('div'); w.className='tradingview-widget-container'; w.style.height='100%';
+  w.innerHTML='<div class="tradingview-widget-container__widget" style="height:calc(100% - 32px)"></div>';
+  const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js'; sc.async=true;
+  sc.textContent=JSON.stringify({symbols:[[s.co,(s.ex?s.ex+':':'')+s.t.replace('-','.')+'|12M']],chartOnly:false,width:'100%',height:'100%',locale:'he_IL',colorTheme:'dark',isTransparent:true,autosize:true,showVolume:true,chartType:'area',dateRanges:['1d|15','1m|30','3m|60','12m|1D','60m|1W','all|1M']});
+  w.appendChild(sc); box.appendChild(w);
+}
+$('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCase(); if(v) location.hash='#stock/'+v; });
+
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
 let secKey = 'w';
@@ -673,7 +729,7 @@ function capFmt(b){ return b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.rou
 function renderYtd(){
   const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM), max=Math.max(...allR.map(r=>r.p));
   $('ytable').innerHTML=`<thead><tr><th>מניה</th><th>שם · שווי שוק</th><th>מתחילת השנה</th></tr></thead><tbody>${
-    rows.map((r,i)=>`<tr><td><span class="tick" style="margin:0">${esc(r.t)}</span></td><td>${r.il?'🇮🇱 ':''}${esc(r.n)}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
+    rows.map((r,i)=>`<tr><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
     <td><span class="pct num" style="direction:ltr;display:inline-block">+${r.p.toFixed(1)}%</span><div class="gbar" style="width:${Math.round(Math.sqrt(r.p/max)*100)}%"></div></td></tr>`).join('')}</tbody>`;
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
@@ -845,7 +901,7 @@ function renderThemes(){
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown = (thAll||q) ? rows : rows.slice(0,20);
   $('thTable').innerHTML = `<thead><tr><th class="nm">#&nbsp; תעשייה</th>${COLS.map(([k,l])=>`<th data-tk="${k}" class="${k===thKey?'active':''}">${l}${k===thKey?(thAsc?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>`+
-    (shown.length?shown.map(r=>{ const st=(T.stocks||{})[r.en], op=thOpen.has(r.en); return `<tr class="${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><td class="nm">${st?'<span class="car">◀</span>':''}<span class="flat num">${rank.get(r.en)}.</span> <span class="hn">${esc(r.en)}</span><span class="en">${esc(r.n)}</span></td>${COLS.map(([k])=>`<td class="v ${k===thKey?'active':''}" style="${thHeat(k,r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`+(st&&op?`<tr class="sub"><td colspan="8"><div class="subw"><div class="stks">${thStocks(st).map(([tk,co,mc,ch])=>`<div class="stk2"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,2)}</span></div>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה לפי הביצועים בטווח שנבחר (${(PER.find(p=>p[0]===thKey)||[])[1]||''}). רק חברות מעל מיליארד דולר.`:'המניות הגדולות בקבוצה לפי שווי שוק, עם השינוי ביום המסחר האחרון.'} מקור: ${esc(T.stocksSrc||'')}.</div></div></td></tr>`:''); }).join(''):`<tr><td colspan="8" class="flat" style="text-align:center;padding:18px">לא נמצאה תעשייה בשם הזה</td></tr>`)+'</tbody>';
+    (shown.length?shown.map(r=>{ const st=(T.stocks||{})[r.en], op=thOpen.has(r.en); return `<tr class="${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><td class="nm">${st?'<span class="car">◀</span>':''}<span class="flat num">${rank.get(r.en)}.</span> <span class="hn">${esc(r.en)}</span><span class="en">${esc(r.n)}</span></td>${COLS.map(([k])=>`<td class="v ${k===thKey?'active':''}" style="${thHeat(k,r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`+(st&&op?`<tr class="sub"><td colspan="8"><div class="subw"><div class="stks">${thStocks(st).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,2)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה לפי הביצועים בטווח שנבחר (${(PER.find(p=>p[0]===thKey)||[])[1]||''}). רק חברות מעל מיליארד דולר.`:'המניות הגדולות בקבוצה לפי שווי שוק, עם השינוי ביום המסחר האחרון.'} מקור: ${esc(T.stocksSrc||'')}.</div></div></td></tr>`:''); }).join(''):`<tr><td colspan="8" class="flat" style="text-align:center;padding:18px">לא נמצאה תעשייה בשם הזה</td></tr>`)+'</tbody>';
   $('thDir').textContent = thAsc ? '⬆ המפגרות' : '⬇ המובילות';
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק 20' : `הצג את כל ${T.rows.length} התעשיות`;

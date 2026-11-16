@@ -84,6 +84,12 @@ for ind, mem in by.items():
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     stocks[ind] = lst
 T["stocks"] = stocks
+EXN = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ", "NYQ": "NYSE", "ASE": "AMEX", "PCX": "AMEX", "BTS": "CBOE"}
+T["ex"] = {s: EXN.get(uni[s].get("exchange"), "") for s in close.columns}
+T["indSector"] = {}
+for s in close.columns:
+    ind, sec = cache[s][0], cache[s][1]
+    if ind and sec: T["indSector"].setdefault(ind, sec)
 T["stocksSrc"] = "Yahoo Finance"
 T["asOf"] = f"סגירת {last.day}.{last.month}.{last.year}"
 missing = [i for i in by if i not in rows]
