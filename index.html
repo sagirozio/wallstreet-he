@@ -148,6 +148,7 @@ body:not(.pg-news) #newsArchive{display:none}
 .tv-live{margin:0 0 14px}.tv-live.off{display:none}
 .tvh{font-weight:700;font-size:14px;margin-bottom:8px}.tvh span{color:var(--muted);font-weight:400;font-size:12px}
 .tvq{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;direction:ltr}
+.tvq .tradingview-widget-container iframe{min-height:76px}
 .tvq .tradingview-widget-container{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-height:76px}
 .tradingview-widget-copyright{display:none}
 .tscroll{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
@@ -617,12 +618,16 @@ function renderNews(){
 ['nq','ntag'].forEach(id=>$(id).addEventListener('input',renderNews));
 
 
-/* ---------- TradingView live widgets: show if they load, else keep static strip ---------- */
-setTimeout(()=>{
-  const ok = el => el && el.querySelector('iframe');
-  if (ok($('tvTape'))) $('stripWrap').style.display='none'; else $('tvTape').classList.add('off');
-  if (!ok($('tvLive'))) $('tvLive').classList.add('off');
-}, 6000);
+/* ---------- TradingView live widgets: show when loaded (phones can be slow), else keep static strip ---------- */
+(function(){
+  const has = el => el && el.querySelector('iframe');
+  const check = () => {
+    if (has($('tvTape'))) { $('tvTape').classList.remove('off'); $('stripWrap').style.display='none'; }
+    if (has($('tvLive'))) $('tvLive').classList.remove('off');
+  };
+  new MutationObserver(check).observe(document.body,{childList:true,subtree:true});
+  setTimeout(()=>{ check(); if(!has($('tvTape'))) $('tvTape').classList.add('off'); if(!has($('tvLive'))) $('tvLive').classList.add('off'); }, 25000);
+})();
 
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
