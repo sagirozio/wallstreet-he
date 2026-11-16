@@ -1,0 +1,25 @@
+name: Weekly fundamentals (SEC)
+on:
+  schedule:
+    - cron: "17 4 * * 6"   # Saturday morning
+  workflow_dispatch:
+    inputs:
+      tickers: { description: "Optional space-separated tickers (test run)", required: false, default: "" }
+concurrency: { group: data-update, cancel-in-progress: false }
+permissions:
+  contents: write
+jobs:
+  fund:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/fundamentals.py ${{ github.event.inputs.tickers }}
+      - name: Commit
+        run: |
+          git config user.name "wallstreet-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add fund
+          git diff --cached --quiet || git commit -m "Weekly fundamentals update" && git pull --rebase && git push
