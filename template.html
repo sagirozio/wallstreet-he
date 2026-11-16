@@ -700,6 +700,20 @@ function renderStock(t){
 $('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCase(); if(v) location.hash='#stock/'+v; });
 
 document.addEventListener('click',e=>{ const tr=e.target.closest&&e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
+
+/* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
+async function refreshLive(){
+  if (document.hidden || location.protocol==='file:') return;
+  try {
+    const r = await fetch('data.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return;
+    const d = await r.json();
+    if (d.sectors && JSON.stringify(d.sectors)!==JSON.stringify(SECTORS)) { SECTORS=d.sectors; renderSec(); }
+    if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
+  } catch(e) {}
+}
+setInterval(refreshLive, 5*60*1000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshLive(); });
+
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
 let secKey = 'w';
