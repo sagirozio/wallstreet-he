@@ -506,7 +506,7 @@ function briefText(){ const o=OVERVIEW||{};
 
 /* ---------- earnings ---------- */
 const surp = (a,e) => (typeof a==='number' && typeof e==='number' && e!==0) ? (a-e)/Math.abs(e)*100 : null;
-function resultOf(r){ const v=r.revAct>r.revEst; if(typeof r.epsEst!=='number') return v?'beat':'miss'; const e=r.epsAct>r.epsEst; return e&&v?'beat':(!e&&!v?'miss':'mix'); }
+function resultOf(r){ if(typeof r.revAct!=='number') return r.epsAct>r.epsEst?'beat':'miss'; const v=r.revAct>r.revEst; if(typeof r.epsEst!=='number') return v?'beat':'miss'; const e=r.epsAct>r.epsEst; return e&&v?'beat':(!e&&!v?'miss':'mix'); }
 function money(x){ if(typeof x!=='number') return '—'; const n=x<0?'-':'';
   const a=Math.abs(x); return a>=1 ? `${n}$${a>=100?a.toFixed(1):a.toFixed(2).replace(/0$/,'')}B` : `${n}$${(a*1000).toFixed(1)}M`; }
 const eps = x => typeof x==='number' ? (x<0?'-$':'$')+Math.abs(x).toFixed(2) : '—';
@@ -530,9 +530,9 @@ function card(r){
   return `<div class="card">
     <div class="ehead"><div class="cohead">${tl(r.t,mono(r.t))}<div><div class="co">${tl(r.t,esc(r.co)+'<span class="tick">'+esc(r.t)+'</span>')}</div>
       <div class="date">${fmtDate(r.date)} · ${esc(r.q)} · ${esc(r.sector)}</div></div></div>
-      <span class="badge ${BADGE[res][0]}">${BADGE[res][1]}</span></div>
+      <span class="badge ${BADGE[res][0]}">${typeof r.revAct!=='number'?(res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי'):BADGE[res][1]}</span></div>
     <div class="metrics">${metric('רווח למניה (EPS)', r.epsAct, r.epsEst, r.epsYoy, r.epsYoyNote, eps, r.epsBasis, r.epsYoyGood)}
-      ${metric('מכירות (Revenue)', r.revAct, r.revEst, r.revYoy, null, money)}</div>
+      ${typeof r.revAct==='number'?metric('מכירות (Revenue)', r.revAct, r.revEst, r.revYoy, null, money):'<div class="m"><div class="lbl">מכירות (Revenue)</div><div class="est">אין הכנסות ממכירות. חברה בשלב קליני.</div></div>'}</div>
     <div class="guide g-${esc(r.guide||'none')}"><div class="gt">${g[0]} ${g[1]}</div>${r.guideText?esc(r.guideText):''}</div>
     ${r.note?`<p class="note">${esc(r.note)}</p>`:''}${r.react?`<div class="react">📈 ${esc(r.react)}</div>`:''}
     <div class="actions">${/^https:\/\//.test(r.ir||'')?`<a class="irlink" href="${esc(r.ir)}" target="_blank" rel="noopener">📊 מצגת וחומרי הדוח ↗</a>`:''}
