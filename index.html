@@ -169,6 +169,7 @@ body:not(.pg-stock) #stockPage{display:none}
 .spchart{height:360px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}
 .sph3{font-size:17px;margin:18px 0 8px}
 a.tlink{color:inherit;text-decoration:none}a.tlink:hover .tick,a.tlink:hover{text-decoration:underline}
+tr.rowlink{cursor:pointer}tr.rowlink:hover td{background:rgba(255,255,255,.03)}
 .tscroll{overflow-x:auto;border-radius:14px;border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;background:var(--panel)}
 th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:15px;white-space:nowrap}
@@ -697,6 +698,7 @@ function renderStock(t){
 }
 $('spq').addEventListener('change',e=>{ const v=e.target.value.trim().toUpperCase(); if(v) location.hash='#stock/'+v; });
 
+document.addEventListener('click',e=>{ const tr=e.target.closest&&e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
 let secKey = 'w';
@@ -726,7 +728,7 @@ const G = {
 function renderG(k){
   const g=G[k], max=Math.max(...g.rows.map(r=>r[2]));
   $('gtable').innerHTML=`<thead><tr>${g.head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
-    g.rows.map(r=>`<tr><td><span class="tick" style="margin:0">${r[0]}</span></td><td>${r[1]}</td>
+    g.rows.map(r=>`<tr class="rowlink" data-t="${r[0]}"><td>${tl(r[0],'<span class="tick" style="margin:0">'+r[0]+'</span>')}</td><td>${tl(r[0],r[1])}</td>
     <td><span class="pct num">+${r[2]}%</span><div class="gbar" style="width:${Math.round(r[2]/max*100)}%"></div></td><td class="num">${r[3]}</td></tr>`).join('')}</tbody>`;
   $('gwarn').classList.toggle('hidden',!g.warn);
 }
@@ -740,7 +742,7 @@ function capFmt(b){ return b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.rou
 function renderYtd(){
   const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM), max=Math.max(...allR.map(r=>r.p));
   $('ytable').innerHTML=`<thead><tr><th>מניה</th><th>שם · שווי שוק</th><th>מתחילת השנה</th></tr></thead><tbody>${
-    rows.map((r,i)=>`<tr><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
+    rows.map((r,i)=>`<tr class="rowlink" data-t="${esc(r.t)}"><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
     <td><span class="pct num" style="direction:ltr;display:inline-block">+${r.p.toFixed(1)}%</span><div class="gbar" style="width:${Math.round(Math.sqrt(r.p/max)*100)}%"></div></td></tr>`).join('')}</tbody>`;
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
