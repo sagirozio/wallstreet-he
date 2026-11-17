@@ -40,6 +40,19 @@ profiles = data.get("profiles") or {}
 earn = data.get("earnDates") or {}
 reports = data.get("reports") or []
 news = data.get("news") or []
+# publication time of each news item: the first build that saw it (Israel time), kept in news_times.json
+import datetime as _dtn, zoneinfo as _zi
+_ntp = root / "news_times.json"
+try: _nt = json.loads(_ntp.read_text(encoding="utf-8"))
+except Exception: _nt = None   # first run: items already there get no time (unknown)
+_now = _dtn.datetime.now(_zi.ZoneInfo("Asia/Jerusalem"))
+_first = _nt is None; _nt = _nt or {}
+for _n in news:
+    _k = (_n.get("date") or "") + "|" + (_n.get("title") or "")
+    if _k not in _nt: _nt[_k] = _now.strftime("%Y-%m-%d %H:%M") if not _first and _n.get("date") == _now.strftime("%Y-%m-%d") else ""
+    if not _n.get("time") and _nt[_k] and _nt[_k][:10] == _n.get("date"): _n["time"] = _nt[_k][11:]
+_keep = {(_n.get("date") or "") + "|" + (_n.get("title") or "") for _n in news}
+_nt = {k: v for k, v in _nt.items() if k in _keep}
 
 universe = {}                       # T -> (co, cap, industry)
 for ind, lst in stocks.items():
@@ -62,6 +75,7 @@ core["themes"]["n"] = len(universe)
 _b = core.get("breadth") or {}
 write("breadth.json", js({"rows": [{"d": r.get("d"), "L": r.get("L")} for r in _b.get("rows", []) if r.get("L")]}))
 core["breadth"] = {**_b, "rows": [{k: v for k, v in r.items() if k != "L"} for r in _b.get("rows", [])]}
+write("news_times.json", json.dumps(_nt, ensure_ascii=False, indent=0, sort_keys=True))
 core_txt = js(core)
 write("core.json", core_txt)
 
