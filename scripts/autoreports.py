@@ -65,12 +65,12 @@ for t in todo:
             if len(rr):
                 pe = rr.index[0]
                 if (when.tz_localize(None) - pe).days <= 120:
-                    rev = rr.iloc[0] / 1e9
+                    rev = rr.iloc[0] / 1e9 if rr.iloc[0] else None
                     qlabel = f"Q{(pe.month - 1) // 3 + 1} {pe.year}"
                     prev = rr[(rr.index <= pe - pd.Timedelta(days=330)) & (rr.index >= pe - pd.Timedelta(days=400))]
-                    if len(prev) and prev.iloc[0]: rev_y = round((rr.iloc[0] / prev.iloc[0] - 1) * 100, 1)
+                    if rev and len(prev) and prev.iloc[0]: rev_y = round((rr.iloc[0] / prev.iloc[0] - 1) * 100, 1)
         if not qlabel:
-            pe = when - pd.Timedelta(days=40); qlabel = f"Q{(pe.month - 1) // 3 + 1} {pe.year}"
+            pe = when - pd.Timedelta(days=50); qlabel = f"Q{(pe.month - 1) // 3 + 1} {pe.year}"
         # reaction: first full session after the report
         h = tk.history(start=(when - pd.Timedelta(days=7)).date(), end=(when + pd.Timedelta(days=7)).date(), auto_adjust=False)["Close"]
         react = ""
