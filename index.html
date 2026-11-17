@@ -1531,7 +1531,7 @@ function renderSec(){
   $('secTabs').innerHTML = PER.map(([k,l])=>`<button data-k="${k}" class="${k===secKey?'on':''}">${l}</button>`).join('');
   const c=cols3(secKey), rows=[...(SECTORS.rows||[])].map(r=>LIVE_SEC&&LIVE_SEC[r.t]!=null?{...r,d:LIVE_SEC[r.t]}:r).sort((a,b)=>(b[secKey]??-1e9)-(a[secKey]??-1e9)), mx=Math.max(...rows.map(r=>Math.abs(r[secKey]||0)))||1;
   $('secTable').innerHTML = hd2('סקטור',c)+rows.map(r=>`<div class="rw2"><div class="nm2"><b>${esc(SEC_EN[r.name]||r.name)}</b><small>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>`:''}</small><div class="bar2" style="width:${Math.max(3,Math.abs(r[secKey]||0)/mx*100).toFixed(0)}%"></div></div>${c.map((k,j)=>pc(r[k],!j)).join('')}</div>`).join('');
-  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${LIVE_SEC?` עמודת "היום" בזמן אמת (Finnhub), עודכנה ב-${liveTm()}.`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
+  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${LIVE_SEC?` עמודת "היום" בזמן אמת, בלי עיכוב (Finnhub), עודכנה ב-${liveTm()}. שאר העמודות מחושבות ממחירי Yahoo, בעיכוב של עד 15 דקות.`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
 }
 document.addEventListener('click',e=>{ const k=e.target.dataset&&e.target.dataset.k; if(k && e.target.closest('#sectors')){ secKey=k; renderSec(); } });
 

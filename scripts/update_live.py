@@ -86,7 +86,7 @@ for srow in data["sectors"]["rows"]:
     for k, s in R.items():
         v = s.reindex(m).dropna()
         if len(v): srow[k] = round(float(v.mean()), 2)
-data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
+data["sectors"]["asOf"] = (f"{last.day}.{last.month}.{last.year} בשעה {now_il:%H:%M} (שעון ישראל)" if live else stamp) + " · ממוצע מניות ה-S&P 500 בכל סקטור"
 p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("breadth", row)
 # movers (same as update.py)
