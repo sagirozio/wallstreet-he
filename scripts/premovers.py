@@ -8,7 +8,7 @@ root = pathlib.Path(__file__).resolve().parent.parent
 p = root / "data.json"; data = json.loads(p.read_text(encoding="utf-8"))
 EX = {"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"}
 Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
-rows, seen, state = [], 0, None
+rows, seen, state, npre, best = [], 0, None, 0, []
 for off in range(0, 4000, 250):
     r = None
     for k in range(3):
@@ -20,12 +20,14 @@ for off in range(0, 4000, 250):
         pre, base = q.get("preMarketPrice"), q.get("regularMarketPrice")
         ch = q.get("preMarketChangePercent")
         if ch is None and pre and base: ch = (pre / base - 1) * 100
+        if pre: npre += 1; best.append((round(ch or 0, 1), q["symbol"]))
         if ch is None or ch < 10: continue
         if (q.get("averageDailyVolume3Month") or 0) < 800_000 or q.get("exchange") not in EX or q.get("quoteType") != "EQUITY": continue
         rows.append({"t": q["symbol"].replace(".", "-"), "n": q.get("shortName") or q["symbol"], "p": round(float(ch), 1)})
     if not qs or off + 250 >= (r or {}).get("total", 0): break
 rows.sort(key=lambda x: -x["p"])
 il = dt.datetime.now(ZoneInfo("Asia/Jerusalem")); ny = dt.datetime.now(ZoneInfo("America/New_York"))
+print("with pre-market price", npre, "top", sorted(best, reverse=True)[:8])
 print("state", state, "seen", seen, "pre movers", [(x["t"], x["p"]) for x in rows])
 if state in ("PRE", "PREPRE") or ny.hour * 60 + ny.minute < 9 * 60 + 30:
     data["movers"] = {"asOf": f"{il.day}.{il.month}.{il.year} בשעה {il:%H:%M} (שעון ישראל) · מסחר מקדים", "pre": True,
