@@ -1019,6 +1019,7 @@ function route(){
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='archive'&&hh==='#reports')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='archive'||pg==='reports') loadReports();
+  if(pg==='news') loadNews();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
@@ -1030,14 +1031,21 @@ function setNavH(){ const n=$('navbar'); if(n) document.documentElement.style.se
 window.addEventListener('resize',setNavH);
 
 /* ---------- news ---------- */
-let NEWS = [];
+let NEWS = [], newsP=null, NEWS_ALL=false;
+const nKey=n=>(n.date||'')+'|'+(n.title||'');
+function mergeNews(list){ const m=new Map((FALLBACK.news||[]).map(n=>[nKey(n),n])); (list||[]).forEach(n=>m.set(nKey(n),n)); FALLBACK.news=[...m.values()]; }
+function loadNews(){
+  if(newsP) return newsP;
+  newsP=fetch('news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(all=>{ if(!Array.isArray(all)) return; mergeNews(all); NEWS_ALL=true; sortNews(); renderNews(); }).catch(()=>{ newsP=null; });
+  return newsP;
+}
 function sortNews(){ NEWS=(FALLBACK.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))); }
 sortNews();
 function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
   return `<article class="card"><div class="bar ${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></div><div><div class="tag">${esc(n.tag)} · ${+dd}.${+m}</div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p>${n.url?`<div class="src">מקור: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.src||'לכתבה')}</a></div>`:''}</div></article>`; }
 function renderNews(){
   $('newsLatest').innerHTML = NEWS.filter(n=>n.k!=='stock').slice(0,5).map(n=>{ const [y,m,dd]=String(n.date).split('-'); return `<a class="nrow" href="${esc(n.url||'#page/news')}" ${n.url?'target="_blank" rel="noopener"':''}><i class="${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></i><span><b>${esc(n.title)}</b><small>${esc(n.tag)} · ${+dd}.${+m}</small></span></a>`; }).join('');
-  $('newsN').textContent = NEWS.length;
+  $('newsN').textContent = Math.max(NEWS.length, FALLBACK.newsN||0);
   const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
   $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
   const q=$('nq').value.trim().toLowerCase(), tg=$('ntag').value;
@@ -1210,7 +1218,7 @@ function repMini(r){
 async function renderStock(t){
   const tok=++spTok;
   if(!STK_OK || !SDET[t]) $('spBody').innerHTML='<div class="empty">טוען את תעודת הזהות…</div>';
-  await Promise.all([loadStocks(), loadDet(t), loadReports()]);
+  await Promise.all([loadStocks(), loadDet(t), loadReports(), loadNews()]);
   if(tok!==spTok) return;
   const ix=stockIndex(), s=ix[t], det=SDET[t]||{}, prof=det.p||{};
   if(!s){ document.title=`${t} | Wallstreeter`; $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)}. באתר מוצגות רק חברות בשווי מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-500 אלף מניות ביום.</div>`; return; }
@@ -1509,18 +1517,15 @@ renderMovers();
 
 
 /* ---------- insider trades (SEC Form 4) ---------- */
-let INS=null, insT='P';
-async function loadIns(){ if(INS) return INS; try{ INS=await (await fetch('insiders.json?v='+Math.floor(Date.now()/3600000))).json(); }catch(e){ INS={rows:[]}; } return INS; }
+const INSC={};
+async function loadIns(t){ if(t in INSC) return INSC[t]; try{ const r=await fetch('ins/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}); INSC[t]=r.ok?await r.json():[]; }catch(e){ INSC[t]=[]; } return INSC[t]; }
 const fmtUsd=v=>v>=1e9?'$'+(v/1e9).toFixed(1)+'B':v>=1e6?'$'+(v/1e6).toFixed(1)+'M':'$'+Math.round(v/1e3)+'K';
 const roleHe=r=>{ const x=(r||'').toLowerCase(); return /chief executive|\bceo\b/.test(x)?'מנכ"ל':/chief financial|\bcfo\b/.test(x)?'סמנכ"ל כספים':/chair/.test(x)?'יו"ר':/president/.test(x)?'נשיא':/director/.test(x)?'דירקטור':/10%/.test(x)?'בעל מניות 10%':/officer|chief|vp|vice/.test(x)?'נושא משרה':(r||''); };
 function insRow(r,showT){ const d=r.date.split('-').reverse().slice(0,2).join('.');
   return `<a class="insr" href="${showT?'#stock/'+encodeURIComponent(r.t):esc(r.url)}" ${showT?'':'target="_blank" rel="noopener"'}>
     ${showT?`<b class="num">${esc(r.t)}</b>`:''}<span class="insw"><span dir="auto">${esc(r.who)}</span><small>${esc(roleHe(r.role))}${showT?' · '+esc(r.co):''}</small></span>
     <span class="insv ${r.type==='P'?'up':'down'}">${r.type==='P'?'קנה':'מכר'} ${fmtUsd(r.val)}${r.plan&&r.type==='S'?' <small class="flat">תוכנית</small>':''}</span><span class="insd num">${d}</span></a>`; }
-async function renderIns(){ const d=await loadIns(); const l=(d.rows||[]).filter(r=>r.type===insT);
-  $('insList').innerHTML = l.length? l.slice(0,40).map(r=>insRow(r,true)).join('') : '<p class="sub" style="padding:12px">אין עסקאות כאלה ב-30 הימים האחרונים.</p>'; }
-document.addEventListener('click',e=>{ const b=e.target.closest('#instabs button'); if(!b) return; insT=b.dataset.i; document.querySelectorAll('#instabs button').forEach(x=>x.classList.toggle('on',x===b)); renderIns(); });
-async function renderSpIns(t){ const d=await loadIns(), l=(d.rows||[]).filter(r=>r.t===t); const el=$('spIns'); if(!el||!l.length) return;
+async function renderSpIns(t){ const l=await loadIns(t); const el=$('spIns'); if(!el||!l.length) return;
   const b=l.filter(r=>r.type==='P').reduce((a,r)=>a+r.val,0), sl=l.filter(r=>r.type==='S').reduce((a,r)=>a+r.val,0);
   el.innerHTML=`<h3 class="sph3">מנהלים קונים ומוכרים · 30 יום${gq('INSIDER')}</h3><p class="legend" style="margin-top:0">${b?`קניות <span class="up num">${fmtUsd(b)}</span>`:''}${b&&sl?' · ':''}${sl?`מכירות <span class="down num">${fmtUsd(sl)}</span>`:''}</p><div class="cardx">${l.slice(0,6).map(r=>insRow(r,false)).join('')}</div>`; }
 
@@ -1543,7 +1548,7 @@ async function refreshLive(){
     if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS={...d.sectors, mem:d.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; loadBrL(); }
     if (d.overview && (d.overview.rev||0) > ((OVERVIEW||{}).rev||0)) { OVERVIEW=d.overview; renderOverview(); }
-    if (d.news && !same(d.news,FALLBACK.news)) { FALLBACK.news=d.news; sortNews(); renderNews(); try{ renderBriefNews(); }catch(e){} }
+    if (d.news) { const before=FALLBACK.news.length; mergeNews(d.news); if(FALLBACK.news.length!==before||!same(d.news.slice(0,3),NEWS.slice(0,3))){ sortNews(); renderNews(); try{ renderBriefNews(); }catch(e){} } }
     if (d.reports && !same(d.reports,FALLBACK.reports)) { const byId=new Map(REPORTS.map(x=>[x.id,x])); d.reports.forEach(x=>byId.set(x.id,x)); FALLBACK.reports=d.reports;
       REPORTS=[...byId.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date))); fillSectors(); renderEarn(); renderTop(); }
     if (d.calendar && (d.calendar.rev||0) >= ((CAL||{}).rev||0) && !same(d.calendar,CAL)) { CAL=d.calendar; renderCal(); renderAgenda(); }

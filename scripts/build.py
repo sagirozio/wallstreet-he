@@ -62,7 +62,7 @@ for ind, lst in stocks.items():
 # ---------- core (inlined + polled) ----------
 core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates", "hl52", "insiders")}
 # insider trades: own file, loaded by the stock page and the insiders section
-write("insiders.json", js(data.get("insiders") or {"rows": []}))
+
 # reports: the page carries only the last 3 weeks; the full archive is reports.json (loaded on demand)
 import datetime as _dt
 _cut = (_dt.date.today() - _dt.timedelta(days=4)).isoformat()
@@ -76,6 +76,22 @@ _b = core.get("breadth") or {}
 write("breadth.json", js({"rows": [{"d": r.get("d"), "L": r.get("L")} for r in _b.get("rows", []) if r.get("L")]}))
 core["breadth"] = {**_b, "rows": [{k: v for k, v in r.items() if k != "L"} for r in _b.get("rows", [])]}
 write("news_times.json", json.dumps(_nt, ensure_ascii=False, indent=0, sort_keys=True))
+# news: the page carries the last 3 days; the full archive is news.json (news page, stock pages)
+_ncut = (_dt.date.today() - _dt.timedelta(days=3)).isoformat()
+write("news.json", js(news))
+core["news"] = [n for n in news if str(n.get("date", "")) >= _ncut][:80]
+core["newsN"] = len(news)
+# insider trades: one small file per stock (ins/<T>.json) instead of one big file
+import os as _os
+_ins = (data.get("insiders") or {}).get("rows", [])
+_by = {}
+for _r in _ins: _by.setdefault(_r["t"], []).append({k: _r[k] for k in ("who", "role", "type", "val", "date", "plan", "url")})
+(root / "ins").mkdir(exist_ok=True)
+for _f in (root / "ins").glob("*.json"):
+    if _f.stem not in _by: _f.unlink()
+for _t, _l in _by.items():
+    if re.fullmatch(r"[A-Z0-9.\-]{1,10}", _t): write(f"ins/{_t}.json", js(_l))
+if (root / "insiders.json").exists(): (root / "insiders.json").unlink()
 core_txt = js(core)
 write("core.json", core_txt)
 

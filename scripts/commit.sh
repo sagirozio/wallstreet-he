@@ -7,7 +7,7 @@ PY=$(command -v python3 || command -v python)
 msg="$1"; shift
 git config user.name "wallstreet-bot"
 git config user.email "bot@users.noreply.github.com"
-DERIVED="index.html core.json breadth.json insiders.json news_times.json reports.json stocks.json sitemap.xml stock.css s stock"
+DERIVED="index.html core.json breadth.json news.json ins news_times.json reports.json stocks.json sitemap.xml stock.css s stock"
 "$PY" scripts/build.py >/dev/null
 git add "$@" $DERIVED
 git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
