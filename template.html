@@ -459,6 +459,19 @@ h2 .gq{width:22px;height:22px}
 #brief{padding-top:18px}#market{padding-top:22px}
 .chtg{display:flex;align-items:center;gap:6px;margin:0 0 10px;flex-wrap:wrap}.chtg button{background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font:inherit;font-size:14px;cursor:pointer;min-height:36px}
 .chtg button.on{background:var(--accent);color:#fff;border-color:var(--accent)}.chtg .chn{color:var(--muted);font-size:12.5px;margin-inline-start:6px}
+.rc{padding:14px}.rctop{display:flex;align-items:center;gap:10px}.rctop .mono{width:38px;height:38px;font-size:11px}
+.rcn{min-width:0;flex:1}.rcn b{display:block;font-size:16.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rcn small{color:var(--muted);font-size:12.5px}
+.rcres{font-size:13.5px;font-weight:700;white-space:nowrap}.rcres.amb{color:var(--amber)}
+.rct{margin-top:12px;border-top:1px solid var(--line)}
+.rcr{display:grid;grid-template-columns:minmax(0,1fr) 78px 70px 60px;gap:6px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rcr.h{color:var(--muted);font-size:12px;padding:7px 0}.rcr.h span{text-align:center}.rcr.h span:first-child{text-align:right}
+.rcr .n{text-align:center;font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;font-size:13.5px}.rcr .n.big{font-size:16px;font-weight:700}
+.rcr>span:first-child{white-space:nowrap}.rcr .gq,.rcres .gq,.rcy .gq{width:17px;height:17px;font-size:10.5px;margin-inline-start:4px}.rcy .n{font-family:"JetBrains Mono",monospace;font-weight:700;direction:ltr;unicode-bidi:isolate}
+.rcr small{display:block;color:var(--muted);font-size:11.5px}.rcr.y{border-bottom:0;color:var(--muted)}.rcyl{font-size:11.5px;color:var(--muted);text-align:center}
+.rcnote{grid-column:2/-1;color:var(--muted);font-size:13px}
+.rcl{font-size:14px;line-height:1.65;margin-top:10px}.rcl b{font-weight:700}
+.rcf{margin-top:12px;font-size:13.5px}.rcf a{color:var(--accent);text-decoration:none}
+@media(max-width:420px){.rcr{grid-template-columns:minmax(0,1fr) 74px 66px 54px}.rcr .n.big{font-size:15px}.rcr .n{font-size:12.5px}}
 </style>
 </head>
 <body>
@@ -780,17 +793,27 @@ const GUIDE = {raised:['▲','התחזית הועלתה'],above:['▲','התחז
 const BADGE = {beat:['b-beat','עקפה בשניהם'],mix:['b-mix','מעורב'],miss:['b-miss','החטיאה בשניהם']};
 function fmtDate(d){ const [y,m,dd]=String(d).split('-'); return `${dd}.${m}.${y}`; }
 function card(r){
-  const res = resultOf(r), g = GUIDE[r.guide]||GUIDE.none;
-  return `<div class="card">
-    <div class="ehead"><div class="cohead">${tl(r.t,mono(r.t))}<div><div class="co">${tl(r.t,esc(r.co)+'<span class="tick">'+esc(r.t)+'</span>')}</div>
-      <div class="date">${fmtDate(r.date)} · ${esc(r.q)} · ${esc(r.sector)}</div></div></div>
-      <span class="badge ${BADGE[res][0]}">${typeof r.revAct!=='number'?(res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי'):BADGE[res][1]}</span></div>
-    <div class="metrics">${metric('רווח למניה (EPS)'+gq('EPS'), r.epsAct, r.epsEst, r.epsYoy, r.epsYoyNote, eps, r.epsBasis, r.epsYoyGood)}
-      ${typeof r.revAct==='number'?metric('מכירות (Revenue)'+gq('REV'), r.revAct, r.revEst, r.revYoy, null, money):'<div class="m"><div class="lbl">מכירות (Revenue)</div><div class="est">אין הכנסות ממכירות. חברה בשלב קליני.</div></div>'}</div>
-    <div class="guide g-${esc(r.guide||'none')}"><div class="gt">${g[0]} ${g[1]}${gq('GUIDE')}</div>${r.guideText?esc(r.guideText):''}</div>
-    ${r.note?`<p class="note">${esc(r.note)}</p>`:''}${r.react?`<div class="react">${esc(r.react)}</div>`:''}
-    <div class="actions">${/^https:\/\//.test(r.ir||'')?`<a class="irlink" href="${esc(r.ir)}" target="_blank" rel="noopener">מצגת וחומרי הדוח ↗</a>`:''}
-      <a class="wa" href="${waLink(reportText(r))}" target="_blank" rel="noopener">${WA_SVG}שתף בוואטסאפ</a></div>
+  const res=resultOf(r), RES={beat:['עקפה בשניהם','up'],mix:['מעורב','amb'],miss:['החטיאה בשניהם','down']}[res]||['',''];
+  const lab = typeof r.revAct!=='number' ? (res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי') : RES[0];
+  const sp=(a,e)=>{ const v=surp(a,e); return v==null?'<span class="n flat">—</span>':`<span class="n ${v>=0?'up':'down'}">${pct(v,1)}</span>`; };
+  const act=(a,e,f)=>`<span class="n big ${typeof e==='number'&&typeof a==='number'?(a>e?'up':'down'):''}">${f(a)}</span>`;
+  const est=(e,f)=>`<span class="n flat">${typeof e==='number'?f(e):'—'}</span>`;
+  const yo=v=>typeof v==='number'?`<span class="n ${v>0?'up':v<0?'down':'flat'}">${v===0?'0%':pct(v)}</span>`:'<span class="n flat">—</span>';
+  const g=GUIDE[r.guide]||GUIDE.none, gc=r.guide==='raised'||r.guide==='above'?'up':r.guide==='below'?'down':'';
+  const rs=reactScore(r.react), rc=rs>0?'up':rs<0?'down':'';
+  const hasRev=typeof r.revAct==='number';
+  return `<div class="card rc">
+    <div class="rctop">${tl(r.t,mono(r.t))}<div class="rcn">${tl(r.t,`<b><bdi>${esc(r.co)}</bdi></b>`)}<small>${esc(r.t)} · ${esc(r.q)} · ${fmtDate(r.date).slice(0,5)} · ${esc(r.sector)}</small></div><span class="rcres ${RES[1]}">${lab}${gq('BEAT')}</span></div>
+    <div class="rct">
+      <div class="rcr h"><span></span><span>בפועל</span><span>צפי</span><span>הפתעה</span></div>
+      <div class="rcr"><span>רווח למניה${gq('EPS')}${r.epsBasis?`<small>${esc(r.epsBasis)}</small>`:''}</span>${act(r.epsAct,r.epsEst,eps)}${est(r.epsEst,eps)}${sp(r.epsAct,r.epsEst)}</div>
+      ${hasRev?`<div class="rcr"><span>מכירות${gq('REV')}</span>${act(r.revAct,r.revEst,money)}${est(r.revEst,money)}${sp(r.revAct,r.revEst)}</div>`:'<div class="rcr"><span>מכירות</span><span class="rcnote">אין הכנסות ממכירות. חברה בשלב קליני.</span></div>'}
+    </div>
+    ${typeof r.epsYoy==='number'||typeof r.revYoy==='number'?`<div class="rcl rcy">לעומת אשתקד${gq('YOY')}: רווח למניה ${yo(r.epsYoy)}${hasRev?` · מכירות ${yo(r.revYoy)}`:''}</div>`:''}
+    ${(r.guide&&r.guide!=='none')||r.guideText?`<div class="rcl"><b class="${gc}">${g[1]}</b>${gq('GUIDE')}${r.guideText?` · <span class="flat">${esc(r.guideText)}</span>`:''}</div>`:''}
+    ${r.note?`<div class="rcl flat">${esc(r.note)}</div>`:''}
+    ${r.react?`<div class="rcl"><b>תגובת המניה:</b> <span class="${rc}">${esc(r.react)}</span></div>`:''}
+    ${/^https:\/\//.test(r.ir||'')?`<div class="rcf"><a href="${esc(r.ir)}" target="_blank" rel="noopener">מצגת וחומרי הדוח ↗</a></div>`:''}
   </div>`;
 }
 function renderEarn(){
