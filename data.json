@@ -95758,66 +95758,11 @@
   }
  },
  "movers": {
-  "asOf": "סגירת 16.11.2026",
-  "rows": [
-   {
-    "t": "CGON",
-    "n": "CG Oncology, Inc.",
-    "p": 14.0
-   },
-   {
-    "t": "TU",
-    "n": "Telus Corporation",
-    "p": 12.2
-   }
-  ],
-  "down": [
-   {
-    "t": "SMMT",
-    "n": "Summit Therapeutics Inc.",
-    "p": -16.5
-   },
-   {
-    "t": "GDS",
-    "n": "GDS Holdings Limited",
-    "p": -14.7
-   },
-   {
-    "t": "USAR",
-    "n": "USA Rare Earth, Inc.",
-    "p": -12.6
-   },
-   {
-    "t": "ASTS",
-    "n": "AST SpaceMobile, Inc.",
-    "p": -12.3
-   },
-   {
-    "t": "BLSH",
-    "n": "Bullish",
-    "p": -12.2
-   },
-   {
-    "t": "NVTS",
-    "n": "Navitas Semiconductor Corporati",
-    "p": -12.0
-   },
-   {
-    "t": "ASST",
-    "n": "Strive, Inc.",
-    "p": -11.9
-   },
-   {
-    "t": "RUM",
-    "n": "RUM Group Inc.",
-    "p": -11.4
-   },
-   {
-    "t": "FLY",
-    "n": "Firefly Aerospace Inc.",
-    "p": -10.8
-   }
-  ]
+  "asOf": "17.11.2026 בשעה 15:50 (שעון ישראל) · מסחר מקדים",
+  "pre": true,
+  "date": "2026-11-17",
+  "rows": [],
+  "down": []
  },
  "earnDates": {
   "AAPL": {
