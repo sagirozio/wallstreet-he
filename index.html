@@ -414,6 +414,16 @@ h2 .gq{width:22px;height:22px}
 .thsub{padding:10px 14px 12px;background:var(--panel2);border-bottom:1px solid var(--line)}
 .thsub .stks{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 @media(max-width:640px){.rw2{grid-template-columns:minmax(0,1fr) 70px 58px 58px;gap:6px;padding:10px 12px}.rw2 .n{font-size:12.5px}.rw2 .n.big{font-size:14px}.nm2 b{font-size:14px}.nm2 small{font-size:12px}.thsub .stks{grid-template-columns:1fr}}
+.brw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:820px;margin-bottom:12px}
+.brc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}.brc.wide{grid-column:1/-1}
+.brc .lb{color:var(--muted);font-size:13px;display:flex;align-items:center;flex-wrap:wrap}
+.brc .bv{font:700 26px "JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.brc .br2{display:flex;align-items:baseline;gap:8px;margin-top:4px;flex-wrap:wrap}.brc .sm{color:var(--muted);font-size:12.5px}
+.brc .trk{position:relative;height:8px;border-radius:4px;background:#1d2638;margin:10px 0 5px;overflow:hidden}
+.brc .fil{position:absolute;top:0;bottom:0;right:0;background:#3a4766;border-radius:4px}.brc .mid{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--muted)}
+.brc .sc{direction:rtl;display:flex;justify-content:space-between;gap:6px;color:var(--muted);font-size:11.5px}
+.brh .rw2{grid-template-columns:70px minmax(0,1fr) 80px 80px}.brh .rw2 .n.l{text-align:right;direction:rtl}
+@media(max-width:640px){.brc .bv{font-size:22px}.brh .rw2{grid-template-columns:52px minmax(0,1fr) 62px 62px}}
 </style>
 </head>
 <body>
@@ -549,8 +559,8 @@ h2 .gq{width:22px;height:22px}
 <section id="breadth" data-pg="market">
   <h2>רוחב השוק (Breadth)<button class="gq" data-gl="BREADTH" aria-label="הסבר">?</button><span class="fresh" data-fr="breadth"></span></h2>
   <p class="sub" id="brSub">כמה מניות באמת משתתפות בתנועה. מדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות, והטבלה הזו מראה את זה.</p>
-  <div class="brk" id="brKpi"></div>
-  <div class="tscroll"><table class="br" id="brTable"></table></div>
+  <div class="brw" id="brKpi"></div>
+  <div class="tb2 brh" id="brTable"></div>
   <div class="legend" id="brLegend"></div>
 </section>
 
@@ -1076,6 +1086,9 @@ const GLOSS={
   PCE:['PCE – מדד ההוצאה לצריכה','מדד אינפלציה רחב יותר מה-CPI, וזה שהפד מסתכל עליו כשהוא קובע את יעד האינפלציה שלו (2% בשנה).'],
   NFP:['משרות חדשות (NFP)','כמה משרות נוספו בחודש במשק האמריקאי, מחוץ לחקלאות. מתפרסם ביום שישי הראשון בחודש. מספר גבוה = כלכלה חזקה, אבל גם פחות סיבה להוריד ריבית.'],
   UNEMP:['שיעור האבטלה','האחוז מכוח העבודה שמחפשים עבודה ולא מוצאים. אבטלה נמוכה מעידה על כלכלה חזקה. עלייה מהירה בה נחשבת סימן אזהרה למיתון.'],
+  ADV:['עלו / ירדו היום','כמה ממניות ה-S&P 500 נסגרו היום בעלייה וכמה בירידה. כשהמדד עולה אבל רוב המניות יורדות, העלייה נשענת על מעט חברות ענק.'],
+  HILO:['שיא / שפל של 52 שבועות','כמה מניות נגעו היום במחיר הגבוה או הנמוך ביותר שלהן בשנה האחרונה. הרבה שיאים ומעט שפלים מעידים על שוק בריא.'],
+  MOVE10:['זזו 10% ומעלה בחודש','כמה מניות עלו או ירדו לפחות 10% ב-21 ימי המסחר האחרונים. מראה לאיזה כיוון נע רוב השוק, ולא רק המדד.'],
   GDP:['GDP – צמיחה','השינוי בתוצר, כלומר בסך כל המוצרים והשירותים שהכלכלה מייצרת. בארה״ב מפורסם כקצב שנתי: כמה הכלכלה הייתה צומחת בשנה אם הקצב של הרבעון היה נמשך.'],
   PRE:['מסחר מקדים ומאוחר','מסחר במניות לפני הפתיחה הרשמית (11:00–16:30 שעון ישראל) ואחרי הסגירה (23:00–03:00). המחזורים נמוכים והמחירים תנודתיים יותר.'],
   BMO:['לפני הפתיחה / אחרי הסגירה','חברות מפרסמות דוחות לפני תחילת המסחר בניו יורק (16:30 בישראל) או אחרי סיומו (23:00 בישראל). לכן התגובה של המניה מגיעה בפתיחה או במסחר המאוחר.'],
@@ -1383,19 +1396,27 @@ const BRCOLS = [
 ];
 function renderBreadth(){
   const b=FALLBACK.breadth||{rows:[]}, rows=b.rows||[], last=rows[0]||{};
-  const cell=(c,v)=>{ if(v==null) return '<td class="flat">—</td>';
-    const txt=c.ty==='pct'?v.toFixed(1)+'%':v;
-    let st=''; if(c.ty==='pct') st=`background:rgba(${v>=50?'34,197,94':'239,68,68'},${(Math.min(Math.abs(v-50)/40,1)*.5+.08).toFixed(2)})`;
-    else st=`color:var(--${c.ty==='up'?'green':'red'});font-weight:700`;
-    return `<td style="${st}">${txt}</td>`; };
-  $('brTable').innerHTML=`<thead><tr><th class="dt">תאריך</th>${BRCOLS.map(c=>`<th>${c.h}</th>`).join('')}</tr></thead><tbody>`+
-    rows.map(r=>`<tr><td class="dt">${esc(r.d)}</td>${BRCOLS.map(c=>cell(c,r[c.k])).join('')}</tr>`).join('')+'</tbody>';
-  const f=(v,s='')=>v==null?'—':v+s;
-  const k=[{v:f(last.ma50,'%'),l:'מהמניות מעל ממוצע 50 יום (S5FI)'+gq('MA'),good:(last.ma50||0)>=50},{v:f(last.ma200,'%'),l:'מהמניות מעל ממוצע 200 יום (S5TH)',good:(last.ma200||0)>=50},
-           {v:`${f(last.hi)} / ${f(last.lo)}`,l:'בשיא / בשפל של 52 שבועות',good:(last.hi||0)>=(last.lo||0)}];
-  $('brKpi').innerHTML = k.map(x=>`<div class="card"><b style="color:var(--${x.good?'green':'red'})"><bdi dir="ltr">${x.v}</bdi></b><span>${x.l}</span></div>`).join(''); renderFresh();
+  const prev=k=>{ for(let i=1;i<rows.length;i++) if(rows[i][k]!=null) return rows[i]; return null; };
+  const N=(v,cls,suf='')=>v==null?'<span class="bv flat">—</span>':`<span class="bv ${cls}">${v}${suf}</span>`;
+  const c50=v=>v==null?'flat':v>=50?'up':'down';
+  const gauge=(k,lbl,code,gl)=>{ const v=last[k], p=prev(k);
+    return `<div class="brc"><div class="lb">${lbl}${gq(gl)}</div>${N(v==null?null:v.toFixed(1),c50(v),'%')}
+      <div class="trk"><div class="fil" style="width:${v||0}%"></div><div class="mid"></div></div>
+      <div class="sc"><span>${code}</span>${p?`<span>ב-<bdi>${esc(p.d)}</bdi>: <span class="num">${p[k].toFixed(1)}%</span></span>`:''}</div></div>`; };
+  const up=last.up, dn=last.dn, tot=(up||0)+(dn||0), pu=tot?Math.round(up/tot*100):null;
+  $('brKpi').innerHTML =
+    `<div class="brc wide"><div class="lb">${last.d?esc(last.d)+': ':''}כמה מניות עלו וכמה ירדו${gq('ADV')}</div>
+      <div class="br2">${N(up,'up')}<span class="sm">עלו</span><span style="margin-inline-start:auto"></span>${N(dn,'down')}<span class="sm">ירדו</span></div>
+      ${pu!=null?`<div class="trk"><div class="fil" style="width:${pu}%"></div><div class="mid"></div></div><div class="sc"><span>${pu}% עלו</span><span>${100-pu}% ירדו</span></div>`:''}</div>`+
+    gauge('ma50','מעל ממוצע 50 יום','S5FI','MA')+gauge('ma200','מעל ממוצע 200 יום','S5TH','MA')+
+    `<div class="brc"><div class="lb">שיא / שפל שנתי${gq('HILO')}</div><div class="br2">${N(last.hi,'up')}<span class="sm">/</span>${N(last.lo,'down')}</div><div class="sm">נגעו היום בשיא / בשפל של 52 שבועות</div></div>`+
+    `<div class="brc"><div class="lb">זזו 10%+ בחודש${gq('MOVE10')}</div><div class="br2">${N(last.up10,'up')}<span class="sm">/</span>${N(last.dn10,'down')}</div><div class="sm">עלו / ירדו לפחות 10% בחודש</div></div>`;
+  const pc2=v=>v==null?'<span class="n flat">—</span>':`<span class="n ${c50(v)}">${v.toFixed(1)}%</span>`;
+  $('brTable').innerHTML = `<div class="rw2 hd2"><span>תאריך</span><span>עלו / ירדו</span><span class="n on">50 יום</span><span class="n">200 יום</span></div>`+
+    rows.map(r=>`<div class="rw2"><span>${esc(r.d)}</span>${r.up==null&&r.dn==null?'<span class="n l flat">—</span>':`<span class="n l"><span class="up">${r.up??'—'}</span> / <span class="down">${r.dn??'—'}</span></span>`}${pc2(r.ma50)}${pc2(r.ma200)}</div>`).join('');
   $('brSub').textContent = `רוחב השוק בתוך ה-S&P 500, נכון ל${b.asOf}. כמה מתוך 500 המניות באמת משתתפות בתנועה: המדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות.`;
-  $('brLegend').textContent = 'חישוב עצמי מנתוני Yahoo Finance, מתעדכן אוטומטית כל ערב אחרי הסגירה. שיא/שפל = המניה נגעה במהלך היום בשיא/שפל של 52 השבועות הקודמים. "—" = אין נתון לאותו יום.';
+  $('brLegend').textContent = 'ירוק = יותר מ-50% מהמניות מעל הממוצע (רוב השוק משתתף בעלייה), אדום = פחות מ-50%. הקו באמצע הפס הוא 50%. חישוב עצמי מנתוני Yahoo Finance, מתעדכן אוטומטית כל ערב אחרי הסגירה. "—" = אין נתון לאותו יום.';
+  renderFresh();
 }
 // ===== IPOs =====
 let IPOS = FALLBACK.ipos;
