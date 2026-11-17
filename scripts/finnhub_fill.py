@@ -34,7 +34,7 @@ for r in todo:
     except Exception as e: print(r["t"], "err", e); continue
     if not x: continue
     ch = False
-    if not r.get("revCur"):
+    if not r.get("revCur") and r.get("_usd", True):
         if r.get("revEst") is None and x.get("revenueEstimate"): r["revEst"] = round(x["revenueEstimate"] / 1e9, 4); ch = True
         if r.get("revAct") is None and x.get("revenueActual"): r["revAct"] = round(x["revenueActual"] / 1e9, 4); ch = True
     if r.get("epsEst") is None and x.get("epsEstimate") is not None: r["epsEst"] = round(x["epsEstimate"], 2); ch = True
