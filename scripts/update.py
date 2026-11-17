@@ -75,6 +75,11 @@ else:
 GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consumer Discretionary": "XLY",
         "Consumer Staples": "XLP", "Energy": "XLE", "Financials": "XLF", "Health Care": "XLV",
         "Industrials": "XLI", "Real Estate": "XLRE", "Materials": "XLB", "Utilities": "XLU"}
+# members of each sector (for the "leaders" list under a sector row)
+_mem = {}
+for _t, _g in zip(sp["yf"], sp["GICS Sector"]):
+    if GICS.get(_g): _mem.setdefault(GICS[_g], []).append(_t)
+data.setdefault("sectors", {})["mem"] = _mem
 sec_of = dict(zip(sp["yf"], sp["GICS Sector"]))
 for srow in ([] if STALE else data["sectors"]["rows"]):
     g = [k for k, v in GICS.items() if v == srow["t"]]
@@ -86,7 +91,7 @@ for srow in ([] if STALE else data["sectors"]["rows"]):
 import datetime, zoneinfo
 now = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem"))
 live = now.date() == last.date() and now.hour < 23
-stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון ישראל, בעיכוב של כ-15 דקות)" if live
+stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון ישראל)" if live
          else f"סגירת {last.day}.{last.month}.{last.year}")
 if not STALE: data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
 

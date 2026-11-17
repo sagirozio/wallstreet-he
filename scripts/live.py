@@ -138,6 +138,14 @@ while True:
                     if lp and pc: ix[sym] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]
                 except Exception as e: print("index", sym, type(e).__name__, flush=True)
             if ix: payload["idx"] = ix
+            etf = {}
+            try:
+                px = yf.download(["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU"], period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
+                for e in px.columns:
+                    c = px[e].dropna()
+                    if len(c) >= 2: etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
+            except Exception as e: print("etf", type(e).__name__, flush=True)
+            if etf: payload["etf"] = etf   # sector ETF price + change (XLK, XLF ...)
             publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:

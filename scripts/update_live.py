@@ -74,7 +74,7 @@ b = data.get("breadth", {"rows": []})
 b["rows"] = [row] + [r for r in b.get("rows", []) if r.get("d") != row["d"]][:19]
 live = last == today
 now_il = dt.datetime.now(ZoneInfo("Asia/Jerusalem"))
-stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now_il:%H:%M} (שעון ישראל, בעיכוב של כ-15 דקות)" if live else f"סגירת {last.day}.{last.month}.{last.year}")
+stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now_il:%H:%M} (שעון ישראל)" if live else f"סגירת {last.day}.{last.month}.{last.year}")
 b["asOf"] = stamp; data["breadth"] = b
 GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consumer Discretionary": "XLY", "Consumer Staples": "XLP", "Energy": "XLE",
         "Financials": "XLF", "Health Care": "XLV", "Industrials": "XLI", "Real Estate": "XLRE", "Materials": "XLB", "Utilities": "XLU"}
