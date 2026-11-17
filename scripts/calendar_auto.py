@@ -64,6 +64,11 @@ for i in range(5):
     items.sort(key=lambda x: (x.get("time") != "bmo", -U.get(x["t"], ("", 0))[1]))
     econ = next((x.get("econ", "") for x in old.get("days", []) if same and x.get("d") == lbl), "")
     days.append({"d": lbl, "items": items, "econ": econ})
+# a hand-placed company wins over the automatic copy on another day
+hand_at = {(dl, t) for (dl, t), o in oldi.items() if not o.get("a")}
+hand = {t for _, t in hand_at}
+for x in days:
+    x["items"] = [it for it in x["items"] if it["t"] not in hand or (x["d"], it["t"]) in hand_at]
 new = {"week": week,
        "note": "החברות הגדולות שמדווחות השבוע (שווי שוק מעל מיליארד דולר), לפי Finnhub, עם תחזיות האנליסטים. 🇮🇱 = חברה ישראלית. השעות לפי שעון ניו יורק (ET), בישראל זה 7 שעות מאוחר יותר.",
        "days": days}
