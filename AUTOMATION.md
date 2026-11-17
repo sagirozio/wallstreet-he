@@ -8,6 +8,21 @@ The build writes `index.html`, `core.json`, `stocks.json`, `s/<T>.json`, `stock/
 **Never edit by hand:** `sectors`, `themes`, `breadth`, `ytd` in `data.json`.
 The nightly GitHub Action recomputes them from Yahoo Finance.
 
+## Run plan — do it in this order (if time runs short, the later steps wait for the next run)
+
+**Already automated — don't spend time on these:** prices, sectors, industries, breadth, YTD doublers, monthly gainers,
+today's movers, pre-market, basic earnings cards (EPS/revenue vs estimate, YoY, reaction — Yahoo + Finnhub, every night),
+company facts. Raw English headlines per stock are waiting in `news_src.json`.
+
+Your job is the Hebrew writing and the judgement:
+1. `overview.brief` (+ `market` / `vix` on the evening run) — the first thing on the site.
+2. **Main news items** (3–6).
+3. **Report cards for today's big reporters** (full: guidance, Hebrew `note`, `hook`).
+4. **Stock news items** from `news_src.json` — 20–40 different stocks.
+5. **Enrich `auto` report cards** — at least 15 per run, largest companies first (see §2 `reports`).
+6. **`profiles`** — `about` paragraphs for companies still missing one.
+7. Monday morning: the weekly `calendar`. IPOs when there is news.
+
 ## 0. Setup
 
 1. Attach the repo with push access. Clone it with `git clone --depth 5 https://github.com/sagirozio/wallstreet-he`.
