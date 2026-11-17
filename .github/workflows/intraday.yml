@@ -1,7 +1,7 @@
 name: Intraday sectors & breadth (every ~15 min while US market is open)
 on:
   schedule:
-    - cron: "*/15 14-21 * * 1-5"   # UTC; US session is 14:30-21:00 UTC in winter
+    - cron: "7,22,37,52 14-21 * * 1-5"   # UTC, off-peak minutes (GitHub delays/drops runs at :00/:15/:30/:45)
   workflow_dispatch:
 permissions:
   contents: write

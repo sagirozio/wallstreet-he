@@ -1,7 +1,8 @@
 name: Nightly data update
 on:
   schedule:
-    - cron: "30 21 * * 1-5"   # 23:30 Israel (winter) — after US close
+    - cron: "43 21 * * 1-5"   # ~23:43 Israel (winter), after US close; off-peak minute
+    - cron: "19 1 * * 2-6"    # backup run ~03:19 Israel in case GitHub skipped the first
   workflow_dispatch:
 concurrency: { group: data-update, cancel-in-progress: false }
 permissions:
