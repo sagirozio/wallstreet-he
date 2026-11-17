@@ -875,6 +875,16 @@ function fillSectors(){
 ['q','fSector','fResult','fGuide','sort'].forEach(id=>$(id).addEventListener('input',()=>{ earnLim=60; renderEarn(); }));
 
 
+/* ---------- full reports archive (reports.json, loaded on demand) ---------- */
+let repP=null;
+function loadReports(){
+  if(repP) return repP;
+  repP=fetch('reports.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(all=>{ if(!Array.isArray(all)) return;
+    const byId=new Map(all.map(x=>[x.id,x])); REPORTS.forEach(x=>byId.set(x.id,x));
+    REPORTS=[...byId.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date))); STOCKIX=null;
+    fillSectors(); renderEarn(); renderTop(); }).catch(()=>{ repP=null; });
+  return repP;
+}
 /* ---------- top reports + page routing ---------- */
 function reactScore(s){ s=s||''; const m=s.match(/(\d+(?:\.\d+)?)%/); const v=m?+m[1]:3;
   if(/צנח|ירד/.test(s)) return -v; if(/זינק|קפצ|עלת|עלה/.test(s)) return /לפני הפתיחה.*ננעלה בירידה/.test(s)?-1:v; return 0; }
@@ -942,7 +952,7 @@ function renderHomeMovers(){
 }
 setInterval(()=>{ try{ renderMktStatus(); }catch(e){} }, 60000);
 
-function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=REPORTS.length; renderToday(); }
+function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=Math.max(REPORTS.length,FALLBACK.reportsN||0); renderToday(); }
 
 /* ---------- pages + router ----------
    Each <section> has data-pg (home / market / reports / stocks / news / archive / stock / legal).
@@ -978,6 +988,7 @@ function route(){
   $('subnav').classList.toggle('hidden',!showSub);
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='archive'&&hh==='#reports')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | וולסטריטר` : BASE_TITLE;
+  if(pg==='archive'||pg==='reports') loadReports();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
@@ -1150,7 +1161,7 @@ let spTok=0, SPT='ov';
 async function renderStock(t){
   const tok=++spTok;
   if(!STK_OK || !SDET[t]) $('spBody').innerHTML='<div class="empty">טוען את תעודת הזהות…</div>';
-  await Promise.all([loadStocks(), loadDet(t)]);
+  await Promise.all([loadStocks(), loadDet(t), loadReports()]);
   if(tok!==spTok) return;
   const ix=stockIndex(), s=ix[t], det=SDET[t]||{}, prof=det.p||{};
   if(!s){ document.title=`${t} | וולסטריטר`; $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)}. באתר מוצגות רק חברות בשווי מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-500 אלף מניות ביום.</div>`; return; }

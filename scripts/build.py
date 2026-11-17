@@ -48,6 +48,12 @@ for ind, lst in stocks.items():
 
 # ---------- core (inlined + polled) ----------
 core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates")}
+# reports: the page carries only the last 3 weeks; the full archive is reports.json (loaded on demand)
+import datetime as _dt
+_cut = (_dt.date.today() - _dt.timedelta(days=4)).isoformat()
+core["reports"] = [r for r in reports if str(r.get("date", "")) >= _cut]
+core["reportsN"] = len(reports)
+write("reports.json", js(reports))
 core["themes"] = {k: v for k, v in themes.items() if k not in ("stocks", "ex")}
 core["themes"]["n"] = len(universe)
 core_txt = js(core)
