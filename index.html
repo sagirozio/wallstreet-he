@@ -477,6 +477,13 @@ h2 .gq{width:22px;height:22px}
 .sphr.tvok .sptvh{display:block;width:168px;height:58px;overflow:hidden;direction:ltr}
 .sptvh .tradingview-widget-container{width:240px!important;height:auto!important;transform:scale(.7);transform-origin:0 0}
 @media(max-width:640px){.sphr.tvok .sptvh{width:140px;height:50px}.sptvh .tradingview-widget-container{width:233px!important;transform:scale(.6)}}
+.grw{display:grid;grid-template-columns:24px minmax(0,1fr) 74px 92px;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none}
+a.grw:hover{background:rgba(255,255,255,.025)}.grw:last-child{border-bottom:0}.grw.hd2{padding:8px 14px}
+.grw .gi{color:var(--muted);font:600 12.5px "JetBrains Mono",monospace;text-align:center}
+.grw .nm2 b{font-family:"JetBrains Mono",monospace;font-size:14.5px}.grw .nm2 small{text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grw .n{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;text-align:center;font-size:13px}.grw .n.big{font-size:15.5px;font-weight:700}.grw .gcap{color:var(--muted)}
+.grw.hd2 .n{font-family:inherit;font-size:12px;color:var(--muted)}.grw.hd2 .n.on{color:var(--text);font-weight:700}
+@media(max-width:640px){.grw{grid-template-columns:20px minmax(0,1fr) 62px 78px;gap:6px;padding:10px 12px}.grw .n.big{font-size:14px}.grw .n{font-size:12px}}
 </style>
 </head>
 <body>
@@ -646,7 +653,7 @@ h2 .gq{width:22px;height:22px}
   <h2>מניות שזינקו לאחרונה</h2>
   <p class="sub">המניות שעלו הכי חזק מתחילת נובמבר 2026 ועד 13.11. מוצגות רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע (20 ימים) של יותר מ-800 אלף מניות ביום.</p>
   <div class="tabs" id="gtabs"><button class="on" data-t="all">שווי מעל $1B</button><button data-t="large">ענקיות · מעל $10B</button></div>
-  <div class="tscroll"><table id="gtable"></table></div>
+  <div class="tb2" id="gtable"></div>
   <div class="warn" id="gwarn">⚠️ חלק מהמניות כאן הן חברות בינוניות, ותנודתיות יותר מהענקיות. זינוק חד יכול להתהפך מהר.</div>
 </section>
 
@@ -654,7 +661,7 @@ h2 .gq{width:22px;height:22px}
   <h2>מניות שהכפילו את עצמן ב-2026<span class="fresh" data-fr="ytd"></span></h2>
   <p class="sub">המניות שעלו ב-<bdi dir="ltr">100%</bdi> ומעלה מתחילת השנה, נכון ליום המסחר האחרון. רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-800 אלף מניות ביום.</p>
   <div class="tabs" id="ytabs"><button class="on" data-t="all">שווי מעל $1B</button><button data-t="large">ענקיות · מעל $10B</button></div>
-  <div class="tscroll"><table id="ytable"></table></div>
+  <div class="tb2" id="ytable"></div>
   <button class="ewmore" id="ymore" style="display:block;margin:10px auto 0"></button>
   <div class="warn" id="ywarn">⚠️ רבות מהמניות כאן הן חברות ביוטק וחברות קטנות-בינוניות. אלה מניות תנודתיות במיוחד, ועלייה חדה כזו יכולה להתהפך מהר.</div>
   <p class="legend">חישוב עצמי מנתוני Yahoo Finance, מתעדכן אוטומטית כל ערב אחרי הסגירה. מחזור המסחר: ממוצע 3 חודשים. מניות שהונפקו השנה לא נכללות. 🇮🇱 = חברה ישראלית.</p>
@@ -1422,11 +1429,15 @@ const G = {
     ["FLY","Firefly Aerospace",40.56,"$4.3B"],["U","Unity Software",40.08,"$23.4B"],["FRVO","Fervo Energy",39.09,"$3.4B"],
     ["RIOT","Riot Platforms",36.77,"$6.6B"],["MGNI","Magnite",36.30,"$4.2B"],["TTD","The Trade Desk",27.58,"$7.4B"]]},
 };
+function gRows(rows, lbl){
+  const max=Math.max(...rows.map(r=>r.p),1);
+  return `<div class="grw hd2"><span>#</span><span>מניה</span><span class="n">שווי</span><span class="n on">${lbl}</span></div>`+
+    rows.map((r,i)=>`<a class="grw" href="#stock/${encodeURIComponent(r.t)}"><span class="gi">${i+1}</span><div class="nm2"><b>${esc(r.t)}</b><small dir="auto">${r.il?'🇮🇱 ':''}${esc(r.n)}</small>${secLine(r.t)}<div class="bar2" style="width:${Math.max(3,Math.sqrt(r.p/max)*100).toFixed(0)}%"></div></div><span class="n gcap">${esc(r.cap)}</span><span class="n big up">+${r.p.toFixed(1)}%</span></a>`).join('');
+}
+let gK='all';
 function renderG(k){
-  const g=G[k], max=Math.max(...g.rows.map(r=>r[2]));
-  $('gtable').innerHTML=`<thead><tr>${g.head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
-    g.rows.map(r=>`<tr class="rowlink" data-t="${r[0]}"><td>${tl(r[0],'<span class="tick" style="margin:0">'+r[0]+'</span>')}</td><td>${tl(r[0],r[1])}${secLine(r[0])}</td>
-    <td><span class="pct num">+${r[2]}%</span><div class="gbar" style="width:${Math.round(r[2]/max*100)}%"></div></td><td class="num">${r[3]}</td></tr>`).join('')}</tbody>`;
+  gK=k||gK; const g=G[gK];
+  $('gtable').innerHTML=gRows(g.rows.map(r=>({t:r[0],n:r[1],p:r[2],cap:r[3]})),'בנובמבר');
   $('gwarn').classList.toggle('hidden',!g.warn);
 }
 $('gtabs').addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON')return;
@@ -1437,10 +1448,8 @@ $('gtabs').addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON')return;
 let yK='all', yAll=false; const Y_LIM=20;
 function capFmt(b){ return b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.round(b)}B`:`$${b.toFixed(2)}B`; }
 function renderYtd(){
-  const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM), max=Math.max(...allR.map(r=>r.p));
-  $('ytable').innerHTML=`<thead><tr><th>מניה</th><th>שם · שווי שוק</th><th>מתחילת השנה</th></tr></thead><tbody>${
-    rows.map((r,i)=>`<tr class="rowlink" data-t="${esc(r.t)}"><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}${secLine(r.t)}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
-    <td><span class="pct num" style="direction:ltr;display:inline-block">+${r.p.toFixed(1)}%</span><div class="gbar" style="width:${Math.round(Math.sqrt(r.p/max)*100)}%"></div></td></tr>`).join('')}</tbody>`;
+  const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM);
+  $('ytable').innerHTML=gRows(rows.map(r=>({t:r.t,n:r.n,p:r.p,cap:capFmt(r.cap),il:r.il})),'מתחילת השנה');
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
 }
