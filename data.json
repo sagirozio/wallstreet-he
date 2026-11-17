@@ -127,9 +127,30 @@
  },
  "reports": [
   {
+   "id": "KLAR-2026-11",
+   "t": "KLAR",
+   "co": "Klarna",
+   "sector": "פיננסים",
+   "date": "2026-11-17",
+   "q": "Q3 2026",
+   "epsAct": -0.19,
+   "epsEst": null,
+   "epsYoy": 24,
+   "epsBasis": "GAAP",
+   "revAct": 1.009,
+   "revEst": null,
+   "revYoy": 12,
+   "guide": "inline",
+   "guideText": "אישררה את התחזית לשנת 2026: הכנסות של $4.08–4.16B ורווח תפעולי מתואם של $280–300M.",
+   "note": "נפח העסקאות (GMV) עלה ב-10% ל-$36.1B, ובארה״ב ב-24%. הרווח התפעולי המתואם הגיע ל-$21M לעומת הפסד של $14M לפני שנה. מספר הצרכנים הפעילים עלה ב-7% ל-122 מיליון.",
+   "react": "",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0002003292/000162828026074361/exhibitno991pressrelease.htm",
+   "hook": "צמיחה של 12% בהכנסות ומעבר לרווח תפעולי מתואם."
+  },
+  {
    "id": "JD-2026-11",
    "t": "JD",
-   "co": "JD.com, Inc.",
+   "co": "JD.com",
    "sector": "צריכה מחזורית",
    "date": "2026-11-17",
    "q": "Q3 2026",
@@ -137,21 +158,21 @@
    "epsEst": 5.88,
    "epsYoy": 58,
    "epsBasis": "מתואם",
-   "revAct": null,
+   "revAct": 309.6,
    "revEst": 317.705,
-   "revYoy": null,
+   "revYoy": 3.5,
    "guide": "none",
    "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/JD",
-   "hook": "",
-   "auto": true
+   "note": "הרווח הנקי המתואם עלה ל-8.3 מיליארד יואן מ-5.8 מיליארד, מתחת לצפי של 8.59 מיליארד. ההכנסות של JD Retail עלו ב-2.9%, וההפסד בעסקים החדשים הצטמצם ל-9.6 מיליארד יואן.",
+   "react": "המניה ירדה ב-3.4% לפני המסחר.",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001549802/000119312526464688/d179042dex991.htm",
+   "hook": "הכנסות ורווח מעט מתחת לצפי.",
+   "revCur": "CNY"
   },
   {
    "id": "TME-2026-11",
    "t": "TME",
-   "co": "Tencent Music Entertainment Gro",
+   "co": "Tencent Music",
    "sector": "תקשורת",
    "date": "2026-11-17",
    "q": "Q3 2026",
@@ -159,16 +180,16 @@
    "epsEst": 1.5,
    "epsYoy": 1,
    "epsBasis": "מתואם",
-   "revAct": null,
-   "revEst": 9.2314,
-   "revYoy": null,
+   "revAct": 8.94,
+   "revEst": 9.14,
+   "revYoy": 5.6,
    "guide": "none",
    "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/TME",
-   "hook": "",
-   "auto": true
+   "note": "ההכנסות משירותי מוזיקה עלו ב-10.2% ל-7.68 מיליארד יואן, וההכנסות ממנויים עלו ב-9.2%. החברה רכשה מניות ב-$300M ברבעון.",
+   "react": "המניה ירדה ב-3.1% לפני המסחר.",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001744676/000095010326017589/dp256931_ex9901.htm",
+   "hook": "רווח מעל הצפי, הכנסות מתחת.",
+   "revCur": "CNY"
   },
   {
    "id": "MNSO-2026-11",
@@ -217,47 +238,45 @@
   {
    "id": "AS-2026-11",
    "t": "AS",
-   "co": "Amer Sports, Inc.",
-   "sector": "",
+   "co": "Amer Sports",
+   "sector": "צריכה מחזורית",
    "date": "2026-11-17",
    "q": "Q3 2026",
    "epsAct": 0.42,
    "epsEst": 0.36,
-   "epsYoy": null,
+   "epsYoy": 27,
    "epsBasis": "מתואם",
    "revAct": 2.1692,
    "revEst": 2.2028,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 23.5,
+   "guide": "raised",
+   "guideText": "לשנת 2026: רווח מתואם למניה של $1.32–1.35 (קודם: $1.27–1.30) וצמיחה של 25%–26% בהכנסות.",
+   "note": "Arc'teryx ו-Salomon צמחו כל אחת ב-26%, ו-Ball & Racquet ב-12%. המרווח הגולמי המתואם עלה ב-1.5 נקודות אחוז ל-59.4%.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/AS",
-   "hook": "",
-   "auto": true,
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001988894/000198889426000094/pressreleaseq32026.htm",
+   "hook": "צמיחה של 23.5% והעלאת תחזית.",
    "src": "finnhub"
   },
   {
    "id": "DIS-2026-11",
    "t": "DIS",
-   "co": "Walt Disney Company (The)",
-   "sector": "",
+   "co": "Walt Disney",
+   "sector": "תקשורת",
    "date": "2026-11-17",
    "q": "Q4 2026",
    "epsAct": 1.77,
-   "epsEst": 1.69,
-   "epsYoy": null,
+   "epsEst": 1.68,
+   "epsYoy": 59,
    "epsBasis": "מתואם",
    "revAct": 25.947,
-   "revEst": 25.4344,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revEst": 25.17,
+   "revYoy": 15.5,
+   "guide": "given",
+   "guideText": "לשנת 2027: צמיחה דו-ספרתית ברווח המתואם למניה וצמיחה של כ-8% ברווח התפעולי של המגזרים (ללא השבוע ה-53), רכישות מניות של כ-$9B.",
+   "note": "הרווח התפעולי של המגזרים עלה ב-43% ל-$4.97B: בידור +92%, ספורט +53% ופארקים וחוויות +20% ל-$2.25B. הדיבידנד השנתי עלה ב-33% ל-$2.00, והחברה מכוונת לחיסכון שנתי של כ-$3B בהוצאות עד 2029.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/DIS",
-   "hook": "",
-   "auto": true,
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001744489/000174448926000065/fy2026_q4xerxex991.htm",
+   "hook": "רווח מעל הצפי, דיבידנד גבוה ב-33% ותוכנית חיסכון של $3B.",
    "src": "finnhub"
   },
   {
@@ -287,23 +306,22 @@
    "id": "HD-2026-11",
    "t": "HD",
    "co": "Home Depot, Inc. (The)",
-   "sector": "",
+   "sector": "צריכה מחזורית",
    "date": "2026-11-17",
-   "q": "Q3 2027",
+   "q": "Q3 FY26",
    "epsAct": 3.86,
-   "epsEst": 3.95,
-   "epsYoy": null,
+   "epsEst": 3.85,
+   "epsYoy": 3.2,
    "epsBasis": "מתואם",
    "revAct": 43.398,
-   "revEst": 44.0751,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/HD",
-   "hook": "",
-   "auto": true,
+   "revEst": 42.8,
+   "revYoy": 4.9,
+   "guide": "given",
+   "guideText": "לשנת 2026: צמיחה של כ-4.5% במכירות, כ-1.4% בחנויות זהות וכ-2.0% ברווח המתואם למניה.",
+   "note": "המכירות בחנויות זהות עלו ב-2.2% והכרטיס הממוצע עלה ב-3.0%, בעוד מספר העסקאות ירד ב-0.5%. המרווח התפעולי המתואם ירד ל-13.0% מ-13.3%. סמנכ״ל הכספים Richard McPhail ימונה למנכ״ל ב-23 בנובמבר.",
+   "react": "המניה ירדה בכ-0.9% לפני המסחר.",
+   "ir": "https://www.prnewswire.com/news-releases/the-home-depot-announces-third-quarter-fiscal-2026-results-updates-fiscal-2026-guidance-302941189.html",
+   "hook": "מכירות מעל הצפי ומנכ״ל חדש.",
    "src": "finnhub"
   },
   {
@@ -355,24 +373,23 @@
   {
    "id": "VIK-2026-11",
    "t": "VIK",
-   "co": "Viking Holdings Ltd",
-   "sector": "",
+   "co": "Viking",
+   "sector": "צריכה מחזורית",
    "date": "2026-11-17",
    "q": "Q3 2026",
    "epsAct": 1.11,
    "epsEst": 1.28,
-   "epsYoy": null,
+   "epsYoy": -7.5,
    "epsBasis": "מתואם",
    "revAct": 2.1842,
    "revEst": 2.2186,
-   "revYoy": null,
+   "revYoy": 9.2,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "מפלס מים נמוך בנהרות אירופה הוריד כ-$100M מההכנסות, ושיעור התפוסה ירד ל-91.3% מ-96%. ההזמנות לעונת 2027 עומדות על $5.83B, עלייה של 17%. ברבעון החברה רכשה מניות ב-$350M.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/VIK",
-   "hook": "",
-   "auto": true,
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001745201/000174520126000026/vik-ex99_1.htm",
+   "hook": "מפלס נמוך בנהרות פגע ברווח.",
    "src": "finnhub"
   },
   {
@@ -38616,7 +38633,7 @@
   }
  ],
  "overview": {
-  "asOf": "17.11.2026 · 11:15",
+  "asOf": "17.11.2026 · 15:50",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -38675,28 +38692,28 @@
   ],
   "brief": [
    {
-    "h": "החוזים כמעט ללא שינוי",
-    "t": "אחרי ירידה של 1.92% ב-S&P 500 אתמול, החוזים על ה-S&P 500 יורדים ב-0.1% ועל הנאסד״ק 100 עולים ב-0.1%.",
+    "h": "החוזים מעורבים לפני הפתיחה",
+    "t": "אחרי ירידה של 1.92% ב-S&P 500 אתמול, החוזים על הנאסד״ק 100 עולים בכ-0.5% ועל הדאו יורדים בכ-0.6%.",
     "tone": "neu"
    },
    {
     "h": "Nvidia מדווחת הלילה",
-    "t": "הדוח יפורסם ב-23:20 שעון ישראל, והשוק מתמחר תנועה של כ-7.8% במניה.",
+    "t": "הדוח יפורסם ב-23:20 שעון ישראל. הצפי: הכנסות של כ-$109B ורווח של $2.47 למניה.",
     "tone": "neu"
    },
    {
-    "h": "אסיה ואירופה בירידות",
-    "t": "ה-Nikkei ירד ב-1.2% וה-STOXX 600 יורד ב-0.64%, אחרי הידוק מגבלות הייצוא על שבבי AI.",
-    "tone": "neg"
+    "h": "Home Depot מחליפה מנכ״ל",
+    "t": "המכירות עלו ב-4.9% ל-$43.4B, מעל הצפי, וסמנכ״ל הכספים Richard McPhail ימונה למנכ״ל.",
+    "tone": "neu"
    },
    {
-    "h": "הדולר בשיא מאז אפריל 2025",
-    "t": "השוק מתמחר העלאת ריבית בדצמבר כוודאית, ותשואת האג״ח ל-10 שנים עומדת על כ-5.13%.",
-    "tone": "neg"
+    "h": "Disney מעל הצפי ומעלה דיבידנד",
+    "t": "רווח מתואם של $1.77 למניה (צפי: $1.68), דיבידנד גבוה ב-33% ויעד חיסכון של $3B.",
+    "tone": "pos"
    },
    {
-    "h": "הנפקת Anthropic בסוף השבוע",
-    "t": "טווח של $70–78 למניה, תמחור ביום רביעי ומסחר בנאסד״ק ביום חמישי.",
+    "h": "המכירות הקמעונאיות עלו ב-0.2%",
+    "t": "באוקטובר, אחרי 0.8% בספטמבר. ללא רכב: עלייה של 0.6%.",
     "tone": "neu"
    }
   ],
@@ -38769,7 +38786,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611171115,
+  "rev": 202611171550,
   "market": {
    "note": "סגירה ביום שני, 16.11.2026. ירידות חדות בכל המדדים, והנאסד״ק הוביל את הירידות. מדד הפחד VIX קפץ ב-22%.",
    "idx": [
@@ -90695,6 +90712,576 @@
  },
  "news": [
   {
+   "id": "2026-11-17-hd-q3-new-ceo",
+   "date": "2026-11-17",
+   "t": [
+    "HD"
+   ],
+   "tag": "Home Depot",
+   "tone": "neu",
+   "title": "Home Depot: הכנסות מעל הצפי, סמנכ״ל הכספים מונה למנכ״ל",
+   "body": "ברבעון השלישי המכירות עלו ב-4.9% ל-$43.4B (הצפי: $42.8B), המכירות בחנויות זהות עלו ב-2.2% והרווח המתואם למניה עלה ל-$3.86 מ-$3.74. החברה צופה לשנת 2026 צמיחה של כ-4.5% במכירות וצמיחה של כ-2% ברווח המתואם למניה. סמנכ״ל הכספים Richard McPhail יחליף את Ted Decker כמנכ״ל ב-23 בנובמבר, ו-Decker יכהן כיו״ר. המניה ירדה בכ-0.9% לפני המסחר.",
+   "src": "Home Depot / Investing.com",
+   "url": "https://www.prnewswire.com/news-releases/the-home-depot-announces-third-quarter-fiscal-2026-results-updates-fiscal-2026-guidance-302941189.html"
+  },
+  {
+   "id": "2026-11-17-dis-q4-dividend-savings",
+   "date": "2026-11-17",
+   "t": [
+    "DIS"
+   ],
+   "tag": "Disney",
+   "tone": "pos",
+   "title": "Disney מעל הצפי, מעלה דיבידנד ב-33% ומכוונת לחיסכון של $3B",
+   "body": "ברבעון הרביעי ההכנסות עלו ב-16% ל-$25.9B והרווח המתואם למניה הגיע ל-$1.77 (הצפי: $1.68), לעומת $1.11 לפני שנה. הרווח התפעולי של המגזרים עלה ב-43% ל-$4.97B, כולל שיא של $2.25B בפארקים. החברה העלתה את הדיבידנד השנתי ל-$2.00, מכוונת לחיסכון שנתי של כ-$3B בהוצאות עד 2029 וצופה צמיחה דו-ספרתית ברווח המתואם למניה ב-2027.",
+   "src": "Disney (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001744489/000174448926000065/fy2026_q4xerxex991.htm"
+  },
+  {
+   "id": "2026-11-17-nvda-13f-spacex-intel",
+   "date": "2026-11-17",
+   "t": [
+    "NVDA",
+    "SPCX",
+    "INTC"
+   ],
+   "tag": "Nvidia",
+   "tone": "neu",
+   "title": "SpaceX הפכה לאחזקה הגדולה של Nvidia, האחזקה ב-Intel קוצצה ב-25%",
+   "body": "לפי דוחות האחזקות לרבעון השלישי, האחזקה של Nvidia ב-SpaceX הגיעה ל-$19.68B ועקפה את האחזקה ב-Intel ($19.37B), אחרי ש-Nvidia הוסיפה 7.71 מיליון מניות SpaceX וקיצצה ב-25% את האחזקה ב-Intel. מניית Intel ירדה ביותר מ-3% לפני המסחר. לפי CNBC, Nvidia הודיעה ללקוחות שתפסיק למכור שבבים למפעילי חוות שרתים שמשכירים יותר ממחצית המעבדים שלהם לחברות סיניות.",
+   "src": "Stocktwits / Investing.com",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-edge-lower-102414813.html"
+  },
+  {
+   "id": "2026-11-17-retail-sales-oct",
+   "date": "2026-11-17",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "המכירות הקמעונאיות עלו ב-0.2% באוקטובר",
+   "body": "המכירות הקמעונאיות בארה״ב עלו באוקטובר ב-0.2%, אחרי עלייה של 0.8% בספטמבר. ללא רכב, המכירות עלו ב-0.6%. היום יתפרסמו גם נתוני הייצור התעשייתי ומדד בוני הבתים NAHB.",
+   "src": "Bloomingbit / Yahoo Finance",
+   "url": "https://en.bloomingbit.io/feed/news/124635"
+  },
+  {
+   "id": "2026-11-17-klar-q3",
+   "date": "2026-11-17",
+   "t": [
+    "KLAR"
+   ],
+   "tag": "Klarna",
+   "tone": "pos",
+   "title": "Klarna: הכנסות +12%, רווח תפעולי מתואם חיובי",
+   "body": "ברבעון השלישי ההכנסות עלו ב-12% ל-$1.01B ונפח העסקאות (GMV) עלה ב-10% ל-$36.1B, עם צמיחה של 24% בארה״ב. ההפסד למניה הצטמצם ל-$0.19, הרווח התפעולי המתואם הגיע ל-$21M לעומת הפסד של $14M לפני שנה, והחברה אישררה את התחזית השנתית.",
+   "src": "Klarna (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0002003292/000162828026074361/exhibitno991pressrelease.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-vik-q3",
+   "date": "2026-11-17",
+   "t": [
+    "VIK"
+   ],
+   "tag": "Viking",
+   "tone": "neg",
+   "title": "Viking: מפלס מים נמוך באירופה פגע בתוצאות",
+   "body": "ההכנסות ברבעון השלישי עלו ב-9.2% ל-$2.18B, אבל הרווח המתואם למניה ירד ל-$1.11 מ-$1.20. מפלס נמוך בנהרות אירופה הוריד כ-$100M מההכנסות, ושיעור התפוסה ירד ל-91.3% מ-96%. ההזמנות לעונת 2027 גבוהות ב-17% ומגיעות ל-$5.83B.",
+   "src": "Viking (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001745201/000174520126000026/vik-ex99_1.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-as-q3",
+   "date": "2026-11-17",
+   "t": [
+    "AS"
+   ],
+   "tag": "Amer Sports",
+   "tone": "pos",
+   "title": "Amer Sports העלתה תחזית אחרי צמיחה של 23.5%",
+   "body": "ההכנסות ברבעון השלישי עלו ב-23.5% ל-$2.17B והרווח המתואם למניה עלה ל-$0.42 מ-$0.33. Arc'teryx ו-Salomon צמחו כל אחת ב-26%. החברה העלתה את תחזית הרווח למניה לשנת 2026 ל-$1.32–1.35 (קודם: $1.27–1.30) וצופה צמיחה של 25%–26% בהכנסות.",
+   "src": "Amer Sports (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001988894/000198889426000094/pressreleaseq32026.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-jd-q3",
+   "date": "2026-11-17",
+   "t": [
+    "JD"
+   ],
+   "tag": "JD.com",
+   "tone": "neg",
+   "title": "JD.com מתחת לצפי, המניה ירדה ב-3.4% לפני המסחר",
+   "body": "ההכנסות ברבעון השלישי עלו ב-3.5% ל-309.6 מיליארד יואן, מעט מתחת לצפי של 311.5 מיליארד. הרווח הנקי המתואם הגיע ל-8.3 מיליארד יואן לעומת צפי של 8.59 מיליארד, על רקע צריכה זהירה בסין. המניה ירדה ב-3.4% לפני פתיחת המסחר.",
+   "src": "JD.com (SEC) / Investing.com",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001549802/000119312526464688/d179042dex991.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-tme-q3",
+   "date": "2026-11-17",
+   "t": [
+    "TME"
+   ],
+   "tag": "Tencent Music",
+   "tone": "neg",
+   "title": "Tencent Music: הכנסות מתחת לצפי",
+   "body": "ההכנסות ברבעון השלישי עלו ב-5.6% ל-8.94 מיליארד יואן, מתחת לצפי של 9.14 מיליארד. הרווח המתואם ל-ADS הגיע ל-1.55 יואן, מעל הצפי של 1.46. במהלך הרבעון החברה רכשה מניות ב-$300M. המניה ירדה ב-3.1% לפני המסחר.",
+   "src": "Tencent Music (SEC) / Investing.com",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001744676/000095010326017589/dp256931_ex9901.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-hd-ceo-mcphail",
+   "date": "2026-11-17",
+   "t": [
+    "HD"
+   ],
+   "tag": "Home Depot",
+   "tone": "neu",
+   "title": "Richard McPhail ימונה למנכ״ל Home Depot",
+   "body": "סמנכ״ל הכספים Richard McPhail ייכנס לתפקיד המנכ״ל ב-23 בנובמבר במקום Ted Decker, שיצא לחופשה רפואית באוגוסט וחזר מאז. Decker יכהן כיו״ר הדירקטוריון, ו-Ann-Marie Campbell תמונה לנשיאה ולסמנכ״לית התפעול.",
+   "src": "Investing.com",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/premarket-movers-nvidia-red-cat-124832112.html",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-dis-buyback",
+   "date": "2026-11-17",
+   "t": [
+    "DIS"
+   ],
+   "tag": "Disney",
+   "tone": "pos",
+   "title": "Disney רכשה מניות ב-$9B בשנה ותרכוש בעוד $9B",
+   "body": "בשנת הכספים 2026 Disney רכשה מניות ב-$9.0B והחזירה לבעלי המניות $11.6B בסך הכול. לשנת 2027 החברה מתכננת רכישות מניות של כ-$9B ותזרים מזומנים חופשי של כ-$11B. ההכנסות מסטרימינג ברבעון עלו ב-19% ל-$6.05B.",
+   "src": "Disney (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001744489/000174448926000065/fy2026_q4xerxex991.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-intc-nvda-stake-cut",
+   "date": "2026-11-17",
+   "t": [
+    "INTC"
+   ],
+   "tag": "Intel",
+   "tone": "neg",
+   "title": "Intel יורדת לפני המסחר: Nvidia קיצצה את האחזקה",
+   "body": "מניית Intel ירדה ביותר מ-3% לפני המסחר, אחרי שדוח האחזקות של Nvidia הראה קיצוץ של 25% באחזקה שלה ב-Intel ברבעון השלישי. האחזקה ב-Intel הייתה שווה $19.37B בסוף הרבעון.",
+   "src": "Stocktwits / Investing.com",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-edge-lower-102414813.html",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-spcx-nvda-stake",
+   "date": "2026-11-17",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "SpaceX",
+   "tone": "pos",
+   "title": "Nvidia ו-Appaloosa הגדילו אחזקות ב-SpaceX",
+   "body": "Nvidia הוסיפה 7.71 מיליון מניות SpaceX ברבעון השלישי, והאחזקה של $19.68B הפכה לגדולה בתיק שלה. קרן Appaloosa של David Tepper הגדילה את האחזקה ב-1,626%, ו-Duquesne של Stanley Druckenmiller פתחה פוזיציה של $30.5M.",
+   "src": "Stocktwits",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-edge-lower-102414813.html",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-amzn-india-renewables",
+   "date": "2026-11-17",
+   "t": [
+    "AMZN"
+   ],
+   "tag": "Amazon",
+   "tone": "neu",
+   "title": "Amazon תשקיע $7B באנרגיה מתחדשת בהודו",
+   "body": "Amazon הודיעה שתשקיע $7B באנרגיה מתחדשת בהודו עד 2030.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/amazon-amzn-to-invest-usd-7bln-in-renewable-energy-in-india-by-2030",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-aapl-paris-trial",
+   "date": "2026-11-17",
+   "t": [
+    "AAPL"
+   ],
+   "tag": "Apple",
+   "tone": "neg",
+   "title": "Apple תעמוד לדין בפריז בחשד להתיישנות מתוכננת",
+   "body": "לפי AFP, Apple תעמוד לדין בפריז ב-2027 בחשד שתכננה התיישנות של כמה דגמי iPhone, בכך שמנעה תיקונים מחוץ למעבדות הרשמיות. בנפרד דווח ש-Corey Fugman, ותיק של 26 שנה בחברה, ינהל את Apple Pay, Apple Card ו-Wallet.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/apple-aapl-will-stand-trial-in-paris-in-2027-on-suspicion-of-having-organised-the-planned-obsolescence-of-several-iphone-models-by-preventing-repairs-outside-official-outlets-afp-reports-citing-sources",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-f-recall",
+   "date": "2026-11-17",
+   "t": [
+    "F"
+   ],
+   "tag": "Ford",
+   "tone": "neg",
+   "title": "Ford מחזירה כ-61 אלף רכבים בארה״ב",
+   "body": "Ford הגישה בקשה להחזרה (ריקול) של 60,956 רכבים בארה״ב.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/ford-f-files-to-recall-60956-us-vehicles",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-msft-outage-bug",
+   "date": "2026-11-17",
+   "t": [
+    "MSFT"
+   ],
+   "tag": "Microsoft",
+   "tone": "neg",
+   "title": "Microsoft: באג שלא זוהה מאז יולי גרם לתקלה העולמית",
+   "body": "Microsoft מסרה שבאג בתוכנה, שלא זוהה מאז יולי, גרם לתקלה העולמית בשבוע שעבר ב-Outlook, Teams, Copilot ושירותים נוספים.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/microsoft-msft-says-a-software-bug-undetected-since-july-triggered-last-weeks-worldwide-disruption-affecting-outlook-teams-copilot-and-other-services",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-dash-doj",
+   "date": "2026-11-17",
+   "t": [
+    "DASH"
+   ],
+   "tag": "DoorDash",
+   "tone": "neg",
+   "title": "DoorDash ו-Instacart מול בדיקת הגבלים של משרד המשפטים",
+   "body": "לפי Newsquawk, DoorDash ו-Instacart עומדות מול בדיקת הגבלים עסקיים של משרד המשפטים האמריקאי. DoorDash הסכימה בסוף אוקטובר לרכוש את Instacart תמורת $17B.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-us-opening-news---17th-november-2026",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-dal-berkshire",
+   "date": "2026-11-17",
+   "t": [
+    "DAL"
+   ],
+   "tag": "Delta",
+   "tone": "pos",
+   "title": "Berkshire Hathaway הגדילה את האחזקה ב-Delta",
+   "body": "לפי דוח האחזקות לרבעון השלישי, Berkshire Hathaway הגדילה את האחזקה שלה ב-Delta Air Lines.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/berkshire-hathaway-13-f-boosts-stake-in-dal",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-nclh-elliott",
+   "date": "2026-11-17",
+   "t": [
+    "NCLH"
+   ],
+   "tag": "Norwegian Cruise",
+   "tone": "pos",
+   "title": "Elliott הגדילה את האחזקה ב-Norwegian Cruise Line",
+   "body": "לפי דוח האחזקות של Elliott לרבעון השלישי, הקרן הגדילה את האחזקה ב-Norwegian Cruise Line, קיצצה ב-HPE ויצאה מ-Synopsys.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/elliott-13-f-raises-stake-in-nclh-cuts-hpe",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-17-meta-third-point",
+   "date": "2026-11-17",
+   "t": [
+    "META"
+   ],
+   "tag": "Meta",
+   "tone": "pos",
+   "title": "Third Point פתחה פוזיציה ב-Meta",
+   "body": "לפי דוח האחזקות לרבעון השלישי, Third Point של Dan Loeb פתחה פוזיציות חדשות ב-Meta, Nvidia ו-Microsoft, ויצאה מ-Amazon.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/third-point-13-f-new-stakes-in-meta-unm-nvda-msft-fwonk-exits-amzn-nsc-crs-tdg",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-fang-double-eagle",
+   "date": "2026-11-16",
+   "t": [
+    "FANG"
+   ],
+   "tag": "Diamondback",
+   "tone": "neu",
+   "title": "Diamondback קונה נכסים של Double Eagle באגן Permian",
+   "body": "Diamondback תרכוש חברות בנות של Double Eagle תמורת כ-15.56 מיליון מניות ו-$2.15B במזומן (לפי Bloomberg, כ-$5B בסך הכול). העסקה כוללת כ-176 אלף אקר נטו באגן Midland והפקה של כ-92 אלף חביות שווה-ערך ביום ב-2027, וצפויה להיסגר ב-21 בדצמבר. המניה ירדה ב-2% לפני המסחר ביום שני.",
+   "src": "Diamondback (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001539838/000110465926128377/tm2629913d1_ex99-1.htm",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-lly-calytrix",
+   "date": "2026-11-16",
+   "t": [
+    "LLY"
+   ],
+   "tag": "Eli Lilly",
+   "tone": "neu",
+   "title": "Eli Lilly תרכוש את Calytrix Bio בעד $1.5B",
+   "body": "Eli Lilly תרכוש את חברת הביוטק Calytrix Bio תמורת עד $1.5B במזומן.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/eli-lilly-lly-is-to-buy-calytrix-bio-for-up-to-usd-15bln-in-cash",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-bx-amzn-data-centers",
+   "date": "2026-11-16",
+   "t": [
+    "BX"
+   ],
+   "tag": "Blackstone",
+   "tone": "neu",
+   "title": "דיווח: קרן נדל״ן של Blackstone תקנה חוות שרתים של Amazon",
+   "body": "לפי Bloomberg, קרן ריט של Blackstone תרכוש חוות שרתים של Amazon בעסקה של $5B.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/blackstone-bx-reit-to-acquire-amazon-amzn-data-centres-in-a-usd-5bln-deal-bloomberg-reports",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-armk-fy27-guide",
+   "date": "2026-11-16",
+   "t": [
+    "ARMK"
+   ],
+   "tag": "Aramark",
+   "tone": "neg",
+   "title": "Aramark ירדה אחרי תחזית חלשה לשנת 2027",
+   "body": "Aramark פרסמה תחזית להכנסות אורגניות ולרווח למניה בשנת 2027 מתחת לציפיות, והמניה ירדה ב-5.8% לפני המסחר ביום שני. החברה צופה שיחידת Nexus תוסיף $500M בשנה הבאה משירות לחוות שרתים.",
+   "src": "Investor's Business Daily / Newsquawk",
+   "url": "https://finnhub.io/api/news?id=6333f6270c66b098929b33b3ce4801d6805595bfc2c9650768795d51f43115a9",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-smmt-fda-crl",
+   "date": "2026-11-16",
+   "t": [
+    "SMMT"
+   ],
+   "tag": "Summit",
+   "tone": "neg",
+   "title": "Summit צנחה ב-16.5% אחרי שה-FDA דחה את ivonescimab",
+   "body": "ה-FDA דחה את בקשת האישור של Summit Therapeutics לתרופה ivonescimab לסרטן ריאות עם מוטציית EGFR, אחרי שהניסוי לא הגיע למובהקות סטטיסטית בהישרדות הכוללת. המניה ירדה ב-16.5% ונגעה בשפל של 52 שבועות.",
+   "src": "Pharmaphorum",
+   "url": "https://pharmaphorum.com/news/fda-wont-approve-summit-akesos-ivonescimab",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-cgon-phase3",
+   "date": "2026-11-16",
+   "t": [
+    "CGON"
+   ],
+   "tag": "CG Oncology",
+   "tone": "pos",
+   "title": "CG Oncology זינקה ב-14% אחרי תוצאות ניסוי",
+   "body": "CG Oncology דיווחה שהטיפול הניסיוני שלה בסרטן שלפוחית השתן הפחית את הסיכון לחזרת המחלה ב-68% בניסוי שלב 3. המניה עלתה ב-14% ביום שני.",
+   "src": "Investor's Business Daily",
+   "url": "https://finnhub.io/api/news?id=d9abd033df3f5e06f85ab4e1dd2086b25edfb3f76612a586c0b71092d823e25c",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-tu-quebecor-bid",
+   "date": "2026-11-16",
+   "t": [
+    "TU"
+   ],
+   "tag": "Telus",
+   "tone": "pos",
+   "title": "Telus זינקה ב-12% אחרי הצעת רכישה מ-Québecor",
+   "body": "Telus אישרה שקיבלה מ-Québecor הצעת רכישה לא מחייבת ולא יזומה, שדווחה בהיקף של כ-31 מיליארד דולר קנדי. המניה עלתה ב-12.2% ביום שני.",
+   "src": "Simply Wall St",
+   "url": "https://finnhub.io/api/news?id=42e2c5943e733d590c79c88a1506d11160f1ee6ac2a2997c1e16ac6d9f849fc3",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-gds-drop",
+   "date": "2026-11-16",
+   "t": [
+    "GDS"
+   ],
+   "tag": "GDS",
+   "tone": "neg",
+   "title": "GDS צנחה ב-14.7% על רקע מגבלות שבבי ה-AI",
+   "body": "מניית מפעילת חוות השרתים הסינית GDS ירדה ב-14.69% ל-$16.90 ביום שני, על רקע אי-הוודאות סביב Nvidia והידוק המגבלות האמריקאיות על גישה לשבבי AI.",
+   "src": "Insider Monkey",
+   "url": "https://finnhub.io/api/news?id=81483f976ae8000213f98823ecfb4536c1955b746bea3983afe0dd822a66264c",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-asts-drop",
+   "date": "2026-11-16",
+   "t": [
+    "ASTS"
+   ],
+   "tag": "AST SpaceMobile",
+   "tone": "neg",
+   "title": "AST SpaceMobile ירדה ב-12.3% ביום השלישי ברציפות",
+   "body": "המניה ירדה ב-12.33% ביום שני, היום השלישי ברציפות, על רקע חששות מעיכובים בשיגורים. החברה מכוונת ל-45 לווייני BlueBird במסלול עד אמצע 2027, ובנוסף הודיעה על מיזם משותף עם Rakuten ביפן, שמגובה במימון ממשלתי של כ-$1B.",
+   "src": "Insider Monkey / Benzinga",
+   "url": "https://finnhub.io/api/news?id=4a8dec51f87a7b551010b978a213f2ce73dc65f479f120bd1cd448e41d6b2fed",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-asst-bitcoin",
+   "date": "2026-11-16",
+   "t": [
+    "ASST"
+   ],
+   "tag": "Strive",
+   "tone": "neg",
+   "title": "Strive ירדה ב-11.9% אחרי רכישת ביטקוין",
+   "body": "מניית Strive ירדה ב-11.94% ל-$18.81 ביום שני, כשהמשקיעים שקלו את הודעת החברה על רכישת ביטקוין נוספת ב-$17.5M, על רקע ירידה במחיר הביטקוין.",
+   "src": "Insider Monkey",
+   "url": "https://finnhub.io/api/news?id=be733b0fbbb18c65935a11b7dbadc992ff0be7de3a3ffe3dc5bfa2bbaee44e30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-lhx-faa-outage",
+   "date": "2026-11-16",
+   "t": [
+    "LHX"
+   ],
+   "tag": "L3Harris",
+   "tone": "neg",
+   "title": "L3Harris ירדה אחרי תקלת הטיסות הארצית",
+   "body": "לפי דיווחים, נתב תקול ש-L3Harris התקינה במסגרת שדרוג תוכנה גרם לתקלה במערכות ה-FAA, שעצרה טיסות ברחבי ארה״ב. המניה ירדה ב-3.1% לפני המסחר ביום שני.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-pre-market-movers-nvda-intc-bidu-nvo-lhx-smmt-hum-fang-armk",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-nvo-cagrisema",
+   "date": "2026-11-16",
+   "t": [
+    "NVO"
+   ],
+   "tag": "Novo Nordisk",
+   "tone": "pos",
+   "title": "Novo Nordisk: תוצאות חיוביות ל-CagriSema במינון נמוך",
+   "body": "Novo Nordisk דיווחה על תוצאות חיוביות בניסוי שלב 3 במינון נמוך של CagriSema, תרופת ההשמנה המשולבת שלה. המניה עלתה ב-1.3% לפני המסחר ביום שני.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-pre-market-movers-nvda-intc-bidu-nvo-lhx-smmt-hum-fang-armk",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-tsla-gruenheide",
+   "date": "2026-11-16",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "Tesla",
+   "tone": "neu",
+   "title": "דיווח: Tesla תשקיע 3 מיליארד אירו במפעל בגרמניה",
+   "body": "לפי העיתון FAZ, Tesla תשקיע 3 מיליארד אירו במפעל שלה בגרונהיידה שבגרמניה.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/tesla-tsla-is-reportedly-to-invest-eur-3bln-in-germanys-gruenheide-plant-faz-reports",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-xom-uara",
+   "date": "2026-11-16",
+   "t": [
+    "XOM"
+   ],
+   "tag": "ExxonMobil",
+   "tone": "pos",
+   "title": "ExxonMobil החלה הפקה בשדה Uara בגיאנה",
+   "body": "ExxonMobil החלה להפיק נפט בפרויקט Uara בגיאנה, בקיבולת ראשונית של 250 אלף חביות ביום.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/exxonmobil-xom-starts-production-at-uara-guyana-at-an-initial-capacity-of-250k-bpd",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-low-zelman",
+   "date": "2026-11-16",
+   "t": [
+    "LOW"
+   ],
+   "tag": "Lowe's",
+   "tone": "neg",
+   "title": "Zelman הורידה את Lowe's לתשואת חסר",
+   "body": "Zelman & Associates הורידה את ההמלצה על Lowe's ל-Underperform מ-Neutral, וצעד דומה ננקט כלפי Home Depot. Lowe's מדווחת מחר לפני פתיחת המסחר.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-ir-melius",
+   "date": "2026-11-16",
+   "t": [
+    "IR"
+   ],
+   "tag": "Ingersoll Rand",
+   "tone": "pos",
+   "title": "Melius העלתה את Ingersoll Rand לקנייה",
+   "body": "Melius העלתה את ההמלצה על Ingersoll Rand ל-Buy מ-Hold.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-abnb-phillip",
+   "date": "2026-11-16",
+   "t": [
+    "ABNB"
+   ],
+   "tag": "Airbnb",
+   "tone": "pos",
+   "title": "Phillip Securities העלתה את ההמלצה על Airbnb",
+   "body": "Phillip Securities העלתה את ההמלצה על Airbnb ל-Neutral מ-Reduce, עם מחיר יעד של $184.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-oxy-seaport",
+   "date": "2026-11-16",
+   "t": [
+    "OXY"
+   ],
+   "tag": "Occidental",
+   "tone": "neg",
+   "title": "Seaport הורידה את Occidental לנייטרלי",
+   "body": "Seaport Global הורידה את ההמלצה על Occidental Petroleum ל-Neutral מ-Buy.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-txrh-haskett",
+   "date": "2026-11-16",
+   "t": [
+    "TXRH"
+   ],
+   "tag": "Texas Roadhouse",
+   "tone": "pos",
+   "title": "Gordon Haskett העלתה את Texas Roadhouse לקנייה",
+   "body": "Gordon Haskett העלתה את ההמלצה על Texas Roadhouse ל-Buy מ-Hold, עם מחיר יעד של $220.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-16-amrz-jefferies",
+   "date": "2026-11-16",
+   "t": [
+    "AMRZ"
+   ],
+   "tag": "Amrize",
+   "tone": "neg",
+   "title": "Jefferies הורידה את Amrize לתשואת חסר",
+   "body": "Jefferies הורידה את ההמלצה על Amrize ל-Underperform מ-Hold, עם מחיר יעד של $35.20.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-broker-moves-hum-upgraded-at-rbc-capital-cost-downgraded-at-northcoast",
+   "k": "stock"
+  },
+  {
    "id": "2026-11-17-asia-europe-futures",
    "date": "2026-11-17",
    "t": [],
@@ -91716,7 +92303,8 @@
    "about": "Cracker Barrel מפעילה רשת מסעדות בסגנון כפרי אמריקאי, שכל אחת מהן משלבת מסעדה וחנות מתנות. הסניפים ממוקמים בעיקר לצד כבישים מהירים בארה״ב, ומגישים ארוחות בוקר, צהריים וערב, גם במשלוח ובאיסוף.\nבחנויות נמכרים כיסאות נדנדה, מתנות עונתיות, ביגוד, צעצועים, ממתקים וכלי מטבח. החברה מחזיקה גם ברשת ארוחות הבוקר Maple Street Biscuit Company."
   },
   "FLY": {
-   "desc": "חברת חלל שמייצרת טילי שיגור קטנים ונחתות ירח."
+   "desc": "חברת חלל שמייצרת טילי שיגור קטנים ונחתות ירח.",
+   "about": "Firefly Aerospace היא חברת טכנולוגיית חלל וביטחון, שמשרתת לקוחות ביטחוניים, ממשלתיים ומסחריים בארה״ב. בתחום השיגורים היא מפעילה את טיל Alpha לשיגורים מהירים ומפתחת את Eclipse, טיל בינוני.\nבתחום החלליות היא מציעה את Blue Ghost, נחתת לשליחת מטענים לירח, ואת Elytra, חללית לתמרון ושירות במסלול. לאחרונה דווח על עסקה של $1.3B עם AST SpaceMobile."
   },
   "FRVO": {
    "desc": "חברת אנרגיה גיאותרמית מתקדמת, שמייצרת חשמל נקי מחום תת-קרקעי בשיטות קידוח מתעשיית הנפט."
@@ -91895,7 +92483,8 @@
    "desc": "חברת ביוטק בריטית שמפתחת תרופות שמשתיקות גנים (טכנולוגיית siRNA)."
   },
   "SLS": {
-   "desc": "חברת ביוטק שמפתחת טיפולים לסרטן, בהם חיסון נגד לוקמיה."
+   "desc": "חברת ביוטק שמפתחת טיפולים לסרטן, בהם חיסון נגד לוקמיה.",
+   "about": "SELLAS Life Sciences היא חברת ביו-פרמצבטיקה בשלב קליני מתקדם, שמפתחת טיפולים לסרטן. המוצר המוביל הוא galinpepimut-S (GPS), אימונותרפיה מבוססת פפטידים שמכוונת לחלבון WT1, ונבדקת בניסוי שלב 3 בשם REGAL בלוקמיה מיאלואידית חריפה (AML).\nמוצר נוסף הוא tambiciclib (SLS009), מעכב של האנזים CDK9. לחברה שיתוף פעולה עם Merck לבדיקת GPS בשילוב Keytruda."
   },
   "SQM": {
    "desc": "חברת כרייה וכימיקלים מצ'ילה, מהיצרניות הגדולות בעולם של ליתיום ודשנים.",
@@ -95150,6 +95739,22 @@
   },
   "LGN": {
    "about": "Legence מספקת שירותי הנדסה, התקנה ותחזוקה למערכות קריטיות בבניינים: מיזוג וחימום, חשמל ואינסטלציה, במרכזי נתונים, בבתי חולים, במעבדות ובמפעלים.\nבנוסף היא מייעצת על התייעלות אנרגטית. היא נכנסה לבורסה ב-2025, ובעלת השליטה בה היא Blackstone."
+  },
+  "GDS": {
+   "desc": "מפעילה של חוות שרתים בסין.",
+   "about": "GDS מפתחת ומפעילה חוות שרתים בסין. היא משכירה שטח, חשמל, ארונות תקשורת וקירור ללקוחות שמציבים אצלה שרתים, ומספקת גם שירותי אירוח מנוהל, ענן מנוהל וייעוץ.\nבין הלקוחות: ספקיות ענן, חברות אינטרנט גדולות, מוסדות פיננסיים, חברות תקשורת וחברות IT. הביקוש לשירותיה קשור לצמיחת הענן והבינה המלאכותית בסין, ולכן המניה רגישה גם למגבלות הייצוא האמריקאיות על שבבים."
+  },
+  "NVTS": {
+   "desc": "חברת שבבי הספק מגליום ניטריד וסיליקון קרביד.",
+   "about": "Navitas Semiconductor מתכננת ומשווקת שבבי הספק, שמשמשים להמרת חשמל ולטעינה. החברה מתמחה בשבבים מבוססי גליום ניטריד (GaN) ובהתקני סיליקון קרביד (SiC), ומוכרת גם בקרים ומבודדים דיגיטליים.\nהמוצרים משמשים בטעינה מהירה של טלפונים ומחשבים, ברכב חשמלי, במוצרי צריכה ובספקי כוח לחוות שרתים. החברה פועלת בארה״ב, אירופה, סין ושאר אסיה."
+  },
+  "BLSH": {
+   "desc": "בורסת נכסים דיגיטליים ובעלת CoinDesk.",
+   "about": "Bullish מפעילה תשתית מסחר ומידע לשוק הנכסים הדיגיטליים. הפעילות המרכזית היא Bullish Exchange, בורסת מטבעות קריפטו למסחר מיידי ובנגזרים, שמשלבת ספר פקודות עם עשיית שוק אוטומטית.\nהחברה מחזיקה גם ב-CoinDesk: מדדי CoinDesk Indices, שמשמשים בורסות ומנהלי השקעות, ושירותי נתונים ואנליטיקה על נכסים דיגיטליים. לקוחותיה הם בעיקר מוסדיים."
+  },
+  "RUM": {
+   "desc": "פלטפורמת הווידאו Rumble ושירותי ענן.",
+   "about": "RUM Group מפעילה את Rumble, פלטפורמת וידאו חינמית ובתשלום לשיתוף סרטונים ושידורים חיים. היא מציעה ליוצרים כלים לשידור ולמונטיזציה, מערכת פרסום עצמית וארנק קריפטו שמאפשר לצופים לתת טיפים.\nבנוסף החברה מפעילה את Rumble Cloud, שירות תשתית ענן למחשוב, אחסון ואבטחה, ופועלת בארה״ב, קנדה, אל סלבדור ושווקים נוספים."
   }
  },
  "movers": {
