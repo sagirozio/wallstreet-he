@@ -1,4 +1,4 @@
-name: Live quotes (every 5 min during US trading hours)
+name: Live quotes (every 3 min during US trading hours)
 # One long job per half-day loops every 5 minutes and force-pushes live.json to the `live` branch.
 # The second start cancels the first, so the whole session (09:30–16:00 New York) is covered.
 on:
