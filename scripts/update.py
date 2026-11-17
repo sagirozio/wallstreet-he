@@ -37,8 +37,10 @@ hi52 = high.iloc[-252:-1].max(); lo52 = low.iloc[-252:-1].min()
 row = {
     "d": f"{last.day}.{last.month}",
     "up": int((r1 > 0).sum()), "dn": int((r1 < 0).sum()),
-    "ma50": round(float((c > ma50).mean() * 100), 1),
-    "ma200": round(float((c > ma200).mean() * 100), 1),
+    # % of S&P 500 members whose last close is above their simple MA, counted only over members
+    # that have enough history for that MA — the same definition as S5FI (50-day) / S5TH (200-day)
+    "ma50": round(float((c > ma50)[ma50.notna() & c.notna()].mean() * 100), 1),
+    "ma200": round(float((c > ma200)[ma200.notna() & c.notna()].mean() * 100), 1),
     "hi": int((high.iloc[-1] >= hi52).sum()), "lo": int((low.iloc[-1] <= lo52).sum()),
     "up10": int((r21 >= 10).sum()), "dn10": int((r21 <= -10).sum()),
 }

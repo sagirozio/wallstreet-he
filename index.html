@@ -1045,7 +1045,7 @@ function renderTL(){ if(!document.getElementById('tomlee')) return;
 let BREADTH = FALLBACK.breadth;
 const BRCOLS = [
  {k:'up',h:'עלו<br>היום',ty:'up'},{k:'dn',h:'ירדו<br>היום',ty:'dn'},
- {k:'ma50',h:'מעל ממוצע<br>50 יום',ty:'pct'},{k:'ma200',h:'מעל ממוצע<br>200 יום',ty:'pct'},
+ {k:'ma50',h:'מעל ממוצע<br>50 יום (S5FI)',ty:'pct'},{k:'ma200',h:'מעל ממוצע<br>200 יום (S5TH)',ty:'pct'},
  {k:'hi',h:'שיא<br>52 שבועות',ty:'up'},{k:'lo',h:'שפל<br>52 שבועות',ty:'dn'},
  {k:'up10',h:'עלו 10%+<br>בחודש',ty:'up'},{k:'dn10',h:'ירדו 10%+<br>בחודש',ty:'dn'},
 ];
@@ -1059,7 +1059,7 @@ function renderBreadth(){
   $('brTable').innerHTML=`<thead><tr><th class="dt">תאריך</th>${BRCOLS.map(c=>`<th>${c.h}</th>`).join('')}</tr></thead><tbody>`+
     rows.map(r=>`<tr><td class="dt">${esc(r.d)}</td>${BRCOLS.map(c=>cell(c,r[c.k])).join('')}</tr>`).join('')+'</tbody>';
   const f=(v,s='')=>v==null?'—':v+s;
-  const k=[{v:f(last.ma50,'%'),l:'מהמניות מעל ממוצע 50 יום (S5FI)',good:(last.ma50||0)>=50},{v:f(last.ma200,'%'),l:'מהמניות מעל ממוצע 200 יום',good:(last.ma200||0)>=50},
+  const k=[{v:f(last.ma50,'%'),l:'מהמניות מעל ממוצע 50 יום (S5FI)',good:(last.ma50||0)>=50},{v:f(last.ma200,'%'),l:'מהמניות מעל ממוצע 200 יום (S5TH)',good:(last.ma200||0)>=50},
            {v:`${f(last.hi)} / ${f(last.lo)}`,l:'בשיא / בשפל של 52 שבועות',good:(last.hi||0)>=(last.lo||0)}];
   $('brKpi').innerHTML = k.map(x=>`<div class="card"><b style="color:var(--${x.good?'green':'red'})"><bdi dir="ltr">${x.v}</bdi></b><span>${x.l}</span></div>`).join('');
   $('brSub').textContent = `רוחב השוק בתוך ה-S&P 500, נכון ל${b.asOf}. כמה מתוך 500 המניות באמת משתתפות בתנועה: המדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות.`;
