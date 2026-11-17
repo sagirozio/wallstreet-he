@@ -12,9 +12,12 @@ sp = pd.read_csv(io.StringIO(urllib.request.urlopen(CSV, timeout=60).read().deco
 sp["yf"] = sp["Symbol"].str.replace(".", "-", regex=False)
 tickers = sp["yf"].tolist()
 
-px = yf.download(tickers, period="14mo", interval="1d", auto_adjust=True,
+px = yf.download(tickers, period="14mo", interval="1d", auto_adjust=False,
                  group_by="column", threads=True, progress=False)
-close, high, low = px["Close"], px["High"], px["Low"]
+# dividend-adjusted series (same as auto_adjust=True) + raw highs/lows for the intraday 52-week reference
+_f = px["Adj Close"] / px["Close"]
+close, high, low = px["Adj Close"], px["High"] * _f, px["Low"] * _f
+raw_high, raw_low = px["High"], px["Low"]
 close = close.dropna(how="all")
 good = [c for c in close.columns if close[c].notna().sum() > 200]
 close, high, low = close[good], high[good], low[good]
@@ -50,6 +53,10 @@ def _lst(mask, r, rev=False):
 # the stocks behind the counts (for the day-by-day tracking under the breadth table)
 row["L"] = {"hi": _lst(high.iloc[-1] >= hi52, r1), "lo": _lst(low.iloc[-1] <= lo52, r1, True),
             "u": _lst(r21 >= 10, r21), "n": _lst(r21 <= -10, r21, True)}
+# 52-week high/low reference (last 251 sessions incl. today, from intraday highs/lows) for tomorrow's intraday breadth
+data["hl52"] = {"d": last.strftime("%Y-%m-%d"),
+                "hi": {t: round(float(v), 4) for t, v in raw_high.reindex(close.index)[good].iloc[-251:].max().dropna().items()},
+                "lo": {t: round(float(v), 4) for t, v in raw_low.reindex(close.index)[good].iloc[-251:].min().dropna().items()}}
 b = data.get("breadth", {"rows": []})
 import re as _re, datetime as _dt
 _m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", b.get("asOf", ""))

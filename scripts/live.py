@@ -2,7 +2,7 @@
 
 Runs inside one long GitHub Actions job (live.yml) that loops until the market closes.
 Each round: Yahoo screener (US, cap > $1B, ~12 pages of 250) -> live.json
-{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%]}}
+{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%, dayHigh, dayLow]}}
 pushed as a single commit to the `live` branch (force-push, so it never grows the history).
 The page reads it from raw.githubusercontent.com.
 
@@ -45,6 +45,8 @@ def round_once():
             if p is None or c is None:
                 continue
             out[t] = [round(float(p), 2), round(float(c), 2)]
+            h, l = q.get("regularMarketDayHigh"), q.get("regularMarketDayLow")
+            if h and l: out[t] += [round(float(h), 2), round(float(l), 2)]   # today's range (52-week highs/lows intraday)
             state = state or q.get("marketState")
             last_ts = max(last_ts, int(q.get("regularMarketTime") or 0))
         total = (r or {}).get("total", 0)
@@ -54,11 +56,14 @@ def round_once():
     if missing:   # not returned by the screener this round: fetch them directly (batches of 100)
         for i in range(0, len(missing), 100):
             try:
-                df = yf.download(missing[i:i+100], period="5d", interval="1d", progress=False, threads=True, auto_adjust=False)["Close"]
+                px = yf.download(missing[i:i+100], period="5d", interval="1d", progress=False, threads=True, auto_adjust=False)
+                df = px["Close"]
                 for t in df.columns:
                     c = df[t].dropna()
                     if len(c) >= 2:
                         out[t] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
+                        try: out[t] += [round(float(px["High"][t].loc[c.index[-1]]), 2), round(float(px["Low"][t].loc[c.index[-1]]), 2)]
+                        except Exception: pass
             except Exception as e:
                 print("download batch failed", type(e).__name__, flush=True)
         print("filled from download:", len(set(missing) & set(out)), "of", len(missing), flush=True)

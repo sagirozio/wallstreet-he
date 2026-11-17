@@ -1,6 +1,6 @@
 """Intraday (every 10 min in the session), light: sectors + breadth from our close history + current prices.
 Current prices: live.json (Yahoo screener, refreshed every 5 min by live.yml); missing tickers -> one small Yahoo download.
-52-week highs/lows here are close-based (the nightly update.py recomputes them from intraday highs/lows).
+52-week highs/lows: today's intraday high/low (live.json) vs the 52-week range saved nightly (data.json hl52); close-based fallback.
 Falls back to update.py when there is no history yet. Movers: same screener logic as update.py."""
 import json, pathlib, io, sys, subprocess, urllib.request, datetime as dt
 import pandas as pd, yfinance as yf
@@ -18,11 +18,12 @@ sp["yf"] = sp["Symbol"].str.replace(".", "-", regex=False)
 mem = [t for t in sp["yf"] if t in HIST.columns and HIST[t].iloc[-260:].notna().sum() > 200]
 now_ny = dt.datetime.now(ZoneInfo("America/New_York"))
 # current prices
-px = {}
+px, hl = {}, {}
 try:
     lj = json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/live.json", timeout=30).read().decode())
     if lj.get("date") == now_ny.strftime("%Y-%m-%d"):
         px = {t: v[0] for t, v in lj.get("q", {}).items() if t in mem}
+        hl = {t: (v[2], v[3]) for t, v in lj.get("q", {}).items() if t in mem and len(v) >= 4}
 except Exception as e: print("live.json failed", e)
 miss = [t for t in mem if t not in px]
 if miss:
@@ -42,15 +43,25 @@ py = close[close.index.year < last.year]
 R = {"d": ret(1), "w": ret(5), "m": ret(21), "q": ret(63), "h": ret(126), "y": ret(252), "ytd": (close.iloc[-1] / py.iloc[-1] - 1) * 100}
 c = close.iloc[-1]; ma50 = close.rolling(50).mean().iloc[-1]; ma200 = close.rolling(200).mean().iloc[-1]
 hi52 = close.iloc[-252:-1].max(); lo52 = close.iloc[-252:-1].min()
+# intraday: today's high/low (live.json) vs the 52-week range from daily highs/lows (saved by the nightly update.py)
+ref = data.get("hl52") or {}
+prev_day = close.index[-2].strftime("%Y-%m-%d") if len(close) > 1 else ""
+if last == today and ref.get("d") == prev_day and len(hl) > 0.9 * len(mem):
+    dh = pd.Series({t: v[0] for t, v in hl.items()}); dl = pd.Series({t: v[1] for t, v in hl.items()})
+    hi_m = dh >= pd.Series(ref["hi"]).reindex(dh.index); lo_m = dl <= pd.Series(ref["lo"]).reindex(dl.index)
+    print("52w from intraday highs/lows", int(hi_m.sum()), int(lo_m.sum()))
+else:
+    hi_m, lo_m = c >= hi52, c <= lo52
+    print("52w close-based (no intraday range / reference)", ref.get("d"), prev_day, len(hl))
 row = {"d": f"{last.day}.{last.month}", "up": int((R["d"] > 0).sum()), "dn": int((R["d"] < 0).sum()),
        "ma50": round(float((c > ma50)[ma50.notna() & c.notna()].mean() * 100), 1),
        "ma200": round(float((c > ma200)[ma200.notna() & c.notna()].mean() * 100), 1),
-       "hi": int((c >= hi52).sum()), "lo": int((c <= lo52).sum()),
+       "hi": int(hi_m.sum()), "lo": int(lo_m.sum()),
        "up10": int((R["m"] >= 10).sum()), "dn10": int((R["m"] <= -10).sum())}
 def _lst(mask, r, rev=False):
     v = r[mask.reindex(r.index).fillna(False).astype(bool)].dropna().sort_values(ascending=rev)
     return [[t, round(float(x), 1)] for t, x in v.items()]
-row["L"] = {"hi": _lst(c >= hi52, R["d"]), "lo": _lst(c <= lo52, R["d"], True), "u": _lst(R["m"] >= 10, R["m"]), "n": _lst(R["m"] <= -10, R["m"], True)}
+row["L"] = {"hi": _lst(hi_m, R["d"]), "lo": _lst(lo_m, R["d"], True), "u": _lst(R["m"] >= 10, R["m"]), "n": _lst(R["m"] <= -10, R["m"], True)}
 b = data.get("breadth", {"rows": []})
 b["rows"] = [row] + [r for r in b.get("rows", []) if r.get("d") != row["d"]][:19]
 live = last == today
