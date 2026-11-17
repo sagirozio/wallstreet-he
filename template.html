@@ -415,6 +415,7 @@ h2 .gq{width:22px;height:22px}
 .thsub .stks{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 @media(max-width:640px){.rw2{grid-template-columns:minmax(0,1fr) 70px 58px 58px;gap:6px;padding:10px 12px}.rw2 .n{font-size:12.5px}.rw2 .n.big{font-size:14px}.nm2 b{font-size:14px}.nm2 small{font-size:12px}.thsub .stks{grid-template-columns:1fr}}
 .brw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:820px;margin-bottom:12px}
+.ahr{display:block;font-size:12px;color:var(--muted);margin-top:2px}.ahr b{font-size:12.5px}
 .spwhy{border:1px solid var(--line);border-inline-start:3px solid #5a6680;border-radius:12px;padding:12px 14px;margin:0 0 14px;background:var(--panel)}.spwhy.pos{border-inline-start-color:var(--green)}.spwhy.neg{border-inline-start-color:var(--red)}
 .spwhy .swh{font-size:13px;color:var(--muted);margin-bottom:4px}.spwhy b{display:block;font-size:16px;line-height:1.5}.spwhy p{margin:4px 0 0;font-size:14.5px;color:var(--muted);line-height:1.6}.spwhy small{display:block;margin-top:6px;color:var(--muted);font-size:12px}
 .sprep{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px;background:var(--panel);color:var(--text);text-decoration:none}.sprep:hover{border-color:var(--accent)}
@@ -1287,7 +1288,8 @@ function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d
 function spDayHtml(t,s){
   const L=liveQ(t);
   if(L){ const open=mktOpen()&&LIVE.date===nyToday(), tm=(String(LIVE.asOf||'').split('· ')[1]||''), dd=String(LIVE.date||'').split('-');
-    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>`; }
+    const P=!open&&LIVE.post&&LIVE.post[t]&&LIVE.date===nyToday()?LIVE.post[t]:null;
+    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}`; }
   const d=s&&s.r&&s.r.d!=null?s.r.d:null;
   return d==null?'':`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>`;
 }

@@ -3,12 +3,13 @@ name: Live quotes (every 3 min during US trading hours)
 # The second start cancels the first, so the whole session (09:30–16:00 New York) is covered.
 on:
   schedule:
-    - cron: "24 13-21 * * 1-5"   # UTC, every hour; extra starts queue behind the running one (GitHub drops some)
+    - cron: "24 13-23 * * 1-5"   # UTC, every hour; extra starts queue behind the running one (GitHub drops some)
   workflow_dispatch:
     inputs:
       once: { description: "One round only (1) or the full loop (0)", default: "0" }
 permissions:
   contents: write
+  actions: write
 concurrency: { group: live, cancel-in-progress: false }
 jobs:
   live:

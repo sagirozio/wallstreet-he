@@ -27,8 +27,10 @@ except Exception as e:
 
 Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 
+EXT = {}   # extended hours: {T: [price, change% vs the regular close]} (after-hours 16:00-20:00 ET)
 def round_once():
     out, state, last_ts = {}, None, 0
+    EXT.clear()
     for off in range(0, 4000, 250):
         r = None
         for k in range(3):
@@ -47,6 +49,8 @@ def round_once():
             out[t] = [round(float(p), 2), round(float(c), 2)]
             h, l = q.get("regularMarketDayHigh"), q.get("regularMarketDayLow")
             if h and l: out[t] += [round(float(h), 2), round(float(l), 2)]   # today's range (52-week highs/lows intraday)
+            pp, pc = q.get("postMarketPrice"), q.get("postMarketChangePercent")
+            if pp and pc is not None and q.get("postMarketTime", 0) >= q.get("regularMarketTime", 0): EXT[t] = [round(float(pp), 2), round(float(pc), 2)]
             state = state or q.get("marketState")
             last_ts = max(last_ts, int(q.get("regularMarketTime") or 0))
         total = (r or {}).get("total", 0)
@@ -118,8 +122,12 @@ while True:
     mins = ny.hour * 60 + ny.minute
     weekday = ny.weekday() < 5
     if not ONCE:
-        if not weekday or mins > 16 * 60 + 10 or time.time() - start > 352 * 60:
+        if not weekday or mins > 20 * 60 + 5:
             print("done"); break
+        if time.time() - start > 352 * 60:   # GitHub's 6-hour job limit: continue in a new run
+            print("job limit: starting a new run", flush=True)
+            subprocess.run(f'gh api -X POST repos/{REPO}/actions/workflows/live.yml/dispatches -f ref=main', shell=True)
+            break
         if mins < 9 * 60 + 25:
             time.sleep(60); continue
     t0 = time.time()
@@ -146,10 +154,11 @@ while True:
                     if len(c) >= 2: etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
             except Exception as e: print("etf", type(e).__name__, flush=True)
             if etf: payload["etf"] = etf   # sector ETF price + change (XLK, XLF ...)
+            if EXT and mins >= 16 * 60: payload["post"] = dict(EXT)   # after-hours prices (16:00-20:00 New York)
             publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:
         print("round failed", type(e).__name__, e, flush=True)
     if ONCE:
         break
-    time.sleep(max(30, 180 - (time.time() - t0)))
+    time.sleep(max(30, (180 if mins < 16 * 60 + 5 else 600) - (time.time() - t0)))   # every 3 min in the session, 10 min after-hours
