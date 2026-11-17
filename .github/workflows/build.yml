@@ -1,0 +1,20 @@
+name: Rebuild site files after a content push
+# The scheduled content runs and manual edits push data.json / template.html.
+# This makes sure index.html, core.json, stocks.json, s/, stock/ and sitemap.xml always match them.
+on:
+  push:
+    branches: [main]
+    paths: ["data.json", "facts.json", "template.html", "scripts/build.py", "scripts/he_names.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: build, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Build + commit if anything changed
+        run: bash scripts/commit.sh "Rebuild site files"

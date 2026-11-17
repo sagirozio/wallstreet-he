@@ -16,17 +16,5 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas
       - run: python scripts/about.py 700
-      - name: Commit (own files only, then rebuild the page on top of the latest main)
-        run: |
-          git config user.name "wallstreet-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add facts.json about_src.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Company background update"
-          for i in 1 2 3 4 5; do
-            git pull --rebase -X theirs origin main || { git rebase --abort; sleep 10; continue; }
-            python scripts/build.py && git add index.html && (git diff --cached --quiet || git commit -m "Rebuild page with company facts")
-            git push && exit 0
-            sleep 15
-          done
-          exit 1
+      - name: Commit
+        run: bash scripts/commit.sh "Company background update" facts.json about_src.json

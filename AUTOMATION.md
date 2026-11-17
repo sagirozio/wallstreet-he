@@ -2,7 +2,8 @@
 
 Site: "וולסטריטר" (tagline: "השוק האמריקאי, בגובה העיניים"), a Hebrew site about the US stock market.
 Repo: `sagirozio/wallstreet-he`. GitHub Pages serves `index.html` from `main`.
-`index.html` is generated: edit `data.json` (content) and run `python3 scripts/build.py`.
+Everything the browser loads is generated: edit only `data.json` (content) and run `python3 scripts/build.py`.
+The build writes `index.html`, `core.json`, `stocks.json`, `s/<T>.json`, `stock/<T>.html` (one Google-indexable page per stock) and `sitemap.xml`. Never edit those by hand. A GitHub Action also rebuilds them after every push, as a safety net.
 
 **Never edit by hand:** `sectors`, `themes`, `breadth`, `ytd` in `data.json`.
 The nightly GitHub Action recomputes them from Yahoo Finance.
@@ -113,6 +114,7 @@ Read the existing entries first and copy their exact shape.
 - **Source material:** `about_src.json` (filled daily by a GitHub workflow) has Yahoo's English business summary
   per ticker. Use it as research, together with what you search. **Never copy or translate it sentence by sentence** —
   write your own Hebrew text. `about_src.json` is not shown on the site; do not edit it.
+- **Hebrew names for search:** if the company has a common Hebrew name (as Israeli media write it, e.g. אנבידיה, טבע) and it is missing from `scripts/he_names.json`, add it there (`"TICKER": "שם"`; extra spellings separated by spaces). The site search and the Google page title use it.
 - Per run: write `about` (and `desc` if missing) for up to **80 stocks** that don't have `about` yet.
 - Priority order:
   1. companies in new report cards;
@@ -142,10 +144,11 @@ Update `items` when an IPO is priced or listed, or a big filing happens. Shape: 
 ```bash
 python3 -c "import json;json.load(open('data.json'))"   # must not fail
 python3 scripts/build.py
-git pull --rebase origin main                          # the nightly bot may have pushed
-git add data.json index.html template.html
+git add data.json index.html core.json stocks.json sitemap.xml stock.css s stock
 git commit -m "Content update DD.MM (midday|morning|evening)"
-git push origin HEAD:main
+git pull --rebase -X theirs origin main                # the data bots may have pushed meanwhile
+python3 scripts/build.py && git add index.html core.json stocks.json sitemap.xml stock.css s stock && (git diff --cached --quiet || git commit -m "Rebuild site files")
+git push origin HEAD:main                              # if rejected: repeat the last three lines
 ```
 
 End the commit message with the attribution lines your environment requires.
