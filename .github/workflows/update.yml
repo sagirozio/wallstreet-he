@@ -17,6 +17,9 @@ jobs:
       - run: pip install yfinance pandas
       - run: python scripts/update.py
       - run: python scripts/themes.py
+      - run: timeout 1200 python scripts/autoreports.py big 3000 || true
+      - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
+        run: timeout 1500 python scripts/finnhub_fill.py || true
       - run: python scripts/build.py
       - name: Commit
         run: bash scripts/commit.sh "Nightly data update" data.json industries.json

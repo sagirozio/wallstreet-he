@@ -27,7 +27,7 @@ def cal(sym, day):
     rows = (api("calendar/earnings", **{"from": a, "to": b, "symbol": sym.replace("-", ".")}) or {}).get("earningsCalendar") or []
     return min(rows, key=lambda r: abs((dt.date.fromisoformat(r["date"]) - day).days)) if rows else None
 
-n = 0; todo = [r for r in d["reports"] if r.get("auto")]
+n = 0; todo = [r for r in d["reports"] if r.get("auto") and not r.get("revCur") and (r.get("revEst") is None or r.get("epsEst") is None)]
 print("auto cards", len(todo), flush=True)
 for r in todo:
     try: x = cal(r["t"], dt.date.fromisoformat(r["date"]))
