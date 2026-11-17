@@ -420,7 +420,7 @@ h2 .gq{width:22px;height:22px}
 .sprep{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px;background:var(--panel);color:var(--text);text-decoration:none}.sprep:hover{border-color:var(--accent)}
 .sprep .srh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}.sprep .srh b{font-size:13.5px}.sprep .amb{color:var(--amber)}.sprep .srb{margin-top:4px;font-size:14.5px}.sprep .srr{margin-top:2px;font-size:13.5px;color:var(--muted)}.sprep .srl{display:block;margin-top:6px;font-size:12.5px;color:var(--accent)}
 .spclamp{max-height:10.5em;overflow:hidden;position:relative}.spclamp.open{max-height:none}.spmore{background:none;border:0;color:var(--accent);font:inherit;font-size:13px;cursor:pointer;padding:4px 0 10px}
-#recap .rcix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 12px}
+#recap .rctx{font-size:16px;line-height:1.8;margin:6px 0 0;max-width:820px}#recap .rcix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 12px}
 #recap .rci{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 11px}#recap .rci small{display:block;color:var(--muted);font-size:12.5px}#recap .rci b{font-size:17px}
 #recap .rcg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 #recap .rcc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}#recap .rcc h3{font-size:14px;margin:0 0 6px;color:var(--muted);font-weight:600}
@@ -1527,19 +1527,12 @@ async function renderSpIns(t){ const d=await loadIns(), l=(d.rows||[]).filter(r=
 
 /* ---------- daily recap (after the close, data.recap from the nightly update) ---------- */
 function renderRecap(){
-  const R=FALLBACK.recap, sec=$('recap'); if(!sec) return; if(!R){ sec.classList.add('hidden'); return; } sec.classList.remove('hidden');
+  const R=FALLBACK.recap, sec=$('recap'); if(!sec) return; if(!R||!R.text){ sec.classList.add('hidden'); return; } sec.classList.remove('hidden');
   const P=v=>`<span class="num ${v>=0?'up':'down'}">${pct(v,v!=null&&Math.abs(v)<10?2:1)}</span>`;
   const tk=l=>l.map(x=>`<a href="#stock/${encodeURIComponent(x[0]||x.t)}">${esc(x[0]||x.t)} <span class="${(x[1]??x.p)>=0?'up':'down'}">${pct(x[1]??x.p,1)}</span></a>`).join('');
   const rows=(l,f)=>l.map(f).join('');
   $('rcFr').textContent=R.asOf;
-  $('rcBody').innerHTML=`<div class="rcix">${R.idx.map(x=>`<div class="rci"><small>${esc(x.n)}</small><b class="num">${x.v.toLocaleString('en-US')}</b> ${P(x.c)}</div>`).join('')}</div>
-   <div class="rcg">
-    <div class="rcc"><h3>סקטורים: מובילים ומאספים</h3>${rows(R.secTop,x=>`<div class="rcr"><span>${esc(x.n)} <small class="num" style="display:inline">${esc(x.t||'')}</small></span>${P(x.c)}</div>`)}<div style="height:6px"></div>${rows(R.secBot,x=>`<div class="rcr"><span>${esc(x.n)} <small class="num" style="display:inline">${esc(x.t||'')}</small></span>${P(x.c)}</div>`)}</div>
-    <div class="rcc"><h3>רוחב השוק</h3><div class="rcr"><span>עלו / ירדו (S&amp;P 500)</span><span><span class="num up">${R.breadth.up??'—'}</span> / <span class="num down">${R.breadth.dn??'—'}</span></span></div><div class="rcr"><span>שיא 52 שבועות<small><span class="rct">${tk((R.breadth.hi||[]).slice(0,8))}</span></small></span><b class="num up">${R.breadth.nhi??0}</b></div><div class="rcr"><span>שפל 52 שבועות<small><span class="rct">${tk((R.breadth.lo||[]).slice(0,8))}</span></small></span><b class="num down">${R.breadth.nlo??0}</b></div></div>
-    <div class="rcc"><h3>התעשיות החזקות היום</h3>${rows(R.indTop,x=>`<div class="rcr"><span>${esc(x.n)}<small><span class="rct">${tk(x.s)}</span></small></span>${P(x.c)}</div>`)}</div>
-    <div class="rcc"><h3>התעשיות החלשות היום</h3>${rows(R.indBot,x=>`<div class="rcr"><span>${esc(x.n)}<small><span class="rct">${tk(x.s)}</span></small></span>${P(x.c)}</div>`)}</div>
-    ${R.up.length||R.down.length?`<div class="rcc" style="grid-column:1/-1"><h3>זזו 10% ומעלה היום</h3><div class="rct">${tk(R.up)}${tk(R.down)}</div></div>`:''}
-   </div><p class="legend">סיכום אוטומטי של יום המסחר האחרון, מתוך הטבלאות של האתר. התעשיות: רק קבוצות עם 3 מניות ומעלה. נתונים בלבד, לא המלצה.</p>`;
+  $('rcBody').innerHTML=`<p class="rctx">${esc(R.text||'')}</p>`;
 }
 /* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
 async function refreshLive(){

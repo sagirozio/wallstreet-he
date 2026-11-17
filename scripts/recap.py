@@ -7,13 +7,14 @@ import yfinance as yf
 root = pathlib.Path(__file__).resolve().parent.parent
 p = root / "data.json"; d = json.loads(p.read_text(encoding="utf-8"))
 ix = []
-for sym, n in (("^GSPC", "S&P 500"), ("^IXIC", "נאסד״ק"), ("^DJI", "דאו ג׳ונס"), ("^RUT", "ראסל 2000")):
+for sym, n in (("^GSPC", "S&P 500"), ("^IXIC", "נאסד״ק"), ("BTC-USD", "ביטקוין")):
     try:
         c = yf.download(sym, period="5d", interval="1d", progress=False, auto_adjust=False)["Close"].dropna()
         c = c.iloc[:, 0] if hasattr(c, "columns") else c
         ny = dt.datetime.now(ZoneInfo("America/New_York"))
-        if c.index[-1].date() == ny.date() and ny.hour * 60 + ny.minute < 16 * 60 + 5: c = c.iloc[:-1]   # session still open: last complete day
-        ix.append({"n": n, "v": round(float(c.iloc[-1]), 2), "c": round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)}); day = c.index[-1].date()
+        if sym != "BTC-USD" and c.index[-1].date() == ny.date() and ny.hour * 60 + ny.minute < 16 * 60 + 5: c = c.iloc[:-1]   # session still open: last complete day
+        ix.append({"n": n, "v": round(float(c.iloc[-1]), 2), "c": round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)})
+        if sym == "^GSPC": day = c.index[-1].date()
     except Exception as e: print("index", sym, e)
 if not ix: raise SystemExit("no index data")
 sec = sorted([r for r in d.get("sectors", {}).get("rows", []) if r.get("d") is not None], key=lambda r: -r["d"])
@@ -30,6 +31,15 @@ recap = {"date": day.isoformat(), "asOf": f"סגירת {day.day}.{day.month}.{da
          "indBot": [{"n": r["n"], "en": r["en"], "c": r["d"], "s": top_stocks(r["en"], rev=True)} for r in ind[-5:][::-1]],
          "up": [] if mv.get("pre") else (mv.get("rows") or [])[:10], "down": [] if mv.get("pre") else (mv.get("down") or [])[:10],
          "breadth": {"up": b.get("up"), "dn": b.get("dn"), "hi": L.get("hi", [])[:12], "lo": L.get("lo", [])[:12], "nhi": b.get("hi"), "nlo": b.get("lo")}}
+# the recap in words
+def mv(c): return ("עלה" if c > 0 else "ירד" if c < 0 else "לא השתנה") + (f" ב-{abs(c):.2f}%" if c else "")
+I = {x["n"]: x for x in ix}; parts = []
+sp, nq = I.get("S&P 500"), I.get("נאסד״ק")
+if sp: parts.append(f"S&P 500 {mv(sp['c'])} ל-{sp['v']:,.0f} נקודות" + (f", ונאסד״ק {mv(nq['c'])} ל-{nq['v']:,.0f}." if nq else "."))
+bt = I.get("ביטקוין")
+if bt: parts.append(f"הביטקוין {mv(bt['c'])} ונסחר ב-${bt['v']:,.0f}.")
+if sec: parts.append(f"הסקטור המוביל היה {sec[0]['name']} ({'+' if sec[0]['d'] >= 0 else ''}{sec[0]['d']:.2f}%)" + (f", וקבוצת התעשייה המובילה הייתה {ind[0]['n']} ({'+' if ind[0]['d'] >= 0 else ''}{ind[0]['d']:.2f}%)" + (f", בהובלת {top_stocks(ind[0]['en'], 1)[0][0]} ({'+' if top_stocks(ind[0]['en'], 1)[0][1] >= 0 else ''}{top_stocks(ind[0]['en'], 1)[0][1]}%)" if top_stocks(ind[0]['en'], 1) else "") + "." if ind else "."))
+recap["text"] = " ".join(parts)
 d["recap"] = recap
 p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
 print("recap", recap["asOf"], [(x["n"], x["c"]) for x in ix])
