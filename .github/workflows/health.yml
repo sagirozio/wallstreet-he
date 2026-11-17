@@ -1,0 +1,13 @@
+name: Health check (every morning)
+on:
+  schedule:
+    - cron: "50 5 * * 2-6"     # 07:50 Israel, after the overnight and 07:25 runs
+  workflow_dispatch:
+permissions: { contents: read, issues: write, actions: read }
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: python3 scripts/health.py
