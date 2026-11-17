@@ -89,6 +89,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .mvstrip .mvl{color:var(--text);text-decoration:none}.mvstrip a.nw{direction:rtl;margin:0 10px;color:var(--text)}.mvstrip a.nw i{font-style:normal;font-size:9px;margin-inline-end:6px}.mvstrip .sep{color:var(--muted);margin:0 6px}
 .mvstrip .mvlab{font-size:11px;color:var(--muted);margin:0 6px 0 4px}.mvstrip a.mvt{font-size:11.5px;margin:0 6px;direction:ltr;color:var(--muted)}.mvstrip a.mvt b{margin-inline-start:4px}.mvstrip a.mvt b.up{color:var(--green)}.mvstrip a.mvt b.down{color:var(--red)}
 .mvstrip{background:#0b1220}
+.pmbox{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:0 0 12px}.pmbox .pml{font-weight:800}.pmbox .pmi .t{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}.pmbox .pmi .num{margin-inline-start:6px;font-weight:700}.pmbox .pmt{color:var(--muted);font-size:11.5px;margin-inline-start:auto}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -366,6 +367,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <section id="market">
   <h2>מצב השוק</h2>
   <p class="sub" id="marketNote"></p>
+    <div class="pmbox hidden" id="pmBox"></div>
     <div class="tv-live" id="tvLive"><div class="tvh">🔴 עכשיו בשוק <span>(תעודות הסל של המדדים, VIX וביטקוין. מניות בעיכוב של עד 15 דקות)</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
   <div class="idx" style="grid-template-columns:minmax(0,420px)">
     <div class="card" id="vixCard"></div>
@@ -868,6 +870,15 @@ async function loadFund(t){
 }
 
 
+function renderPremarket(){
+  const pm=FALLBACK.premarket||{}, rows=pm.rows||[], today=new Date(Date.now()+2*3600e3).toISOString().slice(0,10);
+  const show = rows.length && pm.date===today;
+  $('pmBox').classList.toggle('hidden',!show); if(!show) return;
+  const lbl = rows[0].kind==='post'?'🌙 מסחר מאוחר':'🌅 מסחר מקדים';
+  $('pmBox').innerHTML=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b> <span class="t">${esc(r.t)}</span> <span class="num">$${r.p.toFixed(2)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
+}
+renderPremarket();
+
 /* ---------- today's 10%+ movers strip ---------- */
 function renderMovers(){
   const N=(FALLBACK.news||[]).slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=m.down||[];
@@ -890,6 +901,7 @@ async function refreshLive(){
     if (d.sectors && JSON.stringify(d.sectors)!==JSON.stringify(SECTORS)) { SECTORS=d.sectors; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
     if (d.news) FALLBACK.news=d.news;
+    if (d.premarket) { FALLBACK.premarket=d.premarket; renderPremarket(); }
     if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); }
     if (d.themes && d.themes.asOf && (!THEMES || JSON.stringify(d.themes.rows)!==JSON.stringify(THEMES.rows))) { FALLBACK.themes=d.themes; THEMES=d.themes; renderThemes(); }
     if (d.earnDates) FALLBACK.earnDates=d.earnDates;

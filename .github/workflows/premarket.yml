@@ -1,0 +1,26 @@
+name: Pre-market SPY & QQQ (every ~15 min before the US open)
+on:
+  schedule:
+    - cron: "7,22,37,52 9-13 * * 1-5"   # UTC; pre-market is 09:00-14:30 UTC in winter (intraday job covers 14:xx)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: data-update, cancel-in-progress: false }
+jobs:
+  premarket:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q yfinance
+      - run: python scripts/premarket.py
+      - run: python scripts/build.py
+      - name: Commit
+        run: |
+          git config user.name "wallstreet-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data.json index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Pre-market update"
+          git pull --rebase origin main && git push
