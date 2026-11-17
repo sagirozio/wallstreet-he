@@ -138,7 +138,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .thm td.v.active{outline:none;font-size:14px}
 .thm tr.sub td{padding:8px}.thm .stks{grid-template-columns:1fr!important}
 .thctl{flex-wrap:wrap}.thctl input{min-width:0;flex:1 1 100%}
-#thTabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}#thTabs button{flex:none}
+#thTabs,#secTabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}#thTabs button,#secTabs button{flex:none}
 }
 .thmore{display:block;margin:12px auto 0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font:inherit;font-size:14px;cursor:pointer}
 .thm tr.has td.nm{cursor:pointer}
@@ -401,6 +401,19 @@ h2 .gq{width:22px;height:22px}
 .peers{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .allrep{display:inline-block;margin-top:12px}
 @media(max-width:640px){.spstick .sphead{margin:2px 0 4px;gap:10px}.sphead .mono{width:38px;height:38px;font-size:11px}.sphn h2{font-size:17px;line-height:1.3}.sphn .meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.spday b{font-size:15px}.spday small{font-size:10.5px}.sptabs button{padding:8px 9px;font-size:14px;min-height:42px}}
+.tb2{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rw2{display:grid;grid-template-columns:minmax(0,1fr) 84px 70px 70px;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.rw2:last-child{border-bottom:0}.hd2{color:var(--muted);font-size:12px;background:var(--panel2);padding:8px 14px}
+.rw2 .n{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;text-align:center;font-size:13.5px;font-weight:600}
+.rw2 .n.big{font-size:15.5px;font-weight:700}
+.hd2 .n{font-family:inherit;font-size:12px;font-weight:500;color:var(--muted)}.hd2 .n.on{color:var(--text);font-weight:700}
+.nm2{min-width:0}.nm2 b{display:block;font-weight:700;font-size:15px;direction:ltr;text-align:right;overflow-wrap:anywhere;line-height:1.3}
+.nm2 small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+.bar2{height:5px;border-radius:3px;background:#2e3a55;margin-top:6px}
+.rw2.has{cursor:pointer}.rw2.has:hover{background:rgba(255,255,255,.025)}.rw2 .car{color:var(--accent);font-size:10px;margin-inline-start:6px;display:inline-block;transition:transform .15s}.rw2.open .car{transform:rotate(-90deg)}
+.thsub{padding:10px 14px 12px;background:var(--panel2);border-bottom:1px solid var(--line)}
+.thsub .stks{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+@media(max-width:640px){.rw2{grid-template-columns:minmax(0,1fr) 70px 58px 58px;gap:6px;padding:10px 12px}.rw2 .n{font-size:12.5px}.rw2 .n.big{font-size:14px}.nm2 b{font-size:14px}.nm2 small{font-size:12px}.thsub .stks{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -517,8 +530,8 @@ h2 .gq{width:22px;height:22px}
   <h2>ביצועי הסקטורים<button class="gq" data-gl="ETF" aria-label="הסבר">?</button><span class="fresh" data-fr="sectors"></span></h2>
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
     <div class="tabs" id="secTabs"></div>
-  <div class="tscroll"><table class="sec" id="secTable"></table></div>
-  <div class="legend">ירוק = עלייה, אדום = ירידה. ככל שהצבע חזק יותר, השינוי גדול יותר. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
+  <div class="tb2" id="secTable"></div>
+  <div class="legend">ירוק = עלייה, אדום = ירידה. הפס האפור מראה את גודל השינוי בתקופה שנבחרה. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
   <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
 </section>
 
@@ -526,8 +539,8 @@ h2 .gq{width:22px;height:22px}
   <h2>מעקב תעשיות (Theme Tracker)<button class="gq" data-gl="SECTOR" aria-label="הסבר">?</button><span class="fresh" data-fr="themes"></span></h2>
   <p class="sub" id="thSub">איך כל אחת מ-143 קבוצות התעשייה בשוק האמריקאי ביצעה. זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים. חישוב עצמי מנתוני Yahoo Finance לכל המניות מעל מיליארד דולר, מתעדכן אוטומטית כל ערב.</p>
   <div class="tabs" id="thTabs"></div>
-  <div class="thctl"><input id="thQ" type="search" placeholder="חיפוש תעשייה, למשל שבבים, זהב, Banks…" aria-label="חיפוש תעשייה"><button class="dir" id="thDir">⬇ המובילות</button></div>
-  <div class="tscroll"><table class="thm" id="thTable"></table></div>
+  <div class="thctl"><input id="thQ" type="search" placeholder="חיפוש תעשייה, למשל שבבים, זהב, Banks…" aria-label="חיפוש תעשייה"></div>
+  <div class="tb2" id="thTable"></div>
   <button class="thmore" id="thMore">הצג את כל התעשיות</button>
   <div class="legend" id="thLegend"></div>
   <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
@@ -1192,14 +1205,16 @@ document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refresh
 
 /* ---------- sectors ---------- */
 const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
-let secKey = 'w';
-function heat(v){ const a=Math.min(Math.abs(v)/ (secKey==='d'?2:secKey==='w'?5:secKey==='m'?10:25), 1)*.55+.08;
-  return v>=0?`background:rgba(34,197,94,${a.toFixed(2)})`:`background:rgba(239,68,68,${a.toFixed(2)})`; }
+let secKey = 'm';
+const PL=Object.fromEntries(PER);
+const cols3 = k => [k,...PER.map(p=>p[0]).filter(x=>x!==k).slice(0,2)];
+const pc = (v,big) => v==null ? '<span class="n flat">—</span>' : `<span class="n ${big?'big ':''}${v>0?'up':v<0?'down':'flat'}">${pct(v,1)}</span>`;
+const hd2 = (lbl,c) => `<div class="rw2 hd2"><span>${lbl}</span>${c.map((k,j)=>`<span class="n${j?'':' on'}">${PL[k]}</span>`).join('')}</div>`;
 function renderSec(){
+  const SEC_EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
   $('secTabs').innerHTML = PER.map(([k,l])=>`<button data-k="${k}" class="${k===secKey?'on':''}">${l}</button>`).join('');
-  const rows=[...(SECTORS.rows||[])].sort((a,b)=>b[secKey]-a[secKey]);
-  $('secTable').innerHTML = `<thead><tr><th>#</th><th>סקטור</th>${PER.map(([k,l])=>`<th class="sortable ${k===secKey?'active':''}" data-k="${k}">${l}</th>`).join('')}</tr></thead><tbody>${
-    rows.map((r,i)=>`<tr><td class="flat">${i+1}</td><td><div class="stk num">${esc(r.t||"")}</div><div class="snm">${esc(r.name)}</div></td>${PER.map(([k])=>`<td class="cell num ${k===secKey?'active':''}" style="${heat(r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  const c=cols3(secKey), rows=[...(SECTORS.rows||[])].sort((a,b)=>(b[secKey]??-1e9)-(a[secKey]??-1e9)), mx=Math.max(...rows.map(r=>Math.abs(r[secKey]||0)))||1;
+  $('secTable').innerHTML = hd2('סקטור',c)+rows.map(r=>`<div class="rw2"><div class="nm2"><b>${esc(SEC_EN[r.name]||r.name)}</b><small>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>`:''}</small><div class="bar2" style="width:${Math.max(3,Math.abs(r[secKey]||0)/mx*100).toFixed(0)}%"></div></div>${c.map((k,j)=>pc(r[k],!j)).join('')}</div>`).join('');
   $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}. אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
 }
 document.addEventListener('click',e=>{ const k=e.target.dataset&&e.target.dataset.k; if(k && e.target.closest('#sectors')){ secKey=k; renderSec(); } });
@@ -1387,9 +1402,7 @@ function renderIpos(){
 }
 // ===== Theme tracker =====
 let thOpen=new Set();
-let THEMES = FALLBACK.themes, thKey='m', thAsc=false, thAll=false, thQ='';
-const TH_SCALE = {d:2,w:5,m:12,q:20,h:25,ytd:30,y:30};
-function thHeat(k,v){ const a=Math.min(Math.abs(v)/TH_SCALE[k],1)*.55+.06; return v>=0?`background:rgba(34,197,94,${a.toFixed(2)})`:`background:rgba(239,68,68,${a.toFixed(2)})`; }
+let THEMES = FALLBACK.themes, thKey='m', thAll=false, thQ='';
 function thStocks(st){
   if(!st.length||typeof st[0][3]!=='object') return st;
   return st.filter(s=>s[3][thKey]!=null).sort((a,b)=>b[3][thKey]-a[3][thKey]).slice(0,8).map(([tk,co,mc,r])=>[tk,co,mc,r[thKey]]);
@@ -1397,26 +1410,26 @@ function thStocks(st){
 function renderThemes(){
   const T=THEMES; if(!T||!T.rows) return;
   $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${l}</button>`).join('');
-  const COLS=[PER.find(p=>p[0]===thKey),...PER.filter(p=>p[0]!==thKey)];
-  const q=thQ.trim().toLowerCase();
-  let rows=[...T.rows].sort((a,b)=>thAsc?a[thKey]-b[thKey]:b[thKey]-a[thKey]);
-  const rank=new Map([...T.rows].sort((a,b)=>b[thKey]-a[thKey]).map((r,i)=>[r.en,i+1]));
+  const c=cols3(thKey), q=thQ.trim().toLowerCase();
+  let rows=[...T.rows].sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
+  const rank=new Map(rows.map((r,i)=>[r.en,i+1]));
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
-  const shown = (thAll||q) ? rows : rows.slice(0,20);
-  $('thTable').innerHTML = `<thead><tr><th class="nm">#&nbsp; תעשייה</th>${COLS.map(([k,l])=>`<th data-tk="${k}" class="${k===thKey?'active':''}">${l}${k===thKey?(thAsc?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>`+
-    (shown.length?shown.map(r=>{ const st=(T.stocks||{})[r.en], op=thOpen.has(r.en); return `<tr class="${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><td class="nm">${st?'<span class="car">◀</span>':''}<span class="flat num">${rank.get(r.en)}.</span> <span class="hn">${esc(r.en)}</span><span class="en">${esc(r.n)}</span></td>${COLS.map(([k])=>`<td class="v ${k===thKey?'active':''}" style="${thHeat(k,r[k])}">${pct(r[k],2)}</td>`).join('')}</tr>`+(st&&op?`<tr class="sub"><td colspan="8"><div class="subw"><div class="stks">${thStocks(st).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,2)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה לפי הביצועים בטווח שנבחר (${(PER.find(p=>p[0]===thKey)||[])[1]||''}). רק חברות מעל מיליארד דולר.`:'המניות הגדולות בקבוצה לפי שווי שוק, עם השינוי ביום המסחר האחרון.'} מקור: ${esc(T.stocksSrc||'')}.</div></div></td></tr>`:''); }).join(''):`<tr><td colspan="8" class="flat" style="text-align:center;padding:18px">לא נמצאה תעשייה בשם הזה</td></tr>`)+'</tbody>';
-  $('thDir').textContent = thAsc ? '⬆ המפגרות' : '⬇ המובילות';
+  const shown=(thAll||q)?rows:rows.slice(0,10);
+  $('thTable').innerHTML = hd2('תעשייה',c)+(shown.length?shown.map(r=>{
+    const st=(T.stocks||{})[r.en], op=thOpen.has(r.en);
+    return `<div class="rw2 ${st?'has':''} ${op?'open':''}" data-th="${esc(r.en)}"><div class="nm2"><b>${rank.get(r.en)}. ${esc(r.en)}${st?'<span class="car">◀</span>':''}</b><small>${esc(r.n)}${st?` · ${st.length===1?'מניה אחת':st.length+' מניות'}`:''}</small></div>${c.map((k,j)=>pc(r[k],!j)).join('')}</div>`+
+      (st&&op?`<div class="thsub"><div class="stks">${thStocks(st).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':ch>=0?'up':'down'}">${ch==null?'—':pct(ch,1)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה בתקופה שנבחרה (${PL[thKey]}).`:'המניות הגדולות בקבוצה.'} רק חברות מעל מיליארד דולר.</div></div>`:'');
+  }).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
   $('thMore').style.display = q ? 'none' : '';
-  $('thMore').textContent = thAll ? 'הצג רק 20' : `הצג את כל ${T.rows.length} התעשיות`;
-  $('thSub').textContent = `איך כל אחת מ-${T.rows.length} קבוצות התעשייה בשוק האמריקאי ביצעה, נכון ל${T.asOf}. זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
-  $('thLegend').innerHTML = `◀ = אפשר ללחוץ על שם התעשייה כדי לראות את המניות הגדולות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי טווח הזמן שנבחר. "יומי" = יום המסחר האחרון. התשואה של כל תעשייה היא ממוצע משוקלל של המניות בה, ולכן מניה ענקית אחת יכולה להזיז אותה. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
+  $('thMore').textContent = thAll ? 'הצג רק את 10 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
+  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}. זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
+  $('thLegend').innerHTML = `◀ = אפשר ללחוץ על תעשייה כדי לראות את המניות המובילות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי התקופה שנבחרה. התשואה של כל תעשייה היא ממוצע משוקלל של המניות בה, ולכן מניה ענקית אחת יכולה להזיז אותה. כשיש בקבוצה מעט מניות, הנתון פחות מייצג. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
 }
 document.addEventListener('click',e=>{
   const k=e.target.dataset&&e.target.dataset.tk;
-  if(k && e.target.closest('#themes')){ if(k===thKey && e.target.tagName==='TH') thAsc=!thAsc; else { thKey=k; thAsc=false; } renderThemes(); return; }
-  const tr=e.target.closest && e.target.closest('#thTable tr.has'); if(tr && e.target.closest('td.nm')){ const k2=tr.dataset.th; thOpen.has(k2)?thOpen.delete(k2):thOpen.add(k2); renderThemes(); return; }
-  if(e.target.id==='thDir'){ thAsc=!thAsc; renderThemes(); }
-  if(e.target.id==='thMore'){ thAll=!thAll; renderThemes(); }
+  if(k && e.target.closest('#themes')){ thKey=k; renderThemes(); return; }
+  const rw=e.target.closest && e.target.closest('#thTable .rw2.has'); if(rw){ const k2=rw.dataset.th; thOpen.has(k2)?thOpen.delete(k2):thOpen.add(k2); renderThemes(); return; }
+  if(e.target.id==='thMore'){ thAll=!thAll; renderThemes(); if(!thAll) $('themes').scrollIntoView(); }
 });
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
