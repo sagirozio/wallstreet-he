@@ -1064,7 +1064,7 @@ function loadStocks(force){
   return stkP;
 }
 function onStocks(){
-  try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
+  try{ liveAgg(); }catch(e){} try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
   try{ const b=document.querySelector('#gtabs button.on'); renderG(b?b.dataset.t:'all'); }catch(e){}
   renderHub(); try{ renderAgenda(); }catch(e){} if($('gq')===document.activeElement && $('gq').value) gqRender();
 }
@@ -1216,13 +1216,17 @@ const LIVE_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/l
 let LIVE=null;
 const liveQ = t => LIVE&&LIVE.q ? LIVE.q[t] : null;
 let LIVE_SEC=null, LIVE_IND=null;
-function liveOn(){ return LIVE && /^(REGULAR|POST|POSTPOST)$/.test(LIVE.state||''); }
+function nyToday(){ return new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'}); }
+/* live = today's session in New York is open or just closed, and live.json belongs to it */
+function liveOn(){ return !!(LIVE && /^(REGULAR|POST|POSTPOST)$/.test(LIVE.state||'') && LIVE.date===nyToday()); }
 function liveAgg(){
   LIVE_SEC=null; LIVE_IND=null; if(!liveOn()) return;
   if(LIVE.sec){ LIVE_SEC={}; Object.entries(LIVE.sec).forEach(([k,v])=>LIVE_SEC[k]=v[0]); }
-  const st=(THEMES||{}).stocks||{}; LIVE_IND={};
-  Object.entries(st).forEach(([ind,lst])=>{ const v=lst.map(x=>liveQ(x[0])).filter(Boolean).map(x=>x[1]);
-    if(v.length && v.length>=0.6*lst.length) LIVE_IND[ind]=Math.round(v.reduce((a,b)=>a+b,0)/v.length*100)/100; });
+  const st=(THEMES||{}).stocks; if(!st||!Object.keys(st).length) return;   /* member lists not loaded yet: no half-live table */
+  LIVE_IND={};
+  /* every industry: the average live change of its members that have a live quote (never yesterday's number) */
+  Object.entries(st).forEach(([ind,lst])=>{ const v=lst.map(x=>liveQ(x[0])).filter(x=>x&&x[1]!=null).map(x=>x[1]);
+    LIVE_IND[ind]=v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length*100)/100:null; });
 }
 const liveTm=()=>String((LIVE||{}).asOf||'').split('· ')[1]||'';
 function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?(+m[1])+'.'+(+m[2]):''; }
@@ -1750,14 +1754,15 @@ let thOpen=new Set();
 let THEMES = FALLBACK.themes, thKey='m', thAll=false, thQ='';
 function thStocks(st){
   if(!st.length||typeof st[0][3]!=='object') return st;
-  const val=s=>{ if(thKey==='d'&&LIVE_IND){ const q=liveQ(s[0]); if(q) return q[1]; } return s[3][thKey]; };   /* "today": live change, like the industry row */
+  const val=s=>{ if(thKey==='d'&&LIVE_IND){ const q=liveQ(s[0]); return q?q[1]:null; } return s[3][thKey]; };   /* "today": live change, like the industry row */
   return st.filter(s=>val(s)!=null).sort((a,b)=>val(b)-val(a)).slice(0,8).map(s=>[s[0],s[1],s[2],val(s)]);
 }
 function renderThemes(){
   const T=THEMES; if(!T||!T.rows) return;
-  $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${l}</button>`).join('');
+  PL.d = LIVE_IND ? 'היום' : 'יום אחרון';
+  $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${PL[k]}</button>`).join('');
   const c=cols3(thKey), q=thQ.trim().toLowerCase();
-  let rows=[...T.rows].map(r=>LIVE_IND&&LIVE_IND[r.en]!=null?{...r,d:LIVE_IND[r.en]}:r).sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
+  let rows=[...T.rows].map(r=>LIVE_IND?{...r,d:LIVE_IND[r.en]??null}:r).sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
   const rank=new Map(rows.map((r,i)=>[r.en,i+1]));
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown=(thAll||q)?rows:rows.slice(0,10);
@@ -1768,7 +1773,7 @@ function renderThemes(){
   }).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק את 10 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
-  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}.${LIVE_IND?` עמודת "היום" מתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}, בעיכוב של כ-15 דקות).`:''} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
+  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}.${LIVE_IND?` עמודת "היום" חיה ומתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}, בעיכוב של כ-15 דקות).`:` עמודת "יום אחרון" היא השינוי ביום המסחר האחרון (${closeLbl()}); בזמן המסחר היא הופכת ל"היום" ומתעדכנת כל 3 דקות.`} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
   $('thLegend').innerHTML = `◀ = אפשר ללחוץ על תעשייה כדי לראות את המניות המובילות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי התקופה שנבחרה. התשואה של כל תעשייה היא ממוצע פשוט של כל המניות בה (כל מניה באותו משקל), ולכן בקבוצה קטנה מניה אחת יכולה להזיז אותה.${T.check&&T.check.hist?` מחירי הסגירה של ${T.check.hist.toLocaleString('en-US')} מניות מגיעים ממאגר מבוקר (Massive) עד ${esc(T.check.histTo||'')}; ימים מאוחרים יותר מ-Yahoo, עד שהם מאומתים בבוקר.`:''} כשיש בקבוצה מעט מניות, הנתון פחות מייצג. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
 }
 document.addEventListener('click',e=>{
