@@ -50,7 +50,10 @@ Read the existing entries first and copy their exact shape.
 
 ### `overview` (every run)
 
-- `brief`: 4–6 Hebrew sentences, "השוק ב-30 שניות". Short and factual, with numbers.
+- `brief` ("השוק ב-30 שניות", the first thing on the home page): **3–5 items**, each an object
+  `{"h": "<short Hebrew headline, up to ~8 words>", "t": "<one short Hebrew sentence with the key numbers>", "tone": "pos|neg|neu"}`.
+  Minimal and factual. The first item is how the market closed (or the futures, in the morning). The index changes are already shown above the list, so don't repeat all of them.
+  **Earnings in the brief: only significant companies** — mega/large caps (roughly $50B+), names the whole market watches (e.g. NVDA, AAPL, WMT, HD), or a report that moved its stock 10%+. Smaller companies' reports go to `reports` / stock news items, not to the brief.
 - `asOf`: `"DD.MM.YYYY · HH:MM"`, Israel time.
 - `rev`: `YYYYMMDDHHMM` as a number. It must be higher than the current value.
 - Update `strip` items only with values you verified. Otherwise leave them.
