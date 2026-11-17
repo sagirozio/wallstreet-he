@@ -13,7 +13,8 @@ root = pathlib.Path(__file__).resolve().parent.parent
 data = json.loads((root / "data.json").read_text(encoding="utf-8"))
 src_p = root / "about_src.json"
 src = json.loads(src_p.read_text(encoding="utf-8")) if src_p.exists() else {}
-facts = data.get("facts", {})
+facts_p = root / "facts.json"
+facts = json.loads(facts_p.read_text(encoding="utf-8")) if facts_p.exists() else data.get("facts", {})
 
 tick = []
 for lst in (data.get("themes", {}).get("stocks") or {}).values():
@@ -44,9 +45,9 @@ for t in tick[:LIMIT]:
     if done % 100 == 0:
         print(done, t, flush=True)
         src_p.write_text(json.dumps(src, ensure_ascii=False, indent=0), encoding="utf-8")
+        facts_p.write_text(json.dumps(facts, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     time.sleep(0.8)
 
 src_p.write_text(json.dumps(src, ensure_ascii=False, indent=0), encoding="utf-8")
-data["facts"] = facts
-(root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+facts_p.write_text(json.dumps(facts, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 print("done", done, "fails", fails, "total src", len(src), "facts", len(facts))
