@@ -43,7 +43,7 @@ for r in rows:
 for c in d["reports"]:
     if c.get("src") == "finnhub" and c.get("auto") and c["date"] == ny.isoformat():
         lq = (LQ.get("q") or {}).get(c["t"])
-        if lq and LQ.get("date") == ny.isoformat() and c.get("react"):
+        if lq and LQ.get("date") == ny.isoformat() and not c.get("note"):
             c["react"] = f"המניה {'עולה' if lq[1] >= 0 else 'יורדת'} ב-{abs(lq[1]):.1f}% במסחר היום (נכון ל-{LQ.get('asOf', '').split('·')[-1].strip()})."
 d["reports"].sort(key=lambda r: str(r.get("date", "")), reverse=True)
 p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
