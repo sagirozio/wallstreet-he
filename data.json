@@ -668,9 +668,9 @@
    "revEst": 109.1,
    "revYoy": 103,
    "guide": "above",
-   "guideText": "תחזית לרבעון הבא: הכנסות של $130 מיליארד (±3%), כולל שבוע נוסף ובלי מכירות מרכזי נתונים לסין. הקונצנזוס לרבעון עמד על כ-$124.8 מיליארד.",
-   "note": "הדוח הראשון מאז התפטרות ג׳נסן הואנג מתפקיד המנכ״ל. ההכנסות עקפו את התחזית של החברה עצמה ($108 מיליארד ±2%). הכנסות מרכזי הנתונים: $107.6 מיליארד, צמיחה של 110%. שולי הרווח הגולמי (GAAP): 74.8%. החברה החזירה לבעלי המניות $28.1 מיליארד ברכישות חוזרות ובדיבידנדים.",
-   "react": "",
+   "guideText": "תחזית לרבעון הבא: הכנסות של $130 מיליארד (±3%), כולל שבוע נוסף ובלי מכירות מרכזי נתונים לסין. הקונצנזוס לרבעון עמד על כ-$124.8 מיליארד. שולי רווח גולמי צפויים: כ-71.5%.",
+   "note": "הדוח הראשון מאז התפטרות ג׳נסן הואנג מתפקיד המנכ״ל. ההכנסות עקפו את התחזית של החברה עצמה ($108 מיליארד ±2%). הכנסות מרכזי הנתונים: $107.6 מיליארד, צמיחה של 110%. שולי הרווח הגולמי (GAAP): 74.8%. החברה החזירה לבעלי המניות $28.1 מיליארד ברכישות חוזרות ובדיבידנדים. הדירקטוריון אישר תוספת של $150 מיליארד לרכישה החוזרת.",
+   "react": "המניה עלתה בכ-2% במסחר שאחרי הנעילה.",
    "hook": "הכנסות של $115.8 מיליארד, צמיחה של 103%, ותחזית של $130 מיליארד לרבעון הבא",
    "ir": "https://investor.nvidia.com/"
   },
@@ -39108,7 +39108,7 @@
   }
  ],
  "overview": {
-  "asOf": "17.11.2026 · 22:56",
+  "asOf": "18.11.2026 · 00:05",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -39167,18 +39167,18 @@
   ],
   "brief": [
    {
-    "h": "וול סטריט בירידות חדות עד הנעילה",
-    "t": "לפי Reuters, הדאו איבד יותר מ-800 נקודות אחר הצהריים וכל 11 הסקטורים ב-S&P 500 נסחרו בירידה; היורדות בבורסת ניו יורק עלו על העולות ביחס של יותר מ-3 ל-1.",
+    "h": "וול סטריט ננעלה בירידות חדות",
+    "t": "ה-S&P 500 ירד ב-1.07% ל-7,340.53 והדאו איבד כ-850 נקודות; לפי AP, כמעט 9 מכל 10 מניות במדד ירדו, וכל הסקטורים נסגרו בירידה.",
     "tone": "neg"
    },
    {
-    "h": "Nvidia מדווחת הלילה ב-23:20",
-    "t": "הצפי: הכנסות של $109.15B ורווח של $2.47 למניה, לעומת $57B ו-$1.30 לפני שנה; הדוח הראשון מאז התפטרות הואנג, שאמר היום שיתכבד לחזור.",
-    "tone": "neu"
+    "h": "Nvidia עקפה את התחזיות ועולה במסחר המאוחר",
+    "t": "הכנסות של $115.8B (צפי $109.1B) ותחזית של $130B לרבעון הבא; המניה עלתה בכ-2% אחרי הנעילה, ונוספו $150B לרכישה החוזרת.",
+    "tone": "pos"
    },
    {
-    "h": "תוכנה, שבבים ובנקים מובילים את הירידות",
-    "t": "לפי Reuters, בצהריים ירדה Salesforce ב-9.5%, Intuit ב-7.2%, Adobe ו-Micron ב-4.1% ו-JPMorgan ב-2.2%.",
+    "h": "התוכנה וביטוחי הבריאות הובילו את הירידות",
+    "t": "Salesforce ירדה ב-9.4%, Intuit ב-7.2% ו-ServiceNow ב-6.6%; UnitedHealth ירדה ב-5.4% אחרי הצעת CMS להרחיב ביקורות ב-Medicare Advantage.",
     "tone": "neg"
    },
    {
@@ -39261,29 +39261,24 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611172256,
+  "rev": 202611180005,
   "market": {
-   "note": "סגירה ביום שני, 16.11.2026. ירידות חדות בכל המדדים, והנאסד״ק הוביל את הירידות. מדד הפחד VIX קפץ ב-22%.",
+   "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
     {
      "k": "S&P 500",
-     "v": "7,416.59",
-     "d": -1.92
+     "v": "7,340.53",
+     "d": -1.07
     },
     {
      "k": "נאסד״ק",
-     "v": "24,509.76",
-     "d": -2.49
+     "v": "24,328.38",
+     "d": -0.77
     },
     {
      "k": "דאו ג׳ונס",
-     "v": "51,608.17",
-     "d": -1.41
-    },
-    {
-     "k": "ראסל 2000",
-     "v": "2,742.11",
-     "d": -1.73
+     "v": "50,759.42",
+     "d": -1.68
     }
    ]
   }
@@ -91187,6 +91182,424 @@
  },
  "news": [
   {
+   "id": "2026-11-17-close-sp-down-1pct",
+   "date": "2026-11-17",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "נעילה: ה-S&P 500 ירד ב-1.1% והדאו איבד כ-850 נקודות",
+   "body": "ה-S&P 500 נעל ב-7,340.53 (ירידה של 1.07%), הנאסד״ק ב-24,328.38 (ירידה של 0.77%) והדאו ב-50,759.42 (ירידה של 1.68%). לפי AP, כמעט 9 מכל 10 מניות במדד ירדו, וכל 11 תעודות הסל הסקטוריאליות נסגרו בירידה, בהובלת הפיננסים (1.9%-). המכירות הקמעונאיות באוקטובר עלו ב-0.2%, מעט מעל הצפי.",
+   "src": "AP (WIS), Yahoo Finance",
+   "url": "https://www.wistv.com/2026/11/17/another-wipeout-hits-wall-street-nvidia-other-jittery-ai-stocks-swing-lower/"
+  },
+  {
+   "id": "2026-11-17-nvda-after-hours-buyback",
+   "date": "2026-11-17",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Nvidia עולה בכ-2% במסחר המאוחר ומוסיפה $150 מיליארד לרכישה חוזרת",
+   "body": "אחרי הדוח עלתה מניית Nvidia בכ-2% במסחר שאחרי הנעילה. הדירקטוריון אישר תוספת של $150 מיליארד לתוכנית הרכישה החוזרת, והחברה צופה לרבעון הבא שולי רווח גולמי של כ-71.5%. לפי הדיווח, הדירקטוריון אינו שוקל כרגע את החזרתו של ג׳נסן הואנג.",
+   "src": "Bloomberg (Bloomingbit)",
+   "url": "https://en.bloomingbit.io/feed/news/124664"
+  },
+  {
+   "id": "2026-11-17-software-rout-close",
+   "date": "2026-11-17",
+   "t": [
+    "CRM",
+    "INTU",
+    "NOW"
+   ],
+   "tag": "תוכנה",
+   "tone": "neg",
+   "title": "מניות התוכנה נסגרו בירידות חדות לפני הנפקת Anthropic",
+   "body": "Salesforce נסגרה בירידה של 9.4%, Intuit ירדה ב-7.2%, ServiceNow ב-6.6%, Atlassian ב-6.0%, Workday ב-5.8% ו-MongoDB ב-5.8%. לפי Investing.com, משקיעים צמצמו חשיפה לחברות תוכנה לקראת ההנפקה של Anthropic.",
+   "src": "Investing.com (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=b91b27984b54e31308d6eeffd43cf38a5993ef5e06d9b58f509d55b68d0893c2"
+  },
+  {
+   "id": "2026-11-17-cms-crush-rule-insurers",
+   "date": "2026-11-17",
+   "t": [
+    "UNH",
+    "HUM",
+    "CVS"
+   ],
+   "tag": "בריאות",
+   "tone": "neg",
+   "title": "ביטוחי הבריאות ירדו: CMS מציעה להרחיב את ביקורות Medicare Advantage",
+   "body": "הכללה המוצעת (CRUSH) תאפשר להחיל ממצאי ביקורת על שנות תשלום החל מ-2018, במטרה להשיב כ-$9 מיליארד בשנה בתשלומי יתר; ההערות לציבור עד 19.1. בנעילה ירדה UnitedHealth ב-5.4%, Molina ב-5.1%, Humana ב-3.9%, CVS ב-3.1% ו-Elevance ב-2.8%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=05b7fc343d4957ed28aeae92c2c4236158d10335d0b928bde42c85a812973bf1"
+  },
+  {
+   "id": "2026-11-17-crm-down-9-close",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "CRM"
+   ],
+   "tag": "Salesforce",
+   "tone": "neg",
+   "title": "Salesforce צנחה ב-9.4% והובילה את ירידות התוכנה",
+   "body": "המניה נסגרה ב-$194.62 אחרי ירידה של 9.4%, הגדולה ב-S&P 500 היום. לפי Investing.com, משקיעים הקטינו חשיפה לחברות תוכנה לקראת ההנפקה של Anthropic.",
+   "src": "Investing.com (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=b91b27984b54e31308d6eeffd43cf38a5993ef5e06d9b58f509d55b68d0893c2"
+  },
+  {
+   "id": "2026-11-17-intu-down-7",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "INTU"
+   ],
+   "tag": "Intuit",
+   "tone": "neg",
+   "title": "Intuit ירדה ב-7.2%",
+   "body": "המניה נסגרה ב-$320.79, ירידה של 7.2%, במסגרת המכירות בתוכנה. לפי Motley Fool, המשקיעים מוטרדים מהשפעת ה-AI על החברה.",
+   "src": "Motley Fool (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=172337f040c08e4f28a9bf1b345e1649ae471232c6f10123b7bd6e5f052a283a"
+  },
+  {
+   "id": "2026-11-17-unh-cms-audits",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "UNH"
+   ],
+   "tag": "UnitedHealth",
+   "tone": "neg",
+   "title": "UnitedHealth ירדה ב-5.4% על הצעת ביקורות חדשה של CMS",
+   "body": "CMS הציעה כלל (CRUSH) שיחיל ממצאי ביקורת ב-Medicare Advantage על שנות תשלום החל מ-2018, ויחזיר כ-$9 מיליארד בשנה בתשלומי יתר. המניה נסגרה ב-$389.76.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=05b7fc343d4957ed28aeae92c2c4236158d10335d0b928bde42c85a812973bf1"
+  },
+  {
+   "id": "2026-11-17-cvs-aetna-audit-rule",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "CVS"
+   ],
+   "tag": "CVS",
+   "tone": "neg",
+   "title": "CVS ירדה ב-3.1%: Aetna חשופה לכללי ביקורת מחמירים",
+   "body": "לפי הכלל המוצע של CMS, ממצאי ביקורת יוחלו על כלל התוכנית והתוכניות יחויבו לדווח על חשד להונאה; החיסכון הצפוי מוערך בכמעט $90 מיליארד. המניה נסגרה ב-$85.81.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=3de1293090b5b762709b8462f195980df7d0ea2a9784d30328b9725b9d179836"
+  },
+  {
+   "id": "2026-11-17-tsla-germany-cybercab",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "Tesla",
+   "tone": "neu",
+   "title": "Tesla תשקיע $3.3 מיליארד בהרחבת המפעל בגרמניה ל-Cybercab",
+   "body": "ההשקעה כוללת אולם ייצור חדש במפעל ליד ברלין, שבו ייוצר ה-Cybercab האוטונומי החל מ-2029, עם כושר של עד מיליון רכבים בשנה. המניה נסגרה כמעט ללא שינוי ($380.11).",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=7c3a0842fc9902b6b97262379ae663e22a29a05a3b3d298fe08a972e15417eb1"
+  },
+  {
+   "id": "2026-11-17-gm-ceo-search",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "GM"
+   ],
+   "tag": "General Motors",
+   "tone": "neu",
+   "title": "דיווח: GM שכרה חברת השמה לחיפוש מחליף למרי בארה",
+   "body": "לפי Wall Street Journal, ‏GM שכרה חברת גיוס בכירים כדי לאתר מועמדים, גם מחוץ לחברה, לתפקיד המנכ״ל במקום מרי בארה. המניה עלתה ב-0.5%.",
+   "src": "WSJ (Investing.com)",
+   "url": "https://finnhub.io/api/news?id=15272280f8eb287560a9078b8758b8e0b3f1e7e698bb614bb99c5cd626ea497c"
+  },
+  {
+   "id": "2026-11-17-lly-stipple-deal",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "LLY"
+   ],
+   "tag": "Eli Lilly",
+   "tone": "neu",
+   "title": "Eli Lilly חתמה על עסקה בהיקף של עד $5.9 מיליארד עם Stipple Bio",
+   "body": "העסקה מתמקדת בתרופות סרטן מסוג ADC, ו-Stipple מתכננת להתחיל ניסוי שלב 1 בגידולים מוצקים בתחילת 2027. בנפרד דווח על פריצה לספק חיצוני של החברה. המניה ירדה ב-1.1%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=8f993e0836c0f86c9cdade3236785484c4fcca786e5644002538a38834e32ac3"
+  },
+  {
+   "id": "2026-11-17-xom-debt-tender",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "XOM"
+   ],
+   "tag": "ExxonMobil",
+   "tone": "neu",
+   "title": "ExxonMobil יוצאת להצעת רכש של $3 מיליארד לאג״ח",
+   "body": "החברה פרסמה הצעת רכש לחוב קיים בהיקף של $3 מיליארד. המניה עלתה ב-0.2%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=053e583fa83fc1490102d8a3a1424d7ea95e1eb19ac532702159e3a61cc63f94"
+  },
+  {
+   "id": "2026-11-17-bac-berkshire-trims",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "BAC"
+   ],
+   "tag": "Bank of America",
+   "tone": "neg",
+   "title": "Berkshire מכרה עוד 27.5 מיליון מניות של Bank of America",
+   "body": "לפי דיווח ה-13F, ברבעון השלישי מכרה Berkshire Hathaway ‏27.5 מיליון מניות (5.7% מהאחזקה), ומאז מרץ מכרה 57.8 מיליון. המניה ירדה ב-1.3%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=b7caf6b904cf580ae75ca568d4dac31403f592c3e0b365a6cf03baf6fd4a37ff"
+  },
+  {
+   "id": "2026-11-17-schw-web-issue",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "SCHW"
+   ],
+   "tag": "Charles Schwab",
+   "tone": "neu",
+   "title": "Schwab: תקלת אתר קצרה נפתרה",
+   "body": "Charles Schwab מסרה שתקלה קצרה בטעינת האתר נפתרה, אחרי שורת תקלות בבנקים אחרים, ביניהם JPMorgan. המניה ירדה ב-1.2%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=bd7cb058569a31184d36b2a8cc0f24be19047f26aef6bf26ca59a8b6cfccc192"
+  },
+  {
+   "id": "2026-11-17-fslr-solar-slide",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "FSLR"
+   ],
+   "tag": "First Solar",
+   "tone": "neg",
+   "title": "First Solar ירדה ב-5.8% ו-Enphase ב-7.6%",
+   "body": "מניות הסולאר המשיכו לרדת. לפי 24/7 Wall St., העליות שאחרי הבחירות נמחקו בגלל חשש מהריבית. First Solar נסגרה ב-$152.97.",
+   "src": "24/7 Wall St. (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=315e6c538aa23436abb725bf60f977b53141db674e6a26bc1e8a5008f02819dd"
+  },
+  {
+   "id": "2026-11-17-hood-second-day-down",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "HOOD"
+   ],
+   "tag": "Robinhood",
+   "tone": "neg",
+   "title": "Robinhood ירדה ביום השני ברציפות",
+   "body": "המניה ירדה ב-4.0% ל-$69.19. ביום שני ירדה אחרי דיווח ש-Kalshi מתכננת להציע מסחר במניות, ותשעה סנאטורים מתנגדים למהלך של ה-CFTC להקלה במגבלות על שווקי תחזיות.",
+   "src": "24/7 Wall St. (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=440b0c7b69c20dd53275013ed5368a021d2b94881ef71f48a2a43867de323345"
+  },
+  {
+   "id": "2026-11-17-ttwo-firaxis-layoffs",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "TTWO"
+   ],
+   "tag": "Take-Two",
+   "tone": "neg",
+   "title": "Take-Two: אולפן Firaxis פיטר כשליש מעובדיו",
+   "body": "לפי דיווח, Firaxis Games של Take-Two פיטרה כשליש מהצוות, והחברה הגיבה על כך. GTA VI אמור לצאת ב-19.11. המניה ירדה ב-4.5%.",
+   "src": "MT Newswires (Yahoo)",
+   "url": "https://finnhub.io/api/news?id=644b9bb6d83588334a9b505c4d5d1fa7c2346173f95be03ba01739af60895be7"
+  },
+  {
+   "id": "2026-11-17-mdb-firebolt",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "MDB"
+   ],
+   "tag": "MongoDB",
+   "tone": "neu",
+   "title": "MongoDB רוכשת את Firebolt",
+   "body": "לפי דיווח ל-SEC, MongoDB רוכשת את Firebolt; תנאי העסקה לא פורסמו. המניה ירדה ב-5.8% ביום חלש לתוכנה.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=3ff2ed5bb66a9201e2ebb4c8e25157799efbabe41fbf22886668b807451ed50e"
+  },
+  {
+   "id": "2026-11-17-lite-china-curbs",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "LITE"
+   ],
+   "tag": "Lumentum",
+   "tone": "pos",
+   "title": "Lumentum עלתה ב-2.6% על הגבלות יבוא מסין",
+   "body": "מניות הציוד האופטי עלו אחרי דיווחים שממשל טראמפ ימשיך בהגבלות על יבוא ציוד סיני למרכזי נתונים. Lumentum נסגרה ב-$559.97.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=35648efb7ece3ee49e483798953692cfb78d0a58982798f276b96165d878dd82"
+  },
+  {
+   "id": "2026-11-17-so-units-offering",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "SO"
+   ],
+   "tag": "Southern Company",
+   "tone": "neu",
+   "title": "Southern Company השלימה הנפקה של 40 מיליון יחידות",
+   "body": "החברה הודיעה על השלמת הנפקה של 40 מיליון Corporate Units. המניה ירדה ב-1.1%.",
+   "src": "Southern Company",
+   "url": "https://finnhub.io/api/news?id=b2c6a6ae030d2a4f646aed6f14b23ae430ffbb7b1ad1bf72496c05f2cc1e670a"
+  },
+  {
+   "id": "2026-11-17-wsm-stifel-init",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "WSM"
+   ],
+   "tag": "Williams-Sonoma",
+   "tone": "neu",
+   "title": "Stifel פתחה סיקור על Williams-Sonoma בהמלצת קנייה",
+   "body": "האנליסט Michael Montani מ-Stifel פתח סיקור על המניה בהמלצת Buy ומחיר יעד של $290. המניה ירדה ב-0.8% ל-$250.10.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=e570295a916c48cb39753d6075e883a25e0c8cf202e25b2a2cf7aed7cbd3d321"
+  },
+  {
+   "id": "2026-11-17-itgr-kkr-done",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "ITGR"
+   ],
+   "tag": "Integer",
+   "tone": "neu",
+   "title": "KKR השלימה את רכישת Integer ב-$127 למניה",
+   "body": "Integer Holdings הודיעה שהרכישה בידי שותפות של KKR הושלמה, במחיר של $127 במזומן למניה.",
+   "src": "Integer Holdings",
+   "url": "https://finnhub.io/api/news?id=aee18ff1dd107a56db4f7810c83460aab627a90d3f8995628fd7070c6d667403"
+  },
+  {
+   "id": "2026-11-17-oln-olinhuntsman",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "OLN"
+   ],
+   "tag": "Olin",
+   "tone": "neu",
+   "title": "Olin ו-Huntsman הציגו את מבנה החברה המאוחדת",
+   "body": "החברה המאוחדת תיקרא OlinHuntsman, תפעל בארבע חטיבות ותיסחר תחת הסימול OHN. Olin פרסמה גם את ההנהלה המיועדת; המיזוג צפוי להיסגר ב-2027.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=1c4f657819a99f9191d5d81aea71046c378a85e6b62e7235b67dbad00f771d03"
+  },
+  {
+   "id": "2026-11-17-alny-pt-cuts",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "ALNY"
+   ],
+   "tag": "Alnylam",
+   "tone": "neg",
+   "title": "שני בתי השקעות הורידו מחיר יעד ל-Alnylam",
+   "body": "HC Wainwright הורידה את מחיר היעד ל-$250 מ-$455 (Buy), ו-Cantor Fitzgerald ל-$205 מ-$290 (Neutral). המניה ירדה ב-2.0%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=5ee543d39406ff2f533ee5c279efba974fcd1973ca315f2a5b5cf04b6d5066fa"
+  },
+  {
+   "id": "2026-11-17-zbh-wells-upgrade",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "ZBH"
+   ],
+   "tag": "Zimmer Biomet",
+   "tone": "pos",
+   "title": "Wells Fargo העלתה את Zimmer Biomet ל-Overweight",
+   "body": "Wells Fargo העלתה את ההמלצה ל-Overweight מ-Equal-Weight ואת מחיר היעד ל-$123 מ-$113. המניה עלתה ב-0.7%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=76e0761cbd4700df8f0854ec74afb9331b5800e19c111c068f88fb800c8516de"
+  },
+  {
+   "id": "2026-11-17-swk-mizuho-downgrade",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "SWK"
+   ],
+   "tag": "Stanley Black & Decker",
+   "tone": "neg",
+   "title": "Mizuho הורידה את Stanley Black & Decker ל-Neutral",
+   "body": "Mizuho הורידה את ההמלצה ל-Neutral מ-Outperform, אך העלתה את מחיר היעד ל-$120 מ-$105. המניה ירדה ב-3.7%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=5c69cc38b4fca00361d5ac6aaa1f5328b50a616d2805ba5cae0cd128d88de825"
+  },
+  {
+   "id": "2026-11-17-kkr-mizuho-init",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "KKR"
+   ],
+   "tag": "KKR",
+   "tone": "neu",
+   "title": "Mizuho פתחה סיקור על KKR ב-Outperform",
+   "body": "Mizuho פתחה סיקור על KKR בהמלצת Outperform ומחיר יעד של $116, ובמקביל גם על Ares, ‏TPG ו-Blue Owl. המניה ירדה ב-1.1%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=466139935c8d9ec006c6332ddb225b875d10517a588917969379047043234108"
+  },
+  {
+   "id": "2026-11-17-cah-wells-pt",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "CAH"
+   ],
+   "tag": "Cardinal Health",
+   "tone": "neu",
+   "title": "Wells Fargo העלתה מחיר יעד ל-Cardinal Health",
+   "body": "Wells Fargo העלתה את מחיר היעד ל-$321 מ-$277 והותירה Overweight; גם מחיר היעד של Cencora הועלה, ל-$400. המניה ירדה ב-1.6%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=f023d7ff59995ecc556b546e6fbd7d2567a93d88bb603463a17eb42f835ac0d2"
+  },
+  {
+   "id": "2026-11-17-dltr-stifel-init",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "DLTR"
+   ],
+   "tag": "Dollar Tree",
+   "tone": "pos",
+   "title": "Stifel פתחה סיקור על Dollar Tree בהמלצת קנייה",
+   "body": "Stifel פתחה סיקור בהמלצת Buy ומחיר יעד של $160; לגבי Dollar General פתחה ב-Hold. המניה עלתה ב-0.7%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=f6dea4031c010aa620b7e2c797fe68366985f4e1ecd0ce23f2dd839dc9ed3ba6"
+  },
+  {
+   "id": "2026-11-17-casy-stifel-init",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "CASY"
+   ],
+   "tag": "Casey's",
+   "tone": "neu",
+   "title": "Stifel פתחה סיקור על Casey's ב-Buy",
+   "body": "Stifel פתחה סיקור על Casey's General Stores בהמלצת Buy ומחיר יעד של $800.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=f49160245b8051285b0591dc62a33412e2b295ffb11acbef73b457dd69197e20"
+  },
+  {
    "id": "2026-11-17-nvda-q3-fy27",
    "date": "2026-11-17",
    "t": [
@@ -96643,6 +97056,18 @@
   "RUM": {
    "desc": "פלטפורמת הווידאו Rumble ושירותי ענן.",
    "about": "RUM Group מפעילה את Rumble, פלטפורמת וידאו חינמית ובתשלום לשיתוף סרטונים ושידורים חיים. היא מציעה ליוצרים כלים לשידור ולמונטיזציה, מערכת פרסום עצמית וארנק קריפטו שמאפשר לצופים לתת טיפים.\nבנוסף החברה מפעילה את Rumble Cloud, שירות תשתית ענן למחשוב, אחסון ואבטחה, ופועלת בארה״ב, קנדה, אל סלבדור ושווקים נוספים."
+  },
+  "ITGR": {
+   "desc": "חברה לפיתוח וייצור קבלני של מכשור רפואי.",
+   "about": "Integer Holdings מפתחת ומייצרת מכשור רפואי עבור חברות אחרות. המוצרים משמשים בקרדיולוגיה פולשנית, במחלות לב ובכלי דם, בנוירו-וסקולרי, באונקולוגיה, באורולוגיה ובגסטרואנטרולוגיה. החברה מייצרת גם מוצרים לניהול קצב הלב, כמו קוצבים, דפיברילטורים מושתלים ומוליכים. המפעלים פועלים בארה״ב, בקוסטה ריקה, בפוארטו ריקו ובאירלנד. ב-17.11.2026 הושלמה רכישתה בידי שותפות של KKR ב-$127 למניה."
+  },
+  "OLN": {
+   "desc": "יצרנית כימיקלים ותחמושת (Winchester).",
+   "about": "Olin מייצרת ומפיצה מוצרים כימיים בארה״ב, באירופה, באסיה ובשווקים נוספים. החברה פועלת בשלושה מגזרים: כלור-אלקלי וויניל, אפוקסי ו-Winchester. מגזר הכלור-אלקלי מוכר כלור, סודה קאוסטית ומונומרים לייצור PVC, ומגזר האפוקסי מספק שרפי אפוקסי וחומרי גלם כמו אצטון ופנול. Winchester מייצרת תחמושת לשוק האזרחי ולצבא. Olin נמצאת בתהליך מיזוג עם Huntsman, והחברה המאוחדת תיקרא OlinHuntsman."
+  },
+  "ENPH": {
+   "desc": "מפתחת מיקרו-ממירים ופתרונות אנרגיה לבית הסולארי.",
+   "about": "Enphase Energy מפתחת, מייצרת ומוכרת פתרונות אנרגיה ביתיים לתעשיית הסולאר, בארה״ב ובעולם. המוצר המרכזי הוא מיקרו-ממיר מבוסס שבב, שממיר את החשמל בכל פאנל בנפרד. החברה מוכרת גם סוללות לאגירה ביתית, מטעני רכב חשמלי ותוכנה לניהול ולניטור המערכת. המכירות נעשות בעיקר דרך מפיצים ומתקינים."
   }
  },
  "movers": {
