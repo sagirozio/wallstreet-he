@@ -578,7 +578,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 
 <section id="homeMovers" data-pg="home">
-  <div class="hh"><h2>מניות שזינקו היום<span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
+  <div class="hh"><h2><span id="hmvH">מניות שזינקו היום</span><span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
   <div class="hmv" id="hmvList"></div>
 </section>
 
@@ -953,6 +953,7 @@ function renderAgenda(){
 }
 function renderHomeMovers(){
   const m=FALLBACK.movers||{}, mv=[...(m.rows||[])], sec=$('homeMovers');
+  $('hmvH').textContent = m.pre ? 'מזנקות במסחר המקדים' : 'מניות שזינקו היום';
   sec.dataset.pg = mv.length?'home':'none'; if(!mv.length) sec.classList.remove('on');
   $('hmvList').innerHTML = mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}"><b>${esc(r.t)}</b><span class="${r.p>=0?'up':'down'}">${pct(r.p,1)}</span></a>`).join('');
 }
@@ -1423,7 +1424,7 @@ function renderMovers(){
   if(!N.length && !up.length && !dn.length){ $('mvWrap').classList.add('hidden'); return; }
   $('mvWrap').classList.remove('hidden');
   const news=N.map(n=>`<a class="nw" href="#news-all" title="${esc(n.body||'')}"><i class="${n.tone==='pos'?'up':n.tone==='neg'?'down':'flat'}">●</i>${esc(n.title)}</a>`).join('<span class="sep">·</span>');
-  const mv=(up.length||dn.length)?`<span class="mvlab">מניות בתנועה חריגה:</span>`+up.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="up">+${r.p.toFixed(1)}%</b></a>`).join('')+dn.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="down">${r.p.toFixed(1)}%</b></a>`).join(''):'';
+  const mv=(up.length||dn.length)?`<span class="mvlab">${m.pre?'זינוק במסחר המקדים:':'מניות בתנועה חריגה:'}</span>`+up.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="up">+${r.p.toFixed(1)}%</b></a>`).join('')+dn.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="down">${r.p.toFixed(1)}%</b></a>`).join(''):'';
   const one=news+(mv?'<span class="sep">|</span>'+mv:'')+'<span class="sep">|</span>';
   $('mvStrip').innerHTML=one+one;
   $('mvStrip').style.setProperty('--dur',Math.max(40,(N.length*9+(up.length+dn.length)*2))+'s');
