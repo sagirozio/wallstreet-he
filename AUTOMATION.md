@@ -99,7 +99,7 @@ Read the existing entries first and copy their exact shape.
 - **Source material:** `about_src.json` (filled daily by a GitHub workflow) has Yahoo's English business summary
   per ticker. Use it as research, together with what you search. **Never copy or translate it sentence by sentence** —
   write your own Hebrew text. `about_src.json` is not shown on the site; do not edit it.
-- Per run: write `about` (and `desc` if missing) for up to **60 stocks** that don't have `about` yet.
+- Per run: write `about` (and `desc` if missing) for up to **80 stocks** that don't have `about` yet.
 - Priority order:
   1. companies in new report cards;
   2. this week's `calendar`;
