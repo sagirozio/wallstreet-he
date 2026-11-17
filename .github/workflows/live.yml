@@ -8,7 +8,7 @@ on:
     - cron: "24 19 * * 1-5"
   workflow_dispatch:
     inputs:
-      once: { description: "One round only", default: "1" }
+      once: { description: "One round only (1) or the full loop (0)", default: "0" }
 permissions:
   contents: write
 concurrency: { group: live, cancel-in-progress: true }
