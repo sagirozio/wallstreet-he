@@ -1117,13 +1117,13 @@ async function renderStock(t){
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
-      ${d!=null?`<div class="spday"><b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>יום מסחר אחרון</small></div>`:''}</div>
+      ${d!=null?`<div class="spday"><b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${(()=>{ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?' · '+(+m[1])+'.'+(+m[2]):''; })()}</small></div>`:''}</div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}</div>
     </div>
     <div class="sptab on" data-st="ov">
+      <div class="sptoday" style="margin-top:0"><div class="sptl"><i class="livedot"></i>עכשיו <span>(בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div></div>
       <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">תעשייה: ${esc(s.indHe||s.ind)}</a>`:''}</div>
       ${prof.about?aboutBlock(t,s,prof):`<p class="spdesc">${desc}</p>${aboutFacts(t)}`}
-      <div class="sptoday"><div class="sptl"><i class="livedot"></i>עכשיו <span>(בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div></div>
       ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
       ${news.length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
