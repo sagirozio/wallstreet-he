@@ -1232,7 +1232,7 @@ function spDayHtml(t,s){
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
   try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/120000),{cache:'no-store'}); if(!r.ok) return;
-    LIVE=await r.json(); liveAgg();
+    LIVE=await r.json(); liveAgg(); try{ renderBriefSum(); }catch(e){}
     try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     renderHub();
@@ -1387,6 +1387,20 @@ async function loadFund(t){
 }
 
 
+/* "השוק ב-30 שניות" index line: live index levels in the session (live.json, every 5 min), pre-market SPY/QQQ before the open, else the last close */
+function renderBriefSum(){
+  const o=OVERVIEW||{}, sp=(k,d)=>`${k} <span class="num ${d>0?'up':d<0?'down':'flat'}">${pct(d,2)}</span>`;
+  const nyDay=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+  const L=LIVE&&LIVE.idx&&LIVE.date===nyDay&&(LIVE.state==='REGULAR'||LIVE.state==='POST'||LIVE.state==='POSTPOST'||LIVE.state==='CLOSED')?LIVE.idx:null;
+  let h='';
+  if(L){ const n={'^GSPC':'S&P 500','^IXIC':'נאסד״ק','^DJI':'דאו'};
+    h=Object.keys(n).filter(k=>L[k]).map(k=>sp(n[k],L[k][1])).join(' · ')+` <small class="flat">· ${LIVE.state==='REGULAR'?'לייב':'בסגירה'} ${esc((LIVE.asOf||'').split('·').pop().trim())}</small>`; }
+  else { const pm=FALLBACK.premarket||{}, il=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'});
+    if(pm.date===il&&(pm.rows||[]).length&&(pm.rows[0].kind==='pre'))
+      h=pm.rows.map(r=>sp(r.n.replace(' 100',''),r.c)).join(' · ')+` <small class="flat">· מסחר מקדים ${esc((pm.asOf||'').split('·').pop().trim())}</small>`;
+    else h=((o.market||{}).idx||[]).slice(0,3).map(x=>sp(esc(x.k).replace('דאו ג׳ונס','דאו'),x.d)).join(' · '); }
+  $('briefSum').innerHTML=h;
+}
 function renderPremarket(){
   const pm=FALLBACK.premarket||{}, rows=pm.rows||[];
   const il=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'})), day=il.getDay(), mins=il.getHours()*60+il.getMinutes();
@@ -1451,7 +1465,7 @@ async function loadIntra(){
     if(j.sectors){ SECTORS=j.sectors; renderSec(); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
       const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
-    if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); }
+    if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); try{ renderBriefSum(); }catch(e){} }
     if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); renderHub(); renderHomeMovers(); }
   }catch(e){}
 }
@@ -1534,8 +1548,7 @@ function renderOverview(){
   renderVix(); renderMarket();
   $('briefList').innerHTML = (o.brief||[]).map(b=>{ const x=briefItem(b);
     return `<li><i class="${x.tone==='pos'?'pos':x.tone==='neg'?'neg':''}"></i><div><b>${esc(x.h)}</b>${x.t?`<span>${esc(x.t)}</span>`:''}</div></li>`; }).join('');
-  const ix=((o.market||{}).idx||[]).slice(0,3);
-  $('briefSum').innerHTML = ix.map(x=>`${esc(x.k).replace('דאו ג׳ונס','דאו')} <span class="num ${x.d>0?'up':x.d<0?'down':'flat'}">${pct(x.d,2)}</span>`).join(' · ');
+  renderBriefSum();
   try{ renderAgenda(); }catch(e){}
   $('briefWa').href = waLink(briefText());
   renderFresh();

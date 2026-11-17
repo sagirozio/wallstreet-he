@@ -131,6 +131,13 @@ while True:
             sess = dt.datetime.fromtimestamp(last_ts, NY).strftime("%Y-%m-%d") if last_ts else dt.datetime.now(NY).strftime("%Y-%m-%d")
             payload = {"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or "", "q": q}
             if FH: payload["sec"] = sectors_now(); payload["secN"] = len(FH)
+            ix = {}
+            for sym in ("^GSPC", "^IXIC", "^DJI"):   # index levels for the "market in 30 seconds" line
+                try:
+                    fi = yf.Ticker(sym).fast_info; lp, pc = fi.last_price, fi.previous_close
+                    if lp and pc: ix[sym] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]
+                except Exception as e: print("index", sym, type(e).__name__, flush=True)
+            if ix: payload["idx"] = ix
             publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:
