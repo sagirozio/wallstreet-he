@@ -66476,191 +66476,23 @@
   }
  },
  "premarket": {
-  "state": "PREPRE",
-  "asOf": "17.11.2026 · 07:48",
+  "state": "PRE",
+  "asOf": "17.11.2026 · 11:00",
   "date": "2026-11-17",
-  "rows": []
- },
- "gainers": {
-  "asOf": "16.11.2026",
-  "period": "חודש",
   "rows": [
    {
-    "t": "SLN",
-    "n": "Silence Therapeutics Plc - Amer",
-    "p": 128.1,
-    "cap": 1.23,
-    "il": false
+    "t": "SPY",
+    "n": "S&P 500",
+    "p": 737.72,
+    "c": -0.3,
+    "kind": "pre"
    },
    {
-    "t": "REPL",
-    "n": "Replimune Group, Inc.",
-    "p": 97.1,
-    "cap": 2.03,
-    "il": false
-   },
-   {
-    "t": "SGRY",
-    "n": "Surgery Partners, Inc.",
-    "p": 83.4,
-    "cap": 3.51,
-    "il": false
-   },
-   {
-    "t": "GDYN",
-    "n": "Grid Dynamics Holdings, Inc.",
-    "p": 74.5,
-    "cap": 1.09,
-    "il": false
-   },
-   {
-    "t": "ULCC",
-    "n": "Frontier Group Holdings, Inc.",
-    "p": 68.6,
-    "cap": 1.83,
-    "il": false
-   },
-   {
-    "t": "LQDA",
-    "n": "Liquidia Corporation",
-    "p": 64.1,
-    "cap": 5.08,
-    "il": false
-   },
-   {
-    "t": "XERS",
-    "n": "Xeris Biopharma Holdings, Inc.",
-    "p": 62.0,
-    "cap": 3.05,
-    "il": false
-   },
-   {
-    "t": "AXGN",
-    "n": "AxoGen, Inc.",
-    "p": 60.0,
-    "cap": 3.31,
-    "il": false
-   },
-   {
-    "t": "BRZE",
-    "n": "Braze, Inc.",
-    "p": 58.7,
-    "cap": 5.29,
-    "il": false
-   },
-   {
-    "t": "VRDN",
-    "n": "Viridian Therapeutics, Inc.",
-    "p": 56.6,
-    "cap": 3.38,
-    "il": false
-   },
-   {
-    "t": "APP",
-    "n": "Applovin Corporation",
-    "p": 56.0,
-    "cap": 137.57,
-    "il": false
-   },
-   {
-    "t": "XNCR",
-    "n": "Xencor, Inc.",
-    "p": 54.9,
-    "cap": 2.66,
-    "il": false
-   },
-   {
-    "t": "TDOC",
-    "n": "Teladoc Health, Inc.",
-    "p": 53.4,
-    "cap": 1.59,
-    "il": false
-   },
-   {
-    "t": "UPBD",
-    "n": "Upbound Group, Inc.",
-    "p": 52.2,
-    "cap": 1.45,
-    "il": false
-   },
-   {
-    "t": "HAWK",
-    "n": "HawkEye 360, Inc.",
-    "p": 48.8,
-    "cap": 1.84,
-    "il": false
-   }
-  ],
-  "large": [
-   {
-    "t": "APP",
-    "n": "Applovin Corporation",
-    "p": 56.0,
-    "cap": 137.57,
-    "il": false
-   },
-   {
-    "t": "GKOS",
-    "n": "Glaukos Corporation",
-    "p": 48.6,
-    "cap": 14.5,
-    "il": false
-   },
-   {
-    "t": "GMAB",
-    "n": "Genmab A/S",
-    "p": 39.4,
-    "cap": 31.8,
-    "il": false
-   },
-   {
-    "t": "PCOR",
-    "n": "Procore Technologies, Inc.",
-    "p": 36.1,
-    "cap": 11.6,
-    "il": false
-   },
-   {
-    "t": "FROG",
-    "n": "JFrog Ltd.",
-    "p": 30.4,
-    "cap": 13.7,
-    "il": false
-   },
-   {
-    "t": "PNR",
-    "n": "Pentair plc.",
-    "p": 28.7,
-    "cap": 10.93,
-    "il": false
-   },
-   {
-    "t": "U",
-    "n": "Unity Software Inc.",
-    "p": 28.4,
-    "cap": 23.03,
-    "il": false
-   },
-   {
-    "t": "CLX",
-    "n": "Clorox Company (The)",
-    "p": 28.3,
-    "cap": 13.35,
-    "il": false
-   },
-   {
-    "t": "RKT",
-    "n": "Rocket Companies, Inc.",
-    "p": 27.6,
-    "cap": 39.02,
-    "il": false
-   },
-   {
-    "t": "INSM",
-    "n": "Insmed Incorporated",
-    "p": 27.6,
-    "cap": 26.96,
-    "il": false
+    "t": "QQQ",
+    "n": "נאסד״ק 100",
+    "p": 660.92,
+    "c": -0.13,
+    "kind": "pre"
    }
   ]
  }
