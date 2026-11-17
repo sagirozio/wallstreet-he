@@ -16,7 +16,13 @@ q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]),
                         EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 uni, off = {}, 0
 while True:
-    r = yf.screen(q, offset=off, size=250, sortField="intradaymarketcap", sortAsc=False)
+    for _try in range(4):
+        try:
+            r = yf.screen(q, offset=off, size=250, sortField="intradaymarketcap", sortAsc=False); break
+        except Exception as e:
+            print("screen retry", _try, type(e).__name__, flush=True); time.sleep(10 * (_try + 1))
+    else:
+        raise SystemExit("Yahoo screener unavailable — keeping previous themes data")
     qs = r.get("quotes", [])
     for x in qs:
         if x.get("quoteType") == "EQUITY" and x.get("marketCap") and x.get("exchange") in EXCH:

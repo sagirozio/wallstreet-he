@@ -45,10 +45,16 @@ row = {
     "up10": int((r21 >= 10).sum()), "dn10": int((r21 <= -10).sum()),
 }
 b = data.get("breadth", {"rows": []})
-rows = [r for r in b.get("rows", []) if r.get("d") != row["d"]]
-b["rows"] = [row] + rows[:9]
-b["asOf"] = f"סגירת {last.day}.{last.month}.{last.year}"
-data["breadth"] = b
+import re as _re, datetime as _dt
+_m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", b.get("asOf", ""))
+_prev = _dt.date(int(_m.group(3)), int(_m.group(2)), int(_m.group(1))) if _m else None
+if _prev and last.date() < _prev:
+    print("breadth: Yahoo returned older data than we already have — keeping existing", last.date(), _prev)
+else:
+    rows = [r for r in b.get("rows", []) if r.get("d") != row["d"]]
+    b["rows"] = [row] + rows[:9]
+    b["asOf"] = f"סגירת {last.day}.{last.month}.{last.year}"
+    data["breadth"] = b
 
 # ---- sectors: equal-weight average of S&P 500 members per GICS sector ----
 GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consumer Discretionary": "XLY",
