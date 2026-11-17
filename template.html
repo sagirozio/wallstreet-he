@@ -1243,14 +1243,14 @@ function spDayHtml(t,s){
 }
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
-  try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/120000),{cache:'no-store'}); if(!r.ok) return;
+  try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
     LIVE=await r.json(); liveAgg(); try{ renderBriefSum(); }catch(e){}
     try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     renderHub();
   }catch(e){}
 }
-setInterval(loadLive, 5*60*1000);
+setInterval(loadLive, 3*60*1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive(); });
 function tvSym(s){ return (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
@@ -1519,7 +1519,7 @@ async function loadIntra(){
     if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); renderHub(); renderHomeMovers(); }
   }catch(e){}
 }
-setInterval(refreshLive, 5*60*1000);
+setInterval(refreshLive, 3*60*1000);
 setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh data right after load
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshLive(); });
 

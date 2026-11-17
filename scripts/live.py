@@ -144,4 +144,4 @@ while True:
         print("round failed", type(e).__name__, e, flush=True)
     if ONCE:
         break
-    time.sleep(max(30, 300 - (time.time() - t0)))
+    time.sleep(max(30, 180 - (time.time() - t0)))
