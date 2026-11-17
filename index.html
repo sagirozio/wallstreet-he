@@ -92,7 +92,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .pmbox{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:0 0 12px}.pmbox .pml{font-weight:800}.pmbox .pmi .t{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}.pmbox .pmi .num{margin-inline-start:6px;font-weight:700}.pmbox .pmt{color:var(--muted);font-size:11.5px;margin-inline-start:auto}
 .spnews{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}.spn{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--text)}.spn:hover{border-color:var(--accent)}
 .spn .d{color:var(--muted);font-size:12px;margin-inline-end:8px}.spn b{font-size:14.5px}.spn small{display:block;color:var(--muted);font-size:13px;line-height:1.6;margin-top:4px}.spn .src{font-size:11.5px;color:var(--accent)}
-.sptlh{font-size:13px;color:var(--muted);margin:6px 0}.sptlh span{font-size:12px}.spnewstv{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -806,12 +806,7 @@ function renderStockNews(t,s){
   const mine=(FALLBACK.news||[]).filter(n=>{ const tk=n.t||n.tickers||[]; if(Array.isArray(tk)&&tk.includes(t)) return true;
     const hay=((n.tag||'')+' '+(n.title||'')).toLowerCase(); return (nm.length>2 && hay.includes(nm)) || new RegExp('\\b'+t.replace('.','\\.')+'\\b').test(n.title||''); }).slice(0,5);
   let h = mine.length ? `<div class="spnews">${mine.map(n=>`<a class="spn" href="${esc(n.url||'#news-all')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`).join('')}</div>` : '';
-  h += `<div class="sptlh">כותרות מהעולם <span>(באנגלית, מ-TradingView)</span></div><div id="spNewsTv" class="spnewstv"></div>`;
-  box.innerHTML=h;
-  const w=document.createElement('div'); w.className='tradingview-widget-container'; w.innerHTML='<div class="tradingview-widget-container__widget"></div>';
-  const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/external-embedding/embed-widget-timeline.js'; sc.async=true;
-  sc.textContent=JSON.stringify({feedMode:'symbol',symbol:(s.ex?s.ex+':':'')+s.t.replace('-','.'),isTransparent:true,displayMode:'regular',width:'100%',height:420,colorTheme:'dark',locale:'en'});
-  w.appendChild(sc); $('spNewsTv').appendChild(w);
+  box.innerHTML = h ? `<h3 class="sph3">חדשות אחרונות</h3>${h}` : '';
 }
 function renderStock(t){
   const ix=stockIndex(), s=ix[t], prof=((FALLBACK.profiles||{})[t])||{};
@@ -828,7 +823,7 @@ function renderStock(t){
     ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
     <div class="spchart" id="spChart"></div>
     <div id="spFund"></div>
-    <h3 class="sph3">חדשות אחרונות</h3><div id="spNews"></div>
+    <div id="spNews"></div>
     <h3 class="sph3">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
     ${peers.length?`<h3 class="sph3">חברות נוספות באותה קבוצה</h3><div class="spchips">${peers.map(p=>`<a href="#stock/${encodeURIComponent(p[0])}">${esc(p[0])} · ${esc(p[1])}</a>`).join('')}</div>`:''}`;
   renderStockNews(t,s);
