@@ -286,7 +286,7 @@
    "epsEst": 5.6,
    "epsYoy": 31,
    "epsBasis": "מתואם",
-   "revAct": 7.75,
+   "revAct": null,
    "revEst": null,
    "revYoy": 11.3,
    "guide": "none",
@@ -295,7 +295,8 @@
    "react": "המניה עלתה ב-8.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/HTHT",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CNY"
   },
   {
    "id": "ARMK-2026-11",
@@ -330,7 +331,7 @@
    "epsEst": 0.45,
    "epsYoy": 10,
    "epsBasis": "מתואם",
-   "revAct": 2302.708,
+   "revAct": null,
    "revEst": null,
    "revYoy": 24.5,
    "guide": "none",
@@ -339,7 +340,8 @@
    "react": "המניה עלתה ב-0.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/MUFG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "MFG-2026-11",
@@ -352,7 +354,7 @@
    "epsEst": 0.21,
    "epsYoy": 14,
    "epsBasis": "מתואם",
-   "revAct": 1251.758,
+   "revAct": null,
    "revEst": null,
    "revYoy": 21.4,
    "guide": "none",
@@ -361,7 +363,8 @@
    "react": "המניה עלתה ב-2.2% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/MFG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "CSCO-2026-11",
@@ -631,7 +634,7 @@
    "epsEst": 1.15,
    "epsYoy": 271,
    "epsBasis": "מתואם",
-   "revAct": 0.3697,
+   "revAct": null,
    "revEst": null,
    "revYoy": 73.0,
    "guide": "none",
@@ -640,7 +643,8 @@
    "react": "המניה עלתה ב-3.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ASND",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "SMFG-2026-11",
@@ -653,7 +657,7 @@
    "epsEst": 0.24,
    "epsYoy": -55,
    "epsBasis": "מתואם",
-   "revAct": 1662.758,
+   "revAct": null,
    "revEst": null,
    "revYoy": 10.1,
    "guide": "none",
@@ -662,7 +666,8 @@
    "react": "המניה עלתה ב-1.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SMFG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "NU-2026-11",
@@ -807,7 +812,7 @@
    "epsEst": 0.26,
    "epsYoy": 43,
    "epsBasis": "מתואם",
-   "revAct": 1.2047,
+   "revAct": null,
    "revEst": null,
    "revYoy": -2.6,
    "guide": "none",
@@ -816,7 +821,8 @@
    "react": "המניה עלתה ב-2.8% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/CAE",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "CRWV-2026-11",
@@ -1047,7 +1053,7 @@
    "epsEst": 0.41,
    "epsYoy": 26,
    "epsBasis": "מתואם",
-   "revAct": 0.9314,
+   "revAct": null,
    "revEst": null,
    "revYoy": 17.2,
    "guide": "none",
@@ -1056,7 +1062,8 @@
    "react": "המניה ירדה ב-7.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ONON",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CHF"
   },
   {
    "id": "BMNR-2026-11",
@@ -1368,7 +1375,7 @@
    "epsEst": 1.41,
    "epsYoy": 54,
    "epsBasis": "מתואם",
-   "revAct": 32.962,
+   "revAct": null,
    "revEst": null,
    "revYoy": 40.4,
    "guide": "none",
@@ -1377,7 +1384,8 @@
    "react": "המניה ירדה ב-0.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/PBR",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "PBR-A-2026-11",
@@ -1390,7 +1398,7 @@
    "epsEst": 1.41,
    "epsYoy": 54,
    "epsBasis": "מתואם",
-   "revAct": 32.962,
+   "revAct": null,
    "revEst": null,
    "revYoy": 40.4,
    "guide": "none",
@@ -1399,7 +1407,8 @@
    "react": "המניה ירדה ב-0.7% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/PBR-A",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "KKR-2026-11",
@@ -1786,7 +1795,7 @@
    "epsEst": 0.48,
    "epsYoy": -9,
    "epsBasis": "מתואם",
-   "revAct": 7.0694,
+   "revAct": null,
    "revEst": null,
    "revYoy": 5.3,
    "guide": "none",
@@ -1795,7 +1804,8 @@
    "react": "המניה עלתה ב-1.2% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/TIMB",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "LINE-2026-11",
@@ -2003,7 +2013,7 @@
    "epsEst": 0.49,
    "epsYoy": 7,
    "epsBasis": "מתואם",
-   "revAct": 21.077,
+   "revAct": null,
    "revEst": null,
    "revYoy": 44.0,
    "guide": "none",
@@ -2012,7 +2022,8 @@
    "react": "המניה ירדה ב-2.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ENB",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "BAM-2026-11",
@@ -2135,7 +2146,7 @@
    "epsEst": 0.63,
    "epsYoy": -3,
    "epsBasis": "מתואם",
-   "revAct": 1.984,
+   "revAct": null,
    "revEst": null,
    "revYoy": -5.8,
    "guide": "none",
@@ -2144,7 +2155,8 @@
    "react": "המניה ירדה ב-1.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/EMA",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "TU-2026-11",
@@ -2157,7 +2169,7 @@
    "epsEst": 0.12,
    "epsYoy": -35,
    "epsBasis": "מתואם",
-   "revAct": 5.02,
+   "revAct": null,
    "revEst": null,
    "revYoy": -0.9,
    "guide": "none",
@@ -2166,7 +2178,8 @@
    "react": "המניה ירדה ב-3.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/TU",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "ELAN-2026-11",
@@ -3330,7 +3343,7 @@
    "epsEst": 0.38,
    "epsYoy": 41,
    "epsBasis": "מתואם",
-   "revAct": 3429.446,
+   "revAct": null,
    "revEst": null,
    "revYoy": 10.3,
    "guide": "none",
@@ -3339,7 +3352,8 @@
    "react": "המניה עלתה ב-6.1% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SONY",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "PH-2026-11",
@@ -3462,7 +3476,7 @@
    "epsEst": 1.4,
    "epsYoy": 92,
    "epsBasis": "מתואם",
-   "revAct": 15.643,
+   "revAct": null,
    "revEst": null,
    "revYoy": 41.3,
    "guide": "none",
@@ -3471,7 +3485,8 @@
    "react": "המניה ירדה ב-0.8% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/CNQ",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "MNST-2026-11",
@@ -3616,7 +3631,7 @@
    "epsEst": 0.88,
    "epsYoy": 22,
    "epsBasis": "מתואם",
-   "revAct": 4.03,
+   "revAct": null,
    "revEst": null,
    "revYoy": 8.8,
    "guide": "none",
@@ -3625,7 +3640,8 @@
    "react": "המניה ירדה ב-0.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/TRP",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "CAH-2026-11",
@@ -4056,7 +4072,7 @@
    "epsEst": 0.68,
    "epsYoy": 64,
    "epsBasis": "מתואם",
-   "revAct": 2.179,
+   "revAct": null,
    "revEst": null,
    "revYoy": 21.7,
    "guide": "none",
@@ -4065,7 +4081,8 @@
    "react": "המניה עלתה ב-1.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/PBA",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "VRSK-2026-11",
@@ -5755,7 +5772,7 @@
    "epsEst": 1.18,
    "epsYoy": 22,
    "epsBasis": "מתואם",
-   "revAct": 11.957,
+   "revAct": null,
    "revEst": null,
    "revYoy": -30.9,
    "guide": "none",
@@ -5764,7 +5781,8 @@
    "react": "המניה ירדה ב-4.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/MFC",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "COR-2026-11",
@@ -5909,7 +5927,7 @@
    "epsEst": 1.09,
    "epsYoy": 131,
    "epsBasis": "מתואם",
-   "revAct": 15.984,
+   "revAct": null,
    "revEst": null,
    "revYoy": 21.1,
    "guide": "none",
@@ -5918,7 +5936,8 @@
    "react": "המניה ירדה ב-7.6% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/CVE",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "VMRK-2026-11",
@@ -5953,7 +5972,7 @@
    "epsEst": 2.01,
    "epsYoy": 10,
    "epsBasis": "מתואם",
-   "revAct": 3.643,
+   "revAct": null,
    "revEst": null,
    "revYoy": -70.6,
    "guide": "none",
@@ -5962,7 +5981,8 @@
    "react": "המניה ירדה ב-10.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SLF",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "COHR-2026-11",
@@ -6349,7 +6369,7 @@
    "epsEst": 0.7,
    "epsYoy": -6,
    "epsBasis": "מתואם",
-   "revAct": 6.182,
+   "revAct": null,
    "revEst": null,
    "revYoy": 2.2,
    "guide": "none",
@@ -6358,7 +6378,8 @@
    "react": "המניה עלתה ב-4.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BCE",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "BEP-2026-11",
@@ -6569,7 +6590,7 @@
    "epsEst": 0.07,
    "epsYoy": -14,
    "epsBasis": "מתואם",
-   "revAct": 10.1408,
+   "revAct": null,
    "revEst": null,
    "revYoy": 7.6,
    "guide": "none",
@@ -6578,7 +6599,8 @@
    "react": "המניה ירדה ב-1.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SBS",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "CRL-2026-11",
@@ -7790,7 +7812,7 @@
    "epsEst": 0.22,
    "epsYoy": 5,
    "epsBasis": "מתואם",
-   "revAct": 45.938,
+   "revAct": null,
    "revEst": null,
    "revYoy": 8.9,
    "guide": "none",
@@ -7799,7 +7821,8 @@
    "react": "המניה עלתה ב-3.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ITUB",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "SU-2026-11",
@@ -7812,7 +7835,7 @@
    "epsEst": 3.53,
    "epsYoy": 168,
    "epsBasis": "מתואם",
-   "revAct": 20.817,
+   "revAct": null,
    "revEst": null,
    "revYoy": 53.5,
    "guide": "none",
@@ -7821,7 +7844,8 @@
    "react": "המניה ירדה ב-4.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SU",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "APO-2026-11",
@@ -8120,7 +8144,7 @@
    "epsEst": 0.63,
    "epsYoy": 6,
    "epsBasis": "מתואם",
-   "revAct": 3.115,
+   "revAct": null,
    "revEst": null,
    "revYoy": 6.0,
    "guide": "none",
@@ -8129,7 +8153,8 @@
    "react": "המניה עלתה ב-0.7% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/FTS",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "ECHO-2026-11",
@@ -8230,7 +8255,7 @@
    "epsEst": 0.76,
    "epsYoy": 1567,
    "epsBasis": "מתואם",
-   "revAct": 1.2892,
+   "revAct": null,
    "revEst": null,
    "revYoy": -15.1,
    "guide": "none",
@@ -8239,7 +8264,8 @@
    "react": "המניה ירדה ב-0.7% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BNTX",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "TOST-2026-11",
@@ -8890,7 +8916,7 @@
    "epsEst": 31.02,
    "epsYoy": null,
    "epsBasis": "מתואם",
-   "revAct": 115.052,
+   "revAct": null,
    "revEst": null,
    "revYoy": 27.9,
    "guide": "none",
@@ -8899,7 +8925,8 @@
    "react": "המניה עלתה ב-8.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/PAYP",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "AAPL-2026-11",
@@ -9345,7 +9372,7 @@
    "epsEst": 3.55,
    "epsYoy": -7,
    "epsBasis": "מתואם",
-   "revAct": 5.6979,
+   "revAct": null,
    "revEst": null,
    "revYoy": 4.0,
    "guide": "none",
@@ -9354,7 +9381,8 @@
    "react": "המניה עלתה ב-2.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/RYAAY",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "PHG-2026-11",
@@ -9367,7 +9395,7 @@
    "epsEst": 0.36,
    "epsYoy": 10,
    "epsBasis": "מתואם",
-   "revAct": 4.393,
+   "revAct": null,
    "revEst": null,
    "revYoy": 2.1,
    "guide": "none",
@@ -9376,7 +9404,8 @@
    "react": "המניה עלתה ב-3.2% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/PHG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "ON-2026-11",
@@ -9697,7 +9726,7 @@
    "epsEst": 0.53,
    "epsYoy": 2,
    "epsBasis": "מתואם",
-   "revAct": 4.9367,
+   "revAct": null,
    "revEst": null,
    "revYoy": 1.1,
    "guide": "none",
@@ -9706,7 +9735,8 @@
    "react": "המניה ירדה ב-3.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/FMS",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "BMRN-2026-11",
@@ -10023,7 +10053,7 @@
    "epsEst": 1.51,
    "epsYoy": 17,
    "epsBasis": "מתואם",
-   "revAct": 15.233,
+   "revAct": null,
    "revEst": null,
    "revYoy": 15.7,
    "guide": "none",
@@ -10032,7 +10062,8 @@
    "react": "המניה עלתה ב-2.8% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SNY",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "BP-2026-10",
@@ -10111,7 +10142,7 @@
    "epsEst": 2.08,
    "epsYoy": 18,
    "epsBasis": "מתואם",
-   "revAct": 4.771,
+   "revAct": null,
    "revEst": null,
    "revYoy": 14.5,
    "guide": "none",
@@ -10120,7 +10151,8 @@
    "react": "המניה ירדה ב-0.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/CNI",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "NWG-2026-10",
@@ -10133,7 +10165,7 @@
    "epsEst": 0.51,
    "epsYoy": -4,
    "epsBasis": "מתואם",
-   "revAct": 4.64,
+   "revAct": null,
    "revEst": null,
    "revYoy": 7.1,
    "guide": "none",
@@ -10142,7 +10174,8 @@
    "react": "המניה ירדה ב-9.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/NWG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "GBP"
   },
   {
    "id": "D-2026-10",
@@ -10177,7 +10210,7 @@
    "epsEst": 4.89,
    "epsYoy": 135,
    "epsBasis": "מתואם",
-   "revAct": 16.179,
+   "revAct": null,
    "revEst": null,
    "revYoy": 39.3,
    "guide": "none",
@@ -10186,7 +10219,8 @@
    "react": "המניה עלתה ב-5.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/IMO",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "EXC-2026-10",
@@ -11459,7 +11493,7 @@
    "epsEst": 0.14,
    "epsYoy": 150,
    "epsBasis": "מתואם",
-   "revAct": 5.172,
+   "revAct": null,
    "revEst": null,
    "revYoy": 13.4,
    "guide": "none",
@@ -11468,7 +11502,8 @@
    "react": "המניה ירדה ב-4.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/LYG",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "GBP"
   },
   {
    "id": "DLR-2026-10",
@@ -11635,7 +11670,7 @@
    "epsEst": 0.42,
    "epsYoy": -55,
    "epsBasis": "מתואם",
-   "revAct": 10.599,
+   "revAct": null,
    "revEst": null,
    "revYoy": 1.7,
    "guide": "none",
@@ -11644,7 +11679,8 @@
    "react": "המניה עלתה ב-1.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/VALE",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "MSTR-2026-10",
@@ -11723,7 +11759,7 @@
    "epsEst": 0.05,
    "epsYoy": 25,
    "epsBasis": "מתואם",
-   "revAct": 21.5946,
+   "revAct": null,
    "revEst": null,
    "revYoy": 3.6,
    "guide": "none",
@@ -11732,7 +11768,8 @@
    "react": "המניה ירדה ב-4.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ABEV",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "STM-2026-10",
@@ -12119,7 +12156,7 @@
    "epsEst": 1.58,
    "epsYoy": 147,
    "epsBasis": "מתואם",
-   "revAct": 4.517,
+   "revAct": null,
    "revEst": null,
    "revYoy": 33.4,
    "guide": "none",
@@ -12128,7 +12165,8 @@
    "react": "המניה עלתה ב-1.1% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/TECK",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "CTSH-2026-10",
@@ -13465,28 +13503,6 @@
    "auto": true
   },
   {
-   "id": "GOOG-2026-10",
-   "t": "GOOG",
-   "co": "Alphabet Inc.",
-   "sector": "תקשורת",
-   "date": "2026-10-28",
-   "q": "Q3 2026",
-   "epsAct": 2.67,
-   "epsEst": 2.98,
-   "epsYoy": -7,
-   "epsBasis": "מתואם",
-   "revAct": 127.577,
-   "revEst": null,
-   "revYoy": 24.7,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "המניה ירדה ב-12.3% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/GOOG",
-   "hook": "",
-   "auto": true
-  },
-  {
    "id": "GEV-2026-10",
    "t": "GEV",
    "co": "GE Vernova Inc.",
@@ -13607,7 +13623,7 @@
    "epsEst": 0.62,
    "epsYoy": 18,
    "epsBasis": "מתואם",
-   "revAct": 10.914,
+   "revAct": null,
    "revEst": null,
    "revYoy": 19.9,
    "guide": "none",
@@ -13616,7 +13632,8 @@
    "react": "המניה ירדה ב-2.2% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BBVA",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "ADP-2026-10",
@@ -13739,7 +13756,7 @@
    "epsEst": 1.31,
    "epsYoy": 16,
    "epsBasis": "מתואם",
-   "revAct": 4.219,
+   "revAct": null,
    "revEst": null,
    "revYoy": 15.2,
    "guide": "none",
@@ -13748,7 +13765,8 @@
    "react": "המניה ירדה ב-1.2% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/CP",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "FDX-2026-10",
@@ -14003,7 +14021,7 @@
    "epsEst": 1.11,
    "epsYoy": 25,
    "epsBasis": "מתואם",
-   "revAct": 235.609,
+   "revAct": null,
    "revEst": null,
    "revYoy": 9.8,
    "guide": "none",
@@ -14012,7 +14030,8 @@
    "react": "המניה ירדה ב-0.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/FMX",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "MXN"
   },
   {
    "id": "GEHC-2026-10",
@@ -14179,7 +14198,7 @@
    "epsEst": 0.2,
    "epsYoy": 10,
    "epsBasis": "מתואם",
-   "revAct": 537.134,
+   "revAct": null,
    "revEst": null,
    "revYoy": 14.7,
    "guide": "none",
@@ -14188,7 +14207,8 @@
    "react": "המניה עלתה ב-0.1% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/NMR",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "JPY"
   },
   {
    "id": "FLEX-2026-10",
@@ -14377,7 +14397,7 @@
    "epsEst": 0.28,
    "epsYoy": 13,
    "epsBasis": "מתואם",
-   "revAct": 2.1553,
+   "revAct": null,
    "revEst": null,
    "revYoy": 27.2,
    "guide": "none",
@@ -14386,7 +14406,8 @@
    "react": "המניה עלתה ב-3.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/GFL",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "IP-2026-10",
@@ -14575,7 +14596,7 @@
    "epsEst": 1.82,
    "epsYoy": 481,
    "epsBasis": "מתואם",
-   "revAct": 6.557,
+   "revAct": null,
    "revEst": null,
    "revYoy": 41.2,
    "guide": "none",
@@ -14584,7 +14605,8 @@
    "react": "המניה ירדה ב-3.1% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/YPF",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "ARS"
   },
   {
    "id": "EHC-2026-10",
@@ -14773,7 +14795,7 @@
    "epsEst": -0.18,
    "epsYoy": null,
    "epsBasis": "מתואם",
-   "revAct": 37.611,
+   "revAct": null,
    "revEst": null,
    "revYoy": 1.1,
    "guide": "none",
@@ -14782,7 +14804,8 @@
    "react": "המניה עלתה ב-13.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/STLA",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "OGE-2026-10",
@@ -15143,7 +15166,7 @@
    "epsEst": 6.5,
    "epsYoy": null,
    "epsBasis": "מתואם",
-   "revAct": 79318.746,
+   "revAct": null,
    "revEst": null,
    "revYoy": 256.8,
    "guide": "none",
@@ -15152,7 +15175,8 @@
    "react": "המניה עלתה ב-13.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SKHY",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "KRW"
   },
   {
    "id": "NVS-2026-10",
@@ -15209,7 +15233,7 @@
    "epsEst": 0.29,
    "epsYoy": 8,
    "epsBasis": "מתואם",
-   "revAct": 15.519,
+   "revAct": null,
    "revEst": null,
    "revYoy": 8.3,
    "guide": "none",
@@ -15218,7 +15242,8 @@
    "react": "המניה ירדה ב-6.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SAN",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "SPGI-2026-10",
@@ -15297,7 +15322,7 @@
    "epsEst": 1.33,
    "epsYoy": -1,
    "epsBasis": "מתואם",
-   "revAct": 8.887,
+   "revAct": null,
    "revEst": null,
    "revYoy": 4.0,
    "guide": "none",
@@ -15306,7 +15331,8 @@
    "react": "המניה ירדה ב-4.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/GSK",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "GBP"
   },
   {
    "id": "WM-2026-10",
@@ -15561,7 +15587,7 @@
    "epsEst": 0.98,
    "epsYoy": null,
    "epsBasis": "מתואם",
-   "revAct": 8.336,
+   "revAct": null,
    "revEst": null,
    "revYoy": 3.6,
    "guide": "none",
@@ -15570,7 +15596,8 @@
    "react": "המניה עלתה ב-4.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/DB",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "HOOD-2026-10",
@@ -16859,7 +16886,7 @@
    "epsEst": 1.24,
    "epsYoy": -6,
    "epsBasis": "מתואם",
-   "revAct": 5.443,
+   "revAct": null,
    "revEst": null,
    "revYoy": 1.8,
    "guide": "none",
@@ -16868,7 +16895,8 @@
    "react": "המניה ירדה ב-2.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/RCI",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CAD"
   },
   {
    "id": "BAH-2026-10",
@@ -17162,7 +17190,7 @@
    "epsEst": 2.81,
    "epsYoy": -24,
    "epsBasis": "מתואם",
-   "revAct": 4.969,
+   "revAct": null,
    "revEst": null,
    "revYoy": 16.3,
    "guide": "none",
@@ -17171,7 +17199,8 @@
    "react": "המניה עלתה ב-11.1% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SPOT",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "NEM-2026-10",
@@ -17250,7 +17279,7 @@
    "epsEst": 0.67,
    "epsYoy": 18,
    "epsBasis": "מתואם",
-   "revAct": 7.365,
+   "revAct": null,
    "revEst": null,
    "revYoy": 2.8,
    "guide": "none",
@@ -17259,7 +17288,8 @@
    "react": "המניה ירדה ב-2.6% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BCS",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "GBP"
   },
   {
    "id": "NSC-2026-10",
@@ -17338,7 +17368,7 @@
    "epsEst": 0.07,
    "epsYoy": 43,
    "epsBasis": "מתואם",
-   "revAct": 5.154,
+   "revAct": null,
    "revEst": null,
    "revYoy": 9.7,
    "guide": "none",
@@ -17347,7 +17377,8 @@
    "react": "המניה ירדה ב-14.8% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/NOK",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "CBRE-2026-10",
@@ -18148,7 +18179,7 @@
    "epsEst": 0.13,
    "epsYoy": 18,
    "epsBasis": "מתואם",
-   "revAct": 32.1347,
+   "revAct": null,
    "revEst": null,
    "revYoy": 6.0,
    "guide": "none",
@@ -18157,7 +18188,8 @@
    "react": "המניה ירדה ב-2.5% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BBD",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "LVS-2026-10",
@@ -18584,7 +18616,7 @@
    "epsEst": 2.09,
    "epsYoy": 15,
    "epsBasis": "מתואם",
-   "revAct": 10.27,
+   "revAct": null,
    "revEst": null,
    "revYoy": 13.2,
    "guide": "none",
@@ -18593,7 +18625,8 @@
    "react": "המניה עלתה ב-1.6% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/SAP",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "RTX-2026-10",
@@ -19002,7 +19035,7 @@
    "epsEst": 0.48,
    "epsYoy": 15,
    "epsBasis": "מתואם",
-   "revAct": 250.634,
+   "revAct": null,
    "revEst": null,
    "revYoy": 7.6,
    "guide": "none",
@@ -19011,7 +19044,8 @@
    "react": "המניה עלתה ב-0.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/AMX",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "MXN"
   },
   {
    "id": "FITB-2026-10",
@@ -19244,7 +19278,7 @@
    "epsEst": 0.38,
    "epsYoy": 10,
    "epsBasis": "מתואם",
-   "revAct": 401.5317,
+   "revAct": null,
    "revEst": null,
    "revYoy": 16.0,
    "guide": "none",
@@ -19253,7 +19287,8 @@
    "react": "המניה ירדה ב-1.7% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/IBN",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "INR"
   },
   {
    "id": "TRV-2026-10",
@@ -19551,7 +19586,7 @@
    "epsEst": 0.14,
    "epsYoy": -44,
    "epsBasis": "מתואם",
-   "revAct": 59.478,
+   "revAct": null,
    "revEst": null,
    "revYoy": 5.8,
    "guide": "none",
@@ -19560,7 +19595,8 @@
    "react": "המניה עלתה ב-11.8% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ERIC",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "SEK"
   },
   {
    "id": "JBHT-2026-10",
@@ -19595,7 +19631,7 @@
    "epsEst": 0.04,
    "epsYoy": -25,
    "epsBasis": "מתואם",
-   "revAct": 244.786,
+   "revAct": null,
    "revEst": null,
    "revYoy": 10.6,
    "guide": "none",
@@ -19604,7 +19640,8 @@
    "react": "המניה עלתה ב-3.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/WIT",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "INR"
   },
   {
    "id": "AA-2026-10",
@@ -19681,7 +19718,7 @@
    "epsEst": 10.76,
    "epsYoy": 115,
    "epsBasis": "מתואם",
-   "revAct": 11.662,
+   "revAct": null,
    "revEst": null,
    "revYoy": 55.2,
    "guide": "none",
@@ -19690,7 +19727,8 @@
    "react": "המניה ירדה ב-3.9% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ASML",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "BLK-2026-10",
@@ -20462,7 +20500,7 @@
    "epsEst": 5.74,
    "epsYoy": 1,
    "epsBasis": "מתואם",
-   "revAct": 15.663,
+   "revAct": null,
    "revEst": null,
    "revYoy": 5.5,
    "guide": "none",
@@ -20471,7 +20509,8 @@
    "react": "המניה עלתה ב-3.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/TCOM",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CNY"
   },
   {
    "id": "KR-2026-09",
