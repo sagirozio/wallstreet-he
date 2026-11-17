@@ -86,6 +86,17 @@ for ind, mem in by.items():
 T["stocks"] = stocks
 EXN = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ", "NYQ": "NYSE", "ASE": "AMEX", "PCX": "AMEX", "BTS": "CBOE"}
 T["ex"] = {s: EXN.get(uni[s].get("exchange"), "") for s in close.columns}
+# next / latest earnings date per stock (Yahoo screener fields; epoch seconds)
+import datetime as _dt
+def _d(v):
+    try: return _dt.datetime.utcfromtimestamp(int(v)).strftime("%Y-%m-%d")
+    except Exception: return None
+ed = {}
+for s, x in uni.items():
+    nxt = _d(x.get("earningsTimestampStart") or x.get("earningsTimestamp"))
+    if nxt: ed[s] = {"d": nxt, "est": bool(x.get("isEarningsDateEstimate"))}
+data["earnDates"] = ed
+print("earnings dates", len(ed))
 T["indSector"] = {}
 for s in close.columns:
     ind, sec = cache[s][0], cache[s][1]

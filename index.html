@@ -84,6 +84,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
 .fcl{display:flex;gap:12px;justify-content:center;font-size:12px;color:var(--muted);margin-top:4px}.fcl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:5px}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+.secl{display:block;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}.spchips .echip{background:rgba(91,140,255,.14);border-color:rgba(91,140,255,.45);color:#cfe0ff;font-weight:600}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -769,10 +770,21 @@ const SEC_HE={"Technology":"טכנולוגיה","Healthcare":"בריאות","Fin
 let STOCKIX=null;
 function stockIndex(){
   if(STOCKIX) return STOCKIX; STOCKIX={};
-  const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
+  let T; try{ T=THEMES; }catch(e){ T=FALLBACK.themes; } T=T||{}; const he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
   Object.entries(T.stocks||{}).forEach(([ind,lst])=>lst.forEach(s=>{ STOCKIX[s[0]]={t:s[0],co:s[1],cap:s[2],r:typeof s[3]==='object'?s[3]:null,ind,indHe:he[ind]||'',sec:(T.indSector||{})[ind]||'',ex:(T.ex||{})[s[0]]||''}; }));
   (REPORTS||[]).forEach(r=>{ if(!STOCKIX[r.t]) STOCKIX[r.t]={t:r.t,co:r.co,cap:'',r:null,ind:'',indHe:'',sec:'',secHe:r.sector,ex:''}; });
   return STOCKIX;
+}
+function secLine(t){ const s=stockIndex()[t]; if(!s) return ''; const sh=SEC_HE[s.sec]||s.secHe||''; const ih=s.indHe||s.ind||''; return (sh||ih)?`<small class="secl">${esc(sh)}${sh&&ih?' · ':''}${esc(ih)}</small>`:''; }
+function earnChip(t,rep){
+  const E=(FALLBACK.earnDates||{})[t], fmt=d=>d.split('-').reverse().join('.'), today=new Date().toISOString().slice(0,10);
+  let cal=null; ((FALLBACK.calendar||{}).days||[]).forEach(day=>(day.items||[]).forEach(i=>{ if(i.t===t) cal={d:day.d,time:i.time}; }));
+  const out=[];
+  if(cal) out.push(`<span class="echip">📅 דוח השבוע: ${esc(cal.d)}${cal.time==='bmo'?' · לפני הפתיחה':cal.time==='amc'?' · אחרי הסגירה':''}</span>`);
+  else if(E&&E.d>=today) out.push(`<span class="echip">📅 דוח הבא: ${fmt(E.d)}${E.est?' (הערכה)':''}</span>`);
+  if(rep&&rep.date) out.push(`<span>דוח אחרון: ${esc(/^\d{4}-\d\d-\d\d$/.test(rep.date)?fmt(rep.date):rep.date)}</span>`);
+  else if(E&&E.d<today) out.push(`<span>דוח אחרון: ${fmt(E.d)}</span>`);
+  return out.join('');
 }
 function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent(t)}">${inner}</a>`; }
 function renderStock(t){
@@ -781,9 +793,9 @@ function renderStock(t){
   if(!s){ $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)} (באתר מוצגות רק חברות מעל מיליארד דולר).</div>`; return; }
   const rep=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
   const secHe=SEC_HE[s.sec]||s.secHe||'';
-  const peers=s.ind?((THEMES.stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
+  const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
   $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
-    <div class="spchips">${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
+    <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
     <p class="spdesc">${prof.desc?esc(prof.desc):(s.indHe||secHe)?`<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.`:'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
     <div class="sptoday"><div class="sptl">היום <span>(מתעדכן בזמן אמת, בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div>${s.r&&s.r.d!=null?`<div id="spTodayS" class="flat">שינוי אחרון במערכת: <b class="num ${s.r.d>=0?'up':'down'}" style="direction:ltr;display:inline-block">${pct(s.r.d,1)}</b></div>`:''}</div>
     ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
@@ -867,6 +879,7 @@ async function refreshLive(){
     if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
     if (d.movers) { FALLBACK.movers=d.movers; renderMovers(); }
     if (d.themes && d.themes.asOf && (!THEMES || JSON.stringify(d.themes.rows)!==JSON.stringify(THEMES.rows))) { FALLBACK.themes=d.themes; THEMES=d.themes; renderThemes(); }
+    if (d.earnDates) FALLBACK.earnDates=d.earnDates;
     if (d.ytd && JSON.stringify(d.ytd)!==JSON.stringify(FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
   } catch(e) {}
 }
@@ -903,7 +916,7 @@ const G = {
 function renderG(k){
   const g=G[k], max=Math.max(...g.rows.map(r=>r[2]));
   $('gtable').innerHTML=`<thead><tr>${g.head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
-    g.rows.map(r=>`<tr class="rowlink" data-t="${r[0]}"><td>${tl(r[0],'<span class="tick" style="margin:0">'+r[0]+'</span>')}</td><td>${tl(r[0],r[1])}</td>
+    g.rows.map(r=>`<tr class="rowlink" data-t="${r[0]}"><td>${tl(r[0],'<span class="tick" style="margin:0">'+r[0]+'</span>')}</td><td>${tl(r[0],r[1])}${secLine(r[0])}</td>
     <td><span class="pct num">+${r[2]}%</span><div class="gbar" style="width:${Math.round(r[2]/max*100)}%"></div></td><td class="num">${r[3]}</td></tr>`).join('')}</tbody>`;
   $('gwarn').classList.toggle('hidden',!g.warn);
 }
@@ -917,7 +930,7 @@ function capFmt(b){ return b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.rou
 function renderYtd(){
   const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM), max=Math.max(...allR.map(r=>r.p));
   $('ytable').innerHTML=`<thead><tr><th>מניה</th><th>שם · שווי שוק</th><th>מתחילת השנה</th></tr></thead><tbody>${
-    rows.map((r,i)=>`<tr class="rowlink" data-t="${esc(r.t)}"><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
+    rows.map((r,i)=>`<tr class="rowlink" data-t="${esc(r.t)}"><td>${tl(r.t,'<span class="tick" style="margin:0">'+esc(r.t)+'</span>')}</td><td>${tl(r.t,(r.il?'🇮🇱 ':'')+esc(r.n))}${secLine(r.t)}<br><small class="flat num" style="direction:ltr;display:inline-block">${capFmt(r.cap)}</small></td>
     <td><span class="pct num" style="direction:ltr;display:inline-block">+${r.p.toFixed(1)}%</span><div class="gbar" style="width:${Math.round(Math.sqrt(r.p/max)*100)}%"></div></td></tr>`).join('')}</tbody>`;
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
