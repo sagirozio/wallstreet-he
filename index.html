@@ -963,14 +963,17 @@ function earnChip(t,rep){
   else if(E&&E.d<today) out.push(`<span>דוח אחרון: ${fmt(E.d)}</span>`);
   return out.join('');
 }
-function aboutBlock(t,s,prof){
+function factsList(t){
   const F=(SDET[t]||{}).f||{}, fx=[];
   if(F.hq) fx.push(`<span>מטה: <bdi>${esc(F.hq)}</bdi></span>`);
   if(F.emp) fx.push(`<span>עובדים: <bdi class="num">${F.emp.toLocaleString('en-US')}</bdi></span>`);
   if(F.web) fx.push(`<a href="${esc(F.web)}" target="_blank" rel="noopener nofollow">אתר החברה: <bdi>${esc(F.web.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''))}</bdi></a>`);
-  const txt = prof.about || prof.desc;
-  if(!txt && !fx.length) return '<div class="empty">תיאור מורחב של החברה יתווסף בקרוב.</div>';
-  return `<div class="spabout">${txt?txt.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join(''):''}${fx.length?`<div class="spfacts">${fx.join('')}</div>`:''}</div>`;
+  return fx;
+}
+function aboutFacts(t){ const fx=factsList(t); return fx.length?`<div class="spfacts" style="margin:-6px 0 12px">${fx.join('')}</div>`:''; }
+function aboutBlock(t,s,prof){
+  const fx=factsList(t);
+  return `<div class="spabout"><h3 class="sph3">על החברה</h3>${prof.about.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join('')}${fx.length?`<div class="spfacts">${fx.join('')}</div>`:''}</div>`;
 }
 function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent(t)}">${inner}</a>`; }
 function stockNews(t,s){
@@ -993,7 +996,7 @@ async function renderStock(t){
   const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).sort((a,b)=>capNum(b[2])-capNum(a[2])).slice(0,8):[];
   const news=stockNews(t,s), d=s.r&&s.r.d!=null?s.r.d:null;
   SPT='ov';
-  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','דוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[]),['ab','על החברה']];
+  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','דוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
@@ -1002,7 +1005,7 @@ async function renderStock(t){
     </div>
     <div class="sptab on" data-st="ov">
       <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">תעשייה: ${esc(s.indHe||s.ind)}</a>`:''}</div>
-      <p class="spdesc">${desc}${prof.about?` <a href="#" data-goto="ab">עוד על החברה ←</a>`:''}</p>
+      ${prof.about?aboutBlock(t,s,prof):`<p class="spdesc">${desc}</p>${aboutFacts(t)}`}
       <div class="sptoday"><div class="sptl"><i class="livedot"></i>עכשיו <span>(בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div></div>
       ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
       ${news.length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
@@ -1014,8 +1017,7 @@ async function renderStock(t){
       ${reps.length>1?`<a class="ewmore allrep" href="#reports" data-rq="${esc(t)}">לכל ${reps.length} הדוחות של ${esc(t)} במאגר ←</a>`:''}
       <div id="spFund"></div>
     </div>
-    ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}
-    <div class="sptab" data-st="ab">${aboutBlock(t,s,prof)}</div>`;
+    ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}`;
   $('spBody').dataset.t=t; $('spBody').dataset.loaded='';
   tvWidget($('spTodayW'),'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
   setNavH();
