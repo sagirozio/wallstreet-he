@@ -675,13 +675,6 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="warn" id="gwarn">⚠️ חלק מהמניות כאן הן חברות בינוניות, ותנודתיות יותר מהענקיות. זינוק חד יכול להתהפך מהר.</div>
 </section>
 
-<section id="insiders" data-pg="stocks">
-  <h2>מנהלים קונים ומוכרים<button class="gq" data-gl="INSIDER" aria-label="הסבר">?</button></h2>
-  <p class="sub">עסקאות במניות החברה שביצעו מנהלים, דירקטורים ובעלי מניות גדולים, לפי הדיווחים הרשמיים לרשות ניירות הערך האמריקאית (טופס 4) ב-30 הימים האחרונים. קניות מעל $250 אלף, מכירות מעל מיליון דולר.</p>
-  <div class="tabs" id="instabs"><button class="on" data-i="P">קניות</button><button data-i="S">מכירות</button></div>
-  <div class="cardx" id="insList"></div>
-  <p class="legend">מקור: SEC EDGAR, מתעדכן כל בוקר. "תוכנית" = מכירה לפי תוכנית מסחר שנקבעה מראש (10b5-1), בדרך כלל פחות משמעותית. העסקאות לא מהוות המלצה.</p>
-</section>
 <section id="ytd" data-pg="stocks">
   <h2>מניות שהכפילו את עצמן ב-2026<span class="fresh" data-fr="ytd"></span></h2>
   <p class="sub">המניות שעלו ב-<bdi dir="ltr">100%</bdi> ומעלה מתחילת השנה, נכון ליום המסחר האחרון. רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-800 אלף מניות ביום.</p>
@@ -975,7 +968,7 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
 const SUBNAV={
   market:[['#macro','מאקרו וריבית'],['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק']],
   reports:[['#top-reports','הדוחות הבולטים'],['#upcoming','לוח השבוע'],['#ipos','הנפקות'],['#reports','מאגר הדוחות']],
-  stocks:[['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#insiders','מנהלים קונים ומוכרים']],
+  stocks:[['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026']],
   news:[['#newsArchive','מאגר החדשות'],['#glossary','מילון מונחים']]
 };
 const PG_TITLE={home:'',market:'שוק',reports:'דוחות',stocks:'מניות',news:'חדשות',archive:'מאגר דוחות'};
@@ -1004,7 +997,6 @@ function route(){
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='archive'&&hh==='#reports')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | וולסטריטר` : BASE_TITLE;
   if(pg==='archive'||pg==='reports') loadReports();
-  if(pg==='stocks') renderIns();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
