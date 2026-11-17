@@ -11,7 +11,7 @@ The nightly GitHub Action recomputes them from Yahoo Finance.
 ## Run plan — do it in this order (if time runs short, the later steps wait for the next run)
 
 **Already automated — don't spend time on these:** prices, sectors, industries, breadth, YTD doublers, monthly gainers,
-today's movers, pre-market, basic earnings cards (EPS/revenue vs estimate, YoY, reaction — Yahoo + Finnhub, every night),
+today's movers, pre-market, the weekly earnings calendar (Finnhub, every night), basic earnings cards (EPS/revenue vs estimate, YoY, reaction — Yahoo + Finnhub, every night),
 company facts. Raw English headlines per stock are waiting in `news_src.json`.
 
 Your job is the Hebrew writing and the judgement:
@@ -21,7 +21,7 @@ Your job is the Hebrew writing and the judgement:
 4. **Stock news items** from `news_src.json` — 20–40 different stocks.
 5. **Enrich `auto` report cards** — at least 15 per run, largest companies first (see §2 `reports`).
 6. **`profiles`** — `about` paragraphs for companies still missing one.
-7. Monday morning: the weekly `calendar`. IPOs when there is news.
+7. `calendar`: add a short Hebrew `n` for the notable names and the day's `econ` line (the list itself is automatic). IPOs when there is news.
 
 ## 0. Setup
 
@@ -113,7 +113,13 @@ Read the existing entries first and copy their exact shape.
 - **Do not duplicate:** if the id exists, update it instead.
 - **Cards with `"auto": true`** were created automatically from Yahoo (EPS actual/estimate, revenue, YoY, reaction) and lack `revEst`, `guide`/`guideText` and `note`. When time allows, enrich a few per run (largest companies first): add `revEst`, guidance, a Hebrew `note` and `hook`, fix numbers that your sources contradict, then delete the `auto` key.
 
-### `calendar` (Monday morning, or when clearly stale)
+### `calendar` (automatic — scripts/calendar_auto.py every night; you only add notes)
+
+- The list (largest reporters per day, estimates, before/after the bell, 🇮🇱) is built automatically. Don't rebuild it.
+- You add: `n` (one short Hebrew line) on notable items, `econ` per day, `at` (exact time) when known. These are kept on the next automatic run.
+- If you add an item by hand it is kept too.
+
+Reference (shape):
 
 - **`days`:** 5 entries, Mon–Fri. Each has `d` ("שני 16.11"), `econ` (macro note or ""), and `items`.
 - **Item shape:** `{t, co, time:"bmo"|"amc", star:false, eps?, rev?, at?, n?, il?}`.

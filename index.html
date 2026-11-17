@@ -1423,7 +1423,7 @@ async function refreshLive(){
     const r = await fetch('core.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return;
     const d = await r.json(), same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
     if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS=d.sectors; renderSec(); }
-    if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); loadBrL(); }
+    if (d.breadth) { FALLBACK.breadth=d.breadth; loadBrL(); }
     if (d.overview && (d.overview.rev||0) > ((OVERVIEW||{}).rev||0)) { OVERVIEW=d.overview; renderOverview(); }
     if (d.news && !same(d.news,FALLBACK.news)) { FALLBACK.news=d.news; sortNews(); renderNews(); }
     if (d.reports && !same(d.reports,FALLBACK.reports)) { const byId=new Map(REPORTS.map(x=>[x.id,x])); d.reports.forEach(x=>byId.set(x.id,x)); FALLBACK.reports=d.reports;
@@ -1436,8 +1436,24 @@ async function refreshLive(){
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
     if (d.gainers && !same(d.gainers,FALLBACK.gainers)) { FALLBACK.gainers=d.gainers; renderG(); }
     if (d.ytd && !same(d.ytd,FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
+    if (d.ts) FALLBACK.ts=d.ts;
+    await loadIntra();
     renderFresh();
   } catch(e) {}
+}
+/* intraday tables (sectors, breadth, movers, pre-market) live on the `intra` branch, refreshed every 10 min in the session;
+   used while they are newer than core.json (the nightly update) */
+const INTRA_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/intra/intra.json';
+let INTRA_L=null;
+async function loadIntra(){
+  try{ const r=await fetch(INTRA_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
+    const j=await r.json(); if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
+    if(j.sectors){ SECTORS=j.sectors; renderSec(); }
+    if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
+      const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
+    if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); }
+    if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); renderHub(); renderHomeMovers(); }
+  }catch(e){}
 }
 setInterval(refreshLive, 5*60*1000);
 setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh data right after load
@@ -1613,12 +1629,13 @@ function renderTL(){ if(!document.getElementById('tomlee')) return;
 /* ---------- init + live database ---------- */
 // ===== Breadth =====
 let BREADTH = FALLBACK.breadth;
-let brL=null, brOpen=new Set(), brMore=new Set(), brLoading=false;
+let brL=null, brOpen=new Set(), brMore=new Set(), brLoading=false, brTouched=false;
 async function loadBrL(force){ if(brLoading) return; brLoading=true;
-  try{ const d=await (await fetch('breadth.json?v='+Date.now())).json(); brL={}; (d.rows||[]).forEach(r=>brL[r.d]=r.L);
-    if(!brOpen.size&&d.rows&&d.rows[0]) brOpen.add(d.rows[0].d); renderBreadth(); }catch(e){ brL=brL||{}; } brLoading=false; }
+  try{ const d=await (await fetch('breadth.json?v='+Math.floor(Date.now()/60000))).json(); brL={}; (d.rows||[]).forEach(r=>brL[r.d]=r.L);
+    if(INTRA_L) Object.assign(brL,INTRA_L);
+    const r0=((FALLBACK.breadth||{}).rows||[])[0]; if(!brOpen.size&&r0) brOpen.add(r0.d); renderBreadth(); }catch(e){ brL=brL||{}; } brLoading=false; }
 document.addEventListener('click',e=>{ const m=e.target.closest('#brTable .bmo'); if(m){ brMore.add(m.dataset.k); renderBreadth(); return; }
-  const r=e.target.closest('#brTable .rw2.has'); if(r){ const d=r.dataset.d; brOpen.has(d)?brOpen.delete(d):brOpen.add(d); renderBreadth(); } });
+  const r=e.target.closest('#brTable .rw2.has'); if(r){ brTouched=true; const d=r.dataset.d; brOpen.has(d)?brOpen.delete(d):brOpen.add(d); renderBreadth(); } });
 const BRCOLS = [
  {k:'up',h:'עלו<br>היום',ty:'up'},{k:'dn',h:'ירדו<br>היום',ty:'dn'},
  {k:'ma50',h:'מעל ממוצע<br>50 יום (S5FI)',ty:'pct'},{k:'ma200',h:'מעל ממוצע<br>200 יום (S5TH)',ty:'pct'},

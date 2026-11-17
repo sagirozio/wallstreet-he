@@ -54,6 +54,7 @@ def _lst(mask, r, rev=False):
 row["L"] = {"hi": _lst(high.iloc[-1] >= hi52, r1), "lo": _lst(low.iloc[-1] <= lo52, r1, True),
             "u": _lst(r21 >= 10, r21), "n": _lst(r21 <= -10, r21, True)}
 # 52-week high/low reference (last 251 sessions incl. today, from intraday highs/lows) for tomorrow's intraday breadth
+data["ts"] = int(__import__("time").time())   # newer than intra.json -> the site uses core.json
 data["hl52"] = {"d": last.strftime("%Y-%m-%d"),
                 "hi": {t: round(float(v), 4) for t, v in raw_high.reindex(close.index)[good].iloc[-251:].max().dropna().items()},
                 "lo": {t: round(float(v), 4) for t, v in raw_low.reindex(close.index)[good].iloc[-251:].min().dropna().items()}}

@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  issues: write
 concurrency: { group: intraday-loop, cancel-in-progress: true }
 jobs:
   loop:
@@ -20,4 +21,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas
-      - run: python scripts/loop.py
+      - env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: python scripts/loop.py

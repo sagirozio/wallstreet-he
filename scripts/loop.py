@@ -3,7 +3,9 @@
 One GitHub Actions job runs this for up to ~5h50m and repeats every 10 minutes:
   pre-market (04:00–09:30 New York): premarket.py (SPY/QQQ pre-market quotes)
   session    (09:30–16:15 New York): update.py (sectors, breadth, movers) + premarket.py (after-hours box)
-Each round commits through scripts/commit.sh (rebuilds the site files, safe against parallel pushes).
+Each round starts from the latest data.json on main and publishes the result to the `intra` branch (intra_publish.py):
+no commits on main during the day (the nightly update commits the official tables). After each session round,
+health.py live checks that live.json / intra.json are fresh and opens a GitHub issue if they get stuck.
 loop.yml starts it three times a day; each new start cancels the previous run, so the day is covered even if one start is late.
 """
 import subprocess, time, datetime as dt
@@ -27,6 +29,7 @@ while True:
         time.sleep(60)
         continue
     t0 = time.time()
+    sh("git fetch -q origin main && git checkout -q origin/main -- data.json")
     if m < 9 * 60 + 30:
         sh("timeout 300 python scripts/premarket.py")
         msg = "Pre-market update"
@@ -34,5 +37,7 @@ while True:
         sh("timeout 480 python scripts/update_live.py")
         sh("timeout 300 python scripts/premarket.py || true")
         msg = "Intraday update"
-    sh(f'bash scripts/commit.sh "{msg}" data.json')
+    print(msg, flush=True)
+    sh("timeout 120 python scripts/intra_publish.py")
+    if m >= 9 * 60 + 45: sh("timeout 120 python scripts/health.py live || true")
     time.sleep(max(30, EVERY - (time.time() - t0)))
