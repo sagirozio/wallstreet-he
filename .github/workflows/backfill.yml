@@ -1,0 +1,18 @@
+name: (manual) Rebuild breadth history
+on:
+  workflow_dispatch:
+    inputs:
+      days: { description: "Trading days", default: "20" }
+permissions:
+  contents: write
+concurrency: { group: data-update, cancel-in-progress: false }
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q yfinance pandas
+      - run: python scripts/breadth_backfill.py ${{ github.event.inputs.days }}
+      - run: bash scripts/commit.sh "Breadth history rebuilt" data.json

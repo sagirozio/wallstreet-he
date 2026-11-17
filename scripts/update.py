@@ -53,7 +53,7 @@ if STALE:
     print("breadth: Yahoo returned older data than we already have — keeping existing", last.date(), _prev)
 else:
     rows = [r for r in b.get("rows", []) if r.get("d") != row["d"]]
-    b["rows"] = [row] + rows[:9]
+    b["rows"] = [row] + rows[:19]
     b["asOf"] = f"סגירת {last.day}.{last.month}.{last.year}"
     data["breadth"] = b
 
