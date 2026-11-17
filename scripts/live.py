@@ -28,7 +28,7 @@ except Exception as e:
 Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 
 def round_once():
-    out, state = {}, None
+    out, state, last_ts = {}, None, 0
     for off in range(0, 4000, 250):
         r = None
         for k in range(3):
@@ -46,9 +46,10 @@ def round_once():
                 continue
             out[t] = [round(float(p), 2), round(float(c), 2)]
             state = state or q.get("marketState")
+            last_ts = max(last_ts, int(q.get("regularMarketTime") or 0))
         if len(quotes) < 250:
             break
-    return out, state
+    return out, state, last_ts
 
 def publish(payload):
     with tempfile.TemporaryDirectory() as d:
@@ -71,10 +72,12 @@ while True:
             time.sleep(60); continue
     t0 = time.time()
     try:
-        q, state = round_once()
+        q, state, last_ts = round_once()
         now = dt.datetime.now(IL)
         if q:
-            publish({"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": dt.datetime.now(NY).strftime("%Y-%m-%d"), "state": state or "", "q": q})
+            # "date" = the trading session the prices belong to (not today's date before the open)
+            sess = dt.datetime.fromtimestamp(last_ts, NY).strftime("%Y-%m-%d") if last_ts else dt.datetime.now(NY).strftime("%Y-%m-%d")
+            publish({"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or "", "q": q})
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:
         print("round failed", type(e).__name__, e, flush=True)
