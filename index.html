@@ -949,7 +949,7 @@ function renderMktStatus(){
   let cls='closed', txt;
   if(wk&&m>=570&&m<960){ cls='open'; txt=`<b>הבורסה פתוחה</b> · נסגרת ב-${ilTime(16,0)} שעון ישראל`; }
   else if(wk&&m>=240&&m<570){ cls='pre'; txt=`<b>מסחר מקדים</b> · הבורסה נפתחת היום ב-${ilTime(9,30)} שעון ישראל`; }
-  else if(wk&&m>=960&&m<1200){ cls='post'; txt=`<b>מסחר מאוחר</b> · הבורסה נסגרה, המסחר המאוחר עד ${ilTime(20,0)}`; }
+  else if(wk&&m>=960&&m<1200){ cls='post'; txt=`<b>מסחר מאוחר</b> · המסחר ממשיך עד ${ilTime(20,0)}`; }
   else {
     const nd=new Date(ny); nd.setHours(0,0,0,0); if(!(wk&&m<240)) nd.setDate(nd.getDate()+1);
     while(nd.getDay()===0||nd.getDay()===6) nd.setDate(nd.getDate()+1);
