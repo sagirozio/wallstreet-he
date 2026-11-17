@@ -424,6 +424,30 @@ h2 .gq{width:22px;height:22px}
 .brc .sc{direction:rtl;display:flex;justify-content:space-between;gap:6px;color:var(--muted);font-size:11.5px}
 .brh .rw2{grid-template-columns:70px minmax(0,1fr) 80px 80px}.brh .rw2 .n.l{text-align:right;direction:rtl}
 @media(max-width:640px){.brc .bv{font-size:22px}.brh .rw2{grid-template-columns:52px minmax(0,1fr) 62px 62px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#market{padding-top:16px}
+.mstat{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 10px}.mstat i{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.mstat.open i{background:var(--green)}.mstat.pre i,.mstat.post i{background:var(--amber)}.mstat b{color:var(--text);font-weight:700}
+.tvq{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:760px){.tvq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tvattr{direction:ltr;text-align:left;font-size:11.5px;color:var(--muted);margin:-6px 0 0}.tvattr a{color:var(--accent);text-decoration:none}
+.hh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}.hh h2{margin:0}.hh>a{color:var(--accent);text-decoration:none;font-size:13.5px;white-space:nowrap}
+.cardx{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.bmore{background:none;border:0;color:var(--accent);font:inherit;font-size:14px;cursor:pointer;padding:2px 0 0}
+.agenda{padding:12px 14px}.agenda .agt{font-size:13px;color:var(--muted);margin:2px 0 8px}.agenda .agt:not(:first-child){margin-top:12px}
+.achips{display:flex;flex-wrap:wrap;gap:6px}.ach{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:5px 10px;font:700 13px "JetBrains Mono",monospace;color:var(--text);text-decoration:none;direction:ltr}
+.ach:hover{border-color:var(--accent)}.ach.hl{border-color:rgba(91,140,255,.7);color:#cfe0ff}
+.agm{display:flex;gap:8px;align-items:center;font-size:14px;margin-top:4px}.agm b{font-weight:600}
+.rrow,.nrow{display:grid;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none}
+.rrow:last-child,.nrow:last-child{border-bottom:0}.rrow:hover,.nrow:hover{background:rgba(255,255,255,.025)}
+.rrow{grid-template-columns:36px minmax(0,1fr) auto}.rrow .mono{width:36px;height:36px;font-size:10.5px}
+.rrow b{display:block;font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rrow small{color:var(--muted);font-size:12.5px}
+.rres{font-size:13.5px;font-weight:700}.rres.amb{color:var(--amber)}
+.nrow{grid-template-columns:9px minmax(0,1fr);align-items:start}.nrow i{width:9px;height:9px;border-radius:50%;margin-top:8px;background:var(--muted)}.nrow i.pos{background:var(--green)}.nrow i.neg{background:var(--red)}
+.nrow b{display:block;font-size:15px;font-weight:700;line-height:1.5}.nrow small{color:var(--muted);font-size:12.5px}
+.hmv{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.hmv::-webkit-scrollbar{display:none}
+.hmv a{flex:none;display:flex;align-items:baseline;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--text)}
+.hmv a b{font:700 14px "JetBrains Mono",monospace}.hmv a span{font:700 14px "JetBrains Mono",monospace;direction:ltr}
+#brief,#todayAgenda,#today-reports,#homeMovers,#news{padding-top:22px}
 </style>
 </head>
 <body>
@@ -452,20 +476,26 @@ h2 .gq{width:22px;height:22px}
 
 <main class="wrap">
 
+
+<section id="market" data-pg="home">
+  <h2 class="sr-only">מצב השוק</h2>
+  <div class="mstat" id="mktStatus"></div>
+  <p class="sub hidden" id="marketNote"></p>
+    <div class="pmbox hidden" id="pmBox"></div>
+    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>עכשיו בשוק <span>· תעודות הסל של המדדים, בעיכוב של עד 15 דקות</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
+  <div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
+  <div class="hidden" id="vixCard"></div>
+</section>
+
 <section id="brief" data-pg="home"><div class="brief">
   <h2>השוק ב-30 שניות<span class="fresh live" data-fr="brief"></span></h2>
-  <ul id="briefList"></ul>
+  <ul id="briefList"></ul><button class="bmore hidden" id="briefMore"></button>
   <div class="actions"><a class="wa" id="briefWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.5 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>שתף בוואטסאפ</a></div></div>
 </section>
 
-<section id="market" data-pg="home">
-  <h2>מצב השוק</h2>
-  <p class="sub" id="marketNote"></p>
-    <div class="pmbox hidden" id="pmBox"></div>
-    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>עכשיו בשוק <span>(תעודות הסל של המדדים, VIX וביטקוין. מניות בעיכוב של עד 15 דקות)</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
-  <div class="idx" style="grid-template-columns:minmax(0,420px)">
-    <div class="card" id="vixCard"></div>
-  </div>
+<section id="todayAgenda" data-pg="home">
+  <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
+  <div class="cardx agenda" id="agBody"></div>
 </section>
 
 <section id="macro" data-pg="market">
@@ -487,10 +517,14 @@ h2 .gq{width:22px;height:22px}
 <!-- tomlee removed -->
 
 <section id="today-reports" data-pg="home">
-  <h2 id="todayH">הדוחות של היום</h2>
-  <p class="sub" id="todaySub"></p>
-  <div class="earn" id="todayGrid"></div>
-  <a class="ewmore toall" id="todayMore" href="#reports">למאגר הדוחות ←</a>
+  <div class="hh"><h2 id="todayH">הדוחות של היום</h2><a id="todayMore" href="#reports">למאגר הדוחות ←</a></div>
+  <p class="sub hidden" id="todaySub"></p>
+  <div class="cardx" id="todayGrid"></div>
+</section>
+
+<section id="homeMovers" data-pg="home">
+  <div class="hh"><h2>מניות בתנועה חריגה<span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
+  <div class="hmv" id="hmvList"></div>
 </section>
 
 <section id="top-reports" data-pg="reports">
@@ -596,10 +630,8 @@ h2 .gq{width:22px;height:22px}
 </section>
 
 <section id="news" data-pg="home">
-  <h2>חדשות<span class="fresh" data-fr="news"></span></h2>
-  <p class="sub">מה הזיז את השוק לאחרונה.</p>
-  <div class="news" id="newsLatest"></div>
-  <a class="ewmore toall" href="#page/news">למאגר החדשות המלא (<span id="newsN"></span>) ←</a>
+  <div class="hh"><h2>חדשות<span class="fresh" data-fr="news"></span></h2><a href="#page/news">לכל <span id="newsN"></span> הידיעות ←</a></div>
+  <div class="cardx" id="newsLatest"></div>
 </section>
 
 <section id="newsArchive" data-pg="news">
@@ -793,12 +825,56 @@ function renderToday(){
   const iso=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'});
   let done=REPORTS.filter(r=>r.date===iso), isToday=true;
   if(!done.length){ const last=REPORTS.map(r=>r.date).sort().pop(); done=REPORTS.filter(r=>r.date===last); isToday=false; }
-  const dt=done[0]?done[0].date.split('-'):null, lbl=dt?`${+dt[2]}.${+dt[1]}`:'', LIM=4;
+  const dt=done[0]?done[0].date.split('-'):null, lbl=dt?`${+dt[2]}.${+dt[1]}`:'', LIM=5;
   $('todayH').textContent = isToday?`הדוחות של היום · ${lbl}`:`הדוחות האחרונים · ${lbl}`;
-  $('todaySub').textContent = isToday?`${done.length===1?'דוח אחד פורסם':done.length+' דוחות פורסמו'} עד עכשיו. דוחות נוספים יופיעו כאן במהלך היום.`:'עוד לא פורסמו דוחות היום, אז מוצגים הדוחות מיום המסחר האחרון.';
-  $('todayGrid').innerHTML = done.slice(0,LIM).map(card).join('');
-  $('todayMore').textContent = done.length>LIM ? `לכל ${done.length} הדוחות של ${isToday?'היום':lbl} ←` : 'למאגר הדוחות ←';
+  const RES={beat:['עקפה','up'],miss:['החטיאה','down'],mix:['מעורב','amb']};
+  $('todayGrid').innerHTML = done.slice(0,LIM).map(r=>{ const [l,c]=RES[resultOf(r)]||['','flat'];
+    return `<a class="rrow" href="#stock/${encodeURIComponent(r.t)}">${mono(r.t)}<span style="min-width:0"><b><bdi>${esc(r.co)}</bdi></b><small>רווח <span class="num">${eps(r.epsAct)}</span> · צפי <span class="num">${eps(r.epsEst)}</span></small></span><span class="rres ${c}">${l}</span></a>`; }).join('') || '<div class="empty">אין עדיין דוחות.</div>';
+  $('todayMore').textContent = done.length>LIM ? `לכל ${done.length} הדוחות ←` : 'למאגר הדוחות ←';
 }
+
+/* ---------- home: market status, agenda, movers ---------- */
+function nyNow(){ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+function ilOff(){ return Math.round((ilNow()-nyNow())/36e5); }
+function ilTime(h,mi){ const x=((h+ilOff())*60+mi+2880)%1440; return String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0'); }
+const DAYS_HE=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+function renderMktStatus(){
+  const ny=nyNow(), dow=ny.getDay(), m=ny.getHours()*60+ny.getMinutes(), wk=dow>=1&&dow<=5;
+  let cls='closed', txt;
+  if(wk&&m>=570&&m<960){ cls='open'; txt=`<b>הבורסה פתוחה</b> · נסגרת ב-${ilTime(16,0)} שעון ישראל`; }
+  else if(wk&&m>=240&&m<570){ cls='pre'; txt=`<b>מסחר מקדים</b> · הבורסה נפתחת היום ב-${ilTime(9,30)} שעון ישראל`; }
+  else if(wk&&m>=960&&m<1200){ cls='post'; txt=`<b>מסחר מאוחר</b> · הבורסה נסגרה, המסחר המאוחר עד ${ilTime(20,0)}`; }
+  else {
+    const nd=new Date(ny); nd.setHours(0,0,0,0); if(!(wk&&m<240)) nd.setDate(nd.getDate()+1);
+    while(nd.getDay()===0||nd.getDay()===6) nd.setDate(nd.getDate()+1);
+    const il=ilNow(); il.setHours(0,0,0,0); const diff=Math.round((nd-il)/864e5);
+    txt=`<b>הבורסה סגורה</b> · נפתחת ${diff===0?'היום':diff===1?'מחר':'ביום '+DAYS_HE[nd.getDay()]} ב-${ilTime(9,30)}${diff===0?`, מסחר מקדים מ-${ilTime(4,0)}`:''}`;
+  }
+  $('mktStatus').className='mstat '+cls; $('mktStatus').innerHTML=`<i></i><span>${txt}</span>`;
+}
+function renderAgenda(){
+  const c=CAL||{days:[]}, il=ilNow(), key=(d,m)=>m*100+d, tk=key(il.getDate(),il.getMonth()+1);
+  const parse=x=>{ const m=String(x||'').match(/(\d{1,2})\.(\d{1,2})/); return m?[+m[1],+m[2]]:null; };
+  const day=(c.days||[]).find(x=>{ const p=parse(x.d); return p&&key(p[0],p[1])>=tk; });
+  const sec=$('todayAgenda');
+  if(!day){ sec.dataset.pg='none'; sec.classList.remove('on'); return; } else sec.dataset.pg='home';
+  const p=parse(day.d), isToday=key(p[0],p[1])===tk, its=day.items||[], ix=stockIndex();
+  $('agH').innerHTML = `${isToday?'היום בוול סטריט':'הבא בוול סטריט'}<span class="fresh">${esc(day.d)}</span>`;
+  const chip=i=>`<a class="ach${capNum((ix[i.t]||{}).cap)>=1e11||i.star?' hl':''}" href="#stock/${encodeURIComponent(i.t)}" title="${esc(i.co||'')}">${i.il?'🇮🇱 ':''}${esc(i.t)}</a>`;
+  const grp=(k,lbl)=>{ const g=its.filter(i=>(i.time||'')===k); return g.length?`<div class="agt">${lbl}</div><div class="achips">${g.map(chip).join('')}</div>`:''; };
+  const other=its.filter(i=>i.time!=='bmo'&&i.time!=='amc');
+  const mac=((OVERVIEW||{}).macro||{}).calendar||[], ev=mac.filter(e=>{ const q=parse(e.d); return q&&q[0]===p[0]&&q[1]===p[1]; });
+  $('agBody').innerHTML = grp('bmo',`דוחות לפני הפתיחה (${ilTime(9,30)})`)+grp('amc',`דוחות אחרי הסגירה (${ilTime(16,0)})`)+
+    (other.length?`<div class="agt">דוחות, שעה תפורסם</div><div class="achips">${other.map(chip).join('')}</div>`:'')+
+    (ev.length?`<div class="agt">אירועי מאקרו</div>${ev.map(e=>`<div class="agm"><b>${esc(e.e)}</b>${macroGl(e.e)?gq(macroGl(e.e)):''}</div>`).join('')}`:'')
+    || '<div class="empty">אין דוחות או אירועים מתוכננים.</div>';
+}
+function renderHomeMovers(){
+  const m=FALLBACK.movers||{}, mv=[...(m.rows||[]),...(m.down||[])], sec=$('homeMovers');
+  sec.dataset.pg = mv.length?'home':'none'; if(!mv.length) sec.classList.remove('on');
+  $('hmvList').innerHTML = mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}"><b>${esc(r.t)}</b><span class="${r.p>=0?'up':'down'}">${pct(r.p,1)}</span></a>`).join('');
+}
+setInterval(()=>{ try{ renderMktStatus(); }catch(e){} }, 60000);
 
 function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $('repN').textContent=REPORTS.length; renderToday(); }
 
@@ -853,7 +929,7 @@ sortNews();
 function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
   return `<article class="card"><div class="bar ${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></div><div><div class="tag">${esc(n.tag)} · ${+dd}.${+m}</div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p>${n.url?`<div class="src">מקור: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.src||'לכתבה')}</a></div>`:''}</div></article>`; }
 function renderNews(){
-  $('newsLatest').innerHTML = NEWS.filter(n=>n.k!=='stock').slice(0,5).map(newsCard).join('');
+  $('newsLatest').innerHTML = NEWS.filter(n=>n.k!=='stock').slice(0,5).map(n=>{ const [y,m,dd]=String(n.date).split('-'); return `<a class="nrow" href="${esc(n.url||'#page/news')}" ${n.url?'target="_blank" rel="noopener"':''}><i class="${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></i><span><b>${esc(n.title)}</b><small>${esc(n.tag)} · ${+dd}.${+m}</small></span></a>`; }).join('');
   $('newsN').textContent = NEWS.length;
   const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
   $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
@@ -905,7 +981,7 @@ function loadStocks(force){
 function onStocks(){
   try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
   try{ const b=document.querySelector('#gtabs button.on'); renderG(b?b.dataset.t:'all'); }catch(e){}
-  renderHub(); if($('gq')===document.activeElement && $('gq').value) gqRender();
+  renderHub(); try{ renderAgenda(); }catch(e){} if($('gq')===document.activeElement && $('gq').value) gqRender();
 }
 function stockIndex(){
   if(STOCKIX) return STOCKIX; const ix={};
@@ -1178,7 +1254,7 @@ function renderPremarket(){
   if(rows.length && pm.date===today){
     const lbl = (rows[0].kind==='post'?'מסחר מאוחר':'מסחר מקדים')+gq('PRE');
     html=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b> <span class="t">${esc(r.t)}</span> <span class="num">$${r.p.toFixed(2)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
-  } else if(weekday && mins < 11*60){
+  } else if(false){
     html=`<span class="pml">מסחר מקדים${gq('PRE')}</span><span class="pmi">SPY ו-QQQ יוצגו כאן מ-11:00 (שעון ישראל), כשהמסחר המקדים בארה״ב נפתח, ויתעדכנו כל 15 דקות עד הפתיחה ב-16:30.</span>`;
   }
   $('pmBox').classList.toggle('hidden',!html); $('pmBox').innerHTML=html;
@@ -1210,10 +1286,10 @@ async function refreshLive(){
     if (d.news && !same(d.news,FALLBACK.news)) { FALLBACK.news=d.news; sortNews(); renderNews(); }
     if (d.reports && !same(d.reports,FALLBACK.reports)) { const byId=new Map(REPORTS.map(x=>[x.id,x])); d.reports.forEach(x=>byId.set(x.id,x)); FALLBACK.reports=d.reports;
       REPORTS=[...byId.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date))); fillSectors(); renderEarn(); renderTop(); }
-    if (d.calendar && (d.calendar.rev||0) >= ((CAL||{}).rev||0) && !same(d.calendar,CAL)) { CAL=d.calendar; renderCal(); }
+    if (d.calendar && (d.calendar.rev||0) >= ((CAL||{}).rev||0) && !same(d.calendar,CAL)) { CAL=d.calendar; renderCal(); renderAgenda(); }
     if (d.ipos && !same(d.ipos,IPOS)) { IPOS=d.ipos; renderIpos(); }
     if (d.premarket) { FALLBACK.premarket=d.premarket; renderPremarket(); }
-    if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); renderHub(); }
+    if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); renderHub(); renderHomeMovers(); }
     if (d.themes && d.themes.asOf && THEMES && !same(d.themes.rows,THEMES.rows)) {
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
     if (d.ytd && !same(d.ytd,FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
@@ -1274,6 +1350,7 @@ function renderYtd(){
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
 }
+$('briefMore').addEventListener('click',()=>{ $('briefList').dataset.all=$('briefList').dataset.all==='1'?'':'1'; renderOverview(); });
 $('ymore').addEventListener('click',()=>{ yAll=!yAll; renderYtd(); if(!yAll) $('ytd').scrollIntoView(); });
 $('ytabs').addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON')return;
   [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target)); yK=e.target.dataset.t; renderYtd(); });
@@ -1291,7 +1368,10 @@ function renderOverview(){
   $('strip').innerHTML = row + row;                                                        /* two equal halves = seamless loop */
   $('strip').style.setProperty('--dur', Math.max(20, (row.match(/class="it"/g)||[]).length*4) + 's');
   renderVix(); renderMarket();
-  $('briefList').innerHTML = (o.brief||[]).map(b=>`<li>${esc(b)}</li>`).join('');
+  const bl=o.brief||[], all=$('briefList').dataset.all==='1';
+  $('briefList').innerHTML = (all?bl:bl.slice(0,3)).map(b=>`<li>${esc(b)}</li>`).join('');
+  $('briefMore').classList.toggle('hidden', bl.length<=3); $('briefMore').textContent = all?'הצג פחות':`עוד ${bl.length-3} נקודות`;
+  try{ renderAgenda(); }catch(e){}
   $('briefWa').href = waLink(briefText());
   renderFresh();
   $('mRate').textContent = m.rate||''; $('mRateNote').textContent = m.rateNote||''; $('mMeet').textContent = m.meeting||'';
@@ -1338,7 +1418,7 @@ function renderMarket(){
   if($('idxCards')) $('idxCards').innerHTML = (m.idx||[]).map(x=>`<div class="card"><div class="name">${esc(x.k)}</div><div class="val num">${esc(x.v)}</div><div class="chg"><span>יומי <b class="num ${x.d<0?'down':'up'}">${pct(x.d,2)}</b></span>${typeof x.w==='number'?`<span>שבועי <b class="num ${x.w<0?'down':'up'}">${pct(x.w,2)}</b></span>`:''}</div></div>`).join('');
 }
 function renderVix(){
-  const v=(OVERVIEW||{}).vix; if(!v){ $('vixCard').innerHTML=''; return; }
+  const v=(OVERVIEW||{}).vix; if(!v||!$('vixCard')){ return; }
   const lvl = v.v<15?['רגוע','up']:v.v<20?['רגיל','up']:v.v<30?['לחץ','down']:['פחד','down'];
   const pos = Math.min(Math.max(v.v,10),40); const left = (pos-10)/30*100;
   $('vixCard').innerHTML = `<div class="name">VIX · מדד הפחד${gq('VIX')}</div><div class="val num">${v.v.toFixed(2)}</div>
@@ -1464,7 +1544,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
-renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh();
+renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda();
 route(); loadStocks();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {

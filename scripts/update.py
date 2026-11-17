@@ -98,7 +98,17 @@ try:
         dn.sort(key=lambda x: x["p"])
     except Exception as e:
         print("losers failed", e)
-    data["movers"] = {"asOf": stamp, "rows": mv[:40], "down": dn[:20]}
+    # date the movers by the screener's own quote time (the price history used for `stamp` can lag a day)
+    mv_stamp = stamp
+    try:
+        import datetime as _dt
+        ts = max(int(q.get("regularMarketTime") or 0) for q in r.get("quotes", []))
+        if ts:
+            qd = _dt.datetime.fromtimestamp(ts, _dt.timezone(_dt.timedelta(hours=-5))).date()
+            if not live: mv_stamp = f"סגירת {qd.day}.{qd.month}.{qd.year}"
+    except Exception as e:
+        print("movers time", e)
+    data["movers"] = {"asOf": mv_stamp, "rows": mv[:40], "down": dn[:20]}
     print("movers", len(mv))
 except Exception as e:
     print("movers failed", e)
