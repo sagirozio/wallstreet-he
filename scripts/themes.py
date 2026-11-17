@@ -169,4 +169,18 @@ if dbl:
     data["ytd"] = {"asOf": f"{last.day}.{last.month}.{last.year}", "rows": dbl, "minVol": 0.8}
 print("ytd doublers", len(dbl))
 
+# 6) recent gainers: biggest rises over the last month (21 trading days), cap>1B, avg volume (3m) > 800k
+gn = []
+for s in close.columns:
+    v = R["m"].get(s); x = uni[s]
+    if close[s].iloc[-40:].notna().sum() < 30: continue
+    if pd.notna(v) and v > 0 and (x.get("averageDailyVolume3Month") or 0) >= 800_000:
+        gn.append({"t": s, "n": x.get("shortName") or s, "p": round(float(v), 1),
+                   "cap": round(x["marketCap"] / 1e9, 2), "il": x.get("region") == "IL"})
+gn.sort(key=lambda r: -r["p"])
+if len(gn) >= 10:
+    data["gainers"] = {"asOf": f"{last.day}.{last.month}.{last.year}", "period": "חודש", "rows": gn[:15],
+                       "large": [r for r in gn if r["cap"] >= 10][:10]}
+print("gainers", len(gn))
+
 (root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

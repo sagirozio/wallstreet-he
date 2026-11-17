@@ -47,8 +47,21 @@ def round_once():
             out[t] = [round(float(p), 2), round(float(c), 2)]
             state = state or q.get("marketState")
             last_ts = max(last_ts, int(q.get("regularMarketTime") or 0))
-        if len(quotes) < 250:
+        total = (r or {}).get("total", 0)
+        if not quotes or off + 250 >= total:
             break
+    missing = sorted(universe - set(out)) if universe else []
+    if missing:   # not returned by the screener this round: fetch them directly (batches of 100)
+        for i in range(0, len(missing), 100):
+            try:
+                df = yf.download(missing[i:i+100], period="5d", interval="1d", progress=False, threads=True, auto_adjust=False)["Close"]
+                for t in df.columns:
+                    c = df[t].dropna()
+                    if len(c) >= 2:
+                        out[t] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
+            except Exception as e:
+                print("download batch failed", type(e).__name__, flush=True)
+        print("filled from download:", len(set(missing) & set(out)), "of", len(missing), flush=True)
     return out, state, last_ts
 
 def publish(payload):

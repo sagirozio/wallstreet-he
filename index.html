@@ -651,7 +651,7 @@ a.grw:hover{background:rgba(255,255,255,.025)}.grw:last-child{border-bottom:0}.g
 
 <section id="gainers" data-pg="stocks">
   <h2>מניות שזינקו לאחרונה</h2>
-  <p class="sub">המניות שעלו הכי חזק מתחילת נובמבר 2026 ועד 13.11. מוצגות רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע (20 ימים) של יותר מ-800 אלף מניות ביום.</p>
+  <p class="sub" id="gSub">המניות שעלו הכי חזק מתחילת נובמבר 2026 ועד 13.11. מוצגות רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע (20 ימים) של יותר מ-800 אלף מניות ביום.</p>
   <div class="tabs" id="gtabs"><button class="on" data-t="all">שווי מעל $1B</button><button data-t="large">ענקיות · מעל $10B</button></div>
   <div class="tb2" id="gtable"></div>
   <div class="warn" id="gwarn">⚠️ חלק מהמניות כאן הן חברות בינוניות, ותנודתיות יותר מהענקיות. זינוק חד יכול להתהפך מהר.</div>
@@ -1393,6 +1393,7 @@ async function refreshLive(){
     if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); renderHub(); renderHomeMovers(); }
     if (d.themes && d.themes.asOf && THEMES && !same(d.themes.rows,THEMES.rows)) {
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
+    if (d.gainers && !same(d.gainers,FALLBACK.gainers)) { FALLBACK.gainers=d.gainers; renderG(); }
     if (d.ytd && !same(d.ytd,FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
     renderFresh();
   } catch(e) {}
@@ -1436,9 +1437,13 @@ function gRows(rows, lbl){
 }
 let gK='all';
 function renderG(k){
-  gK=k||gK; const g=G[gK];
-  $('gtable').innerHTML=gRows(g.rows.map(r=>({t:r[0],n:r[1],p:r[2],cap:r[3]})),'בנובמבר');
-  $('gwarn').classList.toggle('hidden',!g.warn);
+  gK=k||gK; const D=FALLBACK.gainers;
+  if(D&&D.rows&&D.rows.length){
+    const rows=(gK==='large'?D.large:D.rows)||[];
+    $('gtable').innerHTML=gRows(rows.map(r=>({t:r.t,n:r.n,p:r.p,cap:capFmt(r.cap),il:r.il})),'בחודש');
+    $('gSub').textContent=`המניות שעלו הכי חזק ב-21 ימי המסחר האחרונים, נכון לסגירת ${D.asOf}. רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-800 אלף מניות ביום. מתעדכן אוטומטית כל ערב.`;
+  } else { const g=G[gK]; $('gtable').innerHTML=gRows(g.rows.map(r=>({t:r[0],n:r[1],p:r[2],cap:r[3]})),'בנובמבר'); }
+  $('gwarn').classList.toggle('hidden',gK!=='all');
 }
 $('gtabs').addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON')return;
   [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target)); renderG(e.target.dataset.t); });

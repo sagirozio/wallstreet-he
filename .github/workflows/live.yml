@@ -4,6 +4,7 @@ name: Live quotes (every 5 min during US trading hours)
 on:
   schedule:
     - cron: "24 13 * * 1-5"   # UTC; the script waits for 09:25 New York
+    - cron: "24 16 * * 1-5"
     - cron: "24 19 * * 1-5"
   workflow_dispatch:
     inputs:
