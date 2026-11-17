@@ -87,7 +87,18 @@ try:
            and q.get("exchange") in EX and q.get("quoteType") == "EQUITY":
             mv.append({"t": q["symbol"], "n": q.get("shortName") or q["symbol"], "p": round(float(p), 1)})
     mv.sort(key=lambda x: -x["p"])
-    data["movers"] = {"asOf": stamp, "rows": mv[:40]}
+    dn = []
+    try:
+        r2 = yf.screen("day_losers", count=250)
+        for q in r2.get("quotes", []):
+            p = q.get("regularMarketChangePercent") or 0
+            if p <= -10 and (q.get("marketCap") or 0) >= 1e9 and (q.get("averageDailyVolume3Month") or 0) >= 800_000 \
+               and q.get("exchange") in EX and q.get("quoteType") == "EQUITY":
+                dn.append({"t": q["symbol"], "n": q.get("shortName") or q["symbol"], "p": round(float(p), 1)})
+        dn.sort(key=lambda x: x["p"])
+    except Exception as e:
+        print("losers failed", e)
+    data["movers"] = {"asOf": stamp, "rows": mv[:40], "down": dn[:20]}
     print("movers", len(mv))
 except Exception as e:
     print("movers failed", e)

@@ -86,6 +86,9 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
 .secl{display:block;direction:ltr;text-align:right;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}.spchips .echip{background:rgba(91,140,255,.14);border-color:rgba(91,140,255,.45);color:#cfe0ff;font-weight:600}
 .spabout{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 16px 14px;margin:14px 0}.spabout p{line-height:1.8;margin:8px 0;color:var(--text)}.spfacts{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:var(--muted)}.spfacts a{color:var(--accent);text-decoration:none}
+.mvstrip .mvl{color:var(--text);text-decoration:none}.mvstrip a.nw{direction:rtl;margin:0 10px;color:var(--text)}.mvstrip a.nw i{font-style:normal;font-size:9px;margin-inline-end:6px}.mvstrip .sep{color:var(--muted);margin:0 6px}
+.mvstrip .mvlab{font-size:11px;color:var(--muted);margin:0 6px 0 4px}.mvstrip a.mvt{font-size:11.5px;margin:0 6px;direction:ltr;color:var(--muted)}.mvstrip a.mvt b{margin-inline-start:4px}.mvstrip a.mvt b.up{color:var(--green)}.mvstrip a.mvt b.down{color:var(--red)}
+.mvstrip{background:#0b1220}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -306,7 +309,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .strip .in{display:flex;width:max-content;padding:8px 0;animation:tick var(--dur,35s) linear infinite}
 .strip:hover .in,.strip:active .in{animation-play-state:paused}
 .mvstrip{display:flex;align-items:center;background:#0a1a12;border-bottom:1px solid var(--line);font-size:12.5px;white-space:nowrap}
-.mvstrip .mvl{flex:none;padding:5px 10px;font-weight:700;color:var(--green);background:#0a1a12;z-index:1;border-inline-end:1px solid var(--line)}
+.mvstrip .mvl{flex:none;padding:5px 10px;font-weight:700;color:var(--green);background:#0b1220;z-index:1;border-inline-end:1px solid var(--line)}
 .mvstrip .mvs{overflow:hidden;flex:1}
 .mvstrip .in{display:flex;width:max-content;padding:5px 0;animation:tick var(--dur,40s) linear infinite}
 .mvstrip a{color:var(--text);text-decoration:none;margin:0 12px;direction:ltr}.mvstrip a b{color:var(--green);margin-inline-start:5px}
@@ -334,7 +337,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 <body>
 <div class="tv-tape" id="tvTape"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols": [{"proName": "AMEX:SPY", "title": "S&P 500 (SPY)"}, {"proName": "NASDAQ:QQQ", "title": "נאסד״ק 100 (QQQ)"}, {"proName": "AMEX:DIA", "title": "דאו (DIA)"}, {"proName": "AMEX:IWM", "title": "ראסל 2000 (IWM)"}, {"proName": "FX_IDC:USDILS", "title": "דולר/שקל"}, {"proName": "TVC:GOLD", "title": "זהב"}, {"proName": "TVC:USOIL", "title": "נפט"}, {"proName": "BITSTAMP:BTCUSD", "title": "ביטקוין"}, {"proName": "CAPITALCOM:VIX", "title": "VIX"}], "showSymbolLogo": true, "isTransparent": true, "displayMode": "adaptive", "colorTheme": "dark", "locale": "he_IL"}</script></div></div>
 <div class="strip" id="stripWrap"><div class="in" id="strip"></div></div>
-<div class="mvstrip hidden" id="mvWrap"><span class="mvl">🚀 עולות 10%+ היום</span><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
+<div class="mvstrip hidden" id="mvWrap"><a class="mvl" href="#news-all">📰 חדשות</a><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
 <header><div class="wrap">
   <div class="top"><a class="logo" href="#" aria-label="וולסטריטר Wallstreeter – לעמוד הראשי"><svg class="lgi" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg><span class="lgt"><span class="lgn">וולסטריטר <b class="lge">WALLSTREETER</b></span><small class="tagline">השוק האמריקאי, בגובה העיניים</small></span></a>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><button class="bell" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
@@ -867,11 +870,14 @@ async function loadFund(t){
 
 /* ---------- today's 10%+ movers strip ---------- */
 function renderMovers(){
-  const m=FALLBACK.movers, rows=(m&&m.rows)||[];
-  $('mvWrap').classList.toggle('hidden',!rows.length); if(!rows.length) return;
-  let one=rows.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b>+${r.p.toFixed(1)}%</b></a>`).join('');
-  let row=one; while((row.match(/<a /g)||[]).length<12) row+=one;
-  $('mvStrip').innerHTML=row+row; $('mvStrip').style.setProperty('--dur',Math.max(20,(row.match(/<a /g)||[]).length*3)+'s');
+  const N=(FALLBACK.news||[]).slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=m.down||[];
+  if(!N.length && !up.length && !dn.length){ $('mvWrap').classList.add('hidden'); return; }
+  $('mvWrap').classList.remove('hidden');
+  const news=N.map(n=>`<a class="nw" href="#news-all" title="${esc(n.body||'')}"><i class="${n.tone==='pos'?'up':n.tone==='neg'?'down':'flat'}">●</i>${esc(n.title)}</a>`).join('<span class="sep">·</span>');
+  const mv=(up.length||dn.length)?`<span class="mvlab">מניות בתנועה חריגה:</span>`+up.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="up">+${r.p.toFixed(1)}%</b></a>`).join('')+dn.map(r=>`<a class="mvt" href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}">${esc(r.t)}<b class="down">${r.p.toFixed(1)}%</b></a>`).join(''):'';
+  const one=news+(mv?'<span class="sep">|</span>'+mv:'')+'<span class="sep">|</span>';
+  $('mvStrip').innerHTML=one+one;
+  $('mvStrip').style.setProperty('--dur',Math.max(40,(N.length*9+(up.length+dn.length)*2))+'s');
 }
 renderMovers();
 
@@ -883,7 +889,8 @@ async function refreshLive(){
     const d = await r.json();
     if (d.sectors && JSON.stringify(d.sectors)!==JSON.stringify(SECTORS)) { SECTORS=d.sectors; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
-    if (d.movers) { FALLBACK.movers=d.movers; renderMovers(); }
+    if (d.news) FALLBACK.news=d.news;
+    if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); }
     if (d.themes && d.themes.asOf && (!THEMES || JSON.stringify(d.themes.rows)!==JSON.stringify(THEMES.rows))) { FALLBACK.themes=d.themes; THEMES=d.themes; renderThemes(); }
     if (d.earnDates) FALLBACK.earnDates=d.earnDates;
     if (d.facts) FALLBACK.facts=d.facts;
