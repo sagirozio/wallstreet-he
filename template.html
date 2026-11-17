@@ -796,7 +796,7 @@ function briefText(){ const o=OVERVIEW||{};
 
 /* ---------- earnings ---------- */
 const surp = (a,e) => (typeof a==='number' && typeof e==='number' && e!==0) ? (a-e)/Math.abs(e)*100 : null;
-function resultOf(r){ if(typeof r.revAct!=='number') return r.epsAct>r.epsEst?'beat':'miss'; const v=r.revAct>r.revEst; if(typeof r.epsEst!=='number') return v?'beat':'miss'; const e=r.epsAct>r.epsEst; return e&&v?'beat':(!e&&!v?'miss':'mix'); }
+function resultOf(r){ if(typeof r.revAct!=='number'||typeof r.revEst!=='number') return typeof r.epsEst!=='number'?'mix':(r.epsAct>r.epsEst?'beat':'miss'); const v=r.revAct>r.revEst; if(typeof r.epsEst!=='number') return v?'beat':'miss'; const e=r.epsAct>r.epsEst; return e&&v?'beat':(!e&&!v?'miss':'mix'); }
 function money(x){ if(typeof x!=='number') return '—'; const n=x<0?'-':'';
   const a=Math.abs(x); return a>=1 ? `${n}$${a>=100?a.toFixed(1):a.toFixed(2).replace(/0$/,'')}B` : `${n}$${(a*1000).toFixed(1)}M`; }
 const eps = x => typeof x==='number' ? (x<0?'-$':'$')+Math.abs(x).toFixed(2) : '—';
@@ -817,7 +817,7 @@ const BADGE = {beat:['b-beat','עקפה בשניהם'],mix:['b-mix','מעורב'
 function fmtDate(d){ const [y,m,dd]=String(d).split('-'); return `${dd}.${m}.${y}`; }
 function card(r){
   const res=resultOf(r), RES={beat:['עקפה בשניהם','up'],mix:['מעורב','amb'],miss:['החטיאה בשניהם','down']}[res]||['',''];
-  const lab = typeof r.revAct!=='number' ? (res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי') : RES[0];
+  const lab = typeof r.revAct!=='number' ? (res==='beat'?'הפסד קטן מהצפי':'הפסד גדול מהצפי') : typeof r.revEst!=='number' ? (typeof r.epsEst!=='number'?'':res==='beat'?'עקפה בצפי הרווח':'החטיאה בצפי הרווח') : RES[0];
   const sp=(a,e)=>{ const v=surp(a,e); return v==null?'<span class="n flat">—</span>':`<span class="n ${v>=0?'up':'down'}">${pct(v,1)}</span>`; };
   const act=(a,e,f)=>`<span class="n big ${typeof e==='number'&&typeof a==='number'?(a>e?'up':'down'):''}">${f(a)}</span>`;
   const est=(e,f)=>`<span class="n flat">${typeof e==='number'?f(e):'—'}</span>`;
