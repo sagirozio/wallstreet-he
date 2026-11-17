@@ -1205,6 +1205,16 @@ async function renderStock(t){
 const LIVE_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/live.json';
 let LIVE=null;
 const liveQ = t => LIVE&&LIVE.q ? LIVE.q[t] : null;
+let LIVE_SEC=null, LIVE_IND=null;
+function liveOn(){ return LIVE && /^(REGULAR|POST|POSTPOST)$/.test(LIVE.state||''); }
+function liveAgg(){
+  LIVE_SEC=null; LIVE_IND=null; if(!liveOn()) return;
+  if(LIVE.sec){ LIVE_SEC={}; Object.entries(LIVE.sec).forEach(([k,v])=>LIVE_SEC[k]=v[0]); }
+  const st=(THEMES||{}).stocks||{}; LIVE_IND={};
+  Object.entries(st).forEach(([ind,lst])=>{ const v=lst.map(x=>liveQ(x[0])).filter(Boolean).map(x=>x[1]);
+    if(v.length && v.length>=0.6*lst.length) LIVE_IND[ind]=Math.round(v.reduce((a,b)=>a+b,0)/v.length*100)/100; });
+}
+const liveTm=()=>String((LIVE||{}).asOf||'').split('· ')[1]||'';
 function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?(+m[1])+'.'+(+m[2]):''; }
 function spDayHtml(t,s){
   const L=liveQ(t);
@@ -1216,7 +1226,8 @@ function spDayHtml(t,s){
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
   try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/120000),{cache:'no-store'}); if(!r.ok) return;
-    LIVE=await r.json();
+    LIVE=await r.json(); liveAgg();
+    try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     renderHub();
   }catch(e){}
@@ -1436,9 +1447,9 @@ const hd2 = (lbl,c) => `<div class="rw2 hd2"><span>${lbl}</span>${c.map((k,j)=>`
 function renderSec(){
   const SEC_EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
   $('secTabs').innerHTML = PER.map(([k,l])=>`<button data-k="${k}" class="${k===secKey?'on':''}">${l}</button>`).join('');
-  const c=cols3(secKey), rows=[...(SECTORS.rows||[])].sort((a,b)=>(b[secKey]??-1e9)-(a[secKey]??-1e9)), mx=Math.max(...rows.map(r=>Math.abs(r[secKey]||0)))||1;
+  const c=cols3(secKey), rows=[...(SECTORS.rows||[])].map(r=>LIVE_SEC&&LIVE_SEC[r.t]!=null?{...r,d:LIVE_SEC[r.t]}:r).sort((a,b)=>(b[secKey]??-1e9)-(a[secKey]??-1e9)), mx=Math.max(...rows.map(r=>Math.abs(r[secKey]||0)))||1;
   $('secTable').innerHTML = hd2('סקטור',c)+rows.map(r=>`<div class="rw2"><div class="nm2"><b>${esc(SEC_EN[r.name]||r.name)}</b><small>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>`:''}</small><div class="bar2" style="width:${Math.max(3,Math.abs(r[secKey]||0)/mx*100).toFixed(0)}%"></div></div>${c.map((k,j)=>pc(r[k],!j)).join('')}</div>`).join('');
-  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}. אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
+  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${LIVE_SEC?` עמודת "היום" בזמן אמת (Finnhub), עודכנה ב-${liveTm()}.`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
 }
 document.addEventListener('click',e=>{ const k=e.target.dataset&&e.target.dataset.k; if(k && e.target.closest('#sectors')){ secKey=k; renderSec(); } });
 
@@ -1648,7 +1659,7 @@ function renderThemes(){
   const T=THEMES; if(!T||!T.rows) return;
   $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${l}</button>`).join('');
   const c=cols3(thKey), q=thQ.trim().toLowerCase();
-  let rows=[...T.rows].sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
+  let rows=[...T.rows].map(r=>LIVE_IND&&LIVE_IND[r.en]!=null?{...r,d:LIVE_IND[r.en]}:r).sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
   const rank=new Map(rows.map((r,i)=>[r.en,i+1]));
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown=(thAll||q)?rows:rows.slice(0,10);
@@ -1659,7 +1670,7 @@ function renderThemes(){
   }).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק את 10 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
-  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}. זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
+  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}.${LIVE_IND?` עמודת "היום" מתעדכנת כל 5 דקות (עודכנה ב-${liveTm()}, בעיכוב של כ-15 דקות).`:''} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
   $('thLegend').innerHTML = `◀ = אפשר ללחוץ על תעשייה כדי לראות את המניות המובילות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי התקופה שנבחרה. התשואה של כל תעשייה היא ממוצע משוקלל של המניות בה, ולכן מניה ענקית אחת יכולה להזיז אותה. כשיש בקבוצה מעט מניות, הנתון פחות מייצג. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
 }
 document.addEventListener('click',e=>{

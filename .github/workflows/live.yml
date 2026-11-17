@@ -24,4 +24,5 @@ jobs:
       - run: python scripts/live.py
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FINNHUB_KEY: ${{ secrets.FINNHUB_KEY }}
           ONCE: ${{ github.event.inputs.once }}

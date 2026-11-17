@@ -73,6 +73,40 @@ def publish(payload):
         run("-c", "user.name=wallstreet-bot", "-c", "user.email=bot@users.noreply.github.com", "commit", "-qm", "live quotes")
         run("push", "-fq", f"https://x-access-token:{TOKEN}@github.com/{REPO}.git", "live")
 
+# ---- real-time S&P 500 sector averages from Finnhub (free tier: 60 calls/min -> full pass of ~500 members every ~9 min) ----
+import threading, io, csv, urllib.request, urllib.parse
+FKEY = os.environ.get("FINNHUB_KEY", "").strip()
+GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consumer Discretionary": "XLY",
+        "Consumer Staples": "XLP", "Energy": "XLE", "Financials": "XLF", "Health Care": "XLV",
+        "Industrials": "XLI", "Real Estate": "XLRE", "Materials": "XLB", "Utilities": "XLU"}
+SPX = {}
+FH = {}          # symbol -> day change % (real time)
+FH_T = [0.0]     # time of the last completed pass
+def finnhub_loop():
+    try:
+        raw = urllib.request.urlopen("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", timeout=60).read().decode()
+        for row in csv.DictReader(io.StringIO(raw)): SPX[row["Symbol"]] = GICS.get(row["GICS Sector"])
+    except Exception as e:
+        print("spx list failed", e, flush=True); return
+    while True:
+        for sym in list(SPX):
+            t0 = time.time()
+            try:
+                url = "https://finnhub.io/api/v1/quote?" + urllib.parse.urlencode({"symbol": sym, "token": FKEY})
+                with urllib.request.urlopen(url, timeout=15) as r: q = json.loads(r.read().decode())
+                if q.get("dp") is not None and q.get("c"): FH[sym] = float(q["dp"])
+            except Exception as e:
+                if "429" in str(e): time.sleep(30)
+            time.sleep(max(0, 1.05 - (time.time() - t0)))
+        FH_T[0] = time.time()
+def sectors_now():
+    out = {}
+    for sym, etf in SPX.items():
+        if etf and sym in FH: out.setdefault(etf, []).append(FH[sym])
+    return {etf: [round(sum(v) / len(v), 2), len(v)] for etf, v in out.items() if len(v) >= 5}
+if FKEY:
+    threading.Thread(target=finnhub_loop, daemon=True).start()
+
 start = time.time()
 while True:
     ny = dt.datetime.now(NY)
@@ -90,7 +124,9 @@ while True:
         if q:
             # "date" = the trading session the prices belong to (not today's date before the open)
             sess = dt.datetime.fromtimestamp(last_ts, NY).strftime("%Y-%m-%d") if last_ts else dt.datetime.now(NY).strftime("%Y-%m-%d")
-            publish({"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or "", "q": q})
+            payload = {"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or "", "q": q}
+            if FH: payload["sec"] = sectors_now(); payload["secN"] = len(FH)
+            publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:
         print("round failed", type(e).__name__, e, flush=True)
