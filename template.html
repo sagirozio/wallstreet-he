@@ -745,7 +745,7 @@ const NEWS = (FALLBACK.news||[]).slice().sort((a,b)=>String(b.date).localeCompar
 function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
   return `<article class="card"><div class="bar ${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></div><div><div class="tag">${esc(n.tag)} · ${+dd}.${+m}</div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p>${n.url?`<div class="src">מקור: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.src||'לכתבה')}</a></div>`:''}</div></article>`; }
 function renderNews(){
-  $('newsLatest').innerHTML = NEWS.slice(0,6).map(newsCard).join('');
+  $('newsLatest').innerHTML = NEWS.filter(n=>n.k!=='stock').slice(0,6).map(newsCard).join('');
   $('newsN').textContent = NEWS.length;
   const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
   $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
@@ -901,7 +901,7 @@ renderPremarket();
 
 /* ---------- today's 10%+ movers strip ---------- */
 function renderMovers(){
-  const N=(FALLBACK.news||[]).slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=m.down||[];
+  const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=m.down||[];
   if(!N.length && !up.length && !dn.length){ $('mvWrap').classList.add('hidden'); return; }
   $('mvWrap').classList.remove('hidden');
   const news=N.map(n=>`<a class="nw" href="#news-all" title="${esc(n.body||'')}"><i class="${n.tone==='pos'?'up':n.tone==='neg'?'down':'flat'}">●</i>${esc(n.title)}</a>`).join('<span class="sep">·</span>');

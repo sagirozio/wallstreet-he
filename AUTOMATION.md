@@ -22,7 +22,7 @@ Search separately for each item below. Use only what you retrieved, never memory
 
 - **Midday run (11:00, news only):**
   - Stories since the evening run that matter for US stocks: overnight company news, Asia and Europe session, US futures, notable pre-market announcements (deals, guidance, analyst moves on big names, regulation).
-  - Add 3–6 new `news` items (prepend; don't duplicate items already in the archive). Update `overview.brief` only if something big changed since the evening run; leave `reports`, `calendar`, `ipos` as they are unless there is clear new information.
+  - Add 3–6 main `news` items plus as many stock items as you can (see §2 `news`; prepend; don't duplicate items already in the archive). Update `overview.brief` only if something big changed since the evening run; leave `reports`, `calendar`, `ipos` as they are unless there is clear new information.
   - Profiles: still add descriptions as in §2 `profiles`.
   - Commit message: `Content update DD.MM (midday)`.
 - **Morning run:**
@@ -60,7 +60,17 @@ Read the existing entries first and copy their exact shape.
 
 ### `news` (every run)
 
-- **Prepend** 3–6 new items. Always fill `t` with the tickers the item is about (empty list for market/macro items): the stock pages show these items under "חדשות אחרונות". Never delete or rewrite old items, because this is the news archive.
+- **Prepend** new items. Always fill `t` with the tickers the item is about (empty list for market/macro items): the stock pages show these items under "חדשות אחרונות" (the section is hidden for a stock with no item). Never delete or rewrite old items, because this is the news archive.
+- **Two kinds of items:**
+  - **Main items** (no `k` field): 3–6 per run, the biggest market and company stories. These appear on the home page and in the news strip.
+  - **Stock items** (`"k":"stock"`): **cover as many individual stocks as possible on every run (morning, midday and evening) — aim for 20–40 per run, more if time allows.** Shown only on the stock page and in the news archive, not on the home page. Each one is about one company (`t` = one ticker), 1–2 Hebrew sentences with the concrete fact and numbers, from a source you retrieved.
+- **Which stocks to cover, in this order** (only stocks that are on the site: cap >$1B, avg volume ≥500k — the ticker should appear in `data.json` under `themes`, `ytd` or `movers`, or have a `profiles` entry):
+  1. every company that reported earnings since the last run (one stock item each, even if it also has a `reports` card);
+  2. every stock in `movers.rows` and `movers.down` — find *why* it moved (results, guidance, deal, FDA, analyst action, offering);
+  3. analyst upgrades/downgrades and price-target changes on stocks over ~$10B;
+  4. deals, M&A, buybacks, offerings, guidance updates, regulatory/legal news, product launches, executive changes;
+  5. the largest companies by cap (NVDA, AAPL, MSFT, GOOGL, AMZN, META, AVGO, TSLA, …) whenever they have any concrete news.
+  Prefer a stock that has **no** item yet (or none in the last 30 days) over adding another item to one that does. Do one search per stock or per batch (e.g. "stock movers today", "analyst upgrades today", "premarket movers"), and never invent a reason for a move: if no source explains it, skip the stock.
 - Item shape:
 
   ```json
@@ -146,6 +156,6 @@ If the push is rejected, pull again with `--rebase` and retry once.
 
 Finish with a short Hebrew summary for the owner. Cover:
 
-- what was added: brief, N news items, which reports;
+- what was added: brief, N main news items, N stock items (how many distinct tickers), which reports;
 - anything skipped and why;
 - the site link: https://sagirozio.github.io/wallstreet-he/
