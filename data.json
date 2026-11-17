@@ -38633,7 +38633,7 @@
   }
  ],
  "overview": {
-  "asOf": "17.11.2026 · 15:50",
+  "asOf": "17.11.2026 · 15:56",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -38708,7 +38708,7 @@
    },
    {
     "h": "Disney מעל הצפי ומעלה דיבידנד",
-    "t": "רווח מתואם של $1.77 למניה (צפי: $1.68), דיבידנד גבוה ב-33% ויעד חיסכון של $3B.",
+    "t": "רווח מתואם של $1.77 למניה (צפי: $1.68), דיבידנד גבוה ב-33%. המניה עולה בכ-2% לפני המסחר.",
     "tone": "pos"
    },
    {
@@ -38786,7 +38786,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611171550,
+  "rev": 202611171556,
   "market": {
    "note": "סגירה ביום שני, 16.11.2026. ירידות חדות בכל המדדים, והנאסד״ק הוביל את הירידות. מדד הפחד VIX קפץ ב-22%.",
    "idx": [
@@ -90711,6 +90711,62 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-17-bidu-q3-five-year-low",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "BIDU"
+   ],
+   "tag": "Baidu",
+   "tone": "neg",
+   "title": "Baidu בשפל של יותר מ-5 שנים אחרי הדוח",
+   "body": "ההכנסות ברבעון השלישי ירדו ב-1% ל-30.8 מיליארד יואן, והרווח המתואם למניה (ADS) הסתכם ב-6.78 יואן. ההכנסות מפרסום ירדו בחדות, והמניה בהונג קונג ירדה לשפל של יותר מחמש שנים; בניו יורק המניה ירדה אתמול ב-5.3% ל-$74.",
+   "src": "RTTNews",
+   "url": "https://www.rttnews.com/3714910/baidu-reports-net-income-in-q3.aspx"
+  },
+  {
+   "id": "2026-11-17-googl-quaise-geothermal",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "GOOGL"
+   ],
+   "tag": "Google",
+   "tone": "neu",
+   "title": "Google תקנה 50MW חשמל גיאותרמי מ-Quaise",
+   "body": "Google חתמה על הסכם לרכישת 50 מגה-ואט מפרויקט Obsidian של Quaise Energy במרכז אורגון, החל מ-2030 לכל המוקדם. החשמל נועד לחוות השרתים של Google ב-The Dalles שבאורגון.",
+   "src": "Quaise Energy",
+   "url": "https://www.quaise.com/news/quaise-energy-signs-50-mw-geothermal-power-purchase-agreement-with-google"
+  },
+  {
+   "id": "2026-11-17-beke-q3-profit-doubles",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "BEKE"
+   ],
+   "tag": "KE Holdings",
+   "tone": "pos",
+   "title": "KE Holdings: הכנסות ירדו, הרווח המתואם הוכפל",
+   "body": "ברבעון השלישי ההכנסות ירדו ב-8.9% ל-21 מיליארד יואן, אך הרווח הנקי המתואם עלה ב-102.6% ל-2.6 מיליארד יואן. היקף העסקאות עלה ב-4.5%, והחברה רכשה מניות בכ-$162M ברבעון.",
+   "src": "KE Holdings",
+   "url": "https://investors.ke.com/news-releases/news-release-details/ke-holdings-inc-announces-third-quarter-2026-unaudited-financial"
+  },
+  {
+   "id": "2026-11-17-pags-3q26",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "PAGS"
+   ],
+   "tag": "PagBank",
+   "tone": "neu",
+   "title": "PagBank: רווח מתואם של 611 מיליון ריאל, +7%",
+   "body": "ההכנסות נטו ברבעון השלישי הסתכמו ב-5.1 מיליארד ריאל, וההכנסות מפעילות הבנקאות עלו ב-20%. תיק האשראי צמח ב-25.2% ל-5.2 מיליארד ריאל.",
+   "src": "PagBank",
+   "url": "https://filemanager-cdn.mziq.com/published/d1c190f7-52c1-4663-aa9f-0e0141aa5e3c/65495d77-b1f9-4aa2-8ad7-781e8115d3ee"
+  },
   {
    "id": "2026-11-17-hd-q3-new-ceo",
    "date": "2026-11-17",
