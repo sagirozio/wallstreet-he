@@ -1,17 +1,14 @@
 name: Intraday loop (pre-market + session, every 3 min)
 # Replaces the old every-15-minute crons: one long job loops all day.
-# Three starts (UTC) cover the New York pre-market and session in winter and summer time;
-# a new start cancels the running one, so a late or dropped start doesn't leave a gap.
+# Hourly starts (UTC); a start while one runs waits in the queue, so late or dropped starts don't leave a gap.
 on:
   schedule:
-    - cron: "55 8 * * 1-5"
-    - cron: "15 13 * * 1-5"
-    - cron: "15 18 * * 1-5"
+    - cron: "55 8-21 * * 1-5"   # every hour: GitHub delays/drops scheduled starts; extra starts queue behind the running one
   workflow_dispatch:
 permissions:
   contents: write
   issues: write
-concurrency: { group: intraday-loop, cancel-in-progress: true }
+concurrency: { group: intraday-loop, cancel-in-progress: false }
 jobs:
   loop:
     runs-on: ubuntu-latest
@@ -21,5 +18,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas
-      - env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+      - env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}", FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: python scripts/loop.py
