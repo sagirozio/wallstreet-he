@@ -13,7 +13,7 @@ Files are only rewritten when their content changes, to keep git history small.
 import json, pathlib, re, html
 
 root = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://sagirozio.github.io/wallstreet-he/"
+SITE = "https://wallstreeter.co.il/"
 
 def load(p, default=None):
     p = root / p
