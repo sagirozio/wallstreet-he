@@ -23,7 +23,7 @@ for r in rows:
     if t not in U or r.get("epsActual") is None: continue
     day = dt.date.fromisoformat(r["date"])
     cid = f"{t}-{day:%Y-%m}"
-    if cid in have: continue
+    if cid in have or any(o["t"] == t and abs((dt.date.fromisoformat(str(o["date"])[:10]) - day).days) <= 5 for o in d["reports"]): continue
     q = f"Q{r.get('quarter')} {r.get('year')}" if r.get("quarter") else ""
     react = ""
     lq = (LQ.get("q") or {}).get(t)
