@@ -69,6 +69,7 @@ Read the existing entries first and copy their exact shape.
 - **Two kinds of items:**
   - **Main items** (no `k` field): 3–6 per run, the biggest market and company stories. These appear on the home page and in the news strip.
   - **Stock items** (`"k":"stock"`): **cover as many individual stocks as possible on every run (morning, midday and evening) — aim for 20–40 per run, more if time allows.** Shown only on the stock page and in the news archive, not on the home page. Each one is about one company (`t` = one ticker), 1–2 Hebrew sentences with the concrete fact and numbers, from a source you retrieved.
+- **Start from `news_src.json`** (repo root, refreshed from Finnhub shortly before each run): English headlines + short summaries per ticker from the last ~2 days, already ordered by priority. Use it to pick stocks and facts quickly; open the linked article (or another source) to confirm the numbers, then write the item in Hebrew in your own words. It is research material only and is not shown on the site.
 - **Which stocks to cover, in this order** (only stocks that are on the site: cap >$1B, avg volume ≥500k — the ticker should appear in `data.json` under `themes`, `ytd` or `movers`, or have a `profiles` entry):
   1. every company that reported earnings since the last run (one stock item each, even if it also has a `reports` card);
   2. every stock in `movers.rows` and `movers.down` — find *why* it moved (results, guidance, deal, FDA, analyst action, offering);
