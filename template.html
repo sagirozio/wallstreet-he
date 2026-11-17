@@ -392,7 +392,7 @@ h2 .gq{width:22px;height:22px}
 .spstick{position:sticky;top:var(--navh,58px);z-index:20;background:var(--bg);margin:0 -16px;padding:6px 16px 0;border-bottom:1px solid var(--line)}
 .spstick .sphead{margin:4px 0 8px}
 .sphn{flex:1;min-width:0}.sphn h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:21px}
-.spday{text-align:left;flex:none}.spday b{display:block;font:700 18px 'JetBrains Mono',monospace;direction:ltr}.spday small{color:var(--muted);font-size:11.5px}
+.spday{text-align:left;flex:none;display:flex;flex-direction:column;align-items:flex-end}.spday small{display:flex;align-items:center;gap:4px}.spday .livedot{width:7px;height:7px;margin:0}.spday b{display:block;font:700 18px 'JetBrains Mono',monospace;direction:ltr}.spday small{color:var(--muted);font-size:11.5px}
 .sptabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.sptabs::-webkit-scrollbar{display:none}
 .sptabs button{flex:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-size:15px;font-weight:600;padding:10px 12px;min-height:44px;cursor:pointer}
 .sptabs button.on{color:var(--text);border-bottom-color:var(--accent)}
@@ -1061,7 +1061,7 @@ function renderHub(){
   $('hubMvW').classList.toggle('hidden',!mv.length);
   $('hubMv').innerHTML = mv.map(r=>hubTile(r.t,r.n,r.p)).join('');
   if(!all.length) return;
-  $('hubBig').innerHTML = all.sort((a,b)=>capNum(b.cap)-capNum(a.cap)).slice(0,16).map(s=>hubTile(s.t,heName(s.t)||s.co,s.r?s.r.d:null,'$'+s.cap)).join('');
+  $('hubBig').innerHTML = all.sort((a,b)=>capNum(b.cap)-capNum(a.cap)).slice(0,16).map(s=>{ const L=liveQ(s.t); return hubTile(s.t,heName(s.t)||s.co,L?L[1]:s.r?s.r.d:null,'$'+s.cap); }).join('');
 }
 
 /* ---------- stock page ("תעודת זהות") ---------- */
@@ -1117,7 +1117,7 @@ async function renderStock(t){
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
-      ${d!=null?`<div class="spday"><b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${(()=>{ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?' · '+(+m[1])+'.'+(+m[2]):''; })()}</small></div>`:''}</div>
+      <div class="spday" id="spDay">${spDayHtml(t,s)}</div></div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -1139,6 +1139,28 @@ async function renderStock(t){
   tvWidget($('spTodayW'),'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
   setNavH();
 }
+/* ---------- live quotes (live.json on the `live` branch, refreshed every 5 min in US trading hours) ---------- */
+const LIVE_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/live.json';
+let LIVE=null;
+const liveQ = t => LIVE&&LIVE.q ? LIVE.q[t] : null;
+function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?(+m[1])+'.'+(+m[2]):''; }
+function spDayHtml(t,s){
+  const L=liveQ(t);
+  if(L){ const open=LIVE.state==='REGULAR', tm=(String(LIVE.asOf||'').split('· ')[1]||''), dd=String(LIVE.date||'').split('-');
+    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>`; }
+  const d=s&&s.r&&s.r.d!=null?s.r.d:null;
+  return d==null?'':`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>`;
+}
+async function loadLive(){
+  if(document.hidden||location.protocol==='file:') return;
+  try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/120000),{cache:'no-store'}); if(!r.ok) return;
+    LIVE=await r.json();
+    const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
+    renderHub();
+  }catch(e){}
+}
+setInterval(loadLive, 5*60*1000);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive(); });
 function tvSym(s){ return (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
 function drawChart(s,iv){
@@ -1583,7 +1605,7 @@ document.addEventListener('click',e=>{
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
 renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda();
-route(); loadStocks();
+route(); loadStocks(); loadLive();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {
   let db = null;

@@ -1,0 +1,26 @@
+name: Live quotes (every 5 min during US trading hours)
+# One long job per half-day loops every 5 minutes and force-pushes live.json to the `live` branch.
+# The second start cancels the first, so the whole session (09:30–16:00 New York) is covered.
+on:
+  schedule:
+    - cron: "24 13 * * 1-5"   # UTC; the script waits for 09:25 New York
+    - cron: "24 19 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      once: { description: "One round only", default: "1" }
+permissions:
+  contents: write
+concurrency: { group: live, cancel-in-progress: true }
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 358
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q yfinance
+      - run: python scripts/live.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ONCE: ${{ github.event.inputs.once }}
