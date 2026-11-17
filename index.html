@@ -1146,11 +1146,20 @@ function drawChart(s,iv){
   const len = iv==='W' ? 40 : 200;   // 40 weekly candles ≈ 200 trading days
   document.querySelectorAll('.chtg button').forEach(b=>b.classList.toggle('on',b.dataset.iv===iv));
   $('chNote').textContent = iv==='W' ? 'נרות שבועיים · ממוצע נע 40 שבועות (≈200 יום)' : 'נרות יומיים · ממוצע נע 200 יום';
-  tvWidget(box,'embed-widget-advanced-chart.js',{symbol:tvSym(s),interval:iv,style:'1',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',autosize:true,
-    backgroundColor:'rgba(0,0,0,0)',allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,calendar:false,
-    studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len}}],studies_overrides:{'moving average.length':len,'moving average.plot.color':'#f5b942','moving average.plot.linewidth':2},
-    support_host:'https://www.tradingview.com'});
+  // tv.js (TradingView's free chart widget) accepts indicator inputs, so the moving average gets length 200 / 40
+  const id='tvc'+Date.now(); box.innerHTML=`<div id="${id}" style="height:100%"></div>`;
+  loadTvJs().then(()=>{ if(!document.getElementById(id)) return;
+    new TradingView.widget({container_id:id,autosize:true,symbol:tvSym(s),interval:iv,style:'1',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',
+      enable_publishing:false,allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,details:false,calendar:false,
+      toolbar_bg:'#0b0f17',backgroundColor:'rgba(11,15,23,1)',
+      studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len}}],
+      studies_overrides:{'moving average.ma.color':'#f5b942','moving average.ma.linewidth':2,'moving average.plot.color':'#f5b942','moving average.plot.linewidth':2}});
+  }).catch(()=>{ box.innerHTML='<div class="empty">הגרף לא נטען. נסו לרענן את העמוד.</div>'; });
 }
+let tvJsP=null;
+function loadTvJs(){ if(window.TradingView&&TradingView.widget) return Promise.resolve(); if(tvJsP) return tvJsP;
+  tvJsP=new Promise((ok,no)=>{ const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/tv.js'; sc.async=true; sc.onload=ok; sc.onerror=()=>{ tvJsP=null; no(); }; document.head.appendChild(sc); });
+  return tvJsP; }
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.chtg button'); if(!b) return; const s=stockIndex()[$('spBody').dataset.t]; if(s) drawChart(s,b.dataset.iv); });
 function spTab(k){
   const body=$('spBody'), t=body.dataset.t, s=stockIndex()[t]; if(!s) return;
