@@ -1,6 +1,6 @@
 """Intraday data loop (replaces the every-15-min cron jobs, which GitHub often delays or drops).
 
-One GitHub Actions job runs this for up to ~5h50m and repeats every 10 minutes:
+One GitHub Actions job runs this for up to ~5h50m and repeats every 5 minutes:
   pre-market (04:00–09:30 New York): premarket.py (SPY/QQQ pre-market quotes)
   session    (09:30–16:15 New York): update.py (sectors, breadth, movers) + premarket.py (after-hours box)
 Each round starts from the latest data.json on main and publishes the result to the `intra` branch (intra_publish.py):
@@ -13,7 +13,7 @@ from zoneinfo import ZoneInfo
 
 NY = ZoneInfo("America/New_York")
 START = time.time()
-EVERY = 600
+EVERY = 300
 
 def sh(cmd):
     print("$", cmd, flush=True)
