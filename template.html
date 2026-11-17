@@ -457,6 +457,8 @@ h2 .gq{width:22px;height:22px}
 #briefList b{display:block;font-size:16px;font-weight:700;line-height:1.5}#briefList span{display:block;font-size:14.5px;color:var(--muted);line-height:1.6}
 .bft{display:flex;gap:20px;font-size:14px}.bft a{color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:6px}.bft .bwa svg{width:15px;height:15px;fill:currentColor}
 #brief{padding-top:18px}#market{padding-top:22px}
+.chtg{display:flex;align-items:center;gap:6px;margin:0 0 10px;flex-wrap:wrap}.chtg button{background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font:inherit;font-size:14px;cursor:pointer;min-height:36px}
+.chtg button.on{background:var(--accent);color:#fff;border-color:var(--accent)}.chtg .chn{color:var(--muted);font-size:12.5px;margin-inline-start:6px}
 </style>
 </head>
 <body>
@@ -1126,7 +1128,7 @@ async function renderStock(t){
       ${news.length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="spchart" id="spChart"></div></div>
+    <div class="sptab" data-st="ch"><div class="chtg" role="group" aria-label="טווח נר"><button data-iv="D" class="on">יומי</button><button data-iv="W">שבועי</button><span class="chn" id="chNote">נרות יפניים · ממוצע נע 200 יום</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
       <h3 class="sph3" style="margin-top:0">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
       ${reps.length>1?`<a class="ewmore allrep" href="#reports" data-rq="${esc(t)}">לכל ${reps.length} הדוחות של ${esc(t)} במאגר ←</a>`:''}
@@ -1139,13 +1141,24 @@ async function renderStock(t){
 }
 function tvSym(s){ return (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
+function drawChart(s,iv){
+  const box=$('spChart'); if(!box) return; box.innerHTML='';
+  const len = iv==='W' ? 40 : 200;   // 40 weekly candles ≈ 200 trading days
+  document.querySelectorAll('.chtg button').forEach(b=>b.classList.toggle('on',b.dataset.iv===iv));
+  $('chNote').textContent = iv==='W' ? 'נרות שבועיים · ממוצע נע 40 שבועות (≈200 יום)' : 'נרות יומיים · ממוצע נע 200 יום';
+  tvWidget(box,'embed-widget-advanced-chart.js',{symbol:tvSym(s),interval:iv,style:'1',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',autosize:true,
+    backgroundColor:'rgba(0,0,0,0)',allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,calendar:false,
+    studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len}}],studies_overrides:{'moving average.length':len,'moving average.plot.color':'#f5b942','moving average.plot.linewidth':2},
+    support_host:'https://www.tradingview.com'});
+}
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.chtg button'); if(!b) return; const s=stockIndex()[$('spBody').dataset.t]; if(s) drawChart(s,b.dataset.iv); });
 function spTab(k){
   const body=$('spBody'), t=body.dataset.t, s=stockIndex()[t]; if(!s) return;
   SPT=k;
   body.querySelectorAll('.sptabs button').forEach(b=>{ const on=b.dataset.st===k; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
   body.querySelectorAll('.sptab').forEach(p=>p.classList.toggle('on',p.dataset.st===k));
   const done=body.dataset.loaded||'';
-  if(k==='ch' && !done.includes('ch')){ body.dataset.loaded=done+'ch'; tvWidget($('spChart'),'embed-widget-advanced-chart.js',{symbol:tvSym(s),interval:'D',style:'2',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',autosize:true,backgroundColor:'rgba(0,0,0,0)',allow_symbol_change:false,hide_side_toolbar:true,withdateranges:false,save_image:false,calendar:false,support_host:'https://www.tradingview.com'}); }
+  if(k==='ch' && !done.includes('ch')){ body.dataset.loaded=done+'ch'; drawChart(s,'D'); }
   if(k==='rp' && !done.includes('rp')){ body.dataset.loaded=(body.dataset.loaded||'')+'rp'; loadFund(t); }
   const st=body.querySelector('.spstick'), pn=body.querySelector('.sptab.on');
   if(st&&pn){ const navh=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navh'))||0, y=pn.getBoundingClientRect().top+window.scrollY-navh-st.offsetHeight-14; if(window.scrollY>y) window.scrollTo(0,Math.max(0,y)); }
