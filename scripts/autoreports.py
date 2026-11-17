@@ -30,6 +30,13 @@ if a and a[0] == "gainers20":
 elif a and a[0] == "big":
     n = int(a[1]) if len(a) > 1 else 100
     todo = sorted([t for t in U if t not in have], key=lambda t: -capn(U[t]["cap"]))[:n]
+elif a and a[0] == "recent":   # nightly: only companies whose report date (Yahoo) falls in the last 10 days
+    import datetime as _d
+    ed = data.get("earnDates") or {}; lo = (_d.date.today() - _d.timedelta(days=10)).isoformat(); hi = _d.date.today().isoformat()
+    have_id = {r["id"] for r in data["reports"]}
+    todo = [t for t in U if lo <= (ed.get(t) or {}).get("d", "") <= hi]
+    have = {t for t in have if any(i.startswith(t + "-") and i >= f"{t}-{lo[:7]}" for i in have_id)}
+    todo = [t for t in todo if t not in have]
 else:
     todo = [t for t in a if t not in have]
 todo = [t for t in todo if t != "GOOG" or "GOOGL" not in have]

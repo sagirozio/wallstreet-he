@@ -19,7 +19,7 @@ jobs:
       - run: python scripts/update.py
       - env: { MASSIVE_KEY: "${{ secrets.MASSIVE_KEY }}" }
         run: python scripts/themes.py
-      - run: timeout 1200 python scripts/autoreports.py big 3000 || true
+      - run: timeout 1200 python scripts/autoreports.py recent || true
       - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: timeout 1500 python scripts/finnhub_fill.py || true
       - run: python scripts/build.py
