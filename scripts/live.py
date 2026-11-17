@@ -155,6 +155,14 @@ while True:
             except Exception as e: print("etf", type(e).__name__, flush=True)
             if etf: payload["etf"] = etf   # sector ETF price + change (XLK, XLF ...)
             if EXT and mins >= 16 * 60: payload["post"] = dict(EXT)   # after-hours prices (16:00-20:00 New York)
+            if mins >= 16 * 60:   # after-hours for the index ETFs (status line on the home page)
+                pi = {}
+                for sym in ("SPY", "QQQ", "DIA"):
+                    try:
+                        inf = yf.Ticker(sym).info; pp, pc = inf.get("postMarketPrice"), inf.get("postMarketChangePercent")
+                        if pp and pc is not None: pi[sym] = [round(float(pp), 2), round(float(pc), 2)]
+                    except Exception as e: print("post", sym, type(e).__name__, flush=True)
+                if pi: payload["postIdx"] = pi
             publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
     except Exception as e:
