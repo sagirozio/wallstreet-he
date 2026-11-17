@@ -1,4 +1,4 @@
-"""Weekly backup of data.json to the `backup` branch (orphan, force-pushed): keeps the last 8 copies (~2 months).
+"""Nightly backup of data.json to the `backup` branch (orphan, force-pushed): keeps the last 14 copies.
 Restore: git show origin/backup:data-YYYY-MM-DD.json > data.json"""
 import os, pathlib, tempfile, subprocess, datetime as dt
 root = pathlib.Path(__file__).resolve().parent.parent
@@ -12,7 +12,7 @@ with tempfile.TemporaryDirectory() as t:
     g("checkout", "-q", "--orphan", "backup")
     p = pathlib.Path(t); (p / f"data-{dt.date.today()}.json").write_bytes((root / "data.json").read_bytes())
     files = sorted(p.glob("data-*.json"))
-    for f in files[:-8]: f.unlink()
+    for f in files[:-14]: f.unlink()
     g("add", "-A"); g("commit", "-qm", f"backup {dt.date.today()}")
     g("push", "-fq", URL, "backup")
     print("backups:", [f.name for f in sorted(p.glob("data-*.json"))])

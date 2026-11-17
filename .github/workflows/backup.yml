@@ -1,8 +1,8 @@
-name: Weekly data backup
-# data.json -> backup branch (last 8 weekly copies). The site never loads it.
+name: Nightly data backup
+# data.json -> backup branch (last 14 nightly copies). The site never loads it.
 on:
   schedule:
-    - cron: "37 9 * * 0"
+    - cron: "37 4 * * *"   # every night (GitHub may skip one; the loop does not depend on it)
   workflow_dispatch:
 permissions:
   contents: write

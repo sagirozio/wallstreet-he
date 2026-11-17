@@ -31,7 +31,7 @@ while True:
     if ny.weekday() >= 5 or m > 16 * 60 + 15 or time.time() - START > 350 * 60:
         print("loop done", ny.strftime("%H:%M ET"), flush=True)
         if ny.weekday() < 5 and m <= 16 * 60 + 15: kick("loop.yml")   # hit the 6-hour job limit mid-session: continue in a new run
-        else: kick("update.yml")                       # the nightly update right after the close
+        else: kick("update.yml"); kick("backup.yml")    # the nightly update right after the close + nightly data backup
         if NEWS is not None and NEWS.poll() is None: NEWS.wait(timeout=1800)
         break
     if m < 4 * 60:

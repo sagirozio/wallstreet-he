@@ -90,6 +90,7 @@ GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consu
         "Industrials": "XLI", "Real Estate": "XLRE", "Materials": "XLB", "Utilities": "XLU"}
 SPX = {}
 FH = {}          # symbol -> day change % (real time)
+FHP = {}         # symbol -> price (backup when Yahoo fails)
 FH_T = [0.0]     # time of the last completed pass
 def finnhub_loop():
     try:
@@ -103,7 +104,7 @@ def finnhub_loop():
             try:
                 url = "https://finnhub.io/api/v1/quote?" + urllib.parse.urlencode({"symbol": sym, "token": FKEY})
                 with urllib.request.urlopen(url, timeout=15) as r: q = json.loads(r.read().decode())
-                if q.get("dp") is not None and q.get("c"): FH[sym] = float(q["dp"])
+                if q.get("dp") is not None and q.get("c"): FH[sym] = float(q["dp"]); FHP[sym] = [round(float(q["c"]), 2), round(float(q["dp"]), 2)] + ([round(float(q["h"]), 2), round(float(q["l"]), 2)] if q.get("h") and q.get("l") else [])
             except Exception as e:
                 if "429" in str(e): time.sleep(30)
             time.sleep(max(0, 1.05 - (time.time() - t0)))
@@ -134,6 +135,9 @@ while True:
     try:
         q, state, last_ts = round_once()
         now = dt.datetime.now(IL)
+        if len(q) < 500 and len(FHP) > 300:   # Yahoo failed / blocked: S&P 500 prices from Finnhub so the site keeps moving
+            print("Yahoo returned", len(q), "quotes -> Finnhub backup for", len(FHP), flush=True)
+            q = {**{s_.replace(".", "-"): v for s_, v in FHP.items()}, **q}; last_ts = last_ts or int(time.time())
         if q:
             # "date" = the trading session the prices belong to (not today's date before the open)
             sess = dt.datetime.fromtimestamp(last_ts, NY).strftime("%Y-%m-%d") if last_ts else dt.datetime.now(NY).strftime("%Y-%m-%d")
