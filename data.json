@@ -26,13 +26,13 @@
    },
    {
     "name": "צריכה מחזורית",
-    "d": -0.62,
-    "w": -2.78,
-    "m": 5.39,
-    "q": 0.26,
-    "h": 9.75,
-    "ytd": 1.25,
-    "y": 5.6,
+    "d": -0.66,
+    "w": -2.88,
+    "m": 5.7,
+    "q": 0.44,
+    "h": 9.69,
+    "ytd": 0.87,
+    "y": 5.72,
     "t": "XLY"
    },
    {
@@ -31024,6 +31024,28 @@
    "auto": true
   },
   {
+   "id": "BWIN-2026-10",
+   "t": "BWIN",
+   "co": "The Baldwin Insurance Group, In",
+   "sector": "פיננסים",
+   "date": "2026-10-27",
+   "q": "Q3 2026",
+   "epsAct": 0.42,
+   "epsEst": 0.43,
+   "epsYoy": 35,
+   "epsBasis": "מתואם",
+   "revAct": 0.4803,
+   "revEst": 0.503,
+   "revYoy": 31.4,
+   "guide": "none",
+   "guideText": "",
+   "note": "",
+   "react": "המניה ירדה ב-0.3% במסחר שאחרי הדוח.",
+   "ir": "https://www.earningswhispers.com/epsdetails/BWIN",
+   "hook": "",
+   "auto": true
+  },
+  {
    "id": "JBLU-2026-10",
    "t": "JBLU",
    "co": "JetBlue Airways Corporation",
@@ -39221,12 +39243,12 @@
    {
     "d": "16.11",
     "up": 149,
-    "dn": 349,
-    "ma50": 65.1,
-    "ma200": 61.9,
+    "dn": 350,
+    "ma50": 65.2,
+    "ma200": 62.0,
     "hi": 24,
     "lo": 7,
-    "up10": 103,
+    "up10": 104,
     "dn10": 69,
     "L": {
      "hi": [
@@ -39409,6 +39431,10 @@
       [
        "REGN",
        20.4
+      ],
+      [
+       "CVNA",
+       20.2
       ],
       [
        "CMG",
@@ -58833,13 +58859,13 @@
    {
     "n": "ניהול נכסים",
     "en": "Asset Management",
-    "d": -1.78,
-    "w": -4.01,
-    "m": 2.51,
-    "q": -7.01,
-    "h": -2.62,
-    "ytd": -5.26,
-    "y": -3.85
+    "d": -1.79,
+    "w": -4.02,
+    "m": 2.63,
+    "q": -7.07,
+    "h": -2.66,
+    "ytd": -5.17,
+    "y": -3.7
    },
    {
     "n": "בנייה למגורים",
@@ -59482,24 +59508,24 @@
    {
     "n": "תעופה וביטחון",
     "en": "Aerospace & Defense",
-    "d": 2.17,
-    "w": 0.46,
-    "m": 9.19,
-    "q": -14.62,
-    "h": -4.11,
-    "ytd": 1.37,
-    "y": 10.94
+    "d": -4.37,
+    "w": -6.23,
+    "m": 2.07,
+    "q": -21.46,
+    "h": -14.46,
+    "ytd": -8.2,
+    "y": 1.11
    },
    {
     "n": "דשנים ותשומות חקלאיות",
     "en": "Agricultural Inputs",
-    "d": -2.88,
-    "w": -7.65,
-    "m": -2.59,
-    "q": -6.64,
-    "h": -10.08,
-    "ytd": 4.1,
-    "y": 2.7
+    "d": -2.97,
+    "w": -8.03,
+    "m": -0.85,
+    "q": -4.28,
+    "h": -5.83,
+    "ytd": 9.47,
+    "y": 7.17
    },
    {
     "n": "חלקי רכב",
@@ -59581,13 +59607,13 @@
    {
     "n": "פלדה",
     "en": "Steel",
-    "d": -2.62,
-    "w": -3.24,
-    "m": -7.08,
-    "q": -7.85,
-    "h": 4.37,
-    "ytd": 25.63,
-    "y": 39.7
+    "d": -2.57,
+    "w": -2.79,
+    "m": -5.46,
+    "q": -7.47,
+    "h": 2.63,
+    "ytd": 25.39,
+    "y": 40.97
    },
    {
     "n": "יצרני חשמל פרטיים",
@@ -59728,9 +59754,9 @@
     "w": -1.37,
     "m": -1.66,
     "q": -1.7,
-    "h": 20.09,
-    "ytd": 17.49,
-    "y": 16.28
+    "h": 21.24,
+    "ytd": 18.46,
+    "y": 17.21
    },
    {
     "n": "תוכנה – אפליקציות",
@@ -62636,7 +62662,7 @@
     [
      "MDB",
      "MongoDB, Inc.",
-     "25.53B",
+     "25.49B",
      {
       "d": -5.17,
       "w": -3.19,
@@ -63096,20 +63122,6 @@
      }
     ],
     [
-     "WIX",
-     "Wix.com Ltd.",
-     "3.87B",
-     {
-      "d": -1.07,
-      "w": -4.73,
-      "m": -11.41,
-      "q": -13.88,
-      "h": 19.19,
-      "y": -47.64,
-      "ytd": -36.04
-     }
-    ],
-    [
      "DLO",
      "DLocal Limited",
      "3.82B",
@@ -63191,6 +63203,20 @@
       "h": -18.42,
       "y": -42.32,
       "ytd": -38.33
+     }
+    ],
+    [
+     "WIX",
+     "Wix.com Ltd.",
+     "2.78B",
+     {
+      "d": -1.07,
+      "w": -4.73,
+      "m": -11.41,
+      "q": -13.88,
+      "h": 19.19,
+      "y": -47.64,
+      "ytd": -36.04
      }
     ],
     [
@@ -63328,9 +63354,9 @@
       "w": -2.88,
       "m": -4.39,
       "q": 15.44,
-      "h": -71.65,
-      "y": -77.48,
-      "ytd": -76.49
+      "h": 10.8,
+      "y": -11.99,
+      "ytd": -8.1
      }
     ],
     [
@@ -65096,13 +65122,13 @@
      "Embraer S.A.",
      "13.36B",
      {
-      "d": 281.46,
-      "w": 289.67,
-      "m": 315.16,
-      "q": 289.62,
-      "h": 432.57,
-      "y": 379.44,
-      "ytd": 366.56
+      "d": 0.0,
+      "w": 2.15,
+      "m": 8.83,
+      "q": 2.14,
+      "h": 39.62,
+      "y": 25.69,
+      "ytd": 22.31
      }
     ],
     [
@@ -65986,7 +66012,7 @@
     [
      "BNS",
      "Bank Nova Scotia Halifax Pfd 3",
-     "110.28B",
+     "110.46B",
      {
       "d": -2.06,
       "w": -2.9,
@@ -66580,7 +66606,7 @@
     [
      "ENTG",
      "Entegris, Inc.",
-     "21.33B",
+     "21.40B",
      {
       "d": -5.01,
       "w": -0.03,
@@ -69484,7 +69510,7 @@
     [
      "A",
      "Agilent Technologies, Inc.",
-     "48.75B",
+     "48.76B",
      {
       "d": -0.6,
       "w": -4.02,
@@ -72920,7 +72946,7 @@
     [
      "RJF",
      "Raymond James Financial, Inc.",
-     "32.14B",
+     "32.10B",
      {
       "d": -0.91,
       "w": -0.42,
@@ -73297,7 +73323,7 @@
     ],
     [
      "NEA",
-     "Nuveen AMT-Free Quality Municip",
+     "Nuveen AMT-Free Quality Municipal Income Fund",
      "3.00B",
      {
       "d": -1.1,
@@ -73423,7 +73449,7 @@
     ],
     [
      "GOF",
-     "Guggenheim Strategic Opportunit",
+     "Guggenheim Strategic Opportunities Fund",
      "1.90B",
      {
       "d": -1.73,
@@ -73451,7 +73477,7 @@
     ],
     [
      "MHD",
-     "Blackrock MuniHoldings Fund, In",
+     "BlackRock MuniHoldings Fund, Inc.",
      "1.85B",
      {
       "d": -0.84,
@@ -73465,7 +73491,7 @@
     ],
     [
      "GAB",
-     "Gabelli Equity Trust, Inc. (The",
+     "The Gabelli Equity Trust Inc.",
      "1.81B",
      {
       "d": -1.86,
@@ -73475,20 +73501,6 @@
       "h": -5.39,
       "y": -12.31,
       "ytd": -14.59
-     }
-    ],
-    [
-     "USA",
-     "Liberty All-Star Equity Fund",
-     "1.79B",
-     {
-      "d": -1.19,
-      "w": -3.96,
-      "m": -1.19,
-      "q": -3.16,
-      "h": 1.93,
-      "y": -6.73,
-      "ytd": -7.32
      }
     ],
     [
@@ -73534,22 +73546,8 @@
      }
     ],
     [
-     "NUV",
-     "Nuveen Municipal Value Fund, In",
-     "1.72B",
-     {
-      "d": -1.33,
-      "w": -3.76,
-      "m": -0.61,
-      "q": -9.01,
-      "h": -9.11,
-      "y": -10.21,
-      "ytd": -9.71
-     }
-    ],
-    [
      "RQI",
-     "Cohen & Steers Quality Income R",
+     "Cohen & Steers Quality Income Realty Fund, Inc.",
      "1.71B",
      {
       "d": -0.68,
@@ -73562,8 +73560,22 @@
      }
     ],
     [
+     "NUV",
+     "Nuveen Municipal Value Fund, In",
+     "1.70B",
+     {
+      "d": -1.33,
+      "w": -3.76,
+      "m": -0.61,
+      "q": -9.01,
+      "h": -9.11,
+      "y": -10.21,
+      "ytd": -9.71
+     }
+    ],
+    [
      "NAC",
-     "Nuveen California Quality Munic",
+     "Nuveen California Quality Municipal Income Fund",
      "1.67B",
      {
       "d": -1.3,
@@ -73689,7 +73701,7 @@
     ],
     [
      "MYI",
-     "Blackrock MuniYield Quality Fun",
+     "BlackRock MuniYield Quality Fund III, Inc.",
      "1.22B",
      {
       "d": -1.0,
@@ -73713,20 +73725,6 @@
       "h": -19.95,
       "y": -25.66,
       "ytd": -21.46
-     }
-    ],
-    [
-     "JFR",
-     "Nuveen Floating Rate Income Fun",
-     "1.14B",
-     {
-      "d": -1.25,
-      "w": -3.92,
-      "m": -1.93,
-      "q": -6.94,
-      "h": -4.95,
-      "y": -10.79,
-      "ytd": -9.2
      }
     ],
     [
@@ -75258,7 +75256,7 @@
     [
      "TJX",
      "TJX Companies, Inc. (The)",
-     "144.82B",
+     "144.20B",
      {
       "d": -2.44,
       "w": -5.1,
@@ -75272,7 +75270,7 @@
     [
      "ROST",
      "Ross Stores, Inc.",
-     "71.23B",
+     "71.53B",
      {
       "d": -3.75,
       "w": -5.91,
@@ -76118,7 +76116,7 @@
     [
      "COLB",
      "Columbia Banking System, Inc.",
-     "8.63B",
+     "8.64B",
      {
       "d": -0.23,
       "w": -1.52,
@@ -79850,7 +79848,7 @@
     [
      "J",
      "Jacobs Solutions Inc.",
-     "18.87B",
+     "18.71B",
      {
       "d": 1.0,
       "w": 2.19,
@@ -82466,20 +82464,6 @@
      }
     ],
     [
-     "TX",
-     "Ternium S.A. Ternium S.A.",
-     "9.51B",
-     {
-      "d": -2.85,
-      "w": -5.46,
-      "m": -15.17,
-      "q": -9.78,
-      "h": 13.05,
-      "y": 33.37,
-      "ytd": 26.84
-     }
-    ],
-    [
      "GGB",
      "Gerdau S.A.",
      "8.32B",
@@ -83262,316 +83246,6 @@
      }
     ]
    ],
-   "Packaged Foods": [
-    [
-     "JBS",
-     "JBS N.V.",
-     "40.39B",
-     {
-      "d": 0.99,
-      "w": -6.4,
-      "m": -5.76,
-      "q": -10.1,
-      "h": -4.51,
-      "y": -6.54,
-      "ytd": -14.84
-     }
-    ],
-    [
-     "KHC",
-     "The Kraft Heinz Company",
-     "29.68B",
-     {
-      "d": -0.16,
-      "w": 2.66,
-      "m": 5.87,
-      "q": 1.01,
-      "h": 7.37,
-      "y": 0.44,
-      "ytd": 3.38
-     }
-    ],
-    [
-     "GIS",
-     "General Mills, Inc.",
-     "18.84B",
-     {
-      "d": 2.68,
-      "w": 1.03,
-      "m": 6.37,
-      "q": -7.46,
-      "h": 5.35,
-      "y": -25.54,
-      "ytd": -24.22
-     }
-    ],
-    [
-     "SJM",
-     "The J.M. Smucker Company",
-     "14.48B",
-     {
-      "d": 2.15,
-      "w": 1.71,
-      "m": 6.36,
-      "q": 14.38,
-      "h": 30.78,
-      "y": 22.88,
-      "ytd": 38.57
-     }
-    ],
-    [
-     "MKC",
-     "McCormick & Company, Incorporat",
-     "12.68B",
-     {
-      "d": 0.36,
-      "w": -1.57,
-      "m": 1.68,
-      "q": -14.74,
-      "h": 0.92,
-      "y": -28.7,
-      "ytd": -30.8
-     }
-    ],
-    [
-     "HRL",
-     "Hormel Foods Corporation",
-     "12.50B",
-     {
-      "d": 2.81,
-      "w": 2.02,
-      "m": 11.32,
-      "q": -6.7,
-      "h": 11.43,
-      "y": 0.22,
-      "ytd": -4.18
-     }
-    ],
-    [
-     "MICC",
-     "The Magnum Ice Cream Company N.",
-     "11.91B",
-     {
-      "d": -0.85,
-      "w": 0.15,
-      "m": 5.06,
-      "q": 3.95,
-      "h": 25.35,
-      "y": null,
-      "ytd": 24.48
-     }
-    ],
-    [
-     "DAR",
-     "Darling Ingredients Inc.",
-     "8.32B",
-     {
-      "d": -4.14,
-      "w": 2.17,
-      "m": -12.53,
-      "q": -21.47,
-      "h": -13.62,
-      "y": 54.98,
-      "ytd": 49.08
-     }
-    ],
-    [
-     "LW",
-     "Lamb Weston Holdings, Inc.",
-     "7.62B",
-     {
-      "d": -1.36,
-      "w": -3.25,
-      "m": 3.19,
-      "q": 6.39,
-      "h": 26.69,
-      "y": -4.37,
-      "ytd": 32.01
-     }
-    ],
-    [
-     "SFD",
-     "Smithfield Foods, Inc.",
-     "7.58B",
-     {
-      "d": 0.36,
-      "w": -1.33,
-      "m": 3.33,
-      "q": -14.51,
-      "h": -25.0,
-      "y": -11.08,
-      "ytd": -13.75
-     }
-    ],
-    [
-     "CAG",
-     "ConAgra Brands, Inc.",
-     "7.24B",
-     {
-      "d": 2.92,
-      "w": -0.85,
-      "m": 4.77,
-      "q": -2.32,
-      "h": 9.93,
-      "y": -13.02,
-      "ytd": -12.42
-     }
-    ],
-    [
-     "CPB",
-     "The Campbell's Company",
-     "7.01B",
-     {
-      "d": 3.01,
-      "w": 2.58,
-      "m": 18.02,
-      "q": 2.58,
-      "h": 15.29,
-      "y": -24.91,
-      "ytd": -15.86
-     }
-    ],
-    [
-     "PPC",
-     "Pilgrim's Pride Corporation",
-     "6.93B",
-     {
-      "d": 3.52,
-      "w": -1.59,
-      "m": -1.09,
-      "q": 2.18,
-      "h": 2.64,
-      "y": -22.68,
-      "ytd": -25.34
-     }
-    ],
-    [
-     "INGR",
-     "Ingredion Incorporated",
-     "5.79B",
-     {
-      "d": -1.25,
-      "w": 0.19,
-      "m": -5.08,
-      "q": -11.84,
-      "h": -8.34,
-      "y": -13.69,
-      "ytd": -15.69
-     }
-    ],
-    [
-     "POST",
-     "Post Holdings, Inc.",
-     "3.59B",
-     {
-      "d": 0.57,
-      "w": -0.74,
-      "m": 3.96,
-      "q": 2.28,
-      "h": -18.04,
-      "y": -23.23,
-      "ytd": -17.58
-     }
-    ],
-    [
-     "FRPT",
-     "Freshpet, Inc.",
-     "3.22B",
-     {
-      "d": -1.44,
-      "w": -1.2,
-      "m": -0.14,
-      "q": -8.38,
-      "h": 37.34,
-      "y": 24.51,
-      "ytd": 9.21
-     }
-    ],
-    [
-     "HLF",
-     "Herbalife Ltd.",
-     "1.69B",
-     {
-      "d": 1.19,
-      "w": 2.87,
-      "m": 10.62,
-      "q": 30.88,
-      "h": 28.28,
-      "y": 71.26,
-      "ytd": 25.29
-     }
-    ],
-    [
-     "NOMD",
-     "Nomad Foods Limited",
-     "1.67B",
-     {
-      "d": 0.08,
-      "w": -0.25,
-      "m": 1.45,
-      "q": 4.47,
-      "h": 16.5,
-      "y": -2.13,
-      "ytd": -4.64
-     }
-    ],
-    [
-     "UTZ",
-     "Utz Brands Inc",
-     "1.27B",
-     {
-      "d": 0.0,
-      "w": 0.28,
-      "m": -0.07,
-      "q": 0.85,
-      "h": 94.55,
-      "y": 37.31,
-      "ytd": 37.57
-     }
-    ],
-    [
-     "BRBR",
-     "BellRing Brands, Inc.",
-     "1.23B",
-     {
-      "d": -0.09,
-      "w": 9.67,
-      "m": 11.88,
-      "q": 1.64,
-      "h": 13.93,
-      "y": -60.85,
-      "ytd": -60.53
-     }
-    ],
-    [
-     "FLO",
-     "Flowers Foods, Inc.",
-     "1.11B",
-     {
-      "d": -5.24,
-      "w": -18.13,
-      "m": -14.24,
-      "q": -29.0,
-      "h": -28.51,
-      "y": -53.99,
-      "ytd": -51.84
-     }
-    ],
-    [
-     "SMPL",
-     "The Simply Good Foods Company",
-     "1.10B",
-     {
-      "d": 0.4,
-      "w": 0.16,
-      "m": 12.78,
-      "q": 15.04,
-      "h": 6.95,
-      "y": -35.51,
-      "ytd": -37.15
-     }
-    ]
-   ],
    "Residential Construction": [
     [
      "DHI",
@@ -84260,20 +83934,6 @@
      }
     ],
     [
-     "ICL",
-     "ICL Group Ltd.",
-     "5.69B",
-     {
-      "d": -2.43,
-      "w": -5.77,
-      "m": -11.27,
-      "q": -18.48,
-      "h": -31.31,
-      "y": -19.67,
-      "ytd": -22.77
-     }
-    ],
-    [
      "SMG",
      "Scotts Miracle-Gro Company (The",
      "3.71B",
@@ -84562,7 +84222,7 @@
     [
      "NJR",
      "NewJersey Resources Corporation",
-     "5.67B",
+     "5.70B",
      {
       "d": 1.12,
       "w": 3.35,
@@ -84648,7 +84308,7 @@
     [
      "WSM",
      "Williams-Sonoma, Inc.",
-     "29.68B",
+     "29.69B",
      {
       "d": -0.79,
       "w": -3.68,
@@ -84895,6 +84555,316 @@
       "h": 61.35,
       "y": 134.09,
       "ytd": 117.95
+     }
+    ]
+   ],
+   "Packaged Foods": [
+    [
+     "KHC",
+     "The Kraft Heinz Company",
+     "29.68B",
+     {
+      "d": -0.16,
+      "w": 2.66,
+      "m": 5.87,
+      "q": 1.01,
+      "h": 7.37,
+      "y": 0.44,
+      "ytd": 3.38
+     }
+    ],
+    [
+     "GIS",
+     "General Mills, Inc.",
+     "18.84B",
+     {
+      "d": 2.68,
+      "w": 1.03,
+      "m": 6.37,
+      "q": -7.46,
+      "h": 5.35,
+      "y": -25.54,
+      "ytd": -24.22
+     }
+    ],
+    [
+     "SJM",
+     "The J.M. Smucker Company",
+     "14.48B",
+     {
+      "d": 2.15,
+      "w": 1.71,
+      "m": 6.36,
+      "q": 14.38,
+      "h": 30.78,
+      "y": 22.88,
+      "ytd": 38.57
+     }
+    ],
+    [
+     "JBS",
+     "JBS N.V.",
+     "13.15B",
+     {
+      "d": 0.99,
+      "w": -6.4,
+      "m": -5.76,
+      "q": -10.1,
+      "h": -4.51,
+      "y": -6.54,
+      "ytd": -14.84
+     }
+    ],
+    [
+     "MKC",
+     "McCormick & Company, Incorporat",
+     "12.68B",
+     {
+      "d": 0.36,
+      "w": -1.57,
+      "m": 1.68,
+      "q": -14.74,
+      "h": 0.92,
+      "y": -28.7,
+      "ytd": -30.8
+     }
+    ],
+    [
+     "HRL",
+     "Hormel Foods Corporation",
+     "12.50B",
+     {
+      "d": 2.81,
+      "w": 2.02,
+      "m": 11.32,
+      "q": -6.7,
+      "h": 11.43,
+      "y": 0.22,
+      "ytd": -4.18
+     }
+    ],
+    [
+     "MICC",
+     "The Magnum Ice Cream Company N.",
+     "11.91B",
+     {
+      "d": -0.85,
+      "w": 0.15,
+      "m": 5.06,
+      "q": 3.95,
+      "h": 25.35,
+      "y": null,
+      "ytd": 24.48
+     }
+    ],
+    [
+     "DAR",
+     "Darling Ingredients Inc.",
+     "8.32B",
+     {
+      "d": -4.14,
+      "w": 2.17,
+      "m": -12.53,
+      "q": -21.47,
+      "h": -13.62,
+      "y": 54.98,
+      "ytd": 49.08
+     }
+    ],
+    [
+     "LW",
+     "Lamb Weston Holdings, Inc.",
+     "7.62B",
+     {
+      "d": -1.36,
+      "w": -3.25,
+      "m": 3.19,
+      "q": 6.39,
+      "h": 26.69,
+      "y": -4.37,
+      "ytd": 32.01
+     }
+    ],
+    [
+     "SFD",
+     "Smithfield Foods, Inc.",
+     "7.58B",
+     {
+      "d": 0.36,
+      "w": -1.33,
+      "m": 3.33,
+      "q": -14.51,
+      "h": -25.0,
+      "y": -11.08,
+      "ytd": -13.75
+     }
+    ],
+    [
+     "CAG",
+     "ConAgra Brands, Inc.",
+     "7.24B",
+     {
+      "d": 2.92,
+      "w": -0.85,
+      "m": 4.77,
+      "q": -2.32,
+      "h": 9.93,
+      "y": -13.02,
+      "ytd": -12.42
+     }
+    ],
+    [
+     "CPB",
+     "The Campbell's Company",
+     "7.01B",
+     {
+      "d": 3.01,
+      "w": 2.58,
+      "m": 18.02,
+      "q": 2.58,
+      "h": 15.29,
+      "y": -24.91,
+      "ytd": -15.86
+     }
+    ],
+    [
+     "PPC",
+     "Pilgrim's Pride Corporation",
+     "6.93B",
+     {
+      "d": 3.52,
+      "w": -1.59,
+      "m": -1.09,
+      "q": 2.18,
+      "h": 2.64,
+      "y": -22.68,
+      "ytd": -25.34
+     }
+    ],
+    [
+     "INGR",
+     "Ingredion Incorporated",
+     "5.79B",
+     {
+      "d": -1.25,
+      "w": 0.19,
+      "m": -5.08,
+      "q": -11.84,
+      "h": -8.34,
+      "y": -13.69,
+      "ytd": -15.69
+     }
+    ],
+    [
+     "POST",
+     "Post Holdings, Inc.",
+     "3.59B",
+     {
+      "d": 0.57,
+      "w": -0.74,
+      "m": 3.96,
+      "q": 2.28,
+      "h": -18.04,
+      "y": -23.23,
+      "ytd": -17.58
+     }
+    ],
+    [
+     "FRPT",
+     "Freshpet, Inc.",
+     "3.22B",
+     {
+      "d": -1.44,
+      "w": -1.2,
+      "m": -0.14,
+      "q": -8.38,
+      "h": 37.34,
+      "y": 24.51,
+      "ytd": 9.21
+     }
+    ],
+    [
+     "UTZ",
+     "Utz Brands Inc",
+     "2.06B",
+     {
+      "d": 0.0,
+      "w": 0.28,
+      "m": -0.07,
+      "q": 0.85,
+      "h": 94.55,
+      "y": 37.31,
+      "ytd": 37.57
+     }
+    ],
+    [
+     "HLF",
+     "Herbalife Ltd.",
+     "1.69B",
+     {
+      "d": 1.19,
+      "w": 2.87,
+      "m": 10.62,
+      "q": 30.88,
+      "h": 28.28,
+      "y": 71.26,
+      "ytd": 25.29
+     }
+    ],
+    [
+     "NOMD",
+     "Nomad Foods Limited",
+     "1.67B",
+     {
+      "d": 0.08,
+      "w": -0.25,
+      "m": 1.45,
+      "q": 4.47,
+      "h": 16.5,
+      "y": -2.13,
+      "ytd": -4.64
+     }
+    ],
+    [
+     "BRBR",
+     "BellRing Brands, Inc.",
+     "1.23B",
+     {
+      "d": -0.09,
+      "w": 9.67,
+      "m": 11.88,
+      "q": 1.64,
+      "h": 13.93,
+      "y": -60.85,
+      "ytd": -60.53
+     }
+    ],
+    [
+     "FLO",
+     "Flowers Foods, Inc.",
+     "1.11B",
+     {
+      "d": -5.24,
+      "w": -18.13,
+      "m": -14.24,
+      "q": -29.0,
+      "h": -28.51,
+      "y": -53.99,
+      "ytd": -51.84
+     }
+    ],
+    [
+     "SMPL",
+     "The Simply Good Foods Company",
+     "1.10B",
+     {
+      "d": 0.4,
+      "w": 0.16,
+      "m": 12.78,
+      "q": 15.04,
+      "h": 6.95,
+      "y": -35.51,
+      "ytd": -37.15
      }
     ]
    ],
@@ -86274,7 +86244,7 @@
     [
      "CALY",
      "Callaway Golf Company",
-     "3.05B",
+     "3.03B",
      {
       "d": -0.82,
       "w": -2.7,
@@ -87942,8 +87912,8 @@
    "T": "NYSE",
    "ACN": "NYSE",
    "CB": "NYSE",
-   "TJX": "NYSE",
    "UBS": "NYSE",
+   "TJX": "NYSE",
    "UL": "NYSE",
    "UBER": "NYSE",
    "BBVA": "NYSE",
@@ -88195,7 +88165,6 @@
    "NTRA": "NASDAQ",
    "ABEV": "NYSE",
    "KR": "NYSE",
-   "JBS": "NYSE",
    "HLN": "NYSE",
    "VIK": "NYSE",
    "SLF": "NYSE",
@@ -88385,9 +88354,9 @@
    "BBY": "NYSE",
    "JBHT": "NASDAQ",
    "AMRZ": "NYSE",
+   "ENTG": "NASDAQ",
    "ALNY": "NASDAQ",
    "PTC": "NASDAQ",
-   "ENTG": "NASDAQ",
    "AFRM": "NASDAQ",
    "BNTX": "NASDAQ",
    "RGLD": "NASDAQ",
@@ -88416,11 +88385,11 @@
    "GFL": "NYSE",
    "LNT": "NASDAQ",
    "BG": "NYSE",
-   "J": "NYSE",
    "GIS": "NYSE",
    "SNX": "NYSE",
    "RCI": "NYSE",
    "PR": "NYSE",
+   "J": "NYSE",
    "ROL": "NYSE",
    "SSNC": "NASDAQ",
    "ITT": "NYSE",
@@ -88556,6 +88525,7 @@
    "ELAN": "NYSE",
    "CHYM": "NASDAQ",
    "CCK": "NYSE",
+   "JBS": "NYSE",
    "WTRG": "NYSE",
    "DKS": "NYSE",
    "SNN": "NYSE",
@@ -88687,7 +88657,6 @@
    "IAG": "NYSE",
    "PCTY": "NASDAQ",
    "ZION": "NASDAQ",
-   "TX": "NYSE",
    "RHP": "NYSE",
    "TGTX": "NASDAQ",
    "SMMT": "NASDAQ",
@@ -88952,12 +88921,11 @@
    "RYAN": "NYSE",
    "OCTV": "NASDAQ",
    "FIGR": "NASDAQ",
+   "NJR": "NYSE",
    "ASB": "NYSE",
    "AN": "NYSE",
    "MWH": "NASDAQ",
-   "ICL": "NYSE",
    "BEPC": "NYSE",
-   "NJR": "NYSE",
    "SGHC": "NYSE",
    "VRNS": "NASDAQ",
    "FBIN": "NYSE",
@@ -89181,7 +89149,6 @@
    "VSH": "NYSE",
    "BBWI": "NYSE",
    "TARS": "NASDAQ",
-   "WIX": "NASDAQ",
    "CDNA": "NASDAQ",
    "FLY": "NASDAQ",
    "XENE": "NASDAQ",
@@ -89315,11 +89282,11 @@
    "IRTC": "NASDAQ",
    "SLDE": "NASDAQ",
    "XERS": "NASDAQ",
-   "CALY": "NYSE",
    "GNW": "NYSE",
    "TNK": "NYSE",
    "SPNT": "NYSE",
    "UEC": "AMEX",
+   "CALY": "NYSE",
    "FG": "NYSE",
    "SHOO": "NASDAQ",
    "CLBK": "NASDAQ",
@@ -89361,6 +89328,7 @@
    "CLBT": "NASDAQ",
    "IOND": "NASDAQ",
    "ONDS": "NASDAQ",
+   "WIX": "NASDAQ",
    "CSQR": "NYSE",
    "FLYW": "NASDAQ",
    "KN": "NYSE",
@@ -89489,6 +89457,7 @@
    "SONO": "NASDAQ",
    "KC": "NASDAQ",
    "UCTT": "NASDAQ",
+   "UTZ": "NYSE",
    "SDGR": "NASDAQ",
    "RUM": "NASDAQ",
    "XHR": "NYSE",
@@ -89555,7 +89524,6 @@
    "AGIO": "NASDAQ",
    "CRCT": "NASDAQ",
    "PRDO": "NASDAQ",
-   "USA": "NYSE",
    "KMT": "NYSE",
    "VIR": "NASDAQ",
    "XRAY": "NASDAQ",
@@ -89578,7 +89546,6 @@
    "DNN": "AMEX",
    "TRIN": "NYSE",
    "DHC": "NASDAQ",
-   "NUV": "NYSE",
    "AI": "NYSE",
    "INSP": "NYSE",
    "BRSL": "NYSE",
@@ -89586,6 +89553,7 @@
    "WLTH": "NASDAQ",
    "NEXT": "NASDAQ",
    "SBH": "NYSE",
+   "NUV": "NYSE",
    "HLF": "NYSE",
    "WERN": "NASDAQ",
    "BXDC": "NYSE",
@@ -89716,7 +89684,6 @@
    "MLYS": "NASDAQ",
    "LZB": "NYSE",
    "MNKD": "NASDAQ",
-   "UTZ": "NYSE",
    "ICHR": "NASDAQ",
    "PD": "NYSE",
    "RSKD": "NYSE",
@@ -89757,7 +89724,6 @@
    "UNIT": "NASDAQ",
    "SBET": "NASDAQ",
    "ECVT": "NYSE",
-   "JFR": "NYSE",
    "NMAX": "NYSE",
    "MSDL": "NYSE",
    "TH": "NASDAQ",
@@ -89897,7 +89863,6 @@
    "Health Information Services": "Healthcare",
    "Shell Companies": "Financial Services",
    "Grocery Stores": "Consumer Defensive",
-   "Packaged Foods": "Consumer Defensive",
    "Residential Construction": "Consumer Cyclical",
    "Mortgage Finance": "Financial Services",
    "Food Distribution": "Consumer Defensive",
@@ -89910,6 +89875,7 @@
    "Utilities - Regulated Water": "Utilities",
    "Utilities - Regulated Gas": "Utilities",
    "Specialty Retail": "Consumer Cyclical",
+   "Packaged Foods": "Consumer Defensive",
    "Pollution & Treatment Controls": "Industrials",
    "Uranium": "Energy",
    "REIT - Diversified": "Real Estate",
@@ -89953,7 +89919,7 @@
   },
   "check": {
    "src": "Massive (מאגר מחירים מבוקר) + Yahoo לימים האחרונים",
-   "hist": 1967,
+   "hist": 1963,
    "histTo": "2026-11-16",
    "checked": 0,
    "fixed": 0,
@@ -89978,14 +89944,6 @@
     "cap": 1.09,
     "il": false,
     "vol": 0.83
-   },
-   {
-    "t": "EMBJ",
-    "n": "Embraer S.A.",
-    "p": 366.6,
-    "cap": 13.36,
-    "il": false,
-    "vol": 5.8
    },
    {
     "t": "ERAS",
@@ -95500,12 +95458,12 @@
    "d": "2026-10-20",
    "est": false
   },
-  "TJX": {
-   "d": "2026-11-18",
-   "est": false
-  },
   "UBS": {
    "d": "2026-10-28",
+   "est": false
+  },
+  "TJX": {
+   "d": "2026-11-18",
    "est": false
   },
   "UL": {
@@ -96512,10 +96470,6 @@
    "d": "2026-12-03",
    "est": false
   },
-  "JBS": {
-   "d": "2026-11-09",
-   "est": false
-  },
   "HLN": {
    "d": "2026-07-30",
    "est": false
@@ -97276,16 +97230,16 @@
    "d": "2026-10-28",
    "est": false
   },
+  "ENTG": {
+   "d": "2026-10-29",
+   "est": false
+  },
   "ALNY": {
    "d": "2026-10-29",
    "est": false
   },
   "PTC": {
    "d": "2026-11-04",
-   "est": false
-  },
-  "ENTG": {
-   "d": "2026-10-29",
    "est": false
   },
   "AFRM": {
@@ -97400,10 +97354,6 @@
    "d": "2026-10-29",
    "est": false
   },
-  "J": {
-   "d": "2026-11-23",
-   "est": false
-  },
   "GIS": {
    "d": "2026-12-23",
    "est": true
@@ -97418,6 +97368,10 @@
   },
   "PR": {
    "d": "2026-11-04",
+   "est": false
+  },
+  "J": {
+   "d": "2026-11-23",
    "est": false
   },
   "ROL": {
@@ -97964,6 +97918,10 @@
    "d": "2026-10-19",
    "est": false
   },
+  "JBS": {
+   "d": "2026-11-09",
+   "est": false
+  },
   "WTRG": {
    "d": "2026-11-03",
    "est": false
@@ -98491,10 +98449,6 @@
   "ZION": {
    "d": "2027-01-21",
    "est": true
-  },
-  "TX": {
-   "d": "2026-11-03",
-   "est": false
   },
   "RHP": {
    "d": "2026-11-02",
@@ -99300,10 +99254,6 @@
    "d": "2026-10-28",
    "est": false
   },
-  "CEF": {
-   "d": "2025-08-14",
-   "est": true
-  },
   "FNB": {
    "d": "2027-01-19",
    "est": true
@@ -99556,6 +99506,10 @@
    "d": "2026-11-12",
    "est": false
   },
+  "NJR": {
+   "d": "2026-11-18",
+   "est": false
+  },
   "ASB": {
    "d": "2027-01-21",
    "est": true
@@ -99568,17 +99522,9 @@
    "d": "2026-11-12",
    "est": false
   },
-  "ICL": {
-   "d": "2026-11-11",
-   "est": false
-  },
   "BEPC": {
    "d": "2027-01-29",
    "est": true
-  },
-  "NJR": {
-   "d": "2026-11-18",
-   "est": false
   },
   "SGHC": {
    "d": "2026-11-03",
@@ -100484,10 +100430,6 @@
    "d": "2026-11-03",
    "est": false
   },
-  "WIX": {
-   "d": "2026-11-10",
-   "est": false
-  },
   "CDNA": {
    "d": "2026-10-29",
    "est": false
@@ -101020,10 +100962,6 @@
    "d": "2026-11-05",
    "est": false
   },
-  "CALY": {
-   "d": "2026-11-05",
-   "est": false
-  },
   "GNW": {
    "d": "2026-11-04",
    "est": false
@@ -101040,6 +100978,10 @@
    "d": "2026-12-08",
    "est": true
   },
+  "CALY": {
+   "d": "2026-11-05",
+   "est": false
+  },
   "FG": {
    "d": "2026-11-05",
    "est": false
@@ -101050,10 +100992,6 @@
   },
   "CLBK": {
    "d": "2026-11-03",
-   "est": true
-  },
-  "NEA": {
-   "d": "2025-06-30",
    "est": true
   },
   "BLSH": {
@@ -101202,6 +101140,10 @@
   },
   "ONDS": {
    "d": "2026-11-12",
+   "est": false
+  },
+  "WIX": {
+   "d": "2026-11-10",
    "est": false
   },
   "CSQR": {
@@ -101712,6 +101654,10 @@
    "d": "2026-10-27",
    "est": false
   },
+  "UTZ": {
+   "d": "2026-11-06",
+   "est": false
+  },
   "SDGR": {
    "d": "2026-11-04",
    "est": false
@@ -101840,10 +101786,6 @@
    "d": "2026-10-29",
    "est": false
   },
-  "GOF": {
-   "d": "2025-07-31",
-   "est": true
-  },
   "COHU": {
    "d": "2026-10-28",
    "est": false
@@ -101952,10 +101894,6 @@
    "d": "2026-11-18",
    "est": true
   },
-  "GAB": {
-   "d": "2023-08-23",
-   "est": false
-  },
   "VSTS": {
    "d": "2026-11-19",
    "est": true
@@ -101971,10 +101909,6 @@
   "PRDO": {
    "d": "2026-11-05",
    "est": false
-  },
-  "USA": {
-   "d": "2025-08-27",
-   "est": true
   },
   "KMT": {
    "d": "2027-02-03",
@@ -102060,10 +101994,6 @@
    "d": "2026-11-02",
    "est": false
   },
-  "NUV": {
-   "d": "2025-06-30",
-   "est": true
-  },
   "AI": {
    "d": "2026-12-09",
    "est": true
@@ -102076,10 +102006,6 @@
    "d": "2026-11-10",
    "est": false
   },
-  "RQI": {
-   "d": "2025-09-03",
-   "est": true
-  },
   "WLTH": {
    "d": "2026-12-03",
    "est": false
@@ -102090,6 +102016,10 @@
   },
   "SBH": {
    "d": "2027-02-08",
+   "est": true
+  },
+  "NUV": {
+   "d": "2025-06-30",
    "est": true
   },
   "HLF": {
@@ -102122,10 +102052,6 @@
   },
   "AEHR": {
    "d": "2026-11-02",
-   "est": false
-  },
-  "NAC": {
-   "d": "2022-05-06",
    "est": false
   },
   "NOMD": {
@@ -102604,10 +102530,6 @@
    "d": "2026-11-05",
    "est": false
   },
-  "UTZ": {
-   "d": "2026-11-06",
-   "est": false
-  },
   "ICHR": {
    "d": "2026-11-02",
    "est": false
@@ -102678,10 +102600,6 @@
   },
   "BRBR": {
    "d": "2026-11-18",
-   "est": false
-  },
-  "MYI": {
-   "d": "2025-04-07",
    "est": false
   },
   "WOLF": {
@@ -102766,10 +102684,6 @@
   },
   "ECVT": {
    "d": "2026-11-05",
-   "est": false
-  },
-  "JFR": {
-   "d": "2025-04-04",
    "est": false
   },
   "NMAX": {
@@ -102991,13 +102905,6 @@
   "period": "חודש",
   "rows": [
    {
-    "t": "EMBJ",
-    "n": "Embraer S.A.",
-    "p": 315.2,
-    "cap": 13.36,
-    "il": false
-   },
-   {
     "t": "SLN",
     "n": "Silence Therapeutics Plc - Amer",
     "p": 128.1,
@@ -103094,16 +103001,16 @@
     "p": 52.2,
     "cap": 1.45,
     "il": false
+   },
+   {
+    "t": "HAWK",
+    "n": "HawkEye 360, Inc.",
+    "p": 48.8,
+    "cap": 1.84,
+    "il": false
    }
   ],
   "large": [
-   {
-    "t": "EMBJ",
-    "n": "Embraer S.A.",
-    "p": 315.2,
-    "cap": 13.36,
-    "il": false
-   },
    {
     "t": "APP",
     "n": "Applovin Corporation",
@@ -103166,10 +103073,17 @@
     "p": 27.6,
     "cap": 26.96,
     "il": false
+   },
+   {
+    "t": "CLX",
+    "n": "Clorox Company (The)",
+    "p": 26.5,
+    "cap": 13.35,
+    "il": false
    }
   ]
  },
- "ts": 1794919395,
+ "ts": 1794919790,
  "hl52": {
   "d": "2026-11-16",
   "hi": {
@@ -103294,6 +103208,7 @@
    "CSX": 53.6,
    "CTAS": 233.46,
    "CTSH": 87.03,
+   "CVNA": 97.378,
    "CVS": 110.68,
    "CVX": 236.48,
    "D": 72.99,
@@ -103795,6 +103710,7 @@
    "CSX": 33.63,
    "CTAS": 161.16,
    "CTSH": 37.08,
+   "CVNA": 54.464,
    "CVS": 69.51,
    "CVX": 146.49,
    "D": 55.85,
