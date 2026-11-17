@@ -47,7 +47,9 @@ for ind, lst in stocks.items():
         universe[s[0]] = (s[1], s[2], ind)
 
 # ---------- core (inlined + polled) ----------
-core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates", "hl52")}
+core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates", "hl52", "insiders")}
+# insider trades: own file, loaded by the stock page and the insiders section
+write("insiders.json", js(data.get("insiders") or {"rows": []}))
 # reports: the page carries only the last 3 weeks; the full archive is reports.json (loaded on demand)
 import datetime as _dt
 _cut = (_dt.date.today() - _dt.timedelta(days=4)).isoformat()

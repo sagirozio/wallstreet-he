@@ -171,10 +171,10 @@ Update `items` when an IPO is priced or listed, or a big filing happens. Shape: 
 ```bash
 python3 -c "import json;json.load(open('data.json'))"   # must not fail
 python3 scripts/build.py
-git add data.json index.html core.json breadth.json reports.json stocks.json sitemap.xml stock.css s stock
+git add data.json index.html core.json breadth.json insiders.json reports.json stocks.json sitemap.xml stock.css s stock
 git commit -m "Content update DD.MM (midday|morning|evening)"
 git pull --rebase -X theirs origin main                # the data bots may have pushed meanwhile
-python3 scripts/build.py && git add index.html core.json breadth.json reports.json stocks.json sitemap.xml stock.css s stock && (git diff --cached --quiet || git commit -m "Rebuild site files")
+python3 scripts/build.py && git add index.html core.json breadth.json insiders.json reports.json stocks.json sitemap.xml stock.css s stock && (git diff --cached --quiet || git commit -m "Rebuild site files")
 git push origin HEAD:main                              # if rejected: repeat the last three lines
 ```
 

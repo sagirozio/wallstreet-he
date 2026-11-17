@@ -1,0 +1,23 @@
+name: Insider trades (SEC Form 4)
+# Nightly: EDGAR daily index -> Form 4 buys / sells by insiders of the stocks on the site (last 30 days).
+on:
+  schedule:
+    - cron: "11 4 * * 2-6"   # ~06:11 Israel, after EDGAR publishes the previous day's index
+  workflow_dispatch:
+    inputs:
+      days: { description: "Look back N days", default: "6" }
+permissions:
+  contents: write
+concurrency: { group: data-update, cancel-in-progress: false }
+jobs:
+  insiders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/insiders.py ${{ github.event.inputs.days }}
+        env:
+          SEC_UA: ${{ secrets.SEC_UA }}
+      - run: pip install -q yfinance pandas >/dev/null 2>&1; bash scripts/commit.sh "Insider trades (SEC Form 4)" data.json
