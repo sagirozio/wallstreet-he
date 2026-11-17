@@ -12,6 +12,7 @@ The nightly GitHub Action recomputes them from Yahoo Finance.
 1. Attach the repo with push access. Clone it with `git clone --depth 5 https://github.com/sagirozio/wallstreet-he`.
 2. Work in Israel time (Asia/Jerusalem). US market hours are 16:30–23:00 Israel time.
 3. Note which run this is:
+   - **midday:** around 11:00 (news-only run).
    - **morning:** before 16:30.
    - **evening:** after 23:00.
 
@@ -19,6 +20,11 @@ The nightly GitHub Action recomputes them from Yahoo Finance.
 
 Search separately for each item below. Use only what you retrieved, never memory.
 
+- **Midday run (11:00, news only):**
+  - Stories since the evening run that matter for US stocks: overnight company news, Asia and Europe session, US futures, notable pre-market announcements (deals, guidance, analyst moves on big names, regulation).
+  - Add 3–6 new `news` items (prepend; don't duplicate items already in the archive). Update `overview.brief` only if something big changed since the evening run; leave `reports`, `calendar`, `ipos` as they are unless there is clear new information.
+  - Profiles: still add descriptions as in §2 `profiles`.
+  - Commit message: `Content update DD.MM (midday)`.
 - **Morning run:**
   - US stock futures, Asia and Europe overnight.
   - The 3–6 biggest US stock stories of the last 24h.
@@ -114,7 +120,7 @@ python3 -c "import json;json.load(open('data.json'))"   # must not fail
 python3 scripts/build.py
 git pull --rebase origin main                          # the nightly bot may have pushed
 git add data.json index.html template.html
-git commit -m "Content update DD.MM (morning|evening)"
+git commit -m "Content update DD.MM (midday|morning|evening)"
 git push origin HEAD:main
 ```
 
