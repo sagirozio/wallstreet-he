@@ -2,7 +2,8 @@ name: Nightly data update
 on:
   schedule:
     - cron: "43 21 * * 1-5"   # ~23:43 Israel (winter), after US close; off-peak minute
-    - cron: "19 1 * * 2-6"    # backup run ~03:19 Israel in case GitHub skipped the first
+    - cron: "19 1 * * 2-6"
+    - cron: "25 5 * * 2-6"     # 07:25 Israel: re-run once Massive has the previous session (cross-check)    # backup run ~03:19 Israel in case GitHub skipped the first
   workflow_dispatch:
 concurrency: { group: data-update, cancel-in-progress: false }
 permissions:
@@ -16,7 +17,8 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install yfinance pandas
       - run: python scripts/update.py
-      - run: python scripts/themes.py
+      - env: { MASSIVE_KEY: "${{ secrets.MASSIVE_KEY }}" }
+        run: python scripts/themes.py
       - run: timeout 1200 python scripts/autoreports.py big 3000 || true
       - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: timeout 1500 python scripts/finnhub_fill.py || true
