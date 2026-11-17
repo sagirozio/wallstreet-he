@@ -9,13 +9,17 @@ health.py live checks that live.json / intra.json are fresh and opens a GitHub i
 loop.yml tries to start it every hour; a start while one is running waits in the queue (no cancel), so the day stays covered even
 when GitHub delays or drops scheduled starts. Hourly in the background: news_hourly.sh (Finnhub headlines + same-day cards).
 """
-import subprocess, time, datetime as dt
+import os, subprocess, time, datetime as dt
 from zoneinfo import ZoneInfo
 
 NY = ZoneInfo("America/New_York")
 START = time.time()
 EVERY = 180
-NEWS, NEWS_AT = None, 0.0   # background hourly headlines job (news_hourly.sh)
+NEWS, NEWS_AT = None, 0.0
+KICKED = set()
+def kick(wf):   # start another workflow (GitHub's own schedule drops runs)
+    if wf in KICKED: return
+    KICKED.add(wf); sh(f'gh api -X POST repos/{os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he")}/actions/workflows/{wf}/dispatches -f ref=main || true')   # background hourly headlines job (news_hourly.sh)
 
 def sh(cmd):
     print("$", cmd, flush=True)
@@ -26,12 +30,15 @@ while True:
     m = ny.hour * 60 + ny.minute
     if ny.weekday() >= 5 or m > 16 * 60 + 15 or time.time() - START > 350 * 60:
         print("loop done", ny.strftime("%H:%M ET"), flush=True)
+        if ny.weekday() < 5 and m <= 16 * 60 + 15: kick("loop.yml")   # hit the 6-hour job limit mid-session: continue in a new run
+        else: kick("update.yml")                       # the nightly update right after the close
         if NEWS is not None and NEWS.poll() is None: NEWS.wait(timeout=1800)
         break
     if m < 4 * 60:
         time.sleep(60)
         continue
     t0 = time.time()
+    if m >= 9 * 60 + 15: kick("live.yml")          # live quotes for the session
     # hourly from 07:30 New York (14:30 Israel): headlines + same-day earnings cards, in the background
     if m >= 7 * 60 + 30 and (NEWS is None or NEWS.poll() is not None) and time.time() - NEWS_AT >= 55 * 60:
         print("$ news_hourly.sh (background)", flush=True)

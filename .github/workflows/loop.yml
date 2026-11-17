@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
 concurrency: { group: intraday-loop, cancel-in-progress: false }
 jobs:
   loop:
