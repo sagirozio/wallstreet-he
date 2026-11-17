@@ -38533,15 +38533,6 @@
     "d": "שני 16.11",
     "items": [
      {
-      "t": "PDD",
-      "co": "PDD Holdings Inc.",
-      "time": "bmo",
-      "star": false,
-      "a": 1,
-      "eps": 19.21,
-      "rev": 117.13
-     },
-     {
       "t": "BIDU",
       "co": "Baidu",
       "time": "bmo",
@@ -38770,15 +38761,6 @@
       "a": 1,
       "eps": 0.18,
       "rev": 0.12
-     },
-     {
-      "t": "LZB",
-      "co": "La-Z-Boy Incorporated",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 0.48,
-      "rev": 0.51
      }
     ],
     "econ": "מכירות קמעונאיות לאוקטובר"
@@ -38843,15 +38825,6 @@
       "at": "16:05"
      },
      {
-      "t": "ROST",
-      "co": "Ross Stores, Inc.",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 1.91,
-      "rev": 6.4
-     },
-     {
       "t": "P",
       "co": "Everpure, Inc.",
       "time": "amc",
@@ -38888,15 +38861,6 @@
       "rev": 1.36
      },
      {
-      "t": "GAP",
-      "co": "Gap, Inc. (The)",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 0.79,
-      "rev": 4.06
-     },
-     {
       "t": "SNEX",
       "co": "StoneX Group Inc.",
       "time": "amc",
@@ -38912,15 +38876,6 @@
       "star": false,
       "eps": 0.28,
       "rev": 1.11
-     },
-     {
-      "t": "KLIC",
-      "co": "Kulicke and Soffa Industries",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 1.46,
-      "rev": 0.38
      },
      {
       "t": "JOYY",
@@ -39069,15 +39024,6 @@
       "rev": 4.06
      },
      {
-      "t": "HP",
-      "co": "Helmerich & Payne, Inc.",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 0.28,
-      "rev": 1.11
-     },
-     {
       "t": "ESE",
       "co": "ESCO Technologies Inc.",
       "time": "amc",
@@ -39148,7 +39094,7 @@
     "econ": ""
    }
   ],
-  "rev": 202611171405
+  "rev": 202611171406
  },
  "tomlee": {
   "target": 7700,
