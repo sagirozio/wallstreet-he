@@ -62,7 +62,30 @@ for i in range(0, len(known), 400):
                      group_by="column", threads=True, progress=False)["Close"]
     frames.append(px)
 close = pd.concat(frames, axis=1)
-close = close.loc[:, ~close.columns.duplicated()].dropna(how="all")
+close = close.loc[:, ~close.columns.duplicated()]
+# retry tickers whose download failed (Yahoo throttles big batches)
+for _try in range(2):
+    miss = [s for s in known if s not in close.columns or close[s].dropna().shape[0] < 30]
+    if not miss: break
+    print("price retry", _try, len(miss), flush=True); time.sleep(20)
+    for i in range(0, len(miss), 150):
+        try:
+            px = yf.download(miss[i:i+150], period="14mo", interval="1d", auto_adjust=True,
+                             group_by="column", threads=False, progress=False)["Close"]
+            if isinstance(px, pd.Series): px = px.to_frame(miss[i])
+            for col in px.columns:
+                if px[col].notna().sum() >= 30: close[col] = px[col]
+        except Exception as e:
+            print("retry chunk failed", type(e).__name__, flush=True)
+close = close.dropna(how="all")
+okp = sum(1 for s in known if s in close.columns and close[s].dropna().shape[0] >= 30) / max(len(known), 1)
+print("price coverage", round(okp, 3))
+if okp < 0.9:
+    print("too many price downloads failed - keeping previous themes/ytd data"); raise SystemExit(0)
+import re as _re, datetime as _dt0
+_m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", data.get("themes", {}).get("asOf", ""))
+if _m and close.index[-1].date() < _dt0.date(int(_m.group(3)), int(_m.group(2)), int(_m.group(1))):
+    print("Yahoo returned older prices than current themes - keeping previous data"); raise SystemExit(0)
 last = close.index[-1]
 def ret(n):
     v = (close.iloc[-1] / close.iloc[-1 - n] - 1) * 100
@@ -83,7 +106,8 @@ for ind, mem in by.items():
     if ind not in rows or len(mem) < 1: continue
     for k, s in R.items():
         v = s.reindex(mem).dropna()
-        if len(v): rows[ind][k] = round(float(v.mean()), 2)
+        # only update when most members have data (otherwise one stock would stand in for the whole industry)
+        if len(v) and len(v) >= max(1, 0.6 * len(mem)): rows[ind][k] = round(float(v.mean()), 2)
     lst = []
     for s in mem:
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
