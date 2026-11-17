@@ -830,7 +830,7 @@ function card(r){
     <div class="rct">
       <div class="rcr h"><span></span><span>בפועל</span><span>צפי</span><span>הפתעה</span></div>
       <div class="rcr"><span>רווח למניה${gq('EPS')}${r.epsBasis?`<small>${esc(r.epsBasis)}</small>`:''}</span>${act(r.epsAct,r.epsEst,eps)}${est(r.epsEst,eps)}${sp(r.epsAct,r.epsEst)}</div>
-      ${hasRev?`<div class="rcr"><span>מכירות${gq('REV')}</span>${act(r.revAct,r.revEst,money)}${est(r.revEst,money)}${sp(r.revAct,r.revEst)}</div>`:`<div class="rcr"><span>מכירות</span><span class="rcnote">${r.auto?'נתון המכירות לא זמין עדיין.':'אין הכנסות ממכירות. חברה בשלב קליני.'}</span></div>`}
+      ${hasRev?`<div class="rcr"><span>מכירות${gq('REV')}</span>${act(r.revAct,r.revEst,money)}${est(r.revEst,money)}${sp(r.revAct,r.revEst)}</div>`:`<div class="rcr"><span>מכירות</span><span class="rcnote">${r.auto?(r.revCur?`החברה מדווחת ב-${esc(r.revCur)}${typeof r.revYoy==='number'?` · שינוי לעומת אשתקד ${pct(r.revYoy)}`:''}`:'נתון המכירות לא זמין עדיין.'):'אין הכנסות ממכירות. חברה בשלב קליני.'}</span></div>`}
     </div>
     ${typeof r.epsYoy==='number'||typeof r.revYoy==='number'?`<div class="rcl rcy">לעומת אשתקד${gq('YOY')}: רווח למניה ${yo(r.epsYoy)}${hasRev?` · מכירות ${yo(r.revYoy)}`:''}</div>`:''}
     ${(r.guide&&r.guide!=='none')||r.guideText?`<div class="rcl"><b class="${gc}">${g[1]}</b>${gq('GUIDE')}${r.guideText?` · <span class="flat">${esc(r.guideText)}</span>`:''}</div>`:''}

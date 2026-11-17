@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       args: { description: "gainers20 | big N | TICKERS...", default: "gainers20" }
+      script: { description: "script", default: "autoreports.py" }
 permissions:
   contents: write
 concurrency: { group: data-update, cancel-in-progress: false }
@@ -15,5 +16,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas lxml
-      - run: python scripts/autoreports.py ${{ github.event.inputs.args }}
+      - run: python scripts/${{ github.event.inputs.script || 'autoreports.py' }} ${{ github.event.inputs.args }}
       - run: bash scripts/commit.sh "Basic earnings cards (Yahoo)" data.json

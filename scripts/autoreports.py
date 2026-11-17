@@ -32,6 +32,7 @@ elif a and a[0] == "big":
     todo = sorted([t for t in U if t not in have], key=lambda t: -capn(U[t]["cap"]))[:n]
 else:
     todo = [t for t in a if t not in have]
+todo = [t for t in todo if t != "GOOG" or "GOOGL" not in have]
 print("todo", len(todo), flush=True)
 
 def num(v):
@@ -69,6 +70,9 @@ for t in todo:
                     qlabel = f"Q{(pe.month - 1) // 3 + 1} {pe.year}"
                     prev = rr[(rr.index <= pe - pd.Timedelta(days=330)) & (rr.index >= pe - pd.Timedelta(days=400))]
                     if rev and len(prev) and prev.iloc[0]: rev_y = round((rr.iloc[0] / prev.iloc[0] - 1) * 100, 1)
+        try:
+            if (tk.info or {}).get("financialCurrency", "USD") != "USD": rev = None   # amounts not in dollars
+        except Exception: pass
         if not qlabel:
             pe = when - pd.Timedelta(days=50); qlabel = f"Q{(pe.month - 1) // 3 + 1} {pe.year}"
         # reaction: first full session after the report
