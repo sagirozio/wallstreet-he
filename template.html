@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>וולסטריטר Wallstreeter – השוק האמריקאי, בגובה העיניים</title>
+<title>Wallstreeter – US stock market</title>
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b0f17"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="וולסטריטר"><meta name="mobile-web-app-capable" content="yes">
@@ -982,7 +982,7 @@ const SUBNAV={
   stocks:[['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026']],
   news:[['#newsArchive','מאגר החדשות'],['#glossary','מילון מונחים']]
 };
-const PG_TITLE={home:'',market:'שוק',reports:'דוחות',stocks:'מניות',news:'חדשות',archive:'מאגר דוחות'};
+const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive'};
 const BASE_TITLE=document.title;
 let CURPG=null;
 function pageOf(h){
@@ -1006,7 +1006,7 @@ function route(){
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='archive'&&hh==='#reports')?'on':''}">${l}</a>`).join('');
-  if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | וולסטריטר` : BASE_TITLE;
+  if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='archive'||pg==='reports') loadReports();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
@@ -1202,9 +1202,9 @@ async function renderStock(t){
   await Promise.all([loadStocks(), loadDet(t), loadReports()]);
   if(tok!==spTok) return;
   const ix=stockIndex(), s=ix[t], det=SDET[t]||{}, prof=det.p||{};
-  if(!s){ document.title=`${t} | וולסטריטר`; $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)}. באתר מוצגות רק חברות בשווי מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-500 אלף מניות ביום.</div>`; return; }
+  if(!s){ document.title=`${t} | Wallstreeter`; $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)}. באתר מוצגות רק חברות בשווי מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-500 אלף מניות ביום.</div>`; return; }
   const he=heName(t);
-  document.title=`${he?he+' ':''}${s.co} (${t}) | וולסטריטר`;
+  document.title=`${t} – ${s.co} | Wallstreeter`;
   const reps=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date))), rep=reps[0];
   const secHe=SEC_HE[s.sec]||s.secHe||'';
   const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).sort((a,b)=>capNum(b[2])-capNum(a[2])).slice(0,8):[];
