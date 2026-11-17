@@ -12118,5 +12118,53 @@
 "RPD": [
 "Software - Infrastructure",
 "Technology"
+],
+"ETY": [
+"Asset Management",
+"Financial Services"
+],
+"WMK": [
+"Grocery Stores",
+"Consumer Defensive"
+],
+"CCU": [
+"Beverages - Brewers",
+"Consumer Defensive"
+],
+"BLX": [
+"Banks - Regional",
+"Financial Services"
+],
+"USA": [
+"Asset Management",
+"Financial Services"
+],
+"NGL": [
+"Oil & Gas Midstream",
+"Energy"
+],
+"NRP": [
+"Thermal Coal",
+"Energy"
+],
+"CET": [
+"Asset Management",
+"Financial Services"
+],
+"BST": [
+"Asset Management",
+"Financial Services"
+],
+"HQH": [
+"Asset Management",
+"Financial Services"
+],
+"JFR": [
+"Asset Management",
+"Financial Services"
+],
+"UAN": [
+"Agricultural Inputs",
+"Basic Materials"
 ]
 }
