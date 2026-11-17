@@ -561,7 +561,7 @@ a.grw:hover{background:rgba(255,255,255,.025)}.grw:last-child{border-bottom:0}.g
 </section>
 
 <section id="homeMovers" data-pg="home">
-  <div class="hh"><h2>מניות בתנועה חריגה<span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
+  <div class="hh"><h2>מניות שזינקו היום<span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
   <div class="hmv" id="hmvList"></div>
 </section>
 
@@ -645,7 +645,7 @@ a.grw:hover{background:rgba(255,255,255,.025)}.grw:last-child{border-bottom:0}.g
 <section id="stocksHub" data-pg="stocks">
   <h2>מניות</h2>
   <p class="sub">כל <span id="hubN"></span> המניות באתר: חברות שנסחרות בארה״ב, בשווי שוק של מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-500 אלף מניות ביום. אפשר לחפש כל מניה בשורת החיפוש למעלה, בעברית או באנגלית.</p>
-  <div id="hubMvW"><h3 class="sph3">מניות בתנועה חריגה (10% ומעלה)<span class="fresh" data-fr="movers"></span></h3><div class="hubg" id="hubMv"></div></div>
+  <div id="hubMvW"><h3 class="sph3">מניות שזינקו היום (10% ומעלה)<span class="fresh" data-fr="movers"></span></h3><div class="hubg" id="hubMv"></div></div>
   <h3 class="sph3">החברות הגדולות בשוק</h3><div class="hubg" id="hubBig"><div class="empty">טוען…</div></div>
 </section>
 
@@ -923,7 +923,7 @@ function renderAgenda(){
     || '<div class="empty">אין דוחות או אירועים מתוכננים.</div>';
 }
 function renderHomeMovers(){
-  const m=FALLBACK.movers||{}, mv=[...(m.rows||[]),...(m.down||[])], sec=$('homeMovers');
+  const m=FALLBACK.movers||{}, mv=[...(m.rows||[])], sec=$('homeMovers');
   sec.dataset.pg = mv.length?'home':'none'; if(!mv.length) sec.classList.remove('on');
   $('hmvList').innerHTML = mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}"><b>${esc(r.t)}</b><span class="${r.p>=0?'up':'down'}">${pct(r.p,1)}</span></a>`).join('');
 }
@@ -1092,7 +1092,7 @@ function hubTile(t,co,ch,sub){ return `<a class="hubt" href="#stock/${encodeURIC
 function renderHub(){
   const ix=stockIndex(), all=Object.values(ix).filter(s=>s.cap);
   $('hubN').textContent = all.length ? all.length.toLocaleString('en-US') : '';
-  const m=FALLBACK.movers||{}, mv=[...(m.rows||[]),...(m.down||[])];
+  const m=FALLBACK.movers||{}, mv=[...(m.rows||[])];
   $('hubMvW').classList.toggle('hidden',!mv.length);
   $('hubMv').innerHTML = mv.map(r=>hubTile(r.t,r.n,r.p)).join('');
   if(!all.length) return;
@@ -1364,7 +1364,7 @@ renderPremarket();
 
 /* ---------- today's 10%+ movers strip ---------- */
 function renderMovers(){
-  const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=m.down||[];
+  const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,10), m=FALLBACK.movers||{}, up=m.rows||[], dn=[];
   if(!N.length && !up.length && !dn.length){ $('mvWrap').classList.add('hidden'); return; }
   $('mvWrap').classList.remove('hidden');
   const news=N.map(n=>`<a class="nw" href="#news-all" title="${esc(n.body||'')}"><i class="${n.tone==='pos'?'up':n.tone==='neg'?'down':'flat'}">●</i>${esc(n.title)}</a>`).join('<span class="sep">·</span>');
