@@ -85,6 +85,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .fcl{display:flex;gap:12px;justify-content:center;font-size:12px;color:var(--muted);margin-top:4px}.fcl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:5px}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
 .secl{display:block;direction:ltr;text-align:right;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}.spchips .echip{background:rgba(91,140,255,.14);border-color:rgba(91,140,255,.45);color:#cfe0ff;font-weight:600}
+.spabout{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 16px 14px;margin:14px 0}.spabout p{line-height:1.8;margin:8px 0;color:var(--text)}.spfacts{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:var(--muted)}.spfacts a{color:var(--accent);text-decoration:none}
 .ipoboard{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
 .ipocol{border-inline-start:1px solid var(--line);padding:0 10px 12px;display:flex;flex-direction:column;gap:10px}.ipocol:first-child{border-inline-start:0}
 .ipoboard .ipoh{margin:0 -10px;padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:14px;color:var(--text)}.ipoboard .ipoh .num{color:var(--muted);font-weight:500;margin-inline-start:4px}
@@ -786,6 +787,14 @@ function earnChip(t,rep){
   else if(E&&E.d<today) out.push(`<span>דוח אחרון: ${fmt(E.d)}</span>`);
   return out.join('');
 }
+function aboutBlock(t,s,prof){
+  const F=(FALLBACK.facts||{})[t]||{}, fx=[];
+  if(F.hq) fx.push(`<span>📍 מטה: <bdi>${esc(F.hq)}</bdi></span>`);
+  if(F.emp) fx.push(`<span>👥 עובדים: <bdi>${F.emp.toLocaleString('en-US')}</bdi></span>`);
+  if(F.web) fx.push(`<a href="${esc(F.web)}" target="_blank" rel="noopener nofollow">🌐 <bdi>${esc(F.web.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''))}</bdi></a>`);
+  if(!prof.about && !fx.length) return '';
+  return `<div class="spabout"><h3 class="sph3">על החברה</h3>${prof.about?prof.about.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join(''):''}${fx.length?`<div class="spfacts">${fx.join('')}</div>`:''}</div>`;
+}
 function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent(t)}">${inner}</a>`; }
 function renderStock(t){
   const ix=stockIndex(), s=ix[t], prof=((FALLBACK.profiles||{})[t])||{};
@@ -797,6 +806,7 @@ function renderStock(t){
   $('spBody').innerHTML=`<div class="sphead">${mono(s.t)}<div><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick">${esc(s.t)}</span> ${s.ex?'· '+esc(s.ex):''} ${s.cap?'· שווי שוק <span class="num" style="direction:ltr;display:inline-block">$'+esc(s.cap)+'</span>':''}</div></div></div>
     <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">קבוצה: ${esc(s.indHe||s.ind)} · ${esc(s.ind)}</a>`:''}</div>
     <p class="spdesc">${prof.desc?esc(prof.desc):(s.indHe||secHe)?`<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.`:'<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>'}</p>
+    ${aboutBlock(t,s,prof)}
     <div class="sptoday"><div class="sptl">היום <span>(מתעדכן בזמן אמת, בעיכוב של עד 15 דקות)</span></div><div id="spTodayW"></div>${s.r&&s.r.d!=null?`<div id="spTodayS" class="flat">שינוי אחרון במערכת: <b class="num ${s.r.d>=0?'up':'down'}" style="direction:ltr;display:inline-block">${pct(s.r.d,1)}</b></div>`:''}</div>
     ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
     <div class="spchart" id="spChart"></div>
@@ -880,6 +890,7 @@ async function refreshLive(){
     if (d.movers) { FALLBACK.movers=d.movers; renderMovers(); }
     if (d.themes && d.themes.asOf && (!THEMES || JSON.stringify(d.themes.rows)!==JSON.stringify(THEMES.rows))) { FALLBACK.themes=d.themes; THEMES=d.themes; renderThemes(); }
     if (d.earnDates) FALLBACK.earnDates=d.earnDates;
+    if (d.facts) FALLBACK.facts=d.facts;
     if (d.ytd && JSON.stringify(d.ytd)!==JSON.stringify(FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
   } catch(e) {}
 }

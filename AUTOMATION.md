@@ -88,18 +88,28 @@ Read the existing entries first and copy their exact shape.
 
 ### `profiles` (every run)
 
-`profiles` holds the stock profile pages ("תעודת זהות", at `#stock/TICKER`): `{"TICKER": {"desc": "<one or two Hebrew sentences: what the company does>"}}`.
+`profiles` holds the stock profile pages ("תעודת זהות", at `#stock/TICKER`):
+`{"TICKER": {"desc": "<one Hebrew sentence>", "about": "<Hebrew paragraph(s)>"}}`.
 
-- Add a Hebrew `desc` (one sentence) for up to 80 stocks per run that don't have one yet. The goal is that every stock in `themes.stocks` and `reports` gets one; until then the page shows an automatic fallback ("X היא חברה בתחום … בסקטור …").
+- **`desc`** — one short sentence: what the company does (shown at the top of the page).
+- **`about`** — the deeper "על החברה" section: 4–6 Hebrew sentences, optionally two paragraphs separated by `\n`. Cover:
+  what the company sells and to whom; its main segments or products (with the biggest revenue sources if known);
+  where it operates; its position in its industry (e.g. one of the largest X, key competitors); and one notable
+  recent fact (a big acquisition, spin-off, new product line) only if you retrieved it.
+- **Source material:** `about_src.json` (filled daily by a GitHub workflow) has Yahoo's English business summary
+  per ticker. Use it as research, together with what you search. **Never copy or translate it sentence by sentence** —
+  write your own Hebrew text. `about_src.json` is not shown on the site; do not edit it.
+- Per run: write `about` (and `desc` if missing) for up to **60 stocks** that don't have `about` yet.
 - Priority order:
   1. companies in new report cards;
   2. this week's `calendar`;
   3. stocks named in today's news;
   4. the top of `ytd`, `movers` and the November gainers;
   5. then the rest of `themes.stocks`, largest market cap first.
-- Only write what you are confident about. If unsure what a small company does, skip it and leave the fallback.
-- Keep it factual and neutral: business lines, main products and customers. No opinions or valuations.
-- Never change an existing `desc` unless it is factually wrong.
+- Only write what you are confident about. If unsure about a small company and `about_src.json` has nothing, skip it.
+- Factual and neutral: business lines, products, customers, markets. No opinions, valuations or recommendations.
+- Never change an existing `desc`/`about` unless it is factually wrong or outdated.
+- Facts like headquarters, employees and website come automatically from `data.json["facts"]` — don't repeat them in `about`.
 
 ### `ipos` (when there is news)
 
