@@ -37,17 +37,18 @@ def splits_since(day):
     return j.get("results", []) or []
 
 def fix_jumps(df):
-    """Splits the split feed missed: a one-day move of x4+ (or /4) that holds for the next 3 sessions is treated as a
+    """Splits the split feed missed: a one-day move of x3.5+ (or /3.5) that holds for the next 3 sessions is treated as a
     split (no $1B stock really moves 300% in a day and stays there) -> earlier prices are rescaled by that ratio."""
     n = 0
     for t in df.columns:
         c = df[t].dropna()
         if len(c) < 5: continue
         r = c / c.shift(1)
-        for day in r[(r > 4) | (r < 0.25)].index:
+        for day in r[(r > 3.5) | (r < 0.28)].index:
             i = c.index.get_loc(day)
             after = c.iloc[i:i + 4]
-            if len(after) >= 4 and (after / c.iloc[i]).between(0.6, 1.6).all():
+            # holds for 3 more sessions, or it is one of the last sessions (an ADR-ratio / split change that just happened)
+            if (after / c.iloc[i]).between(0.6, 1.6).all() and (len(after) >= 4 or i >= len(c) - 3):
                 ratio = c.iloc[i] / c.iloc[i - 1]
                 df.loc[df.index < day, t] *= ratio; c = df[t].dropna(); n += 1
                 print("missed split fixed", t, day.date(), round(float(ratio), 3), flush=True)
