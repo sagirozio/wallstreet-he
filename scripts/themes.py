@@ -1,5 +1,5 @@
 """Nightly: industry (theme) performance + per-industry stock lists, from Yahoo Finance.
-Universe: US equities with market cap > $1B (Yahoo screener). Industry names match Finviz's.
+Universe: US equities with market cap > $1B and avg daily volume >= 500k (Yahoo screener). Industry names match Finviz's.
 Group performance = equal-weight average of members (Finviz-style windows)."""
 import json, pathlib, time
 import pandas as pd, yfinance as yf
@@ -25,7 +25,9 @@ while True:
         raise SystemExit("Yahoo screener unavailable — keeping previous themes data")
     qs = r.get("quotes", [])
     for x in qs:
-        if x.get("quoteType") == "EQUITY" and x.get("marketCap") and x.get("exchange") in EXCH:
+        # site rules: cap > $1B, major exchange, average daily volume (3 months) >= 500k shares
+        if x.get("quoteType") == "EQUITY" and x.get("marketCap") and x.get("exchange") in EXCH \
+           and (x.get("averageDailyVolume3Month") or 0) >= 500_000:
             uni[x["symbol"]] = x
     off += 250
     total = r.get("total", 0)

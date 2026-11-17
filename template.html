@@ -790,7 +790,7 @@ function tl(t,inner){ return `<a class="tlink" href="#stock/${encodeURIComponent
 function renderStock(t){
   const ix=stockIndex(), s=ix[t], prof=((FALLBACK.profiles||{})[t])||{};
   $('spList').innerHTML=Object.values(ix).slice(0,4000).map(x=>`<option value="${esc(x.t)}">${esc(x.co)}</option>`).join('');
-  if(!s){ $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)} (באתר מוצגות רק חברות מעל מיליארד דולר).</div>`; return; }
+  if(!s){ $('spBody').innerHTML=`<div class="empty">לא נמצאה מניה בשם ${esc(t)} (באתר מוצגות רק חברות בשווי מעל מיליארד דולר ועם מחזור מסחר ממוצע מעל 500 אלף מניות ביום).</div>`; return; }
   const rep=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
   const secHe=SEC_HE[s.sec]||s.secHe||'';
   const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).slice(0,6):[];
