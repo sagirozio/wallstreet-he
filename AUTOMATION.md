@@ -95,6 +95,7 @@ Read the existing entries first and copy their exact shape.
   - `ir`: a working IR or press-release URL. Verify it opens.
 - **`epsYoy` is always a number.** Compare to the same quarter last year, on the same basis: GAAP vs GAAP, or adjusted vs adjusted.
 - **Do not duplicate:** if the id exists, update it instead.
+- **Cards with `"auto": true`** were created automatically from Yahoo (EPS actual/estimate, revenue, YoY, reaction) and lack `revEst`, `guide`/`guideText` and `note`. When time allows, enrich a few per run (largest companies first): add `revEst`, guidance, a Hebrew `note` and `hook`, fix numbers that your sources contradict, then delete the `auto` key.
 
 ### `calendar` (Monday morning, or when clearly stale)
 
