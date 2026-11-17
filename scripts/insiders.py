@@ -49,9 +49,11 @@ for day in days:
         if len(parts) < 5: continue
         try: c = int(parts[-3])
         except ValueError: continue
-        if c in cik2t: files.add((cik2t[c], parts[-1]))
+        if c in cik2t: files.add((cik2t[c], c, parts[-1]))
     print(day, "form 4 filings for our companies:", len(files), flush=True)
-    for t, path in sorted(files):
+    done_acc = set()
+    for t, c, path in sorted(files):
+        if path in done_acc: continue
         txt = get("https://www.sec.gov/Archives/" + path, raw=True)
         if not txt: continue
         mx = re.search(r"<ownershipDocument>.*?</ownershipDocument>", txt, re.S)
@@ -59,6 +61,11 @@ for day in days:
         try: x = ET.fromstring(mx.group(0))
         except ET.ParseError: continue
         g = lambda e, k: (e.findtext(k) or "").strip()
+        # the index lists a filing under the issuer AND the reporting owners: keep it only for the issuer's own stock
+        try: icik = int(g(x, "issuer/issuerCik") or 0)
+        except ValueError: icik = 0
+        if icik not in cik2t: continue
+        t = cik2t[icik]; done_acc.add(path)
         who = g(x, "reportingOwner/reportingOwnerId/rptOwnerName")
         rel = x.find("reportingOwner/reportingOwnerRelationship")
         role = ""

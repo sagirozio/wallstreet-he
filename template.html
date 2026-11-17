@@ -498,6 +498,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 .cwr b{font:700 14.5px "JetBrains Mono",monospace;direction:ltr}.cwr small{display:block;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
 .cwr .n{text-align:center;font:600 13.5px "JetBrains Mono",monospace;direction:ltr}.cwr.hl b{color:#cfe0ff}
 .cev{padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.insr{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);color:var(--text);text-decoration:none}.insr:first-child{border-top:0}.insr .insw{display:flex;flex-direction:column;min-width:0}.insr .insw small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.insr .insv{font-weight:700;font-size:14px;white-space:nowrap}.insr .insd{color:var(--muted);font-size:12px}.insr:hover{background:rgba(255,255,255,.025)}
 .ipr{padding:11px 14px;border-top:1px solid var(--line)}.csh+.ipr{border-top:0}.ipt{display:flex;align-items:baseline;gap:8px}.ipt b{font-size:15.5px}.ipt .num{font-size:12.5px}
 .ipd{margin-inline-start:auto;font-size:13px;font-weight:700;white-space:nowrap}.ipd.amb{color:var(--amber)}
 .ipkv{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:3px}.ipkv b{color:var(--text)}.ipr p{margin:5px 0 0;font-size:13.5px;color:var(--muted);line-height:1.6}
@@ -674,6 +675,13 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="warn" id="gwarn">⚠️ חלק מהמניות כאן הן חברות בינוניות, ותנודתיות יותר מהענקיות. זינוק חד יכול להתהפך מהר.</div>
 </section>
 
+<section id="insiders" data-pg="stocks">
+  <h2>מנהלים קונים ומוכרים<button class="gq" data-gl="INSIDER" aria-label="הסבר">?</button></h2>
+  <p class="sub">עסקאות במניות החברה שביצעו מנהלים, דירקטורים ובעלי מניות גדולים, לפי הדיווחים הרשמיים לרשות ניירות הערך האמריקאית (טופס 4) ב-30 הימים האחרונים. קניות מעל $250 אלף, מכירות מעל מיליון דולר.</p>
+  <div class="tabs" id="instabs"><button class="on" data-i="P">קניות</button><button data-i="S">מכירות</button></div>
+  <div class="cardx" id="insList"></div>
+  <p class="legend">מקור: SEC EDGAR, מתעדכן כל בוקר. "תוכנית" = מכירה לפי תוכנית מסחר שנקבעה מראש (10b5-1), בדרך כלל פחות משמעותית. העסקאות לא מהוות המלצה.</p>
+</section>
 <section id="ytd" data-pg="stocks">
   <h2>מניות שהכפילו את עצמן ב-2026<span class="fresh" data-fr="ytd"></span></h2>
   <p class="sub">המניות שעלו ב-<bdi dir="ltr">100%</bdi> ומעלה מתחילת השנה, נכון ליום המסחר האחרון. רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-800 אלף מניות ביום.</p>
@@ -967,7 +975,7 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
 const SUBNAV={
   market:[['#macro','מאקרו וריבית'],['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק']],
   reports:[['#top-reports','הדוחות הבולטים'],['#upcoming','לוח השבוע'],['#ipos','הנפקות'],['#reports','מאגר הדוחות']],
-  stocks:[['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026']],
+  stocks:[['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#insiders','מנהלים קונים ומוכרים']],
   news:[['#newsArchive','מאגר החדשות'],['#glossary','מילון מונחים']]
 };
 const PG_TITLE={home:'',market:'שוק',reports:'דוחות',stocks:'מניות',news:'חדשות',archive:'מאגר דוחות'};
@@ -996,6 +1004,7 @@ function route(){
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='archive'&&hh==='#reports')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | וולסטריטר` : BASE_TITLE;
   if(pg==='archive'||pg==='reports') loadReports();
+  if(pg==='stocks') renderIns();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
@@ -1191,6 +1200,7 @@ async function renderStock(t){
       <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">תעשייה: ${esc(s.indHe||s.ind)}</a>`:''}</div>
       ${prof.about?aboutBlock(t,s,prof):`<p class="spdesc">${desc}</p>${aboutFacts(t)}`}
       ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}</div>`:''}
+      <div id="spIns"></div>
       ${news.length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
@@ -1201,6 +1211,7 @@ async function renderStock(t){
       <div id="spFund"></div>
     </div>
     ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}`;
+  renderSpIns(t);
   $('spBody').dataset.t=t; $('spBody').dataset.loaded='';
   tvWidget($('spTodayW'),'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
   // small live TradingView quote in the sticky header; our own figure stays as a fallback until it loads
@@ -1281,6 +1292,7 @@ document.addEventListener('click',e=>{ const tr=e.target.closest('tr.rowlink'); 
 
 /* ---------- glossary: "?" buttons open a short explanation ---------- */
 const GLOSS={
+  INSIDER:['עסקאות מנהלים (Insider)','מנהלים, דירקטורים ובעלי מניות גדולים חייבים לדווח לרשות ניירות הערך האמריקאית (SEC) על כל קנייה או מכירה של מניות החברה, תוך יומיים. קנייה מכספם הפרטי נחשבת סימן לביטחון בחברה. מכירות שכיחות הרבה יותר ונעשות מסיבות רבות (מיסים, פיזור השקעות, תוכנית מכירה קבועה), ולכן פחות מלמדות.'],
   EPS:['EPS – רווח למניה','הרווח הנקי של החברה מחולק במספר המניות. רוב החברות מדווחות EPS ״מתואם״ (Non-GAAP), שלא כולל הוצאות חד-פעמיות.'],
   REV:['Revenue – מכירות / הכנסות','סך ההכנסות של החברה ברבעון, לפני כל ההוצאות.'],
   BEAT:['Beat / Miss – עקיפה או החטאה','Beat: התוצאה עקפה את תחזית האנליסטים (הקונצנזוס). Miss: התוצאה נפלה ממנה. "Surprise" הוא הפער באחוזים בין התוצאה לצפי.'],
@@ -1430,6 +1442,23 @@ function renderMovers(){
   $('mvStrip').style.setProperty('--dur',Math.max(40,(N.length*9+(up.length+dn.length)*2))+'s');
 }
 renderMovers();
+
+
+/* ---------- insider trades (SEC Form 4) ---------- */
+let INS=null, insT='P';
+async function loadIns(){ if(INS) return INS; try{ INS=await (await fetch('insiders.json?v='+Math.floor(Date.now()/3600000))).json(); }catch(e){ INS={rows:[]}; } return INS; }
+const fmtUsd=v=>v>=1e9?'$'+(v/1e9).toFixed(1)+'B':v>=1e6?'$'+(v/1e6).toFixed(1)+'M':'$'+Math.round(v/1e3)+'K';
+const roleHe=r=>{ const x=(r||'').toLowerCase(); return /chief executive|\bceo\b/.test(x)?'מנכ"ל':/chief financial|\bcfo\b/.test(x)?'סמנכ"ל כספים':/chair/.test(x)?'יו"ר':/president/.test(x)?'נשיא':/director/.test(x)?'דירקטור':/10%/.test(x)?'בעל מניות 10%':/officer|chief|vp|vice/.test(x)?'נושא משרה':(r||''); };
+function insRow(r,showT){ const d=r.date.split('-').reverse().slice(0,2).join('.');
+  return `<a class="insr" href="${showT?'#stock/'+encodeURIComponent(r.t):esc(r.url)}" ${showT?'':'target="_blank" rel="noopener"'}>
+    ${showT?`<b class="num">${esc(r.t)}</b>`:''}<span class="insw"><span dir="auto">${esc(r.who)}</span><small>${esc(roleHe(r.role))}${showT?' · '+esc(r.co):''}</small></span>
+    <span class="insv ${r.type==='P'?'up':'down'}">${r.type==='P'?'קנה':'מכר'} ${fmtUsd(r.val)}${r.plan&&r.type==='S'?' <small class="flat">תוכנית</small>':''}</span><span class="insd num">${d}</span></a>`; }
+async function renderIns(){ const d=await loadIns(); const l=(d.rows||[]).filter(r=>r.type===insT);
+  $('insList').innerHTML = l.length? l.slice(0,40).map(r=>insRow(r,true)).join('') : '<p class="sub" style="padding:12px">אין עסקאות כאלה ב-30 הימים האחרונים.</p>'; }
+document.addEventListener('click',e=>{ const b=e.target.closest('#instabs button'); if(!b) return; insT=b.dataset.i; document.querySelectorAll('#instabs button').forEach(x=>x.classList.toggle('on',x===b)); renderIns(); });
+async function renderSpIns(t){ const d=await loadIns(), l=(d.rows||[]).filter(r=>r.t===t); const el=$('spIns'); if(!el||!l.length) return;
+  const b=l.filter(r=>r.type==='P').reduce((a,r)=>a+r.val,0), sl=l.filter(r=>r.type==='S').reduce((a,r)=>a+r.val,0);
+  el.innerHTML=`<h3 class="sph3">מנהלים קונים ומוכרים · 30 יום${gq('INSIDER')}</h3><p class="legend" style="margin-top:0">${b?`קניות <span class="up num">${fmtUsd(b)}</span>`:''}${b&&sl?' · ':''}${sl?`מכירות <span class="down num">${fmtUsd(sl)}</span>`:''}</p><div class="cardx">${l.slice(0,6).map(r=>insRow(r,false)).join('')}</div>`; }
 
 /* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
 async function refreshLive(){
