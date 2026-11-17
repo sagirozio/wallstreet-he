@@ -1426,7 +1426,7 @@ async function loadFund(t){
 /* "חדשות חשובות" beside the brief (desktop): the latest main news items */
 function renderBriefNews(){
   const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,5); if(!$('bnList')) return;
-  $('bnList').innerHTML=N.map(n=>`<li><i class="${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></i><a href="#news-all"><b>${esc(n.title)}</b><small>${n.time?esc(n.time)+' · ':''}${esc((n.date||'').split('-').reverse().slice(0,2).map(Number).join('.'))}</small></a></li>`).join('');
+  $('bnList').innerHTML=N.map(n=>`<li><i class="${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></i><div><b>${esc(n.title)}</b><small>${n.time?esc(n.time)+' · ':''}${esc((n.date||'').split('-').reverse().slice(0,2).map(Number).join('.'))}</small></div></li>`).join('');
 }
 function renderBriefSum(){
   const o=OVERVIEW||{}, sp=(k,d)=>`${k} <span class="num ${d>0?'up':d<0?'down':'flat'}">${pct(d,2)}</span>`;
