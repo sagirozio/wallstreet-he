@@ -48,7 +48,8 @@ b = data.get("breadth", {"rows": []})
 import re as _re, datetime as _dt
 _m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", b.get("asOf", ""))
 _prev = _dt.date(int(_m.group(3)), int(_m.group(2)), int(_m.group(1))) if _m else None
-if _prev and last.date() < _prev:
+STALE = bool(_prev and last.date() < _prev)
+if STALE:
     print("breadth: Yahoo returned older data than we already have — keeping existing", last.date(), _prev)
 else:
     rows = [r for r in b.get("rows", []) if r.get("d") != row["d"]]
@@ -61,7 +62,7 @@ GICS = {"Information Technology": "XLK", "Communication Services": "XLC", "Consu
         "Consumer Staples": "XLP", "Energy": "XLE", "Financials": "XLF", "Health Care": "XLV",
         "Industrials": "XLI", "Real Estate": "XLRE", "Materials": "XLB", "Utilities": "XLU"}
 sec_of = dict(zip(sp["yf"], sp["GICS Sector"]))
-for srow in data["sectors"]["rows"]:
+for srow in ([] if STALE else data["sectors"]["rows"]):
     g = [k for k, v in GICS.items() if v == srow["t"]]
     if not g: continue
     members = [t for t in good if sec_of.get(t) == g[0]]
@@ -73,7 +74,7 @@ now = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem"))
 live = now.date() == last.date() and now.hour < 23
 stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון ישראל, בעיכוב של כ-15 דקות)" if live
          else f"סגירת {last.day}.{last.month}.{last.year}")
-data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
+if not STALE: data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
 
 # ---- today's big movers: up 10%+ (cap > $1B, avg volume > 800k, major US exchanges) ----
 try:
