@@ -11,6 +11,8 @@ for sym, n in (("^GSPC", "S&P 500"), ("^IXIC", "נאסד״ק"), ("^DJI", "דאו
     try:
         c = yf.download(sym, period="5d", interval="1d", progress=False, auto_adjust=False)["Close"].dropna()
         c = c.iloc[:, 0] if hasattr(c, "columns") else c
+        ny = dt.datetime.now(ZoneInfo("America/New_York"))
+        if c.index[-1].date() == ny.date() and ny.hour * 60 + ny.minute < 16 * 60 + 5: c = c.iloc[:-1]   # session still open: last complete day
         ix.append({"n": n, "v": round(float(c.iloc[-1]), 2), "c": round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)}); day = c.index[-1].date()
     except Exception as e: print("index", sym, e)
 if not ix: raise SystemExit("no index data")
