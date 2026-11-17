@@ -36,5 +36,19 @@ for r in d["reports"]:
         old = [o for o in by_t[r["t"]] if o is not r and 330 <= (day - D(o["date"])).days <= 400 and o.get("epsAct")]
         if old and old[0]["epsAct"] > 0:
             r["epsYoy"] = round((r["epsAct"] / old[0]["epsAct"] - 1) * 100, 1); n_eps += 1
+# sanity on automatic cards: drop exact duplicates, and estimates that clearly don't match the reported basis
+seen, keep, n_dup, n_bad = set(), [], 0, 0
+for r in d["reports"]:
+    if r["id"] in seen and r.get("auto"): n_dup += 1; continue
+    seen.add(r["id"]); keep.append(r)
+    if not r.get("auto"): continue
+    a, e = r.get("epsAct"), r.get("epsEst")
+    if a is not None and e is not None and (abs(a - e) > max(1.0, 3 * abs(e)) and abs(e) > 0 or (e == 0 and abs(a) > 0.5)):
+        r["epsEst"] = None; r["epsNote"] = "basis"; n_bad += 1     # e.g. GAAP actual vs adjusted estimate
+    a, e = r.get("revAct"), r.get("revEst")
+    if a and e and not (0.5 < a / e < 2): r["revEst"] = None; n_bad += 1
+    if r.get("revYoy") is not None and abs(r["revYoy"]) > 1000: r["revYoy"] = None; n_bad += 1
+d["reports"] = keep
+print("sanity: duplicates dropped", n_dup, "implausible estimates cleared", n_bad)
 p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
 print("SEC fill: revYoy", n_rev, "revAct", n_act, "epsYoy (from last year's card)", n_eps)
