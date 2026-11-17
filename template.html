@@ -1268,7 +1268,9 @@ const liveQ = t => LIVE&&LIVE.q ? LIVE.q[t] : null;
 let LIVE_SEC=null, LIVE_IND=null;
 function nyToday(){ return new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'}); }
 /* live = today's session in New York is open or just closed, and live.json belongs to it */
-function liveOn(){ return !!(LIVE && /^(REGULAR|POST|POSTPOST)$/.test(LIVE.state||'') && LIVE.date===nyToday()); }
+function nyMin(){ const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()); return (+p.find(x=>x.type==='hour').value%24)*60+(+p.find(x=>x.type==='minute').value); }
+/* live = live.json is from today's New York session and the session has opened (Yahoo's market state is sometimes missing) */
+function liveOn(){ if(!LIVE||LIVE.date!==nyToday()) return false; if(/^(PRE|PREPRE)$/.test(LIVE.state||'')) return false; return /^(REGULAR|POST|POSTPOST|CLOSED)$/.test(LIVE.state||'')||nyMin()>=9*60+30; }
 function liveAgg(){
   LIVE_SEC=null; LIVE_IND=null; if(!liveOn()) return;
   if(LIVE.sec){ LIVE_SEC={}; Object.entries(LIVE.sec).forEach(([k,v])=>LIVE_SEC[k]=v[0]); }

@@ -129,7 +129,7 @@ while True:
         if q:
             # "date" = the trading session the prices belong to (not today's date before the open)
             sess = dt.datetime.fromtimestamp(last_ts, NY).strftime("%Y-%m-%d") if last_ts else dt.datetime.now(NY).strftime("%Y-%m-%d")
-            payload = {"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or "", "q": q}
+            payload = {"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or ("REGULAR" if 9 * 60 + 30 <= mins < 16 * 60 else "POST" if mins >= 16 * 60 else "PRE"), "q": q}
             if FH: payload["sec"] = sectors_now(); payload["secN"] = len(FH)
             ix = {}
             for sym in ("^GSPC", "^IXIC", "^DJI"):   # index levels for the "market in 30 seconds" line
