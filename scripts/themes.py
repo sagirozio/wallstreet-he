@@ -57,14 +57,44 @@ print("coverage", round(cover, 3))
 if cover < 0.95:
     print("industry cache still filling - keeping previous themes/ytd data"); raise SystemExit(0)
 
-# 3) prices
+# 3) prices: our Massive-built history (verified closes) + Yahoo only for the newest sessions / missing tickers
+import hist as H
+HIST = H.load()
+if len(HIST) and H.KEY:
+    HIST, _rep = H.update(HIST, set(HIST.columns) | set(known))
+    print("history update", _rep, flush=True)
+    if _rep["added"] or _rep["splits"]:
+        try: H.save(HIST)
+        except Exception as e: print("history save failed", e, flush=True)
+in_hist = [s for s in known if len(HIST) and s in HIST.columns and HIST[s].iloc[-260:].notna().sum() >= 30]
 frames = []
-for i in range(0, len(known), 400):
-    px = yf.download(known[i:i+400], period="14mo", interval="1d", auto_adjust=True,
+need_full = [s for s in known if s not in in_hist]
+for i in range(0, len(need_full), 400):
+    px = yf.download(need_full[i:i+400], period="14mo", interval="1d", auto_adjust=False,
                      group_by="column", threads=True, progress=False)["Close"]
+    if isinstance(px, pd.Series): px = px.to_frame(need_full[i])
     frames.append(px)
-close = pd.concat(frames, axis=1)
+if in_hist:
+    base = HIST[in_hist].copy()
+    recent = []
+    for i in range(0, len(in_hist), 400):
+        try:
+            px = yf.download(in_hist[i:i+400], period="10d", interval="1d", auto_adjust=False, group_by="column", threads=True, progress=False)["Close"]
+            if isinstance(px, pd.Series): px = px.to_frame(in_hist[i])
+            recent.append(px)
+        except Exception as e: print("recent chunk failed", type(e).__name__, flush=True)
+    if recent:
+        rc = pd.concat(recent, axis=1); rc.index = rc.index.tz_localize(None) if rc.index.tz is not None else rc.index
+        newer = rc[rc.index > base.index[-1]]
+        if len(newer): base = pd.concat([base, newer.reindex(columns=base.columns)])
+        print("history last", base.index[-2 if len(newer) else -1].date(), "+ Yahoo sessions", [str(x.date()) for x in newer.index], flush=True)
+    frames.append(base)
+close = pd.concat(frames, axis=1) if frames else pd.DataFrame()
 close = close.loc[:, ~close.columns.duplicated()]
+close.index = pd.to_datetime(close.index); close = close.sort_index()
+close = close[~close.index.duplicated(keep="last")]
+CHECK = {"src": "Massive (מאגר מחירים מבוקר) + Yahoo לימים האחרונים" if in_hist else "Yahoo Finance", "hist": len(in_hist),
+         "histTo": str(HIST.index[-1].date()) if len(HIST) else None, "checked": 0, "fixed": 0}
 # retry tickers whose download failed (Yahoo throttles big batches)
 for _try in range(2):
     miss = [s for s in known if s not in close.columns or close[s].dropna().shape[0] < 30]
@@ -72,7 +102,7 @@ for _try in range(2):
     print("price retry", _try, len(miss), flush=True); time.sleep(20)
     for i in range(0, len(miss), 150):
         try:
-            px = yf.download(miss[i:i+150], period="14mo", interval="1d", auto_adjust=True,
+            px = yf.download(miss[i:i+150], period="14mo", interval="1d", auto_adjust=False,
                              group_by="column", threads=False, progress=False)["Close"]
             if isinstance(px, pd.Series): px = px.to_frame(miss[i])
             for col in px.columns:
@@ -103,35 +133,6 @@ if _m and close.index[-1].date() < _dt0.date(int(_m.group(3)), int(_m.group(2)),
     T0["rows"] = [r for r in T0["rows"] if r["en"] in T0["stocks"]]
     (root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     raise SystemExit(0)
-# ---- second source: Massive (Polygon) grouped daily closes for the last two sessions, when MASSIVE_KEY is set ----
-# Yahoo is occasionally stale or wrong for single tickers; any close that differs by > 0.3% (or is missing) is replaced.
-import os as _os, urllib.request as _ur
-MK = _os.environ.get("MASSIVE_KEY", "").strip()
-CHECK = {"src": "Yahoo Finance", "checked": 0, "fixed": 0}
-if MK:
-    def grouped(day):
-        url = f"https://api.massive.com/v2/aggs/grouped/locale/us/market/stocks/{day:%Y-%m-%d}?adjusted=true&apiKey={MK}"
-        for k in range(3):
-            try:
-                with _ur.urlopen(url, timeout=60) as r: j = json.loads(r.read().decode())
-                return {x["T"].replace(".", "-"): x["c"] for x in j.get("results", []) if x.get("c")}
-            except Exception as e:
-                print("massive retry", k, type(e).__name__, flush=True); time.sleep(15)
-        return {}
-    for idx in (-1, -2):
-        day = close.index[idx]; g = grouped(day)
-        if not g: print("massive: no data for", day.date()); continue
-        chk = fix = 0
-        for s in close.columns:
-            m = g.get(s)
-            if m is None: continue
-            chk += 1; y = close.at[day, s]
-            if pd.isna(y) or abs(y / m - 1) > 0.003:
-                close.at[day, s] = m; fix += 1
-        print("massive check", day.date(), "checked", chk, "fixed", fix, flush=True)
-        CHECK["checked"] += chk; CHECK["fixed"] += fix
-        time.sleep(13)   # free tier: 5 calls / minute
-    if CHECK["checked"]: CHECK["src"] = "Yahoo Finance, נבדק מול Massive"
 last = close.index[-1]
 def ret(n):
     v = (close.iloc[-1] / close.iloc[-1 - n] - 1) * 100
