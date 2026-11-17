@@ -22473,13 +22473,13 @@
    {
     "n": "יצרניות רכב",
     "en": "Auto Manufacturers",
-    "d": -2.01,
-    "w": -10.47,
-    "m": -4.55,
-    "q": -17.14,
-    "h": -23.47,
-    "ytd": -35.08,
-    "y": -37.06
+    "d": -2.08,
+    "w": -10.09,
+    "m": -4.13,
+    "q": -15.41,
+    "h": -19.63,
+    "ytd": -31.21,
+    "y": -31.61
    },
    {
     "n": "ביטוח משנה",
@@ -26792,7 +26792,7 @@
     [
      "INTC",
      "Intel Corporation",
-     "294.82B",
+     "294.67B",
      {
       "d": -7.02,
       "w": -6.57,
@@ -27277,92 +27277,6 @@
       "h": -61.84,
       "y": 24.52,
       "ytd": 30.1
-     }
-    ]
-   ],
-   "Farm Products": [
-    [
-     "ADM",
-     "Archer-Daniels-Midland Company",
-     "33.61B",
-     {
-      "d": -3.13,
-      "w": 1.12,
-      "m": -14.51,
-      "q": -13.8,
-      "h": -11.58,
-      "y": 23.55,
-      "ytd": 25.37
-     }
-    ],
-    [
-     "BG",
-     "Bunge Limited",
-     "19.03B",
-     {
-      "d": -2.59,
-      "w": -2.13,
-      "m": -6.71,
-      "q": -13.41,
-      "h": -19.57,
-      "y": 4.81,
-      "ytd": 13.18
-     }
-    ],
-    [
-     "TSN",
-     "Tyson Foods, Inc.",
-     "22.50B",
-     {
-      "d": 8.72,
-      "w": 6.81,
-      "m": 16.48,
-      "q": 11.31,
-      "h": -2.38,
-      "y": 21.91,
-      "ytd": 11.94
-     }
-    ],
-    [
-     "CALM",
-     "Cal-Maine Foods, Inc.",
-     "3.11B",
-     {
-      "d": 0.14,
-      "w": -3.33,
-      "m": 4.54,
-      "q": -18.04,
-      "h": -14.26,
-      "y": -26.36,
-      "ytd": -15.26
-     }
-    ],
-    [
-     "AGRO",
-     "Adecoagro S.A.",
-     "1.25B",
-     {
-      "d": -4.61,
-      "w": -4.71,
-      "m": -12.21,
-      "q": -10.24,
-      "h": -34.58,
-      "y": 16.27,
-      "ytd": 12.01
-     }
-    ],
-    [
-     "DOLE",
-     "Dole plc",
-     "1.32B",
-     {
-      "d": -1.4,
-      "w": 1.0,
-      "m": 6.17,
-      "q": 9.99,
-      "h": 0.39,
-      "y": 3.67,
-      "ytd": -4.07
      }
     ]
    ],
@@ -39836,20 +39750,6 @@
      }
     ],
     [
-     "SKY",
-     "Champion Homes, Inc.",
-     "4.95B",
-     {
-      "d": -0.34,
-      "w": -4.53,
-      "m": 18.37,
-      "q": 1.28,
-      "h": 40.19,
-      "y": 15.69,
-      "ytd": 8.9
-     }
-    ],
-    [
      "KBH",
      "KB Home",
      "2.88B",
@@ -39875,6 +39775,20 @@
       "h": 6.17,
       "y": -0.9,
       "ytd": -0.49
+     }
+    ],
+    [
+     "SKY",
+     "Champion Homes, Inc.",
+     "4.95B",
+     {
+      "d": -0.34,
+      "w": -4.53,
+      "m": 18.37,
+      "q": 1.28,
+      "h": 40.19,
+      "y": 15.69,
+      "ytd": 8.9
      }
     ]
    ],
@@ -40581,6 +40495,20 @@
       "h": -9.15,
       "y": -8.76,
       "ytd": -7.65
+     }
+    ],
+    [
+     "GM",
+     "General Motors Company",
+     "70.58B",
+     {
+      "d": -2.71,
+      "w": -6.67,
+      "m": -0.35,
+      "q": 0.16,
+      "h": 14.94,
+      "y": 17.39,
+      "ytd": 3.57
      }
     ],
     [
@@ -44620,20 +44548,6 @@
      }
     ],
     [
-     "PHVS",
-     "Pharvaris N.V.",
-     "2.30B",
-     {
-      "d": -2.76,
-      "w": -5.89,
-      "m": 16.94,
-      "q": -10.14,
-      "h": 12.6,
-      "y": 33.72,
-      "ytd": 16.9
-     }
-    ],
-    [
      "RCUS",
      "Arcus Biosciences, Inc.",
      "2.43B",
@@ -45219,6 +45133,20 @@
       "h": 5.65,
       "y": 11.4,
       "ytd": 2.87
+     }
+    ],
+    [
+     "PHVS",
+     "Pharvaris N.V.",
+     "2.30B",
+     {
+      "d": -2.76,
+      "w": -5.89,
+      "m": 16.94,
+      "q": -10.14,
+      "h": 12.6,
+      "y": 33.72,
+      "ytd": 16.9
      }
     ],
     [
@@ -46482,20 +46410,6 @@
      }
     ],
     [
-     "EGP",
-     "EastGroup Properties, Inc.",
-     "10.55B",
-     {
-      "d": -0.68,
-      "w": -1.5,
-      "m": -0.05,
-      "q": -2.07,
-      "h": -1.32,
-      "y": 14.4,
-      "ytd": 12.94
-     }
-    ],
-    [
      "EXR",
      "Extra Space Storage Inc",
      "34.52B",
@@ -46521,6 +46435,20 @@
       "h": 18.43,
       "y": 29.55,
       "ytd": 31.71
+     }
+    ],
+    [
+     "EGP",
+     "EastGroup Properties, Inc.",
+     "10.55B",
+     {
+      "d": -0.68,
+      "w": -1.5,
+      "m": -0.05,
+      "q": -2.07,
+      "h": -1.32,
+      "y": 14.4,
+      "ytd": 12.94
      }
     ],
     [
@@ -47601,6 +47529,92 @@
       "h": -1.64,
       "y": null,
       "ytd": null
+     }
+    ]
+   ],
+   "Farm Products": [
+    [
+     "ADM",
+     "Archer-Daniels-Midland Company",
+     "33.61B",
+     {
+      "d": -3.13,
+      "w": 1.12,
+      "m": -14.51,
+      "q": -13.8,
+      "h": -11.58,
+      "y": 23.55,
+      "ytd": 25.37
+     }
+    ],
+    [
+     "BG",
+     "Bunge Limited",
+     "19.03B",
+     {
+      "d": -2.59,
+      "w": -2.13,
+      "m": -6.71,
+      "q": -13.41,
+      "h": -19.57,
+      "y": 4.81,
+      "ytd": 13.18
+     }
+    ],
+    [
+     "TSN",
+     "Tyson Foods, Inc.",
+     "22.50B",
+     {
+      "d": 8.72,
+      "w": 6.81,
+      "m": 16.48,
+      "q": 11.31,
+      "h": -2.38,
+      "y": 21.91,
+      "ytd": 11.94
+     }
+    ],
+    [
+     "CALM",
+     "Cal-Maine Foods, Inc.",
+     "3.11B",
+     {
+      "d": 0.14,
+      "w": -3.33,
+      "m": 4.54,
+      "q": -18.04,
+      "h": -14.26,
+      "y": -26.36,
+      "ytd": -15.26
+     }
+    ],
+    [
+     "AGRO",
+     "Adecoagro S.A.",
+     "1.25B",
+     {
+      "d": -4.61,
+      "w": -4.71,
+      "m": -12.21,
+      "q": -10.24,
+      "h": -34.58,
+      "y": 16.27,
+      "ytd": 12.01
+     }
+    ],
+    [
+     "DOLE",
+     "Dole plc",
+     "1.32B",
+     {
+      "d": -1.4,
+      "w": 1.0,
+      "m": 6.17,
+      "q": 9.99,
+      "h": 0.39,
+      "y": 3.67,
+      "ytd": -4.07
      }
     ]
    ],
@@ -51393,7 +51407,6 @@
    "ACN": "NYSE",
    "ADBE": "NASDAQ",
    "ADI": "NASDAQ",
-   "ADM": "NYSE",
    "ADP": "NASDAQ",
    "ADSK": "NASDAQ",
    "AEM": "NYSE",
@@ -51538,6 +51551,7 @@
    "GEV": "NYSE",
    "GILD": "NASDAQ",
    "GLW": "NYSE",
+   "GM": "NASDAQ",
    "GOOG": "NASDAQ",
    "GOOGL": "NASDAQ",
    "GRMN": "NYSE",
@@ -51783,6 +51797,7 @@
    "XYZ": "NYSE",
    "YUM": "NYSE",
    "ZTS": "NYSE",
+   "ADM": "NYSE",
    "AEE": "NYSE",
    "AEG": "NYSE",
    "AER": "NYSE",
@@ -51891,7 +51906,6 @@
    "EC": "NYSE",
    "ECHO": "NASDAQ",
    "EFX": "NYSE",
-   "EGP": "NYSE",
    "EHC": "NYSE",
    "EIX": "NYSE",
    "ELAN": "NYSE",
@@ -52301,6 +52315,7 @@
    "EBC": "NASDAQ",
    "EDU": "NYSE",
    "EGO": "NYSE",
+   "EGP": "NYSE",
    "ELF": "NYSE",
    "ELPC": "NYSE",
    "EMN": "NYSE",
@@ -52499,7 +52514,6 @@
    "SFD": "NASDAQ",
    "SGHC": "NYSE",
    "SIMO": "NASDAQ",
-   "SKY": "NYSE",
    "SM": "NYSE",
    "SMMT": "NASDAQ",
    "SMTC": "NASDAQ",
@@ -52863,7 +52877,6 @@
    "PFS": "NYSE",
    "PFSI": "NYSE",
    "PGNY": "NASDAQ",
-   "PHVS": "NASDAQ",
    "PII": "NYSE",
    "PIPR": "NYSE",
    "PK": "NYSE",
@@ -52915,6 +52928,7 @@
    "SITE": "NYSE",
    "SKE": "NYSE",
    "SKT": "NYSE",
+   "SKY": "NYSE",
    "SLDE": "NASDAQ",
    "SLG": "NYSE",
    "SLGN": "NYSE",
@@ -53222,6 +53236,7 @@
    "PDO": "NYSE",
    "PGEN": "NASDAQ",
    "PGY": "NASDAQ",
+   "PHVS": "NASDAQ",
    "PLAB": "NASDAQ",
    "PLTK": "NASDAQ",
    "PLUG": "NASDAQ",
@@ -53364,7 +53379,6 @@
    "Information Technology Services": "Technology",
    "Software - Application": "Technology",
    "Semiconductors": "Technology",
-   "Farm Products": "Consumer Defensive",
    "Gold": "Basic Materials",
    "Utilities - Regulated Electric": "Utilities",
    "Insurance - Life": "Financial Services",
@@ -53447,6 +53461,7 @@
    "REIT - Residential": "Real Estate",
    "REIT - Healthcare Facilities": "Real Estate",
    "Shell Companies": "Financial Services",
+   "Farm Products": "Consumer Defensive",
    "Rental & Leasing Services": "Industrials",
    "Security & Protection Services": "Industrials",
    "Packaging & Containers": "Consumer Cyclical",
@@ -59586,6 +59601,10 @@
   },
   "APO": {
    "d": "2026-11-03",
+   "est": false
+  },
+  "GM": {
+   "d": "2027-01-27",
    "est": false
   },
   "AEP": {
@@ -66503,6 +66522,189 @@
     "p": 657.34,
     "c": -0.67,
     "kind": "pre"
+   }
+  ]
+ },
+ "gainers": {
+  "asOf": "16.11.2026",
+  "period": "חודש",
+  "rows": [
+   {
+    "t": "SLN",
+    "n": "Silence Therapeutics Plc - Amer",
+    "p": 128.1,
+    "cap": 1.23,
+    "il": false
+   },
+   {
+    "t": "REPL",
+    "n": "Replimune Group, Inc.",
+    "p": 97.1,
+    "cap": 2.03,
+    "il": false
+   },
+   {
+    "t": "SGRY",
+    "n": "Surgery Partners, Inc.",
+    "p": 83.4,
+    "cap": 3.51,
+    "il": false
+   },
+   {
+    "t": "GDYN",
+    "n": "Grid Dynamics Holdings, Inc.",
+    "p": 74.5,
+    "cap": 1.09,
+    "il": false
+   },
+   {
+    "t": "ULCC",
+    "n": "Frontier Group Holdings, Inc.",
+    "p": 68.6,
+    "cap": 1.83,
+    "il": false
+   },
+   {
+    "t": "LQDA",
+    "n": "Liquidia Corporation",
+    "p": 64.1,
+    "cap": 5.08,
+    "il": false
+   },
+   {
+    "t": "XERS",
+    "n": "Xeris Biopharma Holdings, Inc.",
+    "p": 62.0,
+    "cap": 3.05,
+    "il": false
+   },
+   {
+    "t": "AXGN",
+    "n": "AxoGen, Inc.",
+    "p": 60.0,
+    "cap": 3.31,
+    "il": false
+   },
+   {
+    "t": "BRZE",
+    "n": "Braze, Inc.",
+    "p": 58.7,
+    "cap": 5.29,
+    "il": false
+   },
+   {
+    "t": "VRDN",
+    "n": "Viridian Therapeutics, Inc.",
+    "p": 56.6,
+    "cap": 3.38,
+    "il": false
+   },
+   {
+    "t": "APP",
+    "n": "Applovin Corporation",
+    "p": 56.0,
+    "cap": 137.57,
+    "il": false
+   },
+   {
+    "t": "XNCR",
+    "n": "Xencor, Inc.",
+    "p": 54.9,
+    "cap": 2.66,
+    "il": false
+   },
+   {
+    "t": "TDOC",
+    "n": "Teladoc Health, Inc.",
+    "p": 53.4,
+    "cap": 1.59,
+    "il": false
+   },
+   {
+    "t": "UPBD",
+    "n": "Upbound Group, Inc.",
+    "p": 52.2,
+    "cap": 1.45,
+    "il": false
+   },
+   {
+    "t": "HAWK",
+    "n": "HawkEye 360, Inc.",
+    "p": 48.8,
+    "cap": 1.84,
+    "il": false
+   }
+  ],
+  "large": [
+   {
+    "t": "APP",
+    "n": "Applovin Corporation",
+    "p": 56.0,
+    "cap": 137.57,
+    "il": false
+   },
+   {
+    "t": "GKOS",
+    "n": "Glaukos Corporation",
+    "p": 48.6,
+    "cap": 14.5,
+    "il": false
+   },
+   {
+    "t": "GMAB",
+    "n": "Genmab A/S",
+    "p": 39.4,
+    "cap": 31.8,
+    "il": false
+   },
+   {
+    "t": "PCOR",
+    "n": "Procore Technologies, Inc.",
+    "p": 36.1,
+    "cap": 11.6,
+    "il": false
+   },
+   {
+    "t": "FROG",
+    "n": "JFrog Ltd.",
+    "p": 30.4,
+    "cap": 13.7,
+    "il": false
+   },
+   {
+    "t": "PNR",
+    "n": "Pentair plc.",
+    "p": 28.7,
+    "cap": 10.93,
+    "il": false
+   },
+   {
+    "t": "U",
+    "n": "Unity Software Inc.",
+    "p": 28.4,
+    "cap": 23.03,
+    "il": false
+   },
+   {
+    "t": "CLX",
+    "n": "Clorox Company (The)",
+    "p": 28.3,
+    "cap": 13.35,
+    "il": false
+   },
+   {
+    "t": "RKT",
+    "n": "Rocket Companies, Inc.",
+    "p": 27.6,
+    "cap": 39.02,
+    "il": false
+   },
+   {
+    "t": "INSM",
+    "n": "Insmed Incorporated",
+    "p": 27.6,
+    "cap": 26.96,
+    "il": false
    }
   ]
  }
