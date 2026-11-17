@@ -36,13 +36,30 @@ def splits_since(day):
     j = _get(f"https://api.massive.com/v3/reference/splits?execution_date.gte={day:%Y-%m-%d}&limit=1000&apiKey={KEY}")
     return j.get("results", []) or []
 
+def fix_jumps(df):
+    """Splits the split feed missed: a one-day move of x4+ (or /4) that holds for the next 3 sessions is treated as a
+    split (no $1B stock really moves 300% in a day and stays there) -> earlier prices are rescaled by that ratio."""
+    n = 0
+    for t in df.columns:
+        c = df[t].dropna()
+        if len(c) < 5: continue
+        r = c / c.shift(1)
+        for day in r[(r > 4) | (r < 0.25)].index:
+            i = c.index.get_loc(day)
+            after = c.iloc[i:i + 4]
+            if len(after) >= 4 and (after / c.iloc[i]).between(0.6, 1.6).all():
+                ratio = c.iloc[i] / c.iloc[i - 1]
+                df.loc[df.index < day, t] *= ratio; c = df[t].dropna(); n += 1
+                print("missed split fixed", t, day.date(), round(float(ratio), 3), flush=True)
+    return df
+
 def load():
     try:
         subprocess.run(["git", "fetch", "-q", "--depth", "1", "origin", "history"], cwd=ROOT, check=True, capture_output=True)
         raw = subprocess.run(["git", "show", "origin/history:close.csv.gz"], cwd=ROOT, check=True, capture_output=True).stdout
         df = pd.read_csv(io.BytesIO(gzip.decompress(raw)), index_col=0, parse_dates=True)
         print("history loaded", df.shape, df.index[-1].date() if len(df) else None, flush=True)
-        return df
+        return fix_jumps(df)
     except Exception as e:
         print("no history yet", type(e).__name__, flush=True)
         return pd.DataFrame()
