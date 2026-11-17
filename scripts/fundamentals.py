@@ -16,6 +16,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "fund")
 NQ = 20
 
+def get_text(url):
+    import gzip
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "gzip"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            b = r.read()
+            if b[:2] == b"\x1f\x8b": b = gzip.decompress(b)
+            return b.decode("utf-8", "replace")
+    except Exception as e:
+        print("index", type(e).__name__, url, flush=True); return None
+
 def get(url, tries=3):
     import gzip
     for i in range(tries):
@@ -136,10 +147,30 @@ def main():
         for s in lst: tick.add(s[0])
     for r in data.get("reports", []): tick.add(r["t"])
     only = sys.argv[1:]
-    if only: tick = set(only)
     m = get("https://www.sec.gov/files/company_tickers.json")
     if not m: print("cannot load SEC ticker map"); sys.exit(1)
     cik = {v["ticker"].upper(): v["cik_str"] for v in m.values()}
+    if only[:1] == ["--recent"]:
+        # daily mode: only companies that filed a 10-Q / 10-K in the last N days (EDGAR daily form index)
+        n = int(only[1]) if len(only) > 1 else 3; c2t = {}
+        for t in tick:
+            c = cik.get(t.upper()) or cik.get(t.upper().replace("-", "."))
+            if c: c2t[int(c)] = t
+        hit = set()
+        for k in range(n + 1):
+            day = dt.date.today() - dt.timedelta(days=k)
+            if day.weekday() >= 5: continue
+            idx = get_text(f"https://www.sec.gov/Archives/edgar/daily-index/{day.year}/QTR{(day.month - 1) // 3 + 1}/form.{day:%Y%m%d}.idx")
+            if not isinstance(idx, str): continue
+            for line in idx.splitlines():
+                if not _re.match(r"(10-Q|10-K)(/A)?\s", line): continue
+                parts = _re.split(r"\s{2,}", line.strip())
+                try: c = int(parts[-3])
+                except (ValueError, IndexError): continue
+                if c in c2t: hit.add(c2t[c])
+        print("filed a 10-Q/10-K recently:", len(hit), sorted(hit)[:30], flush=True)
+        tick = hit
+    elif only: tick = set(only)
     os.makedirs(OUT, exist_ok=True)
     ok = skip = 0; index = {}
     for i, t in enumerate(sorted(tick)):
@@ -158,6 +189,9 @@ def main():
         json.dump(res, open(os.path.join(OUT, f"{t}.json"), "w"), separators=(",", ":"))
         index[t] = res["q"][-1]; ok += 1
         if i % 200 == 0: print(i, t, ok, skip, flush=True)
+    if only:   # partial run: keep the rest of the index
+        try: index = {**json.load(open(os.path.join(OUT, "_index.json"))), **index}
+        except Exception: pass
     json.dump(index, open(os.path.join(OUT, "_index.json"), "w"), separators=(",", ":"))
     print("done ok", ok, "skip", skip)
 
