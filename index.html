@@ -866,9 +866,12 @@ async function refreshLive(){
     if (d.sectors && JSON.stringify(d.sectors)!==JSON.stringify(SECTORS)) { SECTORS=d.sectors; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
     if (d.movers) { FALLBACK.movers=d.movers; renderMovers(); }
+    if (d.themes && d.themes.asOf && (!THEMES || JSON.stringify(d.themes.rows)!==JSON.stringify(THEMES.rows))) { FALLBACK.themes=d.themes; THEMES=d.themes; renderThemes(); }
+    if (d.ytd && JSON.stringify(d.ytd)!==JSON.stringify(FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
   } catch(e) {}
 }
 setInterval(refreshLive, 5*60*1000);
+setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh data right after load
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshLive(); });
 
 /* ---------- sectors ---------- */
