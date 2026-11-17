@@ -484,6 +484,17 @@ a.grw:hover{background:rgba(255,255,255,.025)}.grw:last-child{border-bottom:0}.g
 .grw .n{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;text-align:center;font-size:13px}.grw .n.big{font-size:15.5px;font-weight:700}.grw .gcap{color:var(--muted)}
 .grw.hd2 .n{font-family:inherit;font-size:12px;color:var(--muted)}.grw.hd2 .n.on{color:var(--text);font-weight:700}
 @media(max-width:640px){.grw{grid-template-columns:20px minmax(0,1fr) 62px 78px;gap:6px;padding:10px 12px}.grw .n.big{font-size:14px}.grw .n{font-size:12px}}
+.cdays{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px}.cdays button{flex:none;min-width:64px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:7px 12px;color:var(--muted);font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;line-height:1.3}
+.cdays button b{color:var(--text);font-size:14px}.cdays button span{font-size:12px}.cdays button.on{border-color:var(--accent);background:rgba(91,140,255,.12)}.cdays button.today span{color:var(--accent)}
+.cwk,.cardx{max-width:820px}.csh{font-size:13px;color:var(--muted);padding:10px 14px 2px;border-top:1px solid var(--line)}.cardx>.csh:first-child{border-top:0}
+.cwr{display:grid;grid-template-columns:minmax(0,1fr) 76px 90px;gap:6px;align-items:center;padding:9px 14px;border-top:1px solid var(--line);color:var(--text);text-decoration:none}
+a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 14px 6px;font-size:11.5px;color:var(--muted)}.cwr.ch span{text-align:center}
+.cwr b{font:700 14.5px "JetBrains Mono",monospace;direction:ltr}.cwr small{display:block;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+.cwr .n{text-align:center;font:600 13.5px "JetBrains Mono",monospace;direction:ltr}.cwr.hl b{color:#cfe0ff}
+.cev{padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.ipr{padding:11px 14px;border-top:1px solid var(--line)}.csh+.ipr{border-top:0}.ipt{display:flex;align-items:baseline;gap:8px}.ipt b{font-size:15.5px}.ipt .num{font-size:12.5px}
+.ipd{margin-inline-start:auto;font-size:13px;font-weight:700;white-space:nowrap}.ipd.amb{color:var(--amber)}
+.ipkv{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:3px}.ipkv b{color:var(--text)}.ipr p{margin:5px 0 0;font-size:13.5px;color:var(--muted);line-height:1.6}
 </style>
 </head>
 <body>
@@ -1499,27 +1510,23 @@ function mono(t){ const s=String(t||'?'); let h=0; for(const ch of s) h=(h*31+ch
 const calOpen=new Set();
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.ewmore[data-cal]'); if(b){ const k=+b.dataset.cal; calOpen.has(k)?calOpen.delete(k):calOpen.add(k); renderCal(); } });
 const TIME = {bmo:'☀️ לפני הפתיחה', amc:'🌙 אחרי הסגירה'};
+let calDay=null;
 function renderCal(){
-  const c = CAL||{days:[]};
+  const c = CAL||{days:[]}, days=c.days||[];
   $('calSub').textContent = `השבוע ${c.week||''}. ${c.note||''}`;
-  const full = i => (typeof i.eps==='number' || i.n);
-  const row = i=>`<div class="row">
-      <div class="who">${mono(i.t)}<div class="nm"><b>${i.il?'🇮🇱 ':''}${esc(i.co)}</b><span class="tick">${esc(i.t)}</span></div></div>
-      <div class="when">${TIME[i.time]||'שעה תפורסם'}${i.at?` · <span class="num">${esc(i.at)}</span>`:''}</div>
-      <div><span class="lbl">צפי EPS</span><b class="num">${typeof i.eps==='number'?eps(i.eps):'—'}</b></div>
-      <div><span class="lbl">צפי מכירות</span><b class="num">${typeof i.rev==='number'?money(i.rev):'—'}</b></div>
-      ${i.n?`<div class="n">${esc(i.n)}</div>`:''}</div>`;
-  const chip = i=>`<span class="ewc${i.il?' il':''}" title="${esc(i.co)}"><b>${i.il?'🇮🇱 ':''}${esc(i.t)}</b><small>${esc(i.co)}</small></span>`;
-  const tile = i=>`<a class="ewt2${i.il?' il':''}" href="#stock/${encodeURIComponent(i.t)}" title="${esc(i.co)}${typeof i.eps==='number'?' · צפי EPS '+eps(i.eps):''}${typeof i.rev==='number'?' · צפי מכירות '+money(i.rev):''}${i.n?' · '+esc(i.n):''}">${mono(i.t)}<b>${i.il?'🇮🇱 ':''}${esc(i.t)}</b><small>${esc(i.co)}</small></a>`;
-  const col = (its,k)=>{ const g=its.filter(i=>(i.time||'')===k); return g.length?g.map(tile).join(''):'<span class="ewe">—</span>'; };
-  $('week').innerHTML = `<div class="ewgrid">`+(c.days||[]).map(day=>{
-    const its=day.items||[], [dn,dd]=(day.d||'').split(' '), unk=its.filter(i=>!i.time||(i.time!=='bmo'&&i.time!=='amc'));
-    return `<div class="ewday"><div class="ewdh"><b>${esc(dn||'')}</b><span class="num">${esc(dd||'')}</span></div>
-      <div class="ewcols"><div class="ewcol"><div class="ewch">☀️ לפני הפתיחה</div>${col(its,'bmo')}</div><div class="ewcol"><div class="ewch">🌙 אחרי הסגירה</div>${col(its,'amc')}</div></div>
-      ${unk.length?`<div class="ewcol ewunk"><div class="ewch">שעה תפורסם</div>${unk.map(tile).join('')}</div>`:''}
-      ${day.econ?`<div class="econ2">${esc(day.econ)}</div>`:''}</div>`;
-  }).join('')+`</div>`;
+  if(!days.length){ $('week').innerHTML='<div class="empty">אין לוח דוחות לשבוע הזה.</div>'; return; }
+  const il=ilNow(), key=(d,m)=>m*100+d, tk=key(il.getDate(),il.getMonth()+1);
+  const parse=x=>{ const m=String(x||'').match(/(\d{1,2})\.(\d{1,2})/); return m?key(+m[1],+m[2]):0; };
+  if(calDay==null||calDay>=days.length){ calDay=days.findIndex(x=>parse(x.d)>=tk); if(calDay<0) calDay=days.length-1; }
+  const day=days[calDay], its=day.items||[], ix=stockIndex();
+  const row=i=>`<a class="cwr${capNum((ix[i.t]||{}).cap)>=1e11||i.star?' hl':''}" href="#stock/${encodeURIComponent(i.t)}"><div><b>${i.il?'🇮🇱 ':''}${esc(i.t)}</b><small dir="auto">${esc(i.co||'')}</small></div><span class="n${typeof i.eps==='number'?'':' flat'}">${typeof i.eps==='number'?eps(i.eps):'—'}</span><span class="n${typeof i.rev==='number'?'':' flat'}">${typeof i.rev==='number'?money(i.rev):'—'}</span></a>`;
+  const grp=(list,lbl)=>list.length?`<div class="csh">${lbl}</div><div class="cwr ch"><span></span><span>צפי EPS</span><span>צפי מכירות</span></div>${list.map(row).join('')}`:'';
+  const bmo=its.filter(i=>i.time==='bmo'), amc=its.filter(i=>i.time==='amc'), oth=its.filter(i=>i.time!=='bmo'&&i.time!=='amc');
+  $('week').innerHTML = `<div class="cdays">${days.map((x,k)=>{ const [dn,dd]=(x.d||'').split(' '); return `<button data-cd="${k}" class="${k===calDay?'on':''}${parse(x.d)===tk?' today':''}"><b>${esc(dn||'')}</b><span>${parse(x.d)===tk?'היום':esc(dd||'')}</span></button>`; }).join('')}</div>
+    <div class="cardx cwk">${grp(bmo,`לפני הפתיחה · ${ilTime(9,30)}`)}${grp(amc,`אחרי הסגירה · ${ilTime(16,0)}`)}${grp(oth,'שעה תפורסם')||''}
+    ${!its.length?'<div class="empty">אין דוחות בולטים ביום הזה.</div>':''}${day.econ?`<div class="cev">מאקרו: ${esc(day.econ)}</div>`:''}</div>`;
 }
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-cd]'); if(b){ calDay=+b.dataset.cd; renderCal(); } });
 function renderMarket(){
   const m=(OVERVIEW||{}).market||{};
   $('marketNote').textContent = m.note || (OVERVIEW&&OVERVIEW.asOf ? 'נכון ל-'+OVERVIEW.asOf : '');
@@ -1610,13 +1617,11 @@ function renderBreadth(){
 let IPOS = FALLBACK.ipos;
 function renderIpos(){
   const d = IPOS; if(!d || !d.items) return;
-  const groups = [['upcoming','נכנסות למסחר בקרוב'],['pipeline','הגישו בקשה, עוד בלי תאריך'],['recent','הונפקו לאחרונה'],['event','אירועים במניות שהונפקו השנה']];
-  const bd = s => esc(s).replace(/[~$]*\d[\d.,]*(?:[–-]\$?\d[\d.,]*)?[%BMK]?/g, m=>`<bdi dir="ltr">${m}</bdi>`);
-  const card = x => `<div class="card ipo${x.star?' star':''}"><div class="top">${mono(x.t)}<div><b>${esc(x.co)}</b><small>${esc(x.tk||x.t)}${x.ex?' · '+esc(x.ex):''}</small></div><div class="dt">${esc(x.date)}</div></div>`+
-    (x.kv&&x.kv.length?`<div class="kv">${x.kv.map(([k,v])=>`<div><span>${esc(k)}</span><b>${bd(v)}</b></div>`).join('')}</div>`:'')+
-    `<p>${bd(x.desc)}</p></div>`;
-  const cols = groups.map(([g,h])=>[h,d.items.filter(x=>x.g===g)]).filter(c=>c[1].length);
-  $('ipoBody').innerHTML = `<div class="ipoboard" style="--n:${cols.length}">`+cols.map(([h,it])=>`<div class="ipocol"><div class="ipoh">${h} <span class="num">${it.length}</span></div>${it.map(card).join('')}</div>`).join('')+`</div>`;
+  const groups = [['upcoming','נכנסות למסחר בקרוב'],['recent','הונפקו לאחרונה'],['event','סיום תקופת חסימה ואירועים'],['pipeline','הגישו בקשה']];
+  const it = x => `<div class="ipr"><div class="ipt"><b>${esc(x.co)}</b>${x.tk||x.t?`<span class="num flat">${esc(x.tk||x.t)}</span>`:''}<span class="ipd ${x.g==='pipeline'?'flat':'amb'}">${esc(x.date||'')}</span></div>`+
+    (x.kv&&x.kv.length?`<div class="ipkv">${x.kv.slice(0,3).map(([k,v])=>`<span>${esc(k)} <b><bdi>${esc(v)}</bdi></b></span>`).join('')}</div>`:'')+
+    (x.desc?`<p>${esc(x.desc)}</p>`:'')+`</div>`;
+  $('ipoBody').innerHTML = `<div class="cardx">`+groups.map(([g,h])=>{ const l=d.items.filter(x=>x.g===g); return l.length?`<div class="csh">${h}</div>${l.map(it).join('')}`:''; }).join('')+`</div>`;
   $('ipoSub').textContent = `מעודכן ל-${d.asOf}. ההנפקות המעניינות בוול סטריט: מה נכנס למסחר בקרוב, מי כבר הגישה בקשה, ואירועים שיכולים להזיז מניות שהונפקו לאחרונה.`;
 }
 // ===== Theme tracker =====
