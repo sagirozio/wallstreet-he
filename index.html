@@ -1128,7 +1128,7 @@ async function renderStock(t){
       ${news.length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="chtg" role="group" aria-label="טווח נר"><button data-iv="D" class="on">יומי</button><button data-iv="W">שבועי</button><span class="chn" id="chNote">נרות יפניים · ממוצע נע 200 יום</span></div><div class="spchart" id="spChart"></div></div>
+    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 200 יום (בצהוב)</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
       <h3 class="sph3" style="margin-top:0">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
       ${reps.length>1?`<a class="ewmore allrep" href="#reports" data-rq="${esc(t)}">לכל ${reps.length} הדוחות של ${esc(t)} במאגר ←</a>`:''}
@@ -1166,8 +1166,6 @@ function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}
 function drawChart(s,iv){
   const box=$('spChart'); if(!box) return; box.innerHTML='';
   const len = iv==='W' ? 40 : 200;   // 40 weekly candles ≈ 200 trading days
-  document.querySelectorAll('.chtg button').forEach(b=>b.classList.toggle('on',b.dataset.iv===iv));
-  $('chNote').textContent = iv==='W' ? 'נרות שבועיים · ממוצע נע 40 שבועות (≈200 יום)' : 'נרות יומיים · ממוצע נע 200 יום';
   // tv.js (TradingView's free chart widget) accepts indicator inputs, so the moving average gets length 200 / 40
   const id='tvc'+Date.now(); box.innerHTML=`<div id="${id}" style="height:100%"></div>`;
   loadTvJs().then(()=>{ if(!document.getElementById(id)) return;
@@ -1182,7 +1180,6 @@ let tvJsP=null;
 function loadTvJs(){ if(window.TradingView&&TradingView.widget) return Promise.resolve(); if(tvJsP) return tvJsP;
   tvJsP=new Promise((ok,no)=>{ const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/tv.js'; sc.async=true; sc.onload=ok; sc.onerror=()=>{ tvJsP=null; no(); }; document.head.appendChild(sc); });
   return tvJsP; }
-document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.chtg button'); if(!b) return; const s=stockIndex()[$('spBody').dataset.t]; if(s) drawChart(s,b.dataset.iv); });
 function spTab(k){
   const body=$('spBody'), t=body.dataset.t, s=stockIndex()[t]; if(!s) return;
   SPT=k;
@@ -1225,6 +1222,12 @@ const GLOSS={
   ADV:['עלו / ירדו היום','כמה ממניות ה-S&P 500 נסגרו היום בעלייה וכמה בירידה. כשהמדד עולה אבל רוב המניות יורדות, העלייה נשענת על מעט חברות ענק.'],
   HILO:['שיא / שפל של 52 שבועות','כמה מניות נגעו היום במחיר הגבוה או הנמוך ביותר שלהן בשנה האחרונה. הרבה שיאים ומעט שפלים מעידים על שוק בריא.'],
   MOVE10:['זזו 10% ומעלה בחודש','כמה מניות עלו או ירדו לפחות 10% ב-21 ימי המסחר האחרונים. מראה לאיזה כיוון נע רוב השוק, ולא רק המדד.'],
+  F_Q:['נתונים רבעוניים','התוצאות של החברה בכל רבעון (שלושה חודשים), מתוך הדוחות שהיא מגישה לרשות ניירות הערך האמריקאית (SEC). כל עמודה היא רבעון אחד, מהישן (משמאל) לחדש (מימין).'],
+  F_REVOP:['הכנסות ורווח תפעולי','הכנסות: כל הכסף שהחברה קיבלה ממכירות ברבעון. רווח תפעולי: מה שנשאר אחרי עלות המוצרים והוצאות התפעול (שכר, מחקר ופיתוח, שיווק), לפני ריבית ומסים. כשהרווח התפעולי גדל מהר יותר מההכנסות, הרווחיות משתפרת.'],
+  F_NI:['רווח נקי','השורה התחתונה: מה שנשאר לבעלי המניות אחרי כל ההוצאות, הריבית והמסים. יכול לקפוץ או לרדת גם בגלל אירועים חד-פעמיים, כמו מכירת נכס או מחיקה.'],
+  F_GP:['רווח גולמי והוצאות תפעול','רווח גולמי: ההכנסות פחות העלות הישירה של המוצרים או השירותים שנמכרו. הוצאות תפעול: שכר, מחקר ופיתוח, שיווק והנהלה. הפער ביניהם הוא בערך הרווח התפעולי.'],
+  F_EPS:['EPS מדולל – רווח למניה','הרווח הנקי מחולק במספר המניות, כולל מניות שעשויות להיווצר מאופציות ומניות לעובדים. זה הנתון הרשמי לפי כללי החשבונאות (GAAP), ולכן הוא עשוי להיות שונה מה-EPS ה״מתואם״ שאנליסטים משווים אליו.'],
+  F_BAL:['מאזן – נכסים והתחייבויות','נכסים: כל מה שהחברה מחזיקה, כמו מזומנים, מלאי, מפעלים והשקעות. התחייבויות: כל מה שהיא חייבת, כמו הלוואות, ספקים ואג״ח. ההפרש ביניהם הוא ההון העצמי ששייך לבעלי המניות.'],
   GDP:['GDP – צמיחה','השינוי בתוצר, כלומר בסך כל המוצרים והשירותים שהכלכלה מייצרת. בארה״ב מפורסם כקצב שנתי: כמה הכלכלה הייתה צומחת בשנה אם הקצב של הרבעון היה נמשך.'],
   PRE:['מסחר מקדים ומאוחר','מסחר במניות לפני הפתיחה הרשמית (11:00–16:30 שעון ישראל) ואחרי הסגירה (23:00–03:00). המחזורים נמוכים והמחירים תנודתיים יותר.'],
   BMO:['לפני הפתיחה / אחרי הסגירה','חברות מפרסמות דוחות לפני תחילת המסחר בניו יורק (16:30 בישראל) או אחרי סיומו (23:00 בישראל). לכן התגובה של המניה מגיעה בפתיחה או במסחר המאוחר.'],
@@ -1272,7 +1275,7 @@ setInterval(renderFresh, 60000);
 /* ---------- quarterly fundamentals (SEC EDGAR, US filers) ---------- */
 function fmtBig(v){ if(v===0) return '$0'; const a=Math.abs(v); const s=v<0?'-':''; return a>=1e12?s+'$'+(a/1e12).toFixed(2)+'T':a>=1e9?s+'$'+(a/1e9).toFixed(a>=1e11?0:1)+'B':a>=1e6?s+'$'+(a/1e6).toFixed(0)+'M':s+'$'+Math.round(a/1e3)+'K'; }
 function qLbl(e){ const d=new Date(e+'T00:00:00'); return 'Q'+(Math.floor(d.getMonth()/3)+1)+' '+String(d.getFullYear()).slice(2); }
-function fundChart(title,q,series,isEps){
+function fundChart(title,q,series,isEps,gl){
   const W=340,H=170,L=46,R=6,T=8,B=22, n=q.length, all=series.flatMap(s=>s.v).filter(v=>v!=null);
   if(!all.length) return '';
   let mx=Math.max(0,...all), mn=Math.min(0,...all); if(mx===mn) mx=mn+1;
@@ -1283,7 +1286,7 @@ function fundChart(title,q,series,isEps){
   series.forEach((s,si)=>s.v.forEach((v,i)=>{ if(v==null) return; const x=L+i*gw+(gw-bw*series.length)/2+si*bw, y0=y(0), y1=y(v);
     g+=`<rect x="${x.toFixed(1)}" y="${Math.min(y0,y1).toFixed(1)}" width="${(bw-0.6).toFixed(1)}" height="${Math.max(0.8,Math.abs(y1-y0)).toFixed(1)}" rx="1" fill="${v<0&&series.length===1?'#ef4444':s.c}"><title>${qLbl(q[i])} · ${s.n}: ${fmt(v)}</title></rect>`; }));
   q.forEach((e,i)=>{ if(i%4===n%4||i===n-1) g+=`<text x="${(i===n-1?W-R:L+i*gw+gw/2).toFixed(1)}" y="${H-6}" text-anchor="${i===n-1?'end':'middle'}">${qLbl(e)}</text>`; });
-  return `<div class="fch"><div class="fct">${title}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">${g}</svg><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
+  return `<div class="fch"><div class="fct">${title}${gl?gq(gl):''}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">${g}</svg><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
 }
 async function loadFund(t){
   const box=$('spFund'); if(!box) return;
@@ -1292,15 +1295,15 @@ async function loadFund(t){
     const f=await r.json(); if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
     const q=f.q;
     const ch=[
-      fundChart('הכנסות ורווח תפעולי',q,[{n:'הכנסות',c:'#5b8cff',v:f.rev},{n:'רווח תפעולי',c:'#f59e0b',v:f.op}]),
-      fundChart('רווח נקי',q,[{n:'רווח נקי',c:'#eab308',v:f.ni}]),
-      fundChart('תזרים מזומנים חופשי',q,[{n:'תזרים חופשי',c:'#22b8cf',v:f.fcf}]),
-      fundChart('רווח גולמי והוצאות תפעול',q,[{n:'רווח גולמי',c:'#5b8cff',v:f.gp},{n:'הוצאות תפעול',c:'#ef4444',v:f.opex}]),
-      fundChart('רווח למניה (EPS)',q,[{n:'EPS מדולל',c:'#a855f7',v:f.eps}],true),
-      fundChart('מאזן',q,[{n:'נכסים',c:'#22c55e',v:f.assets},{n:'התחייבויות',c:'#ec4899',v:f.liab}])
+      fundChart('הכנסות ורווח תפעולי',q,[{n:'הכנסות',c:'#5b8cff',v:f.rev},{n:'רווח תפעולי',c:'#f59e0b',v:f.op}],false,'F_REVOP'),
+      fundChart('רווח נקי',q,[{n:'רווח נקי',c:'#eab308',v:f.ni}],false,'F_NI'),
+      fundChart('תזרים מזומנים חופשי',q,[{n:'תזרים חופשי',c:'#22b8cf',v:f.fcf}],false,'FCF'),
+      fundChart('רווח גולמי והוצאות תפעול',q,[{n:'רווח גולמי',c:'#5b8cff',v:f.gp},{n:'הוצאות תפעול',c:'#ef4444',v:f.opex}],false,'F_GP'),
+      fundChart('רווח למניה (EPS)',q,[{n:'EPS מדולל',c:'#a855f7',v:f.eps}],true,'F_EPS'),
+      fundChart('מאזן',q,[{n:'נכסים',c:'#22c55e',v:f.assets},{n:'התחייבויות',c:'#ec4899',v:f.liab}],false,'F_BAL')
     ].filter(Boolean);
     if(!ch.length) return;
-    box.innerHTML=`<h3 class="sph3">נתונים רבעוניים</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
+    box.innerHTML=`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
   }catch(e){}
 }
 
