@@ -85,6 +85,13 @@ if in_hist:
         except Exception as e: print("recent chunk failed", type(e).__name__, flush=True)
     if recent:
         rc = pd.concat(recent, axis=1); rc.index = rc.index.tz_localize(None) if rc.index.tz is not None else rc.index
+        # different price scale between Massive and Yahoo (split / ADR ratio): align our history to Yahoo on the overlap
+        ov = rc.index.intersection(base.index)
+        if len(ov):
+            ratio = (rc.loc[ov].median() / base.loc[ov].median()).reindex(base.columns)
+            bad = ratio[(ratio - 1).abs() > 0.3].dropna()
+            for t, k in bad.items(): base[t] = base[t] * k
+            if len(bad): print("rescaled history to Yahoo scale", {t: round(float(k), 3) for t, k in bad.items()}, flush=True)
         newer = rc[rc.index > base.index[-1]]
         if len(newer): base = pd.concat([base, newer.reindex(columns=base.columns)])
         print("history last", base.index[-2 if len(newer) else -1].date(), "+ Yahoo sessions", [str(x.date()) for x in newer.index], flush=True)

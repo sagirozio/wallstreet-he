@@ -18,11 +18,12 @@ sp["yf"] = sp["Symbol"].str.replace(".", "-", regex=False)
 mem = [t for t in sp["yf"] if t in HIST.columns and HIST[t].iloc[-260:].notna().sum() > 200]
 now_ny = dt.datetime.now(ZoneInfo("America/New_York"))
 # current prices
-px, hl = {}, {}
+px, hl, chg = {}, {}, {}
 try:
     lj = json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/live.json", timeout=30).read().decode())
     if lj.get("date") == now_ny.strftime("%Y-%m-%d"):
         px = {t: v[0] for t, v in lj.get("q", {}).items() if t in mem}
+        chg = {t: v[1] for t, v in lj.get("q", {}).items() if t in mem}
         hl = {t: (v[2], v[3]) for t, v in lj.get("q", {}).items() if t in mem and len(v) >= 4}
 except Exception as e: print("live.json failed", e)
 miss = [t for t in mem if t not in px]
@@ -34,6 +35,13 @@ if miss:
     except Exception as e: print("yahoo today failed", e)
 print("prices", len(px), "of", len(mem), "history to", HIST.index[-1].date())
 today = pd.Timestamp(now_ny.date())
+# a split / ADR-ratio change between our history and Yahoo's live price: Yahoo's own previous close
+# (price / (1 + change)) differs from our last close by >30% -> rescale that stock's history
+for t, c in chg.items():
+    if t not in px or c is None: continue
+    prev_y = px[t] / (1 + c / 100); h = HIST[t].dropna()
+    if len(h) and h.index[-1] < today and abs(prev_y / h.iloc[-1] - 1) > 0.3:
+        HIST[t] = HIST[t] * (prev_y / h.iloc[-1]); print("rescaled history", t, round(prev_y / h.iloc[-1], 3))
 close = HIST[mem]
 close = close[close.index < today]
 close = pd.concat([close, pd.DataFrame([px], index=[today])]) if len(px) > 0.9 * len(mem) else close
