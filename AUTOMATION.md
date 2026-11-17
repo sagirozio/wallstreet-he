@@ -60,11 +60,11 @@ Read the existing entries first and copy their exact shape.
 
 ### `news` (every run)
 
-- **Prepend** 3–6 new items. Never delete or rewrite old items, because this is the news archive.
+- **Prepend** 3–6 new items. Always fill `t` with the tickers the item is about (empty list for market/macro items): the stock pages show these items under "חדשות אחרונות". Never delete or rewrite old items, because this is the news archive.
 - Item shape:
 
   ```json
-  {"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","tag":"<company or topic, short, Hebrew or brand name>","tone":"pos|neg|neu","title":"<Hebrew headline>","body":"<2–3 Hebrew sentences with numbers>","src":"<outlet name>","url":"<source URL>"}
+  {"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["<tickers the item is about, e.g. NVDA>"],"tag":"<company or topic, short, Hebrew or brand name>","tone":"pos|neg|neu","title":"<Hebrew headline>","body":"<2–3 Hebrew sentences with numbers>","src":"<outlet name>","url":"<source URL>"}
   ```
 
 - Skip a story already covered: check recent titles and ids.
