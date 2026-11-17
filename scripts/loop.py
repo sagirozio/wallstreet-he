@@ -31,7 +31,7 @@ while True:
         sh("timeout 300 python scripts/premarket.py")
         msg = "Pre-market update"
     else:
-        sh("timeout 480 python scripts/update.py")
+        sh("timeout 480 python scripts/update_live.py")
         sh("timeout 300 python scripts/premarket.py || true")
         msg = "Intraday update"
     sh(f'bash scripts/commit.sh "{msg}" data.json')
