@@ -39137,7 +39137,7 @@
   }
  ],
  "overview": {
-  "asOf": "17.11.2026 · 16:55",
+  "asOf": "17.11.2026 · 18:10",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -39196,9 +39196,9 @@
   ],
   "brief": [
    {
-    "h": "פתיחה מעורבת לקראת Nvidia",
-    "t": "הנאסד״ק נפתח בעלייה קלה והדאו בירידה, במסחר תנודתי, אחרי שלושה ימי ירידות ברציפות.",
-    "tone": "neu"
+    "h": "וול סטריט בירידות לקראת Nvidia",
+    "t": "אחרי פתיחה מעורבת עברו שלושת המדדים לירידות, עם המשך מכירות במניות AI לפני הדוח של Nvidia ואחרי שלושה ימי ירידות ברציפות.",
+    "tone": "neg"
    },
    {
     "h": "Nvidia מדווחת הלילה",
@@ -39290,7 +39290,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611171655,
+  "rev": 202611171810,
   "market": {
    "note": "סגירה ביום שני, 16.11.2026. ירידות חדות בכל המדדים, והנאסד״ק הוביל את הירידות. מדד הפחד VIX קפץ ב-22%.",
    "idx": [
@@ -91215,6 +91215,73 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-17-wall-street-turns-lower-nvidia",
+   "date": "2026-11-17",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "וול סטריט עברה לירידות לקראת הדוח של Nvidia",
+   "body": "שלושת המדדים נסחרו בירידה בשעה הראשונה של המסחר, אחרי פתיחה מעורבת; הדאו ירד ב-0.77% ל-51,210 נקודות בסביבות 17:11 שעון ישראל. לפי Yahoo Finance, המשקיעים ממשיכים למכור מניות AI לקראת הדוח של Nvidia אחרי הסגירה, אחרי שלושה ימי ירידות ברציפות.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-17-dow-sp-500-nasdaq-nvidia-earnings-retail-sales-143848454.html"
+  },
+  {
+   "id": "2026-11-17-jpm-cfo-barnum-de-best",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "JPM"
+   ],
+   "tag": "JPMorgan",
+   "tone": "neu",
+   "title": "סמנכ״ל הכספים של JPMorgan יפנה את מקומו",
+   "body": "Jeremy Barnum, סמנכ״ל הכספים מאז 2021, יוחלף על ידי Bregje de Best, סמנכ״לית הכספים של חטיבת הבנקאות המסחרית וההשקעות, אחרי פרסום תוצאות הרבעון הראשון של 2027. Barnum ימונה לסגן יו״ר וייעץ ל-Jamie Dimon עד תחילת 2028.",
+   "src": "JPMorgan Chase (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000019617/000001961726000407/jpmcpressrelease11172026.htm"
+  },
+  {
+   "id": "2026-11-17-cvx-beacon-offshore-5b",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "CVX"
+   ],
+   "tag": "Chevron",
+   "tone": "neu",
+   "title": "דיווח: Chevron קרובה לרכישת שליטה ב-Beacon Offshore",
+   "body": "לפי Financial Times, Chevron מתקרבת לעסקה לרכישת רוב המניות ב-Beacon Offshore Energy, שבשליטת Blackstone, לפי שווי של כ-$5B. ל-Beacon יש 70 חכירות במים עמוקים במפרץ מקסיקו; Chevron סירבה להגיב.",
+   "src": "Reuters (Offshore Engineer)",
+   "url": "https://www.oedigital.com/news/544405-chevron-nears-5b-deal-to-buy-beacon-offshore"
+  },
+  {
+   "id": "2026-11-17-sls-regal-phase3-surge",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "SLS"
+   ],
+   "tag": "SELLAS",
+   "tone": "pos",
+   "title": "SELLAS זינקה אחרי הצלחה בניסוי שלב 3 בלוקמיה",
+   "body": "החיסון galinpepimut-S האריך את חציון ההישרדות ל-24 חודשים לעומת 14.7 חודשים בטיפול הקיים בניסוי REGAL ב-AML, הפחתה של 41% בסיכון למוות (p=0.035). החברה מתכננת להגיש בקשת אישור ל-FDA במחצית הראשונה של 2027; המניה זינקה בכ-240%.",
+   "src": "SELLAS (SEC), Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/sellas-life-sciences-stock-soars-240-on-positive-cancer-trial-4964106"
+  },
+  {
+   "id": "2026-11-17-db-leak-epstein-russia",
+   "date": "2026-11-17",
+   "k": "stock",
+   "t": [
+    "DB"
+   ],
+   "tag": "Deutsche Bank",
+   "tone": "neg",
+   "title": "Deutsche Bank צונחת אחרי דליפת מסמכים פנימיים",
+   "body": "המניה ירדה ביותר מ-6% בפרנקפורט, הירידה החדה מאז אפריל 2025, אחרי דיווחים על סמך כ-15 מיליון מסמכים שדלפו על קשרים בעבר עם Jeffrey Epstein ואוליגרכים רוסים. הבנק מסר שמדובר בעניינים בני שנים רבות ושאינו צופה השפעה כספית משמעותית.",
+   "src": "Reuters",
+   "url": "https://lufkindailynews.com/news_reuters/business/deutsche-bank-shares-fall-on-reports-exposing-epstein-payments-russia-dealings/article_d0158b1f-a9ab-51a2-bb6a-6c457c320838.html"
+  },
   {
    "id": "2026-11-17-wall-street-open-mixed-nvidia",
    "date": "2026-11-17",
