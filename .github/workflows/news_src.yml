@@ -5,6 +5,7 @@ on:
     - cron: "40 6 * * 1-5"
     - cron: "15 12 * * 1-5"
     - cron: "5 21 * * 1-5"
+    - cron: "40 14-20 * * 1-5"   # hourly in the session, ~12 min before the hourly Hebrew news run
   workflow_dispatch:
 permissions:
   contents: write
