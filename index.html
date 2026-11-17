@@ -871,11 +871,18 @@ async function loadFund(t){
 
 
 function renderPremarket(){
-  const pm=FALLBACK.premarket||{}, rows=pm.rows||[], today=new Date(Date.now()+2*3600e3).toISOString().slice(0,10);
-  const show = rows.length && pm.date===today;
-  $('pmBox').classList.toggle('hidden',!show); if(!show) return;
-  const lbl = rows[0].kind==='post'?'🌙 מסחר מאוחר':'🌅 מסחר מקדים';
-  $('pmBox').innerHTML=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b> <span class="t">${esc(r.t)}</span> <span class="num">$${r.p.toFixed(2)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
+  const pm=FALLBACK.premarket||{}, rows=pm.rows||[];
+  const il=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'})), day=il.getDay(), mins=il.getHours()*60+il.getMinutes();
+  const weekday = day>=1 && day<=5;
+  const today = il.getFullYear()+'-'+String(il.getMonth()+1).padStart(2,'0')+'-'+String(il.getDate()).padStart(2,'0');
+  let html='';
+  if(rows.length && pm.date===today){
+    const lbl = rows[0].kind==='post'?'🌙 מסחר מאוחר':'🌅 מסחר מקדים';
+    html=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b> <span class="t">${esc(r.t)}</span> <span class="num">$${r.p.toFixed(2)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
+  } else if(weekday && mins < 11*60){
+    html=`<span class="pml">🌅 מסחר מקדים</span><span class="pmi">SPY ו-QQQ יוצגו כאן מ-11:00 (שעון ישראל), כשהמסחר המקדים בארה״ב נפתח, ויתעדכנו כל 15 דקות עד הפתיחה ב-16:30.</span>`;
+  }
+  $('pmBox').classList.toggle('hidden',!html); $('pmBox').innerHTML=html;
 }
 renderPremarket();
 
