@@ -85,7 +85,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}.logo .lgi{width:46px;height:46px;flex:none}.lgt{display:flex;flex-direction:column}.lgn{color:#fff;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;line-height:1.05}.lge{font:700 12px Arial,sans-serif;letter-spacing:2.5px;color:var(--green);direction:ltr}
 .logo .tagline{display:block;font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:3px}
 .fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fch{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 10px 10px}
-.fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
+.fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{touch-action:pan-y}.fcv{min-height:18px;font-size:12px;color:var(--muted);margin-top:4px}.fcv b{color:var(--text)}.fcv i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:4px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
 .fcl{display:flex;gap:12px;justify-content:center;font-size:12px;color:var(--muted);margin-top:4px}.fcl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:5px}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
 .secl{display:block;direction:ltr;text-align:right;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}.spchips .echip{background:rgba(91,140,255,.14);border-color:rgba(91,140,255,.45);color:#cfe0ff;font-weight:600}
@@ -1378,8 +1378,28 @@ function fundChart(title,q,series,isEps,gl){
   series.forEach((s,si)=>s.v.forEach((v,i)=>{ if(v==null) return; const x=L+i*gw+(gw-bw*series.length)/2+si*bw, y0=y(0), y1=y(v);
     g+=`<rect x="${x.toFixed(1)}" y="${Math.min(y0,y1).toFixed(1)}" width="${(bw-0.6).toFixed(1)}" height="${Math.max(0.8,Math.abs(y1-y0)).toFixed(1)}" rx="1" fill="${v<0&&series.length===1?'#ef4444':s.c}"><title>${qLbl(q[i])} · ${s.n}: ${fmt(v)}</title></rect>`; }));
   q.forEach((e,i)=>{ if(i%4===n%4||i===n-1) g+=`<text x="${(i===n-1?W-R:L+i*gw+gw/2).toFixed(1)}" y="${H-6}" text-anchor="${i===n-1?'end':'middle'}">${qLbl(e)}</text>`; });
-  return `<div class="fch"><div class="fct">${title}${gl?gq(gl):''}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">${g}</svg><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
+  const meta=esc(JSON.stringify({W,H,L,R,T,B,mx,mn,n,e:isEps?1:0,q:q.map(qLbl),s:series.map(x=>({n:x.n,c:x.c,v:x.v}))}));
+  g+=`<g class="xh" style="display:none"><line class="xv" y1="${T}" y2="${H-B}" stroke="#8b97ad" stroke-dasharray="3 3"/><line class="xhz" x1="${L}" x2="${W-R}" stroke="#8b97ad" stroke-dasharray="3 3"/><rect class="xyb" x="${W-R-50}" width="50" height="15" rx="3" fill="#2a3550"/><text class="xyt" x="${W-R-3}" text-anchor="end" style="fill:#e8edf6"></text><rect class="xqb" height="15" rx="3" fill="#2a3550"/><text class="xqt" text-anchor="middle" style="fill:#e8edf6"></text></g>`;
+  return `<div class="fch"><div class="fct">${title}${gl?gq(gl):''}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}" data-m="${meta}">${g}</svg><div class="fcv"></div><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
 }
+/* crosshair on the quarterly charts: vertical line on the quarter, horizontal line at the finger / mouse, the value on the right */
+function fchMove(ev){
+  const sv=ev.target.closest&&ev.target.closest('.fch svg'); if(!sv) return;
+  const m=JSON.parse(sv.dataset.m), r=sv.getBoundingClientRect(), k=m.W/r.width;
+  const px=(ev.clientX-r.left)*k, py=Math.min(m.H-m.B,Math.max(m.T,(ev.clientY-r.top)*k));
+  const gw=(m.W-m.L-m.R)/m.n, i=Math.min(m.n-1,Math.max(0,Math.floor((px-m.L)/gw))), cx=m.L+i*gw+gw/2;
+  const val=m.mx-(py-m.T)/(m.H-m.T-m.B)*(m.mx-m.mn), fmt=v=>v==null?'—':m.e?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
+  const xh=sv.querySelector('.xh'); xh.style.display='';
+  xh.querySelector('.xv').setAttribute('x1',cx); xh.querySelector('.xv').setAttribute('x2',cx);
+  xh.querySelector('.xhz').setAttribute('y1',py); xh.querySelector('.xhz').setAttribute('y2',py);
+  xh.querySelector('.xyb').setAttribute('y',py-7.5); const yt=xh.querySelector('.xyt'); yt.setAttribute('y',py+3.5); yt.textContent=fmt(val);
+  const qb=xh.querySelector('.xqb'), qt=xh.querySelector('.xqt'), qx=Math.min(m.W-m.R-24,Math.max(m.L+24,cx));
+  qb.setAttribute('x',qx-24); qb.setAttribute('width',48); qb.setAttribute('y',m.H-m.B+2); qt.setAttribute('x',qx); qt.setAttribute('y',m.H-m.B+13); qt.textContent=m.q[i];
+  sv.parentElement.querySelector('.fcv').innerHTML=`<b>${esc(m.q[i])}</b>`+m.s.map(x=>` · <span><i style="background:${x.c}"></i>${esc(x.n)} <span class="num">${fmt(x.v[i])}</span></span>`).join('');
+}
+function fchOut(ev){ const sv=ev.target; if(!(sv instanceof SVGSVGElement)||!sv.closest('.fch')) return; sv.querySelector('.xh').style.display='none'; sv.parentElement.querySelector('.fcv').innerHTML=''; }
+document.addEventListener('pointermove',fchMove); document.addEventListener('pointerdown',fchMove);
+document.addEventListener('pointerleave',fchOut,true);
 async function loadFund(t){
   const box=$('spFund'); if(!box) return;
   try{
