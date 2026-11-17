@@ -206,6 +206,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .tvc{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .tvn{direction:rtl;padding:8px 12px 0;font-weight:700;font-size:14px}.tvn span{color:var(--muted);font:500 12px 'JetBrains Mono',monospace;margin-inline-start:4px}
 .tvq .tradingview-widget-container{min-height:76px}
+.bdc{padding:10px 12px;direction:rtl}.bdc .tvn{padding:0}.bdc .bdv{display:flex;align-items:baseline;gap:8px;margin-top:6px;direction:ltr;justify-content:flex-end}.bdc .bdv b{font-size:20px}.bdc .bdv span{font-size:14px}
 .sphead{display:flex;align-items:center;gap:12px;margin:10px 0}
 .sphead .mono{width:52px;height:52px;font-size:14px}
 .sphead h2{margin:0}.sphead .meta{color:var(--muted);font-size:13px}
@@ -562,7 +563,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="mstat" id="mktStatus"></div>
   <p class="sub hidden" id="marketNote"></p>
     <div class="pmbox hidden" id="pmBox"></div>
-    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>עכשיו בשוק <span>· תעודות הסל של המדדים, בעיכוב של עד 15 דקות</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
+    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>עכשיו בשוק <span id="bdSub">· תעודות הסל של המדדים</span></div><div class="tvq" id="mkBoard"></div></div>
   <div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
   <div class="hidden" id="vixCard"></div>
 </section>
@@ -1062,14 +1063,12 @@ const tvIO = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.
 function tvInject(ph){
   if(!ph || ph.dataset.done) return; ph.dataset.done='1';
   const sc=document.createElement('script'); sc.src=ph.dataset.src; sc.async=true; sc.textContent=ph.textContent; ph.replaceWith(sc);
-  if($('tvLive').contains(sc) && !tvInject.t) tvInject.t=setTimeout(()=>{ if(!$('tvLive').querySelector('iframe')) $('tvLive').classList.add('off'); }, 25000);
 }
 function lazyScan(){ document.querySelectorAll('script.tvlz:not([data-q])').forEach(ph=>{ ph.dataset.q='1'; const box=ph.parentElement; box._ph=ph; if(tvIO) tvIO.observe(box); else tvInject(ph); }); }
 (function(){
   const has = el => el && el.querySelector('iframe');
   const check = () => {
     if (has($('tvTape'))) { $('tvTape').classList.remove('off'); $('stripWrap').style.display='none'; }
-    if (has($('tvLive'))) $('tvLive').classList.remove('off');
   };
   new MutationObserver(check).observe(document.body,{childList:true,subtree:true});
   setTimeout(()=>{ check(); if(!has($('tvTape'))) $('tvTape').classList.add('off'); }, 25000);
@@ -1296,7 +1295,7 @@ function spDayHtml(t,s){
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
   try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
-    LIVE=await r.json(); liveAgg(); try{ renderBriefSum(); }catch(e){}
+    LIVE=await r.json(); liveAgg(); try{ renderBriefSum(); }catch(e){} try{ renderBoard(); }catch(e){}
     try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     if(CURPG==='stock'&&t&&$('spWhy')){ const s0=stockIndex()[t]; if(s0) $('spWhy').outerHTML=whyBlock(t,s0,stockNews(t,s0)); }
@@ -1544,6 +1543,15 @@ function renderRecap(){
   const rows=(l,f)=>l.map(f).join('');
   $('rcFr').textContent=R.asOf;
   $('rcBody').innerHTML=`<p class="rctx">${esc(R.text||'')}</p>`;
+}
+
+/* "עכשיו בשוק" board: our own cards from live.json (TradingView's single-quote widget fails for some symbols) */
+const BOARD=[['SPY','S&P 500'],['QQQ','נאסד״ק 100'],['DIA','דאו ג׳ונס'],['IWM','ראסל 2000'],['^VIX','VIX – מדד הפחד'],['BTC-USD','ביטקוין']];
+function renderBoard(){
+  const B=(LIVE&&LIVE.board)||{}, el=$('mkBoard'); if(!el) return;
+  el.innerHTML=BOARD.map(([k,n])=>{ const v=B[k]; const sym=k.replace('^','').replace('-USD','/USD');
+    return `<div class="tvc bdc"><div class="tvn">${esc(n)} <span>${esc(sym)}</span></div>${v?`<div class="bdv"><b class="num">${k==='BTC-USD'?'$'+Math.round(v[0]).toLocaleString('en-US'):v[0].toFixed(2)}</b><span class="num ${v[1]>=0?'up':'down'}">${pct(v[1],2)}</span></div>`:'<div class="bdv flat">—</div>'}</div>`; }).join('');
+  if(LIVE&&LIVE.asOf) $('bdSub').textContent='· '+(mktOpen()?'לייב, עודכן ב-':'עודכן ב-')+String(LIVE.asOf).split('· ').pop();
 }
 /* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
 async function refreshLive(){
@@ -1861,7 +1869,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
-renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda(); renderRecap();
+renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda(); renderRecap(); renderBoard();
 route(); loadStocks(); loadLive();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {

@@ -146,6 +146,13 @@ while True:
                     if lp and pc: ix[sym] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]
                 except Exception as e: print("index", sym, type(e).__name__, flush=True)
             if ix: payload["idx"] = ix
+            bd = {}
+            for sym in ("SPY", "QQQ", "DIA", "IWM", "^VIX", "BTC-USD"):   # the "now in the market" board on the home page
+                try:
+                    fi = yf.Ticker(sym).fast_info; lp, pc = fi.last_price, fi.previous_close
+                    if lp and pc: bd[sym] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]
+                except Exception as e: print("board", sym, type(e).__name__, flush=True)
+            if bd: payload["board"] = bd
             etf = {}
             try:
                 px = yf.download(["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU"], period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
