@@ -1,191 +1,68 @@
-# Daily content update — instructions for the scheduled run
+# Content runs — instructions
 
-Site: "וולסטריטר" (tagline: "השוק האמריקאי, בגובה העיניים"), a Hebrew site about the US stock market.
-Repo: `sagirozio/wallstreet-he`. GitHub Pages serves `index.html` from `main`.
-Everything the browser loads is generated: edit only `data.json` (content) and run `python3 scripts/build.py`.
-The build writes `index.html`, `core.json`, `stocks.json`, `s/<T>.json`, `stock/<T>.html` (one Google-indexable page per stock) and `sitemap.xml`. Never edit those by hand. A GitHub Action also rebuilds them after every push, as a safety net.
+Site "וולסטריטר" (Hebrew, US stock market). Repo `sagirozio/wallstreet-he`, served by GitHub Pages from `main`.
+Edit only `data.json` (and `scripts/he_names.json`), then build. Everything else is generated or automatic.
 
-**Never edit by hand:** `sectors`, `themes`, `breadth`, `ytd` in `data.json`.
-The nightly GitHub Action recomputes them from Yahoo Finance.
+**Automatic — never touch:** prices, `sectors`, `themes`, `breadth`, `ytd`, `gainers`, `movers`, `premarket`, `calendar` list,
+`insiders`, `recap`, basic earnings cards (`"auto": true`), facts. Raw English headlines per stock: `news_src.json` (research only).
 
-## Run plan — do it in this order (if time runs short, the later steps wait for the next run)
+## Your job, in this order (stop when time runs out; the rest waits for the next run)
 
-**Already automated — don't spend time on these:** prices, sectors, industries, breadth, YTD doublers, monthly gainers,
-today's movers, pre-market, the weekly earnings calendar (Finnhub, every night), basic earnings cards (EPS/revenue vs estimate, YoY, reaction — Yahoo + Finnhub, every night),
-company facts. Raw English headlines per stock are waiting in `news_src.json`.
+| Run | When (Israel) | Do |
+|---|---|---|
+| hourly | :52, 13:52–22:52 | news (3–8 items) + rewrite `overview.brief` |
+| midday | 10:39 | news (main 3–6 + stock 20–40) |
+| morning | 15:13 | brief, news, cards for today's reporters, enrich cards, profiles |
+| evening | 23:47 | brief + `market` + `vix`, news, cards for after-close reporters, enrich cards, profiles |
 
-Your job is the Hebrew writing and the judgement:
-1. `overview.brief` (+ `market` / `vix` on the evening run) — the first thing on the site.
-2. **Main news items** (3–6).
-3. **Report cards for today's big reporters** (full: guidance, Hebrew `note`, `hook`).
-4. **Stock news items** from `news_src.json` — 20–40 different stocks.
-5. **Enrich `auto` report cards** — at least 15 per run, largest companies first (see §2 `reports`).
-6. **`profiles`** — `about` paragraphs for companies still missing one.
-7. `calendar`: add a short Hebrew `n` for the notable names and the day's `econ` line (the list itself is automatic). IPOs when there is news.
+1. `overview.brief` · 2. main news · 3. report cards of today's big reporters · 4. stock news · 5. enrich `auto` cards (≥15, largest first) · 6. `profiles` · 7. `calendar` notes, `ipos`.
 
-## 0. Setup
+## Research
 
-1. Attach the repo with push access. Clone it with `git clone --depth 5 https://github.com/sagirozio/wallstreet-he`.
-2. Work in Israel time (Asia/Jerusalem). US market hours are 16:30–23:00 Israel time.
-3. Note which run this is:
-   - **midday:** around 11:00 (news-only run).
-   - **morning:** before 16:30.
-   - **evening:** after 23:00.
+Search per item; use only what you retrieved. Primary sources first (press release, IR, SEC, Reuters/CNBC/AP).
+Earnings: actual vs consensus from 2 sources; if they conflict, skip and say so. Only companies above $1B.
+Never invent a reason for a move — no source, no explanation.
 
-## 1. Research (WebSearch / WebFetch)
+## data.json — shapes
 
-Search separately for each item below. Use only what you retrieved, never memory.
+**`overview`**
+- `brief`: 3–5 × `{"h": "<≤8 words>", "t": "<one sentence with numbers>", "tone": "pos|neg|neu"}`. First item = the market now
+  (close / futures / session). No index % (the line above is live). Earnings only for significant companies (~$50B+, or a 10%+ move).
+- `asOf` `"DD.MM.YYYY · HH:MM"` (Israel), `rev` `YYYYMMDDHHMM` (number, higher than before).
+- Evening: `market` `{"note", "idx":[{"k":"S&P 500","v":"7,416.59","d":-1.92}, נאסד״ק, דאו ג׳ונס, ראסל 2000]}` and
+  `vix` `{"v","c","week","from","note"}`. Macro labels keep the indicator name (CPI, PPI, PCE, ריבית…).
 
-- **Midday run (11:00, news only):**
-  - Stories since the evening run that matter for US stocks: overnight company news, Asia and Europe session, US futures, notable pre-market announcements (deals, guidance, analyst moves on big names, regulation).
-  - Add 3–6 main `news` items plus as many stock items as you can (see §2 `news`; prepend; don't duplicate items already in the archive). Update `overview.brief` only if something big changed since the evening run; leave `reports`, `calendar`, `ipos` as they are unless there is clear new information.
-  - Profiles: still add descriptions as in §2 `profiles`.
-  - Commit message: `Content update DD.MM (midday)`.
-- **Morning run:**
-  - US stock futures, Asia and Europe overnight.
-  - The 3–6 biggest US stock stories of the last 24h.
-  - Earnings released since the previous run: yesterday after close, and this morning before open.
-  - Today's macro events.
-- **Evening run:**
-  - How the session closed: S&P 500, Nasdaq, Dow and Russell 2000, with % moves.
-  - The day's biggest stock stories.
-  - Earnings released after today's close.
-- **Monday morning run:** also refresh `calendar`, the week's most anticipated earnings from earningswhispers.com/calendar (see §2).
+**`news`** — prepend; never edit or delete old items (archive). No duplicates (check today's titles and tickers).
+`{"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["NVDA"],"tag":"…","tone":"pos|neg|neu","title":"<Hebrew>","body":"<1–3 sentences, numbers>","src":"…","url":"…"}`
+- Main items: no `k`. Stock items: `"k":"stock"`, one ticker, cover as many different stocks as possible.
+- Stock priority: today's reporters → `movers` (why) → analyst actions on $10B+ → deals/guidance/legal/execs → mega caps.
+  Prefer stocks without a recent item. Start from `news_src.json`, confirm in the article, write in your own Hebrew.
 
-Only companies with market cap above $1B, on every part of the site.
+**`reports`** — one card per report, id `TICKER-YYYY-MM` (update if it exists). Copy an existing card's fields:
+`t co sector date q epsAct epsEst epsYoy epsBasis revAct revEst revYoy guide guideText note react hook ir`.
+`revAct`/`revEst` in $B; `epsYoy` a number, same basis as last year; `guide` = raised|above|inline|below|given|none.
+Enrich `auto` cards: add `revEst`, guidance, `note`, `hook`, fix numbers, then delete `auto` (and `src`).
 
-Prefer primary sources: company press releases, IR pages, SEC filings, and Reuters, CNBC or AP.
+**`profiles`** — `{"T": {"desc": "<one sentence>", "about": "<4–6 sentences>"}}` for stocks without `about`, up to 80 per run
+(order: new cards → calendar → today's news → movers/ytd → largest caps). Research from `about_src.json` + search; never translate it line by line.
+Missing Hebrew company name → add to `scripts/he_names.json`.
 
-For earnings, cross-check actual vs. consensus in at least 2 sources.
-If the sources conflict and you cannot resolve it, leave the company out and say so in your final report.
+**`calendar`** — list is automatic. Add only `n` (one Hebrew line) on notable items, `econ` per day, `at` when known.
+**`ipos`** — when something is priced/listed/filed. Same shape as existing.
 
-## 2. Edit `data.json`
+## Rules
 
-Read the existing entries first and copy their exact shape.
+Facts only; no recommendations, targets or predictions (quoting an analyst with attribution is fine). Plain short Hebrew,
+English company names. No number without a source. Paraphrase, no long quotes. Neutral wording about Anthropic.
 
-### `overview` (every run)
-
-- `brief` ("השוק ב-30 שניות", the first thing on the home page): **3–5 items**, each an object
-  `{"h": "<short Hebrew headline, up to ~8 words>", "t": "<one short Hebrew sentence with the key numbers>", "tone": "pos|neg|neu"}`.
-  Minimal and factual. The first item is how the market closed (or the futures, in the morning). The index changes are already shown above the list, so don't repeat all of them.
-  **Earnings in the brief: only significant companies** — mega/large caps (roughly $50B+), names the whole market watches (e.g. NVDA, AAPL, WMT, HD), or a report that moved its stock 10%+. Smaller companies' reports go to `reports` / stock news items, not to the brief.
-- `asOf`: `"DD.MM.YYYY · HH:MM"`, Israel time.
-- `rev`: `YYYYMMDDHHMM` as a number. It must be higher than the current value.
-- Update `strip` items only with values you verified. Otherwise leave them.
-- `market` ("מצב השוק" section) — **update on every evening run** (and the morning run if the last close isn't there yet):
-  `{"note": "<one Hebrew sentence: which close this is, e.g. סגירה ביום שני, 16.11.2026, and the main takeaway>", "idx": [{"k":"S&P 500","v":"7,416.59","d":-1.92,"w":<optional weekly % on Fridays>}, {"k":"נאסד״ק",...}, {"k":"דאו ג׳ונס",...}, {"k":"ראסל 2000",...}]}`
-- `vix`: `{"v": <close>, "c": <daily %>, "week": <% vs last Friday close>, "from": <last Friday close>, "note": "<short Hebrew>"}` — update together with `market`.
-- Never edit the index cards inside `template.html`; they are rendered from `overview.market`.
-- `overview.macro.cards[].k` and `macro.calendar[].e`: keep the indicator's name in the label (CPI, PPI, PCE, משרות, אבטלה, GDP/צמיחה, ריבית) — the site matches it to show the "?" explanation.
-
-### `news` (every run)
-
-- **Prepend** new items. Always fill `t` with the tickers the item is about (empty list for market/macro items): the stock pages show these items under "חדשות אחרונות" (the section is hidden for a stock with no item). Never delete or rewrite old items, because this is the news archive.
-- **Two kinds of items:**
-  - **Main items** (no `k` field): 3–6 per run, the biggest market and company stories. These appear on the home page and in the news strip.
-  - **Stock items** (`"k":"stock"`): **cover as many individual stocks as possible on every run (morning, midday and evening) — aim for 20–40 per run, more if time allows.** Shown only on the stock page and in the news archive, not on the home page. Each one is about one company (`t` = one ticker), 1–2 Hebrew sentences with the concrete fact and numbers, from a source you retrieved.
-- **Start from `news_src.json`** (repo root, refreshed from Finnhub shortly before each run): English headlines + short summaries per ticker from the last ~2 days, already ordered by priority. Use it to pick stocks and facts quickly; open the linked article (or another source) to confirm the numbers, then write the item in Hebrew in your own words. It is research material only and is not shown on the site.
-- **Which stocks to cover, in this order** (only stocks that are on the site: cap >$1B, avg volume ≥500k — the ticker should appear in `data.json` under `themes`, `ytd` or `movers`, or have a `profiles` entry):
-  1. every company that reported earnings since the last run (one stock item each, even if it also has a `reports` card);
-  2. every stock in `movers.rows` and `movers.down` — find *why* it moved (results, guidance, deal, FDA, analyst action, offering);
-  3. analyst upgrades/downgrades and price-target changes on stocks over ~$10B;
-  4. deals, M&A, buybacks, offerings, guidance updates, regulatory/legal news, product launches, executive changes;
-  5. the largest companies by cap (NVDA, AAPL, MSFT, GOOGL, AMZN, META, AVGO, TSLA, …) whenever they have any concrete news.
-  Prefer a stock that has **no** item yet (or none in the last 30 days) over adding another item to one that does. Do one search per stock or per batch (e.g. "stock movers today", "analyst upgrades today", "premarket movers"), and never invent a reason for a move: if no source explains it, skip the stock.
-- Item shape:
-
-  ```json
-  {"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["<tickers the item is about, e.g. NVDA>"],"tag":"<company or topic, short, Hebrew or brand name>","tone":"pos|neg|neu","title":"<Hebrew headline>","body":"<2–3 Hebrew sentences with numbers>","src":"<outlet name>","url":"<source URL>"}
-  ```
-
-- Skip a story already covered: check recent titles and ids.
-
-### `reports` (when companies reported)
-
-- **One card per report.** Add a card for each company >$1B that reported since the last run and that investors care about. This means big names, or companies on this week's `calendar`.
-- **Fields:** follow the existing cards exactly.
-  - id `TICKER-YYYY-MM`, plus `t`, `co`, `sector` (Hebrew, as used by existing cards) and `date`.
-  - `q`, `epsAct`, `epsEst`, `epsYoy` (number in %), `epsBasis`.
-  - `revAct`, `revEst` (in $B), `revYoy`.
-  - `guide` (`raised|above|inline|below|given|none`), `guideText`, `note`, `react`, `hook`.
-  - `ir`: a working IR or press-release URL. Verify it opens.
-- **`epsYoy` is always a number.** Compare to the same quarter last year, on the same basis: GAAP vs GAAP, or adjusted vs adjusted.
-- **Do not duplicate:** if the id exists, update it instead.
-- **Cards with `"auto": true`** were created automatically from Yahoo (EPS actual/estimate, revenue, YoY, reaction) and lack `revEst`, `guide`/`guideText` and `note`. When time allows, enrich a few per run (largest companies first): add `revEst`, guidance, a Hebrew `note` and `hook`, fix numbers that your sources contradict, then delete the `auto` key.
-
-### `calendar` (automatic — scripts/calendar_auto.py every night; you only add notes)
-
-- The list (largest reporters per day, estimates, before/after the bell, 🇮🇱) is built automatically. Don't rebuild it.
-- You add: `n` (one short Hebrew line) on notable items, `econ` per day, `at` (exact time) when known. These are kept on the next automatic run.
-- If you add an item by hand it is kept too.
-
-Reference (shape):
-
-- **`days`:** 5 entries, Mon–Fri. Each has `d` ("שני 16.11"), `econ` (macro note or ""), and `items`.
-- **Item shape:** `{t, co, time:"bmo"|"amc", star:false, eps?, rev?, at?, n?, il?}`.
-- **Include** only the "Most Anticipated" names from Earnings Whispers, with market cap above $1B.
-- **Mark** Israeli companies with `"il":true`.
-- **`rev`:** bump `calendar.rev` (YYYYMMDDHHMM).
-- **`week`:** set it, e.g. `"16–20.11"`.
-
-### `profiles` (every run)
-
-`profiles` holds the stock profile pages ("תעודת זהות", at `#stock/TICKER`):
-`{"TICKER": {"desc": "<one Hebrew sentence>", "about": "<Hebrew paragraph(s)>"}}`.
-
-- **`desc`** — one short sentence: what the company does (shown at the top of the page).
-- **`about`** — the deeper "על החברה" section: 4–6 Hebrew sentences, optionally two paragraphs separated by `\n`. Cover:
-  what the company sells and to whom; its main segments or products (with the biggest revenue sources if known);
-  where it operates; its position in its industry (e.g. one of the largest X, key competitors); and one notable
-  recent fact (a big acquisition, spin-off, new product line) only if you retrieved it.
-- **Source material:** `about_src.json` (filled daily by a GitHub workflow) has Yahoo's English business summary
-  per ticker. Use it as research, together with what you search. **Never copy or translate it sentence by sentence** —
-  write your own Hebrew text. `about_src.json` is not shown on the site; do not edit it.
-- **Hebrew names for search:** if the company has a common Hebrew name (as Israeli media write it, e.g. אנבידיה, טבע) and it is missing from `scripts/he_names.json`, add it there (`"TICKER": "שם"`; extra spellings separated by spaces). The site search and the Google page title use it.
-- Per run: write `about` (and `desc` if missing) for up to **80 stocks** that don't have `about` yet.
-- Priority order:
-  1. companies in new report cards;
-  2. this week's `calendar`;
-  3. stocks named in today's news;
-  4. the top of `ytd`, `movers` and the November gainers;
-  5. then the rest of `themes.stocks`, largest market cap first.
-- Only write what you are confident about. If unsure about a small company and `about_src.json` has nothing, skip it.
-- Factual and neutral: business lines, products, customers, markets. No opinions, valuations or recommendations.
-- Never change an existing `desc`/`about` unless it is factually wrong or outdated.
-- Facts like headquarters, employees and website come automatically from `data.json["facts"]` — don't repeat them in `about`.
-
-### `ipos` (when there is news)
-
-Update `items` when an IPO is priced or listed, or a big filing happens. Shape: as existing.
-
-## 3. Rules
-
-- **Facts only.** Never write buy/sell/hold recommendations, price targets of your own, or predictions. Quoting what an analyst or bank said is fine, with attribution.
-- **Hebrew style:** plain, short sentences, numbers with % and $. English names for companies and tickers.
-- **No invented data.** If a number is not in a source you retrieved, leave it out.
-- **Copyright:** paraphrase, no quotes longer than a few words.
-- **Anthropic:** when writing about Anthropic (e.g. its IPO), stay neutral and factual.
-
-## 4. Build, check, publish
+## Build and publish
 
 ```bash
-python3 -c "import json;json.load(open('data.json'))"   # must not fail
-python3 scripts/build.py
-git add data.json index.html core.json breadth.json insiders.json news_times.json reports.json stocks.json sitemap.xml stock.css s stock
-git commit -m "Content update DD.MM (midday|morning|evening)"
-git pull --rebase -X theirs origin main                # the data bots may have pushed meanwhile
-python3 scripts/build.py && git add index.html core.json breadth.json insiders.json news_times.json reports.json stocks.json sitemap.xml stock.css s stock && (git diff --cached --quiet || git commit -m "Rebuild site files")
-git push origin HEAD:main                              # if rejected: repeat the last three lines
+python3 -c "import json;json.load(open('data.json'))"
+bash scripts/commit.sh "Content update DD.MM (hourly|midday|morning|evening)" data.json scripts/he_names.json
 ```
+`commit.sh` builds, commits, rebases on the bots' pushes and retries. End commit messages with the attribution your environment requires.
 
-End the commit message with the attribution lines your environment requires.
+## Report
 
-If the push is rejected, pull again with `--rebase` and retry once.
-
-## 5. Report
-
-Finish with a short Hebrew summary for the owner. Cover:
-
-- what was added: brief, N main news items, N stock items (how many distinct tickers), which reports;
-- anything skipped and why;
-- the site link: https://sagirozio.github.io/wallstreet-he/
+Short Hebrew summary: brief changed?, N main + N stock items (distinct tickers), cards added/enriched, profiles, anything skipped and why.
