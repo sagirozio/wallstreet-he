@@ -21,6 +21,15 @@ fri = mon + dt.timedelta(days=4)
 url = "https://finnhub.io/api/v1/calendar/earnings?" + urllib.parse.urlencode({"from": mon.isoformat(), "to": fri.isoformat(), "token": KEY})
 rows = json.loads(urllib.request.urlopen(url, timeout=60).read().decode()).get("earningsCalendar") or []
 print("finnhub rows", len(rows), mon, fri)
+# a company listed on two days (estimated + confirmed dates): keep one — Yahoo's date if it matches, else the earliest
+ED = d.get("earnDates") or {}
+by = {}
+for r in rows: by.setdefault(r.get("symbol"), []).append(r)
+rows = []
+for sym, rs in by.items():
+    rs.sort(key=lambda r: r.get("date") or "")
+    y = str((ED.get((sym or "").replace(".", "-")) or {}).get("d") or "")[:10]
+    rows.append(next((r for r in rs if r.get("date") == y), rs[0]))
 week = f"{mon.day}–{fri.day}.{fri.month}.{fri.year}" if mon.month == fri.month else f"{mon.day}.{mon.month}–{fri.day}.{fri.month}.{fri.year}"
 old = d.get("calendar") or {}
 same = old.get("week") == week
@@ -38,20 +47,20 @@ for i in range(5):
         t = (r.get("symbol") or "").replace(".", "-")
         if t not in U: continue
         h = {"bmo": "bmo", "amc": "amc"}.get(r.get("hour") or "", "")
-        it = {"t": t, "co": U[t][0], "time": h or "amc", "star": False}
+        it = {"t": t, "co": U[t][0], "time": h or "amc", "star": False, "a": 1}   # a = added automatically
         if r.get("epsEstimate") is not None: it["eps"] = round(float(r["epsEstimate"]), 2)
         if r.get("revenueEstimate"): it["rev"] = round(float(r["revenueEstimate"]) / 1e9, 2)
         if t in IL: it["il"] = True
         got[t] = it
     top = sorted(got.values(), key=lambda x: -U[x["t"]][1])[:PER_DAY]
-    keep = {t for (dl, t) in oldi if dl == lbl}
+    keep = {t for (dl, t), o in oldi.items() if dl == lbl and not o.get("a")}   # hand-placed items stay
     top += [got[t] for t in keep if t in got and got[t] not in top]
     items = []
     for it in top:
         o = oldi.get((lbl, it["t"]), {})
         items.append({**it, **{k: v for k, v in o.items() if k in ("n", "at", "star", "il", "co", "time") and v not in (None, "")}})
     # hand-added items Finnhub doesn't list
-    items += [o for (dl, t), o in oldi.items() if dl == lbl and t not in got]
+    items += [o for (dl, t), o in oldi.items() if dl == lbl and t not in got and not o.get("a")]
     items.sort(key=lambda x: (x.get("time") != "bmo", -U.get(x["t"], ("", 0))[1]))
     econ = next((x.get("econ", "") for x in old.get("days", []) if same and x.get("d") == lbl), "")
     days.append({"d": lbl, "items": items, "econ": econ})
