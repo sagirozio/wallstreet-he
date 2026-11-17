@@ -362,13 +362,10 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 
 <section id="market">
   <h2>מצב השוק</h2>
-  <p class="sub">סגירה ביום שישי, 13.11.2026, והשינוי השבועי. המדדים שברו רצף של ארבעה שבועות ירידה.</p>
+  <p class="sub" id="marketNote"></p>
     <div class="tv-live" id="tvLive"><div class="tvh">🔴 עכשיו בשוק <span>(תעודות הסל של המדדים, VIX וביטקוין. מניות בעיכוב של עד 15 דקות)</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
   <div class="idx">
-    <div class="card"><div class="name">S&amp;P 500</div><div class="val num">7,416.59</div><div class="chg"><span>יומי <b class="down num">-1.92%</b></span></div></div>
-    <div class="card"><div class="name">נאסד״ק</div><div class="val num">24,509.76</div><div class="chg"><span>יומי <b class="down num">-2.49%</b></span></div></div>
-    <div class="card"><div class="name">דאו ג׳ונס</div><div class="val num">51,608.17</div><div class="chg"><span>יומי <b class="down num">-1.41%</b></span></div></div>
-    <div class="card"><div class="name">ראסל 2000</div><div class="val num">2,742.11</div><div class="chg"><span>יומי <b class="down num">-1.73%</b></span></div></div>
+    <div id="idxCards" style="display:contents"></div>
     <div class="card" id="vixCard"></div>
   </div>
 </section>
@@ -960,7 +957,7 @@ function renderOverview(){
   let row = one; while (row && (row.match(/class="it"/g)||[]).length < 10) row += one;   /* fill wide screens */
   $('strip').innerHTML = row + row;                                                        /* two equal halves = seamless loop */
   $('strip').style.setProperty('--dur', Math.max(20, (row.match(/class="it"/g)||[]).length*4) + 's');
-  renderVix();
+  renderVix(); renderMarket();
   $('briefList').innerHTML = (o.brief||[]).map(b=>`<li>${esc(b)}</li>`).join('');
   $('briefWa').href = waLink(briefText());
   $('briefAsOf').textContent = o.asOf ? `נכון ל-${o.asOf}` : '';
@@ -1002,6 +999,11 @@ function renderCal(){
       ${unk.length?`<div class="ewcol ewunk"><div class="ewch">שעה תפורסם</div>${unk.map(tile).join('')}</div>`:''}
       ${day.econ?`<div class="econ2">📅 ${esc(day.econ)}</div>`:''}</div>`;
   }).join('')+`</div>`;
+}
+function renderMarket(){
+  const m=(OVERVIEW||{}).market||{};
+  $('marketNote').textContent = m.note || (OVERVIEW&&OVERVIEW.asOf ? 'נכון ל-'+OVERVIEW.asOf : '');
+  $('idxCards').innerHTML = (m.idx||[]).map(x=>`<div class="card"><div class="name">${esc(x.k)}</div><div class="val num">${esc(x.v)}</div><div class="chg"><span>יומי <b class="num ${x.d<0?'down':'up'}">${pct(x.d,2)}</b></span>${typeof x.w==='number'?`<span>שבועי <b class="num ${x.w<0?'down':'up'}">${pct(x.w,2)}</b></span>`:''}</div></div>`).join('');
 }
 function renderVix(){
   const v=(OVERVIEW||{}).vix; if(!v){ $('vixCard').innerHTML=''; return; }

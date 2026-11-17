@@ -52,7 +52,11 @@ Read the existing entries first and copy their exact shape.
 - `brief`: 4–6 Hebrew sentences, "השוק ב-30 שניות". Short and factual, with numbers.
 - `asOf`: `"DD.MM.YYYY · HH:MM"`, Israel time.
 - `rev`: `YYYYMMDDHHMM` as a number. It must be higher than the current value.
-- Update `strip` items, and the index cards in `template.html` if you edit those, only with values you verified. Otherwise leave them.
+- Update `strip` items only with values you verified. Otherwise leave them.
+- `market` ("מצב השוק" section) — **update on every evening run** (and the morning run if the last close isn't there yet):
+  `{"note": "<one Hebrew sentence: which close this is, e.g. סגירה ביום שני, 16.11.2026, and the main takeaway>", "idx": [{"k":"S&P 500","v":"7,416.59","d":-1.92,"w":<optional weekly % on Fridays>}, {"k":"נאסד״ק",...}, {"k":"דאו ג׳ונס",...}, {"k":"ראסל 2000",...}]}`
+- `vix`: `{"v": <close>, "c": <daily %>, "week": <% vs last Friday close>, "from": <last Friday close>, "note": "<short Hebrew>"}` — update together with `market`.
+- Never edit the index cards inside `template.html`; they are rendered from `overview.market`.
 
 ### `news` (every run)
 
