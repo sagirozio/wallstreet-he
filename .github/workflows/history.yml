@@ -1,0 +1,15 @@
+name: (manual) Build price history from Massive
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+concurrency: { group: history, cancel-in-progress: false }
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pandas
+      - env: { MASSIVE_KEY: "${{ secrets.MASSIVE_KEY }}", GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: cd scripts && python history_backfill.py
