@@ -242,8 +242,8 @@
    "epsEst": 6.16,
    "epsYoy": -39,
    "epsBasis": "מתואם",
-   "revAct": 30.807,
-   "revEst": 31.4753,
+   "revAct": null,
+   "revEst": null,
    "revYoy": null,
    "guide": "none",
    "guideText": "",
@@ -251,7 +251,8 @@
    "react": "המניה ירדה ב-5.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BIDU",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CNY"
   },
   {
    "id": "BEKE-2026-11",
@@ -264,8 +265,8 @@
    "epsEst": 1.71,
    "epsYoy": 110,
    "epsBasis": "מתואם",
-   "revAct": 20.9899,
-   "revEst": 21.2987,
+   "revAct": null,
+   "revEst": null,
    "revYoy": null,
    "guide": "none",
    "guideText": "",
@@ -273,7 +274,8 @@
    "react": "המניה עלתה ב-4.4% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/BEKE",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "CNY"
   },
   {
    "id": "HTHT-2026-11",
@@ -1031,8 +1033,8 @@
    "epsEst": 1.49,
    "epsYoy": 161,
    "epsBasis": "מתואם",
-   "revAct": 16.0227,
-   "revEst": 16.4479,
+   "revAct": null,
+   "revEst": null,
    "revYoy": null,
    "guide": "none",
    "guideText": "",
@@ -1040,7 +1042,8 @@
    "react": "המניה עלתה ב-5.3% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/VIV",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "BRL"
   },
   {
    "id": "ONON-2026-11",
@@ -11294,8 +11297,8 @@
    "epsEst": 0.76,
    "epsYoy": 3,
    "epsBasis": "מתואם",
-   "revAct": 6.227,
-   "revEst": 6.4285,
+   "revAct": null,
+   "revEst": null,
    "revYoy": null,
    "guide": "none",
    "guideText": "",
@@ -11303,7 +11306,8 @@
    "react": "המניה ירדה ב-2.0% במסחר שאחרי הדוח.",
    "ir": "https://www.earningswhispers.com/epsdetails/ING",
    "hook": "",
-   "auto": true
+   "auto": true,
+   "revCur": "EUR"
   },
   {
    "id": "TT-2026-10",
