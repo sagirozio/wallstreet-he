@@ -839,6 +839,8 @@ function card(r){
     ${/^https:\/\//.test(r.ir||'')?`<div class="rcf"><a href="${esc(r.ir)}" target="_blank" rel="noopener">מצגת וחומרי הדוח ↗</a></div>`:''}
   </div>`;
 }
+let earnLim=60;
+document.addEventListener('click',e=>{ if(e.target.id==='earnMore'){ earnLim+=60; renderEarn(); } });
 function renderEarn(){
   const q = $('q').value.trim().toLowerCase(), fs=$('fSector').value, fr=$('fResult').value, fg=$('fGuide').value, so=$('sort').value;
   let list = REPORTS.filter(r => {
@@ -860,7 +862,7 @@ function renderEarn(){
     $('earnGrid').innerHTML = html || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>';
   } else {
   list.sort((a,b)=> key(a)<key(b)?1:key(a)>key(b)?-1:0);
-  $('earnGrid').innerHTML = list.map(card).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>';
+  $('earnGrid').innerHTML = (list.slice(0,earnLim).map(card).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>')+(list.length>earnLim?`<button class="ewmore" id="earnMore" style="grid-column:1/-1;justify-self:center">הצג עוד (${list.length-earnLim})</button>`:'');
   }
   const all={}; REPORTS.forEach(r=>all[r.sector]=(all[r.sector]||0)+1);
   $('secChips').innerHTML = `<button data-sec="" class="${fs?'':'on'}">הכל<b>${REPORTS.length}</b></button>`+Object.entries(all).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<button data-sec="${esc(s)}" class="${fs===s?'on':''}">${esc(s)}<b>${n}</b></button>`).join('');
@@ -870,7 +872,7 @@ function fillSectors(){
   const cur=$('fSector').value, s=[...new Set(REPORTS.map(r=>r.sector))].sort();
   $('fSector').innerHTML = '<option value="">כל הסקטורים</option>'+s.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
 }
-['q','fSector','fResult','fGuide','sort'].forEach(id=>$(id).addEventListener('input',renderEarn));
+['q','fSector','fResult','fGuide','sort'].forEach(id=>$(id).addEventListener('input',()=>{ earnLim=60; renderEarn(); }));
 
 
 /* ---------- top reports + page routing ---------- */
