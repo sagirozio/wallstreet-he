@@ -80,6 +80,9 @@ for _try in range(2):
         except Exception as e:
             print("retry chunk failed", type(e).__name__, flush=True)
 close = close.dropna(how="all")
+# Yahoo sometimes has the newest day for only a few tickers: drop trailing rows most stocks lack
+while len(close) and close.iloc[-1].notna().mean() < 0.9:
+    print("dropping sparse last row", close.index[-1].date(), round(close.iloc[-1].notna().mean(), 3)); close = close.iloc[:-1]
 okp = sum(1 for s in known if s in close.columns and close[s].dropna().shape[0] >= 30) / max(len(known), 1)
 print("price coverage", round(okp, 3))
 if okp < 0.9:
@@ -87,7 +90,19 @@ if okp < 0.9:
 import re as _re, datetime as _dt0
 _m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", data.get("themes", {}).get("asOf", ""))
 if _m and close.index[-1].date() < _dt0.date(int(_m.group(3)), int(_m.group(2)), int(_m.group(1))):
-    print("Yahoo returned older prices than current themes - keeping previous data"); raise SystemExit(0)
+    print("Yahoo returned older prices than current themes - keeping previous returns, applying universe filter only")
+    T0 = data["themes"]; keep = set(uni)
+    for ind in list(T0["stocks"]):
+        T0["stocks"][ind] = [s for s in T0["stocks"][ind] if s[0] in keep]
+        if not T0["stocks"][ind]: del T0["stocks"][ind]
+    for r in T0["rows"]:
+        lst = T0["stocks"].get(r["en"], [])
+        for k in ("d", "w", "m", "q", "h", "ytd", "y"):
+            v = [s[3][k] for s in lst if isinstance(s[3], dict) and s[3].get(k) is not None]
+            if v and len(v) >= 0.6 * len(lst): r[k] = round(sum(v) / len(v), 2)
+    T0["rows"] = [r for r in T0["rows"] if r["en"] in T0["stocks"]]
+    (root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    raise SystemExit(0)
 last = close.index[-1]
 def ret(n):
     v = (close.iloc[-1] / close.iloc[-1 - n] - 1) * 100
@@ -114,8 +129,10 @@ for ind, mem in by.items():
     for s in mem:
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
-    stocks[ind] = lst
+    if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
+    elif ind in T.get("stocks", {}): stocks[ind] = [e for e in T["stocks"][ind] if e[0] in uni]
 T["stocks"] = stocks
+T["rows"] = [r for r in T["rows"] if r["en"] in stocks]   # industries with no qualifying stocks drop out
 EXN = {"NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ", "NYQ": "NYSE", "ASE": "AMEX", "PCX": "AMEX", "BTS": "CBOE"}
 T["ex"] = {s: EXN.get(uni[s].get("exchange"), "") for s in close.columns}
 # next / latest earnings date per stock (Yahoo screener fields; epoch seconds)
