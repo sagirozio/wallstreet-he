@@ -422,8 +422,14 @@ h2 .gq{width:22px;height:22px}
 .brc .trk{position:relative;height:8px;border-radius:4px;background:#1d2638;margin:10px 0 5px;overflow:hidden}
 .brc .fil{position:absolute;top:0;bottom:0;right:0;background:#3a4766;border-radius:4px}.brc .mid{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--muted)}
 .brc .sc{direction:rtl;display:flex;justify-content:space-between;gap:6px;color:var(--muted);font-size:11.5px}
-.brh .rw2{grid-template-columns:70px minmax(0,1fr) 80px 80px}.brh .rw2 .n.l{text-align:right;direction:rtl}
-@media(max-width:640px){.brc .bv{font-size:22px}.brh .rw2{grid-template-columns:52px minmax(0,1fr) 62px 62px}}
+.brh .rw2{grid-template-columns:64px minmax(0,1fr) 72px 72px 84px 96px 14px}.brh .rw2 .n.l{text-align:right;direction:rtl}.brh .rw2 .n.l.c{text-align:center}
+.brh .rw2.open{background:var(--panel2)}.brh .rw2 .car{font-size:9px}.brx{background:var(--panel2);border-bottom:1px solid var(--line);padding:2px 14px 12px}
+.bg4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.bgp{margin-top:10px;min-width:0}.bgh{font-size:12.5px;color:var(--muted);margin-bottom:6px;display:flex;gap:6px;align-items:center}
+.bch{display:inline-flex;gap:5px;align-items:baseline;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:3px 7px;margin:0 0 5px 4px;font-size:12.5px;color:var(--text);text-decoration:none}
+.bch b{font:600 12.5px "JetBrains Mono",monospace}.bch:hover{border-color:var(--accent)}.bnw{width:6px;height:6px;border-radius:50%;background:#ffb547;display:inline-block;align-self:center}
+.bst{font-size:11px;color:#ffb547}.bmo{background:none;border:0;color:var(--accent);font:inherit;font-size:12px;cursor:pointer;padding:3px 4px}
+.blg{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:11.5px;padding:10px 14px}.brx .mob{display:none}
+@media(max-width:640px){.brc .bv{font-size:22px}.brh .rw2{grid-template-columns:42px minmax(0,1fr) 62px 66px 10px}.brh .rw2 .dsk{display:none}.bg4{grid-template-columns:1fr;gap:0}.brx{padding:2px 10px 10px}.brx .mob{display:block;margin-top:8px}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #market{padding-top:16px}
 .mstat{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 10px}.mstat i{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
@@ -1417,7 +1423,7 @@ async function refreshLive(){
     const r = await fetch('core.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return;
     const d = await r.json(), same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
     if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS=d.sectors; renderSec(); }
-    if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); }
+    if (d.breadth) { FALLBACK.breadth=d.breadth; renderBreadth(); loadBrL(); }
     if (d.overview && (d.overview.rev||0) > ((OVERVIEW||{}).rev||0)) { OVERVIEW=d.overview; renderOverview(); }
     if (d.news && !same(d.news,FALLBACK.news)) { FALLBACK.news=d.news; sortNews(); renderNews(); }
     if (d.reports && !same(d.reports,FALLBACK.reports)) { const byId=new Map(REPORTS.map(x=>[x.id,x])); d.reports.forEach(x=>byId.set(x.id,x)); FALLBACK.reports=d.reports;
@@ -1607,6 +1613,12 @@ function renderTL(){ if(!document.getElementById('tomlee')) return;
 /* ---------- init + live database ---------- */
 // ===== Breadth =====
 let BREADTH = FALLBACK.breadth;
+let brL=null, brOpen=new Set(), brMore=new Set(), brLoading=false;
+async function loadBrL(force){ if(brLoading) return; brLoading=true;
+  try{ const d=await (await fetch('breadth.json?v='+Date.now())).json(); brL={}; (d.rows||[]).forEach(r=>brL[r.d]=r.L);
+    if(!brOpen.size&&d.rows&&d.rows[0]) brOpen.add(d.rows[0].d); renderBreadth(); }catch(e){ brL=brL||{}; } brLoading=false; }
+document.addEventListener('click',e=>{ const m=e.target.closest('#brTable .bmo'); if(m){ brMore.add(m.dataset.k); renderBreadth(); return; }
+  const r=e.target.closest('#brTable .rw2.has'); if(r){ const d=r.dataset.d; brOpen.has(d)?brOpen.delete(d):brOpen.add(d); renderBreadth(); } });
 const BRCOLS = [
  {k:'up',h:'עלו<br>היום',ty:'up'},{k:'dn',h:'ירדו<br>היום',ty:'dn'},
  {k:'ma50',h:'מעל ממוצע<br>50 יום (S5FI)',ty:'pct'},{k:'ma200',h:'מעל ממוצע<br>200 יום (S5TH)',ty:'pct'},
@@ -1631,8 +1643,21 @@ function renderBreadth(){
     `<div class="brc"><div class="lb">שיא / שפל שנתי${gq('HILO')}</div><div class="br2">${N(last.hi,'up')}<span class="sm">/</span>${N(last.lo,'down')}</div><div class="sm">נגעו היום בשיא / בשפל של 52 שבועות</div></div>`+
     `<div class="brc"><div class="lb">זזו 10%+ בחודש${gq('MOVE10')}</div><div class="br2">${N(last.up10,'up')}<span class="sm">/</span>${N(last.dn10,'down')}</div><div class="sm">עלו / ירדו לפחות 10% בחודש</div></div>`;
   const pc2=v=>v==null?'<span class="n flat">—</span>':`<span class="n ${c50(v)}">${v.toFixed(1)}%</span>`;
-  $('brTable').innerHTML = `<div class="rw2 hd2"><span>תאריך</span><span>עלו / ירדו</span><span class="n on">50 יום</span><span class="n">200 יום</span></div>`+
-    rows.map(r=>`<div class="rw2"><span>${esc(r.d)}</span>${r.up==null&&r.dn==null?'<span class="n l flat">—</span>':`<span class="n l"><span class="up">${r.up??'—'}</span> / <span class="down">${r.dn??'—'}</span></span>`}${pc2(r.ma50)}${pc2(r.ma200)}</div>`).join('');
+  const ud=(a,b)=>a==null&&b==null?'<span class="n l flat">—</span>':`<span class="n l"><span class="up">${a??'—'}</span> / <span class="down">${b??'—'}</span></span>`;
+  const BL=brL||{}, has=r=>!!BL[r.d];
+  const LK=[['hi','שיא 52 שבועות','up'],['lo','שפל 52 שבועות','down'],['u','עלו 10%+ בחודש','up'],['n','ירדו 10%+ בחודש','down']];
+  const inL=(i,k,t)=>{ const r=rows[i], L=r&&BL[r.d]; return !!(L&&L[k]&&L[k].some(x=>x[0]===t)); };
+  const lim=innerWidth<=640?6:10;
+  const grp=(i,k,h,cls)=>{ const l=(BL[rows[i].d][k])||[], key=rows[i].d+k, all=brMore.has(key), sh=all?l:l.slice(0,lim);
+    const chip=([t,p])=>{ let st=1; while(inL(i+st,k,t)) st++; const nw=rows[i+1]&&BL[rows[i+1].d]&&!inL(i+1,k,t);
+      return `<a class="bch" href="#stock/${esc(t)}">${nw?'<i class="bnw" title="חדש ברשימה"></i>':''}<b>${esc(t)}</b><span class="num ${p>=0?'up':'down'}">${p>0?'+':''}${p.toFixed(1)}%</span>${st>1?`<span class="bst">${st} ימים</span>`:''}</a>`; };
+    return `<div class="bgp"><div class="bgh"><span class="${cls}">●</span>${h} <span class="num ${cls}">${l.length}</span></div>${l.length?sh.map(chip).join('')+(l.length>sh.length?`<button class="bmo" data-k="${esc(key)}">+ עוד ${l.length-sh.length}</button>`:''):'<span class="sm flat">אין</span>'}</div>`; };
+  $('brTable').innerHTML = `<div class="rw2 hd2"><span>תאריך</span><span>עלו / ירדו</span><span class="n on dsk">50 יום</span><span class="n dsk">200 יום</span><span class="n">שיא / שפל</span><span class="n">10%+ בחודש</span><span></span></div>`+
+    rows.map((r,i)=>{ const o=brOpen.has(r.d)&&has(r);
+      return `<div class="rw2${has(r)?' has':''}${o?' open':''}" data-d="${esc(r.d)}"><span>${esc(r.d)}</span>${ud(r.up,r.dn)}<span class="dsk">${pc2(r.ma50)}</span><span class="dsk">${pc2(r.ma200)}</span>${ud(r.hi,r.lo).replace('n l','n l c')}${ud(r.up10,r.dn10).replace('n l','n l c')}<span>${has(r)?'<span class="car">◀</span>':''}</span></div>`+
+      (o?`<div class="brx"><div class="mob sm">מעל ממוצע 50 יום ${pc2(r.ma50)} · 200 יום ${pc2(r.ma200)}</div><div class="bg4">${LK.map(([k,h,c])=>grp(i,k,h,c)).join('')}</div></div>`:''); }).join('')+
+    (Object.keys(BL).length?`<div class="blg"><span><i class="bnw"></i> חדש ברשימה באותו יום</span><span><span class="bst">5 ימים</span> = ימי מסחר ברציפות ברשימה</span><span>לחיצה על שורה פותחת את המניות</span></div>`:'');
+  if(!brL) loadBrL();
   $('brSub').textContent = `רוחב השוק בתוך ה-S&P 500, נכון ל${b.asOf}. כמה מתוך 500 המניות באמת משתתפות בתנועה: המדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות.`;
   $('brLegend').textContent = 'ירוק = יותר מ-50% מהמניות מעל הממוצע (רוב השוק משתתף בעלייה), אדום = פחות מ-50%. הקו באמצע הפס הוא 50%. חישוב עצמי מנתוני Yahoo Finance, מתעדכן אוטומטית כל ערב אחרי הסגירה. "—" = אין נתון לאותו יום.';
   renderFresh();

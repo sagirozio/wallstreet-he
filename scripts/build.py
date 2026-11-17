@@ -56,6 +56,10 @@ core["reportsN"] = len(reports)
 write("reports.json", js(reports))
 core["themes"] = {k: v for k, v in themes.items() if k not in ("stocks", "ex")}
 core["themes"]["n"] = len(universe)
+# breadth: the per-day stock lists go to breadth.json (loaded when the breadth section opens)
+_b = core.get("breadth") or {}
+write("breadth.json", js({"rows": [{"d": r.get("d"), "L": r.get("L")} for r in _b.get("rows", []) if r.get("L")]}))
+core["breadth"] = {**_b, "rows": [{k: v for k, v in r.items() if k != "L"} for r in _b.get("rows", [])]}
 core_txt = js(core)
 write("core.json", core_txt)
 

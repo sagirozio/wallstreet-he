@@ -6,7 +6,7 @@ set -u
 msg="$1"; shift
 git config user.name "wallstreet-bot"
 git config user.email "bot@users.noreply.github.com"
-DERIVED="index.html core.json reports.json stocks.json sitemap.xml stock.css s stock"
+DERIVED="index.html core.json breadth.json reports.json stocks.json sitemap.xml stock.css s stock"
 python scripts/build.py >/dev/null
 git add "$@" $DERIVED
 git diff --cached --quiet && { echo "nothing to commit"; exit 0; }

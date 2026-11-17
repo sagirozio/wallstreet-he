@@ -47,6 +47,10 @@ row = {"d": f"{last.day}.{last.month}", "up": int((R["d"] > 0).sum()), "dn": int
        "ma200": round(float((c > ma200)[ma200.notna() & c.notna()].mean() * 100), 1),
        "hi": int((c >= hi52).sum()), "lo": int((c <= lo52).sum()),
        "up10": int((R["m"] >= 10).sum()), "dn10": int((R["m"] <= -10).sum())}
+def _lst(mask, r, rev=False):
+    v = r[mask.reindex(r.index).fillna(False).astype(bool)].dropna().sort_values(ascending=rev)
+    return [[t, round(float(x), 1)] for t, x in v.items()]
+row["L"] = {"hi": _lst(c >= hi52, R["d"]), "lo": _lst(c <= lo52, R["d"], True), "u": _lst(R["m"] >= 10, R["m"]), "n": _lst(R["m"] <= -10, R["m"], True)}
 b = data.get("breadth", {"rows": []})
 b["rows"] = [row] + [r for r in b.get("rows", []) if r.get("d") != row["d"]][:19]
 live = last == today

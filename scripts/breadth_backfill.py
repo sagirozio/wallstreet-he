@@ -22,7 +22,12 @@ for i in range(len(close) - 1, len(close) - 1 - N, -1):
     d = close.index[i]; c = close.iloc[i]
     r1 = (c / close.iloc[i - 1] - 1) * 100; r21 = (c / close.iloc[i - 21] - 1) * 100
     m50, m200 = ma50.iloc[i], ma200.iloc[i]
-    rows.append({"d": f"{d.day}.{d.month}",
+    def _lst(mask, r, rev=False):
+        v = r[mask.reindex(r.index).fillna(False).astype(bool)].dropna().sort_values(ascending=rev)
+        return [[t, round(float(x), 1)] for t, x in v.items()]
+    L = {"hi": _lst(high.iloc[i] >= hi52.iloc[i], r1), "lo": _lst(low.iloc[i] <= lo52.iloc[i], r1, True),
+         "u": _lst(r21 >= 10, r21), "n": _lst(r21 <= -10, r21, True)}
+    rows.append({"L": L, "d": f"{d.day}.{d.month}",
         "up": int((r1 > 0).sum()), "dn": int((r1 < 0).sum()),
         "ma50": round(float((c > m50)[m50.notna() & c.notna()].mean() * 100), 1),
         "ma200": round(float((c > m200)[m200.notna() & c.notna()].mean() * 100), 1),

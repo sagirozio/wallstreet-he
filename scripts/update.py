@@ -44,6 +44,12 @@ row = {
     "hi": int((high.iloc[-1] >= hi52).sum()), "lo": int((low.iloc[-1] <= lo52).sum()),
     "up10": int((r21 >= 10).sum()), "dn10": int((r21 <= -10).sum()),
 }
+def _lst(mask, r, rev=False):
+    v = r[mask.reindex(r.index).fillna(False).astype(bool)].dropna().sort_values(ascending=rev)
+    return [[t, round(float(x), 1)] for t, x in v.items()]
+# the stocks behind the counts (for the day-by-day tracking under the breadth table)
+row["L"] = {"hi": _lst(high.iloc[-1] >= hi52, r1), "lo": _lst(low.iloc[-1] <= lo52, r1, True),
+            "u": _lst(r21 >= 10, r21), "n": _lst(r21 <= -10, r21, True)}
 b = data.get("breadth", {"rows": []})
 import re as _re, datetime as _dt
 _m = _re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", b.get("asOf", ""))
