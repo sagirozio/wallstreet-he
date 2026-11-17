@@ -38527,27 +38527,34 @@
  },
  "calendar": {
   "week": "16–20.11.2026",
-  "note": "הדוחות המצופים ביותר של השבוע לפי Earnings Whispers, רק חברות בשווי שוק מעל מיליארד דולר. 🇮🇱 = חברה ישראלית. השעות לפי שעון ניו יורק (ET), בישראל זה 7 שעות מאוחר יותר.",
+  "note": "החברות הגדולות שמדווחות השבוע (שווי שוק מעל מיליארד דולר), לפי Finnhub, עם תחזיות האנליסטים. 🇮🇱 = חברה ישראלית. השעות לפי שעון ניו יורק (ET), בישראל זה 7 שעות מאוחר יותר.",
   "days": [
    {
     "d": "שני 16.11",
     "items": [
      {
-      "t": "XPEV",
-      "co": "XPeng",
+      "t": "PDD",
+      "co": "PDD Holdings Inc.",
       "time": "bmo",
-      "eps": -0.11,
-      "rev": 3.47,
       "star": false,
-      "n": "מסירות שיא של 118,390 רכבים ברבעון. שיחת ההנהלה ב-14:00 שעון ישראל."
+      "eps": 19.21,
+      "rev": 117.13
      },
      {
       "t": "BIDU",
       "co": "Baidu",
       "time": "bmo",
+      "star": false,
       "eps": 6.49,
-      "rev": 31.48,
-      "star": false
+      "rev": 31.48
+     },
+     {
+      "t": "TSN",
+      "co": "Tyson Foods",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.59,
+      "rev": 14.31
      },
      {
       "t": "BEKE",
@@ -38558,20 +38565,29 @@
       "rev": 21.3
      },
      {
-      "t": "TSN",
-      "co": "Tyson Foods",
+      "t": "ARMK",
+      "co": "Aramark",
       "time": "bmo",
-      "eps": 0.59,
-      "rev": 14.31,
-      "star": false
+      "star": false,
+      "eps": 0.77,
+      "rev": 5.41
      },
      {
-      "t": "INFQ",
-      "co": "Infleqtion, Inc.",
-      "time": "amc",
+      "t": "XPEV",
+      "co": "XPeng",
+      "time": "bmo",
       "star": false,
-      "eps": -0.05,
-      "rev": 0.01
+      "eps": -0.91,
+      "rev": 23.67,
+      "n": "מסירות שיא של 118,390 רכבים ברבעון. שיחת ההנהלה ב-14:00 שעון ישראל."
+     },
+     {
+      "t": "BXDC",
+      "co": "Blackstone Digital Infrastructu",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.12,
+      "rev": 0.02
      },
      {
       "t": "ACM",
@@ -38588,6 +38604,22 @@
       "star": false,
       "eps": 1.59,
       "rev": 0.34
+     },
+     {
+      "t": "PAGS",
+      "co": "PagSeguro Digital Ltd.",
+      "time": "amc",
+      "star": false,
+      "eps": 2.14,
+      "rev": 5.3
+     },
+     {
+      "t": "INFQ",
+      "co": "Infleqtion, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": -0.05,
+      "rev": 0.01
      },
      {
       "t": "OMER",
@@ -38607,26 +38639,26 @@
       "t": "HD",
       "co": "Home Depot",
       "time": "bmo",
-      "eps": 3.84,
-      "rev": 42.8,
       "star": false,
+      "eps": 3.95,
+      "rev": 44.08,
       "n": "מדד לצרכן ולשוק השיפוצים"
      },
      {
       "t": "DIS",
       "co": "Disney",
       "time": "bmo",
+      "star": false,
       "eps": 1.69,
-      "rev": 25.43,
-      "star": false
+      "rev": 25.43
      },
      {
-      "t": "KLAR",
-      "co": "Klarna Group plc",
+      "t": "VIK",
+      "co": "Viking Holdings Ltd",
       "time": "bmo",
       "star": false,
-      "eps": -0.13,
-      "rev": 0.98
+      "eps": 1.28,
+      "rev": 2.22
      },
      {
       "t": "JD",
@@ -38637,6 +38669,14 @@
       "rev": 317.7
      },
      {
+      "t": "WSM",
+      "co": "Williams-Sonoma, Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 2.21,
+      "rev": 2.02
+     },
+     {
       "t": "AS",
       "co": "Amer Sports, Inc.",
       "time": "bmo",
@@ -38645,14 +38685,68 @@
       "rev": 2.2
      },
      {
+      "t": "TME",
+      "co": "Tencent Music Entertainment Gro",
+      "time": "bmo",
+      "star": false,
+      "eps": 1.5,
+      "rev": 9.23
+     },
+     {
+      "t": "SR",
+      "co": "Spire Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": -1.07,
+      "rev": 0.28
+     },
+     {
+      "t": "KLAR",
+      "co": "Klarna Group plc",
+      "time": "bmo",
+      "star": false,
+      "eps": -0.13,
+      "rev": 0.98
+     },
+     {
       "t": "NVDA",
       "co": "Nvidia",
       "time": "amc",
-      "at": "16:20",
-      "eps": 2.47,
-      "rev": 108.8,
       "star": false,
+      "eps": 2.52,
+      "rev": 111.28,
+      "at": "16:20",
       "n": "הדוח הראשון אחרי עזיבת ג׳נסן הואנג. ההנהלה צפתה הכנסות של $108B ±2%."
+     },
+     {
+      "t": "SQM",
+      "co": "Sociedad Química y Minera (SQM)",
+      "time": "amc",
+      "star": false
+     },
+     {
+      "t": "DLB",
+      "co": "Dolby Laboratories",
+      "time": "amc",
+      "star": false,
+      "eps": 1.21,
+      "rev": 0.38
+     },
+     {
+      "t": "GBDC",
+      "co": "Golub Capital BDC, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 0.33,
+      "rev": 0.19
+     },
+     {
+      "t": "ALM",
+      "co": "Almonty Industries Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 0.18,
+      "rev": 0.12
      },
      {
       "t": "LZB",
@@ -38661,12 +38755,6 @@
       "star": false,
       "eps": 0.48,
       "rev": 0.51
-     },
-     {
-      "t": "SQM",
-      "co": "Sociedad Química y Minera (SQM)",
-      "time": "amc",
-      "star": false
      }
     ],
     "econ": "מכירות קמעונאיות לאוקטובר"
@@ -38675,21 +38763,38 @@
     "d": "רביעי 18.11",
     "items": [
      {
-      "t": "TGT",
-      "co": "Target",
+      "t": "TJX",
+      "co": "TJX",
       "time": "bmo",
-      "at": "06:30",
-      "eps": 2.07,
-      "rev": 26.48,
-      "star": false
+      "star": false,
+      "eps": 1.35,
+      "rev": 16.0
      },
      {
       "t": "LOW",
       "co": "Lowe's",
       "time": "bmo",
-      "eps": 2.89,
-      "rev": 22.4,
-      "star": false
+      "star": false,
+      "eps": 2.91,
+      "rev": 22.63
+     },
+     {
+      "t": "TGT",
+      "co": "Target",
+      "time": "bmo",
+      "star": false,
+      "eps": 2.09,
+      "rev": 26.82,
+      "at": "06:30"
+     },
+     {
+      "t": "GLBE",
+      "co": "Global-e Online Ltd.",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.23,
+      "rev": 0.32,
+      "il": true
      },
      {
       "t": "TCEHY",
@@ -38700,30 +38805,21 @@
       "rev": 212.88
      },
      {
-      "t": "GLBE",
-      "co": "Global-e Online Ltd.",
-      "time": "bmo",
-      "star": false,
-      "il": true,
-      "eps": 0.23,
-      "rev": 0.32
-     },
-     {
-      "t": "TJX",
-      "co": "TJX",
-      "time": "bmo",
-      "eps": 1.35,
-      "rev": 16.0,
-      "star": false
-     },
-     {
       "t": "PANW",
       "co": "Palo Alto Networks",
       "time": "amc",
-      "at": "16:05",
-      "eps": 0.97,
-      "rev": 3.31,
-      "star": false
+      "star": false,
+      "eps": 0.99,
+      "rev": 3.37,
+      "at": "16:05"
+     },
+     {
+      "t": "ROST",
+      "co": "Ross Stores, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 1.91,
+      "rev": 6.4
      },
      {
       "t": "P",
@@ -38734,6 +38830,46 @@
       "rev": 1.36
      },
      {
+      "t": "CPRT",
+      "co": "Copart, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 0.4,
+      "rev": 1.21
+     },
+     {
+      "t": "WWD",
+      "co": "Woodward, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 2.54,
+      "rev": 1.15
+     },
+     {
+      "t": "UGI",
+      "co": "UGI Corporation",
+      "time": "amc",
+      "star": false,
+      "eps": -0.35,
+      "rev": 1.36
+     },
+     {
+      "t": "GAP",
+      "co": "Gap, Inc. (The)",
+      "time": "amc",
+      "star": false,
+      "eps": 0.79,
+      "rev": 4.06
+     },
+     {
+      "t": "SNEX",
+      "co": "StoneX Group Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 0.9,
+      "rev": 0.7
+     },
+     {
       "t": "HP",
       "co": "Helmerich & Payne, Inc.",
       "time": "amc",
@@ -38742,20 +38878,20 @@
       "rev": 1.11
      },
      {
-      "t": "JOYY",
-      "co": "JOYY Inc.",
-      "time": "amc",
-      "star": false,
-      "eps": 1.36,
-      "rev": 0.62
-     },
-     {
       "t": "KLIC",
       "co": "Kulicke and Soffa Industries",
       "time": "amc",
       "star": false,
       "eps": 1.46,
       "rev": 0.38
+     },
+     {
+      "t": "JOYY",
+      "co": "JOYY Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 1.36,
+      "rev": 0.62
      }
     ],
     "econ": "פרוטוקול הפד · תמחור ההנפקה של Anthropic (בערב)"
@@ -38764,20 +38900,12 @@
     "d": "חמישי 19.11",
     "items": [
      {
-      "t": "PDD",
-      "co": "PDD Holdings Inc.",
-      "time": "bmo",
-      "star": false,
-      "eps": 19.21,
-      "rev": 117.13
-     },
-     {
       "t": "WMT",
       "co": "Walmart",
       "time": "bmo",
-      "eps": 0.64,
-      "rev": 187.2,
       "star": false,
+      "eps": 0.64,
+      "rev": 189.14,
       "n": "הקמעונאית הגדולה בעולם. ההנהלה צפתה EPS של $0.62–0.64."
      },
      {
@@ -38789,12 +38917,28 @@
       "rev": 275.21
      },
      {
-      "t": "BBWI",
-      "co": "Bath & Body Works, Inc.",
+      "t": "PDD",
+      "co": "PDD Holdings Inc.",
       "time": "bmo",
       "star": false,
-      "eps": 0.12,
-      "rev": 1.58
+      "eps": 19.21,
+      "rev": 117.13
+     },
+     {
+      "t": "NTES",
+      "co": "NetEase, Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 16.43,
+      "rev": 30.84
+     },
+     {
+      "t": "WMG",
+      "co": "Warner Music Group Corp.",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.37,
+      "rev": 1.93
      },
      {
       "t": "FUTU",
@@ -38805,12 +38949,44 @@
       "rev": 6.77
      },
      {
-      "t": "GAP",
-      "co": "Gap Inc.",
+      "t": "YMM",
+      "co": "Full Truck Alliance Co. Ltd.",
+      "time": "bmo",
+      "star": false,
+      "eps": 1.33,
+      "rev": 3.33
+     },
+     {
+      "t": "ROAD",
+      "co": "Construction Partners, Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 1.09,
+      "rev": 1.11
+     },
+     {
+      "t": "VVV",
+      "co": "Valvoline Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.43,
+      "rev": 0.57
+     },
+     {
+      "t": "BBWI",
+      "co": "Bath & Body Works, Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.12,
+      "rev": 1.58
+     },
+     {
+      "t": "INTU",
+      "co": "Intuit",
       "time": "amc",
       "star": false,
-      "eps": 0.79,
-      "rev": 4.06
+      "eps": 2.75,
+      "rev": 4.39
      },
      {
       "t": "ROST",
@@ -38821,12 +38997,12 @@
       "star": false
      },
      {
-      "t": "ESE",
-      "co": "ESCO Technologies Inc.",
+      "t": "KEYS",
+      "co": "Keysight Technologies Inc.",
       "time": "amc",
       "star": false,
-      "eps": 2.62,
-      "rev": 0.38
+      "eps": 3.44,
+      "rev": 1.98
      },
      {
       "t": "ESTC",
@@ -38837,12 +39013,28 @@
       "rev": 0.5
      },
      {
-      "t": "INTU",
-      "co": "Intuit",
+      "t": "GAP",
+      "co": "Gap Inc.",
       "time": "amc",
-      "eps": 2.75,
-      "rev": 4.39,
-      "star": false
+      "star": false,
+      "eps": 0.79,
+      "rev": 4.06
+     },
+     {
+      "t": "HP",
+      "co": "Helmerich & Payne, Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 0.28,
+      "rev": 1.11
+     },
+     {
+      "t": "ESE",
+      "co": "ESCO Technologies Inc.",
+      "time": "amc",
+      "star": false,
+      "eps": 2.62,
+      "rev": 0.38
      }
     ],
     "econ": "Anthropic מתחילה להיסחר בנאסד״ק (ANT)"
@@ -38851,12 +39043,12 @@
     "d": "שישי 20.11",
     "items": [
      {
-      "t": "MOG.A",
-      "co": "Moog Inc.",
+      "t": "BSP",
+      "co": "Bending Spoons S.p.A.",
       "time": "bmo",
       "star": false,
-      "eps": 2.77,
-      "rev": 1.15
+      "eps": 0.32,
+      "rev": 0.75
      },
      {
       "t": "BJ",
@@ -38867,12 +39059,20 @@
       "rev": 6.14
      },
      {
-      "t": "BSP",
-      "co": "Bending Spoons S.p.A.",
+      "t": "FRO",
+      "co": "Frontline Plc",
       "time": "bmo",
       "star": false,
-      "eps": 0.32,
-      "rev": 0.75
+      "eps": 2.32,
+      "rev": 0.74
+     },
+     {
+      "t": "RLX",
+      "co": "RLX Technology Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 0.23,
+      "rev": 1.77
      },
      {
       "t": "WRD",
@@ -38881,11 +39081,20 @@
       "star": false,
       "eps": -0.97,
       "rev": 0.27
+     },
+     {
+      "t": "MOG.A",
+      "co": "Moog Inc.",
+      "time": "bmo",
+      "star": false,
+      "eps": 2.77,
+      "rev": 1.15
      }
-    ]
+    ],
+    "econ": ""
    }
   ],
-  "rev": 202611161340
+  "rev": 202611171402
  },
  "tomlee": {
   "target": 7700,
