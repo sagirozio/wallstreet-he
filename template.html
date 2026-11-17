@@ -472,6 +472,11 @@ h2 .gq{width:22px;height:22px}
 .rcl{font-size:14px;line-height:1.65;margin-top:10px}.rcl b{font-weight:700}
 .rcf{margin-top:12px;font-size:13.5px}.rcf a{color:var(--accent);text-decoration:none}
 @media(max-width:420px){.rcr{grid-template-columns:minmax(0,1fr) 74px 66px 54px}.rcr .n.big{font-size:15px}.rcr .n{font-size:12.5px}}
+.sphr{flex:none;position:relative}.sptvh{display:none}
+.sphr.tvok .spday{display:none}
+.sphr.tvok .sptvh{display:block;width:168px;height:58px;overflow:hidden;direction:ltr}
+.sptvh .tradingview-widget-container{width:240px!important;height:auto!important;transform:scale(.7);transform-origin:0 0}
+@media(max-width:640px){.sphr.tvok .sptvh{width:140px;height:50px}.sptvh .tradingview-widget-container{width:233px!important;transform:scale(.6)}}
 </style>
 </head>
 <body>
@@ -1140,7 +1145,7 @@ async function renderStock(t){
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2><bdi>${esc(s.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
-      <div class="spday" id="spDay">${spDayHtml(t,s)}</div></div>
+      <div class="sphr"><div class="sptvh" id="spHdTv"></div><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -1160,6 +1165,9 @@ async function renderStock(t){
     ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}`;
   $('spBody').dataset.t=t; $('spBody').dataset.loaded='';
   tvWidget($('spTodayW'),'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
+  // small live TradingView quote in the sticky header; our own figure stays as a fallback until it loads
+  { const hb=$('spHdTv'); tvWidget(hb,'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
+    const mo=new MutationObserver(()=>{ if(hb.querySelector('iframe')){ hb.closest('.sphr').classList.add('tvok'); mo.disconnect(); } }); mo.observe(hb,{childList:true,subtree:true}); }
   setNavH();
 }
 /* ---------- live quotes (live.json on the `live` branch, refreshed every 5 min in US trading hours) ---------- */
