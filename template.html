@@ -420,6 +420,13 @@ h2 .gq{width:22px;height:22px}
 .sprep{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px;background:var(--panel);color:var(--text);text-decoration:none}.sprep:hover{border-color:var(--accent)}
 .sprep .srh{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}.sprep .srh b{font-size:13.5px}.sprep .amb{color:var(--amber)}.sprep .srb{margin-top:4px;font-size:14.5px}.sprep .srr{margin-top:2px;font-size:13.5px;color:var(--muted)}.sprep .srl{display:block;margin-top:6px;font-size:12.5px;color:var(--accent)}
 .spclamp{max-height:10.5em;overflow:hidden;position:relative}.spclamp.open{max-height:none}.spmore{background:none;border:0;color:var(--accent);font:inherit;font-size:13px;cursor:pointer;padding:4px 0 10px}
+#recap .rcix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 12px}
+#recap .rci{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 11px}#recap .rci small{display:block;color:var(--muted);font-size:12.5px}#recap .rci b{font-size:17px}
+#recap .rcg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#recap .rcc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}#recap .rcc h3{font-size:14px;margin:0 0 6px;color:var(--muted);font-weight:600}
+#recap .rcr{display:flex;justify-content:space-between;gap:8px;padding:4px 0;font-size:14px;border-top:1px solid var(--line)}#recap .rcr:first-of-type{border-top:0}
+#recap .rcr small{display:block;color:var(--muted);font-size:12px}#recap .rct{display:flex;flex-wrap:wrap;gap:5px}#recap .rct a{font:600 12.5px "JetBrains Mono",monospace;border:1px solid var(--line);border-radius:7px;padding:2px 6px;color:var(--text);text-decoration:none}
+@media(max-width:700px){#recap .rcix{grid-template-columns:repeat(2,minmax(0,1fr))}#recap .rcg{grid-template-columns:1fr}}
 .brc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}.brc.wide{grid-column:1/-1}
 .brc .lb{color:var(--muted);font-size:13px;display:flex;align-items:center;flex-wrap:wrap}
 .brc .bv{font:700 26px "JetBrains Mono",monospace;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
@@ -589,6 +596,10 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="cardx" id="todayGrid"></div>
 </section>
 
+<section id="recap" data-pg="home" class="hidden">
+  <div class="hh"><h2>סיכום יום המסחר</h2><span class="fresh" id="rcFr"></span></div>
+  <div id="rcBody"></div>
+</section>
 <section id="homeMovers" data-pg="home">
   <div class="hh"><h2><span id="hmvH">מניות שזינקו היום</span><span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
   <div class="hmv" id="hmvList"></div>
@@ -1513,6 +1524,23 @@ async function renderSpIns(t){ const d=await loadIns(), l=(d.rows||[]).filter(r=
   const b=l.filter(r=>r.type==='P').reduce((a,r)=>a+r.val,0), sl=l.filter(r=>r.type==='S').reduce((a,r)=>a+r.val,0);
   el.innerHTML=`<h3 class="sph3">מנהלים קונים ומוכרים · 30 יום${gq('INSIDER')}</h3><p class="legend" style="margin-top:0">${b?`קניות <span class="up num">${fmtUsd(b)}</span>`:''}${b&&sl?' · ':''}${sl?`מכירות <span class="down num">${fmtUsd(sl)}</span>`:''}</p><div class="cardx">${l.slice(0,6).map(r=>insRow(r,false)).join('')}</div>`; }
 
+
+/* ---------- daily recap (after the close, data.recap from the nightly update) ---------- */
+function renderRecap(){
+  const R=FALLBACK.recap, sec=$('recap'); if(!sec) return; if(!R){ sec.classList.add('hidden'); return; } sec.classList.remove('hidden');
+  const P=v=>`<span class="num ${v>=0?'up':'down'}">${pct(v,v!=null&&Math.abs(v)<10?2:1)}</span>`;
+  const tk=l=>l.map(x=>`<a href="#stock/${encodeURIComponent(x[0]||x.t)}">${esc(x[0]||x.t)} <span class="${(x[1]??x.p)>=0?'up':'down'}">${pct(x[1]??x.p,1)}</span></a>`).join('');
+  const rows=(l,f)=>l.map(f).join('');
+  $('rcFr').textContent=R.asOf;
+  $('rcBody').innerHTML=`<div class="rcix">${R.idx.map(x=>`<div class="rci"><small>${esc(x.n)}</small><b class="num">${x.v.toLocaleString('en-US')}</b> ${P(x.c)}</div>`).join('')}</div>
+   <div class="rcg">
+    <div class="rcc"><h3>סקטורים: מובילים ומאספים</h3>${rows(R.secTop,x=>`<div class="rcr"><span>${esc(x.n)} <small class="num" style="display:inline">${esc(x.t||'')}</small></span>${P(x.c)}</div>`)}<div style="height:6px"></div>${rows(R.secBot,x=>`<div class="rcr"><span>${esc(x.n)} <small class="num" style="display:inline">${esc(x.t||'')}</small></span>${P(x.c)}</div>`)}</div>
+    <div class="rcc"><h3>רוחב השוק</h3><div class="rcr"><span>עלו / ירדו (S&amp;P 500)</span><span><span class="num up">${R.breadth.up??'—'}</span> / <span class="num down">${R.breadth.dn??'—'}</span></span></div><div class="rcr"><span>שיא 52 שבועות<small><span class="rct">${tk((R.breadth.hi||[]).slice(0,8))}</span></small></span><b class="num up">${R.breadth.nhi??0}</b></div><div class="rcr"><span>שפל 52 שבועות<small><span class="rct">${tk((R.breadth.lo||[]).slice(0,8))}</span></small></span><b class="num down">${R.breadth.nlo??0}</b></div></div>
+    <div class="rcc"><h3>התעשיות החזקות היום</h3>${rows(R.indTop,x=>`<div class="rcr"><span>${esc(x.n)}<small><span class="rct">${tk(x.s)}</span></small></span>${P(x.c)}</div>`)}</div>
+    <div class="rcc"><h3>התעשיות החלשות היום</h3>${rows(R.indBot,x=>`<div class="rcr"><span>${esc(x.n)}<small><span class="rct">${tk(x.s)}</span></small></span>${P(x.c)}</div>`)}</div>
+    ${R.up.length||R.down.length?`<div class="rcc" style="grid-column:1/-1"><h3>זזו 10% ומעלה היום</h3><div class="rct">${tk(R.up)}${tk(R.down)}</div></div>`:''}
+   </div><p class="legend">סיכום אוטומטי של יום המסחר האחרון, מתוך הטבלאות של האתר. התעשיות: רק קבוצות עם 3 מניות ומעלה. נתונים בלבד, לא המלצה.</p>`;
+}
 /* ---------- auto-refresh live data (sectors, breadth) every 5 min while page is visible ---------- */
 async function refreshLive(){
   if (document.hidden || location.protocol==='file:') return;
@@ -1532,6 +1560,7 @@ async function refreshLive(){
     if (d.themes && d.themes.asOf && THEMES && !same(d.themes.rows,THEMES.rows)) {
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
     if (d.gainers && !same(d.gainers,FALLBACK.gainers)) { FALLBACK.gainers=d.gainers; renderG(); }
+    if (d.recap && !same(d.recap,FALLBACK.recap)) { FALLBACK.recap=d.recap; renderRecap(); }
     if (d.ytd && !same(d.ytd,FALLBACK.ytd)) { FALLBACK.ytd=d.ytd; try{ renderYtd(); }catch(e){} }
     if (d.ts) FALLBACK.ts=d.ts;
     await loadIntra();
@@ -1828,7 +1857,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.value; renderThemes(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
-renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda();
+renderNews(); renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda(); renderRecap();
 route(); loadStocks(); loadLive();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {
