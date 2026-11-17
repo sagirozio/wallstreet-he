@@ -58,6 +58,7 @@ Read the existing entries first and copy their exact shape.
   `{"note": "<one Hebrew sentence: which close this is, e.g. סגירה ביום שני, 16.11.2026, and the main takeaway>", "idx": [{"k":"S&P 500","v":"7,416.59","d":-1.92,"w":<optional weekly % on Fridays>}, {"k":"נאסד״ק",...}, {"k":"דאו ג׳ונס",...}, {"k":"ראסל 2000",...}]}`
 - `vix`: `{"v": <close>, "c": <daily %>, "week": <% vs last Friday close>, "from": <last Friday close>, "note": "<short Hebrew>"}` — update together with `market`.
 - Never edit the index cards inside `template.html`; they are rendered from `overview.market`.
+- `overview.macro.cards[].k` and `macro.calendar[].e`: keep the indicator's name in the label (CPI, PPI, PCE, משרות, אבטלה, GDP/צמיחה, ריבית) — the site matches it to show the "?" explanation.
 
 ### `news` (every run)
 

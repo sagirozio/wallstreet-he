@@ -459,13 +459,13 @@ h2 .gq{width:22px;height:22px}
 </section>
 
 <section id="macro" data-pg="market">
-  <h2>מאקרו וריבית<button class="gq" data-gl="FED" aria-label="הסבר">?</button></h2>
+  <h2>מאקרו וריבית<button class="gq" data-gl="MACRO" aria-label="הסבר">?</button></h2>
   <p class="sub">הריבית, האינפלציה והתעסוקה בארה״ב, ומה השוק מצפה שהפד יעשה.</p>
   <div class="macro">
     <div class="card rate">
-      <div class="tag">ריבית הפד כרגע</div><div class="big num" id="mRate"></div>
+      <div class="tag">ריבית הפד כרגע<button class="gq" data-gl="RATE" aria-label="הסבר">?</button></div><div class="big num" id="mRate"></div>
       <div class="note" id="mRateNote" style="margin-top:4px"></div>
-      <div style="margin-top:14px;font-weight:700">מה השוק מתמחר להחלטה ב-<span id="mMeet"></span></div>
+      <div style="margin-top:14px;font-weight:700">מה השוק מתמחר להחלטה ב-<span id="mMeet"></span><button class="gq" data-gl="FED" aria-label="הסבר">?</button></div>
       <div class="prob" id="mProb"></div><div class="plg" id="mProbLg"></div>
       <div class="legend">לפי CME FedWatch, שמחשב את הסיכויים מתוך מחירי חוזים עתידיים על הריבית. זו הערכה של השוק, לא החלטה.</div>
     </div>
@@ -1068,7 +1068,15 @@ const GLOSS={
   MA:['ממוצע נע 50 / 200 יום','המחיר הממוצע של מניה ב-50 או ב-200 ימי המסחר האחרונים. S5FI ו-S5TH הם האחוז ממניות ה-S&P 500 שנסחרות מעל הממוצע הזה.'],
   ETF:['ETF – קרן סל','קרן שנסחרת בבורסה כמו מניה ועוקבת אחרי מדד או סל מניות. למשל XLK עוקבת אחרי סקטור הטכנולוגיה, ו-SPY אחרי ה-S&P 500.'],
   SECTOR:['סקטור ותעשייה','השוק מחולק ל-11 סקטורים רחבים (כמו טכנולוגיה או בריאות), וכל סקטור מחולק לתעשיות מפורטות יותר (כמו שבבים או תוכנה).'],
-  FED:['ריבית הפד ו-FedWatch','הפד (הבנק המרכזי האמריקאי) קובע את הריבית. FedWatch של הבורסה בשיקגו מחשב, מתוך מחירי חוזים עתידיים, מה הסיכוי לשינוי ריבית בהחלטה הבאה.'],
+  FED:['FedWatch – מה השוק מתמחר','כלי של הבורסה בשיקגו (CME) שמחשב, מתוך מחירי חוזים עתידיים על הריבית, מה הסיכוי שהפד יעלה, יוריד או ישאיר את הריבית בהחלטה הבאה. זו הערכה של השוק, לא החלטה.'],
+  MACRO:['מאקרו','הנתונים על מצב הכלכלה כולה: ריבית, אינפלציה, תעסוקה וצמיחה. הם משפיעים על החלטות הפד, ולכן על כל שוק המניות.'],
+  RATE:['ריבית הפד','הריבית שהבנק המרכזי האמריקאי (הפד) קובע, בטווח של רבע אחוז. ריבית גבוהה מייקרת הלוואות ומאטה את הכלכלה כדי לרסן אינפלציה. ריבית נמוכה עושה את ההפך. הפד מחליט עליה 8 פעמים בשנה.'],
+  CPI:['CPI – מדד המחירים לצרכן','כמה התייקרו המוצרים והשירותים שמשקי בית קונים. זה מדד האינפלציה המוכר ביותר. "ליבה" = בלי מזון ואנרגיה, שהמחירים שלהם תנודתיים. אינפלציה גבוהה מהצפי מעלה את הסיכוי להעלאת ריבית.'],
+  PPI:['PPI – מדד המחירים ליצרן','כמה התייקרו המחירים שיצרנים וספקים גובים. עלייה בו מגיעה לרוב לצרכנים אחרי זמן מה, ולכן הוא נחשב סימן מקדים לאינפלציה.'],
+  PCE:['PCE – מדד ההוצאה לצריכה','מדד אינפלציה רחב יותר מה-CPI, וזה שהפד מסתכל עליו כשהוא קובע את יעד האינפלציה שלו (2% בשנה).'],
+  NFP:['משרות חדשות (NFP)','כמה משרות נוספו בחודש במשק האמריקאי, מחוץ לחקלאות. מתפרסם ביום שישי הראשון בחודש. מספר גבוה = כלכלה חזקה, אבל גם פחות סיבה להוריד ריבית.'],
+  UNEMP:['שיעור האבטלה','האחוז מכוח העבודה שמחפשים עבודה ולא מוצאים. אבטלה נמוכה מעידה על כלכלה חזקה. עלייה מהירה בה נחשבת סימן אזהרה למיתון.'],
+  GDP:['GDP – צמיחה','השינוי בתוצר, כלומר בסך כל המוצרים והשירותים שהכלכלה מייצרת. בארה״ב מפורסם כקצב שנתי: כמה הכלכלה הייתה צומחת בשנה אם הקצב של הרבעון היה נמשך.'],
   PRE:['מסחר מקדים ומאוחר','מסחר במניות לפני הפתיחה הרשמית (11:00–16:30 שעון ישראל) ואחרי הסגירה (23:00–03:00). המחזורים נמוכים והמחירים תנודתיים יותר.'],
   BMO:['לפני הפתיחה / אחרי הסגירה','חברות מפרסמות דוחות לפני תחילת המסחר בניו יורק (16:30 בישראל) או אחרי סיומו (23:00 בישראל). לכן התגובה של המניה מגיעה בפתיחה או במסחר המאוחר.'],
   IPO:['IPO – הנפקה ראשונה','הפעם הראשונה שחברה מוכרת מניות לציבור ונכנסת למסחר בבורסה.'],
@@ -1260,6 +1268,8 @@ renderYtd();
 
 /* ---------- overview ---------- */
 let OVERVIEW = FALLBACK.overview;
+function macroGl(t){ t=String(t||'');
+  return /PCE/.test(t)?'PCE':/CPI|מחירים לצרכן/.test(t)?'CPI':/PPI|ליצרן/.test(t)?'PPI':/אבטלה/.test(t)?'UNEMP':/משרות|תעסוקה|NFP/.test(t)?'NFP':/GDP|צמיחה|תוצר/.test(t)?'GDP':/ריבית|פד/.test(t)?'RATE':''; }
 function renderOverview(){
   const o = OVERVIEW||{}, m=o.macro||{};
   const one = (o.strip||[]).map(s=>`<span class="it"><span class="k">${esc(s.k)}</span><span class="v num">${esc(s.v)}</span>${
@@ -1276,8 +1286,8 @@ function renderOverview(){
   $('mProb').innerHTML = parts.map(p=>`<span style="width:${m[p[0]]}%;background:${p[2]}"></span>`).join('');
   $('mProbLg').innerHTML = [['hold','ללא שינוי','#8a97ae'],['hike25','העלאה של 0.25%','#f5b942'],['hike50','העלאה של 0.5%','#ef4444']]
     .map(p=>`<span><i style="background:${p[2]}"></i>${p[1]}: <b class="num" style="color:var(--text)">${(m[p[0]]||0).toFixed(1)}%</b></span>`).join('');
-  $('mCards').innerHTML = (m.cards||[]).map(c=>`<div class="card mc"><div class="k">${esc(c.k)}</div><div class="v num ${c.bad?'down':'up'}">${esc(c.v)}</div><div class="s">${esc(c.s)}</div>${c.n?`<div class="n">${esc(c.n)}</div>`:''}</div>`).join('');
-  $('mCal').innerHTML = (m.calendar||[]).map(c=>`<li><span class="d num">${esc(c.d)}</span><span><b>${esc(c.e)}</b>${c.n?`<br><span class="flat" style="font-size:12px">${esc(c.n)}</span>`:''}</span></li>`).join('');
+  $('mCards').innerHTML = (m.cards||[]).map(c=>`<div class="card mc"><div class="k">${esc(c.k)}${macroGl(c.k)?gq(macroGl(c.k)):''}</div><div class="v num ${c.bad?'down':'up'}">${esc(c.v)}</div><div class="s">${esc(c.s)}</div>${c.n?`<div class="n">${esc(c.n)}</div>`:''}</div>`).join('');
+  $('mCal').innerHTML = (m.calendar||[]).map(c=>`<li><span class="d num">${esc(c.d)}</span><span><b>${esc(c.e)}</b>${macroGl(c.e)?gq(macroGl(c.e)):''}${c.n?`<br><span class="flat" style="font-size:12px">${esc(c.n)}</span>`:''}</span></li>`).join('');
 }
 
 /* ---------- calendar + vix ---------- */
