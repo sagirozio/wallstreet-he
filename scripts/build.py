@@ -165,30 +165,38 @@ def earn_hist(t):
             except Exception: continue
             if lo <= dd <= hi and (best is None or abs(dd - (lo + hi) / 2) < best[0]): best = (abs(dd - (lo + hi) / 2), i)
         return None if best is None else best[1]
-    per = [r[0] for r in rows]; out = []
+    # Finnhub labels a quarter by the calendar quarter-end on or after the real fiscal quarter-end (Nvidia's quarter that
+    # ends in late October is "12-31"), so the SEC quarter is the one that ended 0-85 days before the label (a few days after for 53-week years)
+    per = [r[0] for r in rows]; out = []; ok = 0
+    cards = sorted(_cards.get(t, []), key=lambda c: str(c.get("date", "")), reverse=True)
+    if any(abs(r[3]) > 500 for r in rows[:4]): return None        # per-share figures of another share class (Berkshire A)
     for k, r in enumerate(rows[:4]):
         p, y, q, a, e = r; day = D(p)
         x = {"q": (f"Q{q} {str(y)[-2:]}" if q and y else p[:7]), "a": a}
         if e is not None: x["e"] = e
         j = near(day, per, 335, 395)                      # same quarter a year earlier, adjusted (Finnhub)
         if j is not None: x["ay"] = _yoy(a, rows[j][3])
-        i = near(day, fq, -40, 40)
+        i = near(day, fq, -8, 85)
+        if i is not None: ok += 1
         if x.get("ay") is None and i is not None and i < len(fe):
             j2 = near(D(fq[i]), fq, 335, 395)
             if j2 is not None and j2 < len(fe) and fe[i] is not None and fe[j2] is not None:
-                x["ay"] = _yoy(fe[i], fe[j2]); x["g"] = 1   # GAAP year-over-year
+                g_ = _yoy(fe[i], fe[j2])
+                if g_ is not None and abs(g_) <= 300: x["ay"] = g_; x["g"] = 1   # GAAP year-over-year (skipped when the GAAP base is tiny)
         if i is not None and i < len(frv) and frv[i]:
             x["r"] = round(frv[i] / 1e9, 3)
             j2 = near(D(fq[i]), fq, 335, 395)
             if j2 is not None and j2 < len(frv): x["ry"] = _yoy(frv[i], frv[j2])
-        elif k == 0:                                      # newest quarter not in the SEC file yet: take revenue from the report card
-            for c in sorted(_cards.get(t, []), key=lambda c: str(c.get("date", "")), reverse=True)[:1]:
-                try: gap = (D(str(c.get("date"))[:10]) - day).days
-                except Exception: gap = 999
-                if 0 <= gap <= 100 and isinstance(c.get("revAct"), (int, float)):
-                    x["r"] = c["revAct"]
-                    if isinstance(c.get("revYoy"), (int, float)): x["ry"] = round(c["revYoy"])
+        elif k == 0 and len(fq) >= 4:                                      # newest quarter not in the SEC file yet: revenue from the report card (same EPS = same quarter)
+            for c in cards[:1]:
+                if isinstance(c.get("epsAct"), (int, float)) and abs(c["epsAct"] - a) <= max(0.02, abs(a) * 0.02):
+                    ok += 1
+                    if isinstance(c.get("revAct"), (int, float)): x["r"] = c["revAct"]
+                    if isinstance(c.get("revYoy"), (int, float)) and abs(c["revYoy"]) < 1000: x["ry"] = round(c["revYoy"])
         out.append({k2: v for k2, v in x.items() if v is not None})
+    # companies that do not file quarterly with the SEC (foreign filers): Finnhub may give EPS in the local currency,
+    # so the table is shown only when the quarters are matched to the SEC file
+    if not ok: return None
     return out if out else None
 
 # ---------- per-stock details ----------
