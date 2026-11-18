@@ -88,6 +88,16 @@ def publish_px():
             if pd.isna(c.iloc[-1]) or c.notna().sum() < 5: continue
             (tp / f"{tk}.json").write_text(json.dumps([None if pd.isna(v) else (round(float(v), 2) if v < 1000 else round(float(v), 1)) for v in c], separators=(",", ":")))
             n += 1
+        # _spark.json: one small year-to-date line per stock for the tables (every 5th session + the last one, scaled to 0-99)
+        idx = list(range(0, len(w), 5)); idx = idx if idx[-1] == len(w) - 1 else idx + [len(w) - 1]
+        sp = {}
+        for tk in w.columns:
+            if tk not in uni: continue
+            c = w[tk].iloc[idx]
+            if pd.isna(c.iloc[-1]) or c.notna().sum() < 4: continue
+            lo, hi = float(c.min()), float(c.max())
+            sp[tk] = [None if pd.isna(v) else (round((float(v) - lo) / (hi - lo) * 99) if hi > lo else 50) for v in c]
+        (tp / "_spark.json").write_text(json.dumps({"asOf": str(w.index[-1].date()), "d": sp}, separators=(",", ":")))
         g = lambda *a: subprocess.run(["git", "-c", "user.name=wallstreet-bot", "-c", "user.email=bot@users.noreply.github.com", *a], cwd=t, check=True, capture_output=True)
         g("init", "-q"); g("checkout", "-q", "--orphan", "px"); g("add", "-A"); g("commit", "-qm", "year-to-date price lines")
         g("push", "-fq", url, "px")
