@@ -85,7 +85,7 @@ h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}.logo .lgi{width:46px;height:46px;flex:none}.lgt{display:flex;flex-direction:column}.lgn{color:#fff;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;line-height:1.05}.lge{font:700 12px Arial,sans-serif;letter-spacing:2.5px;color:var(--green);direction:ltr}
 .logo .tagline{display:block;font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:3px}
 .fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fch{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 10px 10px}
-.fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{touch-action:pan-y}.fcv{min-height:18px;font-size:12px;color:var(--muted);margin-top:4px}.fcv b{color:var(--text)}.fcv i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:4px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
+.fct{font-weight:700;font-size:14.5px;margin-bottom:6px}.fch svg{touch-action:pan-y}.fcv small{font-size:11px;color:var(--muted)}.fcv{min-height:18px;font-size:12px;color:var(--muted);margin-top:4px}.fcv b{color:var(--text)}.fcv i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:4px}.fch svg{width:100%;height:auto;display:block;direction:ltr}.fch svg text{fill:#8b97ad;font:10px 'JetBrains Mono',monospace}
 .fcl{display:flex;gap:12px;justify-content:center;font-size:12px;color:var(--muted);margin-top:4px}.fcl i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:5px}
 @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
 .secl{display:block;direction:ltr;text-align:right;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.35}.spchips .echip{background:rgba(91,140,255,.14);border-color:rgba(91,140,255,.45);color:#cfe0ff;font-weight:600}
@@ -1674,7 +1674,9 @@ function fchMove(ev){
   xh.querySelector('.xyb').setAttribute('y',py-7.5); const yt=xh.querySelector('.xyt'); yt.setAttribute('y',py+3.5); yt.textContent=fmt(val);
   const qb=xh.querySelector('.xqb'), qt=xh.querySelector('.xqt'), qx=Math.min(m.W-m.R-24,Math.max(m.L+24,cx));
   qb.setAttribute('x',qx-24); qb.setAttribute('width',48); qb.setAttribute('y',m.H-m.B+2); qt.setAttribute('x',qx); qt.setAttribute('y',m.H-m.B+13); qt.textContent=m.q[i];
-  sv.parentElement.querySelector('.fcv').innerHTML=`<b>${esc(m.q[i])}</b>`+m.s.map(x=>` · <span><i style="background:${x.c}"></i>${esc(x.n)} <span class="num">${fmt(x.v[i])}</span></span>`).join('');
+  /* year-over-year: the same quarter a year earlier (4 columns back); skipped when that quarter is missing, zero or negative */
+  const yoy=x=>{ const a=x.v[i], b=i>=4?x.v[i-4]:null; if(a==null||b==null||b<=0) return ''; const g=(a/b-1)*100; return Math.abs(g)>999?'':` <span class="num ${g>=0?'up':'down'}">${pct(g,Math.abs(g)<10?1:0)}</span> <small>מול ${esc(m.q[i-4])}</small>`; };
+  sv.parentElement.querySelector('.fcv').innerHTML=`<b>${esc(m.q[i])}</b>`+m.s.map(x=>` · <span><i style="background:${x.c}"></i>${esc(x.n)} <span class="num">${fmt(x.v[i])}</span>${yoy(x)}</span>`).join('');
 }
 function fchOut(ev){ const sv=ev.target; if(!(sv instanceof SVGSVGElement)||!sv.closest('.fch')) return; sv.querySelector('.xh').style.display='none'; sv.parentElement.querySelector('.fcv').innerHTML=''; }
 document.addEventListener('pointermove',fchMove); document.addEventListener('pointerdown',fchMove);
