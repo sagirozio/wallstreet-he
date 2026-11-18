@@ -25,7 +25,6 @@ for off in range(0, 7000, 250):
         ch = q.get("preMarketChangePercent")
         if ch is None and pre and base: ch = (pre / base - 1) * 100
         if pre: npre += 1; best.append((round(ch or 0, 1), q["symbol"]))
-        if q.get("symbol") in ("BRBR",): print("debug", {k: q.get(k) for k in ("symbol", "preMarketPrice", "preMarketChangePercent", "regularMarketPrice", "averageDailyVolume3Month", "exchange", "quoteType", "marketState")})
         if ch is None or ch < 9 or (pre or 0) < 5: continue
         if (q.get("averageDailyVolume3Month") or 0) < 800_000 or q.get("exchange") not in EX or q.get("quoteType") != "EQUITY": continue
         rows.append({"t": q["symbol"].replace(".", "-"), "n": q.get("shortName") or q["symbol"], "p": round(float(ch), 1)})

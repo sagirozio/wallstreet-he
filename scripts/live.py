@@ -25,13 +25,17 @@ try:
 except Exception as e:
     print("no stocks.json", e)
 
-Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
+# only the major exchanges: without this the US region holds 4,000+ names above $1B (OTC foreign listings) and smaller real stocks can fall off the end
+try: Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000]), EquityQuery("is-in", ["exchange", "NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"])])
+except Exception as e:
+    print("exchange filter unavailable", type(e).__name__, e, flush=True)
+    Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 
 EXT = {}   # extended hours: {T: [price, change% vs the regular close]} (after-hours 16:00-20:00 ET)
 def round_once():
     out, state, last_ts = {}, None, 0
     EXT.clear()
-    for off in range(0, 4000, 250):
+    for off in range(0, 6000, 250):
         r = None
         for k in range(3):
             try:
