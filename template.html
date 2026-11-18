@@ -610,7 +610,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 <section id="top-reports" data-pg="reports">
   <h2>3 הדוחות הבולטים האחרונים<button class="gq" data-gl="BEAT" aria-label="הסבר">?</button></h2>
-  <p class="sub">הדוחות החזקים של השבועות האחרונים: עקפו את הצפי גם ברווח וגם במכירות, עם הפתעה גדולה, תחזית חיובית או תגובה חזקה של המניה.</p>
+  <p class="sub">הדוחות החזקים של 3 השבועות האחרונים, מחברות בשווי 10 מיליארד דולר ומעלה: עקפו את הצפי, עם הפתעה גדולה, תחזית חיובית או תגובה חזקה של המניה. גודל החברה ועדכניות הדוח מקבלים משקל. מתעדכן אוטומטית עם כל דוח חדש.</p>
   <div class="earn" id="topGrid"></div>
   <a class="ewmore toall" href="#reports">לכל <span id="repN"></span> הדוחות במאגר ←</a>
 </section>
@@ -925,8 +925,12 @@ function topReports(){
   const cut=new Date(new Date(last).getTime()-21*864e5).toISOString().slice(0,10);
   const sc=r=>{ const e=Math.min(surp(r.epsAct,r.epsEst)??0,40), v=Math.min(surp(r.revAct,r.revEst)??0,15);
     return e*0.6+v*2+(r.guide==='raised'?8:r.guide==='above'?6:r.guide==='below'?-8:0)+reactScore(r.react)*0.8+Math.min(r.revYoy||0,60)*0.1; };
-  return REPORTS.filter(r=>r.date>=cut && resultOf(r)==='beat' && r.guide!=='below' && reactScore(r.react)>=-1)
-    .sort((a,b)=>sc(b)-sc(a)).slice(0,3);
+  /* "notable" = a strong report from a company that matters: size and freshness count, not only the size of the surprise */
+  const ix=stockIndex(), capB=t=>{ const m=String((ix[t]||{}).cap||'').match(/([\d.]+)([TBM])/); return m?+m[1]*({T:1000,B:1,M:.001}[m[2]]):1; };
+  const age=r=>(new Date(last)-new Date(r.date))/864e5;
+  const sc2=r=>sc(r)+Math.log10(Math.max(capB(r.t),1))*15-age(r)*1.2;
+  return REPORTS.filter(r=>r.date>=cut && resultOf(r)==='beat' && r.guide!=='below' && reactScore(r.react)>=-1 && capB(r.t)>=10)
+    .sort((a,b)=>sc2(b)-sc2(a)).slice(0,3);
 }
 
 function renderToday(){
@@ -1100,7 +1104,7 @@ function loadStocks(force){
   return stkP;
 }
 function onStocks(){
-  try{ liveAgg(); }catch(e){} try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
+  try{ renderTop(); }catch(e){} try{ liveAgg(); }catch(e){} try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
   try{ const b=document.querySelector('#gtabs button.on'); renderG(b?b.dataset.t:'all'); }catch(e){}
   renderHub(); try{ renderAgenda(); }catch(e){} if($('gq')===document.activeElement && $('gq').value) gqRender();
 }
