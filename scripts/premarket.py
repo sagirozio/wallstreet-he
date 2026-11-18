@@ -1,4 +1,4 @@
-"""Pre-market (and after-hours) quotes for SPY and QQQ -> data.json["premarket"].
+"""Pre-market (and after-hours) quotes for SPY, QQQ, DIA, IWM + Bitcoin, gold, oil -> data.json["premarket"].
 
 Runs every 15 minutes before the US open (GitHub Actions, premarket.yml). Light: two Yahoo requests.
 """
@@ -11,7 +11,7 @@ p = root / "data.json"
 data = json.loads(p.read_text(encoding="utf-8"))
 
 rows, state = [], None
-for sym, name in (("SPY", "S&P 500"), ("QQQ", "נאסד״ק 100")):
+for sym, name in (("SPY", "S&P 500"), ("QQQ", "נאסד״ק 100"), ("DIA", "דאו"), ("IWM", "ראסל 2000")):
     try:
         i = yf.Ticker(sym).info or {}
     except Exception as e:
@@ -31,6 +31,18 @@ for sym, name in (("SPY", "S&P 500"), ("QQQ", "נאסד״ק 100")):
     else:
         continue
     rows.append({"t": sym, "n": name, "p": round(float(px), 2), "c": round(float(ch or 0), 2), "kind": kind})
+
+# around-the-clock markets next to the pre-market / after-hours quotes: change vs the previous close
+if rows:
+    for sym, t, name in (("BTC-USD", "BTC", "ביטקוין"), ("GC=F", "GOLD", "זהב"), ("CL=F", "WTI", "נפט")):
+        try:
+            i = yf.Ticker(sym).info or {}
+            px = i.get("regularMarketPrice"); prev = i.get("regularMarketPreviousClose") or i.get("previousClose")
+            ch = i.get("regularMarketChangePercent")
+            if ch is None and px and prev: ch = (px / prev - 1) * 100
+            if px and ch is not None and abs(ch) < 40: rows.append({"t": t, "n": name, "p": round(float(px), 2), "c": round(float(ch), 2), "kind": "x"})
+        except Exception as e:
+            print("fail", sym, e)
 
 now = dt.datetime.now(ZoneInfo("Asia/Jerusalem"))
 data["premarket"] = {"state": state, "asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": now.strftime("%Y-%m-%d"), "rows": rows}

@@ -354,6 +354,7 @@ body[data-pg="home"] #brief{padding-top:6px}
   body[data-pg="home"] #homeWatch{grid-column:2;grid-row:4}body[data-pg="home"] #todayAgenda{grid-column:2;grid-row:5}body[data-pg="home"] #recap{grid-column:2;grid-row:6}
   body[data-pg="home"] #homeWatch{border-top:0}
 }
+@media(max-width:760px){.pmbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.pmbox .pml,.pmbox .pmt{grid-column:1/-1}.pmbox .pmi{display:flex;justify-content:space-between;gap:6px;white-space:nowrap}.pmbox .pmi .t,.pmbox .pmi .pmp{display:none}}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -1019,8 +1020,9 @@ function ilOff(){ return Math.round((ilNow()-nyNow())/36e5); }
 function ilTime(h,mi){ const x=((h+ilOff())*60+mi+2880)%1440; return String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0'); }
 const DAYS_HE=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
 /* after-hours change of SPY / QQQ / DIA (live.json postIdx) for the status line */
+const pxFmt=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2);
 function postIdxTxt(){ const P=LIVE&&LIVE.postIdx&&LIVE.date===nyToday()?LIVE.postIdx:null; if(!P) return '';
-  return '<br><span class="pxl">'+[['SPY','S&P 500'],['QQQ','נאסד״ק'],['DIA','דאו']].filter(([k])=>P[k]).map(([k,n])=>`${n} <span class="num">$${P[k][0].toFixed(2)}</span> <b class="num ${P[k][1]>=0?'up':'down'}">${pct(P[k][1],2)}</b>`).join(' · ')+'</span>'; }
+  return '<br><span class="pxl">'+[['SPY','S&P 500'],['QQQ','נאסד״ק'],['DIA','דאו'],['BTC','ביטקוין']].filter(([k])=>P[k]).map(([k,n])=>`${n} <span class="num">$${pxFmt(P[k][0])}</span> <b class="num ${P[k][1]>=0?'up':'down'}">${pct(P[k][1],2)}</b>`).join(' · ')+'</span>'; }
 function renderMktStatus(){
   const ny=nyNow(), dow=ny.getDay(), m=ny.getHours()*60+ny.getMinutes(), wk=dow>=1&&dow<=5;
   $('market').classList.toggle('sess', wk&&m>=570&&m<960);   /* TradingView boxes only while the session is open */
@@ -1578,7 +1580,7 @@ function renderBriefSum(){
     h=Object.keys(n).filter(k=>L[k]).map(k=>sp(n[k],L[k][1])).join(' · ')+` <small class="flat">· ${mktOpen()?'לייב '+esc((LIVE.asOf||'').split('·').pop().trim()):'בסגירה'}</small>`; }
   else { const pm=FALLBACK.premarket||{}, il=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'});
     if(pm.date===il&&(pm.rows||[]).length&&(pm.rows[0].kind==='pre'))
-      h=pm.rows.map(r=>sp(r.n.replace(' 100',''),r.c)).join(' · ')+` <small class="flat">· מסחר מקדים ${esc((pm.asOf||'').split('·').pop().trim())}</small>`;
+      h=pm.rows.filter(r=>r.t==='SPY'||r.t==='QQQ').map(r=>sp(r.n.replace(' 100',''),r.c)).join(' · ')+` <small class="flat">· מסחר מקדים ${esc((pm.asOf||'').split('·').pop().trim())}</small>`;
     else h=((o.market||{}).idx||[]).slice(0,3).map(x=>sp(esc(x.k).replace('דאו ג׳ונס','דאו'),x.d)).join(' · '); }
   $('briefSum').innerHTML=h;
 }
@@ -1590,7 +1592,7 @@ function renderPremarket(){
   let html='';
   if(rows.length && pm.date===today){
     const lbl = (rows[0].kind==='post'?'מסחר מאוחר':'מסחר מקדים')+gq('PRE');
-    html=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b> <span class="t">${esc(r.t)}</span> <span class="num">$${r.p.toFixed(2)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
+    html=`<span class="pml">${lbl}</span>`+rows.map(r=>`<span class="pmi"><b>${esc(r.n)}</b>${r.kind==='x'?'':` <span class="t">${esc(r.t)}</span>`} <span class="num pmp">$${pxFmt(r.p)}</span> <span class="num ${r.c>0?'up':r.c<0?'down':'flat'}">${pct(r.c,2)}</span></span>`).join('')+`<span class="pmt">עודכן ${esc(pm.asOf||'')} · בעיכוב קל · Yahoo Finance</span>`;
   } else if(false){
     html=`<span class="pml">מסחר מקדים${gq('PRE')}</span><span class="pmi">SPY ו-QQQ יוצגו כאן מ-11:00 (שעון ישראל), כשהמסחר המקדים בארה״ב נפתח, ויתעדכנו כל 15 דקות עד הפתיחה ב-16:30.</span>`;
   }

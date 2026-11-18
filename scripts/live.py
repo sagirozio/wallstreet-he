@@ -166,6 +166,10 @@ while True:
                         inf = yf.Ticker(sym).info; pp, pc = inf.get("postMarketPrice"), inf.get("postMarketChangePercent")
                         if pp and pc is not None: pi[sym] = [round(float(pp), 2), round(float(pc), 2)]
                     except Exception as e: print("post", sym, type(e).__name__, flush=True)
+                try:   # Bitcoin next to the after-hours quotes (change vs the previous close)
+                    fi = yf.Ticker("BTC-USD").fast_info; lp, pc = fi.last_price, fi.previous_close
+                    if pi and lp and pc: pi["BTC"] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]
+                except Exception as e: print("post BTC", type(e).__name__, flush=True)
                 if pi: payload["postIdx"] = pi
             publish(payload)
         print(now.strftime("%H:%M"), state, len(q), "quotes", f"{time.time() - t0:.0f}s", flush=True)
