@@ -47,7 +47,7 @@ def apply(data):
     for row in (data.get("sectors") or {}).get("rows", []):
         r = R.get(row.get("t"))
         if not r: continue
-        for k in ("d", "w", "m", "q", "h", "ytd", "y", "sp"):
+        for k in ("d", "w", "m", "q", "h", "ytd", "y", "sp", "px"):
             if k in r: row[k] = r[k]
         n += 1
     print("sector ETF returns", n, {k: R[k].get("m") for k in list(R)[:3]})

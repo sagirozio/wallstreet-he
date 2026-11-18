@@ -371,6 +371,8 @@ body[data-pg="market"] main>section{padding-top:18px}
 @media(min-width:901px){.erw{grid-template-columns:minmax(0,1.5fr) repeat(4,84px) 130px 150px 120px}.erw .ew{display:block}.erw .egm{display:none}.erw span.ew>.n{display:block}}
 @media(max-width:640px){.erw{grid-template-columns:minmax(0,1fr) 58px 58px 58px;gap:6px;padding:9px 12px}.erw .n{font-size:12.5px}}
 .stk2{min-width:0}.stk2 .co{min-width:0}@media(max-width:640px){.thsub .stks{grid-template-columns:minmax(0,1fr)!important}.thsub{padding:10px 10px 12px}}
+.rw2 .rsn{font-weight:700}.sxq{display:block;font-size:12.5px;margin-top:1px}.sxp{color:var(--text)}.sxd{font-weight:600}
+@media(min-width:901px){.rw2.mx .sxq{display:inline;margin:0}.rw2.mx .sxd{display:none}}
 .rw2 .rsn{font-weight:700}.rw2.mx{grid-template-columns:minmax(0,1fr) 66px 38px 50px}.spk{display:flex;justify-content:center}.rw2.isub{background:#0f1013}.rw2.isub .nm2{padding-inline-start:14px}.rw2.isub .nm2 b{font-weight:600;font-size:14px}.rw2.sec .nm2 b{font-size:15.5px}
 @media(min-width:901px){#secTable .rw2.mx,#thTable .rw2.mx{grid-template-columns:minmax(0,1fr) repeat(7,68px) 40px 96px 56px}}
 .a5c{display:none}.a5c i{font-style:normal;color:var(--muted);font-size:11.5px;font-weight:400}@media(min-width:901px){.rw2 .a5c{display:block}}
@@ -2163,9 +2165,10 @@ async function renderGroup(kind,en){
   document.title=`${en} | Wallstreeter`;
   const E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null, e=E&&etf?E[etf]:null;
   const tile=(l,v)=>`<div><small>${l}</small><b class="num ${v==null?'flat':v>=0?'up':'down'}">${v==null?'—':pct(v,1)}</b></div>`;
-  const perf=row?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>tile(l,row[k])).join('')}${rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${rs>=80?'up':rs<=20?'down':''}">${rs}</b></div>`:''}</div>`:'';
+  const gpx=e?e[0]:(isSec&&row&&row.px)||null, gd=e?e[1]:(row?row.d:null);
+  const perf=row?`<div class="spperf">${gpx?`<div><small>מחיר <bdi>${esc(etf)}</bdi></small><b class="num">$${gpx.toFixed(2)}</b></div>`:''}${tile('היום',gd)}${PER.filter(([k])=>k!=='d').map(([k,l])=>tile(l,row[k])).join('')}${rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${rs>=80?'up':rs<=20?'down':''}">${rs}</b></div>`:''}</div>`:'';
   const ranked=(T.rows||[]).filter(r=>thCnt(r)>=3&&r.ytd!=null).sort(byKey('ytd')), rk=!isSec&&row?ranked.findIndex(r=>r.en===en)+1:0;
-  const facts=[`${mem.length} מניות באתר`, rk?`מקום ${rk} מתוך ${ranked.length} תעשיות מתחילת השנה`:'', etf?`קרן סל: <span class="num">${esc(etf)}</span>${e?` · <span class="num">$${e[0].toFixed(2)}</span>`:''}`:''].filter(Boolean);
+  const facts=[`${mem.length} מניות באתר`, rk?`מקום ${rk} מתוך ${ranked.length} תעשיות מתחילת השנה`:'', etf?`קרן סל: <span class="num">${esc(etf)}</span>`:''].filter(Boolean);
   const key=GSORT, val=s=>key==='cap'?capNum(s.cap):(s.r||{})[key];
   const list=mem.filter(s=>val(s)!=null).sort((a,b)=>val(b)-val(a));
   const P=v=>v==null?'<span class="n flat">—</span>':`<span class="n ${v>=0?'up':'down'}">${pct(v,1)}</span>`;
@@ -2196,7 +2199,7 @@ function renderSec(){
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
   $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];
-    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>${e?`<span class="cn"> · <span class="num">$${e[0].toFixed(2)}</span></span>`:''}`:''}${TS.has(r.t)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(r.sp||x.sp,r.ytd)}</div>`+
+    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>`:''}${TS.has(r.t)?' '+TRB:''}</small>${(e||r.px)?`<span class="sxq"><span class="num sxp">$${(e?e[0]:r.px).toFixed(2)}</span>${r.d!=null?` <span class="num sxd ${r.d>=0?'up':'down'}">${pct(r.d,2)}</span>`:''}</span>`:''}</div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(r.sp||x.sp,r.ytd)}</div>`+
       inds.map(i=>indRow(i,rank.get(i.en),c,secKey,true,TSI)).join(''); }).join('');
   $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${E?` עמודת "היום" מתעדכנת במהלך המסחר (עודכנה ב-${liveTm()}).`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
   try{ renderSnap(); }catch(e){}
