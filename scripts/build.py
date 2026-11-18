@@ -193,6 +193,10 @@ def earn_hist(t):
                     ok += 1
                     if isinstance(c.get("revAct"), (int, float)): x["r"] = c["revAct"]
                     if isinstance(c.get("revYoy"), (int, float)) and abs(c["revYoy"]) < 1000: x["ry"] = round(c["revYoy"])
+        if k == 0 and x.get("ay") is None and len(fq) >= 4:   # newest quarter: EPS year-over-year from our report card, when it has one
+            for c in cards[:1]:
+                if isinstance(c.get("epsAct"), (int, float)) and abs(c["epsAct"] - a) <= max(0.02, abs(a) * 0.02) and isinstance(c.get("epsYoy"), (int, float)) and abs(c["epsYoy"]) <= 600:
+                    x["ay"] = round(c["epsYoy"])
         out.append({k2: v for k2, v in x.items() if v is not None})
     # companies that do not file quarterly with the SEC (foreign filers): Finnhub may give EPS in the local currency,
     # so the table is shown only when the quarters are matched to the SEC file
