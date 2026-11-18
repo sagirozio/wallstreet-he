@@ -4,6 +4,8 @@ on:
     - cron: "43 21-23 * * 1-5"   # after the US close; GitHub drops some scheduled starts, so several tries —
     - cron: "19 0-7 * * 2-6"     # scripts/should_update.py lets one run per close (+ one after 05:00 UTC for Massive)
   workflow_dispatch:
+    inputs:
+      force: { description: "Run even if not due (1)", default: "" }
 concurrency: { group: data-update, cancel-in-progress: false }
 permissions:
   contents: write
@@ -17,7 +19,7 @@ jobs:
         run: python3 scripts/should_update.py && echo "go=1" >> "$GITHUB_OUTPUT" || echo "go=0" >> "$GITHUB_OUTPUT"
   update:
     needs: gate
-    if: needs.gate.outputs.go == '1' || github.event_name == 'workflow_dispatch'
+    if: needs.gate.outputs.go == '1' || github.event.inputs.force == '1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

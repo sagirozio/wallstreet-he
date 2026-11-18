@@ -17,9 +17,9 @@ START = time.time()
 EVERY = 180
 NEWS, NEWS_AT = None, 0.0
 KICKED = set()
-def kick(wf):   # start another workflow (GitHub's own schedule drops runs)
+def kick(wf, extra=""):   # start another workflow (GitHub's own schedule drops runs)
     if wf in KICKED: return
-    KICKED.add(wf); sh(f'gh api -X POST repos/{os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he")}/actions/workflows/{wf}/dispatches -f ref=main || true')   # background hourly headlines job (news_hourly.sh)
+    KICKED.add(wf); sh(f'gh api -X POST repos/{os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he")}/actions/workflows/{wf}/dispatches -f ref=main {extra} || true')   # background hourly headlines job (news_hourly.sh)
 
 def sh(cmd):
     print("$", cmd, flush=True)
@@ -39,6 +39,8 @@ while True:
         continue
     t0 = time.time()
     if m >= 9 * 60 + 15: kick("live.yml")          # live quotes for the session
+    if m < 9 * 60:                                 # morning jobs GitHub's schedule tends to drop
+        kick("insiders.yml"); kick("health.yml"); kick("fundamentals.yml", "-f 'inputs[tickers]=--recent 3'")
     # hourly from 07:30 New York (14:30 Israel): headlines + same-day earnings cards, in the background
     if m >= 7 * 60 + 30 and (NEWS is None or NEWS.poll() is not None) and time.time() - NEWS_AT >= 55 * 60:
         print("$ news_hourly.sh (background)", flush=True)
