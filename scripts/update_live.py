@@ -86,7 +86,10 @@ for srow in data["sectors"]["rows"]:
     for k, s in R.items():
         v = s.reindex(m).dropna()
         if len(v): srow[k] = round(float(v.mean()), 2)
-data["sectors"]["asOf"] = (f"{last.day}.{last.month}.{last.year} בשעה {now_il:%H:%M} (שעון ישראל)" if live else stamp) + " · ממוצע מניות ה-S&P 500 בכל סקטור"
+import sys as _sys; _sys.path.insert(0, str(root / "scripts"))
+import sector_etf
+_etf_ok = sector_etf.apply(data)   # the sector ETF's own price change, like Google Finance / TradingView
+data["sectors"]["asOf"] = (f"{last.day}.{last.month}.{last.year} בשעה {now_il:%H:%M} (שעון ישראל)" if live else stamp) + (" · שינוי המחיר של קרן הסל של כל סקטור" if _etf_ok else " · ממוצע מניות ה-S&P 500 בכל סקטור")
 p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("breadth", row)
 # movers (same as update.py)

@@ -771,8 +771,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="tb2" id="secTable"></div>
   <details class="how"><summary>הסבר ואיך זה מחושב</summary>
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
-  <div class="legend">ירוק = עלייה, אדום = ירידה. הפס האפור מראה את גודל השינוי בתקופה שנבחרה. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
-  <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
+  <div class="legend">ירוק = עלייה, אדום = ירידה. התשואה של כל סקטור היא שינוי המחיר של קרן הסל (ETF) של SPDR שמייצגת אותו (XLK, XLF וכו׳), כמו שמוצג ב-Google Finance וב-TradingView.</div>
+  <p class="legend">איך מחושב: לפי תאריכים, כמו ב-Google Finance וב-TradingView. "היום" = מול סגירת יום המסחר הקודם. "5 ימים" = מול הסגירה של לפני 7 ימים. "חודש", "3 חודשים", "חצי שנה" ו"שנה" = מול הסגירה באותו תאריך לפני חודש, 3, 6 ו-12 חודשים (או יום המסחר האחרון שלפניו). "מתחילת השנה" = מול סגירת השנה הקודמת. מחיר הקרן בלי דיבידנדים. התשואות של התעשיות מחושבות אחרת: ממוצע המניות בכל תעשייה.</p>
   <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = דירוג מ-1 עד 99 של ביצועי הסקטור ב-12 החודשים האחרונים מול מניות S&P 500 (3 החודשים האחרונים נספרים כפול), באותה שיטה כמו בתעשיות. "מעל ממוצע 50" = כמה מהמניות בסקטור או בתעשייה נסחרות מעל הממוצע הנע של 50 יום (אחוז, ומספר מתוך הסך). השורה שמעל הטבלה מציגה את אותו נתון למניות מדד S&P 500. האחוז הזה והגרף הקטן (3 חודשים) מחושבים על כל מניות הסקטור באתר, במשקל שווה, ולכן יכולים להיות שונים מעט מהתשואות בטבלה.</p>
   </details>
 </section>
@@ -2089,8 +2089,8 @@ function renderSnap(){
   const sec=[...(SECTORS.rows||[])].filter(r=>r.m!=null).sort(byKey('m')), ind=(T.rows||[]).filter(r=>thCnt(r)>=3&&r.m!=null).sort(byKey('m'));
   const row=(n,v,href,sub)=>`<a class="snr" href="${href}"><span>${n}${sub?`<small>${sub}</small>`:''}</span><b class="num ${v>0?'up':v<0?'down':'flat'}">${pct(v,1)}</b></a>`;
   const t5=(T.x||{}).top5, nm=l=>l.map(k=>`<bdi>${esc(k)}</bdi>`).join(', '), EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
-  b.innerHTML=`<div class="sng"><div><h3 class="sph3">סקטורים חזקים</h3>${sec.slice(0,3).map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div>
-    <div><h3 class="sph3">סקטורים חלשים</h3>${sec.slice(-3).reverse().map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div></div>
+  b.innerHTML=`<div class="sng"><div><h3 class="sph3">סקטורים חזקים החודש</h3>${sec.slice(0,3).map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div>
+    <div><h3 class="sph3">סקטורים חלשים החודש</h3>${sec.slice(-3).reverse().map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div></div>
     <h3 class="sph3">תעשיות חזקות החודש</h3>${ind.slice(0,5).map((r,i)=>row(`<span class="rkn">${i+1}</span><bdi>${esc(r.en)}</bdi>`,r.m,'#themes',esc(r.n)+(r.rs!=null?` · RS ${r.rs}`:''))).join('')}
     <h3 class="sph3">שינויים בחמישייה</h3>${t5?((t5.in||[]).length||(t5.out||[]).length?`${(t5.in||[]).length?`<div class="snc"><b class="up">נכנסו:</b> ${nm(t5.in)}</div>`:''}${(t5.out||[]).length?`<div class="snc"><b class="down">יצאו:</b> ${nm(t5.out)}</div>`:''}`:'<div class="snc flat">אין שינוי בחמישייה ב-5 ימי המסחר האחרונים.</div>'):'<div class="snc flat">יתעדכן אחרי העדכון הלילי.</div>'}`;
 }
@@ -2126,7 +2126,7 @@ async function renderGroup(kind,en){
     ${x.sp?`<div class="grsp">${spark(x.sp,row&&row.q)}<small>3 חודשים · במשקל שווה</small></div>`:''}
     <h3 class="sph3">המניות המובילות${key==='ytd'?' מתחילת השנה':''}</h3>${stocks}
     ${indTbl}
-    <p class="legend">תשואות לפי מחירי הסגירה האחרונים. ${isSec?'תשואות הסקטור: קבוצת הסקטור ב-Finviz. ':'תשואת התעשייה: ממוצע פשוט של המניות בה. '}RS = דירוג 1 עד 99 מול מניות S&P 500. רק חברות מעל מיליארד דולר. נתונים בלבד, לא המלצה.</p>`;
+    <p class="legend">תשואות לפי מחירי הסגירה האחרונים. ${isSec?'תשואות הסקטור: שינוי המחיר של קרן הסל של הסקטור, כמו ב-Google Finance וב-TradingView. ':'תשואת התעשייה: ממוצע פשוט של המניות בה. '}RS = דירוג 1 עד 99 מול מניות S&P 500. רק חברות מעל מיליארד דולר. נתונים בלבד, לא המלצה.</p>`;
 }
 document.addEventListener('click',e=>{ const h=e.target.closest&&e.target.closest('.ghd [data-gs]'); if(h){ GSORT=h.dataset.gs; renderGroup(location.hash.startsWith('#sector/')?'sector':'ind', decodeURIComponent(location.hash.replace(/^#(sector|ind)\//,''))); return; }
   if(e.target.id==='grMore'){ GLIM=1e4; renderGroup(location.hash.startsWith('#sector/')?'sector':'ind', decodeURIComponent(location.hash.replace(/^#(sector|ind)\//,''))); } });
@@ -2136,13 +2136,13 @@ function renderSec(){
   $('secTabs').innerHTML = [...PER,['rs','RS']].map(([k,l])=>`<button data-k="${k}" class="${k===secKey?'on':''}">${PL[k]}</button>`).join('');
   const T=THEMES||{}, X=(T.x||{}).sec||{}, SR=T.secRs||{};   /* sector RS: the sector's own returns against the S&P 500 stocks (build.py) */
   const c=mCols(secKey), TS=trendSet(SECTORS.rows||[],0.27), E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null;
-  const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||''; return {...r, en, d:LIVE_SEC&&LIVE_SEC[r.t]!=null?LIVE_SEC[r.t]:r.d, rs:SR[r.t]??null}; }).sort(byKey(secKey));
+  const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||''; return {...r, en, d:E&&E[r.t]?E[r.t][1]:r.d, rs:SR[r.t]??null}; }).sort(byKey(secKey));
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
   $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];
     return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>${e?`<span class="cn"> · <span class="num">$${e[0].toFixed(2)}</span></span>`:''}`:''}${TS.has(r.t)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(x.sp,r.q)}</div>`+
       inds.map(i=>indRow(i,rank.get(i.en),c,secKey,true,TSI)).join(''); }).join('');
-  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${LIVE_SEC?` עמודת "היום" בזמן אמת, בלי עיכוב (Finnhub), עודכנה ב-${liveTm()}. שאר העמודות מחושבות ממחירי Yahoo, בעיכוב של עד 15 דקות.`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
+  $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${E?` עמודת "היום" מתעדכנת במהלך המסחר (עודכנה ב-${liveTm()}).`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
   try{ renderSnap(); }catch(e){}
 }
 document.addEventListener('click',e=>{ const k=e.target.dataset&&e.target.dataset.k; if(k && e.target.closest('#sectors')){ secKey=k; renderSec(); return; }

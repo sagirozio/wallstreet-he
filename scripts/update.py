@@ -1,5 +1,7 @@
 """Nightly update: S&P 500 breadth + sector performance (equal-weight, Finviz-style windows).
 Data: Yahoo Finance via yfinance. Constituents: datasets/s-and-p-500-companies on GitHub."""
+import sys as _sys, pathlib as _pl
+_sys.path.insert(0, str(_pl.Path(__file__).resolve().parent))
 import json, pathlib, io, urllib.request
 import pandas as pd, yfinance as yf
 
@@ -93,7 +95,12 @@ now = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem"))
 live = now.date() == last.date() and now.hour < 23
 stamp = (f"{last.day}.{last.month}.{last.year} בשעה {now:%H:%M} (שעון ישראל)" if live
          else f"סגירת {last.day}.{last.month}.{last.year}")
-if not STALE: data["sectors"]["asOf"] = stamp + " · ממוצע מניות ה-S&P 500 בכל סקטור"
+# returns as Google Finance / TradingView show them: the sector ETF's own price change (the member averages above stay as a fallback)
+_etf_ok = False
+if not STALE:
+    import sector_etf
+    _etf_ok = sector_etf.apply(data)
+if not STALE: data["sectors"]["asOf"] = stamp + (" · שינוי המחיר של קרן הסל של כל סקטור" if _etf_ok else " · ממוצע מניות ה-S&P 500 בכל סקטור")
 
 # ---- today's big movers: up 10%+ (cap > $1B, avg volume > 800k, major US exchanges) ----
 try:
