@@ -1532,7 +1532,7 @@ function liveOn(){ if(!LIVE||LIVE.date!==nyToday()) return false; if(/^(PRE|PREP
 /* live returns: during the session (and after the close until the nightly update) every period column of every stock and industry
    = last night's return compounded with today's live change. Off before the open, on weekends and once the nightly data covers today.
    A live change above 60% is treated as a bad quote and ignored. RS and ranks stay from the night. */
-function eyA(r){ return typeof r.epsYoy==='number'&&Math.abs(r.epsYoy)<=500; }
+function eyA(r){ return typeof r.epsYoy==='number'; }
 function eyG(r){ return !eyA(r)&&typeof r.epsYoyG==='number'; }
 function eyo(r){ return eyA(r)?r.epsYoy:(eyG(r)?r.epsYoyG:null); }
 let LIVE_R=false;
@@ -2021,7 +2021,7 @@ function ehBlock(det){
 /* ---------- reports tab: summary tiles (latest quarter, revenue, beat record, next report) ---------- */
 function repTiles(det,rep,reps){
   det=det||{}; const eh=det.eh||[], nx=(det.an||{}).next, today=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
-  const L=eh[0]||(rep&&typeof rep.epsAct==='number'?{q:rep.q,a:rep.epsAct,e:typeof rep.epsEst==='number'?rep.epsEst:null,ay:typeof rep.epsYoy==='number'&&Math.abs(rep.epsYoy)<1000?Math.round(rep.epsYoy):null,r:typeof rep.revAct==='number'?rep.revAct:null,ry:typeof rep.revYoy==='number'?Math.round(rep.revYoy):null,cur:rep.revCur}:null);
+  const L=eh[0]||(rep&&typeof rep.epsAct==='number'?{q:rep.q,a:rep.epsAct,e:typeof rep.epsEst==='number'?rep.epsEst:null,ay:typeof rep.epsYoy==='number'?Math.round(rep.epsYoy):null,r:typeof rep.revAct==='number'?rep.revAct:null,ry:typeof rep.revYoy==='number'?Math.round(rep.revYoy):null,cur:rep.revCur}:null);
   const cmp=eh.length?eh.filter(r=>typeof r.e==='number'):(reps||[]).filter(r=>typeof r.epsAct==='number'&&typeof r.epsEst==='number').slice(0,8).map(r=>({a:r.epsAct,e:r.epsEst})), bt=cmp.filter(r=>r.a>r.e).length;
   const T=(l,v,sub,c)=>`<div class="mt"><small>${l}</small><b class="${c||''}">${v}</b>${sub.filter(Boolean).map(x=>`<i>${x}</i>`).join('')}</div>`, sg=(v,d)=>`<span class="num ${v>0?'up':v<0?'down':'flat'}">${pct(v,d)}</span>`;
   const out=[];

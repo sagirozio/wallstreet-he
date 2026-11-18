@@ -34,16 +34,15 @@ for r in d["reports"]:
                 if -90 < y < 400: r["revYoy"] = y; n_rev += 1
     if r.get("epsYoy") is None and r.get("epsAct") is not None:
         old = [o for o in by_t[r["t"]] if o is not r and 330 <= (day - D(o["date"])).days <= 400 and o.get("epsAct")]
-        if old and old[0]["epsAct"] >= 0.05:
-            g = round((r["epsAct"] / old[0]["epsAct"] - 1) * 100, 1)
-            if abs(g) <= 500: r["epsYoy"] = g; n_eps += 1
+        if old and old[0]["epsAct"] >= 0.01:
+            r["epsYoy"] = round((r["epsAct"] / old[0]["epsAct"] - 1) * 100, 1); n_eps += 1
 n_g = n_clean = 0
 for r in d["reports"]:
     # clean old numbers computed from a loss / near-zero base (thousands of percent)
     y, a = r.get("epsYoy"), r.get("epsAct")
     if isinstance(y, (int, float)) and isinstance(a, (int, float)):
         base = a / (1 + y / 100) if y != -100 else None
-        if abs(y) > 500 or base is None or base < 0.05: r["epsYoy"] = None; n_clean += 1
+        if base is None or base < 0.01: r["epsYoy"] = None; n_clean += 1
     # no adjusted year-over-year: GAAP diluted EPS from the SEC files, same quarter a year earlier (shown with a mark)
     if r.get("epsYoy") is None and not r.get("revCur"):
         f = fund(r["t"]); day = D(r["date"])
@@ -56,9 +55,8 @@ for r in d["reports"]:
             cur = qi(day - dt.timedelta(days=80), day - dt.timedelta(days=3))
             if cur is not None:
                 prev = qi(D(f["q"][cur]) - dt.timedelta(days=395), D(f["q"][cur]) - dt.timedelta(days=335))
-                if prev is not None and f["eps"][prev] >= 0.05:
-                    g = round((f["eps"][cur] / f["eps"][prev] - 1) * 100, 1)
-                    if abs(g) <= 500: r["epsYoyG"] = g; n_g += 1
+                if prev is not None and f["eps"][prev] >= 0.01:
+                    r["epsYoyG"] = round((f["eps"][cur] / f["eps"][prev] - 1) * 100, 1); n_g += 1
     elif r.get("epsYoyG") is not None: r.pop("epsYoyG", None)
 print("EPS growth: cleaned", n_clean, "GAAP fallback", n_g)
 # sanity on automatic cards: drop exact duplicates, and estimates that clearly don't match the reported basis
