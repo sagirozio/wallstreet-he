@@ -54,18 +54,25 @@ for _n in news:
 _keep = {(_n.get("date") or "") + "|" + (_n.get("title") or "") for _n in news}
 _nt = {k: v for k, v in _nt.items() if k in _keep}
 
-# ---------- RS rating (relative strength, 1-99): rank of a weighted 12-month performance among all stocks / all industry groups ----------
+# ---------- RS rating (relative strength, 1-99): a weighted 12-month performance, placed against the S&P 500 stocks ----------
 # IBD-style weighting: the last 3 months count double. score = 0.4*3M + 0.2*6M + 0.2*9M + 0.2*12M (9M is estimated as the 6M/12M average)
 def _rs_score(r):
     if not isinstance(r, dict): return None
     q, h, y = r.get("q"), r.get("h"), r.get("y")
     if q is None or h is None or y is None: return None
     return 0.4 * q + 0.2 * h + 0.2 * (h + y) / 2 + 0.2 * y
-def _rs_rank(items):   # items: [(score, obj)] -> obj["rs"] = 1..99
-    items = sorted([x for x in items if x[0] is not None], key=lambda x: x[0]); n = len(items)
-    for i, (_, o) in enumerate(items): o["rs"] = max(1, min(99, round((i + 1) / n * 99))) if n > 1 else 50
-_rs_rank([(_rs_score(s_[3] if len(s_) > 3 else None), s_[3]) for l_ in stocks.values() for s_ in l_ if len(s_) > 3 and isinstance(s_[3], dict)])
-_rs_rank([(_rs_score(r_), r_) for r_ in themes.get("rows", []) if len(stocks.get(r_.get("en"), [])) >= 3])
+# The rating is measured against the S&P 500: RS 90 = a stronger score than 90% of the S&P 500 stocks.
+import bisect as _bis
+_spx = {t_ for l_ in ((data.get("sectors") or {}).get("mem") or {}).values() for t_ in l_}
+_ref = sorted(x for x in (_rs_score(s_[3]) for l_ in stocks.values() for s_ in l_ if s_[0] in _spx and len(s_) > 3) if x is not None)
+def _rs_set(score, obj):
+    if score is None or len(_ref) < 100: return
+    obj["rs"] = max(1, min(99, round(_bis.bisect_left(_ref, score) / len(_ref) * 99)))
+for l_ in stocks.values():
+    for s_ in l_:
+        if len(s_) > 3 and isinstance(s_[3], dict): _rs_set(_rs_score(s_[3]), s_[3])
+for r_ in themes.get("rows", []):
+    if len(stocks.get(r_.get("en"), [])) >= 3: _rs_set(_rs_score(r_), r_)
 
 universe = {}                       # T -> (co, cap, industry)
 for ind, lst in stocks.items():
