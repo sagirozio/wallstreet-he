@@ -468,6 +468,7 @@ nav a svg,.bnav svg{width:18px;height:18px;flex:none;fill:none;stroke:currentCol
 .fresh:empty{display:none}.fresh.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
 .livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-inline-end:6px;vertical-align:middle;animation:pulse 2s infinite}
 @keyframes pulse{50%{opacity:.35}}@media(prefers-reduced-motion:reduce){.livedot{animation:none}}
+.eyg{font-size:9px;color:var(--muted);margin-inline-start:2px}
 .gq{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--muted);font:700 12px Heebo,sans-serif;cursor:pointer;vertical-align:middle;margin-inline-start:6px;padding:0;line-height:1}
 .gq:hover,.gq:focus-visible{color:var(--text);border-color:var(--accent)}
 h2 .gq{width:22px;height:22px}
@@ -1044,7 +1045,8 @@ function renderEarn(){
     if (fc){ const c=capNum((ix[r.t]||{}).cap); if(!c || (fc>0 ? c<fc : c>=-fc)) return false; }
     return true;
   });
-  const key = {group:r=>r.date, date:r=>r.date, epsSurp:r=>surp(r.epsAct,r.epsEst)??-1e9, revSurp:r=>surp(r.revAct,r.revEst)??-1e9, revYoy:r=>r.revYoy??-1e9, epsYoy:r=>r.epsYoy??-1e9}[so];
+  // EPS year-over-year: adjusted when we have it, otherwise GAAP from SEC (marked G)
+  const key = {group:r=>r.date, date:r=>r.date, epsSurp:r=>surp(r.epsAct,r.epsEst)??-1e9, revSurp:r=>surp(r.revAct,r.revEst)??-1e9, revYoy:r=>r.revYoy??-1e9, epsYoy:r=>eyo(r)??-1e9}[so];
   if (so==='group') {
     const cnt={}; list.forEach(r=>cnt[r.sector]=(cnt[r.sector]||0)+1);
     list.sort((a,b)=> (cnt[b.sector]-cnt[a.sector]) || a.sector.localeCompare(b.sector,'he') || String(b.date).localeCompare(String(a.date)));
@@ -1062,7 +1064,7 @@ function renderEarn(){
     $('earnGrid').innerHTML = `<div class="erw ehd"><span data-es="date" class="${so==='date'||so==='group'?'on':''}">חברה${so==='date'||so==='group'?' ▾':''}</span>${hd('epsSurp','הפתעת EPS')}${hd('revSurp','הפתעת הכנסות')}${hd('revYoy','צמיחת הכנסות')}${hd('epsYoy','צמיחת EPS','ew')}<span class="n ew">EPS · צפי</span><span class="n ew">הכנסות · צפי</span><span class="n ew">תחזית</span></div>`+
       (list.slice(0,earnLim).map(r=>{ const g=GUIDE[r.guide]||GUIDE.none, op=EOPEN.has(r.id), gc=['raised','above'].includes(r.guide)?'up':r.guide==='below'?'down':'flat';
         const mny=x=>r.revCur?money(x).replace('$','')+' '+esc(r.revCur):money(x);
-        return `<div class="erw${op?' open':''}" data-er="${esc(r.id)}"><div class="nm2"><b><bdi>${esc(r.t)}</bdi> <span class="eco">${esc(r.co)}</span></b><small>${dm(r.date)} · ${esc(r.q||'')}${r.guide&&r.guide!=='none'?` · <span class="${gc} egm" title="${esc(g[1])}">${g[0]} <i>${esc(g[1].replace('התחזית ','תחזית '))}</i></span>`:''}</small></div>${sv(surp(r.epsAct,r.epsEst))}${sv(surp(r.revAct,r.revEst))}${sv(typeof r.revYoy==='number'?r.revYoy:null)}<span class="ew">${sv(typeof r.epsYoy==='number'&&Math.abs(r.epsYoy)<1000?r.epsYoy:null)}</span><span class="n ew flat">${eps(r.epsEst)} · <b>${eps(r.epsAct)}</b></span><span class="n ew flat">${typeof r.revEst==='number'?mny(r.revEst):'—'} · <b>${typeof r.revAct==='number'?mny(r.revAct):'—'}</b></span><span class="n ew ${gc}">${r.guide&&r.guide!=='none'?g[0]+' '+esc(g[1].replace('התחזית ','')):'—'}</span></div>${op?`<div class="ecard">${card(r)}</div>`:''}`; }).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>')+(list.length>earnLim?`<button class="ewmore" id="earnMore" style="display:block;margin:12px auto">הצג עוד (${list.length-earnLim})</button>`:'');
+        return `<div class="erw${op?' open':''}" data-er="${esc(r.id)}"><div class="nm2"><b><bdi>${esc(r.t)}</bdi> <span class="eco">${esc(r.co)}</span></b><small>${dm(r.date)} · ${esc(r.q||'')}${r.guide&&r.guide!=='none'?` · <span class="${gc} egm" title="${esc(g[1])}">${g[0]} <i>${esc(g[1].replace('התחזית ','תחזית '))}</i></span>`:''}</small></div>${sv(surp(r.epsAct,r.epsEst))}${sv(surp(r.revAct,r.revEst))}${sv(typeof r.revYoy==='number'?r.revYoy:null)}<span class="ew"${eyG(r)?' title="לפי EPS חשבונאי (GAAP) מדיווח ה-SEC"':''}>${sv(eyo(r))}${eyG(r)?'<sup class="eyg">G</sup>':''}</span><span class="n ew flat">${eps(r.epsEst)} · <b>${eps(r.epsAct)}</b></span><span class="n ew flat">${typeof r.revEst==='number'?mny(r.revEst):'—'} · <b>${typeof r.revAct==='number'?mny(r.revAct):'—'}</b></span><span class="n ew ${gc}">${r.guide&&r.guide!=='none'?g[0]+' '+esc(g[1].replace('התחזית ','')):'—'}</span></div>${op?`<div class="ecard">${card(r)}</div>`:''}`; }).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>')+(list.length>earnLim?`<button class="ewmore" id="earnMore" style="display:block;margin:12px auto">הצג עוד (${list.length-earnLim})</button>`:'');
   } else
   $('earnGrid').innerHTML = (list.slice(0,earnLim).map(card).join('') || '<div class="empty">לא נמצאו דוחות שמתאימים לחיפוש.</div>')+(list.length>earnLim?`<button class="ewmore" id="earnMore" style="grid-column:1/-1;justify-self:center">הצג עוד (${list.length-earnLim})</button>`:'');
   }
@@ -1530,6 +1532,9 @@ function liveOn(){ if(!LIVE||LIVE.date!==nyToday()) return false; if(/^(PRE|PREP
 /* live returns: during the session (and after the close until the nightly update) every period column of every stock and industry
    = last night's return compounded with today's live change. Off before the open, on weekends and once the nightly data covers today.
    A live change above 60% is treated as a bad quote and ignored. RS and ranks stay from the night. */
+function eyA(r){ return typeof r.epsYoy==='number'&&Math.abs(r.epsYoy)<=500; }
+function eyG(r){ return !eyA(r)&&typeof r.epsYoyG==='number'; }
+function eyo(r){ return eyA(r)?r.epsYoy:(eyG(r)?r.epsYoyG:null); }
 let LIVE_R=false;
 const PKEYS=['w','m','q','h','ytd','y'];
 function baseDate(){ const T=THEMES||{}, m=String((T.check&&T.check.date)||T.asOf||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/); return m?`${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`:''; }

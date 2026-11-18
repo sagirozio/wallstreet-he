@@ -64,7 +64,9 @@ for t in todo:
         old = ed[(ed.index <= when - pd.Timedelta(days=330)) & (ed.index >= when - pd.Timedelta(days=400))]
         if len(old):
             e0 = num(old.iloc[0]["Reported EPS"])
-            if e0 and eps_a is not None and abs(e0) > 0.005: eps_y = round((eps_a - e0) / abs(e0) * 100)
+            if e0 is not None and eps_a is not None and e0 >= 0.05:   # a % change from a loss or a near-zero base means nothing
+                g = round((eps_a - e0) / e0 * 100)
+                if abs(g) <= 500: eps_y = g
         rev = rev_y = None; qlabel = ""
         qi = tk.quarterly_income_stmt
         if qi is not None and not qi.empty and "Total Revenue" in qi.index:
