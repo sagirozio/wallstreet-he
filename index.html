@@ -2075,7 +2075,7 @@ function renderSec(){
   const c=mCols(secKey), TS=trendSet(SECTORS.rows||[],0.27), E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null;
   const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||''; return {...r, en, d:LIVE_SEC&&LIVE_SEC[r.t]!=null?LIVE_SEC[r.t]:r.d, rs:SR[r.t]??null}; }).sort(byKey(secKey));
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
-  $('secTable').innerHTML = mktStrip()+mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
+  $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];
     return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>${e?`<span class="cn"> · <span class="num">$${e[0].toFixed(2)}</span></span>`:''}`:''}${TS.has(r.t)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(x.sp,r.q)}</div>`+
       inds.map(i=>indRow(i,rank.get(i.en),c,secKey,true,TSI)).join(''); }).join('');
