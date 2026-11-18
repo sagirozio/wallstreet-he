@@ -39197,7 +39197,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 00:05",
+  "asOf": "18.11.2026 · 10:55",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -39256,13 +39256,13 @@
   ],
   "brief": [
    {
-    "h": "וול סטריט ננעלה בירידות חדות",
-    "t": "ה-S&P 500 ירד ב-1.07% ל-7,340.53 והדאו איבד כ-850 נקודות; לפי AP, כמעט 9 מכל 10 מניות במדד ירדו, וכל הסקטורים נסגרו בירידה.",
-    "tone": "neg"
+    "h": "החוזים העתידיים עולים אחרי Nvidia",
+    "t": "לפי Bloomberg, החוזים על ה-S&P 500 עולים ב-0.3% ועל הנאסד״ק 100 ב-0.5%, אחרי ירידה של 1.07% אתמול ל-7,340.53; באירופה ה-STOXX 600 ללא שינוי.",
+    "tone": "pos"
    },
    {
-    "h": "Nvidia עקפה את התחזיות ועולה במסחר המאוחר",
-    "t": "הכנסות של $115.8B (צפי $109.1B) ותחזית של $130B לרבעון הבא; המניה עלתה בכ-2% אחרי הנעילה, ונוספו $150B לרכישה החוזרת.",
+    "h": "Nvidia עולה כ-3% במסחר הלילי",
+    "t": "הכנסות של $115.8B (צפי $109.1B) ותחזית של $130B לרבעון הבא; המניה ב-$159.83 (+2.8%), ו-Jefferies ו-Wells Fargo הורידו מחיר יעד ל-$250.",
     "tone": "pos"
    },
    {
@@ -39350,7 +39350,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611180005,
+  "rev": 202611181055,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -91321,6 +91321,564 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-futures-up-after-nvidia",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "החוזים העתידיים עולים אחרי הדוח של Nvidia",
+   "body": "לפי Bloomberg, החוזים על ה-S&P 500 עלו ב-0.3% והחוזים על הנאסד״ק 100 ב-0.5% (נכון ל-12:54 שעון טוקיו), אחרי ארבעה ימי ירידות ב-S&P 500. מניית Nvidia נסחרה במסחר הלילי ב-$159.83, עלייה של 2.8% לעומת הנעילה. היום יפורסם פרוטוקול הפד, ו-Target, Lowe's ו-TJX מדווחות לפני הפתיחה.",
+   "src": "Bloomberg (swissinfo), Yahoo Finance",
+   "url": "https://www.swissinfo.ch/eng/stocks-fluctuate-after-nvidia,-treasuries-rise:-markets-wrap/92397458"
+  },
+  {
+   "id": "2026-11-18-nvda-targets-cut",
+   "date": "2026-11-18",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "Nvidia",
+   "tone": "neu",
+   "title": "אחרי הדוח: בתי השקעות מורידים מחירי יעד ל-Nvidia",
+   "body": "לפי Investing.com, Jefferies הורידה את מחיר היעד ל-$250 מ-$300 (המלצת קנייה נשמרה) בגלל אי-הוודאות סביב חילופי המנכ״ל, Wells Fargo הורידה ל-$250 מ-$300 ו-Morgan Stanley ל-$260 מ-$267. Goldman Sachs ו-Citi חזרו על המלצת הקנייה עם יעדים של $220 ו-$225. לפי Yahoo Finance, הדירקטוריון הבהיר שאינו מתכוון להחזיר את ג׳נסן הואנג לתפקיד.",
+   "src": "Investing.com, Yahoo Finance",
+   "url": "https://www.investing.com/news/analyst-ratings/jefferies-cuts-nvidia-stock-price-target-on-ceo-transition-uncertainty-93CH-5034976"
+  },
+  {
+   "id": "2026-11-18-asia-mixed-chips",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "שווקים",
+   "tone": "neu",
+   "title": "אסיה: הקוספי מחק את רוב העליות, טייוואן ירדה ב-2%",
+   "body": "לפי Investing.com, הקוספי עלה ב-0.45% אחרי שבשיאו טיפס ב-3.3%, מדד טייוואן ירד ב-2%, ההאנג סנג ב-0.7% והניקיי ב-0.23%. SK Hynix עלתה ב-2.1%, ו-TSMC ו-Samsung ירדו ב-0.5%. ברקע, כללי רישוי אמריקאיים חדשים לייצוא שבבים מתקדמים לאינדונזיה, מלזיה, סינגפור, תאילנד וברזיל.",
+   "src": "Investing.com (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/technology/articles/asia-tech-shares-turn-mixed-032547363.html"
+  },
+  {
+   "id": "2026-11-18-europe-flat-tech-up",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "שווקים",
+   "tone": "neu",
+   "title": "אירופה יציבה: הטכנולוגיה עולה, הכרייה יורדת",
+   "body": "לפי Reuters, ה-STOXX 600 נסחר ללא שינוי ב-650.73 נקודות, אחרי ירידה של 1.8% אתמול, הגרועה מאז מרץ. מניות הטכנולוגיה עלו ב-1.2% בעקבות Nvidia, ו-ASML עלתה ב-1.8%. מניות הכרייה ירדו בכ-3% עם הירידה במחיר הנחושת, ו-Glencore איבדה 3.5%.",
+   "src": "Reuters (Yahoo Finance), Saxo",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/european-shares-muted-tech-offsets-082501845.html"
+  },
+  {
+   "id": "2026-11-18-gold-below-3800",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neg",
+   "title": "הזהב ירד מתחת ל-$3,800 לראשונה מאז ספטמבר 2025",
+   "body": "לפי Bloomberg, הזהב ירד ב-1.5% ל-$3,792.95 והכסף ב-2.6%. תשואת האג״ח האמריקאית ל-10 שנים ירדה ל-5.08%, נפט WTI ירד ב-1.3% ל-$84.89, והביטקוין עלה ב-0.3% ל-$64,464. השווקים מגלמים במלואה העלאת ריבית של 0.25% בישיבת הפד ב-8–9 בדצמבר.",
+   "src": "Bloomberg (swissinfo)",
+   "url": "https://www.swissinfo.ch/eng/stocks-fluctuate-after-nvidia,-treasuries-rise:-markets-wrap/92397458"
+  },
+  {
+   "id": "2026-11-18-anthropic-pricing-tonight",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "הנפקות",
+   "tone": "neu",
+   "title": "Anthropic צפויה לתמחר הערב את ההנפקה",
+   "body": "לפי Bloomberg, התמחור צפוי היום, בראש טווח של $70–78 למניה או מעליו, והמסחר צפוי להתחיל ביום חמישי. לפי Saxo, ההנפקה נרשמה ביותר מפי 7, ולפי Reuters, השווי עשוי להגיע עד $1.4 טריליון.",
+   "src": "Bloomberg (swissinfo), Saxo, Reuters",
+   "url": "https://www.swissinfo.ch/eng/stocks,-us-futures-rebound-after-nvidia-earnings:-markets-wrap/92397458"
+  },
+  {
+   "id": "2026-11-18-dlb-q4-guidance",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "DLB"
+   ],
+   "tag": "Dolby",
+   "tone": "neg",
+   "title": "Dolby עקפה את הצפי, אבל התחזית שלה שטוחה",
+   "body": "הכנסות ברבעון הרביעי של $374 מיליון (צפי $372.8 מיליון) ורווח מתואם למניה של $1.25 (צפי $1.19). לשנת 2027 החברה צופה הכנסות של כ-$1.42 מיליארד, כמו ב-2026, ולרבעון הראשון $285–305 מיליון. במסחר המאוחר המניה ירדה ב-4.8% ל-$56.",
+   "src": "Dolby (SEC), Investing.com",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-dolby-beats-q4-2026-estimates-but-shares-fall-on-cautious-outlook-93CH-5034310"
+  },
+  {
+   "id": "2026-11-18-nbis-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "Nebius",
+   "tone": "pos",
+   "title": "Nebius עלתה ב-9% במסחר המאוחר אחרי הדוח של Nvidia",
+   "body": "לפי Investing.com, מניות ענן ה-AI עלו בחדות במסחר המאוחר אחרי התוצאות והתחזית של Nvidia, ו-Nebius הובילה עם עלייה של 9%.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-crwv-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "CoreWeave",
+   "tone": "pos",
+   "title": "CoreWeave עלתה ביותר מ-7% במסחר המאוחר",
+   "body": "לפי Investing.com, המניה עלתה ביותר מ-7% אחרי הנעילה, יחד עם מניות השבבים וענן ה-AI, בעקבות הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-arm-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ARM"
+   ],
+   "tag": "Arm",
+   "tone": "pos",
+   "title": "Arm עלתה ב-5.5% במסחר המאוחר",
+   "body": "לפי Investing.com, Arm עלתה ב-5.5% אחרי הנעילה בעקבות התוצאות של Nvidia, אחרי ירידה של 8.1% ביום שני.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-smci-ah-vera",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "SMCI"
+   ],
+   "tag": "Super Micro",
+   "tone": "pos",
+   "title": "Super Micro עלתה ב-5.2% במסחר המאוחר",
+   "body": "לפי Investing.com, המניה עלתה ב-5.2% אחרי הנעילה עם מניות ה-AI, בעקבות הדוח של Nvidia. בנוסף, לפי Yahoo Finance, החברה נבחרה לשותפת שרתים ראשונה של פלטפורמת המעבדים Vera של Nvidia.",
+   "src": "Investing.com, Yahoo Finance",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-orcl-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ORCL"
+   ],
+   "tag": "Oracle",
+   "tone": "pos",
+   "title": "Oracle עלתה ב-3.9% במסחר המאוחר",
+   "body": "לפי Investing.com, Oracle עלתה ב-3.9% אחרי הנעילה יחד עם מניות תשתיות ה-AI, בעקבות התוצאות של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-amd-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AMD"
+   ],
+   "tag": "AMD",
+   "tone": "pos",
+   "title": "AMD עלתה ב-3.5% במסחר המאוחר",
+   "body": "לפי Investing.com, AMD עלתה ב-3.5% אחרי הנעילה בעקבות הדוח של Nvidia, אחרי ירידה של 2.1% במסחר הרגיל.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-avgo-ah-tdcowen",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AVGO"
+   ],
+   "tag": "Broadcom",
+   "tone": "pos",
+   "title": "Broadcom עלתה ב-2.8% במסחר המאוחר",
+   "body": "לפי Investing.com, המניה עלתה ב-2.8% אחרי הנעילה בעקבות Nvidia. לפני כן, TD Cowen הורידה את מחיר היעד ל-$425 מ-$475 ושמרה על המלצת קנייה.",
+   "src": "Investing.com, ad-hoc-news",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-intc-ah-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "INTC"
+   ],
+   "tag": "Intel",
+   "tone": "pos",
+   "title": "Intel עלתה ב-2.2% במסחר המאוחר",
+   "body": "לפי Investing.com, Intel עלתה ב-2.2% אחרי הנעילה עם שאר מניות השבבים, בעקבות התוצאות של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/nvidia-earnings-spark-afterhours-rally-in-chipmakers-neocloud-stocks-5034434"
+  },
+  {
+   "id": "2026-11-18-asml-amsterdam-up",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ASML"
+   ],
+   "tag": "ASML",
+   "tone": "pos",
+   "title": "ASML עולה ב-1.8% באמסטרדם",
+   "body": "לפי Reuters, ASML עלתה ב-1.8% בפתיחת המסחר באירופה ו-ASM International בכ-2%, אחרי הדוח של Nvidia. אתמול ירדה ASML ב-5.3%.",
+   "src": "Reuters (Yahoo Finance), Saxo",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/european-shares-muted-tech-offsets-082501845.html"
+  },
+  {
+   "id": "2026-11-18-ibm-fermilab-quantum",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "IBM"
+   ],
+   "tag": "IBM",
+   "tone": "neu",
+   "title": "IBM, Nvidia ו-Fermilab יבנו פלטפורמה קוונטית משותפת",
+   "body": "שלוש החברות הודיעו על תוכנית לפלטפורמת מחשוב קוונטי וקלאסי מודולרית. מערכות DGX B200 של Nvidia יוצבו לצד המחשבים הקוונטיים של IBM, בהם מעבד Nighthawk עם 120 קיוביטים, לטובת מחקר בפיזיקה.",
+   "src": "The Quantum Insider",
+   "url": "https://thequantuminsider.com/2026/11/16/ibm-nvidia-fermilab-modular-quantum-computing-platform/"
+  },
+  {
+   "id": "2026-11-18-mu-dram-suit",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "MU"
+   ],
+   "tag": "Micron",
+   "tone": "neg",
+   "title": "שופטת דחתה את בקשת Micron לסלק תביעה על תיאום מחירי DRAM",
+   "body": "שופטת פדרלית בקליפורניה דחתה את בקשתן של Micron, Samsung ו-SK Hynix לסלק תביעה ייצוגית שטוענת לתיאום קיצוצים בייצור DRAM מסוף 2022. ההחלטה אינה קובעת אחריות; התגובות לכתב התביעה צריכות להיות מוגשות עד 7 בדצמבר.",
+   "src": "PYMNTS / CPI",
+   "url": "https://www.pymnts.com/cpi-posts/samsung-sk-hynix-and-micron-lose-bid-to-dismiss-us-dram-antitrust-suit/"
+  },
+  {
+   "id": "2026-11-18-sqm-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "SQM"
+   ],
+   "tag": "SQM",
+   "tone": "neu",
+   "title": "SQM: הרווח זינק ב-205%, אבל מחיר הליתיום ירד",
+   "body": "הרווח הנקי ברבעון השלישי הגיע ל-$544.2 מיליון, לעומת $178.4 מיליון לפני שנה ו-$660 מיליון ברבעון הקודם. מחיר הליתיום הממוצע ירד בכ-10% מהרבעון הקודם לכ-$19.6 לק״ג, והחברה ציינה שברבעון הרביעי המחירים עשויים להיות נמוכים משמעותית.",
+   "src": "Rio Times",
+   "url": "https://www.riotimesonline.com/sqm-nine-month-profit-up-288-lithium"
+  },
+  {
+   "id": "2026-11-18-nke-close-down-6",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "NKE"
+   ],
+   "tag": "Nike",
+   "tone": "neg",
+   "title": "Nike מחקה את העליות ונסגרה בירידה של 6.3%",
+   "body": "אחרי עלייה של כ-7% בתחילת המסחר, המניה נסגרה ב-$35.85, ירידה של 6.3%, במחזור של 61.1 מיליון מניות. ביום המשקיעים הציגה החברה יעד של $5 מיליארד בהכנסות נוספות עד שנת 2031, אבל ציינה שהמכירות עשויות לרדת עוד שנתיים.",
+   "src": "Motley Fool (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-17-221909071.html"
+  },
+  {
+   "id": "2026-11-18-hood-overnight-rebound",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "HOOD"
+   ],
+   "tag": "Robinhood",
+   "tone": "pos",
+   "title": "Robinhood עלתה ביותר מ-2% במסחר הלילי",
+   "body": "אחרי ירידות של כ-7% ו-6% ביומיים האחרונים, על רקע דיווח שKalshi תשיק מסחר במניות, המניה עלתה ביותר מ-2% במסחר הלילי. Evercore ISI הורידה את מחיר היעד ל-$100 מ-$130 ושמרה על Outperform.",
+   "src": "Stocktwits (TradingView)",
+   "url": "https://www.tradingview.com/news/stocktwits:ed10ccae6094b:0-hood-stock-rebounds-overnight-as-retail-traders-dismiss-kalshi-threat-here-s-what-wall-street-thinks/"
+  },
+  {
+   "id": "2026-11-18-amzn-national-champion",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AMZN"
+   ],
+   "tag": "Amazon",
+   "tone": "neu",
+   "title": "דיווח: הבית הלבן יכריז על Amazon כ״אלופה לאומית״ ב-AI",
+   "body": "לפי ה-Wall Street Journal, יותר מ-20 חברות אמריקאיות, בהן Amazon, Nvidia, Microsoft, OpenAI ו-Anthropic, יקבלו מעמד של ״אלופות לאומיות״ ב-AI. המעמד עשוי לכלול רישיונות ייצוא מהירים יותר ומימון פדרלי, וההכרזה צפויה אולי כבר בשבוע הקרוב.",
+   "src": "WSJ (Oneindia)",
+   "url": "https://www.oneindia.com/international/trump-plans-to-name-nvidia-openai-microsoft-amazon-among-us-ai-national-champions-8260697.html"
+  },
+  {
+   "id": "2026-11-18-brk-buffett-gift",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BRK-B"
+   ],
+   "tag": "Berkshire Hathaway",
+   "tone": "neu",
+   "title": "באפט תרם מניות Berkshire בשווי של כ-$5.5 מיליארד",
+   "body": "וורן באפט המיר 6,150 מניות A ל-9.225 מיליון מניות B ותרם אותן לארבע קרנות משפחתיות. לפי AP, הוא מתכוון לתרום את כל מניותיו עד 2034, ובמכתבו כתב שאמונו ב-Berkshire ״חזק כתמיד״.",
+   "src": "Berkshire Hathaway, AP",
+   "url": "https://www.morningstar.com/news/business-wire/20261116814488/berkshire-hathaway-inc-news-release"
+  },
+  {
+   "id": "2026-11-18-mdt-piper-upgrade",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "MDT"
+   ],
+   "tag": "Medtronic",
+   "tone": "pos",
+   "title": "Piper Sandler העלתה את Medtronic ל-Overweight",
+   "body": "Piper Sandler העלתה את ההמלצה מ-Neutral ואת מחיר היעד ל-$120 מ-$85. לפי הבית, כמה מנועי צמיחה, בהם אבלציה לבבית, צפויים להביא לצמיחה של יותר מ-5% בשנה עד 2030. יום המשקיעים של החברה ב-11 בדצמבר.",
+   "src": "Investing.com",
+   "url": "https://in.investing.com/news/stock-market-news/piper-sandler-upgrades-medtronic-stock-rating-on-growth-outlook-93CH-5708842"
+  },
+  {
+   "id": "2026-11-18-cvna-stifel-buy",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "CVNA"
+   ],
+   "tag": "Carvana",
+   "tone": "pos",
+   "title": "Stifel פתחה סיקור על Carvana בהמלצת קנייה",
+   "body": "מחיר היעד: $85, לעומת $70.74 לפני הפרסום. Stifel צופה כ-1.05 מיליון מכוניות משומשות שיימכרו ב-2027 ו-1.28 מיליון ב-2028, וציינה ש-Carvana מכרה יותר מכוניות משומשות מ-CarMax בספטמבר ובאוקטובר.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/stifel-initiates-carvana-stock-with-buy-rating-on-unit-growth-outlook-93CH-5031723"
+  },
+  {
+   "id": "2026-11-18-apo-mizuho-init",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "APO"
+   ],
+   "tag": "Apollo",
+   "tone": "pos",
+   "title": "Mizuho פתחה סיקור על Apollo ב-Outperform",
+   "body": "Mizuho פתחה סיקור על Apollo Global Management בהמלצת Outperform עם מחיר יעד של $145.",
+   "src": "Fintel, Goldesel",
+   "url": "https://goldesel.de/aktien/news/apollo-global-management-aktie-mizuho-startet-mit-outperform-und-nennt-145-dollar-kursziel"
+  },
+  {
+   "id": "2026-11-18-blk-mizuho-init",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BLK"
+   ],
+   "tag": "BlackRock",
+   "tone": "pos",
+   "title": "Mizuho פתחה סיקור על BlackRock ב-Outperform",
+   "body": "Mizuho פתחה סיקור על BlackRock בהמלצת Outperform עם מחיר יעד של $1,450.",
+   "src": "Fintel, Goldesel",
+   "url": "https://goldesel.de/aktien/news/blackrock-aktie-mizuho-startet-mit-outperform-und-kursziel-von-1450-us-dollar"
+  },
+  {
+   "id": "2026-11-18-owl-mizuho-init",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "OWL"
+   ],
+   "tag": "Blue Owl",
+   "tone": "pos",
+   "title": "Mizuho פתחה סיקור על Blue Owl ב-Outperform",
+   "body": "Mizuho פתחה סיקור על Blue Owl Capital בהמלצת Outperform עם מחיר יעד של $13, כ-33% מעל מחיר הנעילה הקודם של $9.75.",
+   "src": "Fintel, Goldesel",
+   "url": "https://goldesel.de/aktien/news/blue-owl-capital-a-aktie-mizuho-startet-mit-outperform-und-kursziel-von-13-us-dollar"
+  },
+  {
+   "id": "2026-11-18-ida-jefferies-downgrade",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "IDA"
+   ],
+   "tag": "IDACORP",
+   "tone": "neg",
+   "title": "Jefferies הורידה את IDACORP ל-Hold",
+   "body": "Jefferies הורידה את ההמלצה מ-Buy בגלל התמחור, אך העלתה את מחיר היעד ל-$163 מ-$155. לפי הבית, המניה נסחרת בפרמיה דו-ספרתית על פני חברות החשמל המקבילות.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/jefferies-downgrades-idacorp-stock-rating-on-valuation-concerns-93CH-4963251"
+  },
+  {
+   "id": "2026-11-18-aes-ferc-approval",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AES"
+   ],
+   "tag": "AES",
+   "tone": "neu",
+   "title": "AES קיבלה את אישור FERC לרכישה; ההשלמה צפויה ב-2 בדצמבר",
+   "body": "הרכישה בידי קונסורציום בהובלת Global Infrastructure Partners (חלק מ-BlackRock) ו-EQT היא ב-$15 למניה במזומן, שווי הון של כ-$10.7 מיליארד. לפי החברה, זה האישור הרגולטורי האחרון שנדרש, וההשלמה צפויה בסביבות 2 בדצמבר.",
+   "src": "Panabee, EQT",
+   "url": "https://eqtgroup.com/news/consortium-led-by-global-infrastructure-partners-and-eqt-agrees-to-acquire-aes-2026-03-02"
+  },
+  {
+   "id": "2026-11-18-wen-sp-downgrade",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "WEN"
+   ],
+   "tag": "Wendy's",
+   "tone": "neg",
+   "title": "S&P הורידה את דירוג האשראי של Wendy's ל-B",
+   "body": "S&P Global Ratings הורידה את הדירוג מ-B+ עם תחזית שלילית, בגלל ירידות מתמשכות במכירות בסניפים קיימים ועלויות התוכנית להבראה. המכירות בסניפים קיימים בארה״ב ירדו שבעה רבעונים ברציפות, ב-5.7% ברבעון השלישי.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/sp-downgrades-wendys-to-b-on-elevated-leverage-and-persistent-sales-declines-5034289"
+  },
+  {
+   "id": "2026-11-18-syy-chro-transition",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "SYY"
+   ],
+   "tag": "Sysco",
+   "tone": "neu",
+   "title": "Sysco: מנהל משאבי האנוש יפנה את מקומו",
+   "body": "לפי דיווח ל-SEC, ראש משאבי האנוש רונלד פיליפס יעבור לתפקיד יועץ ב-14 בדצמבר וצפוי לפרוש ברבעון הראשון של 2027. מחליף מחוץ לחברה ייכנס לתפקיד באותו יום; שמו עוד לא פורסם.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000096021/000095014226003101/eh260856787_8k.htm"
+  },
+  {
+   "id": "2026-11-18-bsx-lead-director",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BSX"
+   ],
+   "tag": "Boston Scientific",
+   "tone": "neu",
+   "title": "Boston Scientific מינתה דירקטור בלתי תלוי מוביל חדש",
+   "body": "דייוויד וויכמן, דירקטור מאז 2021 ויו״ר ועדת הביקורת, ייכנס לתפקיד ב-1 בינואר 2027 במקום אדוארד לודוויג, שמכהן בו מאז 2016 וימשיך בדירקטוריון.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000885725/000088572526000073/bsx-20261117.htm"
+  },
+  {
+   "id": "2026-11-18-vg-china-gas-lng",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "VG"
+   ],
+   "tag": "Venture Global",
+   "tone": "pos",
+   "title": "Venture Global הגדילה את הסכם הגז הטבעי הנוזלי עם China Gas",
+   "body": "China Gas תקנה עוד 0.5 מיליון טון בשנה, וכך ההסכם יגיע ל-1 מיליון טון בשנה למשך 20 שנה החל מ-2030. סך ההתקשרויות של China Gas עם Venture Global מגיע ל-3 מיליון טון בשנה.",
+   "src": "Business Wire",
+   "url": "https://www.financialcontent.com/article/bizwire-2026-11-18-venture-global-and-china-gas-announce-increased-long-term-lng-agreement"
+  },
+  {
+   "id": "2026-11-18-fcx-ptfi-notes",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "FCX"
+   ],
+   "tag": "Freeport-McMoRan",
+   "tone": "neu",
+   "title": "החברה הבת של Freeport באינדונזיה גייסה $750 מיליון באג״ח",
+   "body": "PT Freeport Indonesia תמחרה אג״ח בהיקף של $750 מיליון בריבית של 6.90% לפירעון ב-2033. התמורה תשמש לפירעון הלוואות קיימות, וההשלמה צפויה ב-24 בנובמבר.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/news/FCX/pt-freeport-indonesia-prices-u-s-750-0-million-of-senior-jhb3i31oqea6.html"
+  },
+  {
+   "id": "2026-11-18-bmy-erasca-collab",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BMY"
+   ],
+   "tag": "Bristol Myers Squibb",
+   "tone": "neu",
+   "title": "Bristol Myers תבדוק טיפול משולב עם Erasca בסרטן הלבלב",
+   "body": "BMS תממן ותנהל ניסוי שלב 1/2 שישלב את ERAS-0015 של Erasca עם מעכב ה-PRMT5 שלה, navlimetostat, בסרטן לבלב עם חסר ב-MTAP. כל חברה שומרת על הזכויות בתרופה שלה; תנאים כספיים לא פורסמו.",
+   "src": "BioSpace",
+   "url": "https://www.biospace.com/press-releases/erasca-enters-into-clinical-collaboration-with-bristol-myers-squibb-to-evaluate-eras-0015-in-clinical-study-with-navlimetostat"
+  },
+  {
+   "id": "2026-11-18-apg-euro-notes",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "APG"
+   ],
+   "tag": "APi Group",
+   "tone": "neu",
+   "title": "APi Group תמחרה אג״ח בהיקף של €500 מיליון",
+   "body": "האג״ח נושאות ריבית של 5.25% לפירעון ב-2032. התמורה תשמש לפירעון קו האשראי ולמטרות כלליות.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/company-news/api-group-prices-500-million-senior-notes-due-2032-93CH-5034399"
+  },
+  {
+   "id": "2026-11-18-lzb-q2-guidance",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "LZB"
+   ],
+   "tag": "La-Z-Boy",
+   "tone": "neg",
+   "title": "La-Z-Boy עקפה את הצפי, אבל התחזית נמוכה",
+   "body": "מכירות של $526 מיליון (צפי $506.7 מיליון) ורווח מתואם למניה של $0.53 (צפי $0.48). לרבעון הבא החברה צופה מכירות של $505–525 מיליון, מתחת לצפי של $531 מיליון, והמניה ירדה ב-2.2% במסחר המאוחר. הדיבידנד הועלה ב-12% ל-$0.27.",
+   "src": "La-Z-Boy (SEC), Yahoo Finance",
+   "url": "https://sg.finance.yahoo.com/news/la-z-boy-beats-estimates-220035388.html"
+  },
+  {
+   "id": "2026-11-18-ardt-secondary",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ARDT"
+   ],
+   "tag": "Ardent Health",
+   "tone": "neg",
+   "title": "Ardent Health צנחה במסחר המאוחר על הצעה משנית",
+   "body": "בעלי מניות קיימים, בהם Ventas, מוכרים 8 מיליון מניות ב-$14.50, לעומת נעילה של $18.10 ב-16 בנובמבר. החברה לא תקבל תמורה, ותרכוש בחזרה 1.5 מיליון מניות באותו מחיר. לפי דיווחים, המניה ירדה בכ-15% במסחר המאוחר.",
+   "src": "Investing.com, SEC",
+   "url": "https://www.investing.com/news/company-news/ardent-health-prices-8-million-share-secondary-offering-at-1450-93CH-5034515"
+  },
+  {
+   "id": "2026-11-18-gbdc-q4-nav",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "GBDC"
+   ],
+   "tag": "Golub Capital BDC",
+   "tone": "neg",
+   "title": "Golub Capital BDC: השווי הנכסי למניה ירד ל-$14",
+   "body": "ההכנסה הנקייה מהשקעות הייתה $0.32 למניה ($0.33 מתואם), והשווי הנכסי ירד ל-$14.00 מ-$14.25 ביוני, על רקע הפסדים בחברות בתיק. החלוקה הרבעונית נשארה $0.33 למניה.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001476765/000147676526000083/gbdcfy202610-kearningsprxex.htm"
+  },
+  {
+   "id": "2026-11-18-uber-kohls",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "UBER"
+   ],
+   "tag": "Uber",
+   "tone": "neu",
+   "title": "Uber Eats תספק מוצרים מיותר מ-1,100 חנויות Kohl's",
+   "body": "השותפות הארצית כוללת משלוח מיידי או מתוזמן של בגדים, מוצרים לבית ומוצרי Sephora מחנויות Kohl's דרך אפליקציית Uber Eats.",
+   "src": "Business Wire (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/media-advertising/articles/uber-eats-kohl-team-holiday-140000567.html"
+  },
   {
    "id": "2026-11-17-close-sp-down-1pct",
    "date": "2026-11-17",
