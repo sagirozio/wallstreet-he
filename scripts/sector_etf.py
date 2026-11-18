@@ -31,6 +31,10 @@ def returns():
              "h": base(months(6)), "ytd": base(dt.date(ld.year - 1, 12, 31)), "y": base(months(12))}
         out[e] = {k: round((last / v - 1) * 100, 2) for k, v in b.items() if v}
         out[e]["px"] = round(last, 2)
+        y0 = c[c.index <= pd.Timestamp(dt.date(ld.year - 1, 12, 31))]
+        ytd = c[c.index >= y0.index[-1]] if len(y0) else c[c.index.year == ld.year]
+        pts = list(range(0, len(ytd), 5)); pts = pts if pts[-1] == len(ytd) - 1 else pts + [len(ytd) - 1]
+        out[e]["sp"] = [round(float(ytd.iloc[i]), 2) for i in pts]   # year-to-date line for the tables
     return out
 
 def apply(data):
@@ -43,7 +47,7 @@ def apply(data):
     for row in (data.get("sectors") or {}).get("rows", []):
         r = R.get(row.get("t"))
         if not r: continue
-        for k in ("d", "w", "m", "q", "h", "ytd", "y"):
+        for k in ("d", "w", "m", "q", "h", "ytd", "y", "sp"):
             if k in r: row[k] = r[k]
         n += 1
     print("sector ETF returns", n, {k: R[k].get("m") for k in list(R)[:3]})

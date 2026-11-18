@@ -1,5 +1,5 @@
 """Extra research data for the market page, from our own close history (history branch) -> data.json["themes"]["x"]:
-  ind[<industry>] = {sp: 13 weekly points of an equal-weight index over the last 3 months (start = 100), rk: places gained (+) or lost (-)
+  ind[<industry>] = {sp: weekly points of an equal-weight index since the start of the year (start = 100), rk: places gained (+) or lost (-)
                      in the 1-month ranking vs 5 sessions ago}
   sec[<sector>]   = {sp: same sparkline for the sector, a50: % of its stocks above their 50-day average, c50: how many, n: stocks counted}
   (ind[...] has the same n / c50 / a50)
@@ -24,8 +24,10 @@ def month_ret(cols, back):     # equal-weight 1-month (21 sessions) return of th
     r = (a / b - 1).dropna()
     r = r[(r > -0.95) & (r < 9)]
     return float(r.mean() * 100) if len(r) else None
-def spark(cols):               # equal-weight index, 3 months, weekly points
-    w = df[cols].iloc[-64:]
+_prev_year = df.index[df.index.year < df.index[-1].year]
+_YTD0 = df.index.get_loc(_prev_year[-1]) if len(_prev_year) else 0
+def spark(cols):               # equal-weight index, year to date (from the last close of the previous year), weekly points
+    w = df[cols].iloc[_YTD0:]
     w = w.loc[:, w.iloc[0].notna() & w.iloc[-1].notna()]
     if w.shape[1] == 0: return None
     idx = (w / w.iloc[0]).mean(axis=1) * 100
