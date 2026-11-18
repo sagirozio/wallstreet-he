@@ -51,7 +51,7 @@ while True:
     sh("git fetch -q origin main && git checkout -q origin/main -- data.json scripts")
     if m < 9 * 60 + 30:
         sh("timeout 300 python scripts/premarket.py")
-        if m >= 7 * 60: sh("timeout 240 python scripts/premovers.py || true")   # pre-market 10%+ movers (from 14:00 Israel)
+        sh("timeout 240 python scripts/premovers.py || true")   # pre-market 9%+ movers, from the pre-market open (11:00 Israel)
         msg = "Pre-market update"
     else:
         sh("timeout 480 python scripts/update_live.py")
