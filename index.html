@@ -209,7 +209,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sphead{display:flex;align-items:center;gap:12px;margin:10px 0}
 .sphead .mono{width:52px;height:52px;font-size:14px}
 .sphead h2{margin:0}.sphead .meta{color:var(--muted);font-size:13px}
-.spchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.spchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}.spchips.sphc{margin:-2px 0 8px;gap:4px 5px;flex-wrap:wrap}.sphc i{font-style:normal}.sphc .sl2{display:none}@media(max-width:640px){.sphc .lbl{display:none}.sphc .sl2{display:inline}.spchips.sphc{margin:0 0 6px}}.spchips.sphc a{border-color:rgba(91,140,255,.35);color:#cfe0ff}.spchips.sphc::-webkit-scrollbar{display:none}.spchips.sphc a,.spchips.sphc span{flex:none;padding:2px 9px;font-size:12px;white-space:nowrap}
 .spchips a,.spchips span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;color:var(--text);text-decoration:none}
 .spdesc{font-size:15.5px;line-height:1.6;margin:0 0 14px}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
@@ -1412,9 +1412,9 @@ function earnChip(t,rep){
   const out=[];
   if(cal&&rep&&rep.date&&cal.d&&rep.date.slice(5).split('-').reverse().map(Number).join('.')===cal.d.split(' ').pop()) cal=null;   /* already reported */
   if(cal) out.push(`<span class="echip">דוח השבוע: ${esc(cal.d)}${cal.time==='bmo'?' · לפני הפתיחה':cal.time==='amc'?' · אחרי הסגירה':''}</span>`);
-  else if(E&&E.d>=today&&!(rep&&rep.date>=E.d)) out.push(`<span class="echip">דוח הבא: ${fmt(E.d)}${E.est?' (הערכה)':''}</span>`);
-  if(rep&&rep.date) out.push(`<span>דוח אחרון: ${esc(/^\d{4}-\d\d-\d\d$/.test(rep.date)?fmt(rep.date):rep.date)}</span>`);
-  else if(E&&E.d<today) out.push(`<span>דוח אחרון: ${fmt(E.d)}</span>`);
+  else if(E&&E.d>=today&&!(rep&&rep.date>=E.d)) out.push(`<span class="echip"><i class="lbl">דוח הבא: </i><i class="sl2">דוח </i>${fmt(E.d)}${E.est?' (הערכה)':''}</span>`);
+  if(rep&&rep.date) out.push(`<span><i class="lbl">דוח אחרון: </i><i class="sl2">דוח </i>${esc(/^\d{4}-\d\d-\d\d$/.test(rep.date)?fmt(rep.date):rep.date)}</span>`);
+  else if(E&&E.d<today) out.push(`<span><i class="lbl">דוח אחרון: </i><i class="sl2">דוח </i>${fmt(E.d)}</span>`);
   return out.join('');
 }
 function factsList(t){
@@ -1474,6 +1474,7 @@ async function renderStock(t){
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
       <div class="sphr"><div class="sptvh" id="spHdTv"></div><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>
+      <div class="spchips sphc">${earnChip(t,rep)}${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}${watchBtn(t)}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -1482,7 +1483,6 @@ async function renderStock(t){
       ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}${s.r.rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${s.r.rs>=80?'up':s.r.rs<=20?'down':''}">${s.r.rs}</b></div>`:''}</div>`:''}
       <div id="spPx"></div>
       ${news.filter(n=>n!==WHY_USED).length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.filter(n=>n!==WHY_USED).slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
-      <div class="spchips">${earnChip(t,rep)}${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}">סקטור: <bdi>${esc(s.sec)}</bdi> ←</a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}">תעשייה: <bdi>${esc(s.ind)}</bdi> ←</a>`:''}</div>
       <div class="spclamp" id="spAbout">${prof.about?aboutBlock(t,s,prof):`<p class="spdesc">${desc}</p>${aboutFacts(t)}`}</div><button class="spmore hidden" id="spAboutMore">קרא עוד ▾</button>
       <div id="spIns"></div>
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
