@@ -199,7 +199,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .news .src{font-size:12px;color:var(--muted);margin-top:6px}.news .src a{color:var(--accent)}
 .tv-tape{min-height:46px;border-bottom:1px solid var(--line);background:#0b0f17}
 .tv-tape.off{display:none}
-.tv-live{margin:0 0 14px}.tv-live.off{display:none}
+.tv-live{margin:0 0 14px}.tv-live.off{display:none}#market:not(.sess) #tvLive,#market:not(.sess) .tvattr{display:none}
 .tvh{font-weight:700;font-size:14px;margin-bottom:8px}.tvh span{color:var(--muted);font-weight:400;font-size:12px}
 .tvq{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;direction:ltr}
 .tvq .tradingview-widget-container iframe{min-height:76px}
@@ -1023,6 +1023,7 @@ function postIdxTxt(){ const P=LIVE&&LIVE.postIdx&&LIVE.date===nyToday()?LIVE.po
   return '<br><span class="pxl">'+[['SPY','S&P 500'],['QQQ','נאסד״ק'],['DIA','דאו']].filter(([k])=>P[k]).map(([k,n])=>`${n} <span class="num">$${P[k][0].toFixed(2)}</span> <b class="num ${P[k][1]>=0?'up':'down'}">${pct(P[k][1],2)}</b>`).join(' · ')+'</span>'; }
 function renderMktStatus(){
   const ny=nyNow(), dow=ny.getDay(), m=ny.getHours()*60+ny.getMinutes(), wk=dow>=1&&dow<=5;
+  $('market').classList.toggle('sess', wk&&m>=570&&m<960);   /* TradingView boxes only while the session is open */
   let cls='closed', txt;
   if(wk&&m>=570&&m<960){ cls='open'; txt=`<b>הבורסה פתוחה</b> · נסגרת ב-${ilTime(16,0)} שעון ישראל`; }
   else if(wk&&m>=240&&m<570){ cls='pre'; txt=`<b>מסחר מקדים</b> · הבורסה נפתחת היום ב-${ilTime(9,30)} שעון ישראל`; }
