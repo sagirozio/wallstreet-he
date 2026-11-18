@@ -1118,7 +1118,7 @@ function renderAgenda(){
   const parse=x=>{ const m=String(x||'').match(/(\d{1,2})\.(\d{1,2})/); return m?[+m[1],+m[2]]:null; };
   const day=(c.days||[]).find(x=>{ const p=parse(x.d); return p&&key(p[0],p[1])>=tk; });
   const sec=$('todayAgenda');
-  if(!day){ sec.dataset.pg='none'; sec.classList.remove('on'); return; } else sec.dataset.pg='home';
+  if(!day){ sec.dataset.pg='none'; sec.classList.remove('on'); return; } else { sec.dataset.pg='home'; if(CURPG==='home') sec.classList.add('on'); }
   const p=parse(day.d), isToday=key(p[0],p[1])===tk, its=day.items||[], ix=stockIndex();
   $('agH').innerHTML = `${isToday?'היום בוול סטריט':'הבא בוול סטריט'}<span class="fresh">${esc(day.d)}</span>`;
   const chip=i=>`<a class="ach${capNum((ix[i.t]||{}).cap)>=1e11||i.star?' hl':''}" href="#stock/${encodeURIComponent(i.t)}" title="${esc(i.co||'')}">${i.il?'🇮🇱 ':''}${esc(i.t)}</a>`;
@@ -1133,7 +1133,7 @@ function renderAgenda(){
 function renderHomeMovers(){
   const m=FALLBACK.movers||{}, mv=[...(m.rows||[])], sec=$('homeMovers');
   $('hmvH').textContent = m.pre ? 'מזנקות במסחר המקדים' : 'מניות שזינקו היום';
-  sec.dataset.pg = mv.length?'home':'none'; if(!mv.length) sec.classList.remove('on');
+  sec.dataset.pg = mv.length?'home':'none'; sec.classList.toggle('on', !!mv.length && (CURPG==='home'||CURPG==null&&pageOf(location.hash)[0]==='home'));   /* show again when movers arrive after the page loaded */
   $('hmvList').innerHTML = mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}"><b>${esc(r.t)}</b><span class="${r.p>=0?'up':'down'}">${pct(r.p,1)}</span></a>`).join('');
 }
 setInterval(()=>{ try{ renderMktStatus(); }catch(e){} }, 60000);
