@@ -347,7 +347,7 @@ body[data-pg="home"] #brief{padding-top:6px}
 @media(max-width:760px){header .top{padding:0}header .stamp{display:none}header{border-bottom:0}
   .nvrow .logo{gap:7px;font-size:17px;flex:none}.nvrow .logo .lgi{width:30px;height:30px}.nvrow .logo .lge,.nvrow .logo .tagline{display:none}}
 @media(min-width:901px){
-  body[data-pg="home"] .tvq{grid-template-columns:repeat(6,minmax(0,1fr))}
+  body[data-pg="home"] .tvq{grid-template-columns:repeat(2,minmax(0,1fr))}
   body[data-pg="home"].r main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);column-gap:36px;grid-template-rows:auto auto auto auto auto auto 1fr;align-items:start}
   body[data-pg="home"] #market,body[data-pg="home"] #brief,body[data-pg="home"] #homeMovers{grid-column:1/-1}
   body[data-pg="home"] #today-reports{grid-column:1;grid-row:4/8}
@@ -479,7 +479,7 @@ h2 .gq{width:22px;height:22px}
 .spstick{position:sticky;top:var(--navh,58px);z-index:20;background:var(--bg);margin:0 -16px;padding:6px 16px 0;border-bottom:1px solid var(--line)}
 .spstick .sphead{margin:4px 0 8px}
 .sphn{flex:1;min-width:0}.sphn h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:21px}
-.spday{text-align:left;flex:none;display:flex;flex-direction:column;align-items:flex-end}.spday small{display:flex;align-items:center;gap:4px}.spday .livedot{width:7px;height:7px;margin:0}.spday b{display:block;font:700 18px 'JetBrains Mono',monospace;direction:ltr}.spday small{color:var(--muted);font-size:11.5px}
+.spday{text-align:left;flex:none;display:flex;flex-direction:column;align-items:flex-end}.spday small{display:flex;align-items:center;gap:4px}.spday .livedot{width:7px;height:7px;margin:0}.spday b{display:block;font:700 18px 'JetBrains Mono',monospace;direction:ltr}.spday small{color:var(--muted);font-size:11.5px}.spday b.sppx{font-size:21px;color:#e3e6ea;line-height:1.15}.spday b.spch{font-size:14px;line-height:1.3}@media(max-width:640px){.spday b.sppx{font-size:17px}.spday b.spch{font-size:13px}}
 .sptabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.sptabs::-webkit-scrollbar{display:none}
 .sptabs button{flex:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-size:15px;font-weight:600;padding:10px 12px;min-height:44px;cursor:pointer}
 .sptabs button.on{color:var(--text);border-bottom-color:var(--accent)}
@@ -664,7 +664,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="mstat" id="mktStatus"></div>
   <p class="sub hidden" id="marketNote"></p>
     <div class="pmbox hidden" id="pmBox"></div>
-    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>עכשיו בשוק <span>· תעודות הסל של המדדים, בעיכוב של עד 15 דקות</span></div><div class="tvq"><div class="tvc"><div class="tvn">S&P 500 <span>SPY</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:SPY", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">נאסד״ק 100 <span>QQQ</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "NASDAQ:QQQ", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">דאו ג׳ונס <span>DIA</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:DIA", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ראסל 2000 <span>IWM</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "AMEX:IWM", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
+    <div class="tv-live" id="tvLive"><div class="tvh"><i class="livedot"></i>מדד הפחד וביטקוין <span>· TradingView</span></div><div class="tvq"><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
   <div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
   <div class="hidden" id="vixCard"></div>
 </section>
@@ -1344,13 +1344,12 @@ function renderCrypto(c){
   document.title=`${c.sym} – ${c.co} | Wallstreeter`;
   const ix=stockIndex(), rel=c.rel.filter(t=>ix[t]);
   $('spBody').innerHTML=`<div class="sphead">${mono(c.sym)}<div class="sphn"><h2 style="text-align:right">${esc(c.he)} <bdi style="color:var(--muted);font-weight:500;font-size:.75em">${esc(c.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(c.sym)}</span> · מטבע קריפטו · נסחר 24/7 · מחיר בדולר</div></div>
-      <div class="sphr"><div class="sptvh" id="spHdTv"></div></div></div>
+      <div class="sphr"><div class="spday">${(()=>{ const r=((FALLBACK.crypto||{}).rows||{})[c.t]; return r?`<b class="sppx num">$${r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)}</b>${r.d!=null?`<b class="spch ${r.d>=0?'up':'down'}">${pct(r.d,2)}</b>`:''}<small>${esc((FALLBACK.crypto||{}).asOf||'')}</small>`:''; })()}</div></div></div>
     ${cryptoPerf(c.t)}
     <div class="spchart" id="spChart" style="margin-top:14px"></div>
     <p class="spdesc">${esc(c.about)}</p>
     ${rel.length?`<h3 class="sph3">מניות שקשורות ל${esc(c.he)}</h3><div class="peers">${rel.map(t=>hubTile(t,ix[t].co,ix[t].r?ix[t].r.m:null,ix[t].cap?'$'+ix[t].cap:'')).join('')}</div><p class="legend">השינוי בחודש האחרון. הרשימה היא לצורך התמצאות בלבד ואינה המלצה.</p>`:''}
     <p class="legend">המחיר והגרף: TradingView (בורסת Bitstamp). מידע בלבד, לא ייעוץ השקעות. מטבעות קריפטו תנודתיים במיוחד.</p>`;
-  tvWidget($('spHdTv'),'embed-widget-single-quote.js',{symbol:c.tv,width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
   drawChart({t:c.sym,tv:c.tv},'D');
 }
 function searchStocks(q){
@@ -1506,8 +1505,6 @@ async function renderStock(t){
   { const a=$('spAbout'), b=$('spAboutMore'); if(a&&b&&a.scrollHeight>a.clientHeight+8){ b.classList.remove('hidden'); b.onclick=()=>{ a.classList.toggle('open'); b.textContent=a.classList.contains('open')?'הצג פחות ▴':'קרא עוד ▾'; }; } }
   $('spBody').dataset.t=t; $('spBody').dataset.loaded=''; renderPx(t); try{ rpTidy(); }catch(e){}
   // small live TradingView quote in the sticky header; our own figure stays as a fallback until it loads
-  { const hb=$('spHdTv'); tvWidget(hb,'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
-    const mo=new MutationObserver(()=>{ if(hb.querySelector('iframe')){ hb.closest('.sphr').classList.add('tvok'); mo.disconnect(); } }); mo.observe(hb,{childList:true,subtree:true}); }
   setNavH();
 }
 /* ---------- live quotes (live.json on the `live` branch, refreshed every 5 min in US trading hours) ---------- */
@@ -1541,7 +1538,7 @@ function spDayHtml(t,s){
   const L=liveQ(t);
   if(L){ const open=mktOpen()&&LIVE.date===nyToday(), tm=(String(LIVE.asOf||'').split('· ')[1]||''), dd=String(LIVE.date||'').split('-');
     const P=!open&&LIVE.post&&LIVE.post[t]&&LIVE.date===nyToday()?LIVE.post[t]:null;
-    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}${preLine(t)}`; }
+    return `<b class="sppx num">$${L[0].toFixed(2)}</b><b class="spch ${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}${preLine(t)}`; }
   const d=s&&s.r&&s.r.d!=null?s.r.d:null;
   return d==null?preLine(t):`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>${preLine(t)}`;
 }
