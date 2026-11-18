@@ -389,7 +389,7 @@ body[data-pg="market"] main>section{padding-top:18px}
 .erw{padding:6px 12px}.erw.ehd{padding:7px 12px;font-size:11.5px}.erw .n{font-size:13px;font-weight:500}.erw .nm2 b{font-size:13.5px}
 .scr{padding:6px 12px}.scr.sch0{padding:5px 12px}.snr{padding:7px 2px}.snr .rkn{margin-inline-end:6px}
 h2{color:#d5dae0}
-.pxc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px 8px;margin:0 0 16px}.pxh{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px}.pxh small{margin-inline-start:auto;color:var(--muted);font-size:12px}.pxc svg{display:block;width:100%;height:140px;direction:ltr}.pxf{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;margin-top:4px;direction:ltr}
+.pxc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px 8px;margin:0 0 16px}.pxh{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px}.pxh small{margin-inline-start:auto;color:var(--muted);font-size:12px}.pxh b{white-space:nowrap}.pxh small{white-space:nowrap}.pxw{position:relative;direction:ltr;touch-action:pan-y;cursor:crosshair}.pxc svg{display:block;width:100%;height:150px}.pxw i,.pxw span{position:absolute;display:none;pointer-events:none}.pxw.on i,.pxw.on span{display:block}.pxv{top:0;bottom:0;border-left:1px dashed #6b7280}.pxz{left:0;right:0;border-top:1px dashed #6b7280}.pxdot{width:7px;height:7px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%)}.pxl{left:0;transform:translateY(-50%);background:#2c3038;color:var(--text);font-size:11.5px;padding:1px 5px;border-radius:3px}.pxt{bottom:-2px;transform:translate(-50%,100%);background:#2c3038;color:var(--text);font-size:11px;padding:1px 5px;border-radius:3px;z-index:2}.pxf{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;margin-top:4px;direction:ltr}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -1493,22 +1493,41 @@ async function loadLive(){
 }
 setInterval(loadLive, 3*60*1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive(); });
-/* ---------- 6-month price line on the stock overview (px6.json on the `px` branch: every second close, from our own history) ---------- */
-const PX_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/px/px6.json';
-let PX=null, pxP=null;
-function loadPx(){ if(pxP) return pxP; pxP=fetch(PX_URL,{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ PX=j; return j; }).catch(()=>{ pxP=null; return null; }); return pxP; }
+/* ---------- year-to-date daily price line on the stock overview (`px` branch: _dates.json + <T>.json, from our own history) + crosshair ---------- */
+const PX_BASE='https://raw.githubusercontent.com/sagirozio/wallstreet-he/px/';
+let PXD=null, pxdP=null; const PXC={};
+function loadPxDates(){ if(pxdP) return pxdP; pxdP=fetch(PX_BASE+'_dates.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ PXD=j; return j; }).catch(()=>{ pxdP=null; return null; }); return pxdP; }
+function loadPx(t){ if(PXC[t]) return Promise.resolve(PXC[t]); return fetch(PX_BASE+encodeURIComponent(t)+'.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(a=>{ if(Array.isArray(a)) PXC[t]=a; return a; }).catch(()=>null); }
+const pxF=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), pxD=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:''; };
 function pxChart(t){
-  const a0=PX&&PX.d&&PX.d[t]; if(!a0) return '';
-  const a=a0.map((v,i)=>[i,v]).filter(x=>x[1]!=null); if(a.length<10) return '';
-  const vs=a.map(x=>x[1]), mn=Math.min(...vs), mx=Math.max(...vs), n=a0.length-1, W=600, H=150, P=6;
+  const a0=PXC[t], D=(PXD||{}).dates; if(!a0||!D) return '';
+  const a=a0.map((v,i)=>[i,v]).filter(x=>x[1]!=null); if(a.length<3) return '';
+  const vs=a.map(x=>x[1]), mn=Math.min(...vs), mx=Math.max(...vs), n=Math.max(1,a0.length-1), W=600, H=150, P=6;
   const X=i=>(i/n*W).toFixed(1), Y=v=>(P+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1);
   const pts=a.map(([i,v])=>`${X(i)},${Y(v)}`).join(' '), ch=(vs[vs.length-1]/vs[0]-1)*100, col=ch>=0?'var(--green)':'var(--red)';
-  const f=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), dt=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:''; };
-  return `<div class="pxc"><div class="pxh"><b>6 חודשים</b><span class="num ${ch>=0?'up':'down'}">${pct(ch,1)}</span><small>שיא <span class="num">${f(mx)}</span> · שפל <span class="num">${f(mn)}</span></small></div>
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="מחיר המניה ב-6 החודשים האחרונים"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
-    <div class="pxf"><span>${dt(PX.from)}</span><span>מחירי סגירה עד ${dt(PX.asOf)}</span></div></div>`;
+  return `<div class="pxc" data-px="${esc(t)}"><div class="pxh"><b>מתחילת השנה</b><span class="num ${ch>=0?'up':'down'}" id="pxCh">${pct(ch,1)}</span><small id="pxInfo">שיא <span class="num">${pxF(mx)}</span> · שפל <span class="num">${pxF(mn)}</span></small></div>
+    <div class="pxw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="מחיר המניה מתחילת השנה"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
+      <i class="pxv"></i><i class="pxz"></i><i class="pxdot"></i><span class="pxl num"></span><span class="pxt num"></span></div>
+    <div class="pxf"><span>${pxD(D[a[0][0]])}</span><span>מחירי סגירה יומיים עד ${pxD(D[a[a.length-1][0]])}</span></div></div>`;
 }
-function renderPx(t){ const b=$('spPx'); if(!b) return; if(PX){ b.innerHTML=pxChart(t); return; } loadPx().then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t) b2.innerHTML=pxChart(t); }); }
+function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t) b2.innerHTML=pxChart(t); }); }
+/* crosshair: dashed vertical + horizontal lines on the day under the finger, price label on the left, date under the line */
+function pxMove(ev){
+  const w=ev.target.closest&&ev.target.closest('.pxw'); if(!w) return;
+  const c=w.parentElement, a0=PXC[c.dataset.px], D=(PXD||{}).dates; if(!a0||!D) return;
+  const r=w.getBoundingClientRect(), n=Math.max(1,a0.length-1); let i=Math.round((ev.clientX-r.left)/r.width*n); i=Math.min(n,Math.max(0,i));
+  while(i>0&&a0[i]==null) i--; if(a0[i]==null) return;
+  const vs=a0.filter(v=>v!=null), mn=Math.min(...vs), mx=Math.max(...vs), P=6/150*r.height, x=i/n*r.width, y=P+(1-(mx>mn?(a0[i]-mn)/(mx-mn):.5))*(r.height-2*P), base=vs[0], ch=(a0[i]/base-1)*100;
+  w.classList.add('on');
+  w.querySelector('.pxv').style.left=x+'px'; w.querySelector('.pxz').style.top=y+'px';
+  const dot=w.querySelector('.pxdot'); dot.style.left=x+'px'; dot.style.top=y+'px';
+  const l=w.querySelector('.pxl'); l.textContent=pxF(a0[i]); l.style.top=y+'px';
+  const tt=w.querySelector('.pxt'); tt.textContent=pxD(D[i]); tt.style.left=Math.min(r.width-22,Math.max(22,x))+'px';
+  c.querySelector('#pxInfo').innerHTML=`<b>${pxD(D[i])}</b> · <span class="num">${pxF(a0[i])}</span> · <span class="num ${ch>=0?'up':'down'}">${pct(ch,1)}</span>`;
+}
+function pxOut(ev){ const w=ev.target.closest&&ev.target.closest('.pxw'); if(!w) return; w.classList.remove('on'); const c=w.parentElement, t=c.dataset.px, b=$('spPx'); if(b&&PXC[t]) b.innerHTML=pxChart(t); }
+document.addEventListener('pointermove',pxMove); document.addEventListener('pointerdown',pxMove);
+document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList&&ev.target.classList.contains('pxw')) pxOut(ev); },true);
 function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
 function drawChart(s,iv){

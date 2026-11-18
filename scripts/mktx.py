@@ -69,27 +69,29 @@ for sec, cols in sec_cols.items():
     sp = spark(cols)
     if sp: x["sp"] = sp
     X["sec"][sec] = x
-# ---------- 6-month price line for every stock page -> px6.json on the orphan `px` branch (no daily churn on main) ----------
+# ---------- year-to-date daily price line for every stock page -> `px` branch (orphan, force-pushed: no churn on main) ----------
+# px/_dates.json = {asOf, dates: [...]} from the last close of the previous year; px/<T>.json = [close, ...] aligned to the dates
 def publish_px():
     import os, subprocess, tempfile
-    w = df.iloc[-127:]
-    pts = w.iloc[::-1].iloc[::2].iloc[::-1]          # every second session, always ending at the last close
-    out = {"asOf": str(pts.index[-1].date()), "from": str(pts.index[0].date()), "d": {}}
+    year = df.index[-1].year
+    prev = df.index[df.index.year < year]
+    w = df.loc[prev[-1]:] if len(prev) else df[df.index.year == year]
     uni = {s[0] for l in stocks.values() for s in l}
-    for t in pts.columns:
-        if t not in uni: continue
-        c = pts[t]
-        if c.isna().sum() > len(c) * 0.5 or pd.isna(c.iloc[-1]): continue
-        out["d"][t] = [None if pd.isna(v) else (round(float(v), 2) if v < 1000 else round(float(v))) for v in c]
-    txt = json.dumps(out, separators=(",", ":"))
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN"); repo = os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he")
     url = f"https://x-access-token:{token}@github.com/{repo}.git" if token else subprocess.run(["git", "remote", "get-url", "origin"], cwd=root, capture_output=True, text=True).stdout.strip()
     with tempfile.TemporaryDirectory() as t:
-        (pathlib.Path(t) / "px6.json").write_text(txt, encoding="utf-8")
+        tp = pathlib.Path(t); n = 0
+        (tp / "_dates.json").write_text(json.dumps({"asOf": str(w.index[-1].date()), "dates": [str(d.date()) for d in w.index]}, separators=(",", ":")))
+        for tk in w.columns:
+            if tk not in uni: continue
+            c = w[tk]
+            if pd.isna(c.iloc[-1]) or c.notna().sum() < 5: continue
+            (tp / f"{tk}.json").write_text(json.dumps([None if pd.isna(v) else (round(float(v), 2) if v < 1000 else round(float(v), 1)) for v in c], separators=(",", ":")))
+            n += 1
         g = lambda *a: subprocess.run(["git", "-c", "user.name=wallstreet-bot", "-c", "user.email=bot@users.noreply.github.com", *a], cwd=t, check=True, capture_output=True)
-        g("init", "-q"); g("checkout", "-q", "--orphan", "px"); g("add", "px6.json"); g("commit", "-qm", "6-month price lines")
+        g("init", "-q"); g("checkout", "-q", "--orphan", "px"); g("add", "-A"); g("commit", "-qm", "year-to-date price lines")
         g("push", "-fq", url, "px")
-    print("px6.json published", len(out["d"]), "stocks", len(txt) // 1024, "KB")
+    print("px published", n, "stocks,", len(w), "sessions from", w.index[0].date())
 try: publish_px()
 except Exception as e: print("px publish failed", type(e).__name__, str(e)[:200])
 
