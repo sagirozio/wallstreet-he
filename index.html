@@ -908,7 +908,7 @@ function card(r){
     ${r.guideText&&prevGuide(r)?`<div class="rcl flat rcp">ברבעון הקודם (${esc(prevGuide(r).q||'')}): ${esc(prevGuide(r).guideText)}</div>`:''}
     ${r.delta?`<div class="rcl"><b>מה השתנה:</b> <span class="flat">${esc(r.delta)}</span></div>`:''}
     ${r.note?`<div class="rcl flat">${esc(r.note)}</div>`:''}
-    ${Array.isArray(r.call)&&r.call.length?`<div class="rcl"><b>משיחת המשקיעים:</b><ul class="rcc">${r.call.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
+    ${Array.isArray(r.call)&&r.call.length?`<div class="rcl"><b>מה אמרה ההנהלה:</b><ul class="rcc">${r.call.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
     ${r.react?`<div class="rcl"><b>תגובת המניה:</b> <span class="${rc}">${esc(r.react)}</span></div>`:''}
     ${/^https:\/\//.test(r.ir||'')?`<div class="rcf"><a href="${esc(r.ir)}" target="_blank" rel="noopener">מצגת וחומרי הדוח ↗</a></div>`:''}
   </div>`;

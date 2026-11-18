@@ -42,7 +42,7 @@ Never invent a reason for a move — no source, no explanation.
 `t co sector date q epsAct epsEst epsYoy epsBasis revAct revEst revYoy guide guideText note react hook ir`.
 `revAct`/`revEst` in $B; `epsYoy` a number, same basis as last year; `guide` = raised|above|inline|below|given|none.
 Enrich `auto` cards: add `revEst`, guidance, `note`, `hook`, fix numbers, then delete `auto` (and `src`).
-For significant reporters (~$50B+ or a 10%+ move) also add research fields: `call` = 2–4 short Hebrew bullets from the earnings call / management commentary (array of strings; what management said about demand, guidance, risks — sourced, paraphrased), and `delta` = one sentence on what changed versus last quarter (guidance raised/cut, trend change). The site shows last quarter's `guideText` next to the new one automatically.
+For significant reporters (~$50B+ or a 10%+ move) also add research fields: `call` = 2–4 short Hebrew bullets of what management said about demand, guidance and risks (array of strings; sourced, paraphrased). Take them from the earnings call when there is one; many companies hold no call (e.g. Berkshire Hathaway, most foreign filers) — then use the press release, shareholder letter or prepared remarks, and if there is nothing reliable, leave the field out, and `delta` = one sentence on what changed versus last quarter (guidance raised/cut, trend change). The site shows last quarter's `guideText` next to the new one automatically.
 
 **`profiles`** — `{"T": {"desc": "<one sentence>", "about": "<4–6 sentences>"}}` for stocks without `about`, up to 80 per run
 (order: new cards → calendar → today's news → movers/ytd → largest caps). Research from `about_src.json` + search; never translate it line by line.
