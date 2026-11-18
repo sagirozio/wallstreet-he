@@ -39259,7 +39259,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 13:55",
+  "asOf": "18.11.2026 · 14:56",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -39319,17 +39319,17 @@
   "brief": [
    {
     "h": "החוזים עולים, הנאסד״ק מוביל",
-    "t": "החוזים העתידיים עולים אחרי שני ימי ירידות, בהובלת הטכנולוגיה; תשואת האג״ח ל-10 שנים יורדת ל-5.10% והנפט מסוג WTI יורד לכ-$84.",
+    "t": "החוזים העתידיים עולים אחרי שני ימי ירידות, בהובלת הטכנולוגיה; תשואת האג״ח ל-10 שנים ב-5.10% והנפט מסוג WTI יורד לכ-$83.",
     "tone": "pos"
    },
    {
-    "h": "Nvidia ומניות השבבים עולות לפני המסחר",
-    "t": "לפי Reuters, Nvidia עולה ב-3.7% אחרי תחזית של $130 מיליארד לרבעון הבא (צפי $125.25 מיליארד); Nebius עולה ב-8.1%, CoreWeave ב-6.5% ו-Marvell ב-4.4%.",
-    "tone": "pos"
+    "h": "Nvidia עולה, ה-SEC פותחת בחקירה",
+    "t": "Nvidia עולה בכ-2.8% לפני המסחר אחרי תחזית של $130 מיליארד לרבעון הבא; לפי WSJ, ה-SEC בודקת אם הגילוי הנאות של החברה הטעה משקיעים.",
+    "tone": "neu"
    },
    {
-    "h": "Target ו-Lowe's העלו את התחזיות",
-    "t": "Target הרוויחה $2.65 למניה (צפי $2.08) והעלתה את תחזית הרווח ל-$10.65–11.40; ב-Lowe's המכירות בחנויות ותיקות עלו ב-1.8% (צפי 0.4%), אך המניה יורדת לפני המסחר.",
+    "h": "הקמעונאות: Target ו-TJX מעל הצפי",
+    "t": "Target הרוויחה $2.65 למניה (צפי $2.08) והעלתה את התחזית; ב-TJX המכירות עלו ב-6% ל-$15.95 מיליארד; Lowe's יורדת לפני המסחר למרות העלאת תחזית.",
     "tone": "pos"
    },
    {
@@ -39412,7 +39412,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611181355,
+  "rev": 202611181456,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -95978,6 +95978,76 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-nvda-sec-probe",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "Nvidia",
+   "tone": "neg",
+   "title": "דיווח: ה-SEC פותחת בחקירה אזרחית נגד Nvidia",
+   "body": "לפי The Wall Street Journal, רשות ניירות הערך האמריקאית בודקת אם הגילוי הנאות של Nvidia הטעה משקיעים, על רקע התפטרותו של ג׳נסן הואנג. מאז עזיבתו ירדה המניה ביותר מ-10%. לפני המסחר המניה עולה בכ-2.8% אחרי הדוח.",
+   "src": "TechCrunch (WSJ), Benzinga",
+   "url": "https://techcrunch.com/2026/11/17/sec-reportedly-investigating-nvidia-amid-huang-exit/"
+  },
+  {
+   "id": "2026-11-18-tjx-q3-fy27",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TJX"
+   ],
+   "tag": "TJX",
+   "tone": "pos",
+   "title": "TJX: המכירות עלו ב-6% והתחזית השנתית עודכנה",
+   "body": "המכירות ברבעון הגיעו ל-$15.95 מיליארד (צפי $15.82 מיליארד) והמכירות בחנויות ותיקות עלו ב-4%. הרווח המתואם למניה, ללא הטבה מהחזרי מכסים, היה $1.34, בדומה לצפי. תחזית הרווח השנתית: $5.33–5.36 למניה, והחברה צופה רכישה חוזרת של כ-$3 מיליארד השנה.",
+   "src": "TJX (Business Wire), Newsquawk",
+   "url": "https://www.financialcontent.com/article/bizwire-2026-11-18-the-tjx-companies-inc-reports-q3-fy27-results-comp-sales-growth-of-4-pretax-profit-margin-and-diluted-earnings-per-share-all-above-plan"
+  },
+  {
+   "id": "2026-11-18-ttwo-gta6-reviews",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TTWO"
+   ],
+   "tag": "Take-Two",
+   "tone": "pos",
+   "title": "Take-Two עלתה ב-6.4% לפני המסחר אחרי ביקורות GTA VI",
+   "body": "לפי Investing.com, המניה עלתה אחרי ביקורות חיוביות למשחק, שקיבל ציון 99 מתוך 100 ב-Metacritic. ההשקה בארה״ב בחצות שעון ניו יורק, ב-19.11. Oppenheimer צופה כ-20 מיליון עותקים בשלושת הימים הראשונים.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/taketwo-shares-climb-as-gta-vi-reviews-impress-ahead-of-blockbuster-launch-5035826"
+  },
+  {
+   "id": "2026-11-18-aaoi-offering",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AAOI"
+   ],
+   "tag": "Applied Optoelectronics",
+   "tone": "neg",
+   "title": "Applied Optoelectronics יורדת אחרי הנפקת מניות של עד $550 מיליון",
+   "body": "המניה ירדה ב-4.65% לפני המסחר אחרי שהחברה הגישה תשקיף למכירת מניות בהיקף של עד $550 מיליון לאורך זמן.",
+   "src": "Benzinga (via KuCoin)",
+   "url": "https://www.kucoin.com/news/flash/stock-market-rises-ahead-of-fomc-minutes-nvidia-applied-optoelectronics-and-palo-alto-networks-in-focus"
+  },
+  {
+   "id": "2026-11-18-panw-report-tonight",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "PANW"
+   ],
+   "tag": "Palo Alto Networks",
+   "tone": "neu",
+   "title": "Palo Alto Networks מדווחת הערב",
+   "body": "החברה תפרסם את התוצאות אחרי סגירת המסחר (23:05 שעון ישראל). הצפי: רווח של $0.97 למניה והכנסות של $3.31 מיליארד. לפני המסחר המניה עולה ב-1.8%.",
+   "src": "Newsquawk, Benzinga",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates-18th-november-2026---low-tgt-tjx-panw"
+  },
   {
    "id": "2026-11-18-tgt-q3-beat",
    "date": "2026-11-18",
