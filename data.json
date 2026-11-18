@@ -104637,6 +104637,60 @@
  },
  "news": [
   {
+   "id": "2026-11-18-fsly-comcast",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "FSLY"
+   ],
+   "tag": "Fastly",
+   "tone": "pos",
+   "title": "Fastly זינקה ביותר מ-10% אחרי שיתוף פעולה עם Comcast",
+   "body": "המניה עלתה בכ-10% בשעות הבוקר אחרי שהחברה הודיעה על מודל משותף להעברת תוכן עם Comcast, שישלב את פלטפורמת הקצה של Fastly ברשת המבוזרת של Comcast. המנכ״ל קיפ קומפטון אמר שהיכולות חיוניות לגיימינג, כמו ההשקה הקרובה של GTA VI. מתחילת השנה עלתה המניה בכ-76%.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nasdaq/fsly/news/why-up-down/why-are-fastly-shares-soaring-today"
+  },
+  {
+   "id": "2026-11-18-tenb-peers",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TENB"
+   ],
+   "tag": "Tenable",
+   "tone": "pos",
+   "title": "Tenable עולה בכ-12% יחד עם מניות הסייבר",
+   "body": "לפי Seeking Alpha, המניה נסחרה בצהריים סביב $43.28, עלייה של $4.68, יחד עם עליות של כ-5% עד 9% ב-Zscaler, Rubrik, Qualys ו-Okta. לא פורסמה ידיעה ספציפית על החברה.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674288-tenable-holdings-jumps-12-percent-as-peers-trade-higher?feed_item_type=news"
+  },
+  {
+   "id": "2026-11-18-huang-lutnick-senate",
+   "date": "2026-11-18",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "הואנג ושר המסחר לוטניק יעידו בוועדת הבנקאות של הסנאט",
+   "body": "יו״ר הוועדה, הסנאטור טים סקוט, אמר היום ב-CNBC שג׳נסן הואנג ושר המסחר הווארד לוטניק הסכימו להעיד, ככל הנראה לפני חג המולד, בפרשת Megaspeed מסינגפור, החשודה בהעברת שבבי Nvidia לסין. סקוט שואל מדוע משרד המסחר לא הוסיף את החברה לרשימת הישויות; מועד לדיון עוד לא נקבע.",
+   "src": "The Next Web",
+   "url": "https://thenextweb.com/news/jensen-huang-senate-banking-committee-lutnick-tim-scott"
+  },
+  {
+   "id": "2026-11-18-china-chip-rule-reaction",
+   "date": "2026-11-18",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "סין מאיימת בצעדי נגד על כלל הייצוא האמריקאי לשבבים",
+   "body": "דובר משרד החוץ הסיני, גואו ג׳יאקון, אמר שהכלל החדש של BIS הוא ניצול לרעה של פיקוח הייצוא, ומשרד המסחר הסיני הודיע שינקוט צעדי נגד אם וושינגטון תתמיד. שר המסחר של מלזיה אמר שמפעילי חוות השרתים במדינה יחויבו לציית לכלל, שצפוי להיכנס לתוקף מחר.",
+   "src": "Tech Times",
+   "url": "https://www.techtimes.com/articles/330982/20261118/beijing-calls-us-chip-export-rule-economic-coercion-malaysia-tells-data-centers-comply.htm"
+  },
+  {
    "id": "2026-11-18-wall-street-midday-dow-healthcare",
    "date": "2026-11-18",
    "t": [
