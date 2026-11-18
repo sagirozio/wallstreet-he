@@ -1843,7 +1843,9 @@ function renderThemes(){
   PL.d = LIVE_IND ? 'היום' : 'יום אחרון';
   $('thTabs').innerHTML = PER.map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${PL[k]}</button>`).join('');
   const c=cols3(thKey), q=thQ.trim().toLowerCase();
-  let rows=[...T.rows].map(r=>LIVE_IND?{...r,d:LIVE_IND[r.en]??null}:r).sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
+  const cnt=r=>r.cnt??((T.stocks||{})[r.en]||[]).length;
+  /* groups with fewer than 3 stocks are left out of the ranking (one stock would decide the result); search still finds them */
+  let rows=[...T.rows].filter(r=>q||cnt(r)>=3).map(r=>LIVE_IND?{...r,d:LIVE_IND[r.en]??null}:r).sort((a,b)=>(b[thKey]??-1e9)-(a[thKey]??-1e9));
   const rank=new Map(rows.map((r,i)=>[r.en,i+1]));
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown=(thAll||q)?rows:rows.slice(0,10);
@@ -1854,7 +1856,7 @@ function renderThemes(){
   }).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק את 10 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
-  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.length} בשוק האמריקאי, נכון ל${T.asOf}.${LIVE_IND?` עמודת "היום" חיה ומתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}).`:` עמודת "יום אחרון" היא השינוי ביום המסחר האחרון (${closeLbl()}); בזמן המסחר היא הופכת ל"היום" ומתעדכנת כל 3 דקות.`} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
+  $('thSub').textContent = `10 קבוצות התעשייה שעלו הכי הרבה בתקופה שנבחרה, מתוך ${T.rows.filter(r=>(r.cnt??3)>=3).length} קבוצות עם 3 מניות ומעלה בשוק האמריקאי, נכון ל${T.asOf}. קבוצות קטנות יותר לא מדורגות, אבל אפשר למצוא אותן בחיפוש.${LIVE_IND?` עמודת "היום" חיה ומתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}).`:` עמודת "יום אחרון" היא השינוי ביום המסחר האחרון (${closeLbl()}); בזמן המסחר היא הופכת ל"היום" ומתעדכנת כל 3 דקות.`} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים.`;
   $('thLegend').innerHTML = `◀ = אפשר ללחוץ על תעשייה כדי לראות את המניות המובילות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי התקופה שנבחרה. התשואה של כל תעשייה היא ממוצע פשוט של כל המניות בה (כל מניה באותו משקל), ולכן בקבוצה קטנה מניה אחת יכולה להזיז אותה.${T.check&&T.check.hist?` מחירי הסגירה של ${T.check.hist.toLocaleString('en-US')} מניות מגיעים ממאגר מבוקר (Massive) עד ${esc(T.check.histTo||'')}; ימים מאוחרים יותר מ-Yahoo, עד שהם מאומתים בבוקר.`:''} כשיש בקבוצה מעט מניות, הנתון פחות מייצג. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
 }
 document.addEventListener('click',e=>{

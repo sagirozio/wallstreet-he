@@ -92,6 +92,10 @@ for _f in (root / "ins").glob("*.json"):
 for _t, _l in _by.items():
     if re.fullmatch(r"[A-Z0-9.\-]{1,10}", _t): write(f"ins/{_t}.json", js(_l))
 if (root / "insiders.json").exists(): (root / "insiders.json").unlink()
+# industries: number of member stocks on each row (the table ranks only groups with 3+ stocks)
+_th = core.get("themes") or {}
+_stk = (data.get("themes") or {}).get("stocks") or {}
+if _th.get("rows"): _th["rows"] = [{**r, "cnt": len(_stk.get(r.get("en"), []))} for r in _th["rows"]]
 core_txt = js(core)
 write("core.json", core_txt)
 
