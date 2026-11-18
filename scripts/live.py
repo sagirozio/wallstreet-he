@@ -148,7 +148,7 @@ while True:
             payload = {"asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": sess, "state": state or ("REGULAR" if 9 * 60 + 30 <= mins < 16 * 60 else "POST" if mins >= 16 * 60 else "PRE"), "q": q}
             if FH: payload["sec"] = sectors_now(); payload["secN"] = len(FH)
             ix = {}
-            for sym in ("^GSPC", "^IXIC", "^DJI", "^RUT"):   # index levels: the "market in 30 seconds" line and the index boxes on home
+            for sym in ("^GSPC", "^IXIC", "^DJI", "^RUT", "^VIX", "BTC-USD"):   # index levels: the "market in 30 seconds" line and the index boxes on home
                 try:
                     fi = yf.Ticker(sym).fast_info; lp, pc = fi.last_price, fi.previous_close
                     if lp and pc: ix[sym] = [round(float(lp), 2), round((float(lp) / float(pc) - 1) * 100, 2)]

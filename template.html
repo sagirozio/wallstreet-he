@@ -199,7 +199,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .news .src{font-size:12px;color:var(--muted);margin-top:6px}.news .src a{color:var(--accent)}
 .tv-tape{min-height:46px;border-bottom:1px solid var(--line);background:#0c0d10}
 .tv-tape.off{display:none}
-.tv-live{margin:0 0 14px}.tv-live.off{display:none}#market:not(.sess) #tvLive .tvc,#market:not(.sess) .tvattr{display:none}
+.tv-live{margin:0 0 14px}.tv-live.off{display:none}
 .tvh{font-weight:700;font-size:14px;margin-bottom:8px}.tvh span{color:var(--muted);font-weight:400;font-size:12px}
 .tvq{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;direction:ltr}
 .tvq .tradingview-widget-container iframe{min-height:60px}
@@ -421,7 +421,7 @@ h2{color:#d5dae0}
 .stknote a{color:var(--accent);text-decoration:none;margin-inline-start:6px}
 .pmbox.hidden{display:none}.lvsw{margin:-8px 0 12px}.lvs{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:11.5px}.lvs .livedot{width:7px;height:7px;margin:0}#scSum .lvs{vertical-align:middle}.ixb{display:contents}body[data-pg] .tvq.ixrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;direction:rtl;align-items:stretch}.tvq.ixrow .tvc{direction:ltr;min-width:0}
 .tvq.ixrow .tvc .tvn{display:none}.tvq.ixrow .tradingview-widget-container{transform:scale(.72)!important;transform-origin:top right!important;width:139%!important;margin:0 0 -18px!important;min-height:60px}
-@media(max-width:700px){body[data-pg] .tvq.ixrow{display:flex;overflow-x:auto;scrollbar-width:none;gap:5px}.tvq.ixrow::-webkit-scrollbar{display:none}.tvq.ixrow .ixc{flex:0 0 30%}.ixb{display:contents}.tvq.ixrow .tvc{flex:0 0 38%}}
+@media(max-width:700px){body[data-pg] .tvq.ixrow{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .ixold{margin:0 0 8px}.ixg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.ixc{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:5px 8px;min-width:0}
 .ixc small{display:block;color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ixc b{display:block;font:700 14px "JetBrains Mono",monospace;color:#e3e6ea;direction:ltr;text-align:right;margin:0;white-space:nowrap}.ixc span{display:block;font:600 12px "JetBrains Mono",monospace;direction:ltr;text-align:right}
 .ixf{display:flex;align-items:center;gap:5px;justify-content:flex-start;color:var(--muted);font-size:11.5px;margin-top:4px}.ixf .livedot{width:7px;height:7px;margin:0}
@@ -671,8 +671,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="mstat" id="mktStatus"></div>
   <p class="sub hidden" id="marketNote"></p>
     <div class="pmbox hidden" id="pmBox"></div>
-    <div class="tv-live" id="tvLive"><div class="tvq ixrow"><div class="ixb" id="ixBox"></div><div class="tvc"><div class="tvn">VIX – מדד הפחד <span>VIX</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "CAPITALCOM:VIX", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div><div class="tvc"><div class="tvn">ביטקוין <span>BTC/USD</span></div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/plain" class="tvlz" data-src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js">{"symbol": "BITSTAMP:BTCUSD", "width": "100%", "isTransparent": true, "colorTheme": "dark", "locale": "he_IL"}</script></div></div></div></div>
-  <div class="ixf" id="ixFoot"></div><div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
+    <div class="tv-live" id="tvLive"><div class="tvq ixrow"><div class="ixb" id="ixBox"></div></div></div>
+    <div class="ixf" id="ixFoot"></div>
   <div class="hidden" id="vixCard"></div>
 </section>
 <section id="brief" data-pg="home"><div class="bgrid"><div class="brief2">
@@ -1585,10 +1585,15 @@ async function ghLive(branch,file,rawUrl){
 /* home: our own index boxes (live.json idx, every few minutes; between sessions the last close) */
 function renderIdx(){
   const b=$('ixBox'); if(!b) return;
-  const N=[['^GSPC','S&P 500'],['^IXIC','נאסד״ק'],['^DJI','דאו ג׳ונס'],['^RUT','ראסל 2000']], L=LIVE&&LIVE.idx||null;
+  const N=[['^GSPC','S&P 500'],['^IXIC','נאסד״ק'],['^DJI','דאו ג׳ונס'],['^RUT','ראסל 2000'],['^VIX','VIX'],['BTC-USD','ביטקוין']], L=LIVE&&LIVE.idx||null;
   const ov={}; (((OVERVIEW||{}).market||{}).idx||[]).forEach(x=>ov[x.k]=x);
   const open=L&&mktOpen()&&LIVE.date===nyToday(), dd=String((LIVE||{}).date||'').split('-'), tm=(String((LIVE||{}).asOf||'').split('· ')[1]||'');
-  const cells=N.map(([k,n])=>{ let v=null,c=null; if(L&&L[k]){ v=L[k][0]; c=L[k][1]; } else { const o=ov[n]||ov[n.replace(' ג׳ונס','')]; if(o){ v=parseFloat(String(o.v).replace(/,/g,'')); c=o.d; } }
+  const vx=(OVERVIEW||{}).vix, bt=(((FALLBACK.crypto||{}).rows||{})['BTC-USD']);
+  const cells=N.map(([k,n])=>{ let v=null,c=null; if(L&&L[k]){ v=L[k][0]; c=L[k][1]; }
+    else if(k==='^VIX'&&vx){ v=vx.v; c=vx.c; } else if(k==='BTC-USD'&&bt){ v=bt.p; c=bt.d; }
+    else { const o=ov[n]||ov[n.replace(' ג׳ונס','')]; if(o){ v=parseFloat(String(o.v).replace(/,/g,'')); c=o.d; } }
+    if(v==null) return `<div class="ixc"><small>${n}</small><b class="num flat">—</b><span></span></div>`;
+    if(k==='BTC-USD') return `<div class="ixc"><small>${n}</small><b class="num">$${Math.round(v).toLocaleString('en-US')}</b><span class="num ${c>=0?'up':'down'}">${c==null?'':pct(c,2)}</span></div>`;
     return v==null?'':`<div class="ixc"><small>${n}</small><b class="num">${v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</b><span class="num ${c>=0?'up':'down'}">${c==null?'':pct(c,2)}</span></div>`; }).join('');
   b.innerHTML=cells; const f=$('ixFoot'); if(f) f.innerHTML=open?`<i class="livedot"></i>לייב · ${esc(tm)}`:L&&dd.length===3?`סגירת ${+dd[2]}.${+dd[1]}`:'';
 }
@@ -2083,7 +2088,7 @@ async function loadIntra(){
     if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); }   /* pre-market prices: always the freshest */
     if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
     if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
-    if(j.crypto){ FALLBACK.crypto=j.crypto; if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
+    if(j.crypto){ FALLBACK.crypto=j.crypto; try{ renderIdx(); }catch(e){} if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
       const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
     if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); try{ renderBriefSum(); }catch(e){} }
