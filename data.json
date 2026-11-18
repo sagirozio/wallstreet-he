@@ -96580,6 +96580,28 @@
  },
  "news": [
   {
+   "id": "2026-11-18-trump-china-trip-apec",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ בדרך לסין: פגישה עם שי ופוטין מחר",
+   "body": "לפי Fox News, הנשיא טראמפ המריא ממנילה ביום רביעי אחר הצהריים לשנג׳ן, ומחר צפוי להיפגש עם נשיא סין שי ג׳ינפינג ועם נשיא רוסיה פוטין בשולי פסגת APEC. לפי הדיווח, גורמים רשמיים אינם צופים הודעה על מכסים חדשים; על הפרק יישום ההסכם הקיים, רכישות סיניות של תוצרת חקלאית אמריקנית ואספקת עפרות נדירות ומינרלים קריטיים.",
+   "src": "Fox News",
+   "url": "https://www.foxnews.com/live-news/trump-begins-asia-trip-in-philippines-before-trilateral-china-talks-with-xi-putin"
+  },
+  {
+   "id": "2026-11-18-trump-philippines-trade-deal",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: הושלם הסכם סחר עם הפיליפינים",
+   "body": "בארוחה רשמית במנילה עם הנשיא פרדיננד מרקוס הבן אמר טראמפ כי ארה״ב והפיליפינים השלימו את \"הסכם הסחר הגדול ביותר שעשינו אי פעם\". פרטי ההסכם, כולל מכסים וגישה לשווקים, לא פורסמו.",
+   "src": "Context.ph",
+   "url": "https://context.ph/2026/11/18/trump-announces-biggest-us-ph-trade-deal-details-still-undisclosed/"
+  },
+  {
    "id": "2026-11-18-copper-seven-month-low",
    "date": "2026-11-18",
    "t": [],
