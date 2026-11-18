@@ -104637,6 +104637,56 @@
  },
  "news": [
   {
+   "id": "2026-11-18-trump-carney-shenzhen",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ וקרני נפגשו בשנזן, השיחות על הסכם סחר יימשכו",
+   "body": "טראמפ וראש ממשלת קנדה מארק קרני נפגשו בערב ה-17.11 בשנזן בשולי פסגת APEC, בפגישה שלא תוכננה מראש. לפי הודעת לשכת ראש הממשלה הקנדי, השניים דנו בעבודה לקראת הסכם סחר והסכימו להמשיך בה; הבית הלבן לא פרסם הודעה על הפגישה. לפי הדיווח, טראמפ נפגש גם עם נשיאת מקסיקו קלאודיה שיינבאום.",
+   "src": "Toronto Sun (via Yahoo News)",
+   "url": "https://ca.news.yahoo.com/carney-meets-trump-shenzhen-day-153707721.html"
+  },
+  {
+   "id": "2026-11-18-xi-putin-shenzhen-apec",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "גיאופוליטיקה",
+   "tone": "neu",
+   "title": "שי ופוטין נפגשו בשנזן, מחר פסגה משולשת עם טראמפ",
+   "body": "שי ג׳ינפינג ופוטין קיימו שיחות בשנזן בשולי APEC, יום לפני פסגה משולשת עם טראמפ. בנאום הפתיחה של APEC אמר שי שסין תקדם רפורמות, החל בהורדת מכסים והרחבת הגישה לשווקים; לפי וושינגטון, על סדר היום של הפסגה איראן ופירוק נשק גרעיני.",
+   "src": "Euronews",
+   "url": "https://www.euronews.com/2026/11/18/chinas-xi-jinping-and-putin-hold-talks-in-shenzhen-on-eve-of-three-way-summit-with-trump"
+  },
+  {
+   "id": "2026-11-18-akam-rbc-conference",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AKAM"
+   ],
+   "tag": "Akamai",
+   "tone": "pos",
+   "title": "Akamai זינקה בכ-9% אחרי תחזית אופטימית של ההנהלה ל-AI",
+   "body": "המניה עלתה בכ-9% לכ-$92.4 אחרי הערות אופטימיות של ההנהלה על תחום ה-AI בכנס הטכנולוגיה של RBC. לפי Seeking Alpha, החברה הודיעה גם על שיתוף פעולה עם Microsoft שמביא את Workforce Protector לדפדפן Edge for Business ב-iOS ובאנדרואיד.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674327-akamai-technologies-rallies-9-on-managements-optimistic-ai-outlook"
+  },
+  {
+   "id": "2026-11-18-okta-peers-rally",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "OKTA"
+   ],
+   "tag": "Okta",
+   "tone": "pos",
+   "title": "Okta עולה בכ-9% עם מניות הסייבר",
+   "body": "המניה עלתה בכ-9% ל-$190 בצהריים יחד עם מניות הסייבר: Tenable עלתה בכ-14% ו-Zscaler בכ-6%. לא פורסמה ידיעה ספציפית על החברה; לפני כן המניה ירדה בכ-4% בחמישה ימים ובכ-7% בחודש.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674313-okta-rallies-9-amid-peer-strength?feed_item_type=news"
+  },
+  {
    "id": "2026-11-18-trump-philippines-no-deal-signed",
    "date": "2026-11-18",
    "t": [],
