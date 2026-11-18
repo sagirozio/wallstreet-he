@@ -1252,11 +1252,15 @@ const CRYPTO={
 };
 function cryptoHits(q){ const ql=q.trim().toLowerCase(); if(ql.length<2) return [];
   return Object.values(CRYPTO).filter(c=>c.kw.some(k=>k.startsWith(ql)||(ql.length>=3&&ql.startsWith(k)))).map(c=>({t:c.t,co:c.co,cap:'',sec:'',secHe:'מטבע קריפטו',crypto:1})); }
+function cryptoPerf(t){ const C=FALLBACK.crypto||{}, r=(C.rows||{})[t]; if(!r) return '<div id="crPerf"></div>';
+  const P=[['w','שבוע'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
+  return `<div id="crPerf"><h3 class="sph3">ביצועים</h3><div class="spperf">${P.map(([k,l])=>`<div><small>${l}</small><b class="num ${r[k]==null?'flat':r[k]>=0?'up':'down'}">${r[k]==null?'—':pct(r[k],1)}</b></div>`).join('')}</div><p class="legend">שינוי במחיר בדולר, לפי ימים קלנדריים (המסחר פעיל כל יום). עודכן ${esc(C.asOf||'')} · Yahoo Finance.</p></div>`; }
 function renderCrypto(c){
   document.title=`${c.sym} – ${c.co} | Wallstreeter`;
   const ix=stockIndex(), rel=c.rel.filter(t=>ix[t]);
   $('spBody').innerHTML=`<div class="sphead">${mono(c.sym)}<div class="sphn"><h2 style="text-align:right">${esc(c.he)} <bdi style="color:var(--muted);font-weight:500;font-size:.75em">${esc(c.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(c.sym)}</span> · מטבע קריפטו · נסחר 24/7 · מחיר בדולר</div></div>
       <div class="sphr"><div class="sptvh" id="spHdTv"></div></div></div>
+    ${cryptoPerf(c.t)}
     <div class="spchart" id="spChart" style="margin-top:14px"></div>
     <p class="spdesc">${esc(c.about)}</p>
     ${rel.length?`<h3 class="sph3">מניות שקשורות ל${esc(c.he)}</h3><div class="peers">${rel.map(t=>hubTile(t,ix[t].co,ix[t].r?ix[t].r.m:null,ix[t].cap?'$'+ix[t].cap:'')).join('')}</div><p class="legend">השינוי בחודש האחרון. הרשימה היא לצורך התמצאות בלבד ואינה המלצה.</p>`:''}
@@ -1865,6 +1869,7 @@ async function loadIntra(){
   try{ const r=await fetch(INTRA_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
     const j=await r.json(); if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
     if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
+    if(j.crypto){ FALLBACK.crypto=j.crypto; if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
       const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
     if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); try{ renderBriefSum(); }catch(e){} }

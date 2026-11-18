@@ -46,5 +46,11 @@ if rows:
 
 now = dt.datetime.now(ZoneInfo("Asia/Jerusalem"))
 data["premarket"] = {"state": state, "asOf": now.strftime("%d.%m.%Y · %H:%M"), "date": now.strftime("%Y-%m-%d"), "rows": rows}
+try:   # Bitcoin / Ethereum performance for the crypto pages
+    import crypto
+    cx = crypto.calc()
+    if cx: data["crypto"] = cx
+except Exception as e:
+    print("crypto fail", type(e).__name__, e)
 p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("premarket", state, rows)
