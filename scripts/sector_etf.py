@@ -54,4 +54,10 @@ def apply(data):
     return n >= 8
 
 if __name__ == "__main__":
-    for k, v in returns().items(): print(k, v)
+    import sys, json, pathlib
+    if "--write" in sys.argv:   # update data.json now (used to refresh without waiting for the nightly run)
+        p = pathlib.Path(__file__).resolve().parent.parent / "data.json"
+        data = json.loads(p.read_text(encoding="utf-8"))
+        if apply(data): p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    else:
+        for k, v in returns().items(): print(k, v)
