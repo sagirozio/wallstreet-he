@@ -1766,6 +1766,8 @@ function renderBriefSum(){
   else { const pm=FALLBACK.premarket||{}, il=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'});
     if(pm.date===il&&(pm.rows||[]).length&&(pm.rows[0].kind==='pre'))
       h=pm.rows.filter(r=>r.t==='SPY'||r.t==='QQQ').map(r=>sp(r.n.replace(' 100',''),r.c)).join(' · ')+` <small class="flat">· מסחר מקדים ${esc((pm.asOf||'').split('·').pop().trim())}</small>`;
+    else if(LIVE&&LIVE.idx&&LIVE.date){ const n={'^GSPC':'S&P 500','^IXIC':'נאסד״ק','^DJI':'דאו'}, dd=String(LIVE.date).split('-');   /* the last finished session, from the live file (not the hand-written overview) */
+      h=Object.keys(n).filter(k=>LIVE.idx[k]).map(k=>sp(n[k],LIVE.idx[k][1])).join(' · ')+` <small class="flat">· סגירת ${+dd[2]}.${+dd[1]}</small>`; }
     else h=((o.market||{}).idx||[]).slice(0,3).map(x=>sp(esc(x.k).replace('דאו ג׳ונס','דאו'),x.d)).join(' · '); }
   $('briefSum').innerHTML=h;
 }
