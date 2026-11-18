@@ -42689,7 +42689,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 22:27",
+  "asOf": "18.11.2026 · 23:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -42749,7 +42749,7 @@
   "brief": [
    {
     "h": "הדאו יורד, נאסד״ק וראסל 2000 עולים",
-    "t": "ביטוחי הבריאות מכבידים על הדאו: Humana יורדת בכ-12% ו-UnitedHealth בכ-11% על רקע הכלל CRUSH; מניות הסייבר עולות, Tenable בכ-15%, Netskope בכ-11% ו-Okta בכ-10%.",
+    "t": "ביטוחי הבריאות מכבידים על הדאו: Humana יורדת בכ-13% ו-UnitedHealth בכ-10% על רקע הכלל CRUSH; מניות הסייבר עולות, Tenable בכ-16%, Netskope ו-Okta בכ-12% ו-SentinelOne בכ-10%, לפני הדוח של Palo Alto הערב.",
     "tone": "neu"
    },
    {
@@ -42842,7 +42842,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611182227,
+  "rev": 202611182300,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -104636,6 +104636,35 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-s-cyber-rally",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "S"
+   ],
+   "tag": "SentinelOne",
+   "tone": "pos",
+   "title": "SentinelOne עולה בכ-10% עם מניות הסייבר",
+   "body": "המניה עולה היום בכ-10%, יחד עם Netskope, Okta ו-CrowdStrike. לפי StockStory, הדוח החזק של Nvidia עודד קניות במניות התוכנה שירדו, ואזהרת שר ביטחון המולדת מפני תקיפות סייבר על תשתיות בארה״ב תמכה בחברות האבטחה.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nasdaq/ntsk/news/why-up-down/netskope-sentinelone-crowdstrike-okta-and-zscaler-shares-are-soaring-what-you-need-to-know"
+  },
+  {
+   "id": "2026-11-18-google-ai-cyberattacks",
+   "date": "2026-11-18",
+   "t": [
+    "GOOGL",
+    "PANW",
+    "CRWD"
+   ],
+   "tag": "סייבר",
+   "tone": "neu",
+   "title": "Google: מתקפות סייבר אוטונומיות לחלוטין צפויות בתוך שישה חודשים",
+   "body": "לפי דוח של קבוצת מודיעין האיומים של Google ו-Mandiant, שפורסם ב-16 בנובמבר, מתקפות מבוססות סוכני AI שיפעלו באופן אוטונומי לחלוטין צפויות בתוך שלושה עד שישה חודשים. Palo Alto Networks תפרסם הערב את דוח הרבעון הראשון; תחזית החברה להכנסות הרבעון: $3.30–3.31 מיליארד.",
+   "src": "24/7 Wall St. (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/technology/ai/articles/google-says-fully-autonomous-ai-155248707.html"
+  },
   {
    "id": "2026-11-18-cbrs-target-cuts",
    "date": "2026-11-18",
