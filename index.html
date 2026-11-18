@@ -371,7 +371,10 @@ body[data-pg="market"] main>section{padding-top:18px}
 @media(min-width:901px){.erw{grid-template-columns:minmax(0,1.5fr) repeat(4,84px) 130px 150px 120px}.erw .ew{display:block}.erw .egm{display:none}.erw span.ew>.n{display:block}}
 @media(max-width:640px){.erw{grid-template-columns:minmax(0,1fr) 58px 58px 58px;gap:6px;padding:9px 12px}.erw .n{font-size:12.5px}}
 .stk2{min-width:0}.stk2 .co{min-width:0}@media(max-width:640px){.thsub .stks{grid-template-columns:minmax(0,1fr)!important}.thsub{padding:10px 10px 12px}}
-.rw2 .rsn{font-weight:700}.sxq{display:block;font-size:12.5px;margin-top:1px}.sxp{color:var(--text)}.sxd{font-weight:600}
+.rw2 .rsn{font-weight:700}.sxt{display:inline-block;min-width:44px;font:700 12px 'JetBrains Mono',monospace;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 4px;margin:0 0 0 8px;text-align:center;vertical-align:1px}
+@media(max-width:900px){.rw2.sec .nm2 b{display:flex;justify-content:flex-end;align-items:center;min-width:0;direction:ltr}.rw2.sec .nm2 b bdi{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}.rw2.sec .sxt{flex:none}}
+.grdesc{color:var(--muted);font-size:14px;line-height:1.6;margin:6px 0 10px;max-width:760px}.grpx{margin:10px 0 4px}
+.sxq{display:block;font-size:12.5px;margin-top:1px}.sxp{color:var(--text)}.sxd{font-weight:600}
 @media(min-width:901px){.rw2.mx .sxq{display:inline;margin:0}.rw2.mx .sxd{display:none}}
 .rw2 .rsn{font-weight:700}.rw2.mx{grid-template-columns:minmax(0,1fr) 66px 38px 50px}.spk{display:flex;justify-content:center}.rw2.isub{background:#0f1013}.rw2.isub .nm2{padding-inline-start:14px}.rw2.isub .nm2 b{font-weight:600;font-size:14px}.rw2.sec .nm2 b{font-size:15.5px}
 @media(min-width:901px){#secTable .rw2.mx,#thTable .rw2.mx{grid-template-columns:minmax(0,1fr) repeat(7,68px) 40px 96px 56px}}
@@ -1624,7 +1627,11 @@ let PXD=null, pxdP=null; const PXC={};
 function loadPxDates(){ if(pxdP) return pxdP; pxdP=fetch(PX_BASE+'_dates.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ PXD=j; return j; }).catch(()=>{ pxdP=null; return null; }); return pxdP; }
 function loadPx(t){ if(PXC[t]) return Promise.resolve(PXC[t]); return fetch(PX_BASE+encodeURIComponent(t)+'.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(a=>{ if(Array.isArray(a)) PXC[t]=a; return a; }).catch(()=>null); }
 const pxF=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), pxD=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:String(d||''); };
-function pxSeries(t){ let a0=PXC[t], D=(PXD||{}).dates; if(!a0||!D) return {};
+const PXDT={};   /* series with their own dates (sector ETFs) */
+function pxSeries(t){ let a0=PXC[t], D=PXDT[t]||(PXD||{}).dates; if(!a0||!D) return {};
+  if(PXDT[t]){ const e=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf[t]:null;
+    if(e&&e[0]){ if(D[D.length-1]===LIVE.date){ a0=[...a0.slice(0,-1),e[0]]; D=[...D.slice(0,-1),'עכשיו '+liveTm()]; } else if(LIVE.date>D[D.length-1]){ a0=[...a0,e[0]]; D=[...D,'עכשיו '+liveTm()]; } }
+    return {a0,D}; }
   const L=LIVE_R?liveQ(t):null; if(L&&L[0]&&Math.abs(L[1])<=60){ a0=[...a0,L[0]]; D=[...D,'עכשיו '+liveTm()]; } return {a0,D}; }
 function pxChart(t){
   const {a0,D}=pxSeries(t); if(!a0||!D) return '';
@@ -1633,7 +1640,7 @@ function pxChart(t){
   const X=i=>(i/n*W).toFixed(1), Y=v=>(P+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1);
   const pts=a.map(([i,v])=>`${X(i)},${Y(v)}`).join(' '), ch=(vs[vs.length-1]/vs[0]-1)*100, col=ch>=0?'var(--green)':'var(--red)';
   return `<div class="pxc" data-px="${esc(t)}"><div class="pxh"><b>מתחילת השנה</b><span class="num ${ch>=0?'up':'down'}" id="pxCh">${pct(ch,1)}</span><small id="pxInfo">שיא <span class="num">${pxF(mx)}</span> · שפל <span class="num">${pxF(mn)}</span></small></div>
-    <div class="pxw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="מחיר המניה מתחילת השנה"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
+    <div class="pxw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="המחיר מתחילת השנה"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
       <i class="pxv"></i><i class="pxz"></i><i class="pxdot"></i><span class="pxl num"></span><span class="pxt num"></span></div>
     <div class="pxf"><span>${pxD(D[a[0][0]])}</span><span>מחירי סגירה יומיים עד ${pxD(D[a[a.length-1][0]])}</span></div></div>`;
 }
@@ -2065,7 +2072,7 @@ async function refreshLive(){
   try {
     const r = await fetch('core.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return;
     const d = await r.json(), same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-    if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS={...d.sectors, mem:d.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
+    if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS={...d.sectors, mem:d.sectors.mem||(SECTORS||{}).mem, pyDates:d.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
     if (d.breadth) { FALLBACK.breadth=d.breadth; loadBrL(); }
     if (d.overview && (d.overview.rev||0) > ((OVERVIEW||{}).rev||0)) { OVERVIEW=d.overview; renderOverview(); }
     if (d.news) { const before=FALLBACK.news.length; mergeNews(d.news); if(FALLBACK.news.length!==before||!same(d.news.slice(0,3),NEWS.slice(0,3))){ sortNews(); renderNews(); try{ renderBriefNews(); }catch(e){} } }
@@ -2094,7 +2101,7 @@ async function loadIntra(){
     const j=await r.json();
     if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); }   /* pre-market prices: always the freshest */
     if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
-    if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
+    if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem, pyDates:j.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
     if(j.crypto){ FALLBACK.crypto=j.crypto; try{ renderIdx(); }catch(e){} if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
       const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
@@ -2150,6 +2157,20 @@ function renderSnap(){
 /* ---------- sector / industry page: returns, RS, breadth, its industries (sector), stocks ranked by YTD ---------- */
 let GISORT='ytd', GSORT='ytd', GLIM=25, GSPK=null, gspkP=null;
 function loadGSpark(){ if(gspkP) return gspkP; gspkP=fetch(PX_BASE+'_spark.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ GSPK=j&&j.d||{}; return GSPK; }).catch(()=>{ gspkP=null; return null; }); return gspkP; }
+/* one-line explanation per sector (by its SPDR ETF) */
+var SEC_DESC={
+  XLK:'חברות תוכנה, שבבים, חומרה ושירותי מחשוב. הסקטור הגדול ביותר במדד S&P 500, ונשלט בידי ענקיות כמו Nvidia, Apple ו-Microsoft.',
+  XLC:'חברות מדיה, רשתות חברתיות, חיפוש, בידור ותקשורת. כולל את Alphabet, Meta, Netflix וחברות הסלולר.',
+  XLY:'מוצרים ושירותים שהצרכן יכול לוותר עליהם: קמעונאות, רכב, מסעדות, מלונות ונסיעות. רגיש למצב הכלכלה ולהוצאות משקי הבית. כולל את Amazon ו-Tesla.',
+  XLP:'מוצרים שקונים בכל מצב: מזון, משקאות, מוצרי ניקיון וטואלטיקה, ורשתות שיווק. נחשב סקטור יציב יחסית.',
+  XLV:'תרופות, ביוטכנולוגיה, ציוד רפואי, ביטוח בריאות ובתי חולים.',
+  XLF:'בנקים, חברות ביטוח, ניהול השקעות, בורסות וחברות כרטיסי אשראי. רגיש לריבית ולמצב האשראי.',
+  XLI:'תעופה וביטחון, מכונות, הובלה ולוגיסטיקה, בנייה ושירותים עסקיים.',
+  XLE:'חברות נפט וגז: הפקה, זיקוק, צנרת ושירותי קידוח. נע בעיקר עם מחירי האנרגיה.',
+  XLB:'כימיקלים, מתכות וכרייה, חומרי בניין ואריזה. רגיש למחירי הסחורות ולצמיחה העולמית.',
+  XLU:'חברות חשמל, גז ומים. הכנסות מפוקחות ויציבות יחסית, ורגישות לריבית.',
+  XLRE:'קרנות ריט שמחזיקות נדל״ן מניב: משרדים, מרכזי נתונים, מגורים, מחסנים ומגדלי תקשורת. רגיש לריבית.'
+};
 async function renderGroup(kind,en){
   const box=$('grBody'); if(!box) return; box.innerHTML='<div class="empty">טוען…</div>';
   await loadStocks(); if(CURPG!=='group') return;
@@ -2164,6 +2185,9 @@ async function renderGroup(kind,en){
   if(!row&&!mem.length){ box.innerHTML=`<div class="empty">לא נמצא ${isSec?'סקטור':'תעשייה'} בשם <bdi>${esc(en)}</bdi>.</div>`; return; }
   document.title=`${en} | Wallstreeter`;
   const E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null, e=E&&etf?E[etf]:null;
+  if(isSec&&row&&etf){ const fr=((FALLBACK.sectors||{}).rows||[]).find(r=>r.t===etf)||{};
+    const [py,pd]=row.py&&SECTORS.pyDates&&row.py.length===SECTORS.pyDates.length?[row.py,SECTORS.pyDates]:[fr.py,(FALLBACK.sectors||{}).pyDates];
+    if(py&&pd&&py.length===pd.length){ PXC[etf]=py; PXDT[etf]=pd; } else { delete PXC[etf]; delete PXDT[etf]; } }
   const tile=(l,v)=>`<div><small>${l}</small><b class="num ${v==null?'flat':v>=0?'up':'down'}">${v==null?'—':pct(v,1)}</b></div>`;
   const gpx=e?e[0]:(isSec&&row&&row.px)||null, gd=e?e[1]:(row?row.d:null);
   const perf=row?`<div class="spperf">${gpx?`<div><small>מחיר <bdi>${esc(etf)}</bdi></small><b class="num">$${gpx.toFixed(2)}</b></div>`:''}${tile('היום',gd)}${PER.filter(([k])=>k!=='d').map(([k,l])=>tile(l,row[k])).join('')}${rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${rs>=80?'up':rs<=20?'down':''}">${rs}</b></div>`:''}</div>`:'';
@@ -2180,8 +2204,9 @@ async function renderGroup(kind,en){
   const indTbl=isSec&&inds.length?`<h3 class="sph3">ביצועי התעשיות בסקטור</h3><div class="tb2 gitb"><div class="gir2 ghd"><span>תעשייה</span>${cols.map(([k,l])=>ihd(k,l,wideCol(k))).join('')}${ihd('rs','RS')}<span class="n">גרף מתחילת השנה</span></div>${inds.filter(r=>iv(r)!=null).sort(byKey(ik)).map((r,n)=>{ const xi=(X.ind||{})[r.en]||{}; return `<a class="gir2" href="#ind/${encodeURIComponent(r.en)}"><span class="nm2"><b><bdi>${esc(r.en)}</bdi></b><small>${esc(r.n)} · ${thCnt(r)} מניות</small></span>${cols.map(([k])=>`<span class="${wideCol(k)}">${P(r[k])}</span>`).join('')}${r.rs==null?'<span class="n flat">—</span>':`<span class="n rsn ${r.rs>=80?'up':r.rs<=20?'down':''}">${r.rs}</span>`}${spark(xi.sp,r.ytd)}</a>`; }).join('')}</div>`:'';
   box.innerHTML=`<a class="back" href="#${isSec?'sectors':'themes'}">→ ${isSec?'לכל הסקטורים':'לכל התעשיות'}</a>
     <div class="grh"><h2><bdi>${esc(en)}</bdi>${etf?` <span class="grtk">${esc(etf)}</span>`:''}</h2><div class="grs">${esc(he)}${!isSec&&parent?` · סקטור: <a href="#sector/${encodeURIComponent(parent)}"><bdi>${esc(parent)}</bdi></a>`:''}</div></div>
+    ${isSec&&SEC_DESC[etf]?`<p class="grdesc">${SEC_DESC[etf]}</p>`:''}
     ${perf}<div class="lvsw">${liveStamp()}</div><div class="spchips">${facts.map(f=>`<span>${f}</span>`).join('')}</div>
-    ${(row&&row.sp)||x.sp?`<div class="grsp">${spark((row&&row.sp)||x.sp,row&&row.ytd)}<small>מתחילת השנה</small></div>`:''}
+    ${isSec&&etf&&PXDT[etf]?`<div id="spPx" class="grpx">${pxChart(etf)}</div>`:(row&&row.sp)||x.sp?`<div class="grsp">${spark((row&&row.sp)||x.sp,row&&row.ytd)}<small>מתחילת השנה</small></div>`:''}
     ${indTbl}
     <h3 class="sph3">המניות המובילות${key==='ytd'?' מתחילת השנה':''}</h3>${stocks}
     <p class="legend">תשואות לפי מחירי הסגירה האחרונים. ${isSec?'תשואות הסקטור: שינוי המחיר של קרן הסל של הסקטור, כמו ב-Google Finance וב-TradingView. ':'תשואת התעשייה: ממוצע פשוט של המניות בה. '}RS = דירוג 1 עד 99 מול מניות S&P 500. רק חברות מעל מיליארד דולר. נתונים בלבד, לא המלצה.</p>`;
@@ -2199,7 +2224,7 @@ function renderSec(){
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
   $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];
-    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${r.t?` · <span class="num">${esc(r.t)}</span>`:''}${TS.has(r.t)?' '+TRB:''}</small>${(e||r.px)?`<span class="sxq"><span class="num sxp">$${(e?e[0]:r.px).toFixed(2)}</span>${r.d!=null?` <span class="num sxd ${r.d>=0?'up':'down'}">${pct(r.d,2)}</span>`:''}</span>`:''}</div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(r.sp||x.sp,r.ytd)}</div>`+
+    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi>${r.t?`<span class="sxt">${esc(r.t)}</span>`:''}</b><small><span class="car">◀</span>${esc(r.name)}${r.t?``:''}${TS.has(r.t)?' '+TRB:''}</small>${(e||r.px)?`<span class="sxq"><span class="num sxp">$${(e?e[0]:r.px).toFixed(2)}</span>${r.d!=null?` <span class="num sxd ${r.d>=0?'up':'down'}">${pct(r.d,2)}</span>`:''}</span>`:''}</div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(r.sp||x.sp,r.ytd)}</div>`+
       inds.map(i=>indRow(i,rank.get(i.en),c,secKey,true,TSI)).join(''); }).join('');
   $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${E?` עמודת "היום" מתעדכנת במהלך המסחר (עודכנה ב-${liveTm()}).`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
   try{ renderSnap(); }catch(e){}

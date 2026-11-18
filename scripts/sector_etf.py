@@ -35,6 +35,8 @@ def returns():
         ytd = c[c.index >= y0.index[-1]] if len(y0) else c[c.index.year == ld.year]
         pts = list(range(0, len(ytd), 5)); pts = pts if pts[-1] == len(ytd) - 1 else pts + [len(ytd) - 1]
         out[e]["sp"] = [round(float(ytd.iloc[i]), 2) for i in pts]   # year-to-date line for the tables
+        out[e]["py"] = [round(float(v), 2) for v in ytd.values]   # daily year-to-date closes for the big chart on the sector page
+        out.setdefault("_dates", [d.strftime("%Y-%m-%d") for d in ytd.index])
     return out
 
 def apply(data):
@@ -44,10 +46,11 @@ def apply(data):
     except Exception as e:
         print("sector ETF returns failed", type(e).__name__, e); return False
     n = 0
+    if R.get("_dates"): data.setdefault("sectors", {})["pyDates"] = R.pop("_dates")
     for row in (data.get("sectors") or {}).get("rows", []):
         r = R.get(row.get("t"))
         if not r: continue
-        for k in ("d", "w", "m", "q", "h", "ytd", "y", "sp", "px"):
+        for k in ("d", "w", "m", "q", "h", "ytd", "y", "sp", "px", "py"):
             if k in r: row[k] = r[k]
         n += 1
     print("sector ETF returns", n, {k: R[k].get("m") for k in list(R)[:3]})
