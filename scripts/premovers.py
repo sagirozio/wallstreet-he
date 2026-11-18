@@ -7,9 +7,13 @@ from yfinance import EquityQuery
 root = pathlib.Path(__file__).resolve().parent.parent
 p = root / "data.json"; data = json.loads(p.read_text(encoding="utf-8"))
 EX = {"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"}
-Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
+# only the major exchanges: without this the US region holds 4,000+ names above $1B (OTC foreign listings) and smaller real stocks fell off the end
+try: Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000]), EquityQuery("is-in", ["exchange", "NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS"])])
+except Exception as e:
+    print("exchange filter unavailable", type(e).__name__, e)
+    Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 rows, seen, state, npre, best = [], 0, None, 0, []
-for off in range(0, 4000, 250):
+for off in range(0, 7000, 250):
     r = None
     for k in range(3):
         try: r = yf.screen(Q, offset=off, size=250, sortField="intradaymarketcap", sortAsc=False); break
