@@ -42689,7 +42689,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 18:10",
+  "asOf": "18.11.2026 · 19:20",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -42748,13 +42748,13 @@
   ],
   "brief": [
    {
-    "h": "הנאסד״ק עולה, הדאו והכרייה יורדים",
-    "t": "מניות השבבים תומכות בנאסד״ק והדאו בירידה; מניות הכרייה צונחות עם הנחושת, שירדה ב-3.8% בקומקס לשפל של שבעה חודשים, ו-Freeport יורדת ב-7.6% אחרי הורדת המלצה.",
-    "tone": "neu"
+    "h": "הדאו יורד, ביטוחי הבריאות מכבידים",
+    "t": "UnitedHealth ו-Humana יורדות בכ-6% על רקע הצעת הכלל CRUSH של CMS, והכרייה צונחת עם הנחושת: Ero Copper יורדת ב-10.7% ו-Freeport ב-7.4%; הברנט ירד מתחת ל-$90.",
+    "tone": "neg"
    },
    {
-    "h": "Nvidia עולה, ה-SEC בודקת",
-    "t": "המניה עולה אחרי הכנסות שזינקו ב-103% ותחזית של $130 מיליארד לרבעון הבא (צפי LSEG: $125.3 מיליארד); לפי WSJ, ה-SEC בודקת אם הגילוי הנאות של החברה הטעה משקיעים.",
+    "h": "Nvidia מחקה את העליות, ה-SEC בודקת",
+    "t": "המניה איבדה את העליות שאחרי הכנסות שזינקו ב-103% ותחזית של $130 מיליארד לרבעון הבא (צפי LSEG: $125.3 מיליארד); לפי WSJ, ה-SEC בודקת אם הגילוי הנאות של החברה הטעה משקיעים.",
     "tone": "neu"
    },
    {
@@ -42842,7 +42842,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611181810,
+  "rev": 202611181920,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -104636,6 +104636,109 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-wall-street-midday-dow-healthcare",
+   "date": "2026-11-18",
+   "t": [
+    "UNH",
+    "HUM",
+    "NVDA"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "הדאו יורד בצהריים, ביטוחי הבריאות מכבידים",
+   "body": "לפי Yahoo Finance, הדאו ירד בצהרי היום ביותר מ-1%, בעיקר בגלל מניות ביטוחי הבריאות: UnitedHealth ו-Humana ירדו בכ-6% על רקע הצעת הכלל CRUSH של CMS. מניית Nvidia מחקה את העליות שאחרי הדוח, בעוד ה-Russell 2000 עולה.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+  },
+  {
+   "id": "2026-11-18-dhs-ai-cyberattacks-cyber-stocks",
+   "date": "2026-11-18",
+   "t": [
+    "PANW"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "שר ביטחון המולדת: עלייה בתקיפות סייבר מבוססות AI",
+   "body": "לפי TokenPost, שר ביטחון המולדת מרקוויין מולין תיאר עלייה בתקיפות סייבר מבוססות AI נגד תשתיות בארה״ב, ומניות הסייבר, ובהן Palo Alto Networks, עלו בבוקר המסחר.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/60639"
+  },
+  {
+   "id": "2026-11-18-housing-starts-oct",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "התחלות הבנייה זינקו ב-9.9% באוקטובר, ההיתרים ירדו",
+   "body": "התחלות הבנייה בארה״ב עלו באוקטובר ב-9.9% לקצב שנתי של 1.309 מיליון יחידות, בעוד היתרי הבנייה ירדו ב-7.4% ל-1.295 מיליון, לפי נתונים שצוטטו ב-Eurasia Business News.",
+   "src": "Eurasia Business News",
+   "url": "https://eurasiabusinessnews.com/2026/11/18/stock-market-today-november-18-2026-nvidia-earnings-fail-to-calm-investors-as-gold-and-oil-fall/"
+  },
+  {
+   "id": "2026-11-18-oil-falls-api-inventories",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "סחורות",
+   "tone": "neg",
+   "title": "הנפט יורד אחרי עלייה במלאים בארה״ב",
+   "body": "לפי Eurasia Business News, הנפט ירד אחרי שנתוני API הראו עלייה של 5.28 מיליון חביות במלאי הנפט הגולמי ו-5.12 מיליון חביות במלאי הבנזין. לפי Yahoo Finance, הברנט ירד מתחת ל-$90 לחבית, לשפל מאז סוף אוגוסט.",
+   "src": "Eurasia Business News",
+   "url": "https://eurasiabusinessnews.com/2026/11/18/stock-market-today-november-18-2026-nvidia-earnings-fail-to-calm-investors-as-gold-and-oil-fall/"
+  },
+  {
+   "id": "2026-11-18-lagarde-ai-dealbook",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "ריבית",
+   "tone": "neu",
+   "title": "לגארד: ה-AI תורם לחוסן של כלכלת אירופה",
+   "body": "נשיאת ה-ECB, כריסטין לגארד, אמרה בכנס DealBook של New York Times שה-AI אחראי במידה רבה לחוסן של כלכלת אירופה. ה-ECB העלה את הריבית ב-0.25% בספטמבר והותיר אותה ללא שינוי בסוף אוקטובר.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+  },
+  {
+   "id": "2026-11-18-ero-copper-falls",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ERO"
+   ],
+   "tag": "Ero Copper",
+   "tone": "neg",
+   "title": "Ero Copper צונחת ב-10.7% עם ירידת הנחושת",
+   "body": "לפי Proactive Investors, מניית Ero Copper ירדה ב-10.65% ל-$24.16 בבורסת ניו יורק, כשהנחושת ב-LME ירדה ב-3.5% ל-$12,770 לטון, לשפל מאז אפריל. הסיבות שצוינו: מכירות של קרנות אלגוריתמיות, דולר חזק וציפייה לריבית גבוהה יותר.",
+   "src": "Proactive Investors",
+   "url": "https://finance.yahoo.com/markets/commodities/articles/copper-stocks-fall-lme-prices-160100723.html"
+  },
+  {
+   "id": "2026-11-18-hbm-copper-falls",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "HBM"
+   ],
+   "tag": "Hudbay Minerals",
+   "tone": "neg",
+   "title": "Hudbay יורדת עם הנחושת",
+   "body": "לפי Proactive Investors, מניית Hudbay Minerals נמנתה עם מניות הנחושת שירדו היום, אחרי שמחיר הנחושת ב-LME ירד ליום החמישי ברציפות לשפל של שבעה חודשים.",
+   "src": "Proactive Investors",
+   "url": "https://finance.yahoo.com/markets/commodities/articles/copper-stocks-fall-lme-prices-160100723.html"
+  },
+  {
+   "id": "2026-11-18-panw-cyber-rally-earnings",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "PANW"
+   ],
+   "tag": "Palo Alto Networks",
+   "tone": "pos",
+   "title": "Palo Alto עולה ב-6.8% לפני הדוח הערב",
+   "body": "לפי TradingKey, מניית Palo Alto Networks עלתה ב-6.77%, לפני פרסום דוח הרבעון הראשון לשנת הכספים אחרי הנעילה. לפי TokenPost, מניות הסייבר עלו אחרי שמזכיר ביטחון המולדת תיאר עלייה בתקיפות סייבר מבוססות AI.",
+   "src": "TradingKey",
+   "url": "https://www.tradingkey.com/news/market-movers/262311281-market-movers-panw-20261118"
+  },
   {
    "id": "2026-11-18-pending-home-sales-oct",
    "date": "2026-11-18",
