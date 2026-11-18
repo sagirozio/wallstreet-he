@@ -1239,10 +1239,31 @@ function stockIndex(){
   return ix;
 }
 function capNum(c){ const m=String(c||'').match(/([\d.]+)\s*([TBMK])?/i); if(!m) return 0; return +m[1]*({T:1e12,B:1e9,M:1e6,K:1e3}[(m[2]||'').toUpperCase()]||1); }
-function heName(t){ return (HE[t]||'').split(' ')[0]; }
+function heName(t){ return CRYPTO[t] ? CRYPTO[t].he : (HE[t]||'').split(' ')[0]; }
 function secLine(t){ const s=stockIndex()[t]; if(!s) return ''; const sh=s.sec||''; const ih=s.ind||''; return (sh||ih)?`<small class="secl">${esc(sh)}${sh&&ih?' · ':''}${esc(ih)}</small>`:''; }
 
 /* ---------- global stock search (Hebrew names, tickers, English names) ---------- */
+/* crypto in the search: a light page with a live TradingView quote + chart (not part of the stock universe, the tables or the screener) */
+const CRYPTO={
+  'BTC-USD':{t:'BTC-USD',sym:'BTC',co:'Bitcoin',he:'ביטקוין',tv:'BITSTAMP:BTCUSD',kw:['btc','bitcoin','ביטקוין','ביטקון','קריפטו'],rel:['IBIT','MSTR','COIN','MARA','RIOT','HOOD'],
+    about:'ביטקוין הוא המטבע הדיגיטלי הראשון והגדול בעולם. הוא הושק ב-2009, אינו מנוהל בידי מדינה או חברה, וכמות המטבעות שלו מוגבלת ל-21 מיליון. המסחר בו פעיל 24 שעות ביממה, 7 ימים בשבוע, ולכן המחיר זז גם כשוול סטריט סגורה. בארה״ב אפשר להיחשף אליו גם דרך קרנות סל שמחזיקות ביטקוין ודרך מניות של חברות שמחזיקות או כורות אותו.'},
+  'ETH-USD':{t:'ETH-USD',sym:'ETH',co:'Ethereum',he:'את׳ריום',tv:'BITSTAMP:ETHUSD',kw:['eth','ethereum','ether','איתריום','אתריום','את׳ריום',"את'ריום",'קריפטו'],rel:['ETHA','COIN','HOOD','BMNR','MSTR'],
+    about:'את׳ריום היא רשת בלוקצ׳יין שעליה רצים חוזים חכמים ואפליקציות, והמטבע שלה (ETH) הוא המטבע הדיגיטלי השני בגודלו בעולם. המסחר בו פעיל 24 שעות ביממה, 7 ימים בשבוע. בארה״ב אפשר להיחשף אליו גם דרך קרנות סל שמחזיקות את המטבע ודרך מניות של חברות מתחום הקריפטו.'}
+};
+function cryptoHits(q){ const ql=q.trim().toLowerCase(); if(ql.length<2) return [];
+  return Object.values(CRYPTO).filter(c=>c.kw.some(k=>k.startsWith(ql)||(ql.length>=3&&ql.startsWith(k)))).map(c=>({t:c.t,co:c.co,cap:'',sec:'',secHe:'מטבע קריפטו',crypto:1})); }
+function renderCrypto(c){
+  document.title=`${c.sym} – ${c.co} | Wallstreeter`;
+  const ix=stockIndex(), rel=c.rel.filter(t=>ix[t]);
+  $('spBody').innerHTML=`<div class="sphead">${mono(c.sym)}<div class="sphn"><h2 style="text-align:right">${esc(c.he)} <bdi style="color:var(--muted);font-weight:500;font-size:.75em">${esc(c.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(c.sym)}</span> · מטבע קריפטו · נסחר 24/7 · מחיר בדולר</div></div>
+      <div class="sphr"><div class="sptvh" id="spHdTv"></div></div></div>
+    <div class="spchart" id="spChart" style="margin-top:14px"></div>
+    <p class="spdesc">${esc(c.about)}</p>
+    ${rel.length?`<h3 class="sph3">מניות שקשורות ל${esc(c.he)}</h3><div class="peers">${rel.map(t=>hubTile(t,ix[t].co,ix[t].r?ix[t].r.m:null,ix[t].cap?'$'+ix[t].cap:'')).join('')}</div><p class="legend">השינוי בחודש האחרון. הרשימה היא לצורך התמצאות בלבד ואינה המלצה.</p>`:''}
+    <p class="legend">המחיר והגרף: TradingView (בורסת Bitstamp). מידע בלבד, לא ייעוץ השקעות. מטבעות קריפטו תנודתיים במיוחד.</p>`;
+  tvWidget($('spHdTv'),'embed-widget-single-quote.js',{symbol:c.tv,width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
+  drawChart({t:c.sym,tv:c.tv},'D');
+}
 function searchStocks(q){
   q=q.trim(); if(!q) return [];
   const ix=stockIndex(), Q=q.toUpperCase().replace(/\s+/g,''), ql=q.toLowerCase(), out=[];
@@ -1257,7 +1278,7 @@ function searchStocks(q){
     else if(ql.length>=3 && co.includes(ql)) sc=30;
     if(sc) out.push([sc+Math.min(capNum(s.cap)/1e13,0.9), s]);
   }
-  return out.sort((a,b)=>b[0]-a[0]).slice(0,8).map(x=>x[1]);
+  return [...cryptoHits(q), ...out.sort((a,b)=>b[0]-a[0]).slice(0,8).map(x=>x[1])].slice(0,8);
 }
 let gqSel=0, gqList=[];
 function gqRender(){
@@ -1349,6 +1370,7 @@ function repMini(r){
 }
 async function renderStock(t){
   const tok=++spTok;
+  if(CRYPTO[t]){ await loadStocks(); if(tok!==spTok) return; renderCrypto(CRYPTO[t]); return; }
   if(!STK_OK || !SDET[t]) $('spBody').innerHTML='<div class="empty">טוען את תעודת הזהות…</div>';
   await Promise.all([loadStocks(), loadDet(t), loadReports(), loadNews()]);
   if(tok!==spTok) return;
@@ -1439,7 +1461,7 @@ async function loadLive(){
 }
 setInterval(loadLive, 3*60*1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive(); });
-function tvSym(s){ return (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
+function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
 function drawChart(s,iv){
   const box=$('spChart'); if(!box) return; box.innerHTML='';
@@ -1724,7 +1746,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('submit',e=>{ if(e.target.id!=='wAdd') return; e.preventDefault();
   const q=$('wQ').value.trim(); if(!q) return; const ix=stockIndex(), T=q.toUpperCase();
-  const hit=ix[T]?ix[T]:(searchStocks(q)[0]||null);
+  const hit=ix[T]?ix[T]:(searchStocks(q).filter(x=>!x.crypto)[0]||null);
   if(hit){ if(!inWatch(hit.t)) toggleWatch(hit.t); $('wQ').value=''; $('wQ').placeholder='נוספה: '+hit.t+'. אפשר להוסיף עוד'; }
   else { $('wQ').value=''; $('wQ').placeholder='לא מצאנו "'+q+'". נסו סימול, למשל NVDA'; } });
 
