@@ -389,6 +389,7 @@ body[data-pg="market"] main>section{padding-top:18px}
 .erw{padding:6px 12px}.erw.ehd{padding:7px 12px;font-size:11.5px}.erw .n{font-size:13px;font-weight:500}.erw .nm2 b{font-size:13.5px}
 .scr{padding:6px 12px}.scr.sch0{padding:5px 12px}.snr{padding:7px 2px}.snr .rkn{margin-inline-end:6px}
 h2{color:#d5dae0}
+.pxc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px 8px;margin:0 0 16px}.pxh{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px}.pxh small{margin-inline-start:auto;color:var(--muted);font-size:12px}.pxc svg{display:block;width:100%;height:140px;direction:ltr}.pxf{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;margin-top:4px;direction:ltr}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -1424,6 +1425,7 @@ async function renderStock(t){
       ${whyBlock(t,s,news)}
       ${repMini(rep)}
       ${s.r?`<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}${s.r.rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${s.r.rs>=80?'up':s.r.rs<=20?'down':''}">${s.r.rs}</b></div>`:''}</div>`:''}
+      <div id="spPx"></div>
       ${news.filter(n=>n!==WHY_USED).length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.filter(n=>n!==WHY_USED).slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
       <div class="spchips">${earnChip(t,rep)}${secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#themes">תעשייה: ${esc(s.indHe||s.ind)}</a>`:''}</div>
       <div class="spclamp" id="spAbout">${prof.about?aboutBlock(t,s,prof):`<p class="spdesc">${desc}</p>${aboutFacts(t)}`}</div><button class="spmore hidden" id="spAboutMore">קרא עוד ▾</button>
@@ -1442,7 +1444,7 @@ async function renderStock(t){
     ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}`;
   renderSpIns(t);
   { const a=$('spAbout'), b=$('spAboutMore'); if(a&&b&&a.scrollHeight>a.clientHeight+8){ b.classList.remove('hidden'); b.onclick=()=>{ a.classList.toggle('open'); b.textContent=a.classList.contains('open')?'הצג פחות ▴':'קרא עוד ▾'; }; } }
-  $('spBody').dataset.t=t; $('spBody').dataset.loaded='';
+  $('spBody').dataset.t=t; $('spBody').dataset.loaded=''; renderPx(t);
   // small live TradingView quote in the sticky header; our own figure stays as a fallback until it loads
   { const hb=$('spHdTv'); tvWidget(hb,'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
     const mo=new MutationObserver(()=>{ if(hb.querySelector('iframe')){ hb.closest('.sphr').classList.add('tvok'); mo.disconnect(); } }); mo.observe(hb,{childList:true,subtree:true}); }
@@ -1491,6 +1493,22 @@ async function loadLive(){
 }
 setInterval(loadLive, 3*60*1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive(); });
+/* ---------- 6-month price line on the stock overview (px6.json on the `px` branch: every second close, from our own history) ---------- */
+const PX_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/px/px6.json';
+let PX=null, pxP=null;
+function loadPx(){ if(pxP) return pxP; pxP=fetch(PX_URL,{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ PX=j; return j; }).catch(()=>{ pxP=null; return null; }); return pxP; }
+function pxChart(t){
+  const a0=PX&&PX.d&&PX.d[t]; if(!a0) return '';
+  const a=a0.map((v,i)=>[i,v]).filter(x=>x[1]!=null); if(a.length<10) return '';
+  const vs=a.map(x=>x[1]), mn=Math.min(...vs), mx=Math.max(...vs), n=a0.length-1, W=600, H=150, P=6;
+  const X=i=>(i/n*W).toFixed(1), Y=v=>(P+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1);
+  const pts=a.map(([i,v])=>`${X(i)},${Y(v)}`).join(' '), ch=(vs[vs.length-1]/vs[0]-1)*100, col=ch>=0?'var(--green)':'var(--red)';
+  const f=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), dt=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:''; };
+  return `<div class="pxc"><div class="pxh"><b>6 חודשים</b><span class="num ${ch>=0?'up':'down'}">${pct(ch,1)}</span><small>שיא <span class="num">${f(mx)}</span> · שפל <span class="num">${f(mn)}</span></small></div>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="מחיר המניה ב-6 החודשים האחרונים"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+    <div class="pxf"><span>${dt(PX.from)}</span><span>מחירי סגירה עד ${dt(PX.asOf)}</span></div></div>`;
+}
+function renderPx(t){ const b=$('spPx'); if(!b) return; if(PX){ b.innerHTML=pxChart(t); return; } loadPx().then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t) b2.innerHTML=pxChart(t); }); }
 function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
 function drawChart(s,iv){
