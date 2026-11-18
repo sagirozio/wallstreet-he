@@ -1,5 +1,10 @@
-name: (manual) Build price history from Massive
-on: { workflow_dispatch: {} }
+name: Rebuild price history from Massive (weekly)
+# A full rebuild fetches every session already split-adjusted as of today, so the history stays consistent.
+on:
+  schedule:
+    - cron: "23 6 * * 0"    # Sunday morning
+    - cron: "23 14 * * 6"   # Saturday backup (GitHub drops some scheduled starts)
+  workflow_dispatch: {}
 permissions: { contents: write }
 concurrency: { group: history, cancel-in-progress: false }
 jobs:

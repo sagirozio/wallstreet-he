@@ -3,7 +3,7 @@ Stored as close.csv.gz (rows = dates, columns = tickers) on the `history` branch
 so it never grows the main history. Needs MASSIVE_KEY (free tier: 5 calls/min, previous sessions only).
 
 load()            -> DataFrame (may be empty)
-update(df, keep)  -> appends missing sessions + applies new splits; returns (df, report)
+update(df, keep)  -> appends missing sessions; rescales older rows for splits that happened since (data-driven); returns (df, report)
 save(df)          -> pushes to the history branch (needs GH_TOKEN or a git remote with push rights)
 """
 import io, json, os, gzip, subprocess, tempfile, time, pathlib, urllib.request, datetime as dt
@@ -68,6 +68,7 @@ def load():
 def update(df, keep, start=None):
     """Append every session after the last stored one (up to yesterday, New York) and apply splits."""
     rep = {"added": [], "splits": 0}
+    had = len(df) > 0
     if not KEY: return df, rep
     ny_today = pd.Timestamp.now(tz="America/New_York").normalize().tz_localize(None)
     d = (df.index[-1] + pd.Timedelta(days=1)) if len(df) else (start or ny_today - pd.Timedelta(days=430))
@@ -83,12 +84,24 @@ def update(df, keep, start=None):
         new = pd.DataFrame.from_dict(rows, orient="index")
         df = pd.concat([df, new]).sort_index()
         df = df[~df.index.duplicated(keep="last")]
-    if len(df) and len(rows) and since is not None:
-        for s in splits_since(since - pd.Timedelta(days=1)):
+    # Splits. Massive's bars are fetched with adjusted=true, i.e. already adjusted for every split known on the fetch day.
+    # So a full rebuild (empty history) needs nothing, and an incremental run must adjust only rows stored BEFORE a split
+    # happened. We decide from the data itself (idempotent): if the series still shows the split-sized jump at the
+    # execution date, the older rows are unadjusted -> rescale them; if there is no such jump, nothing to do.
+    if had and len(df):
+        import math
+        for s in splits_since(since - pd.Timedelta(days=10)):
             t = (s.get("ticker") or "").replace(".", "-"); ex = pd.Timestamp(s.get("execution_date"))
             f, to = s.get("split_from"), s.get("split_to")
-            if t in df.columns and f and to:
-                df.loc[df.index < ex, t] = df.loc[df.index < ex, t] * (f / to); rep["splits"] += 1
+            if t not in df.columns or not f or not to or ex > ny_today: continue
+            k = f / to                                           # price after = price before * k
+            if abs(math.log(k)) < math.log(1.2): continue        # tiny stock dividends: can't tell from a normal move
+            c = df[t].dropna(); a, b = c[c.index < ex], c[c.index >= ex]
+            if not len(a) or not len(b): continue
+            jump = b.iloc[0] / a.iloc[-1]
+            if abs(math.log(jump / k)) < math.log(1.35):         # the split-sized jump is in the data -> old rows unadjusted
+                df.loc[df.index < ex, t] = df.loc[df.index < ex, t] * k; rep["splits"] += 1
+                print("split applied", t, ex.date(), f"{f}:{to}", flush=True)
     return df, rep
 
 def save(df):
