@@ -42689,7 +42689,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 21:40",
+  "asOf": "18.11.2026 · 21:56",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -42749,7 +42749,7 @@
   "brief": [
    {
     "h": "הדאו יורד, נאסד״ק וראסל 2000 עולים",
-    "t": "ביטוחי הבריאות מכבידים על הדאו: Humana ו-UnitedHealth יורדות בכ-11% על רקע הכלל CRUSH; מניות הסייבר עולות, Tenable בכ-16%, Netskope ב-13% ו-Okta ב-12%.",
+    "t": "ביטוחי הבריאות מכבידים על הדאו: Humana יורדת בכ-12% ו-UnitedHealth בכ-11% על רקע הכלל CRUSH; מניות הסייבר עולות, Tenable בכ-15%, Netskope בכ-11% ו-Okta בכ-10%.",
     "tone": "neu"
    },
    {
@@ -42758,9 +42758,9 @@
     "tone": "neu"
    },
    {
-    "h": "קמעונאות: TJX זינקה, Target העלתה תחזית",
-    "t": "TJX עולה בכ-10% אחרי עלייה של 4% במכירות בחנויות זהות והעלאת התחזית השנתית; ב-Target המכירות בחנויות זהות עלו ב-5.6% והתחזית הועלתה, ו-Lowe's יורדת למרות העלאת תחזית המכירות.",
-    "tone": "pos"
+    "h": "הזהב צונח, הנפט מתחת ל-$83",
+    "t": "הזהב יורד ב-3.65% ל-$3,723 לאונקיה והנפט WTI ב-2% ל-$82.94; הנחושת בשפל של שבעה חודשים מושכת את מניות הכרייה, Ero Copper ו-Trekor Metals יורדות בכ-10%–12%.",
+    "tone": "neg"
    },
    {
     "h": "פרוטוקול הפד: העלאה בדצמבר כמעט ודאית",
@@ -42842,7 +42842,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611182140,
+  "rev": 202611182156,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -104636,6 +104636,70 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-trump-gasoline-post",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: ״הירידה הגדולה ביותר במחיר הבנזין ב-18 שנה״",
+   "body": "בפוסט ב-Truth Social כתב הנשיא טראמפ שמחיר הבנזין רשם את הירידה הגדולה ביותר מזה 18 שנה, ושאל מדוע הירידה הגיעה אחרי הבחירות לקונגרס. לפי AAA, המחיר הממוצע לגלון עמד ביום שלישי על $3.78, לעומת $3.07 לפני שנה.",
+   "src": "Sunday Guardian",
+   "url": "https://sundayguardianlive.com/world/us-gas-prices-update-trump-claims-biggest-gasoline-price-drop-in-18-years-questions-why-fuel-costs-fell-after-midterm-elections-323825/"
+  },
+  {
+   "id": "2026-11-18-wall-street-afternoon-gold-slump",
+   "date": "2026-11-18",
+   "t": [
+    "UNH",
+    "HUM"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "אחר הצהריים: הדאו יורד ב-1.2%, הזהב צונח ב-3.7%",
+   "body": "לפי Yahoo Finance, כשעה וחצי לפני הנעילה הדאו ירד ב-1.17% והמדד S&P 500 ב-0.29%, בעוד הנאסד״ק עלה ב-0.32% וה-Russell 2000 ב-0.58%. הזהב ירד ב-3.65% ל-$3,723 לאונקיה, נפט WTI ירד ב-2% ל-$82.94, הביטקוין ירד ב-1.7% ל-$62,565 ומדד ה-VIX ירד ל-24.45.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+  },
+  {
+   "id": "2026-11-18-altman-openai-plan-public",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "AI",
+   "tone": "neu",
+   "title": "סם אלטמן: OpenAI מתכננת להפוך לחברה ציבורית",
+   "body": "בכנס DealBook של New York Times אמר מנכ״ל OpenAI סם אלטמן ״אנחנו מתכננים להיות ציבוריים״, ביום שבו Anthropic צפויה לתמחר את ההנפקה שלה. מועד להנפקה של OpenAI לא נמסר.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+  },
+  {
+   "id": "2026-11-18-tgb-copper-falls",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TGB"
+   ],
+   "tag": "Trekor Metals",
+   "tone": "neg",
+   "title": "Trekor Metals יורדת בכ-10% עם מניות הנחושת",
+   "body": "לפי Business Upturn, Trekor Metals ירדה בצהריים ב-9.1% ל-$5.64 ונמנתה עם מניות הנחושת שספגו את עיקר המכירות, לצד Ero Copper ו-Hudbay. הנחושת ירדה היום לשפל של שבעה חודשים; לא פורסמה ידיעה ספציפית על החברה.",
+   "src": "Business Upturn",
+   "url": "https://businessupturn.com/usa/money/us-markets/midday-movers-cybersecurity-stocks-surge-while-copper-and-mining-names-retreat/"
+  },
+  {
+   "id": "2026-11-18-f-lfp-cells-ship",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "F"
+   ],
+   "tag": "Ford",
+   "tone": "pos",
+   "title": "Ford החלה לייצר תאי סוללה LFP במישיגן",
+   "body": "Ford הודיעה שתאי הסוללה הראשונים מסוג LFP יוצאים מפס הייצור ב-BlueOval Battery Park במישיגן ונשלחים למפעל בלואיוויל לאבות הטיפוס של הטנדר החשמלי Fathom. לפי Yahoo Finance, הייצור מבוסס על רישיון לטכנולוגיה של CATL, ומחיר ה-Fathom צפוי להתחיל מתחת ל-$30,000.",
+   "src": "Ford",
+   "url": "https://www.fromtheroad.ford.com/us/en/articles/2026/ford-fathom-lfp-prismatic-battery-cells-ship"
+  },
   {
    "id": "2026-11-18-fomc-minutes-oct",
    "date": "2026-11-18",
