@@ -336,8 +336,26 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .cal .d{color:var(--amber);font-weight:700;min-width:48px}
 /* ===== pages + navigation (v2) ===== */
 body.r main>section:not(.on){display:none}
+/* ---- home: clean layout ---- */
+body[data-pg="home"] #tvTape,body[data-pg="home"] #stripWrap,body[data-pg="home"] #mvWrap{display:none}
+body[data-pg="home"] main>section{padding-top:18px}body[data-pg="home"] #market{padding-top:14px}
+.hwn{color:var(--muted);font-weight:500;font-size:.8em}
+body[data-pg="home"] section.fold{border-top:1px solid var(--line);padding-top:13px;padding-bottom:13px;margin-top:0}body[data-pg="home"] section.fold h2{font-size:16px}
+body[data-pg="home"] section.fold.open>.hh{margin-bottom:10px}body[data-pg="home"] #today-reports{padding-bottom:18px}
+body[data-pg="home"] #brief{padding-top:6px}
+@media(max-width:900px){.bnews{display:block!important;border:0;padding:0;border-top:1px solid var(--line);margin-top:4px;padding-top:16px}#bnList li{padding-bottom:10px}}
+@media(max-width:760px){header .top{padding:0}header .stamp{display:none}header{border-bottom:0}
+  .nvrow .logo{gap:7px;font-size:17px;flex:none}.nvrow .logo .lgi{width:30px;height:30px}.nvrow .logo .lge,.nvrow .logo .tagline{display:none}}
+@media(min-width:901px){
+  body[data-pg="home"] .tvq{grid-template-columns:repeat(6,minmax(0,1fr))}
+  body[data-pg="home"].r main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);column-gap:36px;grid-template-rows:auto auto auto auto auto auto 1fr;align-items:start}
+  body[data-pg="home"] #market,body[data-pg="home"] #brief,body[data-pg="home"] #homeMovers{grid-column:1/-1}
+  body[data-pg="home"] #today-reports{grid-column:1;grid-row:4/8}
+  body[data-pg="home"] #homeWatch{grid-column:2;grid-row:4}body[data-pg="home"] #todayAgenda{grid-column:2;grid-row:5}body[data-pg="home"] #recap{grid-column:2;grid-row:6}
+  body[data-pg="home"] #homeWatch{border-top:0}
+}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
-section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"▸";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
+section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
 section.fold:not(.open){padding-top:14px;padding-bottom:0}footer details.fsrc summary{cursor:pointer;color:var(--muted);font-size:13px}footer details.fsrc ul{margin-top:8px}
 .num,td,.spperf b,.brk b{font-variant-numeric:tabular-nums}
@@ -577,13 +595,6 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 <main class="wrap">
 
 
-<section id="brief" data-pg="home"><div class="bgrid"><div class="brief2">
-  <div class="bh"><h2>השוק ב-30 שניות</h2><span class="bfr" data-fr="brief"></span></div>
-  <p class="bsum" id="briefSum"></p>
-  <ul id="briefList"></ul>
-  <div class="bft"><a class="bwa" id="briefWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.5 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>שתף בוואטסאפ</a><a href="#page/news">לכל החדשות</a></div>
-</div><aside class="brief2 bnews" aria-label="חדשות חשובות"><div class="bh"><h2>חדשות חשובות</h2><span class="bfr" id="bnFr"></span></div><ul id="bnList"></ul><div class="bft"><a href="#page/news">לכל החדשות ←</a></div></aside></div></section>
-
 <section id="market" data-pg="home">
   <h2 class="sr-only">מצב השוק</h2>
   <div class="mstat" id="mktStatus"></div>
@@ -593,6 +604,13 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
   <div class="hidden" id="vixCard"></div>
 </section>
+<section id="brief" data-pg="home"><div class="bgrid"><div class="brief2">
+  <div class="bh"><h2>השוק ב-30 שניות</h2><span class="bfr" data-fr="brief"></span></div>
+  <p class="bsum" id="briefSum"></p>
+  <ul id="briefList"></ul>
+  <div class="bft"><a class="bwa" id="briefWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.5 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>שתף בוואטסאפ</a><a href="#page/news">לכל החדשות</a></div>
+</div><aside class="brief2 bnews" aria-label="חדשות חשובות"><div class="bh"><h2>חדשות חשובות</h2><span class="bfr" id="bnFr"></span></div><ul id="bnList"></ul><div class="bft"><a href="#page/news">לכל החדשות ←</a></div></aside></div></section>
+
 <section id="homeMovers" data-pg="home">
   <div class="hh"><h2><span id="hmvH">מניות שזינקו היום</span><span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
   <div class="hmv" id="hmvList"></div>
@@ -624,17 +642,17 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="cardx" id="todayGrid"></div>
 </section>
 
-<section id="homeWatch" data-pg="home" class="hidden">
-  <div class="hh"><h2>מניות במעקב</h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
+<section id="homeWatch" data-pg="home" class="hidden fold">
+  <div class="hh"><h2>מניות במעקב <span class="hwn" id="hwN"></span></h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
   <div class="cardx" id="homeWatchBody"></div>
-</section>
-<section id="recap" data-pg="home" class="hidden">
-  <div class="hh"><h2>סיכום יום המסחר</h2><span class="fresh" id="rcFr"></span></div>
-  <div id="rcBody"></div>
 </section>
 <section id="todayAgenda" data-pg="home" class="fold">
   <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
   <div class="cardx agenda" id="agBody"></div>
+</section>
+<section id="recap" data-pg="home" class="hidden fold">
+  <div class="hh"><h2>סיכום יום המסחר</h2><span class="fresh" id="rcFr"></span></div>
+  <div id="rcBody"></div>
 </section>
 
 <section id="top-reports" data-pg="reports">
@@ -754,7 +772,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="legend">"טווח מחיר" = המחיר שהחברה הציעה למניה לפני התמחור הסופי. "סכום הגיוס" = כמה כסף ההנפקה מכניסה. "סיום תקופת חסימה (Lock-up)" = היום שבו בעלי מניות מלפני ההנפקה מורשים למכור, ולכן הוא יכול להשפיע על מחיר המניה. המידע הוא נתונים בלבד ואינו המלצה להשתתף בהנפקה.</div>
 </section>
 
-<section id="news" data-pg="home">
+<section id="news" data-pg="none">
   <div class="hh"><h2>חדשות<span class="fresh" data-fr="news"></span></h2><a href="#page/news">לכל <span id="newsN"></span> הידיעות ←</a></div>
   <div class="cardx" id="newsLatest"></div>
 </section>
@@ -1056,6 +1074,9 @@ const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:
 const BASE_TITLE=document.title;
 let CURPG=null;
 document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
+(function(){ const mq=matchMedia('(max-width:760px)'), lg=document.querySelector('header .logo'), row=document.querySelector('.nvrow'), top=document.querySelector('header .top');
+  const fit=()=>{ if(!lg||!row||!top) return; if(mq.matches){ if(lg.parentNode!==row) row.insertBefore(lg,row.firstChild); } else if(lg.parentNode!==top) top.insertBefore(lg,top.firstChild); };
+  fit(); mq.addEventListener&&mq.addEventListener('change',fit); })();
 function pageOf(h){
   if(!h||h==='#') return ['home',null];
   if(h.startsWith('#page/')) return [h.slice(6)||'home',null];
@@ -1082,7 +1103,7 @@ function route(){
   if(pg==='news') loadNews();
   if(pg==='stocks'||(pg==='home'&&WATCH.length)) loadScr();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
-  CURPG=pg;
+  CURPG=pg; document.body.dataset.pg=pg;
   if(el && el.classList.contains('fold')) el.classList.add('open');
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
   else window.scrollTo(0,0);
@@ -1648,7 +1669,7 @@ function watchRows(lim){
 function renderWatch(){
   const b=$('watchBody'); if(!b) return;
   b.innerHTML = WATCH.length ? watchRows() : '<div class="empty">עוד אין מניות ברשימה. אפשר להוסיף כאן למעלה, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>';
-  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
+  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
 }
 document.addEventListener('click',e=>{
   const w=e.target.closest&&e.target.closest('.wbtn[data-w]'); if(w){ e.preventDefault(); toggleWatch(w.dataset.w); return; }
@@ -1869,7 +1890,7 @@ function renderOverview(){
   $('strip').innerHTML = row + row;                                                        /* two equal halves = seamless loop */
   $('strip').style.setProperty('--dur', Math.max(20, (row.match(/class="it"/g)||[]).length*4) + 's');
   renderVix(); renderMarket();
-  $('briefList').innerHTML = (o.brief||[]).map(b=>{ const x=briefItem(b);
+  $('briefList').innerHTML = (o.brief||[]).slice(0,3).map(b=>{ const x=briefItem(b);
     return `<li><i class="${x.tone==='pos'?'pos':x.tone==='neg'?'neg':''}"></i><div><b>${esc(x.h)}</b>${x.t?`<span>${esc(x.t)}</span>`:''}</div></li>`; }).join('');
   renderBriefSum();
   try{ renderAgenda(); }catch(e){}
