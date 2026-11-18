@@ -390,6 +390,11 @@ body[data-pg="market"] main>section{padding-top:18px}
 .scr{padding:6px 12px}.scr.sch0{padding:5px 12px}.snr{padding:7px 2px}.snr .rkn{margin-inline-end:6px}
 h2{color:#d5dae0}
 .pxc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px 8px;margin:0 0 16px}.pxh{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px}.pxh small{margin-inline-start:auto;color:var(--muted);font-size:12px}.pxh b{white-space:nowrap}.pxh small{white-space:nowrap}.pxw{position:relative;direction:ltr;touch-action:pan-y;cursor:crosshair}.pxc svg{display:block;width:100%;height:150px}.pxw i,.pxw span{position:absolute;display:none;pointer-events:none}.pxw.on i,.pxw.on span{display:block}.pxv{top:0;bottom:0;border-left:1px dashed #6b7280}.pxz{left:0;right:0;border-top:1px dashed #6b7280}.pxdot{width:7px;height:7px;border-radius:50%;background:var(--text);transform:translate(-50%,-50%)}.pxl{left:0;transform:translateY(-50%);background:#2c3038;color:var(--text);font-size:11.5px;padding:1px 5px;border-radius:3px}.pxt{bottom:-2px;transform:translate(-50%,100%);background:#2c3038;color:var(--text);font-size:11px;padding:1px 5px;border-radius:3px;z-index:2}.pxf{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;margin-top:4px;direction:ltr}
+.mtg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 10px}.mt{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
+.mt small{display:block;color:var(--muted);font-size:11.5px}.mt b{display:block;font-size:18px;font-weight:700;margin:1px 0;color:#d5dae0}.mt b.up{color:var(--green)}.mt b.down{color:var(--red)}.mt i{display:block;font-style:normal;color:var(--muted);font-size:11.5px;line-height:1.5}
+.mdet{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel);margin:0 0 10px}.mdet>summary{color:var(--text);font-size:14px}.mdet[open]>summary{margin-bottom:10px}.mdet .earn{display:block}.mdet .earn>*{max-width:620px}
+.ftabs{display:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 0 8px}.ftabs button{flex:none}
+@media(max-width:900px){.mtg{grid-template-columns:repeat(2,minmax(0,1fr))}.ftabs{display:flex}.fgrid.one{grid-template-columns:1fr}.fgrid.one>.fch{display:none}.fgrid.one>.fch.on{display:block}}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -1434,17 +1439,19 @@ async function renderStock(t){
     </div>
     <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 200 יום (בצהוב)</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
-      <h3 class="sph3" style="margin-top:0">הדוח האחרון</h3>${rep?`<div class="earn">${card(rep)}</div>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
+      ${repTiles(SDET[t],rep,reps)}
+      ${rep?`<details class="how mdet"><summary>הדוח המלא של ${esc(rep.q||'הרבעון')}: תחזית, מה אמרה ההנהלה, תגובת המניה</summary><div class="earn">${card(rep)}</div></details>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
       ${reps.length>1?`<a class="ewmore allrep" href="#reports" data-rq="${esc(t)}">לכל ${reps.length} הדוחות של ${esc(t)} במאגר ←</a>`:''}
       ${ehBlock(SDET[t])}
-      ${anBlock(t,SDET[t],reps)}
       <div id="spFund"></div>
-      <p class="legend"><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${encodeURIComponent(t.replace('-','.'))}&type=8-K&dateb=&owner=include&count=40" target="_blank" rel="noopener">כל הדיווחים של החברה ל-SEC ↗</a></p>
+      ${anBlock(t,SDET[t],reps)}
+      <details class="how" id="rpSrc"><summary>מקורות והסברים</summary></details>
+      <p class="legend keep"><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${encodeURIComponent(t.replace('-','.'))}&type=8-K&dateb=&owner=include&count=40" target="_blank" rel="noopener">כל הדיווחים של החברה ל-SEC ↗</a></p>
     </div>
     ${news.length?`<div class="sptab" data-st="nw"><div class="spnews">${news.map(spNewsItem).join('')}</div></div>`:''}`;
   renderSpIns(t);
   { const a=$('spAbout'), b=$('spAboutMore'); if(a&&b&&a.scrollHeight>a.clientHeight+8){ b.classList.remove('hidden'); b.onclick=()=>{ a.classList.toggle('open'); b.textContent=a.classList.contains('open')?'הצג פחות ▴':'קרא עוד ▾'; }; } }
-  $('spBody').dataset.t=t; $('spBody').dataset.loaded=''; renderPx(t);
+  $('spBody').dataset.t=t; $('spBody').dataset.loaded=''; renderPx(t); try{ rpTidy(); }catch(e){}
   // small live TradingView quote in the sticky header; our own figure stays as a fallback until it loads
   { const hb=$('spHdTv'); tvWidget(hb,'embed-widget-single-quote.js',{symbol:tvSym(s),width:'100%',isTransparent:true,colorTheme:'dark',locale:'he_IL'});
     const mo=new MutationObserver(()=>{ if(hb.querySelector('iframe')){ hb.closest('.sphr').classList.add('tvok'); mo.disconnect(); } }); mo.observe(hb,{childList:true,subtree:true}); }
@@ -1697,6 +1704,7 @@ async function loadFund(t){
     ].filter(Boolean);
     if(!ch.length) return;
     box.innerHTML=`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
+    try{ rpTidy(); }catch(e){}
   }catch(e){}
 }
 
@@ -1885,15 +1893,41 @@ function ehBlock(det){
   const sp=r=>{ if(typeof r.e!=='number'||!r.e) return '—'; const v=(r.a-r.e)/Math.abs(r.e)*100; return `<span class="ehbd ${v<0?'down':''}">${pct(v,Math.abs(v)<10?1:0)}</span>`; };
   const cmp=H.filter(r=>typeof r.e==='number'), bt=cmp.filter(r=>r.a>r.e).length, anyG=H.some(r=>r.g);
   return `<h3 class="sph3">${H.length} הרבעונים האחרונים</h3><div class="cardx anb">
-    ${cmp.length>=2?`<div class="ehsum"><b class="${bt*2>cmp.length?'up':bt*2<cmp.length?'down':''}">עקפה את צפי הרווח ב-${bt} מתוך ${cmp.length}</b></div>`:''}
+    ${false&&cmp.length>=2?`<div class="ehsum"><b class="${bt*2>cmp.length?'up':bt*2<cmp.length?'down':''}">עקפה את צפי הרווח ב-${bt} מתוך ${cmp.length}</b></div>`:''}
     <table class="eht"><thead><tr><th>רבעון</th><th>רווח למניה</th><th class="ehd">שינוי שנתי</th><th class="ehd">צפי</th><th>מול הצפי</th><th>הכנסות</th><th class="ehd">שינוי שנתי</th></tr></thead><tbody>
     ${H.map(r=>`<tr><td class="num"><bdi dir="ltr">${esc(r.q)}</bdi></td><td class="num">${eps(r.a)}${sm(r.ay,r.g)}</td><td class="num ehd">${yo(r.ay,r.g)}</td><td class="num ehd">${eps(r.e)}</td><td class="num">${sp(r)}</td><td class="num">${typeof r.r==='number'?money(r.r):'—'}${sm(r.ry)}</td><td class="num ehd">${yo(r.ry)}</td></tr>`).join('')}
     </tbody></table></div><p class="legend">רווח למניה מתואם מול צפי האנליסטים: Finnhub. הכנסות: הדוחות הרשמיים ל-SEC. השינוי הוא מול הרבעון המקביל בשנה שעברה. הרבעונים לפי שנת הכספים של החברה.${anyG?' * השינוי מחושב לפי הרווח החשבונאי (GAAP).':''}</p>`;
 }
+/* ---------- reports tab: summary tiles (latest quarter, revenue, beat record, next report) ---------- */
+function repTiles(det,rep,reps){
+  det=det||{}; const eh=det.eh||[], nx=(det.an||{}).next, today=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+  const L=eh[0]||(rep&&typeof rep.epsAct==='number'?{q:rep.q,a:rep.epsAct,e:typeof rep.epsEst==='number'?rep.epsEst:null,ay:typeof rep.epsYoy==='number'&&Math.abs(rep.epsYoy)<1000?Math.round(rep.epsYoy):null,r:typeof rep.revAct==='number'?rep.revAct:null,ry:typeof rep.revYoy==='number'?Math.round(rep.revYoy):null,cur:rep.revCur}:null);
+  const cmp=eh.length?eh.filter(r=>typeof r.e==='number'):(reps||[]).filter(r=>typeof r.epsAct==='number'&&typeof r.epsEst==='number').slice(0,8).map(r=>({a:r.epsAct,e:r.epsEst})), bt=cmp.filter(r=>r.a>r.e).length;
+  const T=(l,v,sub,c)=>`<div class="mt"><small>${l}</small><b class="${c||''}">${v}</b>${sub.filter(Boolean).map(x=>`<i>${x}</i>`).join('')}</div>`, sg=(v,d)=>`<span class="num ${v>0?'up':v<0?'down':'flat'}">${pct(v,d)}</span>`;
+  const out=[];
+  if(L){ const sp=typeof L.e==='number'&&L.e?(L.a-L.e)/Math.abs(L.e)*100:null;
+    out.push(T(`הדוח האחרון${L.q?' · <bdi dir="ltr">'+esc(L.q)+'</bdi>':''}`,`<span class="num">${eps(L.a)}</span>`,[typeof L.e==='number'?`צפי <span class="num">${eps(L.e)}</span>${sp!=null?' · '+sg(sp,Math.abs(sp)<10?1:0):''}`:'', typeof L.ay==='number'&&L.a>0?`${sg(L.ay,0)}${L.g?'*':''} מול שנה שעברה`:''],''));
+    if(typeof L.r==='number') out.push(T('הכנסות',`<span class="num">${L.cur?money(L.r).replace('$','')+' '+esc(L.cur):money(L.r)}</span>`,[typeof L.ry==='number'?`${sg(L.ry,0)} מול שנה שעברה`:''],'')); }
+  if(cmp.length>=2) out.push(T('מול צפי הרווח',`${bt} מתוך ${cmp.length}`,['רבעונים שעקפה את הצפי'],bt*2>cmp.length?'up':bt*2<cmp.length?'down':''));
+  if(nx&&nx.d>=today) out.push(T('הדוח הבא',`<span class="num">${dm(nx.d)}.${nx.d.slice(0,4)}</span>`,[nx.h==='bmo'?'לפני הפתיחה':nx.h==='amc'?'אחרי הסגירה':'', nx.eps!=null||nx.rev!=null?`צפי: ${nx.eps!=null?'EPS <span class="num">'+eps(nx.eps)+'</span>':''}${nx.eps!=null&&nx.rev!=null?' · ':''}${nx.rev!=null?'הכנסות <span class="num">'+money(nx.rev)+'</span>':''}`:''],''));
+  return out.length?`<div class="mtg">${out.join('')}</div>`:'';
+}
+/* legends of the reports tab go into one folded "sources" block; on phones the quarterly charts show one at a time */
+function rpTidy(){
+  const tab=document.querySelector('.sptab[data-st="rp"]'), src=$('rpSrc'); if(!tab||!src) return;
+  tab.querySelectorAll(':scope > p.legend:not(.keep), #spFund > p.legend').forEach(p=>src.appendChild(p));
+  src.style.display=src.querySelector('p')?'':'none';
+  const g=tab.querySelector('#spFund .fgrid');
+  if(g&&!tab.querySelector('.ftabs')){ const it=[...g.children]; if(it.length>1){ const tb=document.createElement('div'); tb.className='tabs ftabs';
+    tb.innerHTML=it.map((e,i)=>`<button type="button" data-fi="${i}" class="${i?'':'on'}">${esc(((e.querySelector('.fct')||{}).childNodes||[{textContent:''}])[0].textContent.trim())}</button>`).join('');
+    g.before(tb); g.classList.add('one'); it[0].classList.add('on'); } }
+}
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.ftabs button'); if(!b) return; const g=b.parentElement.nextElementSibling;
+  b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); [...g.children].forEach((c,i)=>c.classList.toggle('on',i===+b.dataset.fi)); });
 /* ---------- analysts block on the stock page (Finnhub: recommendation trends + next-report consensus) + beat history ---------- */
 function anBlock(t,det,reps){
   const an=(det||{}).an||{}, nx=an.next, rc=an.rec, today=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'}); let h='';
-  if(nx&&nx.d>=today){ h+=`<div class="anr"><span>הדוח הבא</span><b>${dm(nx.d)}.${nx.d.slice(0,4)}${nx.h==='bmo'?' · לפני הפתיחה':nx.h==='amc'?' · אחרי הסגירה':''}</b></div>`;
+  if(false&&nx&&nx.d>=today){ h+=`<div class="anr"><span>הדוח הבא</span><b>${dm(nx.d)}.${nx.d.slice(0,4)}${nx.h==='bmo'?' · לפני הפתיחה':nx.h==='amc'?' · אחרי הסגירה':''}</b></div>`;
     if(nx.eps!=null||nx.rev!=null) h+=`<div class="anr"><span>צפי האנליסטים${nx.q?` ל-${esc(nx.q)}`:''}</span><b>${nx.eps!=null?`רווח למניה <span class="num">${eps(nx.eps)}</span>`:''}${nx.eps!=null&&nx.rev!=null?' · ':''}${nx.rev!=null?`הכנסות <span class="num">${money(nx.rev)}</span>`:''}</b></div>`; }
   if(rc&&rc.now){ const [sb,b,hd,sl,ss]=rc.now, tot=sb+b+hd+sl+ss, buy=sb+b, sell=sl+ss;
     if(tot){ h+=`<div class="anr anrec"><span>דירוג האנליסטים${rc.p?` (${esc(rc.p.split('-').reverse().join('.'))})`:''}</span><b>${tot} אנליסטים</b><div class="anbar" role="img" aria-label="${buy} קנייה, ${hd} החזק, ${sell} מכירה"><i class="bu" style="flex:${buy}"></i><i class="ho" style="flex:${hd}"></i><i class="se" style="flex:${sell}"></i></div><small><span class="up">${buy} קנייה</span> · ${hd} החזק · <span class="down">${sell} מכירה</span></small></div>`;
