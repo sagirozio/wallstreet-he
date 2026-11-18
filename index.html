@@ -398,6 +398,16 @@ h2{color:#d5dae0}
 #hmvList.hmv{display:block;overflow:visible;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:0}#hmvList a.hmr{display:block;flex:initial;background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:10px 12px;white-space:normal}#hmvList a.hmr:first-child{border-top:0}#hmvList a.hmr span.hmt{font:inherit;direction:rtl}#hmvList a.hmr span.hmw{font:600 14px/1.5 Heebo,system-ui,sans-serif;direction:rtl;text-align:right}#hmvList a.hmr span.hmw span{font:400 13px/1.5 Heebo,system-ui,sans-serif;direction:rtl}
 .hmt{display:flex;align-items:baseline;gap:8px}#hmvList .hmt b{font:700 14px "JetBrains Mono",monospace}#hmvList .hmt .num{font:700 14px "JetBrains Mono",monospace;direction:ltr}.hmt small{color:var(--muted);font-size:12px;margin-inline-start:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55%}
 .hmw{display:block;margin-top:3px;font-size:14px;line-height:1.5;color:var(--text);font-weight:600}.hmw small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.hmw .flat{font-weight:400;font-size:13px}
+/* ---- news page ---- */
+.ntabs{margin:0 0 8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.ntabs button{flex:none}.nctl{margin:0 0 4px}.nctl .search{width:100%}
+.sag{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:36px;align-items:start}.sah{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.3px;padding:10px 0 6px;border-bottom:1px solid var(--line)}
+.sa{padding:13px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start}.sa h3{margin:0 0 4px;font-size:17px;line-height:1.4;font-weight:700;color:#dfe3e8}
+.sa p{margin:0 0 5px;font-size:14.5px;line-height:1.6;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.sa small{color:var(--muted);font-size:12px}.sa small a,.sl .ss a{color:var(--muted);text-decoration:none}.sa small a:hover,.sl .ss a:hover{color:var(--accent)}
+.sth{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}.sth svg{width:24px;height:24px}.sth .mono{width:44px;height:44px;font-size:12.5px}
+.ntk{font:600 11px "JetBrains Mono",monospace;border:1px solid var(--line);border-radius:5px;padding:0 5px;color:var(--accent)!important;margin-inline-start:4px}
+.sl{display:grid;grid-template-columns:30px minmax(0,1fr);gap:1px 10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.45}.sl .st{grid-row:1/3;text-decoration:none}.sl .st .mono{width:30px;height:30px;font-size:9.5px;border-radius:7px}.sl .st .sth{width:30px;height:30px;border-radius:7px}.sl .st .sth svg{width:17px;height:17px}
+.sl .sh{color:#d5dae0;font-weight:500}.sl .sh a{color:inherit;text-decoration:none}.sl .sh a:hover{color:var(--accent)}.sl .ss{grid-column:2;color:var(--muted);font-size:11.5px}
+@media(max-width:900px){.sag{grid-template-columns:1fr;gap:6px}.sa h3{font-size:16px}}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -840,10 +850,9 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 
 <section id="newsArchive" data-pg="news">
-  <a class="back" href="#">→ חזרה לעמוד הראשי</a>
-  <h2>מאגר חדשות</h2>
-  <p class="sub">כל הידיעות שפורסמו באתר, מהחדשה לישנה. אפשר לחפש לפי חברה, טיקר או נושא, ולסנן לפי קטגוריה.</p>
-  <div class="controls"><input class="search" id="nq" type="search" placeholder="חיפוש בחדשות: Nvidia, ריבית, הנפקה..."><select id="ntag"><option value="">כל הנושאים</option></select></div>
+  <h2>חדשות</h2>
+  <div class="tabs ntabs" id="nTabs"><button data-nv="all" class="on">הכל</button><button data-nv="main">שוק ומאקרו</button><button data-nv="stock">מניות</button><button data-nv="watch">במעקב</button></div>
+  <div class="controls nctl"><input class="search" id="nq" type="search" placeholder="חיפוש בחדשות: Nvidia, ריבית, הנפקה..."><select id="ntag" class="hidden"><option value="">כל הנושאים</option></select></div>
   <div id="newsAll"></div>
 </section>
 
@@ -1217,14 +1226,37 @@ function renderNews(){
   $('newsN').textContent = Math.max(NEWS.length, FALLBACK.newsN||0);
   const tags=[...new Set(NEWS.map(n=>n.tag))].sort((a,b)=>a.localeCompare(b,'he')), cur=$('ntag').value;
   $('ntag').innerHTML='<option value="">כל הנושאים</option>'+tags.map(x=>`<option${x===cur?' selected':''}>${esc(x)}</option>`).join('');
-  const q=$('nq').value.trim().toLowerCase(), tg=$('ntag').value;
-  const list=NEWS.filter(n=>(!tg||n.tag===tg)&&(!q||`${n.tag} ${n.title} ${n.body} ${(n.t||[]).join(' ')}`.toLowerCase().includes(q)));
-  let html='',prev=null;
-  list.slice(0,NLIM).forEach(n=>{ if(n.date!==prev){ const [y,m,dd]=n.date.split('-'); html+=(prev?'</div>':'')+`<div class="nday">${+dd}.${+m}.${y}</div><div class="news">`; prev=n.date; } html+=newsCard(n); });
-  $('newsAll').innerHTML = (html?html+'</div>':'<div class="empty">לא נמצאו ידיעות.</div>') + (list.length>NLIM?`<button class="ewmore" id="nMore" style="display:block;margin:14px auto 0">הצג עוד ידיעות (${list.length-NLIM})</button>`:'');
+  renderNewsPage();
 }
-['nq','ntag'].forEach(id=>$(id).addEventListener('input',()=>{ NLIM=30; renderNews(); }));
-document.addEventListener('click',e=>{ if(e.target.id==='nMore'){ NLIM+=60; renderNews(); } });
+/* ---------- news page: main stories (headline + summary) and a dense list of stock headlines ---------- */
+let NVIEW='all', NML=6, NSL=0; const N_MQ=matchMedia('(min-width:901px)');
+const N_IC={globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',pct:'<path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',chart:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',doc:'<path d="M7 3h8l4 4v14H7z"/><path d="M10 12h6M10 16h6"/>',bank:'<path d="M3 10 12 4l9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/>'},
+      N_COL={globe:'#f59e0b',pct:'#a855f7',bank:'#22b8cf',doc:'#22c55e',chart:'#5b8cff'};
+function newsIcon(n){ const one=Array.isArray(n.t)&&n.t.length===1;
+  if(one) return `<span class="sth">${mono(n.t[0])}</span>`;
+  const g=(n.tag||'')+' '+(n.title||''), k=/גיאופול|סין|מלחמ|איראן|מכס/.test(g)?'globe':/ריבית|הפד|פרוטוקול/.test(g)?'pct':/מאקרו|אינפלצ|תעסוק|צמיחה|תמ״ג/.test(g)?'bank':/דוח|הנפק/.test(g)?'doc':'chart';
+  return `<span class="sth ic" style="color:${N_COL[k]};background:${N_COL[k]}1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${N_IC[k]}</svg></span>`; }
+function newsWhen(n){ const p=String(n.date||'').split('-'), today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'}); return (n.date===today?'היום':p.length===3?`${+p[2]}.${+p[1]}`:'')+(n.time?' '+esc(n.time):''); }
+const newsSrc=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener"><bdi>${esc(n.src||'למקור')}</bdi> ↗</a>`:`<bdi>${esc(n.src||'')}</bdi>`;
+const newsTk=n=>(n.t||[]).slice(0,3).map(t=>`<a class="ntk" href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`).join('');
+const newsBig=n=>`<article class="sa">${newsIcon(n)}<div><h3>${esc(n.title)}</h3>${n.body?`<p>${esc(n.body)}</p>`:''}<small>${newsWhen(n)} · ${newsSrc(n)} ${newsTk(n)}</small></div></article>`;
+const newsLine=n=>{ const t=(n.t||[])[0]; return `<div class="sl">${t?`<a class="st" href="#stock/${encodeURIComponent(t)}" aria-label="${esc(t)}">${mono(t)}</a>`:`<span class="st">${newsIcon(n)}</span>`}<span class="sh" dir="rtl">${t?`<a href="#stock/${encodeURIComponent(t)}">${esc(n.title)}</a>`:esc(n.title)}</span><span class="ss">${newsWhen(n)} · ${newsSrc(n)}</span></div>`; };
+function renderNewsPage(){
+  const box=$('newsAll'); if(!box) return;
+  const q=$('nq').value.trim().toLowerCase(), wide=N_MQ.matches, hit=n=>!q||`${n.tag} ${n.title} ${n.body} ${(n.t||[]).join(' ')}`.toLowerCase().includes(q);
+  const all=NEWS.filter(hit), main=all.filter(n=>n.k!=='stock'), st=all.filter(n=>n.k==='stock'), ws=new Set(typeof WATCH!=='undefined'&&WATCH||[]), wt=all.filter(n=>(n.t||[]).some(t=>ws.has(t)));
+  const sl0=wide?22:9, more=(id,txt)=>`<button class="ewmore" id="${id}" style="display:block;margin:12px 0 0">${txt}</button>`, none='<div class="empty">לא נמצאו ידיעות.</div>';
+  document.querySelectorAll('#nTabs button').forEach(b=>b.classList.toggle('on',b.dataset.nv===NVIEW));
+  if(NVIEW==='main') box.innerHTML = main.length?main.slice(0,NML+9).map(newsBig).join('')+(main.length>NML+9?more('nMoreM',`עוד ידיעות (${main.length-NML-9})`):''):none;
+  else if(NVIEW==='stock') box.innerHTML = st.length?`<div class="slb">${st.slice(0,40+NSL).map(newsLine).join('')}</div>`+(st.length>40+NSL?more('nMoreS',`עוד כותרות (${st.length-40-NSL})`):''):none;
+  else if(NVIEW==='watch') box.innerHTML = !ws.size?'<div class="empty">אין מניות ברשימת המעקב. אפשר להוסיף בעמוד המניות, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>':wt.length?`<div class="slb">${wt.slice(0,40+NSL).map(newsLine).join('')}</div>`+(wt.length>40+NSL?more('nMoreS',`עוד כותרות (${wt.length-40-NSL})`):''):'<div class="empty">אין ידיעות על המניות שבמעקב בימים האחרונים.</div>';
+  else box.innerHTML = !all.length?none:`<div class="sag"><div><div class="sah">ראשיות</div>${main.slice(0,NML).map(newsBig).join('')||none}${main.length>NML?more('nMoreM',`עוד ידיעות ראשיות (${main.length-NML})`):''}</div>
+    <div><div class="sah">מניות · כותרות אחרונות</div><div class="slb">${st.slice(0,sl0+NSL).map(newsLine).join('')||none}</div>${st.length>sl0+NSL?more('nMoreS',`עוד כותרות (${st.length-sl0-NSL})`):''}</div></div>`;
+}
+$('nq').addEventListener('input',()=>{ NML=6; NSL=0; renderNewsPage(); });
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#nTabs button'); if(b){ NVIEW=b.dataset.nv; NML=6; NSL=0; renderNewsPage(); return; }
+  if(e.target.id==='nMoreM'){ NML+=10; renderNewsPage(); } else if(e.target.id==='nMoreS'){ NSL+=40; renderNewsPage(); } });
+N_MQ.addEventListener&&N_MQ.addEventListener('change',()=>{ try{ renderNewsPage(); }catch(e){} });
 
 /* ---------- TradingView: widgets load only when they scroll into view ---------- */
 const tvIO = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ tvIO.unobserve(e.target); tvInject(e.target._ph); } }),{rootMargin:'300px'}) : null;
