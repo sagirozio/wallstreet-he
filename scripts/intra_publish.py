@@ -7,7 +7,7 @@ d = json.loads((root / "data.json").read_text(encoding="utf-8"))
 REPO = os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he"); TOKEN = os.environ["GH_TOKEN"]
 b = d.get("breadth") or {}; rows = b.get("rows") or []
 out = {"ts": int(time.time()),
-       "sectors": d.get("sectors"), "movers": d.get("movers"), "premarket": d.get("premarket"), "crypto": d.get("crypto"),
+       "sectors": d.get("sectors"), "movers": d.get("movers"), "premarket": d.get("premarket"), "crypto": d.get("crypto"), "premkt": d.get("premkt"),
        "breadth": {**b, "rows": [{k: v for k, v in r.items() if k != "L"} for r in rows]},
        "brL": {rows[0]["d"]: rows[0]["L"]} if rows and rows[0].get("L") else {}}
 with tempfile.TemporaryDirectory() as t:

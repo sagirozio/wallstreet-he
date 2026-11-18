@@ -85,7 +85,7 @@ for ind, lst in stocks.items():
         universe[s[0]] = (s[1], s[2], ind)
 
 # ---------- core (inlined + polled) ----------
-core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates", "hl52", "insiders")}
+core = {k: v for k, v in data.items() if k not in ("profiles", "earnDates", "hl52", "insiders", "premkt")}
 # insider trades: own file, loaded by the stock page and the insiders section
 
 # reports: the page carries only the last 3 weeks; the full archive is reports.json (loaded on demand)

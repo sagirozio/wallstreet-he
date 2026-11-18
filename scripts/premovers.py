@@ -13,6 +13,8 @@ except Exception as e:
     print("exchange filter unavailable", type(e).__name__, e)
     Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 rows, seen, state, npre, best = [], 0, None, 0, []
+UNI = {s_[0] for l_ in ((data.get("themes") or {}).get("stocks") or {}).values() for s_ in l_}
+PM = {}   # pre-market price of every stock on the site: {T: [price, change % vs the last close]} -> data["premkt"] (shown on the stock page until the open)
 for off in range(0, 7000, 250):
     r = None
     for k in range(3):
@@ -25,6 +27,7 @@ for off in range(0, 7000, 250):
         ch = q.get("preMarketChangePercent")
         if ch is None and pre and base: ch = (pre / base - 1) * 100
         if pre: npre += 1; best.append((round(ch or 0, 1), q["symbol"]))
+        if pre and ch is not None and q["symbol"].replace(".", "-") in UNI: PM[q["symbol"].replace(".", "-")] = [round(float(pre), 2), round(float(ch), 2)]
         if ch is None or ch < 9 or (pre or 0) < 5: continue
         if (q.get("averageDailyVolume3Month") or 0) < 800_000 or q.get("exchange") not in EX or q.get("quoteType") != "EQUITY": continue
         rows.append({"t": q["symbol"].replace(".", "-"), "n": q.get("shortName") or q["symbol"], "p": round(float(ch), 1)})
@@ -36,4 +39,5 @@ print("state", state, "seen", seen, "pre movers", [(x["t"], x["p"]) for x in row
 if state in ("PRE", "PREPRE") or ny.hour * 60 + ny.minute < 9 * 60 + 30:
     data["movers"] = {"asOf": f"{il.day}.{il.month}.{il.year} בשעה {il:%H:%M} (שעון ישראל) · מסחר מקדים", "pre": True,
                       "date": ny.strftime("%Y-%m-%d"), "rows": rows[:40], "down": []}
+    data["premkt"] = {"date": ny.strftime("%Y-%m-%d"), "asOf": f"{il:%H:%M}", "q": PM}
     p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

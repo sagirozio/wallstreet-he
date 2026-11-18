@@ -1517,13 +1517,17 @@ function liveAgg(){
 }
 const liveTm=()=>String((LIVE||{}).asOf||'').split('· ')[1]||'';
 function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?(+m[1])+'.'+(+m[2]):''; }
+/* pre-market price of the stock (intra.json "premkt"): shown from 04:00 New York until the open, then it disappears */
+let PREMKT=null;
+function preLine(t){ const P=PREMKT&&PREMKT.date===nyToday()&&nyMin()<570&&PREMKT.q?PREMKT.q[t]:null;
+  return P?`<small class="ahr">מסחר מוקדם <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span>${PREMKT.asOf?` · ${esc(PREMKT.asOf)}`:''}</small>`:''; }
 function spDayHtml(t,s){
   const L=liveQ(t);
   if(L){ const open=mktOpen()&&LIVE.date===nyToday(), tm=(String(LIVE.asOf||'').split('· ')[1]||''), dd=String(LIVE.date||'').split('-');
     const P=!open&&LIVE.post&&LIVE.post[t]&&LIVE.date===nyToday()?LIVE.post[t]:null;
-    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}`; }
+    return `<b class="${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small><small class="num">$${L[0].toFixed(2)}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}${preLine(t)}`; }
   const d=s&&s.r&&s.r.d!=null?s.r.d:null;
-  return d==null?'':`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>`;
+  return d==null?preLine(t):`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>${preLine(t)}`;
 }
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
@@ -2006,7 +2010,9 @@ const INTRA_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/intra
 let INTRA_L=null;
 async function loadIntra(){
   try{ const r=await fetch(INTRA_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
-    const j=await r.json(); if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
+    const j=await r.json();
+    if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); }   /* pre-market prices: always the freshest */
+    if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
     if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem}; renderSec(); }
     if(j.crypto){ FALLBACK.crypto=j.crypto; if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
