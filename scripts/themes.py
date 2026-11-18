@@ -1,7 +1,7 @@
 """Nightly: industry (theme) performance + per-industry stock lists, from Yahoo Finance.
 Universe: US equities with market cap > $1B and avg daily volume >= 500k (Yahoo screener). Industry names match Finviz's.
 Group performance = equal-weight average of members (Finviz-style windows)."""
-import json, pathlib, time
+import urllib.request, json, pathlib, time
 import pandas as pd, yfinance as yf
 from yfinance import EquityQuery
 
@@ -141,6 +141,22 @@ if _m and close.index[-1].date() < _dt0.date(int(_m.group(3)), int(_m.group(2)),
     (root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     raise SystemExit(0)
 last = close.index[-1]
+# cross-check against Yahoo's live quotes of the same session (price + day change vs Yahoo's own previous close):
+# a stock whose last close is on another price scale (split / ADR ratio the feeds disagree on) is rescaled
+try:
+    _lj = json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/sagirozio/wallstreet-he/live/live.json", timeout=30).read().decode())
+except Exception as _e: _lj = {}; print("live.json cross-check skipped", _e)
+if _lj.get("date") == last.strftime("%Y-%m-%d"):
+    _fix = {}
+    for _t, _v in (_lj.get("q") or {}).items():
+        if _t not in close.columns or not _v or _v[1] is None: continue
+        _c = close[_t].dropna()
+        if len(_c) < 2 or _c.index[-1] != last: continue
+        _prev_y = _v[0] / (1 + _v[1] / 100)                 # Yahoo's previous close
+        _k_last, _k_prev = _v[0] / _c.iloc[-1], _prev_y / _c.iloc[-2]
+        if abs(_k_last - 1) > 0.3 or abs(_k_prev - 1) > 0.3:   # our series is on another scale
+            close.loc[close.index < last, _t] *= _k_prev; close.loc[last, _t] = _v[0]; _fix[_t] = (round(_k_prev, 3), round(_k_last, 3))
+    if _fix: print("rescaled to Yahoo live quotes", _fix, flush=True)
 def ret(n):
     v = (close.iloc[-1] / close.iloc[-1 - n] - 1) * 100
     v[close.iloc[-1 - n].isna()] = float("nan"); return v
