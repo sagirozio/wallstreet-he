@@ -104219,31 +104219,11 @@
   }
  },
  "movers": {
-  "asOf": "סגירת 17.11.2026",
-  "rows": [
-   {
-    "t": "SLS",
-    "n": "SELLAS Life Sciences Group, Inc",
-    "p": 156.4
-   },
-   {
-    "t": "BILL",
-    "n": "BILL Holdings, Inc.",
-    "p": 12.6
-   },
-   {
-    "t": "ACM",
-    "n": "AECOM",
-    "p": 11.1
-   }
-  ],
-  "down": [
-   {
-    "t": "NXT",
-    "n": "Nextpower Inc.",
-    "p": -12.1
-   }
-  ]
+  "asOf": "18.11.2026 בשעה 15:48 (שעון ישראל) · מסחר מקדים",
+  "pre": true,
+  "date": "2026-11-18",
+  "rows": [],
+  "down": []
  },
  "earnDates": {
   "AAPL": {
