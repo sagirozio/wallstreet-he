@@ -336,6 +336,10 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .cal .d{color:var(--amber);font-weight:700;min-width:48px}
 /* ===== pages + navigation (v2) ===== */
 body.r main>section:not(.on){display:none}
+.scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
+section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"▸";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
+section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
+section.fold:not(.open){padding-top:14px;padding-bottom:0}footer details.fsrc summary{cursor:pointer;color:var(--muted);font-size:13px}footer details.fsrc ul{margin-top:8px}
 .num,td,.spperf b,.brk b{font-variant-numeric:tabular-nums}
 .nvrow{display:flex;align-items:center;gap:12px;padding-bottom:10px}
 .nvrow nav{flex:1 1 auto;padding:0;overflow:visible}
@@ -589,12 +593,12 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="tvattr">Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></div>
   <div class="hidden" id="vixCard"></div>
 </section>
-
-
-<section id="todayAgenda" data-pg="home">
-  <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
-  <div class="cardx agenda" id="agBody"></div>
+<section id="homeMovers" data-pg="home">
+  <div class="hh"><h2><span id="hmvH">מניות שזינקו היום</span><span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
+  <div class="hmv" id="hmvList"></div>
 </section>
+
+
 
 <section id="macro" data-pg="market">
   <h2>מאקרו וריבית<button class="gq" data-gl="MACRO" aria-label="הסבר">?</button></h2>
@@ -621,16 +625,16 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 
 <section id="homeWatch" data-pg="home" class="hidden">
-  <div class="hh"><h2>המניות שלי</h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
+  <div class="hh"><h2>מניות במעקב</h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
   <div class="cardx" id="homeWatchBody"></div>
 </section>
 <section id="recap" data-pg="home" class="hidden">
   <div class="hh"><h2>סיכום יום המסחר</h2><span class="fresh" id="rcFr"></span></div>
   <div id="rcBody"></div>
 </section>
-<section id="homeMovers" data-pg="home">
-  <div class="hh"><h2><span id="hmvH">מניות שזינקו היום</span><span class="fresh" data-fr="movers"></span></h2><a href="#page/stocks">לכל המניות ←</a></div>
-  <div class="hmv" id="hmvList"></div>
+<section id="todayAgenda" data-pg="home" class="fold">
+  <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
+  <div class="cardx agenda" id="agBody"></div>
 </section>
 
 <section id="top-reports" data-pg="reports">
@@ -669,12 +673,6 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="week" id="week"></div>
 </section>
 
-<section id="ipos" data-pg="reports">
-  <h2>לוח הנפקות<button class="gq" data-gl="LOCK" aria-label="הסבר">?</button></h2>
-  <p class="sub" id="ipoSub">ההנפקות המעניינות בוול סטריט: מה נכנס למסחר השבוע, מי כבר הגישה בקשה, ואירועים שיכולים להזיז מניות שהונפקו לאחרונה. מוצגות רק חברות בשווי של מעל מיליארד דולר.</p>
-  <div id="ipoBody"></div>
-  <div class="legend">"טווח מחיר" = המחיר שהחברה הציעה למניה לפני התמחור הסופי. "סכום הגיוס" = כמה כסף ההנפקה מכניסה. "סיום תקופת חסימה (Lock-up)" = היום שבו בעלי מניות מלפני ההנפקה מורשים למכור, ולכן הוא יכול להשפיע על מחיר המניה. המידע הוא נתונים בלבד ואינו המלצה להשתתף בהנפקה.</div>
-</section>
 
 <section id="sectors" data-pg="market">
   <h2>ביצועי הסקטורים<button class="gq" data-gl="ETF" aria-label="הסבר">?</button><span class="fresh" data-fr="sectors"></span></h2>
@@ -711,10 +709,19 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 
 <section id="watch" data-pg="stocks">
-  <h2>המניות שלי</h2>
+  <h2>מניות במעקב</h2>
   <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). הרשימה נשמרת רק בדפדפן הזה.</p>
   <form class="thctl" id="wAdd"><input id="wQ" type="search" placeholder="הוספת מניה: סימול או שם, למשל NVDA או אפל" aria-label="הוספת מניה לרשימת המעקב"><button class="btn2" type="submit">הוסף</button></form>
   <div class="cardx" id="watchBody"></div>
+</section>
+<section id="screener" data-pg="stocks">
+  <h2>סורק מניות<button class="gq" data-gl="SCREEN" aria-label="הסבר">?</button></h2>
+  <p class="sub">סינון של כל המניות באתר לפי סקטור, גודל, תשואה, צמיחה, מכפיל רווח, מרחק מהשיא השנתי ועוד. לחיצה על כותרת עמודה ממיינת לפיה.</p>
+  <div class="scp" id="scPre"></div>
+  <details class="scd"><summary>סינון מתקדם</summary><div class="scf" id="scF"></div></details>
+  <div class="scsum" id="scSum"></div>
+  <div class="cardx" id="scTable"></div>
+  <p class="legend">שווי, תשואות ומרחק מהשיא: מחירי הסגירה האחרונים. צמיחה, מכפיל רווח (P/E) ושולי רווח: מהדוחות הרשמיים ל-SEC (4 הרבעונים האחרונים, רווח חשבונאי). אחוז המלצות הקנייה: Finnhub. נתונים בלבד, לא המלצה.</p>
 </section>
 <section id="stocksHub" data-pg="stocks">
   <h2>מניות</h2>
@@ -723,16 +730,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <h3 class="sph3">החברות הגדולות בשוק</h3><div class="hubg" id="hubBig"><div class="empty">טוען…</div></div>
 </section>
 
-<section id="screener" data-pg="stocks">
-  <h2>סורק מניות<button class="gq" data-gl="SCREEN" aria-label="הסבר">?</button></h2>
-  <p class="sub">סינון של כל המניות באתר לפי סקטור, גודל, תשואה, צמיחה, מכפיל רווח, מרחק מהשיא השנתי ועוד. לחיצה על כותרת עמודה ממיינת לפיה.</p>
-  <div class="scp" id="scPre"></div>
-  <div class="scf" id="scF"></div>
-  <div class="scsum" id="scSum"></div>
-  <div class="cardx" id="scTable"></div>
-  <p class="legend">שווי, תשואות ומרחק מהשיא: מחירי הסגירה האחרונים. צמיחה, מכפיל רווח (P/E) ושולי רווח: מהדוחות הרשמיים ל-SEC (4 הרבעונים האחרונים, רווח חשבונאי). אחוז המלצות הקנייה: Finnhub. נתונים בלבד, לא המלצה.</p>
-</section>
-<section id="gainers" data-pg="stocks">
+<section id="gainers" data-pg="stocks" class="fold">
   <h2>מניות שזינקו לאחרונה</h2>
   <p class="sub" id="gSub">המניות שעלו הכי חזק מתחילת נובמבר 2026 ועד 13.11. מוצגות רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע (20 ימים) של יותר מ-800 אלף מניות ביום.</p>
   <div class="tabs" id="gtabs"><button class="on" data-t="all">שווי מעל $1B</button><button data-t="large">ענקיות · מעל $10B</button></div>
@@ -740,7 +738,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="warn" id="gwarn">⚠️ חלק מהמניות כאן הן חברות בינוניות, ותנודתיות יותר מהענקיות. זינוק חד יכול להתהפך מהר.</div>
 </section>
 
-<section id="ytd" data-pg="stocks">
+<section id="ytd" data-pg="stocks" class="fold">
   <h2>מניות שהכפילו את עצמן ב-2026<span class="fresh" data-fr="ytd"></span></h2>
   <p class="sub">המניות שעלו ב-<bdi dir="ltr">100%</bdi> ומעלה מתחילת השנה, נכון ליום המסחר האחרון. רק חברות בשווי שוק מעל מיליארד דולר ועם מחזור מסחר ממוצע של יותר מ-800 אלף מניות ביום.</p>
   <div class="tabs" id="ytabs"><button class="on" data-t="all">שווי מעל $1B</button><button data-t="large">ענקיות · מעל $10B</button></div>
@@ -748,6 +746,12 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <button class="ewmore" id="ymore" style="display:block;margin:10px auto 0"></button>
   <div class="warn" id="ywarn">⚠️ רבות מהמניות כאן הן חברות ביוטק וחברות קטנות-בינוניות. אלה מניות תנודתיות במיוחד, ועלייה חדה כזו יכולה להתהפך מהר.</div>
   <p class="legend">חישוב עצמי מנתוני Yahoo Finance: בזמן המסחר כל 10 דקות (שיא ושפל לפי הגבוה והנמוך של היום עד עכשיו), ובערב חישוב מלא אחרי הסגירה. מחזור המסחר: ממוצע 3 חודשים. מניות שהונפקו השנה לא נכללות. 🇮🇱 = חברה ישראלית.</p>
+</section>
+<section id="ipos" data-pg="stocks" class="fold">
+  <h2>לוח הנפקות<button class="gq" data-gl="LOCK" aria-label="הסבר">?</button></h2>
+  <p class="sub" id="ipoSub">ההנפקות המעניינות בוול סטריט: מה נכנס למסחר השבוע, מי כבר הגישה בקשה, ואירועים שיכולים להזיז מניות שהונפקו לאחרונה. מוצגות רק חברות בשווי של מעל מיליארד דולר.</p>
+  <div id="ipoBody"></div>
+  <div class="legend">"טווח מחיר" = המחיר שהחברה הציעה למניה לפני התמחור הסופי. "סכום הגיוס" = כמה כסף ההנפקה מכניסה. "סיום תקופת חסימה (Lock-up)" = היום שבו בעלי מניות מלפני ההנפקה מורשים למכור, ולכן הוא יכול להשפיע על מחיר המניה. המידע הוא נתונים בלבד ואינו המלצה להשתתף בהנפקה.</div>
 </section>
 
 <section id="news" data-pg="home">
@@ -767,7 +771,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div id="spBody"></div>
 </section>
 
-<section id="glossary" data-pg="news">
+<section id="glossary" data-pg="gloss">
+  <a class="back" href="#">→ חזרה לעמוד הראשי</a>
   <h2>מילון מונחים</h2>
   <p class="sub">המונחים שחוזרים באתר, בהסבר קצר. בכל מקום באתר שיש סימן ? אפשר ללחוץ ולקבל את ההסבר.</p>
   <div class="gl" id="glList"></div>
@@ -824,7 +829,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </main>
 
 <footer><div class="wrap">
-  <b>מקורות:</b>
+  <details class="fsrc"><summary>מקורות המידע</summary>
   <ul>
     <li>דוחות: <a href="https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-FIRST-QUARTER-EARNINGS/default.aspx">Cisco</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000006951/000162828026073360/exhibit991q42026earningsre.htm">Applied Materials</a> · <a href="https://247wallst.com/cards/coreweave-q3-2026-earnings-crwv-01m73msrkgrgan75a5t7tb9fmz">CoreWeave</a> · <a href="https://stocktwits.com/symbol/CEG/earnings">Constellation</a> · <a href="https://www.tikr.com/blog/applovin-soars-27-on-record-q3-beat-as-ceo-calls-last-quarters-miss-our-own-foot-fault">AppLovin</a> · <a href="https://stockstory.org/us/stocks/nasdaq/mgni/news/earnings-call/mgni-q3-2026-deep-dive-ctv-strength-political-ad-surge-and-operating-leverage">Magnite</a></li>
     <li><a href="https://www.kaohooninternational.com/?p=593747">Apple</a> · <a href="https://www.zacks.com/stock/news/3018768/microsoft-q1-earnings-beat-estimates-as-cloud-accelerates">Microsoft</a> · <a href="https://stockstory.org/us/stocks/nasdaq/googl/news/earnings/alphabet-nasdaqgoogl-posts-q3-2026-sales-in-line-with-estimates-but-stock-drops">Alphabet</a> · <a href="https://www.newsquawk.com/headlines/amazoncom-inc-amzn-q3-2026-usd-eps-189-exp-197-sales-2019bln-exp-2022bln">Amazon</a> · <a href="https://www.earningswhispers.com/epsdetails/META/202609">Meta</a> · <a href="https://investinglive.com/stocks/tesla-q3-earnings-beat-as-margins-and-cash-flow-surprise-revenue-narrowly-misses/">Tesla</a></li>
@@ -834,8 +839,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
     <li>לוח דוחות: <a href="https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks">Kiplinger</a> · <a href="https://www.tipranks.com/news/the-week-that-was-the-week-ahead-macro-and-markets-november-15">TipRanks</a> · <a href="https://www.stocktitan.net/articles/earnings-calendar-week-of-november-16-2026">StockTitan</a> · <a href="https://www.newsquawk.com/headlines/weekly-us-earnings-estimates-16-20th-november-2026-ai-leader-nvda-the-highlight-with-retailers-also-in-focus">Newsquawk</a> · VIX: <a href="https://finance.yahoo.com/quote/%5EVIX/">Yahoo</a> · <a href="https://lovinglifeofpeter.substack.com/p/lovinglife-weekly-market-report">דוח שבועי</a> · <a href="https://lanceroberts.substack.com/p/bull-bear-report-week-of-november-00f">Bull Bear Report</a></li>
     <li>מאקרו ומחירים: <a href="https://www.bls.gov/">BLS</a> · <a href="https://www.cnbc.com/2026/11/09/october-cpi-report-2026-inflation.html">CNBC – CPI</a> · <a href="https://thehill.com/business/6201764-us-jobs-report-october/">The Hill – תעסוקה</a> · <a href="https://news.bitcoin.com/market-updates/fed-rate-hike-odds-reach-near-certainty-as-bitcoin-price-falls-to-65k/">FedWatch (14.11)</a> · <a href="https://finance.yahoo.com/economy/policy/articles/fed-hike-rates-december-prediction-075612146.html">החלטת אוקטובר</a> · <a href="https://www.israel.com/shekel-to-dollar">דולר-שקל (ECB)</a> · <a href="https://tradingeconomics.com/commodity/gold">זהב</a> · <a href="https://energynow.com/2026/11/oil-prices-fall-for-second-straight-week-as-global-supply-surplus-emerges-wti-closes-at-88-56-brent-at-95-84/">נפט</a> · <a href="https://cryptoticker.io/en/bitcoin-price-overnight-low-weekly-close-november-15-2026/">ביטקוין</a></li>
     <li><a href="https://www.cmelitegroup.com/knowledge-hub/nvidia-earnings-date-fiscal-q3-2027-report-time-guidance-and-expected-move/?nocache=1">מועד הדוח של Nvidia</a> · <a href="https://www.earningswhispers.com/stocks/Nvda">Earnings Whispers</a> · <a href="https://www.stocktitan.net/rankings/stock-gains-monthly/2026/november">StockTitan – העולות של נובמבר</a></li>
-  </ul>
-  <p class="flinks"><a href="#terms">תנאי שימוש</a> · <a href="#accessibility">הצהרת נגישות</a> · צור קשר: <a href="mailto:sagirozio@gmail.com">sagirozio@gmail.com</a></p>
+  </ul></details>
+  <p class="flinks"><a href="#glossary">מילון מונחים</a> · <a href="#terms">תנאי שימוש</a> · <a href="#accessibility">הצהרת נגישות</a> · צור קשר: <a href="mailto:sagirozio@gmail.com">sagirozio@gmail.com</a></p>
   <p class="flinks">נתוני שוק: Yahoo Finance · Finnhub · Massive · SEC EDGAR · גרפים: <a href="https://www.tradingview.com/">TradingView</a></p>
   <p>האתר מיועד למידע ולמידה בלבד ואינו ייעוץ השקעות. נתונים מאתרים חיצוניים עשויים להשתנות. כדאי לאמת מול המקור לפני כל החלטה.</p>
 </div></footer>
@@ -1044,13 +1049,13 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
   market:[['#macro','מאקרו וריבית'],['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק']],
-  reports:[['#top-reports','הדוחות הבולטים'],['#upcoming','לוח השבוע'],['#ipos','הנפקות'],['#reports','מאגר הדוחות']],
-  stocks:[['#watch','המניות שלי'],['#screener','סורק מניות'],['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026']],
-  news:[['#newsArchive','מאגר החדשות'],['#glossary','מילון מונחים']]
+  reports:[['#top-reports','הדוחות הבולטים'],['#upcoming','לוח השבוע'],['#reports','מאגר הדוחות']],
+  stocks:[['#watch','מניות במעקב'],['#screener','סורק מניות'],['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#ipos','הנפקות']]
 };
-const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive'};
+const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
 const BASE_TITLE=document.title;
 let CURPG=null;
+document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
 function pageOf(h){
   if(!h||h==='#') return ['home',null];
   if(h.startsWith('#page/')) return [h.slice(6)||'home',null];
@@ -1078,6 +1083,7 @@ function route(){
   if(pg==='stocks'||(pg==='home'&&WATCH.length)) loadScr();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   CURPG=pg;
+  if(el && el.classList.contains('fold')) el.classList.add('open');
   if(el && pg!=='legal') requestAnimationFrame(()=>el.scrollIntoView());
   else window.scrollTo(0,0);
   setNavH(); lazyScan();
@@ -1095,6 +1101,7 @@ function loadNews(){
   newsP=fetch('news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(all=>{ if(!Array.isArray(all)) return; mergeNews(all); NEWS_ALL=true; sortNews(); renderNews(); }).catch(()=>{ newsP=null; });
   return newsP;
 }
+let NLIM=30;
 function sortNews(){ NEWS=(FALLBACK.news||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))); }
 sortNews();
 function newsCard(n){ const [y,m,dd]=String(n.date).split('-');
@@ -1107,10 +1114,11 @@ function renderNews(){
   const q=$('nq').value.trim().toLowerCase(), tg=$('ntag').value;
   const list=NEWS.filter(n=>(!tg||n.tag===tg)&&(!q||`${n.tag} ${n.title} ${n.body} ${(n.t||[]).join(' ')}`.toLowerCase().includes(q)));
   let html='',prev=null;
-  list.forEach(n=>{ if(n.date!==prev){ const [y,m,dd]=n.date.split('-'); html+=(prev?'</div>':'')+`<div class="nday">${+dd}.${+m}.${y}</div><div class="news">`; prev=n.date; } html+=newsCard(n); });
-  $('newsAll').innerHTML = (html?html+'</div>':'<div class="empty">לא נמצאו ידיעות.</div>');
+  list.slice(0,NLIM).forEach(n=>{ if(n.date!==prev){ const [y,m,dd]=n.date.split('-'); html+=(prev?'</div>':'')+`<div class="nday">${+dd}.${+m}.${y}</div><div class="news">`; prev=n.date; } html+=newsCard(n); });
+  $('newsAll').innerHTML = (html?html+'</div>':'<div class="empty">לא נמצאו ידיעות.</div>') + (list.length>NLIM?`<button class="ewmore" id="nMore" style="display:block;margin:14px auto 0">הצג עוד ידיעות (${list.length-NLIM})</button>`:'');
 }
-['nq','ntag'].forEach(id=>$(id).addEventListener('input',renderNews));
+['nq','ntag'].forEach(id=>$(id).addEventListener('input',()=>{ NLIM=30; renderNews(); }));
+document.addEventListener('click',e=>{ if(e.target.id==='nMore'){ NLIM+=60; renderNews(); } });
 
 /* ---------- TradingView: widgets load only when they scroll into view ---------- */
 const tvIO = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ tvIO.unobserve(e.target); tvInject(e.target._ph); } }),{rootMargin:'300px'}) : null;
@@ -1617,7 +1625,7 @@ const dm=iso=>{ const p=String(iso||'').split('-'); return p.length===3?`${+p[2]
 let WATCH=[]; try{ WATCH=JSON.parse(localStorage.getItem('wsWatch')||'[]').filter(x=>typeof x==='string').slice(0,60); }catch(e){ WATCH=[]; }
 function saveWatch(){ try{ localStorage.setItem('wsWatch',JSON.stringify(WATCH)); }catch(e){} }
 const inWatch=t=>WATCH.includes(t);
-function watchBtn(t){ const on=inWatch(t); return `<button type="button" class="wbtn${on?' w1':''}" data-w="${esc(t)}" aria-pressed="${on}" title="${on?'הסרה מהמניות שלי':'הוספה למניות שלי'}">${on?'★ במעקב':'☆ מעקב'}</button>`; }
+function watchBtn(t){ const on=inWatch(t); return `<button type="button" class="wbtn${on?' w1':''}" data-w="${esc(t)}" aria-pressed="${on}" title="${on?'הסרה ממניות במעקב':'הוספה למניות שלי'}">${on?'★ במעקב':'☆ מעקב'}</button>`; }
 function toggleWatch(t){ WATCH=inWatch(t)?WATCH.filter(x=>x!==t):[t,...WATCH].slice(0,60); saveWatch(); renderWatch();
   document.querySelectorAll('.wbtn[data-w]').forEach(b=>{ if(b.dataset.w===t) b.outerHTML=watchBtn(t); }); }
 function watchEvents(t){
@@ -1653,7 +1661,7 @@ document.addEventListener('submit',e=>{ if(e.target.id!=='wAdd') return; e.preve
   else { $('wQ').value=''; $('wQ').placeholder='לא מצאנו "'+q+'". נסו סימול, למשל NVDA'; } });
 
 /* ---------- screener ---------- */
-const SC={sec:'',cap:'',per:'m',pf:'',g:'',pe:'',hi:'',bp:'',ib:false,er:false,sort:'cap',dir:-1,lim:40};
+const SC={sec:'',cap:'',per:'m',pf:'',g:'',pe:'',hi:'',bp:'',ib:false,er:false,sort:'cap',dir:-1,lim:10};
 const SC_OPT={
   cap:[['','כל הגדלים'],['200','מעל $200B'],['50','$50B–$200B'],['10','$10B–$50B'],['1','$1B–$10B']],
   pf:[['','כל התשואות'],['0+','עלתה'],['10+','עלתה 10%+'],['25+','עלתה 25%+'],['50+','עלתה 50%+'],['0-','ירדה'],['10-','ירדה 10%+'],['25-','ירדה 25%+']],
