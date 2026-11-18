@@ -376,7 +376,7 @@ body[data-pg="market"] main>section{padding-top:18px}
 .a5c{display:none}.a5c i{font-style:normal;color:var(--muted);font-size:11.5px;font-weight:400}@media(min-width:901px){.rw2 .a5c{display:block}}
 .mstrip{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px;color:var(--text);text-decoration:none;background:var(--panel2)}.mstrip b{font-weight:700}.mstrip .flat{margin-inline-start:auto;font-size:12px}
 @media(max-width:640px){.rw2.mx{grid-template-columns:minmax(0,1fr) 62px 34px 48px}}
-.sng{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}.snr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:9px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--text);font-size:14.5px}.snr small{display:block;color:var(--muted);font-size:12px}.snr b{font-size:14px;direction:ltr}.snc{padding:8px 2px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.6}#snapshot .sph3{margin:18px 0 6px}#snapshot .sng .sph3{margin-top:6px}
+.sng{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}.snr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:9px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--text);font-size:14.5px}.snr small{display:block;color:var(--muted);font-size:12px}.snr b{font-size:14px;direction:ltr}.snl{color:inherit;text-decoration:none;border-bottom:1px dotted var(--muted)}.snl:hover{color:var(--accent)}.snc{padding:8px 2px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.6}#snapshot .sph3{margin:18px 0 6px}#snapshot .sng .sph3{margin-top:6px}
 /* ---- professional look: black, hairlines, dense rows ---- */
 .tb2,.cardx,.earn.etb,.card,.pmbox{border-radius:8px}.tabs button,.subnav a{border-radius:7px}
 .rw2{padding:6px 12px}.hd2{padding:7px 12px;font-size:11.5px;border-bottom:1px solid #2c3038}.rw2 .n{font-size:13px;font-weight:500}.rw2 .n.big{font-size:13px;font-weight:700}
@@ -2103,10 +2103,10 @@ function renderSnap(){
   const b=$('snapBody'); if(!b) return; const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
   const sec=[...(SECTORS.rows||[])].filter(r=>r.m!=null).sort(byKey('m')), ind=(T.rows||[]).filter(r=>thCnt(r)>=3&&r.m!=null).sort(byKey('m'));
   const row=(n,v,href,sub)=>`<a class="snr" href="${href}"><span>${n}${sub?`<small>${sub}</small>`:''}</span><b class="num ${v>0?'up':v<0?'down':'flat'}">${pct(v,1)}</b></a>`;
-  const t5=(T.x||{}).top5, nm=l=>l.map(k=>`<bdi>${esc(k)}</bdi>`).join(', '), EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
-  b.innerHTML=`<div class="sng"><div><h3 class="sph3">סקטורים חזקים החודש</h3>${sec.slice(0,3).map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div>
-    <div><h3 class="sph3">סקטורים חלשים החודש</h3>${sec.slice(-3).reverse().map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sectors',esc(r.name))).join('')}</div></div>
-    <h3 class="sph3">תעשיות חזקות החודש</h3>${ind.slice(0,5).map((r,i)=>row(`<span class="rkn">${i+1}</span><bdi>${esc(r.en)}</bdi>`,r.m,'#themes',esc(r.n)+(r.rs!=null?` · RS ${r.rs}`:''))).join('')}
+  const t5=(T.x||{}).top5, nm=l=>l.map(k=>`<a class="snl" href="#ind/${encodeURIComponent(k)}"><bdi>${esc(k)}</bdi></a>`).join(', '), EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
+  b.innerHTML=`<div class="sng"><div><h3 class="sph3">סקטורים חזקים החודש</h3>${sec.slice(0,3).map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sector/'+encodeURIComponent(EN[r.name]||r.name),esc(r.name))).join('')}</div>
+    <div><h3 class="sph3">סקטורים חלשים החודש</h3>${sec.slice(-3).reverse().map(r=>row(`<bdi>${esc(EN[r.name]||r.name)}</bdi>`,r.m,'#sector/'+encodeURIComponent(EN[r.name]||r.name),esc(r.name))).join('')}</div></div>
+    <h3 class="sph3">תעשיות חזקות החודש</h3>${ind.slice(0,5).map((r,i)=>row(`<span class="rkn">${i+1}</span><bdi>${esc(r.en)}</bdi>`,r.m,'#ind/'+encodeURIComponent(r.en),esc(r.n)+(r.rs!=null?` · RS ${r.rs}`:''))).join('')}
     <h3 class="sph3">שינויים בחמישייה</h3>${t5?((t5.in||[]).length||(t5.out||[]).length?`${(t5.in||[]).length?`<div class="snc"><b class="up">נכנסו:</b> ${nm(t5.in)}</div>`:''}${(t5.out||[]).length?`<div class="snc"><b class="down">יצאו:</b> ${nm(t5.out)}</div>`:''}`:'<div class="snc flat">אין שינוי בחמישייה ב-5 ימי המסחר האחרונים.</div>'):'<div class="snc flat">יתעדכן אחרי העדכון הלילי.</div>'}`;
 }
 /* ---------- sector / industry page: returns, RS, breadth, its industries (sector), stocks ranked by YTD ---------- */
