@@ -1,7 +1,8 @@
 """Extra research data for the market page, from our own close history (history branch) -> data.json["themes"]["x"]:
   ind[<industry>] = {sp: 13 weekly points of an equal-weight index over the last 3 months (start = 100), rk: places gained (+) or lost (-)
                      in the 1-month ranking vs 5 sessions ago}
-  sec[<sector>]   = {sp: same sparkline for the sector, a50: % of its stocks above their 50-day average, n: stocks counted}
+  sec[<sector>]   = {sp: same sparkline for the sector, a50: % of its stocks above their 50-day average, c50: how many, n: stocks counted}
+  (ind[...] has the same n / c50 / a50)
   top5            = {in: industries that entered the top 5 (1-month ranking) in the last 5 sessions, out: those that left}
 Only groups with 3+ stocks are ranked (like the table). Runs after themes.py in the nightly update."""
 import json, pathlib, sys
@@ -52,11 +53,19 @@ top_now = [r["en"] for r in sorted(rows, key=lambda r: -r["m"])[:5]]
 top_old = [k for k, v in sorted(ro.items(), key=lambda x: x[1])[:5]]
 X["top5"] = {"in": [k for k in top_now if k not in top_old], "out": [k for k in top_old if k not in top_now]}
 ma50 = df.iloc[-50:].mean()
-for sec, cols in sec_cols.items():
-    cols = sorted(set(cols)); last = df[cols].iloc[-1]
+def above50(cols):             # stocks above their 50-day average: {n: counted, c50: how many above, a50: %}
+    last = df[cols].iloc[-1]
     ok = last.notna() & ma50[cols].notna() & df[cols].iloc[-50].notna()
-    x = {"n": int(ok.sum())}
-    if x["n"]: x["a50"] = round(float((last[ok] > ma50[cols][ok]).mean() * 100))
+    n = int(ok.sum())
+    if not n: return {"n": 0}
+    c = int((last[ok] > ma50[cols][ok]).sum())
+    return {"n": n, "c50": c, "a50": round(c / n * 100)}
+for ind, lst in stocks.items():
+    cols = [s[0] for s in lst if s[0] in df.columns]
+    if cols: X["ind"].setdefault(ind, {}).update(above50(cols))
+for sec, cols in sec_cols.items():
+    cols = sorted(set(cols))
+    x = above50(cols)
     sp = spark(cols)
     if sp: x["sp"] = sp
     X["sec"][sec] = x

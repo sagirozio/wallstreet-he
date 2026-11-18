@@ -372,7 +372,9 @@ body[data-pg="market"] main>section{padding-top:18px}
 @media(max-width:640px){.erw{grid-template-columns:minmax(0,1fr) 58px 58px 58px;gap:6px;padding:9px 12px}.erw .n{font-size:12.5px}}
 .stk2{min-width:0}.stk2 .co{min-width:0}@media(max-width:640px){.thsub .stks{grid-template-columns:minmax(0,1fr)!important}.thsub{padding:10px 10px 12px}}
 .rw2 .rsn{font-weight:700}.rw2.mx{grid-template-columns:minmax(0,1fr) 66px 38px 50px}.spk{display:flex;justify-content:center}.rw2.isub{background:#0a0b0e}.rw2.isub .nm2{padding-inline-start:14px}.rw2.isub .nm2 b{font-weight:600;font-size:14px}.rw2.sec .nm2 b{font-size:15.5px}
-@media(min-width:901px){#secTable .rw2.mx,#thTable .rw2.mx{grid-template-columns:minmax(0,1fr) repeat(7,74px) 46px 58px}}
+@media(min-width:901px){#secTable .rw2.mx,#thTable .rw2.mx{grid-template-columns:minmax(0,1fr) repeat(7,68px) 40px 96px 56px}}
+.a5c{display:none}.a5c i{font-style:normal;color:var(--muted);font-size:11.5px;font-weight:400}@media(min-width:901px){.rw2 .a5c{display:block}}
+.mstrip{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px;color:var(--text);text-decoration:none;background:var(--panel2)}.mstrip b{font-weight:700}.mstrip .flat{margin-inline-start:auto;font-size:12px}
 @media(max-width:640px){.rw2.mx{grid-template-columns:minmax(0,1fr) 62px 34px 48px}}
 .sng{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}.snr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:9px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--text);font-size:14.5px}.snr small{display:block;color:var(--muted);font-size:12px}.snr b{font-size:14px;direction:ltr}.snc{padding:8px 2px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.6}#snapshot .sph3{margin:18px 0 6px}#snapshot .sng .sph3{margin-top:6px}
 /* ---- professional look: black, hairlines, dense rows ---- */
@@ -744,7 +746,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
   <div class="legend">ירוק = עלייה, אדום = ירידה. הפס האפור מראה את גודל השינוי בתקופה שנבחרה. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
   <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
-  <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = דירוג מ-1 עד 99 של ביצועי הסקטור ב-12 החודשים האחרונים מול מניות S&P 500 (3 החודשים האחרונים נספרים כפול), באותה שיטה כמו בתעשיות. "מעל ממוצע 50" = אחוז המניות בסקטור שנסחרות מעל הממוצע הנע של 50 יום. האחוז הזה והגרף הקטן (3 חודשים) מחושבים על כל מניות הסקטור באתר, במשקל שווה, ולכן יכולים להיות שונים מעט מהתשואות בטבלה.</p>
+  <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = דירוג מ-1 עד 99 של ביצועי הסקטור ב-12 החודשים האחרונים מול מניות S&P 500 (3 החודשים האחרונים נספרים כפול), באותה שיטה כמו בתעשיות. "מעל ממוצע 50" = כמה מהמניות בסקטור או בתעשייה נסחרות מעל הממוצע הנע של 50 יום (אחוז, ומספר מתוך הסך). השורה שמעל הטבלה מציגה את אותו נתון למניות מדד S&P 500. האחוז הזה והגרף הקטן (3 חודשים) מחושבים על כל מניות הסקטור באתר, במשקל שווה, ולכן יכולים להיות שונים מעט מהתשואות בטבלה.</p>
   </details>
 </section>
 
@@ -1925,14 +1927,17 @@ function spark(a,q){ if(!a||a.length<2) return '<span class="n flat">—</span>'
   return `<span class="spk"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${(q!=null?q>=0:a[a.length-1]>=a[0])?'var(--green)':'var(--red)'}" stroke-width="1.5"/></svg></span>`; }
 const rsCell=(v,on)=>v==null?'<span class="n flat">—</span>':`<span class="n rsn ${on?'big ':''}${v>=80?'up':v<=20?'down':''}">${v}</span>`;
 const mCols=key=>WIDE.matches?PER.map(p=>p[0]):[key==='rs'?'m':key];   /* phones: one period + RS + sparkline */
-const mHead=(lbl,c,key)=>`<div class="rw2 hd2 mx"><span>${lbl}</span>${c.map(k=>`<span class="n${k===key?' on':''}" data-sk="${k}">${PL[k]}${k===key?' ▾':''}</span>`).join('')}<span class="n${key==='rs'?' on':''}" data-sk="rs">RS${key==='rs'?' ▾':''}</span><span class="n">3 חודשים</span></div>`;
+const mHead=(lbl,c,key)=>`<div class="rw2 hd2 mx"><span>${lbl}</span>${c.map(k=>`<span class="n${k===key?' on':''}" data-sk="${k}">${PL[k]}${k===key?' ▾':''}</span>`).join('')}<span class="n${key==='rs'?' on':''}" data-sk="rs">RS${key==='rs'?' ▾':''}</span><span class="n a5c">מעל ממוצע 50</span><span class="n">3 חודשים</span></div>`;
+const a5Cell=x=>x&&x.a50!=null?`<span class="n a5c ${x.a50>=60?'up':x.a50<=40?'down':''}" title="${x.c50} מתוך ${x.n} מניות מעל ממוצע 50 יום">${x.a50}% <i>${x.c50}/${x.n}</i></span>`:'<span class="n a5c flat">—</span>';
+function mktStrip(){ const r=((FALLBACK.breadth||{}).rows||[])[0]; if(!r||r.ma50==null) return ''; const n=r.up!=null&&r.dn!=null?Math.max(500,r.up+r.dn):503, c=v=>Math.round(v/100*n);
+  return `<a class="mstrip" href="#breadth"><span>מניות S&P 500 מעל ממוצע 50: <b class="${r.ma50>=60?'up':r.ma50<=40?'down':''}">${c(r.ma50)} מתוך ${n}</b> (${r.ma50}%)</span>${r.ma200!=null?`<span>מעל ממוצע 200: <b>${c(r.ma200)}</b> (${r.ma200}%)</span>`:''}<span class="flat">${esc(r.d||'')} · לרוחב השוק ←</span></a>`; }
 const thCnt=r=>r.cnt??(((THEMES||{}).stocks||{})[r.en]||[]).length;
 const thRows=()=>((THEMES||{}).rows||[]).map(r=>LIVE_IND?{...r,d:LIVE_IND[r.en]??null}:r);
 const byKey=k=>(a,b)=>(b[k]??-1e9)-(a[k]??-1e9);
 function indRow(r,rk,c,key,sub,TS){
   const T=THEMES, st=(T.stocks||{})[r.en], op=thOpen.has(r.en), x=((T.x||{}).ind||{})[r.en]||{}, n=thCnt(r);
   const mv=x.rk?`<span class="${x.rk>0?'up':'down'}" title="שינוי בדירוג החודשי מול לפני 5 ימי מסחר">${x.rk>0?'▲':'▼'} ${Math.abs(x.rk)}</span> · `:'';
-  return `<div class="rw2 mx ${st?'has':''} ${sub?'isub':''} ${op?'open':''}" data-th="${esc(r.en)}"><div class="nm2 nmk"><span class="rkn">${rk||''}</span><b><bdi>${esc(r.en)}</bdi></b><small>${st?'<span class="car">◀</span>':''}${esc(r.n)}${mv?' · '+mv.replace(/ · $/,''):''}<span class="cn"> · ${n===1?'מניה אחת':n+' מניות'}</span>${TS&&TS.has(r.en)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===key)).join('')}${rsCell(r.rs,key==='rs')}${spark(x.sp,r.q)}</div>`+
+  return `<div class="rw2 mx ${st?'has':''} ${sub?'isub':''} ${op?'open':''}" data-th="${esc(r.en)}"><div class="nm2 nmk"><span class="rkn">${rk||''}</span><b><bdi>${esc(r.en)}</bdi></b><small>${st?'<span class="car">◀</span>':''}${esc(r.n)}${mv?' · '+mv.replace(/ · $/,''):''}<span class="cn"> · ${n===1?'מניה אחת':n+' מניות'}</span>${TS&&TS.has(r.en)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===key)).join('')}${rsCell(r.rs,key==='rs')}${a5Cell(x)}${spark(x.sp,r.q)}</div>`+
     (st&&op?`<div class="thsub"><div class="stks">${thStocks(st,key).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':key==='rs'?(ch>=80?'up':ch<=20?'down':'flat'):ch>=0?'up':'down'}">${ch==null?'—':key==='rs'?'RS '+ch:pct(ch,1)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה (${PL[key]}).`:'המניות הגדולות בקבוצה.'} רק חברות מעל מיליארד דולר.</div></div>`:'');
 }
 function renderSnap(){
@@ -1952,9 +1957,9 @@ function renderSec(){
   const c=mCols(secKey), TS=trendSet(SECTORS.rows||[],0.27), E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null;
   const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||''; return {...r, en, d:LIVE_SEC&&LIVE_SEC[r.t]!=null?LIVE_SEC[r.t]:r.d, rs:SR[r.t]??null}; }).sort(byKey(secKey));
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
-  $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
+  $('secTable').innerHTML = mktStrip()+mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];
-    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${x.a50!=null?` · ${x.a50}% מעל ממוצע 50`:''}${r.t?`<span class="cn"> · <span class="num">${esc(r.t)}</span>${e?` · <span class="num">$${e[0].toFixed(2)}</span>`:''}</span>`:''}${TS.has(r.t)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${spark(x.sp,r.q)}</div>`+
+    return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi></b><small><span class="car">◀</span>${esc(r.name)}${x.a50!=null?` · ${x.a50}% מעל ממוצע 50`:''}${r.t?`<span class="cn"> · <span class="num">${esc(r.t)}</span>${e?` · <span class="num">$${e[0].toFixed(2)}</span>`:''}</span>`:''}${TS.has(r.t)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(x.sp,r.q)}</div>`+
       inds.map(i=>indRow(i,rank.get(i.en),c,secKey,true,TSI)).join(''); }).join('');
   $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${LIVE_SEC?` עמודת "היום" בזמן אמת, בלי עיכוב (Finnhub), עודכנה ב-${liveTm()}. שאר העמודות מחושבות ממחירי Yahoo, בעיכוב של עד 15 דקות.`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
   try{ renderSnap(); }catch(e){}
@@ -2196,7 +2201,7 @@ function renderThemes(){
   const TS=trendSet(T.rows.filter(r=>cnt(r)>=3),0.25);
   if(q) rows=rows.filter(r=>r.n.toLowerCase().includes(q)||r.en.toLowerCase().includes(q));
   const shown=(thAll||q)?rows:rows.slice(0,15);
-  $('thTable').innerHTML = mHead('תעשייה',c,thKey)+(shown.length?shown.map(r=>indRow(r,rank.get(r.en),c,thKey,false,TS)).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
+  $('thTable').innerHTML = mktStrip()+mHead('תעשייה',c,thKey)+(shown.length?shown.map(r=>indRow(r,rank.get(r.en),c,thKey,false,TS)).join(''):`<div class="empty">לא נמצאה תעשייה בשם הזה</div>`);
   $('thMore').style.display = q ? 'none' : '';
   $('thMore').textContent = thAll ? 'הצג רק את 15 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
   $('thSub').textContent = `15 קבוצות התעשייה המובילות בתקופה שנבחרה, מתוך ${T.rows.filter(r=>(r.cnt??3)>=3).length} קבוצות עם 3 מניות ומעלה בשוק האמריקאי, נכון ל${T.asOf}. קבוצות קטנות יותר לא מדורגות, אבל אפשר למצוא אותן בחיפוש.${LIVE_IND?` עמודת "היום" חיה ומתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}).`:` עמודת "יום אחרון" היא השינוי ביום המסחר האחרון (${closeLbl()}); בזמן המסחר היא הופכת ל"היום" ומתעדכנת כל 3 דקות.`} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים. ↑↑ = מגמה עקבית: ברבע העליון גם בחודש וגם ב-3 חודשים.`;
