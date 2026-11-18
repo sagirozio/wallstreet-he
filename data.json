@@ -664,16 +664,15 @@
    "epsEst": 2.08,
    "epsYoy": 208,
    "epsBasis": "מתואם",
-   "revAct": null,
-   "revEst": null,
-   "revYoy": null,
+   "revAct": 2.11,
+   "revEst": 2.21,
+   "revYoy": 80.3,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "רווח נקי של $544 מיליון, צמיחה של 205%. הכנסות הליתיום: $1.52 מיליארד (72% מהמכירות), אך מחיר הליתיום ירד ב-10% לעומת הרבעון הקודם. החברה צופה מחירים מתונים יותר ברבעון הרביעי.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/SQM",
-   "hook": "",
-   "auto": true
+   "ir": "https://ir.sqm.com/news-releases/news-release-details/sqm-reports-earnings-nine-months-ended-september-30-2026",
+   "hook": "הרווח זינק ב-205%, ההכנסות מתחת לצפי."
   },
   {
    "id": "PONY-2026-11",
@@ -687,15 +686,14 @@
    "epsYoy": null,
    "epsBasis": "מתואם",
    "revAct": 0.0446,
-   "revEst": 0.0388,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/PONY",
-   "hook": "",
-   "auto": true
+   "revEst": 0.0391,
+   "revYoy": 75.2,
+   "guide": "given",
+   "guideText": "צי של 3,500 רכבים עד סוף השנה; הכנסות הרובוטקסי ב-2026 פי 3.5 מ-2025.",
+   "note": "הכנסות הרובוטקסי עלו ב-165% ל-$17.8 מיליון. הצי מונה 2,768 רכבים. ההפסד המתואם למניה הצטמצם ל-$0.11 מ-$0.15.",
+   "react": "המניה עלתה בכ-9% לפני המסחר (Stocktwits).",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001969302/000110465926129308/tm2629888d1_ex99-1.htm",
+   "hook": "הכנסות +75% והפסד מצטמצם."
   },
   {
    "id": "BLSH-2026-11",
@@ -710,15 +708,13 @@
    "epsBasis": "מתואם",
    "revAct": 0.0844,
    "revEst": 0.0827,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/BLSH",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revYoy": 10,
+   "guide": "given",
+   "guideText": "לשנת 2026: הכנסות ממנויים, שירותים ואחרות של $225–235 מיליון.",
+   "note": "EBITDA מתואם של $35.6 מיליון (לעומת $28.6 מיליון). רכישה חוזרת חדשה של עד $300 מיליון.",
+   "react": "המניה עלתה ביותר מ-9% לפני המסחר (CoinDesk).",
+   "ir": "https://www.globenewswire.com/news-release/2026/11/18/3405501/0/en/bullish-reports-third-quarter-2026-results.html",
+   "hook": "הכנסות מעל הצפי ורכישה חוזרת של $300 מיליון."
   },
   {
    "id": "BRBR-2026-11",
@@ -729,19 +725,17 @@
    "q": "Q4 2026",
    "epsAct": 0.22,
    "epsEst": 0.23,
-   "epsYoy": null,
+   "epsYoy": -57,
    "epsBasis": "מתואם",
    "revAct": 0.692,
    "revEst": 0.6703,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/BRBR",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revYoy": 6.8,
+   "guide": "given",
+   "guideText": "לשנת 2027: מכירות של $2.32–2.42 מיליארד ו-EBITDA מתואם של $310–350 מיליון. היעדים ארוכי הטווח בוטלו.",
+   "note": "מרווח ה-EBITDA המתואם ירד ל-9.6% מ-18.1%. הנפח של Premier Protein עלה ב-16%, אך המחיר והתמהיל ירדו ב-8.9%.",
+   "react": "המניה עלתה בכ-13.5% לפני המסחר (Seeking Alpha).",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001772016/000162828026074645/brbrexh991-q42026earningsr.htm",
+   "hook": "מכירות מעל הצפי ותחזית ראשונה ל-2027."
   },
   {
    "id": "GLBE-2026-11",
@@ -752,19 +746,17 @@
    "q": "Q3 2026",
    "epsAct": 0.37,
    "epsEst": 0.23,
-   "epsYoy": null,
+   "epsYoy": 76,
    "epsBasis": "מתואם",
    "revAct": 0.3141,
    "revEst": 0.3192,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/GLBE",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revYoy": 42,
+   "guide": "raised",
+   "guideText": "יעד ה-GMV לשנה הועלה ל-$8.96–9.12 מיליארד; תחזית ההכנסות צומצמה ל-$1.329–1.353 מיליארד, עם אמצע גבוה יותר. לרבעון הרביעי: הכנסות של $464–488 מיליון.",
+   "note": "GMV של $2.04 מיליארד, צמיחה של 35%. מרווח EBITDA מתואם: 20.3%.",
+   "react": "המניה עלתה בכ-8% לפני המסחר (Seeking Alpha).",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001835963/000117891326005272/exhibit_99-1.htm",
+   "hook": "הכנסות +42% והעלאת תחזית."
   },
   {
    "id": "GLNG-2026-11",
@@ -779,84 +771,96 @@
    "epsBasis": "מתואם",
    "revAct": 0.0837,
    "revEst": 0.0822,
-   "revYoy": null,
+   "revYoy": -32,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "ה-EBITDA המתואם ירד ב-33% ל-$55.8 מיליון אחרי שהמתקן Hilli סיים את החוזה בקמרון. התקבלה החלטת השקעה על מתקן FLNG רביעי. דיבידנד של $0.25.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/GLNG",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001207179/000117184326007544/exh_991.htm",
+   "hook": "ירידה בהכנסות אחרי סיום החוזה בקמרון."
   },
   {
    "id": "LOW-2026-11",
    "t": "LOW",
    "co": "Lowe's Companies, Inc.",
-   "sector": "",
+   "sector": "צריכה מחזורית",
    "date": "2026-11-18",
-   "q": "Q3 2027",
+   "q": "Q3 2026",
    "epsAct": 3.1,
-   "epsEst": 2.91,
-   "epsYoy": null,
+   "epsEst": 2.88,
+   "epsYoy": 1.3,
    "epsBasis": "מתואם",
    "revAct": 22.756,
-   "revEst": 22.6317,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/LOW",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revEst": null,
+   "revYoy": 9.3,
+   "guide": "inline",
+   "guideText": "לשנת 2026: מכירות של כ-$92.5 מיליארד (קודם $92.0 מיליארד) וצמיחה של כ-0.5% בחנויות זהות (קודם ללא שינוי); רווח מתואם של כ-$12.25 למניה, ללא שינוי; תחזית המרווח התפעולי קוצצה ל-11.1%.",
+   "note": "המכירות בחנויות זהות עלו ב-1.8% (צפי כ-0.4% לפי Reuters), והמכירות באונליין עלו ב-17.4%. הרווח כולל הטבה של $0.34 למניה מהחזרי מכסים. הצמיחה בהכנסות כוללת את הרכישות של FBM ו-ADG. צפי ההכנסות שונה בין המקורות ($22.36–22.46 מיליארד) ולכן לא הוצג.",
+   "react": "המניה ירדה בכ-2% לפני המסחר (Reuters).",
+   "ir": "https://www.prnewswire.com/news-releases/lowes-reports-third-quarter-2026-sales-and-earnings-results-302943071.html",
+   "hook": "מכירות בחנויות זהות +1.8%, אך תחזית הרווח לא השתנתה.",
+   "call": [
+    "המנכ״ל מרווין אליסון ייחס את התוצאות לקבלנים (Pro), לאונליין ולשירותי הבית.",
+    "התחזית משקפת את מגמות הביקוש הנוכחיות ולחצי עלויות.",
+    "לפי Reuters, בעלי בתים מוציאים על תחזוקה הכרחית ודוחים שיפוצים גדולים בגלל ריבית המשכנתאות.",
+    "פרטים נוספים יוצגו בכנס המשקיעים בדצמבר."
+   ],
+   "delta": "ברבעון השני כל טווחי התחזית קוצצו לקצה התחתון; עכשיו תחזית המכירות עלתה, אבל תחזית המרווח קוצצה והרווח נשאר ללא שינוי."
   },
   {
    "id": "TGT-2026-11",
    "t": "TGT",
    "co": "Target Corporation",
-   "sector": "",
+   "sector": "צריכה בסיסית",
    "date": "2026-11-18",
-   "q": "Q3 2027",
+   "q": "Q3 2026",
    "epsAct": 2.65,
-   "epsEst": 2.09,
-   "epsYoy": null,
+   "epsEst": 2.07,
+   "epsYoy": 49,
    "epsBasis": "מתואם",
    "revAct": 27.067,
-   "revEst": 26.8161,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revEst": 26.56,
+   "revYoy": 7.1,
+   "guide": "raised",
+   "guideText": "לשנת 2026: צמיחה של כ-6% במכירות (קודם כ-5%) ורווח למניה של $10.65–11.40 (קודם $9.90–10.90), כולל כ-$2.14 מהחזרי מכסים.",
+   "note": "המכירות בחנויות זהות עלו ב-5.6% (צפי 3.8% לפי StreetAccount): מספר העסקאות עלה ב-5.0% והדיגיטל ב-9.8%. הרווח למניה כולל הטבה של $0.50 מהחזרי מכסים ($301 מיליון). ההכנסות שאינן ממכירת סחורה (פרסום, Target Circle) עלו בכמעט 20%.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/TGT",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741926000051/a2026q3ex-99.htm",
+   "hook": "מכירות בחנויות זהות +5.6% והעלאה שנייה ברציפות של התחזית.",
+   "call": [
+    "המנכ״ל מייקל פידלקה אמר שהלקוחות בוחרים ב-Target יותר, אבל ״יש עוד עבודה לפנינו״.",
+    "החברה מעודדת מתחילת הרבעון הרביעי: המכירות בנובמבר גבוהות מאוקטובר.",
+    "ברבעון הורדו מחירים בכ-2,000 מוצרים נוספים; הלקוחות סלקטיביים במוצרים שאינם חיוניים.",
+    "ההשקעות ההוניות: כ-$3.8 מיליארד השנה ו-$5–6 מיליארד מתוכננים לשנה הבאה."
+   ],
+   "delta": "העלאה שנייה ברציפות של התחזית: המכירות בחנויות זהות האיצו ל-5.6% מ-3.8% ברבעון השני."
   },
   {
    "id": "TJX-2026-11",
    "t": "TJX",
    "co": "TJX Companies, Inc. (The)",
-   "sector": "",
+   "sector": "צריכה מחזורית",
    "date": "2026-11-18",
-   "q": "Q3 2027",
+   "q": "Q3 FY27",
    "epsAct": 1.34,
-   "epsEst": 1.35,
-   "epsYoy": null,
+   "epsEst": 1.34,
+   "epsYoy": 5,
    "epsBasis": "מתואם",
    "revAct": 15.952,
-   "revEst": 15.9972,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/TJX",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revEst": 15.84,
+   "revYoy": 5.5,
+   "guide": "raised",
+   "guideText": "לשנה: צמיחה של 4% בחנויות זהות (קודם 3–4%) ורווח מתואם של $5.17–5.20 למניה (קודם $5.15–5.20). לרבעון הרביעי: חנויות זהות +2–3% ורווח מתואם של $1.42–1.45 למניה.",
+   "note": "המכירות בחנויות זהות עלו ב-4%: Marmaxx ‏+2%, HomeGoods ‏+5%, קנדה +6% ובינלאומי +8%. הרווח המתואם לא כולל הטבה נטו של $0.05 למניה מהחזרי מכסים. מרווח הרווח לפני מס: 13.0%.",
+   "react": "המניה עלתה בכ-6% לפני המסחר (Reuters).",
+   "ir": "https://investor.tjx.com/news-releases/news-release-details/tjx-companies-inc-reports-q3-fy27-results-comp-sales-growth-4",
+   "hook": "מכירות מעל הצפי והעלאה נוספת של התחזית.",
+   "call": [
+    "המנכ״ל ארני הרמן: המכירות, הרווחיות והרווח למניה עקפו את התוכנית.",
+    "מזג אוויר חם מהרגיל בארה״ב ובקנדה עיכב את הביקוש בחלק מהקטגוריות.",
+    "החברה צופה שהמומנטום יאיץ לאורך עונת החגים; התחזית לרבעון הרביעי מניחה עלויות דלק גבוהות יותר ובלי החזרי מכסים נוספים."
+   ],
+   "delta": "העלאה שנייה ברציפות: ברבעון השני הועלו הרווח והמרווח, ועכשיו גם תחזית המכירות בחנויות זהות עלתה לראש הטווח."
   },
   {
    "id": "ZIM-2026-11",
@@ -865,21 +869,19 @@
    "sector": "",
    "date": "2026-11-18",
    "q": "Q3 2026",
-   "epsAct": 5.94,
-   "epsEst": 3.85,
-   "epsYoy": null,
-   "epsBasis": "מתואם",
+   "epsAct": 6.88,
+   "epsEst": null,
+   "epsYoy": 575,
+   "epsBasis": "GAAP",
    "revAct": 2.712,
    "revEst": 2.5365,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 53,
+   "guide": "raised",
+   "guideText": "לשנת 2026: EBITDA מתואם של $3.3–3.5 מיליארד (קודם $2.7–3.0 מיליארד) ו-EBIT מתואם של $2.0–2.2 מיליארד (קודם $1.4–1.7 מיליארד).",
+   "note": "רווח נקי של $830 מיליון. תעריף ההובלה הממוצע עלה ב-55% ל-$2,480 ל-TEU, והנפח עלה ב-4%. דיבידנד של $2.01 למניה ישולם ב-8 בדצמבר.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/ZIM",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001654126/000117891326005268/exhibit_99-1.htm",
+   "hook": "רווח של $830 מיליון והעלאת תחזית."
   },
   {
    "id": "NVDA-2026-11",
@@ -982,18 +984,17 @@
    "q": "Q3 2026",
    "epsAct": 2.36,
    "epsEst": 2.14,
-   "epsYoy": -5,
+   "epsYoy": -3,
    "epsBasis": "מתואם",
-   "revAct": null,
+   "revAct": 6.625,
    "revEst": 6.8161,
-   "revYoy": null,
+   "revYoy": 14.3,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הנתונים ביואן, לכל ADS. מרווח גולמי 45.3%. הכנסות MINISO מחוץ לסין עלו רק ב-1.7%, והכנסות TOP TOY ירדו.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/MNSO",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.prnewswire.com/news-releases/miniso-group-announces-2026-september-quarter-and-nine-month-unaudited-financial-results-302941766.html",
+   "hook": "הכנסות +14%, רווח מתואם מעט נמוך משנה שעברה."
   },
   {
    "id": "WB-2026-11",
@@ -1008,14 +1009,13 @@
    "epsBasis": "מתואם",
    "revAct": 0.4102,
    "revEst": null,
-   "revYoy": null,
+   "revYoy": -7,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הכנסות הפרסום ירדו ב-8% ל-$344 מיליון. 551 מיליון משתמשים חודשיים.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/WB",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001595761/000110465926128775/tm2629662d1_ex99-1.htm",
+   "hook": "הכנסות ורווח בירידה."
   },
   {
    "id": "AS-2026-11",
@@ -1070,19 +1070,17 @@
    "q": "Q4 2026",
    "epsAct": 1.37,
    "epsEst": 1.31,
-   "epsYoy": null,
+   "epsYoy": 30,
    "epsBasis": "מתואם",
    "revAct": 0.7932,
    "revEst": 0.8022,
    "revYoy": -4.8,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "guide": "given",
+   "guideText": "לשנת 2027: מכירות אורגניות ללא שינוי עד ירידה קלה, EBITDA מתואם של $560–580 מיליון.",
+   "note": "המרווח הגולמי המתואם עלה ב-4 נקודות אחוז ל-42.5%. החברה מתכננת להחזיר $150–200 מיליון חוב ב-2027.",
    "react": "המניה עולה ב-12.6% במסחר היום (נכון ל-02:57).",
-   "ir": "https://www.earningswhispers.com/epsdetails/ENR",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001632790/000163279026000106/enrpr93026.htm",
+   "hook": "רווח מעל הצפי, מכירות בירידה."
   },
   {
    "id": "HD-2026-11",
@@ -1227,18 +1225,17 @@
    "q": "Q3 2026",
    "epsAct": 3.2,
    "epsEst": 3.13,
-   "epsYoy": 5,
+   "epsYoy": 4.6,
    "epsBasis": "מתואם",
-   "revAct": 14.2796,
+   "revAct": 14.362,
    "revEst": 13.7092,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 21.0,
+   "guide": "inline",
+   "guideText": "לשנת 2026: צמיחה של 6–10% בנפח החבילות (40.8–42.4 מיליארד), ללא שינוי.",
+   "note": "הנתונים ביואן. ברבעון טופלו 10.24 מיליארד חבילות, צמיחה של 7%, ונתח השוק 20.1%.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/ZTO",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001677250/000110465926129305/tm2630022d1_ex99-1.htm",
+   "hook": "הכנסות +21%, התחזית נשארה."
   },
   {
    "id": "OMER-2026-11",
@@ -1356,16 +1353,15 @@
    "epsEst": 6.16,
    "epsYoy": -39,
    "epsBasis": "מתואם",
-   "revAct": null,
+   "revAct": 30.8,
    "revEst": null,
-   "revYoy": null,
+   "revYoy": -1,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הנתונים ביואן, לכל ADS. הכנסות ענן ה-AI עלו ב-94% ל-8.2 מיליארד יואן. החברה צופה להכריז על דיבידנד ראשון לפני סוף 2026.",
    "react": "המניה ירדה ב-5.4% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/BIDU",
-   "hook": "",
-   "auto": true,
+   "ir": "https://technode.global/?p=997778",
+   "hook": "ענן ה-AI כמעט הכפיל את עצמו, ההכנסות הכוללות ירדו ב-1%.",
    "revCur": "CNY"
   },
   {
@@ -1379,16 +1375,15 @@
    "epsEst": 1.71,
    "epsYoy": 110,
    "epsBasis": "מתואם",
-   "revAct": null,
+   "revAct": 21.0,
    "revEst": null,
-   "revYoy": null,
+   "revYoy": -8.9,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הנתונים ביואן, לכל ADS. היקף העסקאות (GTV) עלה ב-4.5%, והרווח הנקי עלה ב-194%. רכישות חוזרות של כ-$162 מיליון ברבעון.",
    "react": "המניה עלתה ב-4.4% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/BEKE",
-   "hook": "",
-   "auto": true,
+   "ir": "https://finviz.com/news/422911/ke-holdings-inc-announces-third-quarter-2026-unaudited-financial-results",
+   "hook": "הרווח המתואם הוכפל למרות ירידה בהכנסות.",
    "revCur": "CNY"
   },
   {
@@ -1402,16 +1397,15 @@
    "epsEst": 5.6,
    "epsYoy": 31,
    "epsBasis": "מתואם",
-   "revAct": null,
-   "revEst": null,
+   "revAct": 7.75,
+   "revEst": 7.33,
    "revYoy": 11.3,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "המניה עלתה ב-8.9% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/HTHT",
-   "hook": "",
-   "auto": true,
+   "guide": "raised",
+   "guideText": "לשנת 2026: צמיחה של 9–10% בהכנסות (קודם 4–8%).",
+   "note": "הנתונים ביואן. ההכנסה לחדר זמין במלונות זהים ירדה ב-4.4%. נוספו נטו 489 מלונות בסין.",
+   "react": "המניה עלתה בכ-7.7% בתחילת המסחר (IBTimes).",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001483994/000110465926127472/tm2629889d1_ex99-1.htm",
+   "hook": "רווח מעל הצפי והעלאת תחזית.",
    "revCur": "CNY"
   },
   {
@@ -1426,15 +1420,14 @@
    "epsYoy": 25,
    "epsBasis": "מתואם",
    "revAct": 5.2932,
-   "revEst": 5.4077,
-   "revYoy": 4.8,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revEst": null,
+   "revYoy": 5,
+   "guide": "given",
+   "guideText": "לשנת 2027: צמיחה אורגנית של 9–10% בהכנסות ושל 20–25% ברווח המתואם למניה.",
+   "note": "הדיבידנד עלה ב-17% ל-$0.14, ותוכנית רכישה חוזרת של $1 מיליארד. עסקים חדשים בשיא של $1.9 מיליארד. צפי ההכנסות שונה בין המקורות ולכן לא הוצג.",
    "react": "המניה עלתה ב-2.7% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/ARMK",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001584509/000158450926000152/ex991armkq4fy2026.htm",
+   "hook": "תחזית לצמיחה של 20–25% ברווח ב-2027."
   },
   {
    "id": "XP-2026-11",
@@ -1468,17 +1461,16 @@
    "epsAct": 2.23,
    "epsEst": 1.56,
    "epsYoy": 58,
-   "epsBasis": "מתואם",
+   "epsBasis": "GAAP",
    "revAct": 0.3967,
    "revEst": 0.3418,
-   "revYoy": 33.1,
+   "revYoy": 33,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "ההזמנות עלו ב-162% ל-$710 מיליון וצבר ההזמנות כמעט הוכפל ל-$2.7 מיליארד. מרווח גולמי 34.9%.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/POWL",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0000080420/000008042026000139/ex991-powlq4xfy2026earning.htm",
+   "hook": "הזמנות שיא וצבר של $2.7 מיליארד."
   },
   {
    "id": "PAGS-2026-11",
@@ -1489,18 +1481,17 @@
    "q": "Q3 2026",
    "epsAct": 2.19,
    "epsEst": 2.1,
-   "epsYoy": 13,
+   "epsYoy": 13.2,
    "epsBasis": "מתואם",
-   "revAct": 5.7258,
-   "revEst": 5.2972,
-   "revYoy": null,
+   "revAct": 5.087,
+   "revEst": null,
+   "revYoy": -0.4,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הנתונים בריאל ברזילאי. היקף התשלומים עלה ב-1.2% ותיק האשראי ב-25%. החברה צופה חלוקות של לפחות 2 מיליארד ריאל עד 2028.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/PAGS",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001712807/000155485526002394/MainDocument.htm",
+   "hook": "רווח +13% עם הכנסות יציבות."
   },
   {
    "id": "BXDC-2026-11",
@@ -2008,14 +1999,13 @@
    "epsBasis": "מתואם",
    "revAct": 4.895,
    "revEst": 4.9098,
-   "revYoy": 79.4,
+   "revYoy": 79,
    "guide": "none",
    "guideText": "",
-   "note": "",
+   "note": "הצמיחה בהכנסות נובעת מרכישות: $1.64 מיליארד מ-TopBuild ו-$589 מיליון מ-Kodiak. מרווח גולמי 28.2% (לעומת 23.3%). רכישה חוזרת חדשה של $500 מיליון.",
    "react": "המניה ירדה ב-1.6% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/QXO",
-   "hook": "",
-   "auto": true
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001236275/000162828026073410/qxoq3-26earningsrelease.htm",
+   "hook": "הכנסות +79% בזכות רכישות."
   },
   {
    "id": "TTEK-2026-11",
@@ -2030,14 +2020,13 @@
    "epsBasis": "מתואם",
    "revAct": 1.1529,
    "revEst": 1.1737,
-   "revYoy": -13.3,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "המניה עלתה ב-4.8% במסחר שאחרי הדוח.",
-   "ir": "https://www.earningswhispers.com/epsdetails/TTEK",
-   "hook": "",
-   "auto": true
+   "revYoy": -0.9,
+   "guide": "inline",
+   "guideText": "לשנת 2027: רווח מתואם של $1.65–1.80 למניה (צפי FactSet $1.71) והכנסות נטו של $4.425–4.625 מיליארד.",
+   "note": "ההכנסות נטו עלו ב-5% בלי פעילות סיוע באסונות. צבר ההזמנות עלה ב-13% ל-$4.67 מיליארד. הדיבידנד עלה ב-11%.",
+   "react": "המניה עלתה ביותר מ-9% לפני המסחר (Finimize).",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0000831641/000110465926125600/tm2629545d1_ex99-1.htm",
+   "hook": "רווח מעל הצפי ותחזית ל-2027."
   },
   {
    "id": "HBM-2026-11",
@@ -39443,7 +39432,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 14:56",
+  "asOf": "18.11.2026 · 15:45",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -39503,27 +39492,27 @@
   "brief": [
    {
     "h": "החוזים עולים, הנאסד״ק מוביל",
-    "t": "החוזים העתידיים עולים אחרי שני ימי ירידות, בהובלת הטכנולוגיה; תשואת האג״ח ל-10 שנים ב-5.10% והנפט מסוג WTI יורד לכ-$83.",
+    "t": "לפי Reuters, החוזים על הנאסד״ק 100 מובילים את העליות אחרי הדוח של Nvidia; תשואת האג״ח ל-10 שנים ירדה ל-5.09%, ונפט WTI יורד לכ-$85 אחרי ש-API דיווח על עלייה של 5.3 מיליון חביות במלאי.",
     "tone": "pos"
    },
    {
-    "h": "Nvidia עולה, ה-SEC פותחת בחקירה",
-    "t": "Nvidia עולה בכ-2.8% לפני המסחר אחרי תחזית של $130 מיליארד לרבעון הבא; לפי WSJ, ה-SEC בודקת אם הגילוי הנאות של החברה הטעה משקיעים.",
+    "h": "Nvidia עולה, ה-SEC בודקת",
+    "t": "המניה עולה בכ-3.7% לפני המסחר אחרי תחזית של $130 מיליארד לרבעון הבא (צפי LSEG: $125.3 מיליארד); לפי WSJ, ה-SEC בודקת אם הגילוי הנאות של החברה הטעה משקיעים.",
     "tone": "neu"
    },
    {
-    "h": "הקמעונאות: Target ו-TJX מעל הצפי",
-    "t": "Target הרוויחה $2.65 למניה (צפי $2.08) והעלתה את התחזית; ב-TJX המכירות עלו ב-6% ל-$15.95 מיליארד; Lowe's יורדת לפני המסחר למרות העלאת תחזית.",
+    "h": "קמעונאות: Target ו-TJX מעלות תחזית",
+    "t": "ב-Target המכירות בחנויות זהות עלו ב-5.6% וב-TJX ב-4%, ושתיהן העלו את התחזית השנתית; TJX עולה בכ-6% לפני המסחר ו-Lowe's יורדת בכ-2% למרות העלאת תחזית המכירות.",
     "tone": "pos"
    },
    {
-    "h": "פרוטוקול הפד יפורסם הערב",
-    "t": "לפי Reuters, השווקים מתמחרים כמעט בוודאות העלאת ריבית של 0.25% בדצמבר; נשיא הפד של ניו יורק, ג׳ון וויליאמס, אמר אתמול שכנראה תידרש העלאה נוספת.",
+    "h": "פרוטוקול הפד ב-21:00",
+    "t": "לפי Reuters, העלאת ריבית של 0.25% בדצמבר מתומחרת כמעט במלואה; נשיא הפד של סנט לואיס, אלברטו מוסאלם, קרא אתמול להעלות את הריבית בקרוב.",
     "tone": "neg"
    },
    {
     "h": "Anthropic: התמחור הערב",
-    "t": "ההנפקה צפויה להיות מתומחרת הערב והמסחר ביום חמישי; לפי Reuters, השווי עשוי להגיע עד $1.4 טריליון.",
+    "t": "טווח המחיר $70–78 למניה, 825 מיליון מניות; המסחר בנאסד״ק צפוי להתחיל מחר תחת הסימול ANT, ולפי Reuters השווי עשוי להגיע עד $1.4 טריליון.",
     "tone": "neu"
    }
   ],
@@ -39596,7 +39585,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611181456,
+  "rev": 202611181545,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -96591,6 +96580,481 @@
  },
  "news": [
   {
+   "id": "2026-11-18-iran-kuwait-hormuz",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "גיאופוליטיקה",
+   "tone": "neg",
+   "title": "איראן תקפה בכווית, ספינה של ADNOC הותקפה בהורמוז",
+   "body": "לפי Reuters, איראן אמרה שתקפה בלילה אתרי כטב״מים וטילים אמריקאיים בכווית, הפעם הראשונה מאז ספטמבר, אחרי תקיפה אמריקאית באי קשם במצר הורמוז. ספינה של ADNOC הותקפה במצר: נעדר אחד ו-11 פצועים. האירועים מגבילים את הירידה במחיר הנפט.",
+   "src": "Reuters (GMA News)",
+   "url": "https://www.gmanetwork.com/news/topstories/world/1009973/iran-fires-at-kuwait-widening-strikes-after-us-hit-iranian-island/story/"
+  },
+  {
+   "id": "2026-11-18-apec-xi-trump",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "סחר",
+   "tone": "neu",
+   "title": "פסגת APEC: שי מבטיח מכסים נמוכים יותר, טראמפ פוגש את שי היום",
+   "body": "בפסגת APEC בשנזן הבטיח נשיא סין שי ג׳ינפינג להוריד מכסים ולהרחיב את הגישה לשוק הסיני. לפי Al Jazeera, טראמפ ייפגש היום עם שי, ובהמשך תתקיים פגישה משולשת ראשונה של טראמפ, שי ופוטין.",
+   "src": "Al Jazeera",
+   "url": "https://aljazeera.com/news/2026/11/18/xis-pitch-for-free-trade-amid-trumps-global-trade-disruptions"
+  },
+  {
+   "id": "2026-11-18-bofa-fms-tech",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "סקר מנהלי הקרנות של BofA: החשיפה לטכנולוגיה צנחה",
+   "body": "לפי Bloomberg, בסקר מנהלי הקרנות של Bank of America שיעור המנהלים במשקל יתר בטכנולוגיה ירד ל-12% מ-37%, הירידה החדה ביותר מאז 2006.",
+   "src": "Bloomberg (swissinfo)",
+   "url": "https://www.swissinfo.ch/eng/us-stock-futures-jump-after-nvidia-earnings:-markets-wrap/92397458"
+  },
+  {
+   "id": "2026-11-18-fed-musalem-williams",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "ריבית",
+   "tone": "neg",
+   "title": "לפני הפרוטוקול: מוסאלם קורא להעלות ריבית בקרוב",
+   "body": "נשיא הפד של סנט לואיס, אלברטו מוסאלם, אמר אתמול שיש להעלות את הריבית בקרוב. נשיא הפד של ניו יורק, ג׳ון וויליאמס, אמר שכנראה תידרש העלאה נוספת אך שלל העלאה של 0.5% בדצמבר. פרוטוקול הישיבה של אוקטובר יפורסם הערב ב-21:00 שעון ישראל.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/economy/policy/article/st-louis-feds-musalem-calls-for-interest-rate-hikes-soon-132554806.html"
+  },
+  {
+   "id": "2026-11-18-uk-cpi-oct",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "האינפלציה בבריטניה: 3.6% באוקטובר, כצפוי",
+   "body": "מדד המחירים לצרכן בבריטניה עלה ב-3.6% בשנה עד אוקטובר, כמו הצפי ולעומת 3.5% בספטמבר. מחירי הסולר בשיא דחפו את עלות הדלק למעלה. לפי Reuters, הנתון נמוך מתחזית בנק אנגליה, וההימורים על העלאת ריבית שם נחלשו.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/economic-indicators/uk-october-inflation-hits-36-as-record-diesel-prices-drive-fuel-costs-higher-5034908"
+  },
+  {
+   "id": "2026-11-18-pony-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "PONY"
+   ],
+   "tag": "Pony AI",
+   "tone": "pos",
+   "title": "Pony AI: ההכנסות זינקו ב-75%, המניה עולה ב-9%",
+   "body": "ההכנסות ברבעון השלישי הגיעו ל-$44.6 מיליון (צפי $39.1 מיליון), וההכנסות מרובוטקסי עלו ב-165% ל-$17.8 מיליון. ההפסד המתואם הצטמצם ל-$48.9 מיליון. לפי Stocktwits המניה עלתה בכ-9% לפני המסחר.",
+   "src": "Stocktwits, SEC",
+   "url": "https://stocktwits.com/news-articles/markets/equity/why-is-pony-stock-rising-in-pre-market/cNbXCy5R9La"
+  },
+  {
+   "id": "2026-11-18-brbr-q4",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BRBR"
+   ],
+   "tag": "BellRing Brands",
+   "tone": "pos",
+   "title": "BellRing עולה ב-13.5% אחרי תחזית ל-2027",
+   "body": "המכירות ברבעון הרביעי עלו ב-7% ל-$692 מיליון, אך הרווח המתואם למניה, $0.22, היה מתחת לצפי וה-EBITDA המתואם ירד ב-43%. לשנת 2027 החברה צופה EBITDA מתואם של $310–350 מיליון (צפי $317 מיליון) וביטלה את היעדים ארוכי הטווח. המניה עלתה בכ-13.5% לפני המסחר.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674083-bellring-shares-climb-as-revenue-beats-estimates-fy27-outlook-issued"
+  },
+  {
+   "id": "2026-11-18-glbe-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "GLBE"
+   ],
+   "tag": "Global-e",
+   "tone": "pos",
+   "title": "Global-e העלתה את כל התחזיות, המניה עולה ב-8%",
+   "body": "ההכנסות ברבעון עלו ב-42% ל-$314.1 מיליון, והיקף הסחורות (GMV) עלה ב-35% ל-$2.04 מיליארד. החברה העלתה את כל יעדי 2026 ורכשה מניות ב-$53 מיליון. לפי Seeking Alpha המניה עלתה בכ-8% לפני המסחר.",
+   "src": "Seeking Alpha, SEC",
+   "url": "https://seekingalpha.com/news/4674062-global-e-shares-climb-as-q3-results-top-estimates-outlook-lifted"
+  },
+  {
+   "id": "2026-11-18-blsh-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "BLSH"
+   ],
+   "tag": "Bullish",
+   "tone": "pos",
+   "title": "Bullish מעל הצפי ומכריזה על רכישה חוזרת של $300 מיליון",
+   "body": "ההכנסות המתואמות ברבעון עלו ב-10% ל-$84.4 מיליון (צפי $80.2 מיליון), וה-EBITDA המתואם הגיע ל-$35.6 מיליון. החברה אישרה רכישה חוזרת של עד $300 מיליון. לפי CoinDesk המניה עלתה ביותר מ-9% לפני המסחר, לכ-$21.",
+   "src": "CoinDesk",
+   "url": "https://www.coindesk.com/markets/2026/11/18/bullish-beats-revenue-estimates-as-institutional-services-offset-sluggish-spot-crypto-volumes"
+  },
+  {
+   "id": "2026-11-18-glng-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "GLNG"
+   ],
+   "tag": "Golar LNG",
+   "tone": "neu",
+   "title": "Golar LNG: ההכנסות ירדו ב-32% אחרי סיום החוזה בקמרון",
+   "body": "ההכנסות ברבעון השלישי ירדו ל-$83.7 מיליון וה-EBITDA המתואם ירד ב-33% ל-$55.8 מיליון, אחרי שהמתקן Hilli סיים את החוזה בקמרון. הרווח הנקי: $22.6 מיליון (לעומת $31.5 מיליון). החברה אישרה דיבידנד של $0.25.",
+   "src": "GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/18/3405504/0/en/golar-lng-limited-interim-results-for-the-period-ended-september-30-2026.html"
+  },
+  {
+   "id": "2026-11-18-zim-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ZIM"
+   ],
+   "tag": "ZIM",
+   "tone": "pos",
+   "title": "צים: רווח של $830 מיליון והעלאת תחזית",
+   "body": "ההכנסות ברבעון השלישי עלו ב-53% ל-$2.71 מיליארד והרווח הנקי הגיע ל-$830 מיליון (לעומת $123 מיליון), $6.88 למניה. החברה העלתה את תחזית ה-EBITDA המתואם ל-2026 ל-$3.3–3.5 מיליארד (קודם $2.7–3.0 מיליארד) ותחלק דיבידנד של $2.01 למניה ב-8 בדצמבר.",
+   "src": "StockTitan, SEC",
+   "url": "https://www.stocktitan.net/news/ZIM/zim-reports-industry-leading-third-quarter-2026-profitability-driven-nnv241si8c1w.html"
+  },
+  {
+   "id": "2026-11-18-hpe-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "HPE"
+   ],
+   "tag": "HPE",
+   "tone": "pos",
+   "title": "HPE עולה ב-3.9% לפני המסחר",
+   "body": "Hewlett Packard Enterprise עולה בכ-3.9% לפני המסחר. לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia. בנוסף, HPE אמרה שנתבי Juniper בחקירת התקלה ב-FAA ״פעלו כפי שהוגדרו על ידי המתקין״.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-apld-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "APLD"
+   ],
+   "tag": "Applied Digital",
+   "tone": "pos",
+   "title": "Applied Digital עולה לפני המסחר",
+   "body": "המניה עולה בין 5.3% ל-6.6% לפני המסחר, יחד עם IREN, Core Scientific ו-Hut 8. לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-iren-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "IREN"
+   ],
+   "tag": "IREN",
+   "tone": "pos",
+   "title": "IREN עולה לפני המסחר",
+   "body": "המניה עולה בין 5.3% ל-6.6% לפני המסחר (נכון ל-05:54 שעון ניו יורק). לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-corz-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "CORZ"
+   ],
+   "tag": "Core Scientific",
+   "tone": "pos",
+   "title": "Core Scientific עולה לפני המסחר",
+   "body": "המניה עולה בין 5.3% ל-6.6% לפני המסחר (נכון ל-05:54 שעון ניו יורק). לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-hut-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "HUT"
+   ],
+   "tag": "Hut 8",
+   "tone": "pos",
+   "title": "Hut 8 עולה לפני המסחר",
+   "body": "המניה עולה בין 5.3% ל-6.6% לפני המסחר (נכון ל-05:54 שעון ניו יורק). לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-wdc-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "WDC"
+   ],
+   "tag": "Western Digital",
+   "tone": "pos",
+   "title": "Western Digital עולה ב-3.1% לפני המסחר",
+   "body": "המניה עולה בכ-3.1% לפני המסחר (נכון ל-05:54 שעון ניו יורק). לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-sndk-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "SanDisk",
+   "tone": "pos",
+   "title": "SanDisk עולה ב-3.6% לפני המסחר",
+   "body": "המניה עולה בכ-3.6% לפני המסחר (נכון ל-05:54 שעון ניו יורק). לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-dell-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "DELL"
+   ],
+   "tag": "Dell",
+   "tone": "pos",
+   "title": "Dell עולה לפני המסחר",
+   "body": "המניה עולה בין 3.2% ל-6% לפני המסחר, יחד עם Lumentum ו-Coherent. לפי Investing.com, במסגרת העליות במניות תשתיות ה-AI אחרי הדוח של Nvidia.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/premarket-movers-nvidia-jumps-on-strong-ai-outlook-lowes-falls-4966660"
+  },
+  {
+   "id": "2026-11-18-amat-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "AMAT"
+   ],
+   "tag": "Applied Materials",
+   "tone": "pos",
+   "title": "Applied Materials עולה ב-2.8% לפני המסחר",
+   "body": "לפי TokenPost, המניה עלתה בכ-2.8% לפני המסחר (נכון ל-04:12 שעון ניו יורק). המקור לא ציין סיבה.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/60278"
+  },
+  {
+   "id": "2026-11-18-qcom-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "QCOM"
+   ],
+   "tag": "Qualcomm",
+   "tone": "pos",
+   "title": "Qualcomm עולה ב-1.4% לפני המסחר",
+   "body": "לפי TokenPost, המניה עלתה בכ-1.42% לפני המסחר (נכון ל-04:12 שעון ניו יורק). המקור לא ציין סיבה.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/60278"
+  },
+  {
+   "id": "2026-11-18-txn-pre",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TXN"
+   ],
+   "tag": "Texas Instruments",
+   "tone": "pos",
+   "title": "Texas Instruments עולה ב-1.2% לפני המסחר",
+   "body": "לפי TokenPost, המניה עלתה בכ-1.23% לפני המסחר (נכון ל-04:12 שעון ניו יורק). המקור לא ציין סיבה.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/60278"
+  },
+  {
+   "id": "2026-11-18-crdo-marvell",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "CRDO"
+   ],
+   "tag": "Credo",
+   "tone": "pos",
+   "title": "Credo חתמה על הסכם פטנטים עם Marvell",
+   "body": "Credo חתמה עם Marvell על הסכם פטנטים חסוי בתחום הכבלים החשמליים האקטיביים (AEC), שמסיים את ההשגות של Marvell על הפטנטים של Credo במשרד הפטנטים. המניה עלתה בכ-7% במסחר המאוחר, ל-$132.27.",
+   "src": "MarketScreener, TipRanks",
+   "url": "https://www.marketscreener.com/news/stocks-to-watch-nvidia-dolby-labs-credo-tech-ce785edcdf81ff23"
+  },
+  {
+   "id": "2026-11-18-mod-buyback",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "MOD"
+   ],
+   "tag": "Modexus",
+   "tone": "neg",
+   "title": "Modexus אישרה רכישה חוזרת, המניה יורדת",
+   "body": "הדירקטוריון אישר רכישה חוזרת של מניות בהיקף של עד $500 מיליון. לפי TokenPost המניה ירדה בכ-6.8% לפני המסחר; המקור לא ציין סיבה לירידה.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/business/60407"
+  },
+  {
+   "id": "2026-11-18-podd-stifel",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "PODD"
+   ],
+   "tag": "Insulet",
+   "tone": "neg",
+   "title": "Stifel הורידה את Insulet להחזק",
+   "body": "Stifel הורידה את ההמלצה על Insulet מקנייה להחזק וקיצצה את מחיר היעד מ-$180 ל-$165, בגלל האטה במומנטום בארה״ב, שימור לקוחות בסוכרת סוג 2 ותחרות.",
+   "src": "Investing.com",
+   "url": "https://in.investing.com/news/stock-market-news/stifel-downgrades-insulet-stock-rating-on-us-momentum-concerns-93CH-5711762"
+  },
+  {
+   "id": "2026-11-18-elv-argus",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ELV"
+   ],
+   "tag": "Elevance Health",
+   "tone": "pos",
+   "title": "Argus העלתה את Elevance Health לקנייה",
+   "body": "Argus העלתה את ההמלצה על Elevance Health מהחזק לקנייה עם מחיר יעד של $510, בזכות תחזית הצמיחה ברווח למניה ב-2027.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/argus-upgrades-elevance-stock-rating-to-buy-on-2027-growth-outlook-93CH-5035886"
+  },
+  {
+   "id": "2026-11-18-nyt-citi",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "NYT"
+   ],
+   "tag": "New York Times",
+   "tone": "neg",
+   "title": "Citi הורידה את New York Times לנייטרלי",
+   "body": "Citi הורידה את ההמלצה על New York Times מקנייה לנייטרלי וקיצצה את מחיר היעד מ-$85 ל-$76, בגלל היחלשות המגמות בטווח הקרוב.",
+   "src": "TipRanks (The Fly)",
+   "url": "https://www.tipranks.com/news/the-fly/citi-downgrades-new-york-times-on-eroding-near-term-trends-thefly-news"
+  },
+  {
+   "id": "2026-11-18-pfe-starna",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "PFE"
+   ],
+   "tag": "Pfizer",
+   "tone": "neu",
+   "title": "Pfizer רוכשת רישיון לטיפולי CAR-T מ-Starna הסינית",
+   "body": "Pfizer קיבלה רישיון בלעדי לשלושה טיפולי CAR-T למחלות אוטואימוניות, בשלב פרה-קליני, מחוץ לסין רבתי. העסקה כוללת $330 מיליון מראש ועד $2.3 מיליארד באבני דרך, כ-$2.6 מיליארד בסך הכול, ותמלוגים.",
+   "src": "Reuters",
+   "url": "https://www.1049thewolf.com/2026/11/18/pfizer-licenses-car-t-therapies-from-chinas-starna-in-up-to-2-6-billion-deal/"
+  },
+  {
+   "id": "2026-11-18-googl-isomorphic",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "GOOGL"
+   ],
+   "tag": "Alphabet",
+   "tone": "neu",
+   "title": "Isomorphic Labs של Alphabet גייסה $5 מיליארד",
+   "body": "חברת גילוי התרופות Isomorphic Labs גייסה $5 מיליארד בסבב בהובלת Greenoaks ו-Sequoia. Alphabet השקיעה סכום משמעותי דרך GV ו-CapitalG. השווי לא פורסם.",
+   "src": "SiliconANGLE",
+   "url": "https://siliconangle.com/2026/11/17/alphabets-isomorphic-labs-raises-5b-to-accelerate-drug-discovery-with-ai/"
+  },
+  {
+   "id": "2026-11-18-c-worldbank-stablecoin",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "C"
+   ],
+   "tag": "Citigroup",
+   "tone": "neu",
+   "title": "Citi ו-Circle יסייעו לבנק העולמי לבחון תשלומים בסטייבלקוין",
+   "body": "הבנק העולמי יבחן שימוש בסטייבלקוין דולרי מפוקח (USDC של Circle) לתשלומי סיוע, לצד המערכות הבנקאיות של Citi. לא פורסמו לוח זמנים, היקף או מדינות.",
+   "src": "Unchained",
+   "url": "https://unchainedcrypto.com/citi-and-circle-to-help-world-bank-study-stablecoin-payouts/"
+  },
+  {
+   "id": "2026-11-18-crcl-worldbank",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "CRCL"
+   ],
+   "tag": "Circle",
+   "tone": "neu",
+   "title": "הבנק העולמי יבחן את USDC של Circle לתשלומים",
+   "body": "הבנק העולמי הודיע שיבחן שימוש ב-USDC, הסטייבלקוין של Circle, לתשלומי פיתוח, יחד עם Citi. לא פורסמו לוח זמנים או היקף.",
+   "src": "Unchained",
+   "url": "https://unchainedcrypto.com/citi-and-circle-to-help-world-bank-study-stablecoin-payouts/"
+  },
+  {
+   "id": "2026-11-18-gev-wpd",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "GEV"
+   ],
+   "tag": "GE Vernova",
+   "tone": "neu",
+   "title": "GE Vernova תספק טורבינות רוח לחווה בגרמניה",
+   "body": "GE Vernova קיבלה מ-wpd הזמנה לארבע טורבינות רוח יבשתיות של 5.5 מגה-ואט (כ-22 מגה-ואט) לחוות Haseloff בגרמניה, עם הסכם שירות ארוך טווח. ההזמנה תירשם ברבעון הרביעי והאספקה תתחיל בנובמבר 2027.",
+   "src": "GE Vernova",
+   "url": "https://www.gevernova.com/news/press-releases/ge-vernova-strengthens-german-wind-energy-expansion-new-order-wpd"
+  },
+  {
+   "id": "2026-11-18-qsr-notes",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "QSR"
+   ],
+   "tag": "Restaurant Brands",
+   "tone": "neu",
+   "title": "Restaurant Brands גייסה $1 מיליארד באג״ח",
+   "body": "Restaurant Brands International תמחרה אג״ח מובטחות בהיקף של $1 מיליארד: $500 מיליון בריבית 6.00% לפירעון ב-2031 ו-$500 מיליון בריבית 6.40% לפירעון ב-2036. הכסף ישמש לפירעון חלק מהלוואה. ההשלמה צפויה בסביבות 24 בנובמבר.",
+   "src": "RBI",
+   "url": "https://www.rbi.com/English/news/news-details/2026/Restaurant-Brands-International-Inc--Announces-Pricing-of-Senior-Secured-Notes-Offering/default.aspx"
+  },
+  {
+   "id": "2026-11-18-aciw-ceo",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "ACIW"
+   ],
+   "tag": "ACI Worldwide",
+   "tone": "neu",
+   "title": "מנכ״ל ACI Worldwide עוזב, סמנכ״ל הכספים מנכ״ל זמני",
+   "body": "המנכ״ל תומס וורסופ עוזב לתפקיד מנכ״ל בחברה ציבורית אחרת וימשיך עד 18 בדצמבר. סמנכ״ל הכספים רוברט לייברוק מונה למנכ״ל זמני וימשיך גם בתפקידו הנוכחי. החברה אישררה את תחזית 2026.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/news/ACIW/aci-worldwide-appoints-robert-leibrock-as-interim-chief-executive-gfbg92nooj09.html"
+  },
+  {
+   "id": "2026-11-18-wmt-preview",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "WMT"
+   ],
+   "tag": "Walmart",
+   "tone": "neu",
+   "title": "Walmart מדווחת מחר לפני הפתיחה",
+   "body": "Walmart תפרסם את הדוח לרבעון השלישי מחר ב-07:00 שעון ניו יורק (14:00 בישראל). לפי GuruFocus, הצפי הוא לרווח של $0.70 למניה ולהכנסות של כ-$187.2 מיליארד.",
+   "src": "GuruFocus (TradingView)",
+   "url": "https://www.tradingview.com/news/gurufocus:c4c3895f5094b:0-walmart-q3-earnings-preview-what-to-expect-from-upcoming-report/"
+  },
+  {
    "id": "2026-11-18-nvda-sec-probe",
    "date": "2026-11-18",
    "k": "stock",
@@ -103724,6 +104188,34 @@
   "TAC": {
    "desc": "חברת ייצור חשמל קנדית: מים, רוח, שמש וגז.",
    "about": "TransAlta מייצרת ומוכרת חשמל מתחנות הידרו באלברטה, חוות רוח ושמש, ותחנות גז, בקנדה, ארה\"ב ואוסטרליה. בנוסף היא סוחרת באנרגיה.\nהיא נהנית מהביקוש לחשמל, כולל ממרכזי נתונים באלברטה."
+  },
+  "PONY": {
+   "desc": "חברת נהיגה אוטונומית סינית שמפעילה שירותי רובוטקסי ורובוטראק.",
+   "about": "Pony AI מפתחת טכנולוגיית נהיגה אוטונומית ומפעילה שירותי רובוטקסי בערים בסין.\nהיא מספקת גם משאיות אוטונומיות להובלה (רובוטראק) ומוכרת פתרונות הנדסה ותוכנה ליצרניות רכב.\nהחברה עובדת עם יצרניות רכב שמשלבות את המערכת שלה ברכבים.\nהמניה נסחרת בנאסד״ק ובהונג קונג."
+  },
+  "BRBR": {
+   "desc": "יצרנית שייקים ואבקות חלבון, בעלת המותגים Premier Protein ו-Dymatize.",
+   "about": "BellRing Brands מייצרת ומשווקת מוצרי תזונה בארה״ב.\nהמוצר המרכזי שלה הוא שייק חלבון מוכן לשתייה, ולצדו אבקות חלבון וחטיפי תזונה.\nהמותגים העיקריים הם Premier Protein ו-Dymatize.\nהמוצרים נמכרים ברשתות שיווק, בחנויות מועדון כמו Costco ובאונליין."
+  },
+  "ZIM": {
+   "desc": "חברת ספנות ישראלית שמובילה מכולות בקווים בינלאומיים.",
+   "about": "צים היא חברת ספנות ישראלית שמספקת הובלה ימית של מכולות ברחבי העולם.\nהיא מציעה הובלה מנמל לנמל ומדלת לדלת ללקוחות, משלחים ויבואנים.\nרוב הספינות שלה חכורות, והחברה פועלת בקווים בין אסיה, אמריקה, אירופה והים התיכון.\nהרווחים שלה תלויים מאוד בתעריפי ההובלה בשוק, ולכן משתנים בחדות בין שנים.\nהמניה נסחרת בבורסת ניו יורק."
+  },
+  "MNSO": {
+   "desc": "רשת קמעונאות סינית למוצרי לייף סטייל וצעצועים, MINISO ו-TOP TOY.",
+   "about": "MINISO מפעילה רשת חנויות של מוצרי עיצוב ולייף סטייל במחירים נמוכים: מוצרים לבית, אלקטרוניקה קטנה, קוסמטיקה וצעצועים.\nלחברה אלפי חנויות בסין וברחבי העולם, חלקן בזכיינות.\nהיא מפעילה גם את רשת צעצועי האספנות TOP TOY.\nהמניה נסחרת בבורסת ניו יורק ובהונג קונג."
+  },
+  "WB": {
+   "desc": "רשת חברתית סינית, Weibo, שמרוויחה בעיקר מפרסום.",
+   "about": "Weibo מפעילה את אחת הרשתות החברתיות הגדולות בסין, שבה משתמשים יוצרים ומשתפים תוכן קצר.\nרוב ההכנסות שלה מגיעות מפרסום ושיווק, והשאר משירותים בתשלום למשתמשים.\nלפלטפורמה יותר מ-500 מיליון משתמשים חודשיים.\nבעלת השליטה היא Sina. המניה נסחרת בנאסד״ק ובהונג קונג."
+  },
+  "ENR": {
+   "desc": "יצרנית סוללות ומוצרי טיפוח לרכב, בעלת המותגים Energizer ו-Rayovac.",
+   "about": "Energizer מייצרת ומשווקת סוללות לבית, סוללות מיוחדות ופנסים ברחבי העולם.\nהמותגים שלה כוללים את Energizer, Eveready, Rayovac ו-Varta.\nיש לה גם תחום של מוצרי טיפוח ורענון לרכב, כמו Armor All ו-STP.\nהמוצרים נמכרים ברשתות קמעונאות ובאונליין."
+  },
+  "PAGS": {
+   "desc": "חברת תשלומים ובנק דיגיטלי בברזיל, שמשרתת בעיקר עסקים קטנים.",
+   "about": "PagSeguro מספקת פתרונות תשלום לעסקים קטנים ובינוניים ולעצמאים בברזיל, כולל מסופי סליקה ותשלומים באונליין.\nהיא מפעילה גם את הבנק הדיגיטלי PagBank, עם חשבונות, כרטיסים, הלוואות והשקעות.\nרוב ההכנסות מגיעות מעמלות סליקה ומשירותים פיננסיים.\nהמניה נסחרת בבורסת ניו יורק."
   }
  },
  "movers": {
