@@ -1531,9 +1531,22 @@ function spDayHtml(t,s){
   const d=s&&s.r&&s.r.d!=null?s.r.d:null;
   return d==null?preLine(t):`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>${preLine(t)}`;
 }
+/* live files: first through the GitHub API (cached ~1 min; a repeat request with the same ETag answers 304 and does not use the
+   60-requests-an-hour limit), and through raw.githubusercontent.com (cached up to 5 min) if the API refuses or fails; after a refusal the
+   raw route is used for 15 minutes */
+let GH_API_OFF=0;
+async function ghLive(branch,file,rawUrl){
+  if(Date.now()>GH_API_OFF){
+    try{ const r=await fetch(`https://api.github.com/repos/sagirozio/wallstreet-he/contents/${file}?ref=${branch}`,{cache:'no-cache',headers:{Accept:'application/vnd.github.raw'}});
+      if(r.ok) return r;
+      if(r.status===403||r.status===429) GH_API_OFF=Date.now()+15*60*1000;
+    }catch(e){ GH_API_OFF=Date.now()+15*60*1000; }
+  }
+  return fetch(rawUrl+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'});
+}
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
-  try{ const r=await fetch(LIVE_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
+  try{ const r=await ghLive('live','live.json',LIVE_URL); if(!r.ok) return;
     LIVE=await r.json(); liveAgg(); try{ renderMktStatus(); }catch(e){} try{ renderWatch(); }catch(e){} try{ renderBriefSum(); }catch(e){}
     try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
@@ -2013,7 +2026,7 @@ async function refreshLive(){
 const INTRA_URL='https://raw.githubusercontent.com/sagirozio/wallstreet-he/intra/intra.json';
 let INTRA_L=null;
 async function loadIntra(){
-  try{ const r=await fetch(INTRA_URL+'?m='+Math.floor(Date.now()/60000),{cache:'no-store'}); if(!r.ok) return;
+  try{ const r=await ghLive('intra','intra.json',INTRA_URL); if(!r.ok) return;
     const j=await r.json();
     if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); }   /* pre-market prices: always the freshest */
     if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
