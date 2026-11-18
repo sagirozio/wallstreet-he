@@ -395,6 +395,9 @@ h2{color:#d5dae0}
 .mdet{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel);margin:0 0 10px}.mdet>summary{color:var(--text);font-size:14px}.mdet[open]>summary{margin-bottom:10px}.mdet .earn{display:block}.mdet .earn>*{max-width:620px}
 .ftabs{display:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 0 8px}.ftabs button{flex:none}
 @media(max-width:900px){.mtg{grid-template-columns:repeat(2,minmax(0,1fr))}.ftabs{display:flex}.fgrid.one{grid-template-columns:1fr}.fgrid.one>.fch{display:none}.fgrid.one>.fch.on{display:block}}
+#hmvList.hmv{display:block;overflow:visible;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:0}#hmvList a.hmr{display:block;flex:initial;background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:10px 12px;white-space:normal}#hmvList a.hmr:first-child{border-top:0}#hmvList a.hmr span.hmt{font:inherit;direction:rtl}#hmvList a.hmr span.hmw{font:600 14px/1.5 Heebo,system-ui,sans-serif;direction:rtl;text-align:right}#hmvList a.hmr span.hmw span{font:400 13px/1.5 Heebo,system-ui,sans-serif;direction:rtl}
+.hmt{display:flex;align-items:baseline;gap:8px}#hmvList .hmt b{font:700 14px "JetBrains Mono",monospace}#hmvList .hmt .num{font:700 14px "JetBrains Mono",monospace;direction:ltr}.hmt small{color:var(--muted);font-size:12px;margin-inline-start:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55%}
+.hmw{display:block;margin-top:3px;font-size:14px;line-height:1.5;color:var(--text);font-weight:600}.hmw small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.hmw .flat{font-weight:400;font-size:13px}
 .scd{margin:10px 0}.scd>summary{cursor:pointer;color:var(--accent);font-size:14px;padding:6px 0}.scd[open]>summary{margin-bottom:8px}
 section.fold>h2,section.fold>.hh{cursor:pointer;user-select:none}section.fold>h2::before,section.fold>.hh h2::before{content:"◂";display:inline-block;margin-inline-end:8px;color:var(--muted);font-size:.8em;transition:transform .15s}
 section.fold.open>h2::before,section.fold.open>.hh h2::before{transform:rotate(-90deg)}section.fold:not(.open)>:not(h2):not(.hh){display:none!important}section.fold:not(.open)>h2,section.fold:not(.open)>.hh{margin-bottom:0}
@@ -1134,7 +1137,9 @@ function renderHomeMovers(){
   const m=FALLBACK.movers||{}, mv=[...(m.rows||[])], sec=$('homeMovers');
   $('hmvH').textContent = m.pre ? 'מזנקות במסחר המקדים' : 'מניות שזינקו היום';
   sec.dataset.pg = mv.length?'home':'none'; sec.classList.toggle('on', !!mv.length && (CURPG==='home'||CURPG==null&&pageOf(location.hash)[0]==='home'));   /* show again when movers arrive after the page loaded */
-  $('hmvList').innerHTML = mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}" title="${esc(r.n)}"><b>${esc(r.t)}</b><span class="${r.p>=0?'up':'down'}">${pct(r.p,1)}</span></a>`).join('');
+  /* each mover with the reason: today's per-stock news item (written by the hourly run); nothing is guessed when there is none */
+  const day=m.date||nyToday(), why=t=>(FALLBACK.news||[]).find(n=>Array.isArray(n.t)&&n.t.includes(t)&&n.date===day)||null;
+  $('hmvList').innerHTML = mv.map(r=>{ const n=why(r.t); return `<a class="hmr" href="#stock/${encodeURIComponent(r.t)}"><span class="hmt"><b>${esc(r.t)}</b><span class="num ${r.p>=0?'up':'down'}">${pct(r.p,1)}</span><small>${esc(r.n||'')}</small></span><span class="hmw">${n?`${esc(n.title)}${n.body?`<small>${esc(n.body)}</small>`:''}`:'<span class="flat">עדיין אין סיבה מאומתת. הריצה השעתית מחפשת ותעדכן כאן.</span>'}</span></a>`; }).join('');
 }
 setInterval(()=>{ try{ renderMktStatus(); }catch(e){} }, 60000);
 
