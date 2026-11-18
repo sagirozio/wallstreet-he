@@ -211,6 +211,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sphead h2{margin:0}.sphead .meta{color:var(--muted);font-size:13px}
 .spchips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}.spchips.sphc{margin:-2px 0 8px;gap:4px 5px;flex-wrap:wrap}.sphc i{font-style:normal}.sphc .sl2{display:none}@media(max-width:640px){.sphc .lbl{display:none}.sphc .sl2{display:inline}.spchips.sphc{margin:0 0 6px}}.spchips.sphc a{border-color:rgba(91,140,255,.35);color:#cfe0ff}.spchips.sphc::-webkit-scrollbar{display:none}.spchips.sphc a,.spchips.sphc span{flex:none;padding:2px 9px;font-size:12px;white-space:nowrap}
 .spchips a,.spchips span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;color:var(--text);text-decoration:none}
+.spone{color:var(--muted);font-size:13.5px;line-height:1.5;margin:4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .spdesc{font-size:15.5px;line-height:1.6;margin:0 0 14px}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
@@ -1489,7 +1490,7 @@ async function renderStock(t){
   const tabs=[['ov','סקירה'],['ch','גרף'],['rp','דוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
-      <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
+      <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div>${prof.desc?`<p class="spone">${esc(prof.desc)}</p>`:''}</div>
       <div class="sphr"><div class="sptvh" id="spHdTv"></div><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>
       <div class="spchips sphc">${earnChip(t,rep)}${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}${watchBtn(t)}</div>
