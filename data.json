@@ -42689,7 +42689,7 @@
   }
  ],
  "overview": {
-  "asOf": "18.11.2026 · 19:20",
+  "asOf": "18.11.2026 · 20:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -42748,9 +42748,9 @@
   ],
   "brief": [
    {
-    "h": "הדאו יורד, ביטוחי הבריאות מכבידים",
-    "t": "UnitedHealth ו-Humana יורדות בכ-6% על רקע הצעת הכלל CRUSH של CMS, והכרייה צונחת עם הנחושת: Ero Copper יורדת ב-10.7% ו-Freeport ב-7.4%; הברנט ירד מתחת ל-$90.",
-    "tone": "neg"
+    "h": "הדאו יורד, ראסל 2000 ונאסד״ק עולים",
+    "t": "ביטוחי הבריאות מכבידים: Humana יורדת ביותר מ-9% ו-UnitedHealth בכ-6% על רקע הכלל CRUSH; מנגד מניות הסייבר מזנקות, Netskope עולה ב-9% ו-SentinelOne ב-8%.",
+    "tone": "neu"
    },
    {
     "h": "Nvidia מחקה את העליות, ה-SEC בודקת",
@@ -42763,8 +42763,8 @@
     "tone": "pos"
    },
    {
-    "h": "פרוטוקול הפד ב-21:00",
-    "t": "לפי Reuters, העלאת ריבית של 0.25% בדצמבר מתומחרת כמעט במלואה; נשיא הפד של סנט לואיס, אלברטו מוסאלם, קרא אתמול להעלות את הריבית בקרוב.",
+    "h": "הזהב בשפל, פרוטוקול הפד ב-21:00",
+    "t": "הזהב ירד מתחת ל-$3,800 לשפל של 14 חודשים עם דולר חזק ותשואת 10 שנים סביב 5.1%; לפי CME FedWatch ההסתברות להעלאת ריבית בדצמבר היא 95.7%.",
     "tone": "neg"
    },
    {
@@ -42842,7 +42842,7 @@
    "from": 19.3,
    "note": "ביום שני המדד קפץ ב-22% ל-23.56, אחרי שבוע של רגיעה."
   },
-  "rev": 202611181920,
+  "rev": 202611182000,
   "market": {
    "note": "סגירה ביום שלישי, 17.11.2026. ירידות בכל המדדים, והדאו הוביל עם ירידה של כ-850 נקודות. Nvidia עלתה בכ-2% במסחר המאוחר אחרי הדוח.",
    "idx": [
@@ -104636,6 +104636,87 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-18-trump-philippines-no-deal-signed",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "הפיליפינים: עדיין לא נחתם הסכם סחר",
+   "body": "טראמפ הודיע במנילה ובפוסט ב-Truth Social על הסכם סחר \"גדול מאוד\" עם הפיליפינים, ללא פרטים. לפי TNND, לשכת הנשיא בפיליפינים תיארה \"הבנה על שיתוף פעולה כלכלי\", והשגריר בארה״ב חוסה מנואל רומואלדס אמר שדבר לא נחתם; לא פורסמו שיעורי מכס או נוסח הסכם.",
+   "src": "WJLA / TNND",
+   "url": "https://wjla.com/news/nation-world/no-deal-signed-yet-philippine-officials-temper-trumps-claim-of-very-big-trade-pact"
+  },
+  {
+   "id": "2026-11-18-gold-14-month-low",
+   "date": "2026-11-18",
+   "t": [],
+   "tag": "סחורות",
+   "tone": "neg",
+   "title": "הזהב ירד מתחת ל-$3,800, שפל של 14 חודשים",
+   "body": "הזהב נסחר סביב $3,783 לאונקיה, ירידה של כ-1.9%, והכסף ירד בכ-3% ל-$46.4. לפי USAGOLD ו-24/7 Wall St., הלחץ מגיע מדולר חזק ומתשואות גבוהות, כשלפי CME FedWatch ההסתברות להעלאת ריבית של 0.25% בדצמבר היא 95.7%.",
+   "src": "USAGOLD",
+   "url": "https://www.usagold.com/daily-precious-metals-market-report-november-18-2026/"
+  },
+  {
+   "id": "2026-11-18-cyber-stocks-rally",
+   "date": "2026-11-18",
+   "t": [
+    "NTSK",
+    "S",
+    "CRWD",
+    "OKTA",
+    "ZS"
+   ],
+   "tag": "סייבר",
+   "tone": "pos",
+   "title": "מניות הסייבר עולות: Netskope, SentinelOne ו-CrowdStrike",
+   "body": "Netskope עלתה ב-9.1%, SentinelOne ב-8%, Okta ב-6.8%, CrowdStrike ב-6% ו-Zscaler ב-5%. לפי StockStory, הדוח החזק של Nvidia עודד קניות במניות התוכנה שירדו, ואזהרת שר ביטחון המולדת מפני תקיפות סייבר על תשתיות בארה״ב תמכה בחברות האבטחה.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nasdaq/ntsk/news/why-up-down/netskope-sentinelone-crowdstrike-okta-and-zscaler-shares-are-soaring-what-you-need-to-know"
+  },
+  {
+   "id": "2026-11-18-ntsk-up-cyber",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "NTSK"
+   ],
+   "tag": "Netskope",
+   "tone": "pos",
+   "title": "Netskope עולה בכ-10% עם מניות הסייבר",
+   "body": "המניה עלתה ב-9.1% ל-$23.06 בצהריים, כ-13% מתחת לשיא 52 השבועות ($26.52). לפי StockStory, העלייה מגיעה עם ראלי במגזר הסייבר אחרי הדוח של Nvidia ואזהרה ממשלתית מפני תקיפות סייבר.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nasdaq/ntsk/news/why-up-down/netskope-sentinelone-crowdstrike-okta-and-zscaler-shares-are-soaring-what-you-need-to-know"
+  },
+  {
+   "id": "2026-11-18-hum-crush-rule",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "HUM"
+   ],
+   "tag": "Humana",
+   "tone": "neg",
+   "title": "Humana צונחת ביותר מ-9% בעקבות הכלל CRUSH",
+   "body": "המניה ירדה ביותר מ-9% ל-$404.69 בצהריים (ירידה של $38.65). לפי Seeking Alpha, הסיבה היא הצעת הכלל הפדרלי CRUSH נגד הונאות בתוכניות Medicare, Medicaid והביטוח הממשלתי, שעשויה להגביר ביקורות על Medicare Advantage ולחייב החזר תשלומי יתר.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674298-humana-drops-9-on-proposed-medicare-fraud-crackdown"
+  },
+  {
+   "id": "2026-11-18-tgt-q3",
+   "date": "2026-11-18",
+   "k": "stock",
+   "t": [
+    "TGT"
+   ],
+   "tag": "Target",
+   "tone": "pos",
+   "title": "Target מעל הצפי, המניה עולה בכ-5.6%",
+   "body": "המכירות נטו עלו ב-7.1% ל-$27.1 מיליארד (צפי: $26.5 מיליארד), והרווח למניה עלה ב-49% ל-$2.65 (צפי: $2.08), כולל הטבה של $0.50 מהחזרי מכס; המכירות בחנויות זהות עלו ב-5.6%. לפי Motley Fool המניה עלתה בכ-5.6% אחרי העלאת התחזית השנתית.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+  },
   {
    "id": "2026-11-18-fsly-comcast",
    "date": "2026-11-18",
