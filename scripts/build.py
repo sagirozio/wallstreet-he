@@ -141,6 +141,56 @@ for _ind, _lst in stocks.items():
         if _x: _scr[_t] = _x
 write("screen.json", js({"asOf": themes.get("asOf"), "x": _scr}))
 
+# ---------- last quarters: EPS vs estimate (Finnhub) + revenue and year-over-year (SEC fund files, report cards) ----------
+try: _eh = json.loads((root / "earnhist.json").read_text(encoding="utf-8"))
+except Exception: _eh = {}
+_ehh = _eh.get("h", {})
+_cards = {}
+for _r in data.get("reports", []): _cards.setdefault(_r.get("t"), []).append(_r)
+def _yoy(a, b):
+    if a is None or b is None or b <= 0: return None
+    g = (a / b - 1) * 100
+    return round(g) if -99 <= g <= 999 else None
+def earn_hist(t):
+    rows = _ehh.get(t) or []
+    if not rows: return None
+    D = _dts.date.fromisoformat
+    try: f = json.loads((root / "fund" / f"{t}.json").read_text())
+    except Exception: f = {}
+    fq, frv, fe = f.get("q") or [], f.get("rev") or [], f.get("eps") or []
+    def near(day, lst, lo, hi):   # index of the date in lst whose distance from day is within [lo, hi] days, closest to the middle
+        best = None
+        for i, x in enumerate(lst):
+            try: dd = (day - D(x)).days
+            except Exception: continue
+            if lo <= dd <= hi and (best is None or abs(dd - (lo + hi) / 2) < best[0]): best = (abs(dd - (lo + hi) / 2), i)
+        return None if best is None else best[1]
+    per = [r[0] for r in rows]; out = []
+    for k, r in enumerate(rows[:4]):
+        p, y, q, a, e = r; day = D(p)
+        x = {"q": (f"Q{q} {str(y)[-2:]}" if q and y else p[:7]), "a": a}
+        if e is not None: x["e"] = e
+        j = near(day, per, 335, 395)                      # same quarter a year earlier, adjusted (Finnhub)
+        if j is not None: x["ay"] = _yoy(a, rows[j][3])
+        i = near(day, fq, -40, 40)
+        if x.get("ay") is None and i is not None and i < len(fe):
+            j2 = near(D(fq[i]), fq, 335, 395)
+            if j2 is not None and j2 < len(fe) and fe[i] is not None and fe[j2] is not None:
+                x["ay"] = _yoy(fe[i], fe[j2]); x["g"] = 1   # GAAP year-over-year
+        if i is not None and i < len(frv) and frv[i]:
+            x["r"] = round(frv[i] / 1e9, 3)
+            j2 = near(D(fq[i]), fq, 335, 395)
+            if j2 is not None and j2 < len(frv): x["ry"] = _yoy(frv[i], frv[j2])
+        elif k == 0:                                      # newest quarter not in the SEC file yet: take revenue from the report card
+            for c in sorted(_cards.get(t, []), key=lambda c: str(c.get("date", "")), reverse=True)[:1]:
+                try: gap = (D(str(c.get("date"))[:10]) - day).days
+                except Exception: gap = 999
+                if 0 <= gap <= 100 and isinstance(c.get("revAct"), (int, float)):
+                    x["r"] = c["revAct"]
+                    if isinstance(c.get("revYoy"), (int, float)): x["ry"] = round(c["revYoy"])
+        out.append({k2: v for k2, v in x.items() if v is not None})
+    return out if out else None
+
 # ---------- per-stock details ----------
 n_s = 0
 for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
@@ -148,7 +198,9 @@ for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
         continue
     rec = {"p": profiles.get(t) or {}, "f": facts.get(t) or {}, "e": earn.get(t)}
     if t in _rec or t in _nx: rec["an"] = {"rec": _rec.get(t), "next": _nx.get(t), "asOf": _an.get("asOf")}
-    if rec["p"] or rec["f"] or rec["e"]:
+    _h = earn_hist(t)
+    if _h: rec["eh"] = _h
+    if rec["p"] or rec["f"] or rec["e"] or _h:
         n_s += write(f"s/{t}.json", js(rec))
 
 # ---------- index.html ----------

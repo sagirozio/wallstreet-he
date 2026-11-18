@@ -1,0 +1,23 @@
+name: Earnings history (Finnhub)
+# EPS vs estimate for the last quarters of every stock -> earnhist.json (build.py joins it with fund/ into s/<T>.json "eh").
+# Full run weekly; after each close the loop starts a short run for the stocks that reported in the last 4 days.
+on:
+  schedule:
+    - cron: "17 11 * * 6"
+  workflow_dispatch:
+    inputs:
+      args: { description: "minutes budget and/or --recent N", default: "50" }
+permissions:
+  contents: write
+concurrency: { group: earnhist, cancel-in-progress: false }
+jobs:
+  earnhist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
+        run: python scripts/earnhist.py ${{ github.event.inputs.args || '50' }}
+      - run: pip install -q yfinance pandas >/dev/null 2>&1; bash scripts/commit.sh "Earnings history (Finnhub)" earnhist.json
