@@ -851,7 +851,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 <section id="newsArchive" data-pg="news">
   <h2>חדשות</h2>
-  <div class="tabs ntabs" id="nTabs"><button data-nv="all" class="on">הכל</button><button data-nv="main">שוק ומאקרו</button><button data-nv="stock">מניות</button><button data-nv="watch">במעקב</button></div>
+  <div class="tabs ntabs" id="nTabs"><button data-nv="all" class="on">הכל</button><button data-nv="main">שוק ומאקרו</button><button data-nv="trump">טראמפ וממשל</button><button data-nv="stock">מניות</button><button data-nv="watch">במעקב</button></div>
   <div class="controls nctl"><input class="search" id="nq" type="search" placeholder="חיפוש בחדשות: Nvidia, ריבית, הנפקה..."><select id="ntag" class="hidden"><option value="">כל הנושאים</option></select></div>
   <div id="newsAll"></div>
 </section>
@@ -1230,11 +1230,11 @@ function renderNews(){
 }
 /* ---------- news page: main stories (headline + summary) and a dense list of stock headlines ---------- */
 let NVIEW='all', NML=6, NSL=0; const N_MQ=matchMedia('(min-width:901px)');
-const N_IC={globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',pct:'<path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',chart:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',doc:'<path d="M7 3h8l4 4v14H7z"/><path d="M10 12h6M10 16h6"/>',bank:'<path d="M3 10 12 4l9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/>'},
-      N_COL={globe:'#f59e0b',pct:'#a855f7',bank:'#22b8cf',doc:'#22c55e',chart:'#5b8cff'};
+const N_IC={flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',pct:'<path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',chart:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',doc:'<path d="M7 3h8l4 4v14H7z"/><path d="M10 12h6M10 16h6"/>',bank:'<path d="M3 10 12 4l9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/>'},
+      N_COL={flag:'#ef4444',globe:'#f59e0b',pct:'#a855f7',bank:'#22b8cf',doc:'#22c55e',chart:'#5b8cff'};
 function newsIcon(n){ const one=Array.isArray(n.t)&&n.t.length===1;
   if(one) return `<span class="sth">${mono(n.t[0])}</span>`;
-  const g=(n.tag||'')+' '+(n.title||''), k=/גיאופול|סין|מלחמ|איראן|מכס/.test(g)?'globe':/ריבית|הפד|פרוטוקול/.test(g)?'pct':/מאקרו|אינפלצ|תעסוק|צמיחה|תמ״ג/.test(g)?'bank':/דוח|הנפק/.test(g)?'doc':'chart';
+  const g=(n.tag||'')+' '+(n.title||''), k=/טראמפ|ממשל|הבית הלבן/.test(g)?'flag':/גיאופול|סין|מלחמ|איראן|מכס/.test(g)?'globe':/ריבית|הפד|פרוטוקול/.test(g)?'pct':/מאקרו|אינפלצ|תעסוק|צמיחה|תמ״ג/.test(g)?'bank':/דוח|הנפק/.test(g)?'doc':'chart';
   return `<span class="sth ic" style="color:${N_COL[k]};background:${N_COL[k]}1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${N_IC[k]}</svg></span>`; }
 function newsWhen(n){ const p=String(n.date||'').split('-'), today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'}); return (n.date===today?'היום':p.length===3?`${+p[2]}.${+p[1]}`:'')+(n.time?' '+esc(n.time):''); }
 const newsSrc=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener"><bdi>${esc(n.src||'למקור')}</bdi> ↗</a>`:`<bdi>${esc(n.src||'')}</bdi>`;
@@ -1247,7 +1247,9 @@ function renderNewsPage(){
   const all=NEWS.filter(hit), main=all.filter(n=>n.k!=='stock'), st=all.filter(n=>n.k==='stock'), ws=new Set(typeof WATCH!=='undefined'&&WATCH||[]), wt=all.filter(n=>(n.t||[]).some(t=>ws.has(t)));
   const sl0=wide?22:9, more=(id,txt)=>`<button class="ewmore" id="${id}" style="display:block;margin:12px 0 0">${txt}</button>`, none='<div class="empty">לא נמצאו ידיעות.</div>';
   document.querySelectorAll('#nTabs button').forEach(b=>b.classList.toggle('on',b.dataset.nv===NVIEW));
-  if(NVIEW==='main') box.innerHTML = main.length?main.slice(0,NML+9).map(newsBig).join('')+(main.length>NML+9?more('nMoreM',`עוד ידיעות (${main.length-NML-9})`):''):none;
+  const tr=all.filter(n=>/טראמפ|ממשל|הבית הלבן|Trump/i.test((n.tag||'')+' '+(n.title||'')));
+  if(NVIEW==='trump') box.innerHTML = tr.length?tr.slice(0,NML+9).map(newsBig).join('')+(tr.length>NML+9?more('nMoreM',`עוד ידיעות (${tr.length-NML-9})`):''):'<div class="empty">אין כרגע ידיעות על טראמפ והממשל.</div>';
+  else if(NVIEW==='main') box.innerHTML = main.length?main.slice(0,NML+9).map(newsBig).join('')+(main.length>NML+9?more('nMoreM',`עוד ידיעות (${main.length-NML-9})`):''):none;
   else if(NVIEW==='stock') box.innerHTML = st.length?`<div class="slb">${st.slice(0,40+NSL).map(newsLine).join('')}</div>`+(st.length>40+NSL?more('nMoreS',`עוד כותרות (${st.length-40-NSL})`):''):none;
   else if(NVIEW==='watch') box.innerHTML = !ws.size?'<div class="empty">אין מניות ברשימת המעקב. אפשר להוסיף בעמוד המניות, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>':wt.length?`<div class="slb">${wt.slice(0,40+NSL).map(newsLine).join('')}</div>`+(wt.length>40+NSL?more('nMoreS',`עוד כותרות (${wt.length-40-NSL})`):''):'<div class="empty">אין ידיעות על המניות שבמעקב בימים האחרונים.</div>';
   else box.innerHTML = !all.length?none:`<div class="sag"><div><div class="sah">ראשיות</div>${main.slice(0,NML).map(newsBig).join('')||none}${main.length>NML?more('nMoreM',`עוד ידיעות ראשיות (${main.length-NML})`):''}</div>

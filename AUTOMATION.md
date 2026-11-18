@@ -4,20 +4,31 @@ Site "וולסטריטר" (Hebrew, US stock market). Repo `sagirozio/wallstreet-
 Edit only `data.json` (and `scripts/he_names.json`), then build. Everything else is generated or automatic.
 
 **Automatic — never touch:** `analysts.json`, `earnhist.json`, `screen.json`, `themes.x` (mktx.py: sparklines, rank changes, sector breadth), RS ratings (build.py), prices, `sectors`, `themes`, `breadth`, `ytd`, `gainers`, `movers`, `premarket`, `calendar` list,
+`insiders`, `recap`, basic earnings cards (`"auto": true`), facts. Raw English headlines per stock: `news_src.json` (research only).
 
 **Banned source: Al Jazeera.** Never use aljazeera.com / Al Jazeera (any language) as a source, link or attribution: not for news items, the brief, report cards or anything else. If a story appears only there, find it on another reliable outlet or skip it.
-`insiders`, `recap`, basic earnings cards (`"auto": true`), facts. Raw English headlines per stock: `news_src.json` (research only).
 
 ## Your job, in this order (stop when time runs out; the rest waits for the next run)
 
 | Run | When (Israel) | Do |
 |---|---|---|
-| hourly | :52, 13:52–22:52 | news (3–8 items) + rewrite `overview.brief` |
-| midday | 10:39 | news (main 3–6 + stock 20–40) |
+| hourly | :52, 11:52–22:52 | the reason for every mover, news (main 3–5 + stock items), rewrite `overview.brief` |
+| midday | 10:39 | news (main 6–10 + stock 20–40) |
 | morning | 15:13 | brief, news, cards for today's reporters, enrich cards, profiles |
 | evening | 23:47 | brief + `market` + `vix`, news, cards for after-close reporters, enrich cards, profiles |
 
 1. `overview.brief` · 2. main news · 3. report cards of today's big reporters · 4. stock news · 5. enrich `auto` cards (≥15, largest first) · 6. `profiles` · 7. `calendar` notes, `ipos`.
+
+## News volume and the Trump desk (owner's request)
+
+The owner wants MORE main news. Every run (hourly included) must look for fresh market-relevant stories and add them:
+morning / midday / evening 6–10 main items, hourly 3–5 main items whenever there is real news (macro data, the Fed, bonds, oil, big corporate stories, Asia/Europe, geopolitics that moves markets).
+**Trump desk — check in every run:** what President Trump and the administration said or did since the last run that matters for markets:
+tariffs and trade deals, China, the Fed and its chair, taxes and spending, executive orders, regulation of specific industries or companies,
+antitrust, export controls, crypto, energy, defense, statements naming a company or sector. Search for it explicitly ("Trump" + today), also when the headlines are quiet.
+Write each one as its own main item with `"tag":"טראמפ"` (or `"tag":"ממשל"` for agencies / cabinet members): what was said or done, when, the source, and the market reaction only if a source reports it.
+Strictly factual and neutral: no opinion, no adjectives, no speculation about motives; quote or paraphrase with attribution ("לפי Reuters", "בפוסט ב-Truth Social"). If a company is named, add its ticker in `t`.
+Do not pad: if nothing new happened, add nothing. No duplicates of a story already in today's news (update is not needed; a real new development is a new item).
 
 ## Research
 
