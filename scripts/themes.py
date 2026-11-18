@@ -157,6 +157,7 @@ if _lj.get("date") == last.strftime("%Y-%m-%d"):
         if abs(_k_last - 1) > 0.3 or abs(_k_prev - 1) > 0.3:   # our series is on another scale
             close.loc[close.index < last, _t] *= _k_prev; close.loc[last, _t] = _v[0]; _fix[_t] = (round(_k_prev, 3), round(_k_last, 3))
     if _fix: print("rescaled to Yahoo live quotes", _fix, flush=True)
+HI52 = (close.iloc[-1] / close.iloc[-252:].max() - 1) * 100
 def ret(n):
     v = (close.iloc[-1] / close.iloc[-1 - n] - 1) * 100
     v[close.iloc[-1 - n].isna()] = float("nan"); return v
@@ -181,6 +182,8 @@ for ind, mem in by.items():
     lst = []
     for s in mem:
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
+        _h = HI52.get(s)
+        if _h is not None and not pd.isna(_h): rr["hi"] = round(float(_h), 1)   # % below the 52-week closing high (0 = at the high)
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
     elif ind in T.get("stocks", {}): stocks[ind] = [e for e in T["stocks"][ind] if e[0] in uni]

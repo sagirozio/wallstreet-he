@@ -1,0 +1,23 @@
+name: Analyst data (Finnhub, weekly)
+# Recommendation trends + next-report consensus for every stock -> analysts.json (build.py puts it into s/<T>.json and screen.json)
+on:
+  schedule:
+    - cron: "41 23 * * 5"   # Saturday ~01:41 Israel (also started by the loop on Fridays after the close)
+    - cron: "41 9 * * 6"
+  workflow_dispatch:
+    inputs:
+      minutes: { description: "Time budget for recommendations (minutes)", default: "45" }
+permissions:
+  contents: write
+concurrency: { group: analysts, cancel-in-progress: false }
+jobs:
+  analysts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
+        run: python scripts/analysts.py ${{ github.event.inputs.minutes }}
+      - run: pip install -q yfinance pandas >/dev/null 2>&1; bash scripts/commit.sh "Analyst data (Finnhub)" analysts.json

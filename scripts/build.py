@@ -103,12 +103,51 @@ write("core.json", core_txt)
 write("stocks.json", js({"asOf": themes.get("asOf"), "stocks": stocks, "ex": exch,
                          "he": {t: n for t, n in he_names.items() if t in universe}}))
 
+# ---------- analysts + screener extras ----------
+try: _an = json.loads((root / "analysts.json").read_text(encoding="utf-8"))
+except Exception: _an = {}
+_rec, _nx = _an.get("rec", {}), _an.get("next", {})
+def _capn(c):
+    m = re.fullmatch(r"([\d.]+)([TBM])", str(c or "")); return float(m[1]) * {"T": 1e12, "B": 1e9, "M": 1e6}[m[2]] if m else 0
+_insb = {}
+for _r in (data.get("insiders") or {}).get("rows", []):
+    if _r.get("type") == "P": _insb[_r["t"]] = _insb.get(_r["t"], 0) + _r.get("val", 0)
+import datetime as _dts
+_scr = {}
+for _ind, _lst in stocks.items():
+    for _s in _lst:
+        _t = _s[0]; _x = {}
+        try:
+            _f = json.loads((root / "fund" / f"{_t}.json").read_text())
+            _q, _rv, _ni = _f.get("q") or [], _f.get("rev") or [], _f.get("ni") or []
+            if len(_q) >= 4 and (_dts.date.today() - _dts.date.fromisoformat(_q[-1])).days < 200:
+                _c = _capn(_s[2]); _r4 = [v for v in _rv[-4:] if v]; _n4 = [v for v in _ni[-4:] if v is not None]
+                if len(_r4) == 4 and sum(_r4) > 0 and _c: _x["ps"] = round(_c / sum(_r4), 1)
+                if len(_n4) == 4 and sum(_n4) > 0 and _c and _c / sum(_n4) < 1000: _x["pe"] = round(_c / sum(_n4), 1)
+                if len(_n4) == 4 and len(_r4) == 4 and sum(_r4) > 0: _x["nm"] = round(sum(_n4) / sum(_r4) * 100, 1)   # net margin, TTM
+                _d0 = _dts.date.fromisoformat(_q[-1])
+                for _i in range(len(_q) - 2, -1, -1):
+                    if 340 <= (_d0 - _dts.date.fromisoformat(_q[_i])).days <= 390 and _rv[_i] and _rv[-1] and _rv[_i] > 0:
+                        _g = (_rv[-1] / _rv[_i] - 1) * 100
+                        if -95 < _g < 900: _x["g"] = round(_g, 1)
+                        break
+        except Exception: pass
+        if _t in _insb: _x["ib"] = int(_insb[_t])
+        _e = (earn.get(_t) or {}).get("d") if isinstance(earn.get(_t), dict) else None
+        _e = _e or (_nx.get(_t) or {}).get("d")
+        if _e and str(_e)[:10] >= _dts.date.today().isoformat(): _x["e"] = str(_e)[:10]
+        _rc = (_rec.get(_t) or {}).get("now")
+        if _rc and sum(_rc) >= 3: _x["bp"] = round((_rc[0] + _rc[1]) / sum(_rc) * 100)   # % of analysts rating buy
+        if _x: _scr[_t] = _x
+write("screen.json", js({"asOf": themes.get("asOf"), "x": _scr}))
+
 # ---------- per-stock details ----------
 n_s = 0
 for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     if not re.fullmatch(r"[A-Z0-9.\-]{1,10}", t):
         continue
     rec = {"p": profiles.get(t) or {}, "f": facts.get(t) or {}, "e": earn.get(t)}
+    if t in _rec or t in _nx: rec["an"] = {"rec": _rec.get(t), "next": _nx.get(t), "asOf": _an.get("asOf")}
     if rec["p"] or rec["f"] or rec["e"]:
         n_s += write(f"s/{t}.json", js(rec))
 
