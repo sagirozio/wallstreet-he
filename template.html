@@ -744,7 +744,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
   <div class="legend">ירוק = עלייה, אדום = ירידה. הפס האפור מראה את גודל השינוי בתקופה שנבחרה. הטיקר הוא קרן הסל (ETF) של SPDR שמייצגת את הסקטור. התשואות הן של קבוצת הסקטור ב-Finviz, ולכן עשויות להיות שונות מעט מהתשואה של הקרן עצמה.</div>
   <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
-  <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = ממוצע דירוג ה-RS של המניות בו (1 עד 99, מול מניות S&P 500). "מעל ממוצע 50" = אחוז המניות בסקטור שנסחרות מעל הממוצע הנע של 50 יום. האחוז הזה והגרף הקטן (3 חודשים) מחושבים על כל מניות הסקטור באתר, במשקל שווה, ולכן יכולים להיות שונים מעט מהתשואות בטבלה.</p>
+  <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = דירוג מ-1 עד 99 של ביצועי הסקטור ב-12 החודשים האחרונים מול מניות S&P 500 (3 החודשים האחרונים נספרים כפול), באותה שיטה כמו בתעשיות. "מעל ממוצע 50" = אחוז המניות בסקטור שנסחרות מעל הממוצע הנע של 50 יום. האחוז הזה והגרף הקטן (3 חודשים) מחושבים על כל מניות הסקטור באתר, במשקל שווה, ולכן יכולים להיות שונים מעט מהתשואות בטבלה.</p>
   </details>
 </section>
 
@@ -1948,10 +1948,9 @@ function renderSnap(){
 function renderSec(){
   const SEC_EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
   $('secTabs').innerHTML = [...PER,['rs','RS']].map(([k,l])=>`<button data-k="${k}" class="${k===secKey?'on':''}">${PL[k]}</button>`).join('');
-  const T=THEMES||{}, X=(T.x||{}).sec||{}, ix=stockIndex(), acc={};
-  Object.values(ix).forEach(s=>{ if(s.sec&&s.r&&s.r.rs!=null){ const a=acc[s.sec]||(acc[s.sec]=[0,0]); a[0]+=s.r.rs; a[1]++; } });   /* sector RS = average RS of its stocks */
+  const T=THEMES||{}, X=(T.x||{}).sec||{}, SR=T.secRs||{};   /* sector RS: the sector's own returns against the S&P 500 stocks (build.py) */
   const c=mCols(secKey), TS=trendSet(SECTORS.rows||[],0.27), E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null;
-  const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||'', a=acc[en]; return {...r, en, d:LIVE_SEC&&LIVE_SEC[r.t]!=null?LIVE_SEC[r.t]:r.d, rs:a&&a[1]>=5?Math.round(a[0]/a[1]):null}; }).sort(byKey(secKey));
+  const rows=[...(SECTORS.rows||[])].map(r=>{ const en=SEC_EN[r.name]||''; return {...r, en, d:LIVE_SEC&&LIVE_SEC[r.t]!=null?LIVE_SEC[r.t]:r.d, rs:SR[r.t]??null}; }).sort(byKey(secKey));
   const ranked=thRows().filter(r=>thCnt(r)>=3).sort(byKey(secKey)), rank=new Map(ranked.map((r,i)=>[r.en,i+1])), TSI=trendSet((T.rows||[]).filter(r=>thCnt(r)>=3),0.25);
   $('secTable').innerHTML = mHead('סקטור / תעשייה',c,secKey)+rows.map(r=>{ const op=secOpen.has(r.t), x=X[r.en]||{}, e=E&&E[r.t];
     const inds=op?thRows().filter(i=>(T.indSector||{})[i.en]===r.en).sort(byKey(secKey)):[];

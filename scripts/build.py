@@ -73,6 +73,11 @@ for l_ in stocks.values():
         if len(s_) > 3 and isinstance(s_[3], dict): _rs_set(_rs_score(s_[3]), s_[3])
 for r_ in themes.get("rows", []):
     if len(stocks.get(r_.get("en"), [])) >= 3: _rs_set(_rs_score(r_), r_)
+# sectors: the sector's own returns against the same S&P 500 stocks (kept in themes.secRs: the intraday sector table replaces the rows)
+themes["secRs"] = {}
+for r_ in (data.get("sectors") or {}).get("rows", []):
+    o_ = {}; _rs_set(_rs_score(r_), o_)
+    if "rs" in o_ and r_.get("t"): themes["secRs"][r_["t"]] = o_["rs"]
 
 universe = {}                       # T -> (co, cap, industry)
 for ind, lst in stocks.items():
