@@ -29,6 +29,7 @@ jobs:
       - run: python scripts/update.py
       - env: { MASSIVE_KEY: "${{ secrets.MASSIVE_KEY }}", GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
         run: python scripts/themes.py
+      - run: timeout 300 python scripts/mktx.py || true
       - run: timeout 1200 python scripts/autoreports.py recent || true
       - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: timeout 1500 python scripts/finnhub_fill.py || true

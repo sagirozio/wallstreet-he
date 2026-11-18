@@ -1,0 +1,65 @@
+"""Extra research data for the market page, from our own close history (history branch) -> data.json["themes"]["x"]:
+  ind[<industry>] = {sp: 13 weekly points of an equal-weight index over the last 3 months (start = 100), rk: places gained (+) or lost (-)
+                     in the 1-month ranking vs 5 sessions ago}
+  sec[<sector>]   = {sp: same sparkline for the sector, a50: % of its stocks above their 50-day average, n: stocks counted}
+  top5            = {in: industries that entered the top 5 (1-month ranking) in the last 5 sessions, out: those that left}
+Only groups with 3+ stocks are ranked (like the table). Runs after themes.py in the nightly update."""
+import json, pathlib, sys
+import pandas as pd
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import hist as H
+
+root = pathlib.Path(__file__).resolve().parent.parent
+p = root / "data.json"
+data = json.loads(p.read_text(encoding="utf-8"))
+T = data.get("themes") or {}
+df = H.load()
+if df.empty or len(df) < 90: raise SystemExit("no history")
+df = df.sort_index().ffill(limit=3)
+stocks, ind_sec = T.get("stocks") or {}, T.get("indSector") or {}
+
+def month_ret(cols, back):     # equal-weight 1-month (21 sessions) return of the group, as of `back` sessions ago
+    a, b = df[cols].iloc[-1 - back], df[cols].iloc[-1 - back - 21]
+    r = (a / b - 1).dropna()
+    r = r[(r > -0.95) & (r < 9)]
+    return float(r.mean() * 100) if len(r) else None
+def spark(cols):               # equal-weight index, 3 months, weekly points
+    w = df[cols].iloc[-64:]
+    w = w.loc[:, w.iloc[0].notna() & w.iloc[-1].notna()]
+    if w.shape[1] == 0: return None
+    idx = (w / w.iloc[0]).mean(axis=1) * 100
+    pts = idx.iloc[::-1].iloc[::5].iloc[::-1]
+    return [round(float(v), 1) for v in pts]
+
+X = {"ind": {}, "sec": {}, "asOf": str(df.index[-1].date())}
+now, old, sec_cols = {}, {}, {}
+for ind, lst in stocks.items():
+    cols = [s[0] for s in lst if s[0] in df.columns]
+    if ind_sec.get(ind): sec_cols.setdefault(ind_sec[ind], []).extend(cols)
+    if not cols: continue
+    sp = spark(cols)
+    if sp: X["ind"][ind] = {"sp": sp}
+    if len(lst) >= 3:
+        a, b = month_ret(cols, 0), month_ret(cols, 5)
+        if a is not None and b is not None: now[ind], old[ind] = a, b
+rank = lambda d: {k: i + 1 for i, (k, _) in enumerate(sorted(d.items(), key=lambda x: -x[1]))}
+rn, ro = rank(now), rank(old)
+for ind in rn:
+    X["ind"].setdefault(ind, {})["rk"] = ro[ind] - rn[ind]
+# top 5 as shown in the table (themes rows, 1 month) vs the top 5 of 5 sessions ago
+rows = [r for r in T.get("rows", []) if len(stocks.get(r.get("en"), [])) >= 3 and r.get("m") is not None]
+top_now = [r["en"] for r in sorted(rows, key=lambda r: -r["m"])[:5]]
+top_old = [k for k, v in sorted(ro.items(), key=lambda x: x[1])[:5]]
+X["top5"] = {"in": [k for k in top_now if k not in top_old], "out": [k for k in top_old if k not in top_now]}
+ma50 = df.iloc[-50:].mean()
+for sec, cols in sec_cols.items():
+    cols = sorted(set(cols)); last = df[cols].iloc[-1]
+    ok = last.notna() & ma50[cols].notna() & df[cols].iloc[-50].notna()
+    x = {"n": int(ok.sum())}
+    if x["n"]: x["a50"] = round(float((last[ok] > ma50[cols][ok]).mean() * 100))
+    sp = spark(cols)
+    if sp: x["sp"] = sp
+    X["sec"][sec] = x
+T["x"] = X; data["themes"] = T
+p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+print("mktx", X["asOf"], "industries", len(X["ind"]), "ranked", len(rn), "sectors", len(X["sec"]), "top5", X["top5"])

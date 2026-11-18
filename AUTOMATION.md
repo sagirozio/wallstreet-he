@@ -3,7 +3,7 @@
 Site "וולסטריטר" (Hebrew, US stock market). Repo `sagirozio/wallstreet-he`, served by GitHub Pages from `main`.
 Edit only `data.json` (and `scripts/he_names.json`), then build. Everything else is generated or automatic.
 
-**Automatic — never touch:** `analysts.json`, `earnhist.json`, `screen.json`, prices, `sectors`, `themes`, `breadth`, `ytd`, `gainers`, `movers`, `premarket`, `calendar` list,
+**Automatic — never touch:** `analysts.json`, `earnhist.json`, `screen.json`, `themes.x` (mktx.py: sparklines, rank changes, sector breadth), RS ratings (build.py), prices, `sectors`, `themes`, `breadth`, `ytd`, `gainers`, `movers`, `premarket`, `calendar` list,
 `insiders`, `recap`, basic earnings cards (`"auto": true`), facts. Raw English headlines per stock: `news_src.json` (research only).
 
 ## Your job, in this order (stop when time runs out; the rest waits for the next run)
