@@ -58,6 +58,8 @@ if __name__ == "__main__":
     if "--write" in sys.argv:   # update data.json now (used to refresh without waiting for the nightly run)
         p = pathlib.Path(__file__).resolve().parent.parent / "data.json"
         data = json.loads(p.read_text(encoding="utf-8"))
-        if apply(data): p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        if apply(data):
+            data["sectors"]["asOf"] = data["sectors"].get("asOf", "").replace("ממוצע מניות ה-S&P 500 בכל סקטור", "שינוי המחיר של קרן הסל של כל סקטור")
+            p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     else:
         for k, v in returns().items(): print(k, v)
