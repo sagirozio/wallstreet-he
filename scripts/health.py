@@ -77,6 +77,13 @@ for r in T.get("rows", []):
 if len(T.get("rows", [])) < 120: P.append(f"טבלת התעשיות: רק {len(T.get('rows', []))} תעשיות")
 nst = sum(len(v) for v in st.values())
 if nst < 1700: P.append(f"רק {nst} מניות ביקום (בדרך כלל ~1,950)")
+# the data's own last dates (an "as of" label can claim a day the numbers don't have)
+S = d.get("sectors", {}); pyd = (S.get("pyDates") or [None])[-1]
+if pyd and dt.date.fromisoformat(pyd) < exp: P.append(f"סקטורים: המחירים עד {pyd}, מצופה {exp:%d.%m}")
+try:
+    pxd = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/{REPO}/px/_dates.json?x={int(dt.datetime.now().timestamp())}", timeout=30).read().decode())
+    if dt.date.fromisoformat(pxd["dates"][-1]) < exp: P.append(f"גרפי המניות (px): עד {pxd['dates'][-1]}, מצופה {exp:%d.%m}")
+except Exception as e: print("px check failed", e)
 chk = T.get("check") or {}
 if chk.get("histTo") and (exp - dt.date.fromisoformat(chk["histTo"])).days > 4: P.append(f"מאגר המחירים של Massive עומד על {chk['histTo']}")
 # failed workflow runs in the last 24h
@@ -88,6 +95,14 @@ if TOK:
         bad = sorted({r["name"] for r in runs if r.get("conclusion") == "failure" and dt.datetime.fromisoformat(r["created_at"].replace("Z", "+00:00")) > since})
         for b in bad: P.append(f"ריצה נכשלה ב-24 השעות האחרונות: {b}")
     except Exception as e: print("runs check failed", e)
+# self-repair: stale day data -> run the nightly update again (once per morning check; it is gated to run only when needed)
+STALE = [p for p in P if "מצופה" in p or "Massive" in p]
+if STALE and TOK:
+    try:
+        runs = (gh("GET", "/actions/workflows/update.yml/runs?per_page=5") or {}).get("workflow_runs", [])
+        if not [r for r in runs if r.get("status") in ("in_progress", "queued", "pending", "waiting")]:
+            gh("POST", "/actions/workflows/update.yml/dispatches", {"ref": "main"}); P.append("העדכון הלילי הופעל מחדש אוטומטית")
+    except Exception as e: print("update re-run failed", e)
 print("\n".join(P) or "הכל תקין")
 # one issue, reused
 if TOK:

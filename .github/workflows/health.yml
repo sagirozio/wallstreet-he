@@ -2,8 +2,10 @@ name: Health check (every morning)
 on:
   schedule:
     - cron: "50 5 * * 2-6"     # 07:50 Israel, after the overnight and 07:25 runs
+    - cron: "35 6 * * 2-6"     # repeats: GitHub drops some scheduled starts; a stale day re-runs the update
+    - cron: "20 8 * * 2-6"
   workflow_dispatch:
-permissions: { contents: read, issues: write, actions: read }
+permissions: { contents: read, issues: write, actions: write }
 jobs:
   health:
     runs-on: ubuntu-latest
