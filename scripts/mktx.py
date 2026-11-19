@@ -138,6 +138,27 @@ try:
     now_rs, old_rs = rs_at(0), rs_at(5)
     if now_rs and old_rs:
         lead["newl"] = sorted([[t_, old_rs[t_]] for t_ in uni if now_rs.get(t_, 0) >= 90 and t_ in old_rs and old_rs[t_] < 90], key=lambda x: -now_rs[x[0]])
+        # left the 90+ group this week -> [T, rating 5 sessions ago, rating now]
+        lead["outl"] = sorted([[t_, old_rs[t_], now_rs[t_]] for t_ in uni if old_rs.get(t_, 0) >= 90 and t_ in now_rs and now_rs[t_] < 90], key=lambda x: x[2])
+    # RS line first reached a 52-week high in the last 5 sessions (not already at one 5 sessions ago)
+    if "SPY" in df.columns and len(df) >= 258 and lead.get("rsl") is not None:
+        w5 = df.iloc[-257:-5]; r5 = w5[uni].div(w5["SPY"], axis=0)
+        was = set(r5.columns[(r5.iloc[-1] >= r5.max() * 0.999)])
+        lead["rslNew"] = [t_ for t_, _ in lead["rsl"] if t_ not in was]
+    # sectors: RS rating of each sector ETF now and 4 weeks (20 sessions) ago, same scale as the stocks -> rot[ETF] = [now, 4 weeks ago]
+    etfs = [e for e in ("XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU") if e in df.columns]
+    def rs_of(cols, back):
+        i = len(df) - 1 - back
+        if i < 252: return {}
+        c = df.iloc[i]; r = lambda n: c / df.iloc[i - n] - 1
+        q, h, y = r(63), r(126), r(252)
+        sc = (0.4 * q + 0.2 * h + 0.2 * (h + y) / 2 + 0.2 * y)
+        ref = sc[[t_ for t_ in sc.index if t_ in mem]].dropna().sort_values()
+        if len(ref) < 100: return {}
+        import numpy as np
+        return {e: max(1, min(99, round(int(np.searchsorted(ref.values, sc[e], side="left")) / len(ref) * 99))) for e in cols if pd.notna(sc.get(e))}
+    a0, a20 = rs_of(etfs, 0), rs_of(etfs, 20)
+    if a0: X["rot"] = {e: [a0[e], a20.get(e)] for e in a0}
     lead["asOf"] = str(df.index[-1].date())
     X["lead"] = lead
     print("leaders: RS-line highs", len(lead.get("rsl", [])), "new RS 90+", len(lead.get("newl", [])))

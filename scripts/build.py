@@ -113,6 +113,7 @@ _ncut = (_dt.date.today() - _dt.timedelta(days=3)).isoformat()
 write("news.json", js(news))
 core["news"] = [n for n in news if str(n.get("date", "")) >= _ncut][:80]
 core["newsN"] = len(news)
+core["news0"] = min((n.get("date") for n in news if n.get("date")), default="")   # first day of the news archive (timeline on stock pages)
 # insider trades: one small file per stock (ins/<T>.json) instead of one big file
 import os as _os
 _ins = (data.get("insiders") or {}).get("rows", [])
@@ -283,6 +284,10 @@ for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     if _rp: rec["rp"] = _rp
     _nw = _stock_news(t)
     if _nw: rec["nw"] = _nw
+    # "why did it move": every per-stock item tagged with this ticker (date, Israel day, title, body, source, url)
+    _mv = [[n.get("date"), n.get("tday") or "", n.get("title") or "", n.get("body") or "", n.get("src") or "", n.get("url") or ""]
+           for n in news if n.get("k") == "stock" and t in (n.get("t") or [])]
+    if _mv: rec["mv"] = _mv[:40]
     if rec["p"] or rec["f"] or rec["e"] or _h:
         n_s += write(f"s/{t}.json", js(rec))
 
