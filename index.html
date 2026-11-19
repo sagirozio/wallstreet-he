@@ -1629,7 +1629,7 @@ function qvShow(){
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`;
   const tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`, n=QV.L.length;
   p.innerHTML=`<div class="qvh">
-      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span><span class="qvcp"><button data-qclip="${esc(t)}" title="העתק סימול והוסף לרשימות">📋 ${esc(t)}</button>${n>1?`<button data-qclipl title="העתק את כל הרשימה ושמור">📋 כל ה-${n}</button>`:''}</span><small dir="auto">${esc(s.co||'')}</small></div>
+      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span><span class="qvcp"><button data-qclip="${esc(t)}" title="העתק סימול והוסף לרשימות">📋 ${esc(t)}</button></span><small dir="auto">${esc(s.co||'')}</small></div>
       ${n>1?`<span class="qvnav"><button data-qn="-1" aria-label="הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הבאה" ${QV.i<n-1?'':'disabled'}>‹</button></span>`:''}
       <span class="qvmeta"><span>ADR% <b class="num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</b></span>${s.sec?`<span>${esc(s.sec)}</span>`:''}</span>
       <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="rp">פיננסים</button><button data-qt="nw">חדשות</button></span>
