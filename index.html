@@ -1876,6 +1876,7 @@ function spTab(k){
   SPT=k;
   body.querySelectorAll('.sptabs button[data-st]').forEach(b=>{ const on=b.dataset.st===k; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
   body.querySelectorAll('.sptab').forEach(p=>p.classList.toggle('on',p.dataset.st===k));
+  if(k!=='ov'&&gateOn()&&!accOn()){ const pn=body.querySelector('.sptab.on'); if(pn) gateBox(pn,{ch:'הגרף המלא',rp:'הדוחות של המניה',nw:'כל החדשות של המניה'}[k]||'הלשונית הזו'); return; }
   const done=body.dataset.loaded||'';
   if(k==='ch' && !done.includes('ch')){ body.dataset.loaded=done+'ch'; drawChart(s,'D'); }
   if(k==='rp' && !done.includes('rp')){ body.dataset.loaded=(body.dataset.loaded||'')+'rp'; loadFund(t); }
@@ -3003,11 +3004,13 @@ document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ co
 /* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
 const GATED={leaders:'מובילים',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
 function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
-function applyGate(){ if(!CLK_PK||!CLK_LIVE) return; const on=accOn();
+const gateOn=()=>!!(CLK_PK&&CLK_LIVE);
+function gateBox(sec,g){ if(!sec.querySelector(':scope>.gate')){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); } sec.classList.add('gated'); }
+function applyGate(){ if(!gateOn()) return; const on=accOn();
+  if(on){ const tabs=document.querySelectorAll('.sptab.gated'); tabs.forEach(t=>{ t.classList.remove('gated'); const g=t.querySelector(':scope>.gate'); if(g) g.remove(); }); if(tabs.length&&CURPG==='stock'&&SPT&&SPT!=='ov') spTab(SPT); }
   document.querySelectorAll('main>section').forEach(sec=>{ const g=GATED[sec.id]; const was=sec.querySelector(':scope>.gate');
     if(!g||on||!sec.classList.contains('on')){ if(was){ was.remove(); sec.classList.remove('gated'); } return; }
-    if(!was){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); }
-    sec.classList.add('gated'); }); }
+    gateBox(sec,g); }); }
 document.addEventListener('click',async e=>{ if(e.target.closest('[data-gin]')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 try{ if(/[?&]login=1/.test(location.search)) localStorage.setItem('clkBeta','1'); }catch(e){}
 const clkShow=()=>{ if(CLK_LIVE) return true; try{ return localStorage.getItem('clkBeta')==='1'; }catch(e){ return false; } };
