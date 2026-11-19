@@ -217,6 +217,9 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
 .alp{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 10px;font-size:14px}.alp summary{padding:10px 14px;cursor:pointer;list-style:none}.alp summary::-webkit-details-marker{display:none}.alp summary small{color:var(--muted)}.alb{padding:0 14px 10px;border-top:1px solid var(--line)}.alb label{display:flex;gap:8px;align-items:center;margin:10px 0;line-height:1.45}.alb input[type=checkbox]{width:18px;height:18px;flex:none;accent-color:#2f81f7}.alb select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:2px 4px;font:inherit}.alsw{font-weight:600}.alopts{padding-right:6px}.alopts.off{opacity:.45;pointer-events:none}
+#myFab{position:fixed;left:16px;bottom:18px;z-index:70;display:flex;align-items:center;gap:7px;background:#161b22;border:1px solid #30363d;color:var(--text);border-radius:999px;padding:8px 14px;font:inherit;font-size:13.5px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.45)}#myFab .mfs{color:#f5b942}#myFab .mfn{background:#30363d;border-radius:999px;padding:0 7px;font-size:12px}
+#myPanel{position:fixed;left:16px;bottom:66px;z-index:71;width:360px;max-width:calc(100vw - 32px);max-height:min(70vh,560px);display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.55);overflow:hidden}#myPanel[hidden]{display:none}.mph{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}.mph small{color:var(--muted);font-weight:400}.mph span{display:flex;gap:10px;align-items:center}.mpl{font-size:13px}.mpx{background:none;border:0;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 4px}#myPanel .myday{font-size:12.5px;padding:8px 14px}.mpb{overflow:auto}.mpr{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none}.mpr:hover{background:rgba(255,255,255,.03)}.mpr .mono{width:30px;height:30px;font-size:9px;flex:none}.mpn{flex:1;min-width:0;display:flex;flex-direction:column}.mpn small{color:var(--muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mpp{display:flex;flex-direction:column;align-items:flex-end}.mpp small{color:var(--muted);font-size:11.5px}
+@media(max-width:760px){#myFab{bottom:calc(74px + env(safe-area-inset-bottom));left:12px;padding:7px 12px}#myFab .mfl{display:none}#myPanel{left:12px;right:12px;width:auto;max-width:none;bottom:calc(120px + env(safe-area-inset-bottom))}}
 .fstamp{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:12px 0 0;line-height:1.6}
 .myday{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}.myday b{color:var(--text)}.myday a{text-decoration:none}
 .qgwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px;margin:8px 0 4px}.qgw{margin-bottom:8px}.qgw>small{display:block;color:var(--muted);font-size:12px;margin-bottom:2px}.qgb,.qgq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;direction:ltr}.qgc{display:flex;flex-direction:column;align-items:center;gap:2px}.qgc i{font-style:normal;font-size:10px;white-space:nowrap;letter-spacing:-.3px}.qgc .qgn{color:var(--muted)}.qgc span{height:56px;width:70%;display:flex;align-items:flex-end}.qgc b{display:block;width:100%;border-radius:3px 3px 0 0}.qgc b.p{background:#238636}.qgc b.p.a{background:#3fb950}.qgc b.n{background:#da3633}.qgq span{text-align:center;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden}
@@ -2394,6 +2397,23 @@ document.addEventListener('change',e=>{ const el=e.target.closest&&e.target.clos
   document.querySelectorAll('[data-alw]').forEach(x=>x.dataset.open=x===w?'1':'');
   const u=CLK.user; clearTimeout(alT); alT=setTimeout(()=>u.update({unsafeMetadata:{...u.unsafeMetadata,alerts:A}}).then(renderWAlerts,()=>alert('השמירה נכשלה. נסה שוב.')),300);
   const o=w&&w.querySelector('.alopts'); if(o&&k==='on') o.classList.toggle('off',!A.on); });
+/* floating "my list" for signed-in users: a small pill in the corner; opens a panel with the day's summary and the list */
+function renderMyFab(){ let f=$('myFab'); const on=accOn()&&WATCH.length>0;
+  if(!on){ if(f) f.remove(); const p=$('myPanel'); if(p) p.remove(); return; }
+  const ix=stockIndex(); let sum=0,n=0; WATCH.forEach(t=>{ const L=liveQ(t), s=ix[t]||{}, ch=L&&liveOn()?L[1]:(s.r&&s.r.d!=null?s.r.d:null); if(ch!=null){ sum+=ch; n++; } });
+  const avg=n?sum/n:null;
+  if(!f){ f=document.createElement('button'); f.id='myFab'; f.setAttribute('aria-haspopup','dialog'); document.body.appendChild(f); }
+  f.innerHTML=`<span class="mfs">★</span><span class="mfl">הרשימה שלי</span><b class="mfn">${WATCH.length}</b>${avg!=null?`<span class="num ${avg>=0?'up':'down'}" dir="ltr">${avg>0?'+':''}${avg.toFixed(1)}%</span>`:''}`;
+  const p=$('myPanel'); if(p&&!p.hidden) fillMyPanel(); }
+function fillMyPanel(){ const p=$('myPanel'); if(!p) return; const ix=stockIndex();
+  const rows=WATCH.map(t=>{ const s=ix[t]||{}, L=liveQ(t), ch=L&&liveOn()?L[1]:(s.r&&s.r.d!=null?s.r.d:null), px=L&&liveOn()?L[0]:null;
+    return `<a class="mpr" href="#stock/${encodeURIComponent(t)}">${mono(t)}<span class="mpn"><b>${esc(t)}</b><small dir="auto">${esc(s.co||'')}</small></span><span class="mpp">${px!=null?`<small class="num">$${px.toFixed(2)}</small>`:''}${ch!=null?`<b class="num ${ch>=0?'up':'down'}" dir="ltr">${ch>0?'+':''}${ch.toFixed(2)}%</b>`:''}</span></a>`; }).join('');
+  p.innerHTML=`<div class="mph"><b>הרשימה שלי <small>(${WATCH.length})</small></b><span><a href="#watch" class="mpl">ניהול והתראות</a><button class="mpx" aria-label="סגירה">✕</button></span></div>${myDayHtml()}<div class="mpb">${rows}</div>`; }
+function toggleMyPanel(open){ let p=$('myPanel'); if(!p){ p=document.createElement('div'); p.id='myPanel'; p.setAttribute('role','dialog'); p.setAttribute('aria-label','הרשימה שלי'); p.hidden=true; document.body.appendChild(p); }
+  const show=open==null?p.hidden:open; p.hidden=!show; if(show) fillMyPanel(); }
+document.addEventListener('click',e=>{ if(e.target.closest('#myFab')){ toggleMyPanel(); return; } if(e.target.closest('.mpx')||e.target.closest('.mpr')||e.target.closest('.mpl')){ toggleMyPanel(false); return; }
+  const p=$('myPanel'); if(p&&!p.hidden&&!e.target.closest('#myPanel')) toggleMyPanel(false); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ const p=$('myPanel'); if(p&&!p.hidden) toggleMyPanel(false); } });
 /* signed-in home: the watchlist goes first, open, with a one-line summary of the day for those stocks */
 function myDayHtml(){ const ix=stockIndex(), now=Date.now(); let up=0, dn=0, sum=0, n=0, best=null, worst=null; const reps=[], vb=[];
   WATCH.forEach(t=>{ const L=liveQ(t), live=!!(L&&liveOn()), s=ix[t]||{}, ch=live?L[1]:(s.r&&s.r.d!=null?s.r.d:null);
@@ -2408,14 +2428,14 @@ function myDayHtml(){ const ix=stockIndex(), now=Date.now(); let up=0, dn=0, sum
   if(reps.length) parts.push(`<span>דוחות השבוע: ${reps.sort((a,b)=>a[1]<b[1]?-1:1).map(([t,d])=>`${lk(t)} ${dm(d)}`).join(', ')}</span>`);
   if(vb.length) parts.push(`<span>פריצה במחזור: ${vb.map(lk).join(', ')}</span>`);
   return `<div class="myday">${parts.join('')}</div>`; }
-function placeMyHome(){ const h=$('homeWatch'); if(!h) return; const me=accOn()&&WATCH.length>0, first=document.querySelector('main>section[data-pg="home"]');
+function placeMyHome(){ renderMyFab(); const h=$('homeWatch'); if(!h) return; const me=false, first=document.querySelector('main>section[data-pg="home"]');
   document.body.classList.toggle('mehome',me);
   if(me){ if(first&&first!==h) first.parentNode.insertBefore(h,first); h.classList.remove('fold'); h.classList.add('mine'); const t=h.querySelector('h2'); if(t&&!t.dataset.me){ t.dataset.me=1; t.firstChild.textContent='הרשימה שלי '; } }
   else if(h.classList.contains('mine')){ const m=$('market'); h.classList.remove('mine'); h.classList.add('fold'); const t=h.querySelector('h2'); if(t){ delete t.dataset.me; t.firstChild.textContent='מניות במעקב '; } const ag=$('todayAgenda'); if(ag) ag.parentNode.insertBefore(h,ag); } }
 function renderWatch(){
   const b=$('watchBody'); if(!b) return;
   b.innerHTML = WATCH.length ? watchRows() : '<div class="empty">עוד אין מניות ברשימה. אפשר להוסיף כאן למעלה, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>';
-  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=(accOn()?myDayHtml():'')+watchRows(accOn()?20:8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
+  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
   try{ placeMyHome(); }catch(e){}
   try{ renderWAlerts(); }catch(e){}
 }
