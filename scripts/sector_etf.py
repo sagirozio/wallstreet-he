@@ -11,9 +11,9 @@ ETFS = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "
 def returns():
     import yfinance as yf
     import pandas as pd
-    px = yf.download(ETFS, period="2y", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
+    px = yf.download(ETFS + ["SPY"], period="2y", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
     out = {}
-    for e in ETFS:
+    for e in ETFS + ["SPY"]:   # SPY = the S&P 500 line for the compare tool
         if e not in px.columns: continue
         c = px[e].dropna()
         if len(c) < 260: continue
@@ -47,6 +47,7 @@ def apply(data):
         print("sector ETF returns failed", type(e).__name__, e); return False
     n = 0
     if R.get("_dates"): data.setdefault("sectors", {})["pyDates"] = R.pop("_dates")
+    if R.get("SPY"): data["sectors"]["spy"] = {k: R["SPY"][k] for k in ("py", "px", "d", "m", "q", "h", "ytd") if k in R["SPY"]}
     for row in (data.get("sectors") or {}).get("rows", []):
         r = R.get(row.get("t"))
         if not r: continue

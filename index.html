@@ -255,6 +255,14 @@ tr:last-child td{border-bottom:0}
 .glt{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.glt b{color:#e3e7ec;font-size:15px}.glt span{font:12px 'JetBrains Mono',monospace;color:var(--muted);direction:ltr;white-space:nowrap}
 .glc p{margin:6px 0 0;font-size:14px;line-height:1.6;color:var(--text)}.glex{font-size:13px;background:var(--panel2);border-radius:6px;padding:6px 9px;margin-top:8px;color:#9aa3ad}
 .glat{display:inline-block;font-size:13px;margin-top:8px}.glmore{display:inline-block;margin-top:8px;font-size:13px}.glnone{color:var(--muted)}
+.cmpc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 10px}.cmpk{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 6px 3px 11px;font-size:13px;background:var(--panel)}
+.cmpk i,.cmpr i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}.cmpk button{background:none;border:0;color:var(--muted);font-size:16px;cursor:pointer;padding:0 4px;line-height:1}
+.cmpadd input{height:30px;width:150px;border:1px dashed #3a3f48;border-radius:999px;background:none;color:var(--text);padding:0 12px;font-size:13px}
+.cmpper{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.cmpper button{font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 11px;cursor:pointer}.cmpper button.on{background:#1b2a44;border-color:#2f4f86;color:#8fb6ff}
+.cmptip{font-size:13px;color:var(--muted);min-height:20px;margin:4px 0;direction:rtl}.cmptip b{color:var(--text);font-weight:600}
+.cmpch svg{width:100%;height:auto;display:block;touch-action:pan-y}.cmpax{display:flex;justify-content:space-between;direction:ltr;font-size:12px;color:var(--muted);padding:0 44px 0 6px}
+.cmpt{margin-top:12px}.cmpr{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr .6fr 1fr;gap:6px;padding:8px 4px;border-top:1px solid var(--line);font-size:14px;align-items:center}.cmpr.hd{color:var(--muted);font-size:12px;border-top:0}
+.cmpr>span:first-child{display:flex;align-items:center;gap:7px;min-width:0}
 .gl b{display:block;margin-bottom:2px}.gl p{margin:0;color:#c6cfdf;font-size:14px}
 footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0 40px;color:var(--muted);font-size:13px}
 footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
@@ -831,6 +839,11 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 
 
+<section id="compare" data-pg="compare">
+  <h2>השוואת גרפים</h2>
+  <p class="sub">עד 4 מניות, סקטורים או S&amp;P 500 על גרף אחד. כל קו מתחיל מ-0% בתחילת התקופה. מחירי סגירה יומיים, והנקודה האחרונה בלייב בזמן המסחר.</p>
+  <div id="cmpBox"></div>
+</section>
 <section id="watch" data-pg="stocks">
   <h2>מניות במעקב</h2>
   <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). הרשימה נשמרת רק בדפדפן הזה.</p>
@@ -1195,9 +1208,9 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
 const SUBNAV={
   market:[['#snapshot','תמונת מצב'],['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית']],
   reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#top-reports','הבולטים'],['#glossary','מילון מונחים']],
-  stocks:[['#watch','מניות במעקב'],['#screener','סורק מניות'],['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#ipos','הנפקות']]
+  stocks:[['#watch','מניות במעקב'],['#screener','סורק מניות'],['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#ipos','הנפקות'],['#compare','השוואת גרפים']]
 };
-const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
+const PG_TITLE={compare:'Compare',home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
 const BASE_TITLE=document.title;
 let CURPG=null, MSUB='snapshot', RSUB='earnings';
 document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
@@ -1212,6 +1225,7 @@ function pageOf(h){
   if(h.startsWith('#stock/')) return ['stock',null];
   if(h.startsWith('#sector/')||h.startsWith('#ind/')) return ['group',null];
   if(h.startsWith('#glossary')) return ['gloss',$('glossary')];
+  if(h.startsWith('#compare')) return ['compare',$('compare')];
   if(h==='#terms') return ['legal',$('termsPage')];
   if(h==='#accessibility') return ['legal',$('accessPage')];
   const el=document.getElementById(h.slice(1));
@@ -1224,13 +1238,14 @@ function route(){
   if(pg==='reports'&&el) RSUB=el.id;
   if(pg==='market'&&el) MSUB=el.id;   /* market page: one tool at a time (sectors / industries / breadth / macro) */
   document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? s.id===MSUB : pg==='reports' ? s.id===RSUB : s.dataset.pg===pg));
-  const navp = pg==='stock'?'stocks':pg==='group'?'market':pg==='gloss'?'reports':pg;
+  const navp = pg==='stock'?'stocks':pg==='group'?'market':pg==='gloss'?'reports':pg==='compare'?'stocks':pg;
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
-  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')?'on':''}">${l}</a>`).join('');
+  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')||(pg==='compare'&&hh==='#compare')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
+  if(pg==='compare') renderCompare(h.startsWith('#compare/')?decodeURIComponent(h.slice(9)):'');
   if(pg==='reports') loadReports();
   if(pg==='news') loadNews();
   if(pg==='stocks'||(pg==='home'&&WATCH.length)) loadScr();
@@ -1506,7 +1521,7 @@ async function renderStock(t){
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div>${prof.desc?`<p class="spone">${esc(prof.desc)}</p>`:''}</div>
       <div class="sphr"><div class="sptvh" id="spHdTv"></div><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>
-      <div class="spchips sphc">${earnChip(t,rep)}${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
+      <div class="spchips sphc">${earnChip(t,rep)}<a href="#compare/${encodeURIComponent(cmpDefault(t,s))}"><i class="lbl">השווה </i>⇄</a>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
       <div class="sptabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}${watchBtn(t)}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -1715,6 +1730,79 @@ document.addEventListener('click',e=>{
 
 document.addEventListener('click',e=>{ const tr=e.target.closest('tr.rowlink'); if(tr&&!e.target.closest('a')) location.hash='#stock/'+encodeURIComponent(tr.dataset.t); });
 
+/* ---------- compare tool: up to 4 series, % from the first day of the period ---------- */
+const CMP_COL=['#58a6ff','#f0883e','#bc8cff','#8b949e'];
+let CMPT=[], CMPP=0;
+function cmpDefault(t,s){ const he=SEC_HE[s&&s.sec]||'', r=((SECTORS||{}).rows||[]).find(x=>x.name===he); return [t, r&&r.t, 'SPY'].filter(Boolean).join(','); }
+function cmpName(t){ if(t==='SPY') return 'S&P 500'; const r=((SECTORS||{}).rows||[]).find(x=>x.t===t); return r?`${t} · ${r.name}`:t; }
+function cmpKind(t){ return t==='SPY'?'spy':((SECTORS||{}).rows||[]).some(x=>x.t===t)?'etf':'stk'; }
+async function cmpSeries(t){
+  const k=cmpKind(t), S=SECTORS||{}, F=(FALLBACK.sectors||{});
+  let D, a;
+  if(k==='stk'){ await Promise.all([loadPxDates(),loadPx(t)]); D=(PXD||{}).dates; a=PXC[t]; }
+  else { const pick=src=>{ const o=k==='spy'?src.spy:(src.rows||[]).find(x=>x.t===t); return o&&o.py&&src.pyDates&&o.py.length===src.pyDates.length?[src.pyDates,o.py]:null; };
+    const r=pick(S)||pick(F); if(r) [D,a]=r; }
+  if(!D||!a) return null;
+  D=[...D]; a=[...a];
+  /* live point: today's change on top of the last close */
+  const ld=D[D.length-1], ch=k==='stk'?((LIVE_R&&liveQ(t))||[])[1]:k==='etf'?(((LIVE&&LIVE.etf&&liveOn())?LIVE.etf[t]:null)||[])[1]:(((LIVE&&LIVE.idx&&liveOn())?LIVE.idx['^GSPC']:null)||[])[1];
+  if(typeof ch==='number'&&Math.abs(ch)<=60&&LIVE&&LIVE.date){
+    const base=LIVE.date===ld?a[a.length-2]:a[a.length-1];
+    if(LIVE.date===ld){ a[a.length-1]=base*(1+ch/100); } else if(LIVE.date>ld){ a.push(base*(1+ch/100)); D.push(LIVE.date); } }
+  return {t,D,a};
+}
+async function renderCompare(arg){
+  const box=$('cmpBox'); if(!box) return;
+  if(arg) CMPT=arg.split(',').map(x=>x.trim().toUpperCase()).filter(Boolean).slice(0,4);
+  if(!CMPT.length) CMPT=['NVDA','XLK','SPY'];
+  await loadStocks();
+  const ix=stockIndex(), etfs=((SECTORS||{}).rows||[]).map(r=>r.t);
+  const opts=[...Object.keys(ix).map(t=>`<option value="${esc(t)}">${esc(ix[t].co||'')}</option>`), ...etfs.map(t=>`<option value="${t}">${esc(cmpName(t))}</option>`),'<option value="SPY">S&P 500</option>'].join('');
+  box.innerHTML=`<div class="cmpc" id="cmpChips"></div>
+    <div class="cmpper" id="cmpPer">${[[21,'חודש'],[63,'3 חודשים'],[126,'6 חודשים'],[0,'מתחילת השנה']].map(([p,l])=>`<button data-p="${p}" class="${p===CMPP?'on':''}">${l}</button>`).join('')}</div>
+    <div class="cmptip" id="cmpTip"></div><div id="cmpChart" class="cmpch"><div class="empty">טוען…</div></div><div id="cmpTab"></div>
+    <datalist id="cmpList">${opts}</datalist>`;
+  $('cmpPer').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CMPP=+b.dataset.p; $('cmpPer').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cmpDraw(); };
+  cmpChips(); cmpDraw();
+}
+function cmpChips(){
+  $('cmpChips').innerHTML=CMPT.map((t,i)=>`<span class="cmpk"><i style="background:${CMP_COL[i]}"></i><bdi>${esc(cmpName(t))}</bdi><button data-x="${i}" aria-label="הסר ${esc(t)}">×</button></span>`).join('')
+    +(CMPT.length<4?`<span class="cmpadd"><input id="cmpIn" list="cmpList" placeholder="+ הוסף סימול" autocomplete="off"></span>`:'');
+  $('cmpChips').onclick=e=>{ const b=e.target.closest('button[data-x]'); if(!b) return; CMPT.splice(+b.dataset.x,1); cmpSync(); };
+  const inp=$('cmpIn'); if(inp){ const add=()=>{ const v=inp.value.trim().toUpperCase(); if(!v) return; const ok=v==='SPY'||stockIndex()[v]||cmpKind(v)==='etf'; if(!ok){ inp.value=''; inp.placeholder='לא נמצא'; return; } if(!CMPT.includes(v)) CMPT.push(v); cmpSync(); };
+    inp.addEventListener('change',add); inp.addEventListener('keydown',e=>{ if(e.key==='Enter') add(); }); }
+}
+function cmpSync(){ history.replaceState(null,'','#compare/'+CMPT.join(',')); cmpChips(); cmpDraw(); }
+let CMPS=[];
+async function cmpDraw(){
+  const tok=CMPT.join(',')+'|'+CMPP; cmpDraw.tok=tok;
+  const all=(await Promise.all(CMPT.map(cmpSeries)));
+  if(cmpDraw.tok!==tok) return;
+  const ok=all.map((s,i)=>s&&{...s,c:CMP_COL[i]}).filter(Boolean);
+  if(!ok.length){ $('cmpChart').innerHTML='<div class="empty">אין נתוני מחיר לסימולים האלה.</div>'; $('cmpTab').innerHTML=''; return; }
+  /* common dates */
+  let dates=ok[0].D.filter(d=>ok.every(s=>s.D.includes(d)));
+  if(CMPP) dates=dates.slice(-CMPP-1);
+  const ser=ok.map(s=>{ const m=new Map(s.D.map((d,i)=>[d,s.a[i]])); const v=dates.map(d=>m.get(d)); const b=v[0]; return {...s, v, r:v.map(x=>(x/b-1)*100), hi:Math.max(...s.a)}; });
+  CMPS={ser,dates};
+  const W=640,H=260,L=6,R=44,T=10,B=22, vals=ser.flatMap(s=>s.r), mn=Math.min(0,...vals), mx=Math.max(0,...vals), n=Math.max(1,dates.length-1);
+  const X=i=>L+(W-L-R)*i/n, Y=v=>T+(H-T-B)*(1-(v-mn)/((mx-mn)||1));
+  const ticks=[...new Set([mn,0,(mn+mx)/2,mx].map(v=>Math.round(v)))];
+  let g=ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="${v===0?'#3a3f48':'#1e2127'}" ${v===0?'':'stroke-dasharray="3 3"'}/><text x="${W-R+6}" y="${(Y(v)+4).toFixed(1)}" fill="#7d8590" font-size="11">${v}%</text>`).join('');
+  g+=ser.map((s,k)=>`<polyline fill="none" stroke="${s.c}" stroke-width="${s.t==='SPY'?1.5:2}" points="${s.r.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ')}"/>`).join('');
+  g+=`<line id="cmpX" y1="${T}" y2="${H-B}" stroke="#7d8590" stroke-dasharray="2 3" visibility="hidden"/>`;
+  const dlab=d=>{ const p=String(d).split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:d; };
+  $('cmpChart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="השוואת תשואות">${g}</svg><div class="cmpax"><span>${dlab(dates[0])}</span><span>${dlab(dates[dates.length-1])}</span></div>`;
+  const svg=$('cmpChart').querySelector('svg');
+  const tip=i=>{ $('cmpTip').innerHTML=`<b>${dlab(dates[i])}</b> · `+ser.map(s=>`<span style="color:${s.c}">${esc(s.t==='SPY'?'S&P 500':s.t)} ${pct(s.r[i],1)}</span>`).join(' · '); };
+  const mv=e=>{ const r=svg.getBoundingClientRect(), cx=(e.touches?e.touches[0].clientX:e.clientX), x=(cx-r.left)/r.width*W, i=Math.max(0,Math.min(n,Math.round((x-L)/(W-L-R)*n))); const l=$('cmpX'); l.setAttribute('x1',X(i)); l.setAttribute('x2',X(i)); l.setAttribute('visibility','visible'); tip(i); };
+  svg.addEventListener('mousemove',mv); svg.addEventListener('touchmove',mv,{passive:true}); svg.addEventListener('touchstart',mv,{passive:true});
+  tip(n);
+  const ix=stockIndex(), SR=(THEMES||{}).secRs||{};
+  $('cmpTab').innerHTML=`<div class="cmpt"><div class="cmpr hd"><span>סימול</span><span>תשואה בתקופה</span><span>RS</span><span>מהשיא מתחילת השנה</span></div>${ser.map(s=>{ const last=s.r[s.r.length-1], rs=s.t==='SPY'?null:cmpKind(s.t)==='etf'?SR[s.t]:((ix[s.t]||{}).r||{}).rs, off=(s.a[s.a.length-1]/s.hi-1)*100;
+    const href=s.t==='SPY'?'':cmpKind(s.t)==='etf'?'#sector/'+encodeURIComponent((Object.entries(SEC_HE).find(([e,h])=>h===(((SECTORS.rows||[]).find(x=>x.t===s.t))||{}).name)||[''])[0]):'#stock/'+encodeURIComponent(s.t);
+    return `<div class="cmpr"><span><i style="background:${s.c}"></i>${href?`<a href="${href}">`:''}<bdi>${esc(s.t==='SPY'?'S&P 500':s.t)}</bdi>${href?'</a>':''}</span><span class="num ${last>=0?'up':'down'}">${pct(last,1)}</span><span class="num">${rs??'—'}</span><span class="num ${off<-0.05?'down':''}">${pct(off,1)}</span></div>`; }).join('')}</div>`;
+}
 /* ---------- glossary: "?" buttons open a short explanation ---------- */
 const GLOSS={
   RS:['RS – חוזק יחסי','דירוג מ-1 עד 99 שמשווה את ביצועי המניה ב-12 החודשים האחרונים למניות מדד S&P 500. 3 החודשים האחרונים נספרים כפול. RS 90 אומר שהמניה חזקה מ-90% ממניות המדד. זה נתון על העבר בלבד: הוא לא חוזה את ההמשך ואינו המלצה. לתעשיות מחושב אותו דירוג, מול אותן מניות.'],
