@@ -3001,7 +3001,7 @@ let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; cle
 document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 
 /* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
-const GATED={leaders:'מובילים',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים'};
+const GATED={leaders:'מובילים',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
 function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
 function applyGate(){ if(!CLK_PK||!CLK_LIVE) return; const on=accOn();
   document.querySelectorAll('main>section').forEach(sec=>{ const g=GATED[sec.id]; const was=sec.querySelector(':scope>.gate');
