@@ -1662,7 +1662,8 @@ function pxSeries(t){ let a0=PXC[t], D=PXDT[t]||(PXD||{}).dates; if(!a0||!D) ret
   if(PXDT[t]){ const e=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf[t]:null;
     if(e&&e[0]){ if(D[D.length-1]===LIVE.date){ a0=[...a0.slice(0,-1),e[0]]; D=[...D.slice(0,-1),'עכשיו '+liveTm()]; } else if(LIVE.date>D[D.length-1]){ a0=[...a0,e[0]]; D=[...D,'עכשיו '+liveTm()]; } }
     return {a0,D}; }
-  const L=LIVE_R?liveQ(t):null; if(L&&L[0]&&Math.abs(L[1])<=60){ a0=[...a0,L[0]]; D=[...D,'עכשיו '+liveTm()]; } return {a0,D}; }
+  /* the daily file can lag a day (it is built from the morning history); live.json's price fills the newest day */
+  const L=LIVE&&LIVE.date&&LIVE.date>D[D.length-1]?liveQ(t):null; if(L&&L[0]&&Math.abs(L[1])<=60){ a0=[...a0,L[0]]; D=[...D,LIVE_R?'עכשיו '+liveTm():LIVE.date]; } return {a0,D}; }
 function pxChart(t){
   const {a0,D}=pxSeries(t); if(!a0||!D) return '';
   const a=a0.map((v,i)=>[i,v]).filter(x=>x[1]!=null); if(a.length<3) return '';
@@ -1745,7 +1746,9 @@ async function cmpSeries(t){
   if(!D||!a) return null;
   D=[...D]; a=[...a];
   /* live point: today's change on top of the last close */
-  const ld=D[D.length-1], ch=k==='stk'?((LIVE_R&&liveQ(t))||[])[1]:k==='etf'?(((LIVE&&LIVE.etf&&liveOn())?LIVE.etf[t]:null)||[])[1]:(((LIVE&&LIVE.idx&&liveOn())?LIVE.idx['^GSPC']:null)||[])[1];
+  const ld=D[D.length-1];
+  if(k==='stk'){ const L=LIVE&&LIVE.date&&LIVE.date>ld?liveQ(t):null; if(L&&L[0]&&Math.abs(L[1])<=60){ a.push(L[0]); D.push(LIVE.date); } return {t,D,a}; }
+  const ch=k==='stk'?null:k==='etf'?(((LIVE&&LIVE.etf&&liveOn())?LIVE.etf[t]:null)||[])[1]:(((LIVE&&LIVE.idx&&liveOn())?LIVE.idx['^GSPC']:null)||[])[1];
   if(typeof ch==='number'&&Math.abs(ch)<=60&&LIVE&&LIVE.date){
     const base=LIVE.date===ld?a[a.length-2]:a[a.length-1];
     if(LIVE.date===ld){ a[a.length-1]=base*(1+ch/100); } else if(LIVE.date>ld){ a.push(base*(1+ch/100)); D.push(LIVE.date); } }
