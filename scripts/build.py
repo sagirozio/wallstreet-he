@@ -420,7 +420,7 @@ write("stock.css", CSS + "\n")
 pages = sorted(t for t in set(universe) | {r.get("t") for r in reports if r.get("t")} if re.fullmatch(r"[A-Z0-9.\-]{1,10}", t or ""))
 n_p = sum(write(f"stock/{tk}.html", stock_page(tk)) for tk in pages)
 
-sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', f"<url><loc>{SITE}</loc></url>"]
+sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', f"<url><loc>{SITE}</loc></url>", f"<url><loc>{SITE}join</loc></url>"]
 sm += [f"<url><loc>{SITE}stock/{tk}.html</loc></url>" for tk in pages]
 write("sitemap.xml", "\n".join(sm + ["</urlset>", ""]))
 
