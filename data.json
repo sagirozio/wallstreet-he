@@ -43497,7 +43497,7 @@
   }
  ],
  "overview": {
-  "asOf": "19.11.2026 · 16:15",
+  "asOf": "19.11.2026 · 16:35",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43571,8 +43571,8 @@
     "tone": "neu"
    },
    {
-    "h": "במסחר המקדים: Palo Alto ו-AST SpaceMobile",
-    "t": "Palo Alto עולה בכ-9.5% אחרי דוח מעל הצפי והעלאת התחזית; AST SpaceMobile עולה בכ-9.7% אחרי ש-ULA ייחסה את כשל שיגור ה-Vulcan לאספקת הדלק.",
+    "h": "במסחר המקדים: Palo Alto, AST ו-Ambarella",
+    "t": "Palo Alto עולה בכ-9.5% אחרי דוח מעל הצפי והעלאת התחזית; AST SpaceMobile עולה בכ-9.7% אחרי ש-ULA ייחסה את כשל שיגור ה-Vulcan לאספקת הדלק; Ambarella עולה בכ-9% על דיווח שעסקת הרכישה בידי NXP בשלבים סופיים (Seeking Alpha).",
     "tone": "pos"
    },
    {
@@ -43650,7 +43650,7 @@
    "from": 19.3,
    "note": "המדד ירד ב-3.5% ל-24.58, אבל נשאר מעל 24 אחרי הקפיצה בתחילת השבוע."
   },
-  "rev": 202611191615,
+  "rev": 202611191635,
   "market": {
    "note": "סגירה ביום רביעי, 18.11.2026. הדאו ירד ב-561 נקודות וה-S&P 500 ירד ביום החמישי ברציפות, בזמן שהנאסד״ק וראסל 2000 עלו לפני הנפקת Anthropic. פרוטוקול הפד הראה שכמעט כל החברים צופים העלאת ריבית נוספת.",
    "idx": [
@@ -106368,6 +106368,21 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-19-amba-nxp-final-stages",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "AMBA"
+   ],
+   "tag": "Ambarella",
+   "tone": "pos",
+   "title": "Ambarella עולה בכ-9% לפני המסחר על דיווח שעסקת NXP בשלבים סופיים",
+   "body": "לפי Seeking Alpha, מניית Ambarella עלתה ב-8.8% במסחר המקדים אחרי דיווח שהעסקה לרכישתה בידי NXP Semiconductors עשויה להיות בשלבים סופיים; מניית NXP עלתה ב-3%.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4674698-ambarella-jumps-on-report-that-nxp-semiconductors-deal-may-in-final-stages",
+   "time": "15:49"
+  },
   {
    "id": "2026-11-19-house-dems-lutnick-cantor-nvidia",
    "date": "2026-11-19",
