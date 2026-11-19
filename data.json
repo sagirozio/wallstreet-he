@@ -106230,6 +106230,36 @@
  },
  "news": [
   {
+   "id": "2026-11-19-bbwi-q3",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "BBWI"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Bath & Body Works: הדוח מעל התחזית, תחזית המכירות השנתית עודכנה כלפי מעלה",
+   "body": "המכירות ברבעון השלישי הסתכמו ב-$1.58 מיליארד, ירידה של 1%, והרווח המתואם היה $0.26 למניה; לפי החברה שניהם מעל התחזית שלה. החברה העלתה את תחזית המכירות השנתית לטווח של ירידה של 2.1%–3.4%, הותירה את תחזית הרווח המתואם ($2.60–$2.80 למניה) ואישרה תוכנית רכישה עצמית של $500 מיליון.",
+   "src": "Bath & Body Works",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/bath-body-works-reports-third-115500759.html",
+   "time": "13:55"
+  },
+  {
+   "id": "2026-11-19-mrk-isomorphic",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "MRK"
+   ],
+   "tag": "שיתוף פעולה",
+   "tone": "neu",
+   "title": "Merck ו-Isomorphic Labs בשיתוף פעולה לגילוי תרופות בעזרת AI",
+   "body": "Isomorphic Labs תתכנן מולקולות קטנות נגד מטרה אונקולוגית אחת שלא פורסמה, ו-Merck תוביל את הפיתוח הקליני, הייצור והשיווק. החברות לא פרסמו את הסכומים: Isomorphic תקבל תשלום מקדמי, תשלומי אבני דרך ותמלוגים מדורגים.",
+   "src": "Merck",
+   "url": "https://finance.yahoo.com/healthcare/articles/merck-isomorphic-labs-enter-strategic-114500965.html",
+   "time": "13:45"
+  },
+  {
    "id": "2026-11-19-asts-pre-ula",
    "date": "2026-11-19",
    "k": "stock",
