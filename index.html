@@ -241,7 +241,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .qvdesc{margin:10px 16px 0;color:var(--muted);font-size:13.5px;line-height:1.55}.qvdesc:empty{display:none}
 .qvq{display:flex;align-items:center;gap:18px;margin:12px 16px 0;padding:10px 14px;border:1px solid rgba(63,185,80,.25);background:rgba(63,185,80,.05);border-radius:12px;flex-wrap:wrap}.qvp small{display:block;color:var(--muted);font-size:11.5px}.qvp b{font-size:26px}
 .qvt{display:grid;grid-template-columns:repeat(6,minmax(70px,1fr));gap:6px 16px;flex:1}.qvt small{display:block;color:var(--muted);font-size:11px}.qvt b{font-size:14px}
-.qvb{flex:1;overflow:auto;padding:12px 16px;color-scheme:dark;scrollbar-width:thin;scrollbar-color:#30363d transparent}.qvb::-webkit-scrollbar{width:8px}.qvb::-webkit-scrollbar-track{background:transparent}.qvb::-webkit-scrollbar-thumb{background:#30363d;border-radius:8px}#qv{color-scheme:dark}.qvtv{height:min(56vh,520px);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.qvb .legend{margin:6px 0 0}
+.qvb{flex:1;overflow:auto;padding:12px 16px;scrollbar-width:none}.qvb::-webkit-scrollbar{display:none}.qvfund .fgrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}#qv{color-scheme:dark}.qvtv{height:min(56vh,520px);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.qvb .legend{margin:6px 0 0}
 .qvn{font-size:14px;line-height:1.55;border-bottom:1px solid var(--line);padding:10px 0}.qvn small{display:block;color:var(--muted);font-size:11.5px}.qvn p{margin:4px 0 0;color:var(--muted);font-size:13px}
 .qvgo{display:block;text-align:center;border-top:1px solid var(--line);padding:10px}
 @media(max-width:760px){.qvdesc{margin:8px 12px 0;font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}#qv{width:auto;height:auto;top:8px;bottom:8px;left:8px;right:8px;transform:translateY(12px)}#qv.on{transform:none}.qvh{gap:8px 10px;padding:10px 12px}.qvtabs{margin-inline-start:0;order:5;width:100%}.qvtabs button{flex:1}.qvmeta{display:none}.qvq{margin:10px 12px 0;gap:8px;flex-direction:column;align-items:stretch}.qvp b{font-size:22px}.qvt{grid-template-columns:repeat(3,minmax(0,1fr))}.qvb{padding:10px 12px}.qvtv{height:46vh}}
@@ -1611,7 +1611,7 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
   loadDet(t).then(det=>{ if(QV.L[QV.i]!==t||QV.tab!==k) return;
     if(k==='rp'){ const reps=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
       let rc=''; try{ rc=repCard(t,det,reps[0],reps)||''; }catch(_){}
-      box.innerHTML=(rc+ehBlock(det))||'<div class="empty">אין עדיין נתוני דוחות.</div>'; box.querySelectorAll('[data-rcfull]').forEach(x=>{ x.removeAttribute('data-rcfull'); x.href='#stock/'+encodeURIComponent(t); }); return; }
+      box.innerHTML=rc+'<div class="qvfund"><div class="empty">טוען נתונים רבעוניים…</div></div>'; loadFund(t,box.querySelector('.qvfund')).then(()=>{ const f=box.querySelector('.qvfund .empty'); if(f) f.textContent=rc?'':'אין עדיין נתוני דוחות.'; }); box.querySelectorAll('[data-rcfull]').forEach(x=>{ x.removeAttribute('data-rcfull'); x.href='#stock/'+encodeURIComponent(t); }); return; }
     const N=[...(det.nw||[]),...(FALLBACK.news||[]).filter(n=>(n.t||[]).includes(t))].filter((n,i,A)=>A.findIndex(x=>(x.id||x.title)===(n.id||n.title))===i).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,8);
     box.innerHTML=N.length?N.map(n=>`<div class="qvn"><small>${esc(n.date?dm(n.date):'')}${n.time?' · '+esc(n.time):''}${n.tag?' · '+esc(n.tag):''}</small><b>${esc(n.title||'')}</b>${n.body?`<p>${esc(String(n.body).slice(0,260))}${String(n.body).length>260?'…':''}</p>`:''}</div>`).join(''):'<div class="empty">אין חדשות על המניה בארכיון שלנו.</div>'; });
 }
@@ -2414,11 +2414,11 @@ function growthChart(f){ const q=f.q||[], n=q.length; if(n<9) return '';
   const ch=[fundChart('צמיחת רווח למניה (EPS)',qq,[{n:'שינוי מול שנה קודמת',c:'#a855f7',v:E}],'pct','YOY'),
             fundChart('צמיחת הכנסות',qq,[{n:'שינוי מול שנה קודמת',c:'#5b8cff',v:R}],'pct','YOY')].filter(Boolean);
   return ch.length?`<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם, לפי הדוחות לרשות ניירות הערך (GAAP). רבעון שהבסיס שלו הפסד לא מוצג.</p>`:''; }
-async function loadFund(t){
-  const box=$('spFund'); if(!box) return;
+async function loadFund(t,el){   /* el: another container (the quick view) instead of the stock page's #spFund */
+  const box=el||$('spFund'); if(!box) return;
   try{
     const r=await fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}); if(!r.ok) return;
-    const f=await r.json(); if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
+    const f=await r.json(); if(el){ if(!el.isConnected) return; } else if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
     const q=f.q;
     const ch=[
       fundChart('הכנסות ורווח תפעולי',q,[{n:'הכנסות',c:'#5b8cff',v:f.rev},{n:'רווח תפעולי',c:'#f59e0b',v:f.op}],false,'F_REVOP'),
@@ -2433,7 +2433,7 @@ async function loadFund(t){
     const newer=rp0&&rp0.date>lastQ&&rp0.date>(f.asOf||'')?`<br>הדוח האחרון (${esc(rp0.q||'')}, ${dmy(rp0.date)}) עוד לא מופיע כאן: הוא ייכנס אחרי שהחברה תגיש את הדוח המלא לרשות ניירות הערך, בדרך כלל תוך כמה שבועות.`:'';
     const stamp=`<p class="fstamp">הרבעון האחרון בנתונים: ${qLbl(lastQ)} (הרבעון שהסתיים ב-${dmy(lastQ)}) · עודכן ${dmy(f.asOf)}${newer}</p>`;
     box.innerHTML=growthChart(f).replace('<h3 class="sph3">צמיחה רבעונית',stamp+'<h3 class="sph3">צמיחה רבעונית')+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
-    try{ rpTidy(); }catch(e){}
+    if(!el){ try{ rpTidy(); }catch(e){} }
   }catch(e){}
 }
 
