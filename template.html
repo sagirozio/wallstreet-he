@@ -447,6 +447,7 @@ body[data-pg="market"] main>section{padding-top:18px}
 .erw{padding:6px 12px}.erw.ehd{padding:7px 12px;font-size:11.5px}.erw .n{font-size:13px;font-weight:500}.erw .nm2 b{font-size:13.5px}
 .scr{padding:6px 12px}.scr.sch0{padding:5px 12px}.snr{padding:7px 2px}.snr .rkn{margin-inline-end:6px}
 h2{color:#d5dae0}
+.pxrs{margin-top:6px;border-top:1px solid var(--line);padding-top:4px}.pxrs small{font-size:11px;color:var(--muted)}.pxrs small b{color:#bc8cff}.pxc .pxrs svg{width:100%;height:40px;display:block}
 .pxtg{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 6px}.pxtg button{display:inline-flex;align-items:center;gap:5px;font:inherit;font-size:11.5px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:2px 9px;cursor:pointer}
 .pxtg button.on{color:var(--text);background:var(--panel2)}.pxtg i{width:14px;border-top:1.5px dashed;display:inline-block}.pxtg b{width:7px;height:7px;border-radius:50%;border:1.5px solid #9aa3ad;display:inline-block}
 .pxe{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--panel);border:1.6px solid #9aa3ad;padding:0;cursor:pointer;z-index:2}.pxe.up{border-color:var(--green)}.pxe.dn{border-color:var(--red)}.pxe:hover{transform:scale(1.4)}
@@ -1738,27 +1739,35 @@ function pxChart(t){
   const maLine=(n,c)=>{ const m=pxMA(t,n); if(!m) return ''; const p=m.map((v,i)=>v==null?null:`${X(i)},${Y(v)}`).filter(Boolean); return p.length>1?`<polyline points="${p.join(' ')}" fill="none" stroke="${c}" stroke-width="1" stroke-dasharray="5 4" opacity=".75" vector-effect="non-scaling-stroke"/>`:''; };
   const ma=stk?(O.m50?maLine(50,'#58a6ff'):'')+(O.m200?maLine(200,'#f5b942'):''):'';
   const ER=stk?pxReports(t,D):[];
+  let rsl=''; if(stk&&O.rs){ const S=SECTORS||{}, F=FALLBACK.sectors||{}, src=S.spy&&S.pyDates?S:F;
+    if(src.spy&&src.pyDates){ const m=new Map(src.pyDates.map((d,i)=>[d,src.spy.py[i]])), r=a0.map((v,i)=>{ const sp=m.get(D[i]); return v!=null&&sp?v/sp:null; });
+      const ok=r.filter(v=>v!=null); if(ok.length>5){ const lo=Math.min(...ok), hi=Math.max(...ok), Yr=v=>(H*0.12+(1-(v-lo)/((hi-lo)||1))*H*0.76).toFixed(1);
+        const pts2=r.map((v,i)=>v==null?null:`${X(i)},${Yr(v)}`).filter(Boolean).join(' '), newHi=ok[ok.length-1]>=hi*0.999;
+        PXRSH[t]=newHi; const Hr=40, Yq=v=>(3+(1-(v-lo)/((hi-lo)||1))*(Hr-6)).toFixed(1);
+        rsl=`<div class="pxrs"><small>קו RS מול S&amp;P 500${newHi?' · <b>בשיא מתחילת השנה</b>':''}</small><svg viewBox="0 0 ${W} ${Hr}" preserveAspectRatio="none"><polyline points="${r.map((v,i)=>v==null?null:`${X(i)},${Yq(v)}`).filter(Boolean).join(' ')}" fill="none" stroke="#bc8cff" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg></div>`; } } }
   const dots=O.er?ER.filter(e=>a0[e.i]!=null).map((e,k)=>`<button class="pxe ${e.c}" data-k="${k}" style="left:${(e.i/n*100).toFixed(2)}%;top:${(Y(a0[e.i])/H*100).toFixed(2)}%" aria-label="דוח ${esc(e.q)}"></button>`).join(''):'';
-  const erow=O.er&&ER.length?`<div class="pxer">${ER.map((e,k)=>`<span class="${e.c}" style="left:${(e.i/n*100).toFixed(2)}%">${e.ay!=null?(e.ay>0?'+':'')+e.ay+'%':'—'}</span>`).join('')}${ER.slice(1).map((e,k)=>{ const p=ER[k], l=Math.min(p.i,e.i)/n*100, r=Math.max(p.i,e.i)/n*100; return `<i class="${e.i>p.i?p.c:e.c}" style="left:calc(${l.toFixed(2)}% + 22px);width:calc(${(r-l).toFixed(2)}% - 44px)"></i>`; }).join('')}<em>EPS</em></div>`:'';
+  const erow=O.er&&ER.length?`<div class="pxer">${ER.map((e,k)=>`<span class="${e.c}" style="left:${(e.i/n*100).toFixed(2)}%;transform:translateX(${e.i/n>0.93?'-100%':e.i/n<0.07?'0':'-50%'})">${e.ay!=null?(e.ay>0?'+':'')+e.ay+'%':'—'}</span>`).join('')}${ER.slice(1).map((e,k)=>{ const p=ER[k], l=Math.min(p.i,e.i)/n*100, r=Math.max(p.i,e.i)/n*100; return `<i class="${e.i>p.i?p.c:e.c}" style="left:calc(${l.toFixed(2)}% + 22px);width:calc(${(r-l).toFixed(2)}% - 44px)"></i>`; }).join('')}</div>`:'';
   PXER[t]=ER;
-  const tg=stk?`<div class="pxtg"><button data-o="m50" class="${O.m50?'on':''}"><i style="border-color:#58a6ff"></i>ממוצע 50</button><button data-o="m200" class="${O.m200?'on':''}"><i style="border-color:#f5b942"></i>ממוצע 200</button>${ER.length?`<button data-o="er" class="${O.er?'on':''}"><b></b>דוחות</button>`:''}</div>`:'';
+  const tg=stk?`<div class="pxtg"><button data-o="m50" class="${O.m50?'on':''}"><i style="border-color:#58a6ff"></i>ממוצע 50</button><button data-o="m200" class="${O.m200?'on':''}"><i style="border-color:#f5b942"></i>ממוצע 200</button>${ER.length?`<button data-o="er" class="${O.er?'on':''}"><b></b>דוחות (EPS)</button>`:''}<button data-o="rs" class="${O.rs?'on':''}"><i style="border-color:#bc8cff;border-top-style:solid"></i>קו RS</button></div>`:'';
   return `<div class="pxc" data-px="${esc(t)}"><div class="pxh"><b>מתחילת השנה</b><span class="num ${ch>=0?'up':'down'}" id="pxCh">${pct(ch,1)}</span><small id="pxInfo">שיא <span class="num">${pxF(mx)}</span> · שפל <span class="num">${pxF(mn)}</span></small></div>${tg}
     <div class="pxw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="המחיר מתחילת השנה"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/>${ma}<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
-      <i class="pxv"></i><i class="pxz"></i><i class="pxdot"></i><span class="pxl num"></span><span class="pxt num"></span>${dots}</div>${erow}
+      <i class="pxv"></i><i class="pxz"></i><i class="pxdot"></i><span class="pxl num"></span><span class="pxt num"></span>${dots}</div>${erow}${rsl}
     <div class="pxf"><span>${pxD(D[a[0][0]])}</span><span>מחירי סגירה יומיים עד ${pxD(D[a[a.length-1][0]])}</span></div></div>`;
 }
-let PXO=(()=>{ try{ return Object.assign({m50:1,m200:1,er:1},JSON.parse(localStorage.getItem('pxo')||'{}')); }catch(e){ return {m50:1,m200:1,er:1}; } })(); const PXER={};
+let PXO=(()=>{ const d={m50:0,m200:0,er:0,rs:0}; try{ return Object.assign(d,JSON.parse(localStorage.getItem('pxo2')||'{}')); }catch(e){ return d; } })();   /* all extras off until the reader turns them on */ const PXER={}, PXRSH={};
 function pxMA(t,n){ const f=PXF[t]; if(!f) return null; const y0=(PXD&&PXD.y0)||0, out=[];
   for(let i=y0;i<f.length;i++){ if(i<n-1){ out.push(null); continue; } let s=0,k=0; for(let j=i-n+1;j<=i;j++) if(f[j]!=null){ s+=f[j]; k++; } out.push(k>=n*0.9?s/k:null); }
   return out; }
 /* report dots: past report days (det.ed, newest first) paired with the quarters (det.eh, newest first); acceleration = change in EPS growth vs the quarter before */
 function pxReports(t,D){ const det=SDET[t]||{}, ed=det.ed||[], eh=det.eh||[], out=[];
+  const A=PXC[t]||[], mvAt=j=>j>0&&A[j]!=null&&A[j-1]!=null?Math.abs(A[j]/A[j-1]-1):-1;
   ed.forEach((d,k)=>{ const q=eh[k]; if(!q) return; let i=D.indexOf(d); if(i<0){ i=D.findIndex(x=>/^\d{4}-/.test(x)&&x>=d); } if(i<0) return;
+    if(i+1<A.length&&/^\d{4}-/.test(String(D[i+1]))&&mvAt(i+1)>mvAt(i)) i++;
     const prev=eh[k+1], ay=typeof q.ay==='number'?q.ay:null, acc=ay!=null&&prev&&typeof prev.ay==='number'?ay-prev.ay:null;
     out.push({i, d:D[i], q:q.q, a:q.a, e:q.e, ay, acc, c:acc==null?'nu':acc>=0?'up':'dn'}); });
   return out.sort((x,y)=>x.i-y.i); }
 document.addEventListener('click',e=>{
-  const b=e.target.closest&&e.target.closest('.pxtg button'); if(b){ const k=b.dataset.o; PXO[k]=PXO[k]?0:1; try{ localStorage.setItem('pxo',JSON.stringify(PXO)); }catch(_){} const c=b.closest('.pxc'), t=c&&c.dataset.px, box=c&&c.parentElement; if(box&&t) box.innerHTML=pxChart(t); return; }
+  const b=e.target.closest&&e.target.closest('.pxtg button'); if(b){ const k=b.dataset.o; PXO[k]=PXO[k]?0:1; try{ localStorage.setItem('pxo2',JSON.stringify(PXO)); }catch(_){} const c=b.closest('.pxc'), t=c&&c.dataset.px, box=c&&c.parentElement; if(box&&t) box.innerHTML=pxChart(t); return; }
   const d=e.target.closest&&e.target.closest('.pxe'); if(d){ e.stopPropagation(); pxRep(d); }
 });
 function pxRep(d){ const c=d.closest('.pxc'), r=(PXER[c.dataset.px]||[])[+d.dataset.k]; if(!r) return;
