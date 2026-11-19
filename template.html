@@ -1755,6 +1755,7 @@ const GLOSS={
   LOCK:['הנפקה ותקופת חסימה (Lock-up)','בהנפקה (IPO) חברה נכנסת לראשונה למסחר. בתקופת החסימה, בדרך כלל 90–180 יום אחרי ההנפקה, בעלי המניות הוותיקים לא רשאים למכור. בסיומה עלול להגיע לחץ מכירות.'],
   CAP:['שווי שוק','מחיר המניה כפול מספר המניות. באתר מוצגות רק חברות בשווי מעל מיליארד דולר.'],
   ROE:['ROE – תשואה להון','הרווח הנקי של 4 הרבעונים האחרונים, חלקי ההון העצמי של החברה (נכסים פחות התחייבויות, ממוצע של היום ולפני שנה). מראה כמה רווח החברה מייצרת על כל דולר של בעלי המניות. ROE של 15%–20% נחשב טוב. ROE גבוה מאוד יכול לנבוע גם מהון עצמי קטן, למשל בגלל רכישות עצמיות גדולות. לא מוצג כשההון העצמי שלילי.'],
+  INST:['החזקת מוסדיים','איזה אחוז ממניות החברה מוחזק בידי גופים מוסדיים: קרנות נאמנות וקרנות סל, בנקים, קרנות פנסיה וקרנות גידור. הנתון מגיע מדיווחי 13F לרשות ניירות הערך, שמוגשים פעם ברבעון, ולכן מתעדכן באיחור. אחוז גבוה מראה שהגופים הגדולים מחזיקים במניה. שינוי של כמה אחוזים בין רבעונים מעניין יותר מהמספר עצמו.'],
   FCF:['תזרים מזומנים חופשי','המזומן שהעסק מייצר מהפעילות השוטפת, פחות ההשקעות ברכוש קבוע. זה הכסף שנשאר לחלוקה לבעלי המניות, לרכישות או להחזר חובות.']
 };
 const gq = k => `<button class="gq" data-gl="${k}" aria-label="הסבר: ${esc(GLOSS[k][0])}">?</button>`;
@@ -1821,7 +1822,7 @@ const GLM={
   BREADTH:['t','Market Breadth','','#breadth','רוחב שוק'],ADV:['t','Advancers / Decliners','','#breadth','רוחב שוק'],MOVE10:['t','10% Movers','','#breadth','רוחב שוק'],CANDLE:['t','Candlestick'],SUPRES:['t','Support / Resistance'],GAP:['t','Gap'],
   SECTOR:['s','Sector / Industry','','#sectors','סקטורים'],ETF:['s','ETF'],SPDR:['s','Sector SPDR','','#sectors','טבלת סקטורים'],CEF:['s','Closed-end Fund'],REIT:['s','REIT'],BDC:['s','BDC'],
   MACRO:['m','Macro','','#macro','מאקרו'],RATE:['m','Fed Funds Rate','','#macro','מאקרו'],FED:['m','FedWatch','','#macro','מאקרו'],CPI:['m','CPI','','#macro','מאקרו'],PPI:['m','PPI'],PCE:['m','PCE'],NFP:['m','Nonfarm Payrolls'],UNEMP:['m','Unemployment Rate'],GDP:['m','GDP'],TNX:['m','10-Year Treasury Yield'],VIX:['m','VIX','','#','עמוד ראשי'],
-  IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],OPT:['e','Options'],SHORT:['e','Short Interest','8% שורט = 8 מכל 100 מניות צפות מוחזקות במכירה בחסר'],VOLAT:['e','Volatility']
+  IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],INST:['e','Institutional Ownership'],OPT:['e','Options'],SHORT:['e','Short Interest','8% שורט = 8 מכל 100 מניות צפות מוחזקות במכירה בחסר'],VOLAT:['e','Volatility']
 };
 let GLCAT='';
 function glCard(k){ const [t,d]=GLOSS[k], m=GLM[k]||[], en=m[1]&&!t.includes(m[1])?m[1]:'';
@@ -2133,6 +2134,7 @@ function repTiles(det,rep,reps){
   if(nx&&nx.d>=today) out.push(T('הדוח הבא',`<span class="num">${dm(nx.d)}.${nx.d.slice(0,4)}</span>`,[nx.h==='bmo'?'לפני הפתיחה':nx.h==='amc'?'אחרי הסגירה':'', nx.eps!=null||nx.rev!=null?`צפי: ${nx.eps!=null?'EPS <span class="num">'+eps(nx.eps)+'</span>':''}${nx.eps!=null&&nx.rev!=null?' · ':''}${nx.rev!=null?'הכנסות <span class="num">'+money(nx.rev)+'</span>':''}`:''],''));
   const F=det.f||{};
   if(F.roe&&typeof F.roe.v==='number') out.push(T(`ROE · תשואה להון${gq('ROE')}`,`<span class="num ${F.roe.v>0?'':'down'}">${F.roe.v.toFixed(1)}%</span>`,[`4 רבעונים עד ${dm(F.roe.q)}`,'מדוחות ה-SEC']));
+  if(typeof F.inst==='number') out.push(T(`החזקת מוסדיים${gq('INST')}`,`<span class="num">${F.inst.toFixed(1)}%</span>`,['מהמניות','קרנות, בנקים וקרנות פנסיה (דיווחי 13F)']));
   if(typeof F.si==='number') out.push(T(`שורט${gq('SHORT')}`,`<span class="num">${F.si.toFixed(1)}%</span>`,['מהמניות הצפות',typeof F.sr==='number'?`<span class="num">${F.sr}</span> ימים לכיסוי`:'',F.sid?`נכון ל-${dm(F.sid)}`:'']));
   return out.length?`<div class="mtg">${out.join('')}</div>`:'';
 }

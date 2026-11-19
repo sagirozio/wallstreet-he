@@ -1,7 +1,7 @@
 """Short interest for every stock on the site, from Yahoo (it comes from the exchanges' twice-a-month report).
 
 Writes into facts.json per ticker:  si = short interest as % of the float,  sr = days to cover (short ratio),
-sid = the date of the exchange report.  Slow on purpose (Yahoo throttles): ~0.6 s per stock, oldest first.
+sid = the date of the exchange report,  inst = % of the shares held by institutions (13F).  Slow on purpose (Yahoo throttles): ~0.6 s per stock, oldest first.
 """
 import json, sys, time, pathlib, datetime as dt
 import yfinance as yf
@@ -31,6 +31,9 @@ for t in tick:
     r = info.get("shortRatio")
     if isinstance(r, (int, float)) and r >= 0: f["sr"] = round(r, 1)
     else: f.pop("sr", None)
+    h = info.get("heldPercentInstitutions")   # share of the stock held by institutions (funds, banks, pension funds), 13F filings
+    if isinstance(h, (int, float)) and 0 <= h <= 1.5: f["inst"] = round(min(h, 1) * 100, 1)
+    else: f.pop("inst", None)
     d = info.get("dateShortInterest")
     if isinstance(d, (int, float)) and d > 0: f["sid"] = dt.datetime.utcfromtimestamp(d).date().isoformat()
     f["siAt"] = today
