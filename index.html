@@ -3,16 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>/* Visitors who are not signed in get the landing page (join.html) as the home page.
-   They stay on the site when: the link is a deep link (#...), they chose "כניסה לאתר" there (?site=1), signed up there (?welcome=1) or are signing up (?join=1),
-   the site was already opened in this tab, it is the installed app, or the browser is offline. */
-(function(){ try{ var q=location.search, S=sessionStorage;
-  if(/[?&]welcome=1/.test(q)) window.CLKGO=1;   /* just signed up on the landing page: load Clerk at once (below) */
-  if(/[?&](site|welcome)=1/.test(q)) history.replaceState(null,'',location.pathname+location.hash);
-  else if(!location.hash&&!q&&/^\/(index\.html)?$/.test(location.pathname)&&navigator.onLine!==false&&!S.getItem('lpSkip')&&!localStorage.getItem('clkOn')
-    &&!/(?:^|; )__client_uat=[1-9]/.test(document.cookie)&&!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)&&!navigator.standalone){ window.LPGO=1; location.replace('/join'); }
-  if(!window.LPGO) S.setItem('lpSkip','1');
-}catch(e){} })();</script>
+<script>/* The site is for signed-in visitors. Anyone else is sent to the landing page (join.html), where sign-up happens;
+   only the legal pages (#terms, #accessibility) stay open. The link they came for is kept (lpNext) and opened after sign-up.
+   ?welcome=1 = just signed up on the landing page: stay, Clerk loads at once and confirms the session (authRender sends them back if there is none). */
+(function(){ var S, LEGAL=/^#(terms|accessibility)$/; try{ S=sessionStorage; }catch(e){}
+  var signed=function(){ try{ return !!window.LPOK||localStorage.getItem('clkOn')==='1'||/(?:^|; )__client_uat=[1-9]/.test(document.cookie); }catch(e){ return true; } };
+  window.lpOut=function(force){ try{ if(LEGAL.test(location.hash)||(!force&&signed())||navigator.onLine===false||!S) return false;
+      var now=Date.now(), t=+S.getItem('lpKick')||0, n=now-t<20000?(+S.getItem('lpKickN')||0):0; if(n>=2) return false;   /* never loop */
+      S.setItem('lpKick',now); S.setItem('lpKickN',n+1);
+      if(location.hash.length>1&&!/sso-callback|clerk/.test(location.hash)) S.setItem('lpNext',location.hash);
+      location.replace('/join'); return true; }catch(e){ return false; } };
+  try{ var q=location.search;
+    if(/[?&]welcome=1/.test(q)||/__clerk|clerk_|sso-callback/.test(q+location.hash)){ window.LPOK=1; window.CLKGO=1; if(/[?&]welcome=1/.test(q)) history.replaceState(null,'',location.pathname+location.hash); }
+    else if(!lpOut()&&LEGAL.test(location.hash)&&!signed()){   /* a legal page for a visitor who is not signed in: the page alone, without the site around it */
+      document.documentElement.classList.add('lponly');
+      document.addEventListener('DOMContentLoaded',function(){ var m=document.querySelector('main'); if(m) m.insertAdjacentHTML('afterbegin','<p style="margin:18px 0 0"><a href="/join">→ Wallstreeter · וולסטריטר</a></p>'); }); }
+    window.addEventListener('hashchange',function(){ lpOut(); });
+  }catch(e){} })();</script>
+<style>html.lponly body>*:not(main):not(footer){display:none!important}</style>
 <title>Wallstreeter | US Stocks, Earnings &amp; News</title>
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0c0d10"><link rel="apple-touch-icon" href="icon-180.png">
@@ -3315,7 +3323,7 @@ function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
 function authRender(){ const b=$('authBox'); if(!b) return; b.classList.remove('hidden');
   if(CLK&&CLK.user){ if(!b.querySelector('.cl-userButtonBox, .cl-rootBox')){ b.innerHTML='<div id="authUB"></div>'; CLK.mountUserButton($('authUB')); } try{ localStorage.setItem('clkOn','1'); }catch(e){} return; }
   b.innerHTML=`<button class="authbtn" id="authIn" aria-label="התחברות"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.3-1.6 3.9-5.4 3.9-3.2 0-5.9-2.7-5.9-6s2.7-6 5.9-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.8 3.4 14.6 2.4 12 2.4 6.7 2.4 2.4 6.7 2.4 12s4.3 9.6 9.6 9.6c5.5 0 9.2-3.9 9.2-9.4 0-.6-.1-1.1-.2-1.6H12z"/></svg><span>התחברות</span></button>`;
-  if(CLK&&!CLK.user){ try{ localStorage.removeItem('clkOn'); }catch(e){} } }
+  if(CLK&&!CLK.user){ try{ localStorage.removeItem('clkOn'); }catch(e){} window.LPOK=0; try{ lpOut(true); }catch(e){} } }   /* no session (signed out / expired): back to the landing page */
 async function clkSyncIn(){ const u=CLK&&CLK.user; if(!u) return; try{
     const remote=Array.isArray((u.unsafeMetadata||{}).watch)?u.unsafeMetadata.watch:[];
     const merged=[...new Set([...WATCH,...remote])].filter(x=>typeof x==='string').slice(0,60), changed=merged.length!==WATCH.length; WATCH=merged;
@@ -3337,8 +3345,6 @@ function applyGate(){ if(!gateOn()) return; const on=accOn();
     gateBox(sec,g); }); }
 document.addEventListener('click',async e=>{ if(e.target.closest('[data-gin]')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 try{ if(/[?&]login=1/.test(location.search)) localStorage.setItem('clkBeta','1'); }catch(e){}
-/* the landing page (join.html) sends new visitors here with ?join=1: open the sign-in window right away */
-try{ if(/[?&]join=1/.test(location.search)){ history.replaceState(null,'',location.pathname+location.hash); clkLoad().then(c=>{ if(c&&!c.user) (c.openSignUp||c.openSignIn).call(c,{forceRedirectUrl:location.origin+'/'}); }); } }catch(e){}
 const clkShow=()=>{ if(CLK_LIVE) return true; try{ return localStorage.getItem('clkBeta')==='1'; }catch(e){ return false; } };
 if(CLK_PK&&clkShow()){ authRender(); let on=false; try{ on=localStorage.getItem('clkOn')==='1'; }catch(e){} if(on||window.CLKGO||/__clerk|clerk_|sso-callback/.test(location.search+location.hash)||/(?:^|; )__client_uat=[1-9]/.test(document.cookie)) clkLoad(); }
 route(); loadStocks(); loadLive();

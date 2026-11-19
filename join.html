@@ -7,7 +7,7 @@
 <meta name="description" content="וולסטריטר: כלי מחקר לשוק ההון האמריקאי, בעברית. מובילות השוק, תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך.">
 <link rel="icon" type="image/svg+xml" href="logo.svg"><link rel="apple-touch-icon" href="icon-180.png"><meta name="theme-color" content="#07090d">
 <link rel="canonical" href="https://wallstreeter.co.il/join">
-<!-- shown as the home page to visitors who are not signed in (the redirect is at the top of index.html); "כניסה לאתר" goes to /?site=1 -->
+<!-- the site is for signed-in visitors: index.html sends everyone else here (script at its top); sign-up and sign-in happen on this page -->
 <meta property="og:url" content="https://wallstreeter.co.il/join"><meta property="og:type" content="website"><meta property="og:site_name" content="וולסטריטר">
 <meta property="og:title" content="וולסטריטר | כלי מחקר לשוק ההון האמריקאי, בעברית">
 <meta property="og:description" content="מובילות השוק, תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך.">
@@ -61,16 +61,16 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 <body>
 <div class="glow"></div>
 <div class="wrap">
-<nav aria-label="ניווט ראשי"><a class="logo" href="/?site=1" aria-label="וולסטריטר Wallstreeter – לאתר"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x=".75" y=".75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg>
+<nav aria-label="ניווט ראשי"><a class="logo" href="/join" aria-label="וולסטריטר Wallstreeter – לאתר"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x=".75" y=".75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg>
   <span><b dir="ltr">Wallstreeter</b><small>וולסטריטר · השוק האמריקאי, בגובה העיניים</small></span></a>
-  <div class="nl"><a href="#tools">כלים</a><a href="#join">הצטרפות</a><a class="btn s" href="/?site=1">כניסה לאתר</a></div></nav>
+  <div class="nl"><a href="#tools">כלים</a><a href="#join">הצטרפות</a><a class="btn s" href="/join" data-join="in">התחברות</a></div></nav>
 
 <main>
 <section class="hero">
   <span class="pill"><i></i>כלי מחקר · נתונים בלייב במהלך המסחר</span>
   <h1>כלי מחקר לשוק ההון האמריקאי.<br><span>בעברית ובמקום אחד.</span></h1>
   <p class="lead"><b>מזהים את מובילות השוק ומבינים לאן הכסף זורם.</b> תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך, מתעדכנים כל כמה דקות במסחר ובכל ערב אחרי הסגירה.</p>
-  <div class="cta"><a class="btn p" href="/?join=1" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#tools">מה יש באתר</a></div>
+  <div class="cta"><a class="btn p" href="/join" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#tools">מה יש באתר</a></div>
   <div class="fine">ללא תשלום בתקופת ההשקה · מידע עובדתי בלבד, לא ייעוץ השקעות</div>
   <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><img src="lp/stocks.jpg" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"><div class="fade"></div></div>
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
@@ -82,9 +82,9 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
     <ul><li>כל תעשייה נפתחת למניות שמובילות אותה</li><li>העתקת כל הסימולים של תעשייה בלחיצה</li><li>רוטציה בין סקטורים לאורך זמן</li></ul></div>
     <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img loading="lazy" src="lp/themes.jpg" width="1300" height="699" alt="טבלת התעשיות: תשואה יומית, חודשית ושנתית ודירוג RS לכל תעשייה"></div></div>
 
-  <div class="feat r"><div class="ft"><span class="n">02</span><h3>חלון מניה</h3><p>לחיצה על כל מניה באתר פותחת חלון עם כל המידע עליה, בלי לעזוב את הרשימה.</p>
+  <div class="feat r"><div class="ft"><span class="n">02</span><h3>תעודת זהות לכל מניה</h3><p>לחיצה על מניה פותחת את כל המידע עליה במקום אחד, בלי לעזוב את הרשימה.</p>
     <ul><li>גרף נרות עם ממוצעים נעים</li><li>הדוח האחרון מול הצפי וצמיחה רבעונית</li><li>חדשות על המניה, בעברית</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img loading="lazy" src="lp/qv.jpg" width="1300" height="921" alt="חלון מניה: מחיר, הדוח האחרון מול הצפי וגרפי צמיחה רבעונית"></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img loading="lazy" src="lp/qv.jpg" width="1300" height="921" alt="תעודת זהות של מניה: מחיר, הדוח האחרון מול הצפי וגרפי צמיחה רבעונית"></div></div>
 
   <div class="feat"><div class="ft"><span class="n">03</span><h3>רוחב שוק</h3><p>הבריאות של השוק, לא רק המדד: כמה מניות עולות ויורדות, ומה מצבן מול הממוצעים.</p>
     <ul><li>שיאים ושפלים של 52 שבועות</li><li>אחוז המניות מעל ממוצע 50 ו-200</li><li>היסטוריה יומית</li></ul></div>
@@ -103,7 +103,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 </section>
 
 <section class="join" id="join"><h2>מתחילים בחינם.</h2><p>הרשמה עם חשבון Google בשניות. בלי כרטיס אשראי.</p>
-  <a class="btn p" href="/?join=1" data-join>הרשמה עם Google</a>
+  <a class="btn p" href="/join" data-join>הרשמה עם Google</a>
   <div class="chk"><span>כל הכלים פתוחים</span><span>רשימת מעקב אישית</span><span>בטלפון ובמחשב</span></div></section>
 </main>
 </div>
@@ -113,10 +113,11 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
    so the site itself is shown only after the visitor has signed up. Signed in -> /?welcome=1 (the site).
    If Clerk cannot load, a short message appears under the button and the visitor can try again (the site is not shown). */
 (function(){
-  var PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', DONE='/?welcome=1', P=null, gone=false;
+  var PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', P=null, gone=false;
+  var DONE='/?welcome=1'+(function(){ try{ var n=sessionStorage.getItem('lpNext')||''; return /^#[^\s]{1,200}$/.test(n)?n:''; }catch(e){ return ''; } })();   /* the link the visitor came for opens after sign-up */
   var F=(function(){ try{ return atob(PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } })();
   function sc(src,attrs){ return new Promise(function(ok,no){ var e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.keys(attrs||{}).forEach(function(k){ e.setAttribute(k,attrs[k]); }); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
-  function go(){ if(gone) return; gone=true; try{ localStorage.setItem('clkOn','1'); }catch(e){} location.replace(DONE); }
+  function go(){ if(gone) return; gone=true; try{ localStorage.setItem('clkOn','1'); sessionStorage.removeItem('lpNext'); }catch(e){} location.replace(DONE); }
   function load(){ if(P) return P;
     P=Promise.all([sc('https://'+F+'/npm/@clerk/ui@1/dist/ui.browser.js'), sc('https://'+F+'/npm/@clerk/clerk-js@6/dist/clerk.browser.js',{'data-clerk-publishable-key':PK}),
         import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(function(m){ return m.heIL; }).catch(function(){ return undefined; })])
@@ -130,8 +131,8 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
     btn.setAttribute('aria-busy','true'); btn.style.opacity='.7'; var t=setTimeout(fb,12000);
     load().then(function(c){ clearTimeout(t); if(done) return; done=true; btn.removeAttribute('aria-busy'); btn.style.opacity='';
       if(c.user){ go(); return; }
-      var o={forceRedirectUrl:location.origin+DONE, signInForceRedirectUrl:location.origin+DONE};
-      (c.openSignUp||c.openSignIn).call(c,o); }).catch(function(){ clearTimeout(t); fb(); }); }
+      var o={forceRedirectUrl:location.origin+DONE, signInForceRedirectUrl:location.origin+DONE, signUpForceRedirectUrl:location.origin+DONE};
+      (btn.getAttribute('data-join')==='in'?c.openSignIn:(c.openSignUp||c.openSignIn)).call(c,o); }).catch(function(){ clearTimeout(t); fb(); }); }
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[data-join]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return; e.preventDefault(); open(a); });
   /* back from Google (or already signed in): finish here and move on to the site */
   try{ if(/__clerk|clerk_|sso-callback/.test(location.search+location.hash)||/(?:^|; )__client_uat=[1-9]/.test(document.cookie)) load().catch(function(){}); }catch(e){}
