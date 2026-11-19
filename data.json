@@ -43197,7 +43197,7 @@
   }
  ],
  "overview": {
-  "asOf": "19.11.2026 · 12:00",
+  "asOf": "19.11.2026 · 13:05",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43257,7 +43257,7 @@
   "brief": [
    {
     "h": "החוזים עולים לפני הנפקת Anthropic",
-    "t": "החוזים על המדדים עולים, בהובלת הנאסד״ק, לפני הבכורה של Anthropic (ANT) בנאסד״ק אחרי תמחור של $83 למניה; ה-VIX ירד ל-22.07 ותשואת ה-10 שנים ב-5.07%.",
+    "t": "החוזים עולים בהובלת הנאסד״ק ומניות השבבים (Intel, AMD, Micron עולות ב-3%–4.5%) לפני הבכורה של Anthropic (ANT) אחרי תמחור של $83 למניה; תשואת ה-10 שנים ב-5.07% וה-VIX ב-22.1.",
     "tone": "pos"
    },
    {
@@ -43271,8 +43271,8 @@
     "tone": "neu"
    },
    {
-    "h": "טראמפ ושי: הורדת מכסים על $30 מיליארד",
-    "t": "טראמפ אמר בפגישה עם שי בשנז׳ן שהמדינות הסכימו להוריד מכסים על סחר בהיקף של $30 מיליארד; הפסגה המשולשת עם פוטין החלה בלי הצהרה משותפת.",
+    "h": "הפסגה המשולשת הסתיימה בלי הסכמים",
+    "t": "פגישת טראמפ, שי ופוטין בשנזן נמשכה כשעה ו-20 דקות ועסקה באוקראינה ובנשק גרעיני; לא דווח על הסכמים. קודם לכן אמר טראמפ שארה״ב וסין יורידו מכסים על סחר של $30 מיליארד.",
     "tone": "neu"
    },
    {
@@ -43350,7 +43350,7 @@
    "from": 19.3,
    "note": "המדד ירד ב-3.5% ל-24.58, אבל נשאר מעל 24 אחרי הקפיצה בתחילת השבוע."
   },
-  "rev": 202611191200,
+  "rev": 202611191305,
   "market": {
    "note": "סגירה ביום רביעי, 18.11.2026. הדאו ירד ב-561 נקודות וה-S&P 500 ירד ביום החמישי ברציפות, בזמן שהנאסד״ק וראסל 2000 עלו לפני הנפקת Anthropic. פרוטוקול הפד הראה שכמעט כל החברים צופים העלאת ריבית נוספת.",
    "idx": [
@@ -106068,6 +106068,91 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-19-trilateral-ends",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "הפסגה המשולשת של טראמפ, שי ופוטין הסתיימה אחרי כשעה ו-20 דקות",
+   "body": "לפי Reuters, הפגישה בשנזן עסקה במלחמה באוקראינה ובפיקוח על נשק גרעיני. טראמפ אמר בפתיחה ״אנחנו באמת עושים היסטוריה״; לא דווח על הסכמים או על הצהרה משותפת.",
+   "src": "UNN (לפי Reuters)",
+   "url": "https://unn.ua/en/news/the-trilateral-meeting-between-trump-xi-and-putin-has-ended",
+   "time": "10:02"
+  },
+  {
+   "id": "2026-11-19-chips-premarket",
+   "date": "2026-11-19",
+   "t": [
+    "INTC",
+    "AMD",
+    "MU",
+    "MRVL"
+   ],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "מניות השבבים עולות לפני המסחר, לפני הבכורה של Anthropic",
+   "body": "לפי Reuters, Intel, AMD, Micron ו-Marvell עולות בכ-3%–4.5% לפני המסחר, ו-Nvidia ב-1.6% אחרי חמש ירידות רצופות. חוזי הנאסד״ק 100 עלו ב-1.83%.",
+   "src": "Reuters",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-jump-anthropics-record-090243474.html",
+   "time": "11:47"
+  },
+  {
+   "id": "2026-11-19-europe-midday",
+   "date": "2026-11-19",
+   "t": [
+    "ASML"
+   ],
+   "tag": "אירופה",
+   "tone": "pos",
+   "title": "אירופה בצהריים: ASML ו-Infineon מובילות את העליות",
+   "body": "לפי Dow Jones, ה-Euro Stoxx 50 עלה ב-0.6%, עם ASML (+4.3%) ו-Infineon (+3.5%). UniCredit עלתה ב-1.9% אחרי הסכם עם ממשלת גרמניה שמפנה את הדרך להשתלטות על Commerzbank; SAP ירדה ב-2.4%.",
+   "src": "MarketScreener (Dow Jones)",
+   "url": "https://www.marketscreener.com/news/european-midday-briefing-shares-rise-as-optimism-improves-ahead-of-anthropic-trading-debut-ce785ed2d98df320",
+   "time": "12:19"
+  },
+  {
+   "id": "2026-11-19-iea-surplus",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "נפט",
+   "tone": "neu",
+   "title": "IEA: עודף היצע של כ-1.7 מיליון חביות ביום ברבעון הרביעי",
+   "body": "לפי סוכנות האנרגיה הבינלאומית העודף צפוי להתרחב לכ-3.8 מיליון חביות ביום בשנה הבאה. ברנט עלה ב-0.3% ל-$92.25 לחבית, ו-WTI ירד ב-0.1% ל-$83.21.",
+   "src": "MarketScreener (Dow Jones)",
+   "url": "https://www.marketscreener.com/news/european-midday-briefing-shares-rise-as-optimism-improves-ahead-of-anthropic-trading-debut-ce785ed2d98df320",
+   "time": "12:19"
+  },
+  {
+   "id": "2026-11-19-nbis-premarket",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "Nebius",
+   "tone": "pos",
+   "title": "Nebius עולה ב-4.6% לפני המסחר",
+   "body": "לפי Reuters, המניה עולה בתוך עליות רחבות במניות ה-AI והשבבים, כשחוזי הנאסד״ק עולים לקראת הבכורה של Anthropic.",
+   "src": "Reuters",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-jump-anthropics-record-090243474.html",
+   "time": "11:47"
+  },
+  {
+   "id": "2026-11-19-crwv-premarket",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "CoreWeave",
+   "tone": "pos",
+   "title": "CoreWeave עולה ב-3.5% לפני המסחר",
+   "body": "לפי Reuters, המניה עולה בתוך עליות רחבות במניות ה-AI והשבבים, כשחוזי הנאסד״ק עולים לקראת הבכורה של Anthropic.",
+   "src": "Reuters",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-jump-anthropics-record-090243474.html",
+   "time": "11:47"
+  },
   {
    "id": "2026-11-19-panw-premarket",
    "date": "2026-11-19",
