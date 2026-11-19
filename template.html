@@ -2973,7 +2973,7 @@ renderNews(); try{ renderIdx(); }catch(e){} renderTop(); fillSectors(); renderTh
    Off until CLK_PK is filled in (the publishable key is public by design). Clerk's scripts load only on a click,
    or on later visits once this browser has signed in. Watchlist: user.unsafeMetadata.watch (the user's own field);
    a paid plan, later, goes in publicMetadata, which only the server can write. */
-const CLK_PK='';
+const CLK_PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', CLK_LIVE=false;   /* CLK_LIVE=false: the button shows only in a browser that opened the site with ?login=1 (testing while DNS settles) */
 let CLK=null, CLKP=null;
 const clkFapi=()=>{ try{ return atob(CLK_PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } };
 function clkScript(src,attrs){ return new Promise((ok,no)=>{ const e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v)); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
@@ -2995,8 +2995,10 @@ async function clkSyncIn(){ const u=CLK&&CLK.user; if(!u) return; try{
     if(merged.length!==remote.length) await u.update({unsafeMetadata:{...u.unsafeMetadata,watch:WATCH}});
     if(changed){ try{ renderWatch(); }catch(e){} } }catch(e){ console.log('sync',e); } }
 let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; clearTimeout(clkPushT); clkPushT=setTimeout(()=>u.update({unsafeMetadata:{...u.unsafeMetadata,watch:WATCH}}).catch(()=>{}),800); }
-document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(c&&!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
-if(CLK_PK){ authRender(); let on=false; try{ on=localStorage.getItem('clkOn')==='1'; }catch(e){} if(on||/__clerk|clerk_/.test(location.search+location.hash)) clkLoad(); }
+document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
+try{ if(/[?&]login=1/.test(location.search)) localStorage.setItem('clkBeta','1'); }catch(e){}
+const clkShow=()=>{ if(CLK_LIVE) return true; try{ return localStorage.getItem('clkBeta')==='1'; }catch(e){ return false; } };
+if(CLK_PK&&clkShow()){ authRender(); let on=false; try{ on=localStorage.getItem('clkOn')==='1'; }catch(e){} if(on||/__clerk|clerk_/.test(location.search+location.hash)) clkLoad(); }
 route(); loadStocks(); loadLive();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {
