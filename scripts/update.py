@@ -100,6 +100,8 @@ _etf_ok = False
 if not STALE:
     import sector_etf
     _etf_ok = sector_etf.apply(data)
+if _etf_ok and not live and data["sectors"].get("pyDates"):   # the ETF closes may lag (Yahoo) -> show their own date
+    _y, _m, _d = map(int, data["sectors"]["pyDates"][-1].split("-")); stamp = f"סגירת {_d}.{_m}.{_y}"
 if not STALE: data["sectors"]["asOf"] = stamp + (" · שינוי המחיר של קרן הסל של כל סקטור" if _etf_ok else " · ממוצע מניות ה-S&P 500 בכל סקטור")
 
 # ---- today's big movers: up 10%+ (cap > $1B, avg volume > 800k, major US exchanges) ----
