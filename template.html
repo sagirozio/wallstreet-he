@@ -231,14 +231,17 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 @media(max-width:640px){.sxs{grid-template-columns:repeat(2,minmax(0,1fr))}.sxf{flex-direction:column;align-items:stretch}.sxc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.sxc button{white-space:nowrap;flex:none}.sxr{grid-template-columns:minmax(0,2fr) 1fr .9fr .6fr;padding:8px 10px;font-size:13px}.sxr .hx-m,.sxr .hx-ytd,.sxr .hx-cap,.sxr .hx-adr{display:none}}
 .sxa{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:13px;color:var(--muted)}.sxa span{margin-inline-end:auto}.sxa button{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.sxa svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 #toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:#161b22;border:1px solid #30363d;color:var(--text);padding:8px 16px;border-radius:999px;font-size:13.5px;opacity:0;pointer-events:none;transition:.2s;z-index:90}#toast.on{opacity:1;transform:translate(-50%,0)}
-#qvBg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:80;display:none}#qvBg.on{display:block}
-#qv{position:fixed;top:0;left:0;bottom:0;width:340px;max-width:90vw;background:var(--panel);border-right:1px solid var(--line);z-index:81;padding:14px;overflow:auto;transform:translateX(-105%);transition:transform .2s;box-shadow:0 0 30px rgba(0,0,0,.5)}#qv.on{transform:none}
+#qvBg{position:fixed;inset:0;background:transparent;z-index:80;display:none}#qvBg.on{display:block}
+#qv{position:fixed;top:96px;left:18px;width:330px;max-width:calc(100vw - 36px);max-height:calc(100vh - 120px);background:var(--panel);border:1px solid #30363d;border-radius:14px;z-index:81;padding:14px;overflow:auto;opacity:0;pointer-events:none;transform:translateY(8px) scale(.98);transition:opacity .18s,transform .18s;box-shadow:0 16px 48px rgba(0,0,0,.6)}#qv.on{opacity:1;pointer-events:auto;transform:none}
 .qvh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.qvh b{font-size:18px}.qvh small{display:block;color:var(--muted);font-size:12.5px}.qvh span{display:flex;gap:6px;align-items:center}.qvh .wbtn{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:3px 9px;font:inherit;font-size:12.5px;cursor:pointer}.qvh .wbtn.w1{color:#f5b942;border-color:#f5b942}.qvx{background:none;border:0;color:var(--muted);font-size:16px;cursor:pointer}
 .qvp{margin:8px 0}.qvp b{font-size:24px}.qvc svg{width:100%;height:90px;display:block}.qvc small{color:var(--muted);font-size:11px}
 .qvt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0}.qvt div{background:var(--bg);border-radius:8px;padding:6px 8px}.qvt small{display:block;color:var(--muted);font-size:11px}.qvt b{font-size:14px}
 .qvn{font-size:13.5px;line-height:1.5;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}.qvn small{display:block;color:var(--muted);font-size:11.5px}
 .qvgo{display:block;text-align:center;border:1px solid var(--line);border-radius:10px;padding:8px;margin-top:12px}
-@media(max-width:640px){#qv{top:auto;left:0;right:0;width:auto;max-width:none;max-height:80vh;border-right:0;border-top:1px solid var(--line);border-radius:16px 16px 0 0;transform:translateY(105%)}#qv.on{transform:none}}
+@media(max-width:640px){#qv{top:auto;left:10px;right:10px;bottom:10px;width:auto;max-width:none;max-height:75vh;border-radius:16px;transform:translateY(20px)}#qv.on{transform:none}#qvBg{background:rgba(0,0,0,.25)}}
+.etr{display:grid;grid-template-columns:minmax(0,2.6fr) .9fr .9fr 1fr 1fr .9fr;align-items:center;gap:6px;padding:9px 14px;border-top:1px solid rgba(255,255,255,.05);font-size:13.5px;cursor:pointer}.etr.sxhd{cursor:default}.etr:hover:not(.sxhd){background:rgba(255,255,255,.025)}.etr>span:not(.ex-n){text-align:left;direction:ltr}.etr .ex-n b{font-family:'JetBrains Mono',monospace;margin-inline-end:6px}.etr .car{color:#58a6ff;display:inline-block;width:14px}.etr button.ex-n{text-align:right}
+.ethw{background:rgba(0,0,0,.18);padding:8px 14px 12px}.ethg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}.eth{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:5px 8px;color:var(--text);text-decoration:none;font-size:12.5px}.eth small{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px}.eth span{color:var(--muted)}.eth i{font-style:normal}.ethn{color:var(--muted);font-size:12px;margin-top:8px}.ethn button{background:none;border:0;color:#58a6ff;font:inherit;cursor:pointer;padding:0}
+@media(max-width:640px){.etr{grid-template-columns:minmax(0,2fr) .9fr 1fr;padding:9px 10px}.etr .ex-d,.etr .ex-q,.etr .ex-y{display:none}}
 .rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:6px 0 14px}.rch{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.rch b{font-size:16px}.rch .up{color:var(--up,#3fb950)}.rch .down{color:#f85149}.rch .amb{color:#d29922}.rcm{color:var(--muted);font-size:12.5px;margin:2px 0 10px}.rcg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rcb{background:var(--bg);border-radius:8px;padding:8px 10px}.rcb small{color:var(--muted);font-size:12px}.rcb b{font-size:19px}.rce{color:var(--muted);font-size:12.5px}.rcs{font-size:12.5px;margin-top:2px}.rcf{margin-top:10px;font-size:13.5px}.rcbt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px;font-size:12.5px;color:var(--muted)}.rcbt span{display:inline-flex;gap:3px}.rcbt i{width:11px;height:11px;border-radius:2px;display:inline-block;background:#8b949e}.rcbt i.bu{background:#3fb950}.rcbt i.se{background:#da3633}
 @media(max-width:640px){#spSnap .snap{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .fstamp{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:12px 0 0;line-height:1.6}
@@ -889,6 +892,13 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <p class="sub">דירוג ה-RS של קרן הסל של כל סקטור (1–99, מול מניות ה-S&amp;P 500) היום. הקו הלבן מראה איפה היה לפני 4 שבועות, והחץ את הכיוון.</p>
   <div id="rotBody"></div>
 </section>
+<section id="etfs" data-pg="research">
+  <div class="sxh"><h2>קרנות נושאיות</h2><span class="sxn" id="etfAsOf"></span></div>
+  <p class="sub">קרנות סל (ETF) שעוקבות אחרי נושא או תעשייה. לחיצה על קרן פותחת את האחזקות הגדולות שלה.</p>
+  <div class="sxf"><div class="sxc" id="etfChips"></div></div>
+  <div class="hxt" id="etfTable"><div class="empty">טוען…</div></div>
+  <p class="legend">מחירים ואחזקות: Yahoo Finance. האחזקות מתעדכנות פעם בשבוע. מידע עובדתי בלבד, לא המלצה.</p>
+</section>
 
 <section id="sectors" data-pg="research">
   <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors" class="on">סקטורים</a><a href="#themes" data-sw="themes">תעשיות</a></div>
@@ -1310,11 +1320,11 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
   market:[['#snapshot','תמונת מצב'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית']],
-  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות'],['#rotation','רוטציה'],['#evidence','מחקר מבוסס ראיות']],
+  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות'],['#rotation','רוטציה'],['#etfs','קרנות נושאיות'],['#evidence','מחקר מבוסס ראיות']],
   reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#ipos','הנפקות']],
   stocks:[['#stocksHub','מניות'],['#screener','סורק מניות'],['#compare','השוואת גרפים']]
 };
-const PG_TITLE={compare:'Compare',research:'Research',watch:'My list',home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
+const PG_TITLE={etfs:'Theme ETFs',compare:'Compare',research:'Research',watch:'My list',home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
 const BASE_TITLE=document.title;
 let CURPG=null, MSUB='snapshot', RSUB='earnings', XSUB='leaders';
 document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
@@ -1351,6 +1361,7 @@ function route(){
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
   if(pg==='research'&&XSUB==='leaders') renderLeaders();
+  if(pg==='research'&&XSUB==='etfs') renderEtfs();
   if(pg==='compare') renderCompare(h.startsWith('#compare/')?decodeURIComponent(h.slice(9)):'');
   if(pg==='reports') loadReports();
   if(pg==='news') loadNews();
@@ -1606,11 +1617,35 @@ async function qvOpen(t){
 document.addEventListener('click',e=>{
   if(e.target.closest&&e.target.closest('.qvx')){ qvClose(); return; }
   if(e.target.closest&&e.target.closest('.qvgo')){ qvClose(); return; }
-  const a=e.target.closest&&e.target.closest('#hubTable a.sxr, #screener a[href^="#stock/"], #leaders a[href^="#stock/"]');
+  const a=e.target.closest&&e.target.closest('#hubTable a.sxr, #screener a[href^="#stock/"], #leaders a[href^="#stock/"], #etfTable a.eth[href^="#stock/"]');
   if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return; e.preventDefault(); qvOpen(decodeURIComponent(a.getAttribute('href').slice(7)));
 });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') qvClose(); });
 window.addEventListener('hashchange',qvClose);
+
+/* ---------- thematic ETFs (מחקר → קרנות נושאיות) ---------- */
+const ETF={g:'',sort:'m',dir:-1,open:new Set()};
+function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable'); if(!b) return;
+  if(!R.length){ b.innerHTML='<div class="empty">הנתונים יתעדכנו בריצה הלילית הקרובה.</div>'; return; }
+  $('etfAsOf').textContent=E.asOf?`סגירת ${dm(E.asOf)}`:'';
+  const G=[...new Set(R.map(r=>r.g))];
+  $('etfChips').innerHTML=[['','הכל'],...G.map(g=>[g,g])].map(([k,l])=>`<button data-eg="${esc(k)}" class="${ETF.g===k?'on':''}">${esc(l)}</button>`).join('');
+  const C=[['n','קרן · נושא'],['d','יום'],['m','חודש'],['q','3 חודשים'],['ytd','מתחילת השנה'],['y','שנה']];
+  const pc=v=>v==null?'<span class="flat">—</span>':`<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
+  const rows=R.filter(r=>!ETF.g||r.g===ETF.g).sort((a,b)=>{ const k=ETF.sort; if(k==='n') return a.n.localeCompare(b.n,'he')*ETF.dir; const x=a[k],y=b[k]; if(x==null) return 1; if(y==null) return -1; return (x-y)*ETF.dir; });
+  const ix=stockIndex();
+  b.innerHTML=`<div class="etr sxhd">${C.map(([c,l])=>`<button data-es="${c}" class="ex-${c}${ETF.sort===c?' on':''}">${l}${ETF.sort===c?(ETF.dir<0?' ▾':' ▴'):''}</button>`).join('')}</div>`+rows.map(r=>{ const op=ETF.open.has(r.t);
+    const h=(r.h||[]).map(([t,n,w])=>{ const s=ix[t], y=s&&s.r?s.r.ytd:null; return `<a class="eth" href="${s?'#stock/'+encodeURIComponent(t):'#'}" ${s?'':'data-nolink'}><b class="num">${esc(t)}</b><small>${esc(n||'')}</small><span class="num">${w}%</span>${y!=null?`<i class="num ${y>=0?'up':'down'}">${y>0?'+':''}${y.toFixed(0)}%</i>`:'<i></i>'}</a>`; }).join('');
+    return `<div class="etr ${op?'open':''}" data-et="${esc(r.t)}"><span class="ex-n"><span class="car">${r.h&&r.h.length?(op?'▼':'◀'):''}</span><b class="num">${esc(r.t)}</b> ${esc(r.n)}</span><span class="ex-d num">${pc(r.d)}</span><span class="ex-m num">${pc(r.m)}</span><span class="ex-q num">${pc(r.q)}</span><span class="ex-ytd num">${pc(r.ytd)}</span><span class="ex-y num">${pc(r.y)}</span></div>`+
+      (op&&h?`<div class="ethw"><div class="ethg">${h}</div><div class="ethn">${(r.h||[]).length} האחזקות הגדולות · משקל בקרן · תשואה מתחילת השנה (למניות שבאתר)${r.hAt?` · עודכן ${dm(r.hAt)}`:''} · <button data-ecopy="${esc(r.t)}">העתק סימולים</button></div></div>`:''); }).join('');
+}
+document.addEventListener('click',async e=>{
+  const g=e.target.closest&&e.target.closest('[data-eg]'); if(g){ ETF.g=g.dataset.eg; renderEtfs(); return; }
+  const so=e.target.closest&&e.target.closest('[data-es]'); if(so){ const c=so.dataset.es; if(ETF.sort===c) ETF.dir*=-1; else { ETF.sort=c; ETF.dir=c==='n'?1:-1; } renderEtfs(); return; }
+  const cp=e.target.closest&&e.target.closest('[data-ecopy]'); if(cp){ const r=((FALLBACK.etfs||{}).rows||[]).find(x=>x.t===cp.dataset.ecopy); const txt=(r&&r.h||[]).map(x=>x[0]).join(','); try{ await navigator.clipboard.writeText(txt); toast('הסימולים הועתקו'); }catch(_){ prompt('העתק:',txt); } return; }
+  const nl=e.target.closest&&e.target.closest('[data-nolink]'); if(nl){ e.preventDefault(); return; }
+  const rw=e.target.closest&&e.target.closest('#etfTable .etr[data-et]'); if(rw){ const t=rw.dataset.et; ETF.open.has(t)?ETF.open.delete(t):ETF.open.add(t); renderEtfs(); }
+});
 document.addEventListener('change',e=>{ if(e.target.id==='hubSec'){ HUB.sec=e.target.value; HUB.lim=40; renderHub(); } });
 
 /* ---------- stock page ("תעודת זהות") ---------- */
@@ -3195,7 +3230,7 @@ let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; cle
 document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 
 /* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
-const GATED={leaders:'מובילים',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
+const GATED={leaders:'מובילים',etfs:'קרנות נושאיות',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
 function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
 const gateOn=()=>!!(CLK_PK&&CLK_LIVE);
 function gateBox(sec,g){ if(!sec.querySelector(':scope>.gate')){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); } sec.classList.add('gated'); }
