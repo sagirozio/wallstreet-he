@@ -47,7 +47,8 @@ h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin
 .ft ul{list-style:none;padding:0;margin:0}.ft li{display:flex;gap:10px;padding:6px 0;font-size:15.5px;color:#c9d0da}.ft li:before{content:"";flex:0 0 6px;height:6px;border-radius:50%;background:var(--g2);margin-top:9px}
 .ft .n{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;color:var(--muted);font-size:13px}
 .lv{margin:0;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.lvr{display:grid;grid-template-columns:28px 1fr auto auto;gap:14px;align-items:center;padding:14px 20px;border-top:1px solid var(--line);font-size:16px}.lvr:first-child{border:0}.lvr i{font-style:normal;color:var(--muted);font:500 13px 'JetBrains Mono',monospace}.lvr b{font-weight:600}.lvr em{font-style:normal;font:600 15px 'JetBrains Mono',monospace;direction:ltr;min-width:64px;text-align:left}.lvr em.u{color:var(--g2)}.lvr em.d{color:#f87171}.lvr small{color:var(--muted);font:400 13px 'JetBrains Mono',monospace;min-width:96px;text-align:left}.lvh{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}.lvn{margin:14px 0 0;color:var(--muted);font-size:14px}.lvn a{color:var(--g2);text-decoration:none;font-weight:600}
-.lvr .en{display:block;color:var(--muted);font:400 12px 'JetBrains Mono',monospace;direction:ltr;text-align:right;margin-top:2px}.feat .frame{margin:0}.feat .frame img{max-height:430px;object-fit:cover;object-position:top}
+.lvr .en{display:block;color:var(--muted);font:400 12px 'JetBrains Mono',monospace;direction:ltr;text-align:right;margin-top:2px}.tv{margin-top:28px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}.tv video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.feat .frame{margin:0}.feat .frame img{max-height:430px;object-fit:cover;object-position:top}
 .all{margin-top:110px}.allg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px;align-items:start}
 .grp{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px}.grp h3{margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--g2)}
 .grp ul{list-style:none;margin:0;padding:0}.grp li{padding:10px 0;border-top:1px solid var(--line)}.grp li b{display:block;font-size:15.5px;font-weight:700}.grp li span{display:block;color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:2px}
@@ -80,6 +81,9 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/stocks.jpg?v=c8e599" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img src="lp/stocks.jpg?v=c8e599" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"></a><div class="fade"></div></div>
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
 </section>
+
+<section class="sec" id="tour"><div class="lbl">סיור של 30 שניות</div><h2 class="h2">ככה זה נראה מבפנים.</h2><p class="sub">מהטבלה ועד הדוחות, בלי הרשמה לצפייה בסרטון. <span dir="ltr" lang="en" style="display:block;margin-top:4px">A 30-second tour of the site.</span></p>
+  <div class="tv"><video id="tourV" muted loop playsinline controls preload="none" poster="lp/tour.jpg?v=b15b15" aria-label="סיור קצר באתר: טבלת מניות, כרטיס מניה, תעשיות, רוחב שוק ודוחות. Short site tour."><source src="lp/tour.mp4?v=b15b15" type="video/mp4"></video></div></section>
 
 <section class="sec" id="live" hidden><div class="lbl">נתון חי מהאתר</div><h2 class="h2">חמש התעשיות החזקות ביום המסחר האחרון.</h2><p class="sub">כך נראית הטבלה בתוך האתר: כל תעשייה עם תשואה יומית ושבועית, מדורגות לפי היום.</p>
   <div class="lv" id="lvBox" style="margin-top:28px"><div class="lvh"><span>תעשייה</span><span id="lvAs"></span></div><div id="lvRows"></div></div>
@@ -161,6 +165,11 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   document.getElementById('lvAs').textContent=t.asOf||''; document.getElementById('lvN').textContent=L.length;
   document.getElementById('live').hidden=false;
 }).catch(function(){}); })();
+</script>
+<script>
+/* tour video: plays muted while on screen, pauses when scrolled away */
+(function(){ var v=document.getElementById('tourV'); if(!v||!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting&&x.intersectionRatio>.5){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else v.pause(); }); },{threshold:[0,.5]}).observe(v); })();
 </script>
 </body>
 </html>
