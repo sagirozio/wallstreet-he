@@ -44,6 +44,12 @@ Search per item; use only what you retrieved. Primary sources first (press relea
 Earnings: actual vs consensus from 2 sources; if they conflict, skip and say so. Only companies above $1B.
 Never invent a reason for a move — no source, no explanation.
 
+**Unattended runs — no approval prompts.** Nobody is there to approve a request, and a run that waits for approval never finishes.
+- Open (WebFetch) only URLs that appeared in a WebSearch result in this run, or that are already in data.json / news_src.json.
+  Never build or guess a URL yourself (e.g. `dol.gov/ui/data.pdf`, a press-release path, an IR page): search for it first and fetch the result's link.
+- If a page can't be fetched, use the search result text or another source; do not retry the same URL another way (curl, mirrors).
+- Do not use the browser or computer tools. Do not create, change or delete scheduled tasks.
+
 ## data.json — shapes
 
 **`overview`**
