@@ -261,6 +261,7 @@ tr:last-child td{border-bottom:0}
 .ldwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}.ldwg>div{background:var(--panel);border-radius:10px;padding:8px 10px}.ldwg small{color:var(--muted);font-size:12px}
 .ldwg ul{list-style:none;margin:4px 0 0;padding:0}.ldwg li{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:2px 0}.ldwg li a{font:600 13px 'JetBrains Mono',monospace;color:var(--text);text-decoration:none}.ldwg li span{font-size:12px}.mu{color:var(--muted)}
 #rotBody{max-width:760px}
+.evu{margin-top:10px;background:var(--panel2);border-radius:8px;padding:8px 10px}.evu b{font-size:12.5px}.evu p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
 .evgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}.evc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.evc h3{font-size:15px;margin:0 0 8px}
 .evfg{display:flex;align-items:baseline;gap:10px}.evfg b{font:700 40px 'JetBrains Mono',monospace}.evfg span{font-size:16px}
 .evg{position:relative;height:8px;border-radius:4px;margin:8px 0 4px;background:linear-gradient(to left,#f85149,#d29922 50%,#3fb950)}.evg i{position:absolute;top:-4px;width:3px;height:16px;background:#e3e7ec;border-radius:2px;transform:translateX(50%)}
@@ -2473,6 +2474,7 @@ function indRow(r,rk,c,key,sub,TS){
   return `<div class="rw2 mx ${st?'has':''} ${sub?'isub':''} ${op?'open':''}" data-th="${esc(r.en)}"><div class="nm2 nmk"><span class="rkn">${rk||''}</span><b><bdi>${esc(r.en)}</bdi></b><small>${st?'<span class="car">◀</span>':''}${esc(r.n)}${mv?' · '+mv.replace(/ · $/,''):''}<span class="cn"> · ${n===1?'מניה אחת':n+' מניות'}</span>${TS&&TS.has(r.en)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===key)).join('')}${rsCell(r.rs,key==='rs')}${a5Cell(x)}${spark(x.sp,r.ytd)}</div>`+
     (st&&op?`<div class="thsub"><div class="stks">${thStocks(st,key).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':key==='rs'?(ch>=80?'up':ch<=20?'down':'flat'):ch>=0?'up':'down'}">${ch==null?'—':key==='rs'?'RS '+ch:pct(ch,1)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה (${PL[key]}).`:'המניות הגדולות בקבוצה.'} רק חברות מעל מיליארד דולר. <a href="#ind/${encodeURIComponent(r.en)}">לעמוד התעשייה ←</a></div></div>`:'');
 }
+const evUse=t=>`<div class="evu"><b>איך משתמשים</b><p>${t}</p></div>`;
 function renderEv(){
   const b=$('evBody'); if(!b) return; const E=FALLBACK.evidence||{};
   if(!E.asOf){ b.innerHTML='<div class="empty">הנתונים יופיעו אחרי העדכון הלילי.</div>'; return; }
@@ -2486,26 +2488,26 @@ function renderEv(){
     cards.push(`<div class="evc"><h3>מד פחד וחמדנות</h3><div class="evfg"><b style="color:${c}">${F.s}</b><span>${esc(F.lbl)}</span></div>
       <div class="evg"><i style="right:${F.s}%"></i></div><div class="evgl"><span>פחד קיצוני</span><span>ניטרלי</span><span>חמדנות קיצונית</span></div>
       <div class="evp">${Object.entries(names).filter(([k])=>P[k]).map(([k,[n,sub,f]])=>`<div><span><b>${n}</b><small>${sub}</small></span><span class="num">${f(P[k].v)}</span><span class="evpb"><i style="width:${P[k].s??0}%;background:${(P[k].s??50)<40?'var(--red)':(P[k].s??50)>60?'var(--green)':'#d29922'}"></i></span></div>`).join('')}</div>
-      <p class="evn">ממוצע של 5 רכיבים, כל אחד 0–100 (50 = רגיל). חישוב שלנו, לפי נתוני השוק.</p></div>`); }
+      <p class="evn">ממוצע של 5 רכיבים, כל אחד 0–100 (50 = רגיל). חישוב שלנו, לפי נתוני השוק.</p>${evUse('משקיעים רבים משתמשים במד הזה כאינדיקטור הפוך: פחד קיצוני (מתחת ל-20) מופיע לרוב קרוב לשפלים, כשרוב המוכרים כבר מכרו, וחמדנות קיצונית (מעל 80) קרוב לשיאים. הוא לא אומר מתי השוק יתהפך. כדאי לבדוק איזה רכיב מושך למטה או למעלה, ולהסתכל על המגמה לאורך כמה שבועות, לא על יום אחד.')}</div>`); }
   /* 2. VIX term structure */
   if(E.vix){ const V=E.vix;
     cards.push(`<div class="evc"><h3>עקום התנודתיות (VIX)</h3><div class="evrow"><span class="evpill ${V.inv?'neg':'pos'}">${V.inv?'הפוך':'רגיל'}</span><span>VIX ‏<b class="num">${V.v}</b> · VIX3M ‏<b class="num">${V.v3}</b></span></div>
       <p class="evt">${V.inv?'הפחד לטווח הקצר (30 יום) גבוה מהפחד ל-3 חודשים. מצב כזה מופיע בדרך כלל בזמן פאניקה.':'הפחד לטווח הקצר נמוך מהפחד ל-3 חודשים. זה המצב הרגיל ברוב הזמן.'}</p>
       ${spark(V.line,1,'#58a6ff')}<p class="evn">היחס VIX / VIX3M בשנה האחרונה. מעל הקו המקווקו (1.0) = עקום הפוך.</p>
       ${V.n?`<p class="evt">מאז 2007 העקום התהפך <b>${V.n}</b> פעמים (אחרי 20 ימים לפחות במצב רגיל). חצי שנה אחרי, ה-S&P 500 עלה בממוצע <b class="num ${V.avg6>=0?'up':'down'}">${pct(V.avg6,1)}</b>, ועלה ב-<b>${V.pos6}%</b> מהמקרים.</p>
-      <div class="evtb"><div class="hd"><span>תאריך</span><span>VIX</span><span>חודש</span><span>3 חודשים</span><span>6 חודשים</span></div>${V.ev.slice(0,6).map(e=>`<div><span>${dmy(e.d)}</span><span class="num">${e.vix}</span>${['m1','m3','m6'].map(k=>`<span class="num ${e[k]==null?'':e[k]>=0?'up':'down'}">${e[k]==null?'—':pct(e[k],1)}</span>`).join('')}</div>`).join('')}</div>`:''}</div>`); }
+      <div class="evtb"><div class="hd"><span>תאריך</span><span>VIX</span><span>חודש</span><span>3 חודשים</span><span>6 חודשים</span></div>${V.ev.slice(0,6).map(e=>`<div><span>${dmy(e.d)}</span><span class="num">${e.vix}</span>${['m1','m3','m6'].map(k=>`<span class="num ${e[k]==null?'':e[k]>=0?'up':'down'}">${e[k]==null?'—':pct(e[k],1)}</span>`).join('')}</div>`).join('')}</div>`:''}${evUse('עקום רגיל = שוק רגוע. עקום הפוך = פחד חריף לטווח הקצר, ולרוב בזמן ירידות חדות. היסטורית, רוב ההתהפכויות הופיעו קרוב לשפל של המהלך, ולכן משקיעים בודקים אותו כסימן לפאניקה שהגיעה לשיא. בדרך כלל מחכים שהעקום יחזור למצב רגיל לפני שמסיקים שהלחץ עבר. בטבלה רואים שיש גם מקרים שבהם השוק המשיך לרדת.')}</div>`); }
   /* 3. credit spread */
   if(E.hy){ const H=E.hy, pos=H.hi>H.lo?(H.v-H.lo)/(H.hi-H.lo)*100:50;
     cards.push(`<div class="evc"><h3>מרווח אשראי (High Yield)</h3><div class="evrow"><b class="evbig num">${H.v.toFixed(2)}%</b>${H.m1!=null?`<span class="num ${H.m1<=0?'up':'down'}">${H.m1>0?'+':''}${H.m1.toFixed(2)} בחודש</span>`:''}</div>
       <p class="evt">כמה ריבית נוספת משלמות חברות בדירוג נמוך מעל אג״ח ממשלתיות. מרווח שעולה מראה שהמשקיעים חוששים מכשלים. מרווח שיורד מראה ביטחון.</p>
       <div class="evr"><span class="num">${H.lo.toFixed(2)}%</span><span class="evrb"><i style="right:${pos.toFixed(0)}%"></i></span><span class="num">${H.hi.toFixed(2)}%</span></div><p class="evn">הטווח בשנה האחרונה. נמוך מ-${H.pct}% מהימים מאז ${H.since}.</p>
-      ${spark(H.line,null,'#d29922')}<p class="evn">מקור: ICE BofA US High Yield OAS דרך FRED, נכון ל-${dmy(H.date)}.</p></div>`); }
+      ${spark(H.line,null,'#d29922')}<p class="evn">מקור: ICE BofA US High Yield OAS דרך FRED, נכון ל-${dmy(H.date)}.</p>${evUse('שוק האג״ח נחשב לרוב מקדים את שוק המניות. מרווח שעולה מהר (למשל חצי אחוז ויותר בחודש) מראה שהמשקיעים דורשים יותר פיצוי על סיכון, וזה הופיע לפני חלק מהירידות הגדולות. מרווח נמוך ויציב מלווה בדרך כלל שוק עולה. כדאי להסתכל על הכיוון והקצב, ולא רק על המספר.')}</div>`); }
   /* 4. seasonality */
   if(E.season){ const S=E.season, mx=Math.max(...S.t.map(x=>Math.abs(x.avg))), MN=['ינו','פבר','מרץ','אפר','מאי','יונ','יול','אוג','ספט','אוק','נוב','דצמ'];
     const now=S.t.find(x=>x.m===S.now)||{};
     cards.push(`<div class="evc"><h3>עונתיות של S&amp;P 500</h3><p class="evt">${MN[S.now-1]}: ממוצע <b class="num ${now.avg>=0?'up':'down'}">${pct(now.avg,2)}</b>, וסיים בעלייה ב-<b>${now.pos}%</b> מהשנים מאז ${S.since}.</p>
       <div class="evs">${S.t.map(x=>`<div class="${x.m===S.now?'on':''}"><span class="evsb"><i class="${x.avg>=0?'pos':'neg'}" style="height:${(Math.abs(x.avg)/mx*100).toFixed(0)}%"></i></span><small>${MN[x.m-1]}</small><small class="num">${x.avg>0?'+':''}${x.avg.toFixed(1)}</small></div>`).join('')}</div>
-      <p class="evn">התשואה החודשית הממוצעת של המדד בכל חודש מאז ${S.since}.</p></div>`); }
+      <p class="evn">התשואה החודשית הממוצעת של המדד בכל חודש מאז ${S.since}.</p>${evUse('עונתיות היא נטייה סטטיסטית, לא חוק. היא שימושית כרקע, למשל לדעת שספטמבר היה היסטורית החודש החלש ונובמבר–דצמבר החזקים, אבל בכל שנה בודדת אירועים, דוחות וריבית חשובים יותר. אחוז השנים החיוביות חשוב לא פחות מהממוצע, כי ממוצע יכול להיות מושפע משנה קיצונית אחת.')}</div>`); }
   b.innerHTML=`<div class="evgrid">${cards.join('')}</div><p class="legend">כל הנתונים הם היסטוריה ותיאור של המצב היום, לא תחזית ולא המלצה. מתעדכן כל לילה (${dmy(E.asOf)}).</p>`;
 }
 function renderRot(){
