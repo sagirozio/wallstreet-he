@@ -255,13 +255,14 @@ tr:last-child td{border-bottom:0}
 .glt{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.glt b{color:#e3e7ec;font-size:15px}.glt span{font:12px 'JetBrains Mono',monospace;color:var(--muted);direction:ltr;white-space:nowrap}
 .glc p{margin:6px 0 0;font-size:14px;line-height:1.6;color:var(--text)}.glex{font-size:13px;background:var(--panel2);border-radius:6px;padding:6px 9px;margin-top:8px;color:#9aa3ad}
 .glat{display:inline-block;font-size:13px;margin-top:8px}.glmore{display:inline-block;margin-top:8px;font-size:13px}.glnone{color:var(--muted)}
-.cmpc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 10px}.cmpk{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 6px 3px 11px;font-size:13px;background:var(--panel)}
+#cmpBox{max-width:720px}#compare .sub{max-width:720px;font-size:13px}
+.cmpc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 10px}.cmpk{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:2px 5px 2px 9px;font-size:12.5px;background:var(--panel)}
 .cmpk i,.cmpr i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}.cmpk button{background:none;border:0;color:var(--muted);font-size:16px;cursor:pointer;padding:0 4px;line-height:1}
-.cmpadd input{height:30px;width:150px;border:1px dashed #3a3f48;border-radius:999px;background:none;color:var(--text);padding:0 12px;font-size:13px}
-.cmpper{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.cmpper button{font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 11px;cursor:pointer}.cmpper button.on{background:#1b2a44;border-color:#2f4f86;color:#8fb6ff}
-.cmptip{font-size:13px;color:var(--muted);min-height:20px;margin:4px 0;direction:rtl}.cmptip b{color:var(--text);font-weight:600}
+.cmpadd input{height:27px;width:130px;border:1px dashed #3a3f48;border-radius:999px;background:none;color:var(--text);padding:0 12px;font-size:13px}
+.cmpper{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.cmpper button{font:inherit;font-size:12px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:3px 9px;cursor:pointer}.cmpper button.on{background:#1b2a44;border-color:#2f4f86;color:#8fb6ff}
+.cmptip{font-size:12px;color:var(--muted);min-height:20px;margin:4px 0;direction:rtl}.cmptip b{color:var(--text);font-weight:600}
 .cmpch svg{width:100%;height:auto;display:block;touch-action:pan-y}.cmpax{display:flex;justify-content:space-between;direction:ltr;font-size:12px;color:var(--muted);padding:0 54px 0 6px}
-.cmpt{margin-top:12px}.cmpr{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr .6fr 1fr;gap:6px;padding:8px 4px;border-top:1px solid var(--line);font-size:14px;align-items:center}.cmpr.hd{color:var(--muted);font-size:12px;border-top:0}
+.cmpt{margin-top:12px}.cmpr{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr .6fr 1fr;gap:6px;padding:6px 4px;border-top:1px solid var(--line);font-size:13px;align-items:center}.cmpr.hd{color:var(--muted);font-size:12px;border-top:0}
 .cmpr>span:first-child{display:flex;align-items:center;gap:7px;min-width:0}
 .gl b{display:block;margin-bottom:2px}.gl p{margin:0;color:#c6cfdf;font-size:14px}
 footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0 40px;color:var(--muted);font-size:13px}
@@ -1789,7 +1790,7 @@ async function cmpDraw(){
   if(CMPP) dates=dates.slice(-CMPP-1);
   const ser=ok.map(s=>{ const m=new Map(s.D.map((d,i)=>[d,s.a[i]])); const v=dates.map(d=>m.get(d)); const b=v[0]; return {...s, v, r:v.map(x=>(x/b-1)*100), hi:Math.max(...s.a)}; });
   CMPS={ser,dates};
-  const W=640,H=260,L=6,R=54,T=10,B=22, vals=ser.flatMap(s=>s.r), mn=Math.min(0,...vals), mx=Math.max(0,...vals), n=Math.max(1,dates.length-1);
+  const W=640,H=220,L=6,R=54,T=8,B=14, vals=ser.flatMap(s=>s.r), mn=Math.min(0,...vals), mx=Math.max(0,...vals), n=Math.max(1,dates.length-1);
   const X=i=>L+(W-L-R)*i/n, Y=v=>T+(H-T-B)*(1-(v-mn)/((mx-mn)||1));
   const ticks=[...new Set([mn,0,(mn+mx)/2,mx].map(v=>Math.round(v)))];
   let g=ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="${v===0?'#3a3f48':'#1e2127'}" ${v===0?'':'stroke-dasharray="3 3"'}/><text x="${W-1}" y="${(Y(v)+4).toFixed(1)}" fill="#7d8590" font-size="11" text-anchor="end" direction="ltr">${v}%</text>`).join('');
