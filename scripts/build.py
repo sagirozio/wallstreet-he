@@ -229,6 +229,23 @@ def earn_hist(t):
     return out if out else None
 
 # ---------- per-stock details ----------
+_rep_by = {}
+for _r in reports:
+    if _r.get("t"): _rep_by.setdefault(_r["t"], []).append(_r)
+_CO_SUFFIX = re.compile(r",? (Inc|Corp|Corporation|Ltd|plc|Holdings?|Group|Company|Co)\.?$", re.I)
+def _stock_news(t):
+    """Same match as stockNews() on the page: tagged with the ticker, or the company's first name / the ticker in the title."""
+    co = (universe.get(t) or ("",))[0] or ""
+    nm = _CO_SUFFIX.sub("", co).split(" ")[0].lower() if co else ""
+    rx = re.compile(r"\b" + re.escape(t) + r"\b")
+    out = []
+    for n in news:
+        tk = n.get("t") or n.get("tickers") or []
+        hay = ((n.get("tag") or "") + " " + (n.get("title") or "")).lower()
+        if (isinstance(tk, list) and t in tk) or (len(nm) > 2 and nm in hay) or rx.search(n.get("title") or ""):
+            out.append(n)
+            if len(out) >= 8: break
+    return out
 n_s = 0
 for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     if not re.fullmatch(r"[A-Z0-9.\-]{1,10}", t):
@@ -237,6 +254,11 @@ for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     if t in _rec or t in _nx: rec["an"] = {"rec": _rec.get(t), "next": _nx.get(t), "asOf": _an.get("asOf")}
     _h = earn_hist(t)
     if _h: rec["eh"] = _h
+    # the stock page reads its own reports and news from here, so it does not download the full archives
+    _rp = _rep_by.get(t)
+    if _rp: rec["rp"] = _rp
+    _nw = _stock_news(t)
+    if _nw: rec["nw"] = _nw
     if rec["p"] or rec["f"] or rec["e"] or _h:
         n_s += write(f"s/{t}.json", js(rec))
 

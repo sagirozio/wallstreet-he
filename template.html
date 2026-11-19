@@ -1327,7 +1327,7 @@ const SEC_HE={"Technology":"טכנולוגיה","Healthcare":"בריאות","Fin
 let STOCKIX=null, HE={}, stkP=null, STK_OK=false;
 function loadStocks(force){
   if(stkP && !force) return stkP;
-  stkP = fetch('stocks.json'+(force?'?t='+Date.now():''),{cache:force?'no-store':'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
+  stkP = fetch('stocks.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
     if(!d||!d.stocks) return;
     FALLBACK.themes.stocks=d.stocks; FALLBACK.themes.ex=d.ex||{};
     if(THEMES && THEMES!==FALLBACK.themes){ THEMES.stocks=d.stocks; THEMES.ex=d.ex||{}; }
@@ -1485,7 +1485,11 @@ async function renderStock(t){
   const tok=++spTok;
   if(CRYPTO[t]){ await loadStocks(); if(tok!==spTok) return; renderCrypto(CRYPTO[t]); return; }
   if(!STK_OK || !SDET[t]) $('spBody').innerHTML='<div class="empty">טוען את תעודת הזהות…</div>';
-  await Promise.all([loadStocks(), loadDet(t), loadReports(), loadNews()]);
+  await Promise.all([loadStocks(), loadDet(t)]);
+  { const d=SDET[t]||{};
+    if(d.rp||d.nw){ if(d.rp){ const byId=new Map(REPORTS.map(x=>[x.id,x])); d.rp.forEach(x=>{ if(!byId.has(x.id)) byId.set(x.id,x); }); REPORTS=[...byId.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date))); }
+      if(d.nw){ mergeNews(d.nw); sortNews(); } }
+    else await Promise.all([loadReports(), loadNews()]); }
   if(tok!==spTok) return;
   try{ liveReturns(); }catch(e){}
   const ix=stockIndex(), s=ix[t], det=SDET[t]||{}, prof=det.p||{};
@@ -2157,10 +2161,10 @@ function anBlock(t,det,reps){
 async function refreshLive(){
   if (document.hidden || location.protocol==='file:') return;
   try {
-    const r = await fetch('core.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return;
+    const r = await fetch('core.json', {cache:'no-cache'}); if(!r.ok) return;   /* ETag: unchanged file = 304, no download */
     const d = await r.json(), same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
     if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS={...d.sectors, mem:d.sectors.mem||(SECTORS||{}).mem, pyDates:d.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
-    if (d.breadth) { FALLBACK.breadth=d.breadth; loadBrL(); }
+    if (d.breadth && !same(d.breadth,FALLBACK.breadth)) { FALLBACK.breadth=d.breadth; loadBrL(); }
     if (d.overview && (d.overview.rev||0) > ((OVERVIEW||{}).rev||0)) { OVERVIEW=d.overview; renderOverview(); }
     if (d.news) { const before=FALLBACK.news.length; mergeNews(d.news); if(FALLBACK.news.length!==before||!same(d.news.slice(0,3),NEWS.slice(0,3))){ sortNews(); renderNews(); try{ renderBriefNews(); }catch(e){} } }
     if (d.reports && !same(d.reports,FALLBACK.reports)) { const byId=new Map(REPORTS.map(x=>[x.id,x])); d.reports.forEach(x=>byId.set(x.id,x)); FALLBACK.reports=d.reports;
@@ -2169,7 +2173,7 @@ async function refreshLive(){
     if (d.ipos && !same(d.ipos,IPOS)) { IPOS=d.ipos; renderIpos(); }
     if (d.premarket) { FALLBACK.premarket=d.premarket; renderPremarket(); }
     if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); renderHub(); renderHomeMovers(); }
-    if (d.themes && d.themes.asOf && THEMES && !same(d.themes.rows,THEMES.rows)) {
+    if (d.themes && d.themes.asOf && THEMES && (d.themes.asOf!==THEMES.asOf || !same(d.themes.check,THEMES.check))) {   /* rows get live numbers on the page, so compare the nightly stamp */
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
     if (d.gainers && !same(d.gainers,FALLBACK.gainers)) { FALLBACK.gainers=d.gainers; renderG(); }
     if (d.recap && !same(d.recap,FALLBACK.recap)) { FALLBACK.recap=d.recap; renderRecap(); }
@@ -2197,7 +2201,7 @@ async function loadIntra(){
   }catch(e){}
 }
 setInterval(refreshLive, 3*60*1000);
-setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh data right after load
+setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh data right after load (304 when nothing changed)
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshLive(); });
 
 /* ---------- sectors ---------- */
