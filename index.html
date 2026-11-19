@@ -1532,7 +1532,7 @@ const HUB={f:'all',sec:'',sort:'cap',dir:-1,lim:40};
 const HUB_F=[['all','הכל'],['big','ענקיות'],['up','זינקו היום'],['dbl','הכפילו ב-2026'],['hi','קרוב לשיא'],['rs','RS 90+'],['er','מדווחות השבוע']];
 function hubRows(){ const ix=stockIndex(), now=Date.now(), wk=new Date(now+7*864e5).toISOString().slice(0,10), td=new Date(now-864e5).toISOString().slice(0,10);
   return Object.values(ix).filter(s=>s.cap&&s.r).map(s=>{ const L=liveQ(s.t), d=L&&liveOn()?L[1]:s.r.d, x=(SCR||{})[s.t]||{};
-    return {t:s.t,co:heName(s.t)||s.co,en:s.co,cap:s.cap,cn:capNum(s.cap),px:L?L[0]:null,d,m:s.r.m,ytd:s.r.ytd,rs:s.r.rs,hi:s.r.hi,sec:s.sec,e:x.e}; })
+    return {t:s.t,co:s.co,en:s.co,cap:s.cap,cn:capNum(s.cap),px:L?L[0]:null,d,m:s.r.m,ytd:s.r.ytd,rs:s.r.rs,hi:s.r.hi,sec:s.sec,e:x.e}; })
    .filter(r=>{ if(HUB.sec&&r.sec!==HUB.sec) return false; switch(HUB.f){
      case 'big': return r.cn>=2e11; case 'up': return r.d!=null&&r.d>=10; case 'dbl': return r.ytd!=null&&r.ytd>=100;
      case 'hi': return r.hi!=null&&r.hi>=-5; case 'rs': return r.rs!=null&&r.rs>=90; case 'er': return r.e&&r.e>=td&&r.e<=wk; default: return true; } }); }
