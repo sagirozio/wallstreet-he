@@ -1326,7 +1326,7 @@ function newsIcon(n){ const one=Array.isArray(n.t)&&n.t.length===1;
   return `<span class="sth ic" style="color:${N_COL[k]};background:${N_COL[k]}1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${N_IC[k]}</svg></span>`; }
 function newsWhen(n){ const dd=n.tday||n.date, p=String(dd||'').split('-'), today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'}); return (dd===today?'היום':p.length===3?`${+p[2]}.${+p[1]}`:'')+(n.time?' '+esc(n.time):''); }
 const newsSrc=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener"><bdi>${esc(n.src||'למקור')}</bdi> ↗</a>`:`<bdi>${esc(n.src||'')}</bdi>`;
-const newsTk=n=>(n.t||[]).slice(0,3).map(t=>`<a class="ntk" href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`).join('');
+const newsTk=n=>(n.t||[]).slice(0,3).map(t=>STK_OK&&!stockIndex()[t]&&!CRYPTO[t]?`<span class="ntk">${esc(t)}</span>`:`<a class="ntk" href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`).join('');   /* no page for stocks outside the universe */
 const newsBig=n=>`<article class="sa">${newsIcon(n)}<div><h3>${esc(n.title)}</h3>${n.body?`<p>${esc(n.body)}</p>`:''}<small>${newsWhen(n)} · ${newsSrc(n)} ${newsTk(n)}</small></div></article>`;
 const newsLine=n=>{ const t=(n.t||[])[0]; return `<div class="sl">${t?`<a class="st" href="#stock/${encodeURIComponent(t)}" aria-label="${esc(t)}">${mono(t)}</a>`:`<span class="st">${newsIcon(n)}</span>`}<span class="sh" dir="rtl">${t?`<a href="#stock/${encodeURIComponent(t)}">${esc(n.title)}</a>`:esc(n.title)}</span><span class="ss">${newsWhen(n)} · ${newsSrc(n)}</span></div>`; };
 function renderNewsPage(){
