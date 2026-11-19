@@ -253,11 +253,28 @@ def _stock_news(t):
             out.append(n)
             if len(out) >= 8: break
     return out
+def _roe_of(t):
+    """ROE = net income of the last 4 quarters / average equity (assets - liabilities) now and a year earlier, from the SEC file."""
+    try: f = json.loads((root / "fund" / f"{t}.json").read_text(encoding="utf-8"))
+    except Exception: return None
+    q, ni, a, l = f.get("q") or [], f.get("ni") or [], f.get("assets") or [], f.get("liab") or []
+    if len(q) < 4 or len(ni) < len(q) or len(a) < len(q) or len(l) < len(q): return None
+    last4 = ni[-4:]
+    if any(x is None for x in last4): return None
+    try:   # the 4 quarters must be consecutive (about a year apart end to end)
+        if not 250 <= (_dt.date.fromisoformat(q[-1]) - _dt.date.fromisoformat(q[-4])).days <= 300: return None
+    except ValueError: return None
+    eq = [a[i] - l[i] for i in (-1, -5 if len(q) >= 5 else -4) if a[i] is not None and l[i] is not None]
+    if not eq or min(eq) <= 0: return None   # negative equity: ROE means nothing
+    return {"v": round(sum(last4) / (sum(eq) / len(eq)) * 100, 1), "q": q[-1]}
 n_s = 0
 for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     if not re.fullmatch(r"[A-Z0-9.\-]{1,10}", t):
         continue
-    rec = {"p": profiles.get(t) or {}, "f": facts.get(t) or {}, "e": earn.get(t)}
+    rec = {"p": profiles.get(t) or {}, "f": dict(facts.get(t) or {}), "e": earn.get(t)}
+    rec["f"].pop("siAt", None)
+    _roe = _roe_of(t)
+    if _roe: rec["f"]["roe"] = _roe
     if t in _rec or t in _nx: rec["an"] = {"rec": _rec.get(t), "next": _nx.get(t), "asOf": _an.get("asOf")}
     _h = earn_hist(t)
     if _h: rec["eh"] = _h

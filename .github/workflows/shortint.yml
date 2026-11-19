@@ -1,0 +1,22 @@
+name: Short interest (Yahoo, twice a month data)
+on:
+  schedule:
+    - cron: "17 7 * * 6"   # Saturday morning UTC: one full pass a week (the exchanges publish twice a month)
+  workflow_dispatch:
+    inputs:
+      minutes: { description: "Time budget in minutes", default: "45" }
+concurrency: { group: shortint, cancel-in-progress: false }
+permissions:
+  contents: write
+jobs:
+  shortint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q yfinance pandas
+      - run: python scripts/shortint.py ${{ github.event.inputs.minutes || '45' }}
+      - name: Commit
+        run: bash scripts/commit.sh "Short interest update" facts.json

@@ -1754,6 +1754,7 @@ const GLOSS={
   IPO:['IPO – הנפקה ראשונה','הפעם הראשונה שחברה מוכרת מניות לציבור ונכנסת למסחר בבורסה.'],
   LOCK:['הנפקה ותקופת חסימה (Lock-up)','בהנפקה (IPO) חברה נכנסת לראשונה למסחר. בתקופת החסימה, בדרך כלל 90–180 יום אחרי ההנפקה, בעלי המניות הוותיקים לא רשאים למכור. בסיומה עלול להגיע לחץ מכירות.'],
   CAP:['שווי שוק','מחיר המניה כפול מספר המניות. באתר מוצגות רק חברות בשווי מעל מיליארד דולר.'],
+  ROE:['ROE – תשואה להון','הרווח הנקי של 4 הרבעונים האחרונים, חלקי ההון העצמי של החברה (נכסים פחות התחייבויות, ממוצע של היום ולפני שנה). מראה כמה רווח החברה מייצרת על כל דולר של בעלי המניות. ROE של 15%–20% נחשב טוב. ROE גבוה מאוד יכול לנבוע גם מהון עצמי קטן, למשל בגלל רכישות עצמיות גדולות. לא מוצג כשההון העצמי שלילי.'],
   FCF:['תזרים מזומנים חופשי','המזומן שהעסק מייצר מהפעילות השוטפת, פחות ההשקעות ברכוש קבוע. זה הכסף שנשאר לחלוקה לבעלי המניות, לרכישות או להחזר חובות.']
 };
 const gq = k => `<button class="gq" data-gl="${k}" aria-label="הסבר: ${esc(GLOSS[k][0])}">?</button>`;
@@ -1804,7 +1805,7 @@ Object.assign(GLOSS,{
   BUYBACK:['רכישה עצמית (Buyback)','כשחברה קונה בחזרה את המניות שלה בבורסה. מספר המניות קטן, ולכן הרווח למניה עולה. דרך נוספת, מלבד דיבידנד, להחזיר כסף לבעלי המניות.'],
   TARGET:['מחיר יעד','המחיר שאנליסט מעריך שהמניה תגיע אליו, בדרך כלל בתוך 12 חודשים. זו הערכה ולא תחזית מדויקת, והיא משתנה לעיתים קרובות.'],
   OPT:['אופציות','חוזה שנותן זכות (לא חובה) לקנות (Call) או למכור (Put) מניה במחיר קבוע עד תאריך מסוים. משמש להגנה על תיק או להימור על כיוון. סיכון גבוה.'],
-  SHORT:['שורט (מכירה בחסר)','מכירה של מניה שאולה, מתוך ציפייה לקנות אותה בחזרה בזול יותר. ״ריבית שורט״ = כמה מהמניות מוחזקות בשורט. שורט גבוה יכול להוביל לזינוק חד אם המניה עולה (Short squeeze).'],
+  SHORT:['שורט (מכירה בחסר)','מכירה של מניה שאולה, מתוך ציפייה לקנות אותה בחזרה בזול יותר. באתר: אחוז השורט = כמה מהמניות הצפות (שנסחרות בפועל) מוחזקות בשורט, לפי הדיווח של הבורסות פעמיים בחודש. ״ימים לכיסוי״ = כמה ימי מסחר ממוצעים צריך כדי שכל השורטיסטים יקנו בחזרה. שורט גבוה יכול להוביל לזינוק חד אם המניה עולה (Short squeeze).'],
   VOLAT:['תנודתיות','כמה מחיר המניה משתנה. מניה תנודתית יכולה לעלות ולרדת בחדות בזמן קצר. מניות קטנות וביוטק בדרך כלל תנודתיות יותר.']
 });
 /* category, English name, example, where on the site — for the glossary page */
@@ -1814,13 +1815,13 @@ const GLM={
   CAP:['b','Market Cap','מחיר ‎$50 × מיליארד מניות = שווי ‎$50B'],VOL:['b','Volume'],PRE:['b','Pre / After market','','#stock/NVDA','תעודת זהות של מניה'],BULL:['b','Bull / Bear'],CORR:['b','Correction'],SCREEN:['b','Screener','','#screener','סורק מניות'],
   EPS:['r','EPS','‎$2.10 בפועל מול צפי ‎$1.80 = עקיפה של 17%','#page/reports','דוחות'],GAAPX:['r','Adjusted / GAAP','','#page/reports','מאגר הדוחות'],REV:['r','Revenue'],BEAT:['r','Beat / Miss'],SURP:['r','Surprise','צפי ‎$1.00, בפועל ‎$1.10 = הפתעה של ‎+10%'],
   GUIDE:['r','Guidance'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
-  F_Q:['f','Quarterly'],F_REVOP:['f','Revenue / Operating Income'],F_GP:['f','Gross Profit / OpEx'],F_NI:['f','Net Income'],F_EPS:['f','Diluted EPS'],MARGIN:['f','Margins','רווח גולמי ‎$40 מהכנסות ‎$100 = שולי רווח גולמי 40%'],F_BAL:['f','Balance Sheet'],FCF:['f','Free Cash Flow'],DEBT:['f','Net Debt'],
+  F_Q:['f','Quarterly'],F_REVOP:['f','Revenue / Operating Income'],F_GP:['f','Gross Profit / OpEx'],F_NI:['f','Net Income'],F_EPS:['f','Diluted EPS'],MARGIN:['f','Margins','רווח גולמי ‎$40 מהכנסות ‎$100 = שולי רווח גולמי 40%'],F_BAL:['f','Balance Sheet'],FCF:['f','Free Cash Flow'],DEBT:['f','Net Debt'],ROE:['f','Return on Equity','רווח שנתי ‎$20B / הון עצמי ‎$100B = ROE של 20%'],
   PE:['v','P/E','מחיר ‎$100 / EPS שנתי ‎$5 = מכפיל 20'],FPE:['v','Forward P/E'],PS:['v','P/S'],PEG:['v','PEG','מכפיל 30 / צמיחה של 30% בשנה = PEG 1'],DIV:['v','Dividend Yield','דיבידנד ‎$2 בשנה / מחיר ‎$50 = תשואה 4%'],EVEBITDA:['v','EV/EBITDA'],
   RS:['t','RS Rating','RS 90 = חזקה מ-90% ממניות S&P 500','#themes','טבלת תעשיות'],MA:['t','Moving Average','','#themes','טבלת תעשיות'],HILO:['t','52-week High / Low','','#breadth','רוחב שוק'],OFFHI:['t','Off High','שיא ‎$100, מחיר ‎$80 = ‎-20% מהשיא'],
   BREADTH:['t','Market Breadth','','#breadth','רוחב שוק'],ADV:['t','Advancers / Decliners','','#breadth','רוחב שוק'],MOVE10:['t','10% Movers','','#breadth','רוחב שוק'],CANDLE:['t','Candlestick'],SUPRES:['t','Support / Resistance'],GAP:['t','Gap'],
   SECTOR:['s','Sector / Industry','','#sectors','סקטורים'],ETF:['s','ETF'],SPDR:['s','Sector SPDR','','#sectors','טבלת סקטורים'],CEF:['s','Closed-end Fund'],REIT:['s','REIT'],BDC:['s','BDC'],
   MACRO:['m','Macro','','#macro','מאקרו'],RATE:['m','Fed Funds Rate','','#macro','מאקרו'],FED:['m','FedWatch','','#macro','מאקרו'],CPI:['m','CPI','','#macro','מאקרו'],PPI:['m','PPI'],PCE:['m','PCE'],NFP:['m','Nonfarm Payrolls'],UNEMP:['m','Unemployment Rate'],GDP:['m','GDP'],TNX:['m','10-Year Treasury Yield'],VIX:['m','VIX','','#','עמוד ראשי'],
-  IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],OPT:['e','Options'],SHORT:['e','Short Selling'],VOLAT:['e','Volatility']
+  IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],OPT:['e','Options'],SHORT:['e','Short Interest','8% שורט = 8 מכל 100 מניות צפות מוחזקות במכירה בחסר'],VOLAT:['e','Volatility']
 };
 let GLCAT='';
 function glCard(k){ const [t,d]=GLOSS[k], m=GLM[k]||[], en=m[1]&&!t.includes(m[1])?m[1]:'';
@@ -2130,6 +2131,9 @@ function repTiles(det,rep,reps){
     if(typeof L.r==='number') out.push(T('הכנסות',`<span class="num">${L.cur?money(L.r).replace('$','')+' '+esc(L.cur):money(L.r)}</span>`,[typeof L.ry==='number'?`${sg(L.ry,0)} מול שנה שעברה`:''],'')); }
   if(cmp.length>=2) out.push(T('מול צפי הרווח',`${bt} מתוך ${cmp.length}`,['רבעונים שעקפה את הצפי'],bt*2>cmp.length?'up':bt*2<cmp.length?'down':''));
   if(nx&&nx.d>=today) out.push(T('הדוח הבא',`<span class="num">${dm(nx.d)}.${nx.d.slice(0,4)}</span>`,[nx.h==='bmo'?'לפני הפתיחה':nx.h==='amc'?'אחרי הסגירה':'', nx.eps!=null||nx.rev!=null?`צפי: ${nx.eps!=null?'EPS <span class="num">'+eps(nx.eps)+'</span>':''}${nx.eps!=null&&nx.rev!=null?' · ':''}${nx.rev!=null?'הכנסות <span class="num">'+money(nx.rev)+'</span>':''}`:''],''));
+  const F=det.f||{};
+  if(F.roe&&typeof F.roe.v==='number') out.push(T(`ROE · תשואה להון${gq('ROE')}`,`<span class="num ${F.roe.v>0?'':'down'}">${F.roe.v.toFixed(1)}%</span>`,[`4 רבעונים עד ${dm(F.roe.q)}`,'מדוחות ה-SEC']));
+  if(typeof F.si==='number') out.push(T(`שורט${gq('SHORT')}`,`<span class="num">${F.si.toFixed(1)}%</span>`,['מהמניות הצפות',typeof F.sr==='number'?`<span class="num">${F.sr}</span> ימים לכיסוי`:'',F.sid?`נכון ל-${dm(F.sid)}`:'']));
   return out.length?`<div class="mtg">${out.join('')}</div>`:'';
 }
 /* legends of the reports tab go into one folded "sources" block; on phones the quarterly charts show one at a time */

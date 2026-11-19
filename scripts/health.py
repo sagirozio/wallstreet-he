@@ -32,6 +32,18 @@ if sys.argv[1:] == ["live"]:
         elif [len(BL["hi"]), len(BL["lo"]), len(BL["u"]), len(BL["n"])] != [r0.get("hi"), r0.get("lo"), r0.get("up10"), r0.get("dn10")]:
             P.append("רוחב שוק: הרשימות לא תואמות לספירות")
         if r0.get("up", 0) + r0.get("dn", 0) < 400: P.append(f"רוחב שוק: רק {r0.get('up', 0) + r0.get('dn', 0)} מניות בספירת עלו/ירדו")
+    # self-repair: live.json stuck during US hours -> make sure a live run is going (restart a stuck one)
+    nyh = dt.datetime.now(ZoneInfo("America/New_York")); nym = nyh.hour * 60 + nyh.minute
+    if TOK and age is not None and age > 15 and nyh.weekday() < 5 and 4 * 60 <= nym < 20 * 60:
+        try:
+            runs = (gh("GET", "/actions/workflows/live.yml/runs?per_page=10") or {}).get("workflow_runs", [])
+            act = [r for r in runs if r.get("status") == "in_progress"]; que = [r for r in runs if r.get("status") in ("queued", "pending", "waiting")]
+            if act and age > 30:
+                gh("POST", f"/actions/runs/{act[0]['id']}/cancel"); P.append("הריצה של המחירים החיים נתקעה: בוטלה והופעלה מחדש")
+                if not que: gh("POST", "/actions/workflows/live.yml/dispatches", {"ref": "main"})
+            elif not act and not que:
+                gh("POST", "/actions/workflows/live.yml/dispatches", {"ref": "main"}); P.append("המחירים החיים לא רצו: הופעלו מחדש אוטומטית")
+        except Exception as e: print("self-repair failed", e)
     print("\n".join(P) or "live ok")
     # open an issue only after 2 failing checks in a row (one slow round is normal)
     cnt = pathlib.Path("/tmp/health_live_fails"); n = int(cnt.read_text()) + 1 if P and cnt.exists() else (1 if P else 0); cnt.write_text(str(n))
