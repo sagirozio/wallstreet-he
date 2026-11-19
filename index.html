@@ -216,6 +216,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
+.alp{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 10px;font-size:14px}.alp summary{padding:10px 14px;cursor:pointer;list-style:none}.alp summary::-webkit-details-marker{display:none}.alp summary small{color:var(--muted)}.alb{padding:0 14px 10px;border-top:1px solid var(--line)}.alb label{display:flex;gap:8px;align-items:center;margin:10px 0;line-height:1.45}.alb input[type=checkbox]{width:18px;height:18px;flex:none;accent-color:#2f81f7}.alb select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:2px 4px;font:inherit}.alsw{font-weight:600}.alopts{padding-right:6px}.alopts.off{opacity:.45;pointer-events:none}
 .myday{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}.myday b{color:var(--text)}.myday a{text-decoration:none}
 .qgwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px;margin:8px 0 4px}.qgw{margin-bottom:8px}.qgw>small{display:block;color:var(--muted);font-size:12px;margin-bottom:2px}.qgb,.qgq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;direction:ltr}.qgc{display:flex;flex-direction:column;align-items:center;gap:2px}.qgc i{font-style:normal;font-size:10px;white-space:nowrap;letter-spacing:-.3px}.qgc .qgn{color:var(--muted)}.qgc span{height:56px;width:70%;display:flex;align-items:flex-end}.qgc b{display:block;width:100%;border-radius:3px 3px 0 0}.qgc b.p{background:#238636}.qgc b.p.a{background:#3fb950}.qgc b.n{background:#da3633}.qgq span{text-align:center;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden}
 .snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
@@ -789,7 +790,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 <section id="homeWatch" data-pg="home" class="hidden fold">
   <div class="hh"><h2>מניות במעקב <span class="hwn" id="hwN"></span></h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
-  <div class="cardx" id="homeWatchBody"></div>
+  <div class="alw" data-alw></div><div class="cardx" id="homeWatchBody"></div>
 </section>
 <section id="todayAgenda" data-pg="home" class="fold">
   <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
@@ -914,7 +915,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 <section id="watch" data-pg="stocks">
   <h2>מניות במעקב</h2>
-  <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). הרשימה נשמרת רק בדפדפן הזה.</p>
+  <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). מחוברים? הרשימה נשמרת בחשבון ומופיעה בכל מכשיר.</p>
+  <div class="alw" data-alw></div>
   <form class="thctl" id="wAdd"><input id="wQ" type="search" placeholder="הוספת מניה: סימול או שם, למשל NVDA או אפל" aria-label="הוספת מניה לרשימת המעקב"><button class="btn2" type="submit">הוסף</button></form>
   <div class="cardx" id="watchBody"></div>
 </section>
@@ -2373,6 +2375,24 @@ function watchRows(lim){
   return WATCH.slice(0,lim||60).map(t=>{ const s=ix[t]||{t,co:t}, w=watchEvents(t);
     return `<div class="wr"><a class="wrm" href="#stock/${encodeURIComponent(t)}">${mono(t)}<span class="wrn"><b>${esc(t)}</b><small dir="auto">${esc(s.co||'')}</small></span><span class="wrp">${w.px!=null?`<span class="num">$${w.px.toFixed(2)}</span>`:''}${w.ch!=null?`<b class="num ${w.ch>=0?'up':'down'}">${pct(w.ch,2)}</b>`:'<b class="flat">—</b>'}</span></a>${w.ev.length?`<div class="wre">${w.ev.map(([c,x])=>`<span class="${c}">${esc(x)}</span>`).join('')}</div>`:''}<button type="button" class="wrx" data-wx="${esc(t)}" aria-label="הסרת ${esc(t)} מהרשימה">×</button></div>`; }).join('');
 }
+/* ---------- email alerts for the watchlist (signed-in users). Settings live in the account (unsafeMetadata.alerts);
+   a GitHub Action (scripts/alerts.py) reads them through Clerk's server API after the close and sends one summary mail a day. ---------- */
+const AL_DEF={on:0,mv:5,er:1,vb:1,hi:1};
+const alGet=()=>Object.assign({},AL_DEF,((CLK&&CLK.user&&CLK.user.unsafeMetadata)||{}).alerts||{});
+function renderWAlerts(){ document.querySelectorAll('[data-alw]').forEach(w=>{ const u=CLK&&CLK.user; if(!u||!WATCH.length){ w.innerHTML=''; return; } const A=alGet(), mail=(u.primaryEmailAddress&&u.primaryEmailAddress.emailAddress)||'';
+  w.innerHTML=`<details class="alp"${w.dataset.open?' open':''}><summary><span class="ali">${A.on?'🔔':'🔕'}</span> התראות במייל: <b>${A.on?'פעילות':'כבויות'}</b>${A.on&&mail?` <small>· ${esc(mail)}</small>`:''}</summary>
+    <div class="alb"><label class="alsw"><input type="checkbox" data-al="on"${A.on?' checked':''}> שלחו לי סיכום במייל אחרי סגירת המסחר, רק בימים שיש מה לדווח על המניות ברשימה שלי</label>
+    <div class="alopts${A.on?'':' off'}"><label><input type="checkbox" data-al="mvon"${A.mv?' checked':''}> מניה זזה ב-<select data-al="mv">${[3,5,7,10].map(v=>`<option value="${v}"${(A.mv||5)==v?' selected':''}>${v}%</option>`).join('')}</select> ומעלה ביום</label>
+    <label><input type="checkbox" data-al="er"${A.er?' checked':''}> דוח רבעוני: יום לפני ובערב הדוח, עם התוצאות מול הצפי</label>
+    <label><input type="checkbox" data-al="vb"${A.vb?' checked':''}> פריצה במחזור (עלייה של 4%+ במחזור כפול מהממוצע)</label>
+    <label><input type="checkbox" data-al="hi"${A.hi?' checked':''}> שיא חדש של 52 שבועות</label></div>
+    <p class="legend">מייל אחד ביום לכל היותר. מידע עובדתי בלבד, לא המלצה. אפשר לבטל כאן בכל רגע.</p></div></details>`; }); }
+let alT=null;
+document.addEventListener('change',e=>{ const el=e.target.closest&&e.target.closest('[data-al]'); if(!el||!CLK||!CLK.user) return; const w=el.closest('[data-alw]');
+  const A=alGet(), k=el.dataset.al; if(k==='on') A.on=el.checked?1:0; else if(k==='mvon') A.mv=el.checked?(A.mv||5):0; else if(k==='mv') A.mv=+el.value; else A[k]=el.checked?1:0;
+  document.querySelectorAll('[data-alw]').forEach(x=>x.dataset.open=x===w?'1':'');
+  const u=CLK.user; clearTimeout(alT); alT=setTimeout(()=>u.update({unsafeMetadata:{...u.unsafeMetadata,alerts:A}}).then(renderWAlerts,()=>alert('השמירה נכשלה. נסה שוב.')),300);
+  const o=w&&w.querySelector('.alopts'); if(o&&k==='on') o.classList.toggle('off',!A.on); });
 /* signed-in home: the watchlist goes first, open, with a one-line summary of the day for those stocks */
 function myDayHtml(){ const ix=stockIndex(), now=Date.now(); let up=0, dn=0, sum=0, n=0, best=null, worst=null; const reps=[], vb=[];
   WATCH.forEach(t=>{ const L=liveQ(t), live=!!(L&&liveOn()), s=ix[t]||{}, ch=live?L[1]:(s.r&&s.r.d!=null?s.r.d:null);
@@ -2395,6 +2415,7 @@ function renderWatch(){
   b.innerHTML = WATCH.length ? watchRows() : '<div class="empty">עוד אין מניות ברשימה. אפשר להוסיף כאן למעלה, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>';
   const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=(accOn()?myDayHtml():'')+watchRows(accOn()?20:8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
   try{ placeMyHome(); }catch(e){}
+  try{ renderWAlerts(); }catch(e){}
 }
 document.addEventListener('click',e=>{
   const w=e.target.closest&&e.target.closest('.wbtn[data-w]'); if(w){ e.preventDefault(); toggleWatch(w.dataset.w); return; }
