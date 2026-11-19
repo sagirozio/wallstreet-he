@@ -39,6 +39,7 @@ jobs:
       - run: python scripts/sec_fill.py || true
       - run: timeout 300 python scripts/recap.py || true
       - run: timeout 120 python scripts/crypto.py || true
+      - run: timeout 300 python scripts/evidence.py || true
       - run: python scripts/build.py
       - name: Commit
         run: bash scripts/commit.sh "Nightly data update" data.json industries.json
