@@ -262,6 +262,8 @@ tr:last-child td{border-bottom:0}
 .ldwg ul{list-style:none;margin:4px 0 0;padding:0}.ldwg li{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:2px 0}.ldwg li a{font:600 13px 'JetBrains Mono',monospace;color:var(--text);text-decoration:none}.ldwg li span{font-size:12px}.mu{color:var(--muted)}
 #rotBody{max-width:760px}
 .evu{margin-top:10px;background:var(--panel2);border-radius:8px;padding:8px 10px}.evu b{font-size:12.5px}.evu p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.evaa{display:flex;height:22px;border-radius:6px;overflow:hidden;margin:8px 0 4px;font:600 11.5px 'JetBrains Mono',monospace}.evaa i{display:flex;align-items:center;justify-content:center;font-style:normal;color:#0c0d10}.evaa .bu{background:#3fb950}.evaa .ne{background:#7d8590}.evaa .be{background:#f85149}
+.evaal{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;font-size:12.5px}.evaal small{color:var(--muted)}
 .evgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}.evc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.evc h3{font-size:15px;margin:0 0 8px}
 .evfg{display:flex;align-items:baseline;gap:10px}.evfg b{font:700 40px 'JetBrains Mono',monospace}.evfg span{font-size:16px}
 .evg{position:relative;height:8px;border-radius:4px;margin:8px 0 4px;background:linear-gradient(to left,#f85149,#d29922 50%,#3fb950)}.evg i{position:absolute;top:-4px;width:3px;height:16px;background:#e3e7ec;border-radius:2px;transform:translateX(50%)}
@@ -2489,6 +2491,16 @@ function renderEv(){
       <div class="evg"><i style="right:${F.s}%"></i></div><div class="evgl"><span>פחד קיצוני</span><span>ניטרלי</span><span>חמדנות קיצונית</span></div>
       <div class="evp">${Object.entries(names).filter(([k])=>P[k]).map(([k,[n,sub,f]])=>`<div><span><b>${n}</b><small>${sub}</small></span><span class="num">${f(P[k].v)}</span><span class="evpb"><i style="width:${P[k].s??0}%;background:${(P[k].s??50)<40?'var(--red)':(P[k].s??50)>60?'var(--green)':'#d29922'}"></i></span></div>`).join('')}</div>
       <p class="evn">ממוצע של 5 רכיבים, כל אחד 0–100 (50 = רגיל). חישוב שלנו, לפי נתוני השוק.</p>${evUse('משקיעים רבים משתמשים במד הזה כאינדיקטור הפוך: פחד קיצוני (מתחת ל-20) מופיע לרוב קרוב לשפלים, כשרוב המוכרים כבר מכרו, וחמדנות קיצונית (מעל 80) קרוב לשיאים. הוא לא אומר מתי השוק יתהפך. כדאי לבדוק איזה רכיב מושך למטה או למעלה, ולהסתכל על המגמה לאורך כמה שבועות, לא על יום אחד.')}</div>`); }
+  /* sentiment survey (AAII) */
+  if(E.aaii){ const A=E.aaii, sp=A.bu-A.be, ex=(o,lbl,cls)=>o&&o.n?`<p class="evt">מאז ${A.since}, ${lbl} <b>${o.n}</b> פעמים. שנה אחרי, ה-S&P 500 ${o.avg12>=0?'עלה':'ירד'} בממוצע <b class="num ${o.avg12>=0?'up':'down'}">${pct(o.avg12,1)}</b>, ועלה ב-<b>${o.pos12}%</b> מהמקרים.</p>`:'';
+    cards.push(`<div class="evc"><h3>סקר הסנטימנט (AAII)</h3><p class="evn">משקיעים פרטיים בארה״ב עונים כל שבוע: לאן השוק ילך ב-6 החודשים הקרובים. נכון ל-${dmy(A.date)}.</p>
+      <div class="evaa"><i class="bu" style="width:${A.bu}%">${A.bu.toFixed(0)}%</i><i class="ne" style="width:${A.ne}%">${A.ne.toFixed(0)}%</i><i class="be" style="width:${A.be}%">${A.be.toFixed(0)}%</i></div>
+      <div class="evaal"><span><b class="up">שוריים</b> ${A.bu.toFixed(1)}% <small>(ממוצע ${A.avgBu}%)</small></span><span><b>ניטרליים</b> ${A.ne.toFixed(1)}%</span><span><b class="down">דוביים</b> ${A.be.toFixed(1)}% <small>(ממוצע ${A.avgBe}%)</small></span></div>
+      <p class="evt">הפער בין שוריים לדוביים: <b class="num ${sp>=0?'up':'down'}">${sp>0?'+':''}${sp.toFixed(1)}</b> נקודות.</p>
+      ${spark(A.line,0,'#bc8cff')}<p class="evn">הפער שוריים פחות דוביים ב-52 השבועות האחרונים. מתחת לקו המקווקו = יותר דוביים.</p>
+      ${ex(A.bear50,'שיעור הדוביים הגיע ל-50% ומעלה')}${ex(A.bull55,'שיעור השוריים הגיע ל-55% ומעלה')}
+      ${evUse('הסקר נחשב אינדיקטור הפוך: כשרוב המשקיעים הפרטיים פסימיים, הרבה מהם כבר מכרו, ונשאר פחות לחץ מכירות. כשרובם אופטימיים, נשארו פחות קונים חדשים. שווה להסתכל על הקצוות (דוביים מעל 50% או שוריים מעל 55%) ועל ההשוואה לממוצע ההיסטורי, ולא על שבוע רגיל. מדגם הסקר קטן, ולכן הוא תנודתי משבוע לשבוע.')}
+      <p class="evn">מקור: AAII Investor Sentiment Survey.</p></div>`); }
   /* 2. VIX term structure */
   if(E.vix){ const V=E.vix;
     cards.push(`<div class="evc"><h3>עקום התנודתיות (VIX)</h3><div class="evrow"><span class="evpill ${V.inv?'neg':'pos'}">${V.inv?'הפוך':'רגיל'}</span><span>VIX ‏<b class="num">${V.v}</b> · VIX3M ‏<b class="num">${V.v3}</b></span></div>

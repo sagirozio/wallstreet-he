@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -q yfinance pandas lxml
+      - run: pip install -q yfinance pandas lxml xlrd
       - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: python scripts/${{ github.event.inputs.script || 'autoreports.py' }} ${{ github.event.inputs.args }}
       - run: bash scripts/commit.sh "Basic earnings cards (Yahoo)" data.json

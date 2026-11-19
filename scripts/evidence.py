@@ -89,6 +89,43 @@ if len(ok) >= 3:
     E["fg"] = {"s": sc, "parts": parts, "lbl": "פחד קיצוני" if sc < 20 else "פחד" if sc < 40 else "ניטרלי" if sc <= 60 else "חמדנות" if sc <= 80 else "חמדנות קיצונית"}
     print("fear/greed", sc, {k: v.get("s") for k, v in parts.items()})
 
+# ---------- AAII sentiment survey (weekly, members' 6-month outlook: bullish / neutral / bearish) ----------
+try:
+    UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"}
+    raw = urllib.request.urlopen(urllib.request.Request("https://www.aaii.com/files/surveys/sentiment.xls", headers=UA), timeout=60).read()
+    x = pd.read_excel(io.BytesIO(raw), header=None, engine="xlrd")
+    hr = next(i for i in range(min(10, len(x))) if any(str(v).strip().lower() == "bullish" for v in x.iloc[i]))
+    cols = [str(v).strip().lower() for v in x.iloc[hr]]
+    ci = {k: cols.index(k) for k in ("bullish", "neutral", "bearish")}
+    a = x.iloc[hr + 1:, [0, ci["bullish"], ci["neutral"], ci["bearish"]]]
+    a.columns = ["d", "bu", "ne", "be"]
+    a["d"] = pd.to_datetime(a["d"], errors="coerce")
+    for c in ("bu", "ne", "be"): a[c] = pd.to_numeric(a[c], errors="coerce")
+    a = a.dropna().set_index("d").sort_index()
+    if a["bu"].max() <= 1.5: a[["bu", "ne", "be"]] *= 100       # stored as fractions
+    a = a[a.index >= "1987-07-01"]
+    last = a.iloc[-1]
+    # every time bearish reached 50%+ (first time in 8 weeks) and bullish reached 55%+: S&P 500 6 and 12 months later
+    def fwd(day, n):
+        s0 = spx[spx.index <= day]; s1 = spx[spx.index <= day + pd.Timedelta(days=n)]
+        return round((s1.iloc[-1] / s0.iloc[-1] - 1) * 100, 1) if len(s0) and len(s1) and day + pd.Timedelta(days=n) <= spx.index[-1] else None
+    def extremes(mask):
+        ev = []
+        for i in range(8, len(a)):
+            if mask.iloc[i] and not mask.iloc[i - 8:i].any():
+                d = a.index[i]; ev.append({"d": str(d.date()), "v": round(float(a.iloc[i]["be" if mask is bear50 else "bu"]), 1), "m6": fwd(d, 182), "m12": fwd(d, 365)})
+        return ev
+    bear50, bull55 = a["be"] >= 50, a["bu"] >= 55
+    eb, eu = extremes(bear50), extremes(bull55)
+    st = lambda ev, k: (round(sum(e[k] for e in ev if e[k] is not None) / max(1, sum(1 for e in ev if e[k] is not None)), 1), round(sum(1 for e in ev if e[k] is not None and e[k] > 0) / max(1, sum(1 for e in ev if e[k] is not None)) * 100))
+    E["aaii"] = {"date": str(a.index[-1].date()), "bu": round(float(last["bu"]), 1), "ne": round(float(last["ne"]), 1), "be": round(float(last["be"]), 1),
+                 "avgBu": round(float(a["bu"].mean()), 1), "avgNe": round(float(a["ne"].mean()), 1), "avgBe": round(float(a["be"].mean()), 1), "since": int(a.index[0].year),
+                 "line": [round(float(v), 1) for v in (a["bu"] - a["be"]).iloc[-52:]],
+                 "bear50": {"n": len(eb), "avg12": st(eb, "m12")[0], "pos12": st(eb, "m12")[1], "last": eb[-3:][::-1]},
+                 "bull55": {"n": len(eu), "avg12": st(eu, "m12")[0], "pos12": st(eu, "m12")[1], "last": eu[-3:][::-1]}}
+    print("aaii", E["aaii"]["date"], E["aaii"]["bu"], E["aaii"]["ne"], E["aaii"]["be"], "bear50", len(eb), "bull55", len(eu))
+except Exception as e: print("aaii failed", type(e).__name__, e)
+
 # ---------- seasonality ----------
 try:
     m = spx.resample("ME").last().pct_change().dropna() * 100
