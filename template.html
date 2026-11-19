@@ -1605,7 +1605,7 @@ function qvClose(){ const p=$('qv'); if(p) p.classList.remove('on'); const b=$('
 function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
   p.querySelectorAll('.qvtabs button').forEach(b=>b.classList.toggle('on',b.dataset.qt===k));
   const box=$('qvBody'); if(!box) return;
-  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול העבה · ממוצע אקספוננציאלי 200: הקו הכחול הדק · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); return; }
+  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול המקווקו · ממוצע אקספוננציאלי 200: הקו הכחול הרציף · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); return; }
   if(k!=='ch'&&gateOn()&&!accOn()){ box.innerHTML=''; gateBox(box,k==='rp'?'הדוחות של המניה':'כל החדשות של המניה'); return; }
   box.innerHTML='<div class="empty">טוען…</div>';
   loadDet(t).then(det=>{ if(QV.L[QV.i]!==t||QV.tab!==k) return;
@@ -1778,7 +1778,7 @@ async function renderStock(t){
       <div id="spIns"></div>
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 50 יום: הקו הכחול העבה · ממוצע נע אקספוננציאלי 200 יום: הקו הכחול הדק</span></div><div class="spchart" id="spChart"></div></div>
+    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 50 יום: הקו הכחול המקווקו · ממוצע נע אקספוננציאלי 200 יום: הקו הכחול הרציף</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
       ${repCard(t,SDET[t],rep,reps)}
       <div id="spSnap"></div>
@@ -2036,7 +2036,7 @@ function drawChart(s,iv,box){
       enable_publishing:false,allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,details:false,calendar:false,
       toolbar_bg:'#0c0d10',backgroundColor:'rgba(12,13,16,1)',
       studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len2},styles:{plot:{color:'#58a6ff',linewidth:2}},overrides:{'plot.color':'#58a6ff','plot.linewidth':2}},{id:'MAExp@tv-basicstudies',inputs:{length:len},styles:{plot:{color:'#f5b942',linewidth:2}},overrides:{'plot.color':'#f5b942','plot.linewidth':2}}],
-      studies_overrides:{'moving average.ma.color':'#58a6ff','moving average.ma.linewidth':2,'moving average.plot.color':'#58a6ff','moving average.plot.linewidth':2,'moving average exponential.plot.color':'#f5b942','moving average exponential.plot.linewidth':2,'moving average exponential.ema.color':'#f5b942','Moving Average Exponential.plot.color':'#f5b942','moving average exponential.plot.color.0':'#f5b942'}});
+      studies_overrides:{'moving average.ma.color':'#58a6ff','moving average.ma.linewidth':2,'moving average.plot.color':'#58a6ff','moving average.plot.linewidth':2,'moving average.plot.linestyle':2,'moving average.ma.linestyle':2,'moving average exponential.plot.color':'#f5b942','moving average exponential.plot.linewidth':2,'moving average exponential.ema.color':'#f5b942','Moving Average Exponential.plot.color':'#f5b942','moving average exponential.plot.color.0':'#f5b942'}});
   }).catch(()=>{ box.innerHTML='<div class="empty">הגרף לא נטען. נסו לרענן את העמוד.</div>'; });
 }
 let tvJsP=null;
