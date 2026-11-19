@@ -855,7 +855,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 
 <section id="homeWatch" data-pg="home" class="hidden fold">
   <div class="hh"><h2>מניות במעקב <span class="hwn" id="hwN"></span></h2><a class="ewmore" href="#watch" style="margin:0">לניהול הרשימה ←</a></div>
-  <div class="alw" data-alw></div><div class="cardx" id="homeWatchBody"></div>
+  <div class="cardx" id="homeWatchBody"></div>
 </section>
 <section id="todayAgenda" data-pg="home" class="fold">
   <div class="hh"><h2 id="agH">היום בוול סטריט</h2><a href="#upcoming">ללוח השבוע ←</a></div>
@@ -990,7 +990,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 <section id="watch" data-pg="watch">
   <h2>מניות במעקב</h2>
   <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). מחוברים? הרשימה נשמרת בחשבון ומופיעה בכל מכשיר.</p>
-  <div class="alw" data-alw></div>
+  
   <form class="thctl" id="wAdd"><input id="wQ" type="search" placeholder="הוספת מניה: סימול או שם, למשל NVDA או אפל" aria-label="הוספת מניה לרשימת המעקב"><button class="btn2" type="submit">הוסף</button></form>
   <div class="cardx" id="watchBody"></div>
 </section>
@@ -2644,7 +2644,7 @@ function renderMyFab(){ let f=$('myFab'); const on=accOn()&&WATCH.length>0;
 function fillMyPanel(){ const p=$('myPanel'); if(!p) return; const ix=stockIndex();
   const rows=WATCH.map(t=>{ const s=ix[t]||{}, L=liveQ(t), ch=L&&liveOn()?L[1]:(s.r&&s.r.d!=null?s.r.d:null), px=L&&liveOn()?L[0]:null;
     return `<a class="mpr" href="#stock/${encodeURIComponent(t)}">${mono(t)}<span class="mpn"><b>${esc(t)}</b><small dir="auto">${esc(s.co||'')}</small></span><span class="mpp">${px!=null?`<small class="num">$${px.toFixed(2)}</small>`:''}${ch!=null?`<b class="num ${ch>=0?'up':'down'}" dir="ltr">${ch>0?'+':''}${ch.toFixed(2)}%</b>`:''}</span></a>`; }).join('');
-  p.innerHTML=`<div class="mph"><b>הרשימה שלי <small>(${WATCH.length})</small></b><span><a href="#watch" class="mpl">ניהול והתראות</a><button class="mpx" aria-label="סגירה">✕</button></span></div>${myDayHtml()}<div class="mpb">${rows}</div>`; }
+  p.innerHTML=`<div class="mph"><b>הרשימה שלי <small>(${WATCH.length})</small></b><span><a href="#watch" class="mpl">ניהול</a><button class="mpx" aria-label="סגירה">✕</button></span></div>${myDayHtml()}<div class="mpb">${rows}</div>`; }
 function toggleMyPanel(open){ let p=$('myPanel'); if(!p){ p=document.createElement('div'); p.id='myPanel'; p.setAttribute('role','dialog'); p.setAttribute('aria-label','הרשימה שלי'); p.hidden=true; document.body.appendChild(p); }
   const show=open==null?p.hidden:open; p.hidden=!show; if(show) fillMyPanel(); }
 document.addEventListener('click',e=>{ if(e.target.closest('#myFab')){ toggleMyPanel(); return; } if(e.target.closest('.mpx')||e.target.closest('.mpr')||e.target.closest('.mpl')){ toggleMyPanel(false); return; }
