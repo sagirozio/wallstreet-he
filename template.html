@@ -1569,7 +1569,7 @@ async function renderStock(t){
       <div id="spIns"></div>
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 200 יום (בצהוב)</span></div><div class="spchart" id="spChart"></div></div>
+    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצעים נעים של 50 ו-200 יום (קווים צהובים; הקרוב יותר למחיר הוא ה-50)</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
       ${repTiles(SDET[t],rep,reps)}
       ${rep?`<details class="how mdet"><summary>הדוח המלא של ${esc(rep.q||'הרבעון')}: תחזית, מה אמרה ההנהלה, תגובת המניה</summary><div class="earn">${card(rep)}</div></details>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
@@ -1749,14 +1749,14 @@ function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
 function drawChart(s,iv){
   const box=$('spChart'); if(!box) return; box.innerHTML='';
-  const len = iv==='W' ? 40 : 200;   // 40 weekly candles ≈ 200 trading days
+  const len = iv==='W' ? 40 : 200, len2 = iv==='W' ? 10 : 50;   // weekly candles: 40 ≈ 200 trading days, 10 ≈ 50
   // tv.js (TradingView's free chart widget) accepts indicator inputs, so the moving average gets length 200 / 40
   const id='tvc'+Date.now(); box.innerHTML=`<div id="${id}" style="height:100%"></div>`;
   loadTvJs().then(()=>{ if(!document.getElementById(id)) return;
     new TradingView.widget({container_id:id,autosize:true,symbol:tvSym(s),interval:iv,style:'1',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',
       enable_publishing:false,allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,details:false,calendar:false,
       toolbar_bg:'#0c0d10',backgroundColor:'rgba(12,13,16,1)',
-      studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len}}],
+      studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len2}},{id:'MASimple@tv-basicstudies',inputs:{length:len}}],
       studies_overrides:{'moving average.ma.color':'#f5b942','moving average.ma.linewidth':2,'moving average.plot.color':'#f5b942','moving average.plot.linewidth':2}});
   }).catch(()=>{ box.innerHTML='<div class="empty">הגרף לא נטען. נסו לרענן את העמוד.</div>'; });
 }
