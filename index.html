@@ -2981,7 +2981,7 @@ function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
   CLKP=Promise.all([clkScript(`https://${f}/npm/@clerk/ui@1/dist/ui.browser.js`), clkScript(`https://${f}/npm/@clerk/clerk-js@6/dist/clerk.browser.js`,{'data-clerk-publishable-key':CLK_PK}),
       import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(m=>m.heIL).catch(()=>undefined)])
     .then(async ([,,heIL])=>{ await window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}, localization:heIL,
-        appearance:{variables:{colorPrimary:'#2f81f7',colorBackground:'#161b22',colorText:'#e6edf3',colorInputBackground:'#0d1117',colorInputText:'#e6edf3',borderRadius:'10px'}}});
+        appearance:{variables:{colorPrimary:'#2f81f7',colorPrimaryForeground:'#ffffff',colorBackground:'#161b22',colorForeground:'#e6edf3',colorText:'#e6edf3',colorMutedForeground:'#9aa4af',colorTextSecondary:'#9aa4af',colorNeutral:'#e6edf3',colorInput:'#0d1117',colorInputBackground:'#0d1117',colorInputForeground:'#e6edf3',colorInputText:'#e6edf3',colorBorder:'#30363d',colorShimmer:'rgba(255,255,255,.06)',borderRadius:'10px',fontFamily:'Heebo, system-ui, sans-serif'},elements:{socialButtonsBlockButton:{borderColor:'#30363d',color:'#e6edf3'},footerActionLink:{color:'#58a6ff'}}}});
       CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); } }); authRender(); return CLK; })
     .catch(e=>{ CLKP=null; console.log('clerk',e); }); return CLKP; }
 function authRender(){ const b=$('authBox'); if(!b) return; b.classList.remove('hidden');
