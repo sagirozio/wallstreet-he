@@ -2434,7 +2434,7 @@ function renderRot(){
   b.innerHTML=sum+`<div class="rotl">${rows.map(([t,[n,o]])=>{ const d=o==null?null:n-o;
     return `<a class="rotr" href="#sector/${encodeURIComponent(en(t))}"><span class="rotn"><b>${esc(t)}</b><small>${esc(he(t))}</small></span>
       <span class="rotb"><i class="${d==null||d>=0?'pos':'neg'}" style="width:${n}%"></i>${o!=null?`<em style="right:${o}%" title="לפני 4 שבועות: ${o}"></em>`:''}</span>
-      <span class="rotv num ${d==null?'':d>=0?'up':'down'}">${n}${d!=null?` <small>${d>0?'▲':d<0?'▼':'•'}${Math.abs(d)}</small>`:''}</span></a>`; }).join('')}</div>
+      <span class="rotv num ${d==null?'':d>=0?'up':'down'}">${n}${d!=null?` <small>${d>0?'▲':d<0?'▼':'•'}${Math.abs(d)}</small>`:''}</span></a>`; }).join('')}</div>`
     +`<div class="rotlg"><b>איך לקרוא</b>
       <p><b>המספר הגדול</b> הוא דירוג ה-RS של קרן הסל של הסקטור, מ-1 עד 99. הוא משווה את הביצועים שלה ב-12 החודשים האחרונים (3 החודשים האחרונים נספרים כפול) לכל מניות ה-S&amp;P 500. RS 77 = הסקטור חזק מ-77% מהמניות.</p>
       <p><b>נקודות דירוג</b> (▲ / ▼) = בכמה הדירוג השתנה ב-4 השבועות האחרונים. ▲13 אומר שהסקטור עלה מ-19 ל-32: הוא עוקף עכשיו עוד 13% מהמניות לעומת לפני חודש. ▼44 אומר שירד 44 נקודות.</p>
