@@ -44,15 +44,17 @@ h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin
 .ft ul{list-style:none;padding:0;margin:0}.ft li{display:flex;gap:10px;padding:6px 0;font-size:15.5px;color:#c9d0da}.ft li:before{content:"";flex:0 0 6px;height:6px;border-radius:50%;background:var(--g2);margin-top:9px}
 .ft .n{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;color:var(--muted);font-size:13px}
 .feat .frame{margin:0}.feat .frame img{max-height:430px;object-fit:cover;object-position:top}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:96px}
-.tile{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--panel)}.tile svg{width:22px;height:22px;stroke:var(--g2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.tile h3{margin:14px 0 6px;font-size:17px}.tile p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.65}
+.all{margin-top:110px}.allg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px;align-items:start}
+.grp{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px}.grp h3{margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--g2)}
+.grp ul{list-style:none;margin:0;padding:0}.grp li{padding:10px 0;border-top:1px solid var(--line)}.grp li b{display:block;font-size:15.5px;font-weight:700}.grp li span{display:block;color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:2px}
 .join{margin:110px 0 0;border:1px solid var(--line);border-radius:20px;padding:56px;text-align:center;background:radial-gradient(500px 220px at 50% 0,rgba(22,163,74,.12),transparent 70%),var(--panel)}
 .join h2{font-size:40px;font-weight:800;margin:0 0 10px;letter-spacing:-.02em}.join p{color:var(--muted);font-size:17px;margin:0 0 28px}
 .chk{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin:26px 0 0;color:var(--muted);font-size:14px}.chk span:before{content:"✓ ";color:var(--g2)}
 footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;color:#7a8391;font-size:13px;line-height:1.9}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer a{color:var(--muted);text-decoration:underline}
+@media(max-width:1100px){.allg{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:860px){.wrap{padding:0 18px}h1{font-size:36px}.lead{font-size:17px}.cta{flex-direction:column;align-items:stretch}.btn{justify-content:center}.nl{gap:0}.nl a:not(.btn){display:none}.logo small{display:none}
 .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border:0;border-top:1px solid var(--line)}.stats div:nth-child(4){border-top:1px solid var(--line)}.stats div{padding:16px 18px}.stats b{font-size:24px}
-.feat,.feat.r{grid-template-columns:1fr;gap:26px;margin-top:64px}.feat.r .ft{order:0}.h2,.join h2{font-size:30px}.grid4{grid-template-columns:1fr 1fr;gap:12px;margin-top:64px}.tile{padding:18px}.join{padding:36px 22px;margin-top:80px}.sec{padding-top:80px}.hero{padding-top:40px}.frame{margin-top:40px}.bar span{padding:3px 18px}
+.feat,.feat.r{grid-template-columns:1fr;gap:26px;margin-top:64px}.feat.r .ft{order:0}.h2,.join h2{font-size:30px}.all{margin-top:80px}.allg{grid-template-columns:1fr;gap:12px;margin-top:24px}.join{padding:36px 22px;margin-top:80px}.sec{padding-top:80px}.hero{padding-top:40px}.frame{margin-top:40px}.bar span{padding:3px 18px}
 /* phones: show the right half of each screenshot at double size, so the numbers stay readable */
 .frame img{width:200%;max-width:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -94,12 +96,14 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
     <ul><li>רווח למניה והכנסות מול הצפי</li><li>לוח הדוחות של השבוע</li><li>מאגר של הדוחות האחרונים</li></ul></div>
     <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img loading="lazy" src="lp/earnings.jpg" width="1300" height="760" alt="מאגר הדוחות: רווח למניה והכנסות מול הצפי לכל חברה"></div></div>
 
-  <div class="grid4">
-    <div class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><h3>מובילות השוק</h3><p>פריצות בנפח מסחר חריג, מניות שקו ה-RS שלהן בשיא ומניות שנכנסו ל-RS 90+.</p></div>
-    <div class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5L5.5 21l2-7.5L2 9h7z"/></svg><h3>רשימת מעקב</h3><p>נשמרת בחשבון, ומציגה את המניות שלך ואת החדשות עליהן.</p></div>
-    <div class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><h3>סורק והשוואה</h3><p>סינון מניות לפי ביצועים, RS ושווי שוק, והשוואת גרפים.</p></div>
-    <div class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/></svg><h3>חדשות בעברית</h3><p>ידיעות מוול סטריט בעברית, על השוק ועל המניות ברשימה שלך.</p></div>
-  </div>
+  <div class="all" id="all"><div class="lbl">כל הכלים באתר</div><h2 class="h2">17 כלים, חשבון אחד.</h2>
+  <div class="allg">
+    <div class="grp"><h3>שוק</h3><ul><li><b>תמונת מצב</b><span>הסקטורים והתעשיות החזקים והחלשים החודש</span></li><li><b>רוחב שוק</b><span>עולות מול יורדות, שיאים ושפלים, מניות מעל הממוצעים</span></li><li><b>מאקרו וריבית</b><span>ריבית, אינפלציה ותעסוקה בארה״ב וציפיות השוק מהפד</span></li></ul></div>
+    <div class="grp"><h3>מניות</h3><ul><li><b>טבלת המניות</b><span>כ-2,000 מניות עם סינון, מיון והעתקת סימולים</span></li><li><b>סורק מניות</b><span>סינון לפי ביצועים, RS, שווי שוק ומכפילים</span></li><li><b>השוואת גרפים</b><span>עד 4 מניות, סקטורים או S&P 500 על גרף אחד</span></li><li><b>תעודת זהות למניה</b><span>גרף, הדוח האחרון, צמיחה רבעונית וחדשות</span></li></ul></div>
+    <div class="grp"><h3>מחקר</h3><ul><li><b>מובילות השוק</b><span>פריצות בנפח חריג, קו RS בשיא ומניות שנכנסו ל-<bdi dir="ltr" style="white-space:nowrap">RS 90+</bdi></span></li><li><b>סקטורים ותעשיות</b><span>דירוג 11 סקטורים ויותר מ-120 תעשיות</span></li><li><b>רוטציה</b><span>דירוג ה-RS של כל סקטור היום מול לפני 4 שבועות</span></li><li><b>מחקר מבוסס ראיות</b><span>פחד וחמדנות, תנודתיות, מרווחי אשראי ועונתיות</span></li></ul></div>
+    <div class="grp"><h3>דוחות</h3><ul><li><b>מאגר הדוחות</b><span>רווח למניה והכנסות מול הצפי, ותגובת המניה</span></li><li><b>לוח השבוע</b><span>מי מדווחת השבוע ומתי</span></li><li><b>הנפקות</b><span>מה נכנס למסחר ומי הגישה בקשה להנפקה</span></li></ul></div>
+    <div class="grp"><h3>אישי</h3><ul><li><b>רשימת מעקב</b><span>המניות שלך, נשמרות בחשבון</span></li><li><b>חדשות בעברית</b><span>ידיעות מוול סטריט, וחדשות על המניות שלך</span></li><li><b>מילון מונחים</b><span>הסבר קצר לכל מדד ומונח באתר</span></li></ul></div>
+  </div></div>
 </section>
 
 <section class="join" id="join"><h2>מתחילים בחינם.</h2><p>הרשמה עם חשבון Google בשניות. בלי כרטיס אשראי.</p>
