@@ -353,6 +353,9 @@ padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}.card{
 .peers{display:flex;gap:8px;flex-wrap:wrap}.peers a{background:#182033;border:1px solid #243049;border-radius:9px;padding:6px 10px;text-decoration:none;color:#e8edf6;font-size:14px}
 footer{color:#8a97ae;font-size:13px;border-top:1px solid #243049;margin-top:34px;padding:16px 0 40px}.num{direction:ltr;unicode-bidi:isolate}"""
 
+# the site is for signed-in visitors only: anyone else is sent to the landing page (/join) and returns to this stock after sign-up
+STOCK_GATE = """<script>(function(){try{if(/(?:^|; )__client_uat=[1-9]/.test(document.cookie)||localStorage.getItem('clkOn')==='1')return;sessionStorage.setItem('lpNext','#stock/TK');location.replace('/join');}catch(e){}})();</script>
+"""
 def stock_page(tk):
     co, cap, ind = universe.get(tk, (None, None, None))
     r = last_rep.get(tk)
@@ -405,7 +408,7 @@ def stock_page(tk):
     if F.get("web"): ld["url"] = F["web"]
     return f"""<!DOCTYPE html>
 <html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}">
+{STOCK_GATE.replace("TK", tk)}<title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="וולסטריטר"><meta property="og:locale" content="he_IL"><meta name="theme-color" content="#0b0f17">
 <link rel="icon" type="image/svg+xml" href="../logo.svg"><link rel="manifest" href="../manifest.webmanifest">
