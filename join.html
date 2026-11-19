@@ -46,6 +46,7 @@ h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin
 .ft h3{font-size:28px;font-weight:700;margin:10px 0 12px}.ft p{color:var(--muted);font-size:17px;line-height:1.75;margin:0 0 16px}
 .ft ul{list-style:none;padding:0;margin:0}.ft li{display:flex;gap:10px;padding:6px 0;font-size:15.5px;color:#c9d0da}.ft li:before{content:"";flex:0 0 6px;height:6px;border-radius:50%;background:var(--g2);margin-top:9px}
 .ft .n{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;color:var(--muted);font-size:13px}
+.lv{margin:0;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.lvr{display:grid;grid-template-columns:28px 1fr auto auto;gap:14px;align-items:center;padding:14px 20px;border-top:1px solid var(--line);font-size:16px}.lvr:first-child{border:0}.lvr i{font-style:normal;color:var(--muted);font:500 13px 'JetBrains Mono',monospace}.lvr b{font-weight:600}.lvr em{font-style:normal;font:600 15px 'JetBrains Mono',monospace;direction:ltr;min-width:64px;text-align:left}.lvr em.u{color:var(--g2)}.lvr em.d{color:#f87171}.lvr small{color:var(--muted);font:400 13px 'JetBrains Mono',monospace;min-width:96px;text-align:left}.lvh{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}.lvn{margin:14px 0 0;color:var(--muted);font-size:14px}.lvn a{color:var(--g2);text-decoration:none;font-weight:600}
 .feat .frame{margin:0}.feat .frame img{max-height:430px;object-fit:cover;object-position:top}
 .all{margin-top:110px}.allg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px;align-items:start}
 .grp{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px}.grp h3{margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--g2)}
@@ -58,7 +59,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 @media(max-width:860px){.wrap{padding:0 18px}h1{font-size:36px}.lead{font-size:17px}.cta{flex-direction:column;align-items:stretch}.btn{justify-content:center}.nl{gap:0}.nl a:not(.btn){display:none}.logo small{display:none}
 .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border:0;border-top:1px solid var(--line)}.stats div:nth-child(4){border-top:1px solid var(--line)}.stats div{padding:16px 18px}.stats b{font-size:24px}
 .feat,.feat.r{grid-template-columns:1fr;gap:26px;margin-top:64px}.feat.r .ft{order:0}.h2,.join h2{font-size:30px}.all{margin-top:80px}.allg{grid-template-columns:1fr;gap:12px;margin-top:24px}.join{padding:36px 22px;margin-top:80px}.sec{padding-top:80px}.hero{padding-top:40px}.frame{margin-top:40px}.bar span{padding:3px 18px}
-.frame.h img,.feat .frame img{max-height:none}.fade{height:56px}.fade.s{height:36px}.zoom{pointer-events:auto}}
+.lvr small{display:none}.lvr{grid-template-columns:24px 1fr auto;padding:14px 16px}.frame.h img,.feat .frame img{max-height:none}.fade{height:56px}.fade.s{height:36px}.zoom{pointer-events:auto}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -79,6 +80,10 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/stocks.jpg?v=c8e599" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img src="lp/stocks.jpg?v=c8e599" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"></a><div class="fade"></div></div>
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
 </section>
+
+<section class="sec" id="live" hidden><div class="lbl">נתון חי מהאתר</div><h2 class="h2">חמש התעשיות החזקות ביום המסחר האחרון.</h2><p class="sub">כך נראית הטבלה בתוך האתר: כל תעשייה עם תשואה יומית ושבועית, מדורגות לפי היום.</p>
+  <div class="lv" id="lvBox" style="margin-top:28px"><div class="lvh"><span>תעשייה</span><span id="lvAs"></span></div><div id="lvRows"></div></div>
+  <p class="lvn">מתוך <span id="lvN"></span> תעשיות עם 3 מניות ומעלה. <a href="/join" data-join>לכל הטבלה, בחינם</a></p></section>
 
 <section class="all" id="all" aria-label="כל הכלים באתר"><div class="lbl">כל הכלים באתר</div><h2 class="h2">17 כלים, חשבון אחד.</h2>
   <div class="allg">
@@ -144,6 +149,18 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   /* back from Google (or already signed in): finish here and move on to the site */
   try{ if(/__clerk|clerk_|sso-callback/.test(location.search+location.hash)||/(?:^|; )__client_uat=[1-9]/.test(document.cookie)) load().catch(function(){}); }catch(e){}
 })();
+</script>
+<script>
+/* live strip: top 5 industries by the last session's % change, from the site's own core.json (same origin); hidden if it cannot load */
+(function(){ fetch('/core.json',{cache:'no-cache'}).then(function(r){ return r.ok?r.json():null; }).then(function(c){
+  var t=c&&c.themes; if(!t||!t.rows) return;
+  var L=t.rows.filter(function(r){ return (r.cnt||0)>=3&&typeof r.d==='number'; }); if(L.length<5) return;
+  L.sort(function(a,b){ return b.d-a.d; });
+  var f=function(v){ return typeof v==='number'?(v>0?'+':'')+v.toFixed(2)+'%':'—'; }, cl=function(v){ return v>=0?'u':'d'; }, e=function(x){ return String(x).replace(/[&<>"]/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); };
+  document.getElementById('lvRows').innerHTML=L.slice(0,5).map(function(r,i){ return '<div class="lvr"><i>'+(i+1)+'</i><b>'+e(r.n)+'</b><small>שבוע <bdi dir="ltr">'+f(r.w)+'</bdi></small><em class="'+cl(r.d)+'">'+f(r.d)+'</em></div>'; }).join('');
+  document.getElementById('lvAs').textContent=t.asOf||''; document.getElementById('lvN').textContent=L.length;
+  document.getElementById('live').hidden=false;
+}).catch(function(){}); })();
 </script>
 </body>
 </html>
