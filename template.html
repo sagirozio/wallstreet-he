@@ -1000,7 +1000,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <h3>6. קניין רוחני</h3>
   <p>הטקסטים, העיצוב והחישובים באתר שייכים למפעילי האתר. אפשר לצטט בהיקף סביר עם קישור לאתר. אסור להעתיק את האתר או חלקים מהותיים ממנו באופן שיטתי או אוטומטי.</p>
   <h3>7. פרטיות</h3>
-  <p>האתר אינו מבקש הרשמה ואינו אוסף פרטים אישיים. רכיבי צד שלישי (כמו TradingView ו-GitHub Pages) עשויים לאסוף נתוני שימוש טכניים לפי מדיניות הפרטיות שלהם.</p>
+  <p>אפשר להשתמש באתר בלי להירשם. מי שבוחר להתחבר (עם חשבון Google או כתובת מייל) – ההתחברות מנוהלת על ידי Clerk, ונשמרים אצלה השם, כתובת המייל, תמונת הפרופיל ורשימת המניות במעקב. הפרטים משמשים רק להתחברות ולשמירת רשימת המעקב בין מכשירים, ולא נמסרים לאחרים או משמשים לפרסום. אפשר למחוק את החשבון וכל הפרטים בכל עת: לוחצים על תמונת הפרופיל ← ניהול חשבון ← מחיקת חשבון, או פונים למייל שבדף הנגישות.</p>
+  <p>רכיבי צד שלישי (כמו TradingView, ‏GitHub Pages ו-Clerk) עשויים לאסוף נתוני שימוש טכניים לפי מדיניות הפרטיות שלהם.</p>
   <h3>8. שינויים ויצירת קשר</h3>
   <p>התנאים עשויים להתעדכן מעת לעת, והנוסח המחייב הוא זה שמופיע באתר. על תנאים אלה יחולו דיני מדינת ישראל. לפניות: <a href="https://github.com/sagirozio/wallstreet-he/issues">טופס פנייה ב-GitHub</a>.</p>
 </section>
@@ -2973,7 +2974,7 @@ renderNews(); try{ renderIdx(); }catch(e){} renderTop(); fillSectors(); renderTh
    Off until CLK_PK is filled in (the publishable key is public by design). Clerk's scripts load only on a click,
    or on later visits once this browser has signed in. Watchlist: user.unsafeMetadata.watch (the user's own field);
    a paid plan, later, goes in publicMetadata, which only the server can write. */
-const CLK_PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', CLK_LIVE=false;   /* CLK_LIVE=false: the button shows only in a browser that opened the site with ?login=1 (testing while DNS settles) */
+const CLK_PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', CLK_LIVE=true;   /* CLK_LIVE=false: the button shows only in a browser that opened the site with ?login=1 (testing while DNS settles) */
 let CLK=null, CLKP=null;
 const clkFapi=()=>{ try{ return atob(CLK_PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } };
 function clkScript(src,attrs){ return new Promise((ok,no)=>{ const e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v)); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
