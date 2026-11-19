@@ -238,7 +238,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .qvmeta{display:flex;gap:12px;color:var(--muted);font-size:12.5px}.qvmeta b{color:var(--text)}
 .qvtabs{display:flex;gap:4px;margin-inline-start:auto}.qvtabs button{background:none;border:1px solid transparent;color:var(--muted);border-radius:9px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer}.qvtabs button.on{background:#f5b942;color:#111;font-weight:700}
 .qvact{display:flex;gap:8px;align-items:center}.qvh .wbtn{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.qvh .wbtn.w1{color:#f5b942;border-color:#f5b942}.qvx{background:none;border:0;color:var(--muted);font-size:18px;cursor:pointer;padding:4px}
-.qvdesc{text-align:right;margin:10px 16px 0;color:var(--muted);font-size:13.5px;line-height:1.55}.qvdesc:empty{display:none}
+#hubN .lvs,.qvp .lvs{display:inline-flex;margin:0}.qvdesc{text-align:right;margin:10px 16px 0;color:var(--muted);font-size:13.5px;line-height:1.55}.qvdesc:empty{display:none}
 .qvq{display:flex;align-items:center;gap:18px;margin:12px 16px 0;padding:10px 14px;border:1px solid rgba(63,185,80,.25);background:rgba(63,185,80,.05);border-radius:12px;flex-wrap:wrap}.qvp small{display:block;color:var(--muted);font-size:11.5px}.qvp b{font-size:26px}
 .qvt{display:grid;grid-template-columns:repeat(6,minmax(70px,1fr));gap:6px 16px;flex:1}.qvt small{display:block;color:var(--muted);font-size:11px}.qvt b{font-size:14px}
 .qvb{flex:1;overflow:auto;padding:12px 16px;scrollbar-width:none}.qvb::-webkit-scrollbar{display:none}.qvfund .fgrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}#qv{color-scheme:dark}.qvtv{height:min(56vh,520px);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.qvb .legend{margin:6px 0 0}
@@ -1572,7 +1572,7 @@ function hubRows(){ const ix=stockIndex(), now=Date.now(), wk=new Date(now+7*864
      case 'hi': return r.hi!=null&&r.hi>=-5; case 'rs': return r.rs!=null&&r.rs>=90; case 'er': return r.e&&r.e>=td&&r.e<=wk; default: return true; } }); }
 function renderHub(){
   const ix=stockIndex(), all=Object.values(ix).filter(s=>s.cap&&s.r); if(!$('hubTable')) return;
-  $('hubN').textContent = all.length ? `${all.length.toLocaleString('en-US')} מניות${(THEMES||{}).asOf?' · '+esc(String(THEMES.asOf).replace('סגירת','סגירת')):''}` : '';
+  $('hubN').innerHTML = all.length ? `${all.length.toLocaleString('en-US')} מניות${LIVE_R?' · '+liveStamp():(THEMES||{}).asOf?' · '+esc(String(THEMES.asOf)):''}` : '';
   if(!all.length) return;
   // summary
   let up=0,dn=0,u10=0,d10=0; all.forEach(s=>{ const L=liveQ(s.t), d=L&&liveOn()?L[1]:s.r.d; if(d==null) return; d>=0?up++:dn++; if(d>=10) u10++; if(d<=-10) d10++; });
@@ -1624,6 +1624,10 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
     const N=[...(det.nw||[]),...(FALLBACK.news||[]).filter(n=>(n.t||[]).includes(t))].filter((n,i,A)=>A.findIndex(x=>(x.id||x.title)===(n.id||n.title))===i).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,8);
     box.innerHTML=N.length?N.map(n=>`<div class="qvn"><small>${esc(n.date?dm(n.date):'')}${n.time?' · '+esc(n.time):''}${n.tag?' · '+esc(n.tag):''}</small><b>${esc(n.title||'')}</b>${n.body?`<p>${esc(String(n.body).slice(0,260))}${String(n.body).length>260?'…':''}</p>`:''}</div>`).join(''):'<div class="empty">אין חדשות על המניה בארכיון שלנו.</div>'; });
 }
+function qvQuote(t){ const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d, x=(SCR||{})[t]||{};
+  const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`, tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`;
+  return `<div class="qvp"><small>${liveStamp()||'מחיר סגירה'}</small><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}</div>
+      <div class="qvt">${tile('RS',r.rs??'—')}${tile('מתחילת השנה',pc(r.ytd))}${tile('חודש',pc(r.m))}${tile('מהשיא',pc(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div>`; }
 function qvShow(){
   const t=QV.L[QV.i], p=$('qv'); if(!t||!p) return;
   const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d, x=(SCR||{})[t]||{};
@@ -1636,8 +1640,7 @@ function qvShow(){
       <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="rp">פיננסים</button><button data-qt="nw">חדשות</button></span>
       <span class="qvact">${watchBtn(t)}<button class="qvx" aria-label="סגירה">✕</button></span></div>
     <p class="qvdesc" id="qvDesc" dir="rtl">${esc(((SDET[t]||{}).p||{}).desc||'')}</p>
-    <div class="qvq"><div class="qvp"><small>${liveOn()?'מחיר עכשיו':'מחיר סגירה'}</small><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}</div>
-      <div class="qvt">${tile('RS',r.rs??'—')}${tile('מתחילת השנה',pc(r.ytd))}${tile('חודש',pc(r.m))}${tile('מהשיא',pc(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div></div>
+    <div class="qvq" id="qvQ">${qvQuote(t)}</div>
     <div class="qvb" id="qvBody"></div>
     <a class="qvgo" href="#stock/${encodeURIComponent(t)}">לדף המניה המלא ←</a>`;
   qvTab(QV.tab);
@@ -1939,6 +1942,7 @@ async function loadLive(){
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     if(CURPG==='stock'&&t&&$('spWhy')){ const s0=stockIndex()[t]; if(s0) $('spWhy').outerHTML=whyBlock(t,s0,stockNews(t,s0)); }
     renderHub();
+    try{ const q=$('qvQ'); if(q&&$('qv').classList.contains('on')) q.innerHTML=qvQuote(QV.L[QV.i]); }catch(e){}
   }catch(e){}
 }
 setInterval(loadLive, 3*60*1000);
