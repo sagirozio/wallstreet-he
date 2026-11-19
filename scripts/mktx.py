@@ -107,6 +107,42 @@ def publish_px():
 try: publish_px()
 except Exception as e: print("px publish failed", type(e).__name__, str(e)[:200])
 
+# ---------- leaders (stocks page "מובילים") ----------
+# rsl: stocks whose RS line (close / SPY) is at a 52-week high today -> [T, % below the 52-week price high]
+#      (a price still below its high = the RS line led the price)
+# newl: stocks whose RS rating crossed 90 in the last 5 sessions -> [T, rating 5 sessions ago]
+try:
+    uni = [s_[0] for l_ in stocks.values() for s_ in l_ if s_[0] in df.columns]
+    lead = {}
+    if "SPY" in df.columns and len(df) >= 253:
+        w = df.iloc[-252:]
+        rl = w[uni].div(w["SPY"], axis=0)
+        ok = rl.iloc[-1].notna() & (rl.notna().sum() >= 240)
+        top = rl.loc[:, ok]
+        hit = top.columns[(top.iloc[-1] >= top.max() * 0.999)]
+        off = (w[hit].iloc[-1] / w[hit].max() - 1) * 100
+        lead["rsl"] = sorted([[t_, round(float(off[t_]), 1)] for t_ in hit if pd.notna(off[t_])], key=lambda x: x[1])
+    mem = {t_ for l_ in ((data.get("sectors") or {}).get("mem") or {}).values() for t_ in l_}
+    def rs_at(back):   # IBD-style weighted 12-month score at `back` sessions ago, as a 1-99 percentile against the S&P 500 stocks
+        i = len(df) - 1 - back
+        if i < 252: return {}
+        c = df.iloc[i]
+        r = lambda n: c / df.iloc[i - n] - 1
+        q, h, y = r(63), r(126), r(252)
+        sc = (0.4 * q + 0.2 * h + 0.2 * (h + y) / 2 + 0.2 * y).dropna()
+        ref = sc[[t_ for t_ in sc.index if t_ in mem]].sort_values()
+        if len(ref) < 100: return {}
+        import numpy as np
+        pos = np.searchsorted(ref.values, sc.values, side="left")
+        return {t_: max(1, min(99, round(p_ / len(ref) * 99))) for t_, p_ in zip(sc.index, pos)}
+    now_rs, old_rs = rs_at(0), rs_at(5)
+    if now_rs and old_rs:
+        lead["newl"] = sorted([[t_, old_rs[t_]] for t_ in uni if now_rs.get(t_, 0) >= 90 and t_ in old_rs and old_rs[t_] < 90], key=lambda x: -now_rs[x[0]])
+    lead["asOf"] = str(df.index[-1].date())
+    X["lead"] = lead
+    print("leaders: RS-line highs", len(lead.get("rsl", [])), "new RS 90+", len(lead.get("newl", [])))
+except Exception as e:
+    print("leaders failed", type(e).__name__, e)
 T["x"] = X; data["themes"] = T
 p.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("mktx", X["asOf"], "industries", len(X["ind"]), "ranked", len(rn), "sectors", len(X["sec"]), "top5", X["top5"])

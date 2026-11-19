@@ -31,10 +31,11 @@ except Exception as e:
     print("exchange filter unavailable", type(e).__name__, e, flush=True)
     Q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]), EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 
+VB = {}    # volume breakouts today: {T: [change %, volume / 3-month average volume]} for moves of +4% or more on 2x volume
 EXT = {}   # extended hours: {T: [price, change% vs the regular close]} (after-hours 16:00-20:00 ET)
 def round_once():
     out, state, last_ts = {}, None, 0
-    EXT.clear()
+    EXT.clear(); VB.clear()
     for off in range(0, 6000, 250):
         r = None
         for k in range(3):
@@ -55,6 +56,8 @@ def round_once():
             if h and l: out[t] += [round(float(h), 2), round(float(l), 2)]   # today's range (52-week highs/lows intraday)
             pp, pc = q.get("postMarketPrice"), q.get("postMarketChangePercent")
             if pp and pc is not None and q.get("postMarketTime", 0) >= q.get("regularMarketTime", 0): EXT[t] = [round(float(pp), 2), round(float(pc), 2)]
+            v, av = q.get("regularMarketVolume"), q.get("averageDailyVolume3Month")
+            if c >= 4 and v and av and v >= 2 * av: VB[t] = [round(float(c), 2), round(float(v) / float(av), 1)]
             state = state or q.get("marketState")
             last_ts = max(last_ts, int(q.get("regularMarketTime") or 0))
         total = (r or {}).get("total", 0)
@@ -162,6 +165,7 @@ while True:
                     if len(c) >= 2: etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
             except Exception as e: print("etf", type(e).__name__, flush=True)
             if etf: payload["etf"] = etf   # sector ETF price + change (XLK, XLF ...)
+            if VB: payload["vb"] = dict(VB)
             if EXT and mins >= 16 * 60: payload["post"] = dict(EXT)   # after-hours prices (16:00-20:00 New York)
             if mins >= 16 * 60:   # after-hours for the index ETFs (status line on the home page)
                 pi = {}
