@@ -106369,6 +106369,36 @@
  },
  "news": [
   {
+   "id": "2026-11-19-cohr-buyback",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "COHR"
+   ],
+   "tag": "Coherent",
+   "tone": "pos",
+   "title": "Coherent מאשרת רכישה חוזרת של מניות בהיקף של עד $2 מיליארד",
+   "body": "דירקטוריון Coherent אישר תוכנית רכישה חוזרת של מניות בהיקף של עד $2 מיליארד, והמניה עלתה ביותר מ-5% בבוקר המסחר בניו יורק.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=00bc62f2bd27254bd573f5df06c0d4f9201b9434ae9e242382a5a8b2b84fb6f1",
+   "time": "17:46"
+  },
+  {
+   "id": "2026-11-19-amzn-nyc-labor-bill",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "AMZN"
+   ],
+   "tag": "Amazon",
+   "tone": "neg",
+   "title": "Amazon: הצעת חוק עבודה בעיריית ניו יורק עלולה להוסיף עד $5 להזמנה",
+   "body": "Amazon הזהירה שהגנות לעובדים שנדונות במועצת העיר ניו יורק, בתמיכת ראש העיר זוהראן ממדאני, ״עלולות להוסיף עד $5 להזמנה״ ולהאט את המשלוחים.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=d08bacff96a3ff99b9d638685c74d1c7169be36c59cdb70412c0954ed29054db",
+   "time": "17:49"
+  },
+  {
    "id": "2026-11-19-tu-upgrade",
    "date": "2026-11-19",
    "k": "stock",
