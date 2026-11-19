@@ -216,6 +216,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
+.qgwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px;margin:8px 0 4px}.qgw{margin-bottom:8px}.qgw>small{display:block;color:var(--muted);font-size:12px;margin-bottom:2px}.qgb,.qgq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;direction:ltr}.qgc{display:flex;flex-direction:column;align-items:center;gap:2px}.qgc i{font-style:normal;font-size:10px;white-space:nowrap;letter-spacing:-.3px}.qgc .qgn{color:var(--muted)}.qgc span{height:56px;width:70%;display:flex;align-items:flex-end}.qgc b{display:block;width:100%;border-radius:3px 3px 0 0}.qgc b.p{background:#238636}.qgc b.p.a{background:#3fb950}.qgc b.n{background:#da3633}.qgq span{text-align:center;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden}
 .snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
 .glillw{margin:8px 0 2px}.glill{width:100%;max-width:420px;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px}.glillc{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
@@ -2231,6 +2232,19 @@ function fchMove(ev){
 function fchOut(ev){ const sv=ev.target; if(!(sv instanceof SVGSVGElement)||!sv.closest('.fch')) return; sv.querySelector('.xh').style.display='none'; sv.parentElement.querySelector('.fcv').innerHTML=''; }
 document.addEventListener('pointermove',fchMove); document.addEventListener('pointerdown',fchMove);
 document.addEventListener('pointerleave',fchOut,true);
+/* quarterly growth: EPS and revenue vs the same quarter a year earlier, last 8 quarters (from the filings) */
+function growthChart(f){ const q=f.q||[], n=q.length; if(n<9) return '';
+  const yy=a=>a?a.map((v,i)=>i>=4&&v!=null&&a[i-4]!=null&&a[i-4]>0?(v/a[i-4]-1)*100:null):[];
+  const E=yy(f.eps), R=yy(f.rev), k=Math.min(8,n-4), idx=[...Array(k)].map((_,j)=>n-k+j);
+  if(!idx.some(i=>E[i]!=null||R[i]!=null)) return '';
+  const ql=d=>{ const p=String(d).split('-'); return `${['Q1','Q1','Q1','Q2','Q2','Q2','Q3','Q3','Q3','Q4','Q4','Q4'][+p[1]-1]} ${p[0].slice(2)}`; };
+  const row=(A,label)=>{ const vals=idx.map(i=>A[i]); const ok=vals.filter(v=>v!=null); if(!ok.length) return '';
+    const mx=Math.max(20,...ok.map(v=>Math.min(Math.abs(v),400)));
+    return `<div class="qgw"><small>${label}</small><div class="qgb">${vals.map((v,j)=>{ if(v==null) return `<div class="qgc"><i class="qgn">—</i><span></span></div>`;
+      const h=Math.max(3,Math.min(Math.abs(v),400)/mx*100), prev=j>0?vals[j-1]:null, acc=prev!=null?v-prev:null;
+      return `<div class="qgc" title="${ql(q[idx[j]])}: ${v>0?'+':''}${v.toFixed(0)}%${acc!=null?` (${acc>=0?'+':''}${acc.toFixed(0)} נק׳ מהרבעון הקודם)`:''}"><i class="num ${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${Math.abs(v)>=1000?Math.round(v/100)/10+'K':v.toFixed(0)}%</i><span><b class="${v>=0?'p':'n'}${acc!=null&&acc>0&&v>0?' a':''}" style="height:${h.toFixed(0)}%"></b></span></div>`; }).join('')}</div></div>`; };
+  const e=row(E,'רווח למניה (EPS)'), r=row(R,'הכנסות');
+  return `<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="qgwrap">${e}${r}<div class="qgq">${idx.map(i=>`<span>${ql(q[i])}</span>`).join('')}</div></div><p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם. עמודה בהירה = הצמיחה גבוהה מברבעון הקודם (האצה). לפי הדוחות לרשות ניירות הערך (GAAP); רבעון שהבסיס שלו הפסד מסומן —.</p>`; }
 async function loadFund(t){
   const box=$('spFund'); if(!box) return;
   try{
@@ -2246,7 +2260,7 @@ async function loadFund(t){
       fundChart('מאזן',q,[{n:'נכסים',c:'#22c55e',v:f.assets},{n:'התחייבויות',c:'#ec4899',v:f.liab}],false,'F_BAL')
     ].filter(Boolean);
     if(!ch.length) return;
-    box.innerHTML=`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
+    box.innerHTML=growthChart(f)+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
     try{ rpTidy(); }catch(e){}
   }catch(e){}
 }
