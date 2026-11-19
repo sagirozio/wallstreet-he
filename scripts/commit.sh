@@ -9,6 +9,10 @@ git config user.name "wallstreet-bot"
 git config user.email "bot@users.noreply.github.com"
 DERIVED="index.html core.json breadth.json news.json screen.json ins news_times.json reports.json stocks.json sitemap.xml stock.css s stock"
 "$PY" scripts/build.py >/dev/null
+# guard: never publish a page whose script does not parse (one syntax error blanks the whole site)
+if command -v node >/dev/null 2>&1; then
+  node -e "const s=require('fs').readFileSync('index.html','utf8');const m=[...s.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]).join('\n');try{new Function(m)}catch(e){console.error('index.html script error: '+e.message);process.exit(1)}" || { echo "ABORT: script error in index.html, nothing committed"; exit 1; }
+fi
 git add "$@" $DERIVED
 git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
 git commit -q -m "$msg"
