@@ -209,18 +209,22 @@ def earn_hist(t):
         x = {"q": (f"Q{q} {str(y)[-2:]}" if q and y else p[:7]), "a": a}
         if e is not None: x["e"] = e
         j = near(day, per, 335, 395)                      # same quarter a year earlier, adjusted (Finnhub)
-        if j is not None: x["ay"] = _yoy(a, rows[j][3])
+        if j is not None:
+            x["ay"] = _yoy(a, rows[j][3])
+            if x["ay"] is not None: x["pa"] = rows[j][3]          # the same quarter a year earlier (adjusted), for the table
         i = near(day, fq, -8, 85)
         if i is not None: ok += 1
         if x.get("ay") is None and i is not None and i < len(fe):
             j2 = near(D(fq[i]), fq, 335, 395)
             if j2 is not None and j2 < len(fe) and fe[i] is not None and fe[j2] is not None:
                 g_ = _yoy(fe[i], fe[j2])
-                if g_ is not None and abs(g_) <= 300: x["ay"] = g_; x["g"] = 1   # GAAP year-over-year (skipped when the GAAP base is tiny)
+                if g_ is not None and abs(g_) <= 300: x["ay"] = g_; x["g"] = 1; x["ga"] = round(fe[i], 2); x["pa"] = round(fe[j2], 2)   # GAAP year-over-year (skipped when the GAAP base is tiny); both GAAP figures for the table
         if i is not None and i < len(frv) and frv[i]:
             x["r"] = round(frv[i] / 1e9, 3)
             j2 = near(D(fq[i]), fq, 335, 395)
-            if j2 is not None and j2 < len(frv): x["ry"] = _yoy(frv[i], frv[j2])
+            if j2 is not None and j2 < len(frv):
+                x["ry"] = _yoy(frv[i], frv[j2])
+                if x["ry"] is not None and frv[j2]: x["pr"] = round(frv[j2] / 1e9, 3)
         elif k == 0 and len(fq) >= 4:                                      # newest quarter not in the SEC file yet: revenue from the report card (same EPS = same quarter)
             for c in cards[:1]:
                 if isinstance(c.get("epsAct"), (int, float)) and abs(c["epsAct"] - a) <= max(0.02, abs(a) * 0.02):
