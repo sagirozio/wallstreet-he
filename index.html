@@ -1586,7 +1586,7 @@ async function renderStock(t){
   const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).sort((a,b)=>capNum(b[2])-capNum(a[2])).slice(0,8):[];
   const news=stockNews(t,s), d=s.r&&s.r.d!=null?s.r.d:null;
   SPT='ov';
-  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','נתונים ודוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
+  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','פיננסים'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
