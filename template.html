@@ -245,6 +245,14 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .qvn{font-size:14px;line-height:1.55;border-bottom:1px solid var(--line);padding:10px 0}.qvn small{display:block;color:var(--muted);font-size:11.5px}.qvn p{margin:4px 0 0;color:var(--muted);font-size:13px}
 .qvgo{display:block;text-align:center;border-top:1px solid var(--line);padding:10px}
 @media(max-width:760px){.qvdesc{margin:8px 12px 0;font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}#qv{width:auto;height:auto;top:8px;bottom:8px;left:8px;right:8px;transform:translateY(12px)}#qv.on{transform:none}.qvh{gap:8px 10px;padding:10px 12px}.qvtabs{margin-inline-start:0;order:5;width:100%}.qvtabs button{flex:1}.qvmeta{display:none}.qvq{margin:10px 12px 0;gap:8px;flex-direction:column;align-items:stretch}.qvp b{font-size:22px}.qvt{grid-template-columns:repeat(3,minmax(0,1fr))}.qvb{padding:10px 12px}.qvtv{height:46vh}}
+.qvcp{display:flex;gap:6px;margin-top:4px}.qvcp button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:2px 8px;font:inherit;font-size:11.5px;cursor:pointer}.qvcp button:hover{color:var(--text)}
+#clipFab{position:fixed;right:16px;bottom:84px;z-index:70;width:44px;height:44px;border-radius:12px;background:#161b22;border:1px solid #30363d;color:var(--muted);cursor:pointer;display:grid;place-items:center}#clipFab svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}#clipFab.has{color:#3fb950;border-color:rgba(63,185,80,.5)}#clipFab i{position:absolute;top:-6px;left:-6px;background:#3fb950;color:#000;font-style:normal;font-size:11px;font-weight:700;border-radius:999px;min-width:18px;height:18px;line-height:18px;text-align:center;padding:0 4px}#clipFab i:empty{display:none}
+#clipPanel{position:fixed;right:70px;bottom:84px;z-index:71;width:380px;max-width:calc(100vw - 32px);max-height:70vh;overflow:auto;scrollbar-width:none;background:var(--panel);border:1px solid #30363d;border-radius:14px;box-shadow:0 16px 48px rgba(0,0,0,.6);padding:12px;display:none}#clipPanel.on{display:block}#clipPanel::-webkit-scrollbar{display:none}
+.cph{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.cph span{display:flex;gap:8px}.cph button,.cpt button{background:none;border:0;color:var(--muted);font:inherit;font-size:12.5px;cursor:pointer}
+.cpl{border:1px solid var(--line);border-radius:10px;margin-top:8px;overflow:hidden}.cpt{display:flex;align-items:center;gap:8px;background:rgba(63,185,80,.08);padding:7px 10px}.cpt b{font-size:13.5px}.cpt small{color:var(--muted);margin-inline-start:auto}
+.cpv{white-space:normal;overflow-wrap:anywhere;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;padding:8px 10px;word-break:break-all;text-align:left;max-height:140px;overflow:auto}
+.cpa{display:flex;gap:6px;padding:0 10px 9px}.cpa button{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.cpe{color:var(--muted);font-size:13px;line-height:1.6;margin:4px 0}
+@media(max-width:760px){#clipFab{right:12px;bottom:calc(74px + env(safe-area-inset-bottom))}#clipPanel{right:12px;left:12px;width:auto;bottom:calc(126px + env(safe-area-inset-bottom))}}
 .rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:6px 0 14px}.rch{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.rch b{font-size:16px}.rch .up{color:var(--up,#3fb950)}.rch .down{color:#f85149}.rch .amb{color:#d29922}.rcm{color:var(--muted);font-size:12.5px;margin:2px 0 10px}.rcg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rcb{background:var(--bg);border-radius:8px;padding:8px 10px}.rcb small{color:var(--muted);font-size:12px}.rcb b{font-size:19px}.rce{color:var(--muted);font-size:12.5px}.rcs{font-size:12.5px;margin-top:2px}.rcf{margin-top:10px;font-size:13.5px}.rcbt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px;font-size:12.5px;color:var(--muted)}.rcbt span{display:inline-flex;gap:3px}.rcbt i{width:11px;height:11px;border-radius:2px;display:inline-block;background:#8b949e}.rcbt i.bu{background:#3fb950}.rcbt i.se{background:#da3633}
 @media(max-width:640px){#spSnap .snap{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .fstamp{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:12px 0 0;line-height:1.6}
@@ -1592,7 +1600,7 @@ document.addEventListener('click',e=>{ const f=e.target.closest&&e.target.closes
 function toast(msg){ let t=$('toast'); if(!t){ t=document.createElement('div'); t.id='toast'; document.body.appendChild(t); } t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2200); }
 document.addEventListener('click',async e=>{
   if(e.target.closest&&e.target.closest('[data-hcopy]')){ const L=HUB.last||[]; if(!L.length) return; const txt=L.join(',');
-    try{ await navigator.clipboard.writeText(txt); toast(`הועתקו ${L.length} סימולים`); }catch(_){ prompt('העתק:',txt); } return; }
+    clipAdd('מניות · '+((document.querySelector('#hubChips .on')||{}).textContent||'הכל')+(HUB.sec?' · '+HUB.sec:''),L); try{ await navigator.clipboard.writeText(txt); toast(`הועתקו ${L.length} סימולים ונשמרו ברשימות`); }catch(_){ prompt('העתק:',txt); } return; }
   if(e.target.closest&&e.target.closest('[data-hwall]')){ const L=(HUB.last||[]).filter(t=>!inWatch(t)); if(!L.length){ toast('כל המניות כבר במעקב'); return; }
     const room=60-WATCH.length; if(room<=0){ toast('רשימת המעקב מלאה (60 מניות)'); return; } const add=L.slice(0,room);
     if(L.length>room&&!confirm(`ברשימה יש מקום ל-${room} מניות. להוסיף את ${room} הראשונות?`)) return;
@@ -1621,7 +1629,7 @@ function qvShow(){
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`;
   const tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`, n=QV.L.length;
   p.innerHTML=`<div class="qvh">
-      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span><small dir="auto">${esc(s.co||'')}</small></div>
+      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span><span class="qvcp"><button data-qclip="${esc(t)}" title="העתק סימול והוסף לרשימות">📋 ${esc(t)}</button>${n>1?`<button data-qclipl title="העתק את כל הרשימה ושמור">📋 כל ה-${n}</button>`:''}</span><small dir="auto">${esc(s.co||'')}</small></div>
       ${n>1?`<span class="qvnav"><button data-qn="-1" aria-label="הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הבאה" ${QV.i<n-1?'':'disabled'}>‹</button></span>`:''}
       <span class="qvmeta"><span>ADR% <b class="num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</b></span>${s.sec?`<span>${esc(s.sec)}</span>`:''}</span>
       <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="rp">פיננסים</button><button data-qt="nw">חדשות</button></span>
@@ -1641,6 +1649,7 @@ function qvOpen(t,list){
 }
 function qvFrom(el,sel,tk){   /* the list around the clicked stock (its table / list / section) becomes the ‹ › sequence */
   const scope=el.closest('#hubTable, .ethw, table, .hxt, ul, ol, section')||document;
+  { const sec=el.closest('section'), h=sec&&sec.querySelector('h2'), et=el.closest('.ethw'), er=et&&et.previousElementSibling; QV.name=(er&&er.dataset.et?er.dataset.et+' · אחזקות':'')||(h?h.textContent.trim():'רשימה'); }
   const list=[...new Set([...scope.querySelectorAll(sel)].map(tk).filter(Boolean))];
   qvOpen(tk(el),list);
 }
@@ -1679,10 +1688,40 @@ function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable');
 document.addEventListener('click',async e=>{
   const g=e.target.closest&&e.target.closest('[data-eg]'); if(g){ ETF.g=g.dataset.eg; renderEtfs(); return; }
   const so=e.target.closest&&e.target.closest('[data-es]'); if(so){ const c=so.dataset.es; if(ETF.sort===c) ETF.dir*=-1; else { ETF.sort=c; ETF.dir=c==='n'?1:-1; } renderEtfs(); return; }
-  const cp=e.target.closest&&e.target.closest('[data-ecopy]'); if(cp){ const r=((FALLBACK.etfs||{}).rows||[]).find(x=>x.t===cp.dataset.ecopy); const txt=(r&&r.h||[]).map(x=>x[0]).join(','); try{ await navigator.clipboard.writeText(txt); toast('הסימולים הועתקו'); }catch(_){ prompt('העתק:',txt); } return; }
+  const cp=e.target.closest&&e.target.closest('[data-ecopy]'); if(cp){ const r=((FALLBACK.etfs||{}).rows||[]).find(x=>x.t===cp.dataset.ecopy); const txt=(r&&r.h||[]).map(x=>x[0]).join(','); if(r) clipAdd(r.t+' · '+r.n,(r.h||[]).map(x=>x[0])); try{ await navigator.clipboard.writeText(txt); toast('הסימולים הועתקו ונשמרו ברשימות'); }catch(_){ prompt('העתק:',txt); } return; }
   const nl=e.target.closest&&e.target.closest('[data-nolink]'); if(nl){ e.preventDefault(); return; }
   const rw=e.target.closest&&e.target.closest('#etfTable .etr[data-et]'); if(rw){ const t=rw.dataset.et; ETF.open.has(t)?ETF.open.delete(t):ETF.open.add(t); renderEtfs(); }
 });
+
+/* ---------- ticker clipboard: named ticker lists to copy (e.g. into a TradingView watchlist) or send to the watchlist ---------- */
+let CLIP=(()=>{ try{ return JSON.parse(localStorage.getItem('clip')||'[]'); }catch(_){ return []; } })();
+function clipSave(){ try{ localStorage.setItem('clip',JSON.stringify(CLIP)); }catch(_){} renderClip(); }
+function clipAdd(name,L){ L=[...new Set((L||[]).filter(Boolean))]; if(!L.length) return;
+  const ex=CLIP.find(c=>c.n===name);
+  if(ex){ ex.L=name==='בחירות שלי'?[...new Set([...ex.L,...L])]:L; } else CLIP.unshift({n:name,L});
+  CLIP=CLIP.slice(0,12); clipSave(); }
+function renderClip(){
+  let b=$('clipFab'); if(!b){ b=document.createElement('button'); b.id='clipFab'; b.setAttribute('aria-label','רשימות סימולים'); b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg><i id="clipN"></i>'; document.body.appendChild(b); }
+  $('clipN').textContent=CLIP.length||''; b.classList.toggle('has',!!CLIP.length);
+  const p=$('clipPanel'); if(!p||!p.classList.contains('on')) return;
+  p.innerHTML=`<div class="cph"><b>רשימות סימולים</b><span>${CLIP.length?`<button data-clipclr>נקה הכל</button>`:''}<button class="cpx" aria-label="סגירה">✕</button></span></div>`+
+    (CLIP.length?CLIP.map((c,i)=>`<div class="cpl"><div class="cpt"><b>${esc(c.n)}</b><small class="num">${c.L.length}</small><button data-clipdel="${i}" aria-label="הסרה">✕</button></div>
+      <div class="cpv num" dir="ltr">${esc(c.L.join(','))}</div>
+      <div class="cpa"><button data-clipcp="${i}">העתק</button><button data-clipw="${i}">☆ הוסף למעקב</button></div></div>`).join('')
+    :'<p class="cpe">אין עדיין רשימות. בחלון המניה לוחצים על 📋 כדי להוסיף סימול, ו"העתק סימולים" בטבלאות שומר כאן את הרשימה.</p>');
+}
+document.addEventListener('click',async e=>{ if(!e.target.closest) return;
+  if(e.target.closest('#clipFab')){ let p=$('clipPanel'); if(!p){ p=document.createElement('div'); p.id='clipPanel'; document.body.appendChild(p); } p.classList.toggle('on'); renderClip(); return; }
+  if(e.target.closest('#clipPanel .cpx')){ $('clipPanel').classList.remove('on'); return; }
+  const cp=e.target.closest('[data-clipcp]'); if(cp){ const c=CLIP[+cp.dataset.clipcp]; if(!c) return; const txt=c.L.join(','); try{ await navigator.clipboard.writeText(txt); toast(`הועתקו ${c.L.length} סימולים`); }catch(_){ prompt('העתק:',txt); } return; }
+  const cw=e.target.closest('[data-clipw]'); if(cw){ const c=CLIP[+cw.dataset.clipw]; if(!c) return; const L=c.L.filter(t=>!inWatch(t)&&stockIndex()[t]); if(!L.length){ toast('כל המניות כבר במעקב'); return; }
+    const room=60-WATCH.length; if(room<=0){ toast('רשימת המעקב מלאה (60 מניות)'); return; } const add=L.slice(0,room); WATCH=[...add,...WATCH].slice(0,60); saveWatch(); renderWatch(); toast(`נוספו ${add.length} מניות למעקב`); return; }
+  const cd=e.target.closest('[data-clipdel]'); if(cd){ CLIP.splice(+cd.dataset.clipdel,1); clipSave(); return; }
+  if(e.target.closest('[data-clipclr]')){ if(confirm('למחוק את כל הרשימות?')){ CLIP=[]; clipSave(); } return; }
+  const qa=e.target.closest('[data-qclip]'); if(qa){ const t=qa.dataset.qclip; clipAdd('בחירות שלי',[t]); try{ await navigator.clipboard.writeText(t); }catch(_){} toast(`${t} הועתק ונוסף ל"בחירות שלי"`); return; }
+  const ql=e.target.closest('[data-qclipl]'); if(ql){ const L=QV.L||[]; const nm=QV.name||'רשימה'; clipAdd(nm,L); try{ await navigator.clipboard.writeText(L.join(',')); }catch(_){} toast(`הרשימה (${L.length}) הועתקה ונשמרה`); return; }
+});
+document.addEventListener('DOMContentLoaded',renderClip); if(document.readyState!=='loading') setTimeout(renderClip,0);
 document.addEventListener('change',e=>{ if(e.target.id==='hubSec'){ HUB.sec=e.target.value; HUB.lim=40; renderHub(); } });
 
 /* ---------- stock page ("תעודת זהות") ---------- */
