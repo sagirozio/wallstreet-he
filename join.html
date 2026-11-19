@@ -70,7 +70,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   <span class="pill"><i></i>כלי מחקר · נתונים בלייב במהלך המסחר</span>
   <h1>כלי מחקר לשוק ההון האמריקאי.<br><span>בעברית ובמקום אחד.</span></h1>
   <p class="lead"><b>מזהים את מובילות השוק ומבינים לאן הכסף זורם.</b> תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך, מתעדכנים כל כמה דקות במסחר ובכל ערב אחרי הסגירה.</p>
-  <div class="cta"><a class="btn p" href="/?join=1"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#tools">מה יש באתר</a></div>
+  <div class="cta"><a class="btn p" href="/?join=1" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#tools">מה יש באתר</a></div>
   <div class="fine">ללא תשלום בתקופת ההשקה · מידע עובדתי בלבד, לא ייעוץ השקעות</div>
   <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><img src="lp/stocks.jpg" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"><div class="fade"></div></div>
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
@@ -103,10 +103,39 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 </section>
 
 <section class="join" id="join"><h2>מתחילים בחינם.</h2><p>הרשמה עם חשבון Google בשניות. בלי כרטיס אשראי.</p>
-  <a class="btn p" href="/?join=1">הרשמה עם Google</a>
+  <a class="btn p" href="/?join=1" data-join>הרשמה עם Google</a>
   <div class="chk"><span>כל הכלים פתוחים</span><span>רשימת מעקב אישית</span><span>בטלפון ובמחשב</span></div></section>
 </main>
 </div>
 <footer><div class="wrap"><span>האתר מיועד למידע ולמידה בלבד ואינו ייעוץ השקעות.<br>נתוני שוק: Yahoo Finance · Finnhub · Massive · SEC EDGAR · גרפים: <a href="https://www.tradingview.com/" rel="noopener">TradingView</a></span><span>צור קשר: <a href="mailto:sagirozio@gmail.com">sagirozio@gmail.com</a><br><a href="/#terms">תנאי שימוש</a> · <a href="/#accessibility">הצהרת נגישות</a></span></div></footer>
+<script>
+/* Sign-up happens on this page: the buttons load Clerk (same setup as the site) and open the sign-up window here,
+   so the site itself is shown only after the visitor has signed up. Signed in -> /?welcome=1 (the site).
+   If Clerk cannot load, a short message appears under the button and the visitor can try again (the site is not shown). */
+(function(){
+  var PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', DONE='/?welcome=1', P=null, gone=false;
+  var F=(function(){ try{ return atob(PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } })();
+  function sc(src,attrs){ return new Promise(function(ok,no){ var e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.keys(attrs||{}).forEach(function(k){ e.setAttribute(k,attrs[k]); }); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
+  function go(){ if(gone) return; gone=true; try{ localStorage.setItem('clkOn','1'); }catch(e){} location.replace(DONE); }
+  function load(){ if(P) return P;
+    P=Promise.all([sc('https://'+F+'/npm/@clerk/ui@1/dist/ui.browser.js'), sc('https://'+F+'/npm/@clerk/clerk-js@6/dist/clerk.browser.js',{'data-clerk-publishable-key':PK}),
+        import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(function(m){ return m.heIL; }).catch(function(){ return undefined; })])
+      .then(function(r){ return window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}, localization:r[2],
+        appearance:{variables:{colorPrimary:'#2f81f7',colorPrimaryForeground:'#ffffff',colorBackground:'#161b22',colorForeground:'#e6edf3',colorText:'#e6edf3',colorMutedForeground:'#9aa4af',colorTextSecondary:'#9aa4af',colorNeutral:'#e6edf3',colorInput:'#0d1117',colorInputBackground:'#0d1117',colorInputForeground:'#e6edf3',colorInputText:'#e6edf3',colorBorder:'#30363d',colorShimmer:'rgba(255,255,255,.06)',borderRadius:'10px',fontFamily:'Heebo, system-ui, sans-serif'},elements:{cardBox:{border:'1px solid #30363d',boxShadow:'0 24px 80px rgba(0,0,0,.7)'},socialButtonsBlockButton:{border:'1px solid #30363d',backgroundColor:'#0d1117',color:'#e6edf3',boxShadow:'none','&:hover':{backgroundColor:'#1c2330'}},formFieldInput:{border:'1px solid #30363d',backgroundColor:'#0d1117',color:'#e6edf3',boxShadow:'none'},dividerLine:{backgroundColor:'#30363d'},lastAuthenticationStrategyBadge:{backgroundColor:'#161b22',color:'#9aa4af',border:'1px solid #30363d'},footerActionLink:{color:'#58a6ff'}}}}); })
+      .then(function(){ var c=window.Clerk; c.addListener(function(x){ if(x&&x.user) go(); }); if(c.user) go(); return c; });
+    return P; }
+  function open(btn){ var done=false, fb=function(){ if(done) return; done=true; P=null; btn.removeAttribute('aria-busy'); btn.style.opacity='';
+      var m=document.getElementById('joinErr'); if(!m){ m=document.createElement('p'); m.id='joinErr'; m.setAttribute('role','alert'); m.style.cssText='color:#f0b429;font-size:14px;margin:12px 0 0;text-align:center'; }
+      m.textContent='ההרשמה לא נטענה. בדקו את החיבור ונסו שוב בעוד רגע.'; (btn.closest('.cta')||btn).insertAdjacentElement('afterend',m); };
+    btn.setAttribute('aria-busy','true'); btn.style.opacity='.7'; var t=setTimeout(fb,12000);
+    load().then(function(c){ clearTimeout(t); if(done) return; done=true; btn.removeAttribute('aria-busy'); btn.style.opacity='';
+      if(c.user){ go(); return; }
+      var o={forceRedirectUrl:location.origin+DONE, signInForceRedirectUrl:location.origin+DONE};
+      (c.openSignUp||c.openSignIn).call(c,o); }).catch(function(){ clearTimeout(t); fb(); }); }
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[data-join]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return; e.preventDefault(); open(a); });
+  /* back from Google (or already signed in): finish here and move on to the site */
+  try{ if(/__clerk|clerk_|sso-callback/.test(location.search+location.hash)||/(?:^|; )__client_uat=[1-9]/.test(document.cookie)) load().catch(function(){}); }catch(e){}
+})();
+</script>
 </body>
 </html>
