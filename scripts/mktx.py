@@ -77,13 +77,16 @@ def publish_px():
     import os, subprocess, tempfile
     year = df.index[-1].year
     prev = df.index[df.index.year < year]
-    w = df.loc[prev[-1]:] if len(prev) else df[df.index.year == year]
+    wy = df.loc[prev[-1]:] if len(prev) else df[df.index.year == year]   # year to date (from the last close of last year)
+    i0 = df.index.get_loc(wy.index[0]); p0 = max(0, i0 - 199)            # + up to 199 sessions before it, for the 50/200-day averages
+    w = df.iloc[p0:]; y0 = i0 - p0
     uni = {s[0] for l in stocks.values() for s in l}
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN"); repo = os.environ.get("GITHUB_REPOSITORY", "sagirozio/wallstreet-he")
     url = f"https://x-access-token:{token}@github.com/{repo}.git" if token else subprocess.run(["git", "remote", "get-url", "origin"], cwd=root, capture_output=True, text=True).stdout.strip()
     with tempfile.TemporaryDirectory() as t:
         tp = pathlib.Path(t); n = 0
-        (tp / "_dates.json").write_text(json.dumps({"asOf": str(w.index[-1].date()), "dates": [str(d.date()) for d in w.index]}, separators=(",", ":")))
+        # dates/arrays start y0 sessions before the year: the page shows from y0 on and uses the earlier ones only for the averages
+        (tp / "_dates.json").write_text(json.dumps({"asOf": str(w.index[-1].date()), "y0": y0, "dates": [str(d.date()) for d in w.index]}, separators=(",", ":")))
         for tk in w.columns:
             if tk not in uni: continue
             c = w[tk]
@@ -91,6 +94,7 @@ def publish_px():
             (tp / f"{tk}.json").write_text(json.dumps([None if pd.isna(v) else (round(float(v), 2) if v < 1000 else round(float(v), 1)) for v in c], separators=(",", ":")))
             n += 1
         # _spark.json: one small year-to-date line per stock for the tables (every 5th session + the last one, scaled to 0-99)
+        w = wy   # the table sparklines stay year to date
         idx = list(range(0, len(w), 5)); idx = idx if idx[-1] == len(w) - 1 else idx + [len(w) - 1]
         sp = {}
         for tk in w.columns:
@@ -103,7 +107,7 @@ def publish_px():
         g = lambda *a: subprocess.run(["git", "-c", "user.name=wallstreet-bot", "-c", "user.email=bot@users.noreply.github.com", *a], cwd=t, check=True, capture_output=True)
         g("init", "-q"); g("checkout", "-q", "--orphan", "px"); g("add", "-A"); g("commit", "-qm", "year-to-date price lines")
         g("push", "-fq", url, "px")
-    print("px published", n, "stocks,", len(w), "sessions from", w.index[0].date())
+    print("px published", n, "stocks,", len(w), "sessions year to date, +", y0, "before")
 try: publish_px()
 except Exception as e: print("px publish failed", type(e).__name__, str(e)[:200])
 

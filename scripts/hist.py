@@ -71,7 +71,7 @@ def update(df, keep, start=None):
     had = len(df) > 0
     if not KEY: return df, rep
     ny_today = pd.Timestamp.now(tz="America/New_York").normalize().tz_localize(None)
-    d = (df.index[-1] + pd.Timedelta(days=1)) if len(df) else (start or ny_today - pd.Timedelta(days=430))
+    d = (df.index[-1] + pd.Timedelta(days=1)) if len(df) else (start or ny_today - pd.Timedelta(days=640))   # ~440 sessions: 200-day averages for the whole year-to-date chart
     since = d
     rows = {}
     while d < ny_today:

@@ -1,4 +1,4 @@
-name: Short interest (Yahoo, twice a month data)
+name: Short interest + report dates (Yahoo, weekly)
 on:
   schedule:
     - cron: "17 7 * * 6"   # Saturday morning UTC: one full pass a week (the exchanges publish twice a month)
@@ -11,12 +11,13 @@ permissions:
 jobs:
   shortint:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas
       - run: python scripts/shortint.py ${{ github.event.inputs.minutes || '45' }}
+      - run: python scripts/earndates.py ${{ github.event.inputs.minutes || '45' }}
       - name: Commit
-        run: bash scripts/commit.sh "Short interest update" facts.json
+        run: bash scripts/commit.sh "Short interest + report dates update" facts.json earndates.json

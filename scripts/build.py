@@ -32,6 +32,7 @@ def js(o):
 
 data = load("data.json")
 facts = load("facts.json", {}) or {}
+earndates = (load("earndates.json", {}) or {}).get("d", {})   # past report days (the session that reacted), newest first
 he_names = load("scripts/he_names.json", {}) or {}
 themes = data.get("themes") or {}
 stocks = themes.get("stocks") or {}
@@ -285,6 +286,7 @@ for t in sorted(set(universe) | set(profiles) | set(facts) | set(earn)):
     _nw = _stock_news(t)
     if _nw: rec["nw"] = _nw
     # "why did it move": every per-stock item tagged with this ticker (date, Israel day, title, body, source, url)
+    if earndates.get(t): rec["ed"] = earndates[t]
     _mv = [[n.get("date"), n.get("tday") or "", n.get("title") or "", n.get("body") or "", n.get("src") or "", n.get("url") or ""]
            for n in news if n.get("k") == "stock" and t in (n.get("t") or [])]
     if _mv: rec["mv"] = _mv[:40]

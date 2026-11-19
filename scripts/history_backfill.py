@@ -1,4 +1,4 @@
-"""One-off: build ~14 months of daily closes from Massive for every stock on the site + S&P 500 members (~60–70 min)."""
+"""One-off: build ~21 months of daily closes from Massive for every stock on the site + S&P 500 members (~90–100 min)."""
 import json, pathlib, io, urllib.request, pandas as pd
 import hist
 root = pathlib.Path(__file__).resolve().parent.parent
