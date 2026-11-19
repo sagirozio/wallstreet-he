@@ -216,6 +216,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
+.myday{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}.myday b{color:var(--text)}.myday a{text-decoration:none}
 .qgwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px;margin:8px 0 4px}.qgw{margin-bottom:8px}.qgw>small{display:block;color:var(--muted);font-size:12px;margin-bottom:2px}.qgb,.qgq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;direction:ltr}.qgc{display:flex;flex-direction:column;align-items:center;gap:2px}.qgc i{font-style:normal;font-size:10px;white-space:nowrap;letter-spacing:-.3px}.qgc .qgn{color:var(--muted)}.qgc span{height:56px;width:70%;display:flex;align-items:flex-end}.qgc b{display:block;width:100%;border-radius:3px 3px 0 0}.qgc b.p{background:#238636}.qgc b.p.a{background:#3fb950}.qgc b.n{background:#da3633}.qgq span{text-align:center;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden}
 .snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
 .glillw{margin:8px 0 2px}.glill{width:100%;max-width:420px;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px}.glillc{display:block;color:var(--muted);font-size:11px;margin-top:3px}
@@ -2372,10 +2373,28 @@ function watchRows(lim){
   return WATCH.slice(0,lim||60).map(t=>{ const s=ix[t]||{t,co:t}, w=watchEvents(t);
     return `<div class="wr"><a class="wrm" href="#stock/${encodeURIComponent(t)}">${mono(t)}<span class="wrn"><b>${esc(t)}</b><small dir="auto">${esc(s.co||'')}</small></span><span class="wrp">${w.px!=null?`<span class="num">$${w.px.toFixed(2)}</span>`:''}${w.ch!=null?`<b class="num ${w.ch>=0?'up':'down'}">${pct(w.ch,2)}</b>`:'<b class="flat">—</b>'}</span></a>${w.ev.length?`<div class="wre">${w.ev.map(([c,x])=>`<span class="${c}">${esc(x)}</span>`).join('')}</div>`:''}<button type="button" class="wrx" data-wx="${esc(t)}" aria-label="הסרת ${esc(t)} מהרשימה">×</button></div>`; }).join('');
 }
+/* signed-in home: the watchlist goes first, open, with a one-line summary of the day for those stocks */
+function myDayHtml(){ const ix=stockIndex(), now=Date.now(); let up=0, dn=0, sum=0, n=0, best=null, worst=null; const reps=[], vb=[];
+  WATCH.forEach(t=>{ const L=liveQ(t), live=!!(L&&liveOn()), s=ix[t]||{}, ch=live?L[1]:(s.r&&s.r.d!=null?s.r.d:null);
+    if(ch!=null){ n++; sum+=ch; ch>=0?up++:dn++; if(!best||ch>best[1]) best=[t,ch]; if(!worst||ch<worst[1]) worst=[t,ch]; }
+    const x=(SCR||{})[t]||{}; if(x.e){ const dd=Math.round((new Date(x.e+'T12:00:00')-now)/864e5); if(dd>=0&&dd<=7) reps.push([t,x.e]); }
+    if(LIVE&&LIVE.vb&&LIVE.vb[t]) vb.push(t); });
+  if(!n) return '';
+  const lk=t=>`<a href="#stock/${encodeURIComponent(t)}"><b>${esc(t)}</b></a>`, pc=v=>`<span class="num ${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(1)}%</span>`;
+  const parts=[`<span><span class="up">${up}</span> עולות · <span class="down">${dn}</span> יורדות · ממוצע ${pc(sum/n)}</span>`];
+  if(best&&best[1]>0) parts.push(`<span>החזקה ביותר: ${lk(best[0])} ${pc(best[1])}</span>`);
+  if(worst&&worst[1]<0) parts.push(`<span>החלשה ביותר: ${lk(worst[0])} ${pc(worst[1])}</span>`);
+  if(reps.length) parts.push(`<span>דוחות השבוע: ${reps.sort((a,b)=>a[1]<b[1]?-1:1).map(([t,d])=>`${lk(t)} ${dm(d)}`).join(', ')}</span>`);
+  if(vb.length) parts.push(`<span>פריצה במחזור: ${vb.map(lk).join(', ')}</span>`);
+  return `<div class="myday">${parts.join('')}</div>`; }
+function placeMyHome(){ const h=$('homeWatch'); if(!h) return; const me=accOn()&&WATCH.length>0, first=document.querySelector('main>section[data-pg="home"]');
+  if(me){ if(first&&first!==h) first.parentNode.insertBefore(h,first); h.classList.remove('fold'); h.classList.add('mine'); const t=h.querySelector('h2'); if(t&&!t.dataset.me){ t.dataset.me=1; t.firstChild.textContent='הרשימה שלי '; } }
+  else if(h.classList.contains('mine')){ const m=$('market'); h.classList.remove('mine'); h.classList.add('fold'); const t=h.querySelector('h2'); if(t){ delete t.dataset.me; t.firstChild.textContent='מניות במעקב '; } const ag=$('todayAgenda'); if(ag) ag.parentNode.insertBefore(h,ag); } }
 function renderWatch(){
   const b=$('watchBody'); if(!b) return;
   b.innerHTML = WATCH.length ? watchRows() : '<div class="empty">עוד אין מניות ברשימה. אפשר להוסיף כאן למעלה, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>';
-  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
+  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=(accOn()?myDayHtml():'')+watchRows(accOn()?20:8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
+  try{ placeMyHome(); }catch(e){}
 }
 document.addEventListener('click',e=>{
   const w=e.target.closest&&e.target.closest('.wbtn[data-w]'); if(w){ e.preventDefault(); toggleWatch(w.dataset.w); return; }
@@ -2987,8 +3006,8 @@ renderNews(); try{ renderIdx(); }catch(e){} renderTop(); fillSectors(); renderTh
    Off until CLK_PK is filled in (the publishable key is public by design). Clerk's scripts load only on a click,
    or on later visits once this browser has signed in. Watchlist: user.unsafeMetadata.watch (the user's own field);
    a paid plan, later, goes in publicMetadata, which only the server can write. */
-const CLK_PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', CLK_LIVE=true;   /* CLK_LIVE=false: the button shows only in a browser that opened the site with ?login=1 (testing while DNS settles) */
-let CLK=null, CLKP=null;
+var CLK_PK='pk_live_Y2xlcmsud2FsbHN0cmVldGVyLmNvLmlsJA', CLK_LIVE=true;   /* CLK_LIVE=false: the button shows only in a browser that opened the site with ?login=1 (testing while DNS settles) */
+var CLK=null, CLKP=null;
 const clkFapi=()=>{ try{ return atob(CLK_PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } };
 function clkScript(src,attrs){ return new Promise((ok,no)=>{ const e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v)); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
 function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
@@ -2996,7 +3015,7 @@ function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
       import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(m=>m.heIL).catch(()=>undefined)])
     .then(async ([,,heIL])=>{ await window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}, localization:heIL,
         appearance:{variables:{colorPrimary:'#2f81f7',colorPrimaryForeground:'#ffffff',colorBackground:'#161b22',colorForeground:'#e6edf3',colorText:'#e6edf3',colorMutedForeground:'#9aa4af',colorTextSecondary:'#9aa4af',colorNeutral:'#e6edf3',colorInput:'#0d1117',colorInputBackground:'#0d1117',colorInputForeground:'#e6edf3',colorInputText:'#e6edf3',colorBorder:'#30363d',colorShimmer:'rgba(255,255,255,.06)',borderRadius:'10px',fontFamily:'Heebo, system-ui, sans-serif'},elements:{socialButtonsBlockButton:{borderColor:'#30363d',color:'#e6edf3'},footerActionLink:{color:'#58a6ff'}}}});
-      CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); try{ applyGate(); }catch(e){} } }); authRender(); try{ applyGate(); }catch(e){} return CLK; })
+      CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); try{ applyGate(); }catch(e){} try{ renderWatch(); }catch(e){} } }); authRender(); try{ applyGate(); }catch(e){} return CLK; })
     .catch(e=>{ CLKP=null; console.log('clerk',e); }); return CLKP; }
 function authRender(){ const b=$('authBox'); if(!b) return; b.classList.remove('hidden');
   if(CLK&&CLK.user){ if(!b.querySelector('.cl-userButtonBox, .cl-rootBox')){ b.innerHTML='<div id="authUB"></div>'; CLK.mountUserButton($('authUB')); } try{ localStorage.setItem('clkOn','1'); }catch(e){} return; }
