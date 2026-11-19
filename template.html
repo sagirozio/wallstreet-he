@@ -2336,7 +2336,7 @@ const dm=iso=>{ const p=String(iso||'').split('-'); return p.length===3?`${+p[2]
 
 /* ---------- watchlist (this browser only) ---------- */
 let WATCH=[]; try{ WATCH=JSON.parse(localStorage.getItem('wsWatch')||'[]').filter(x=>typeof x==='string').slice(0,60); }catch(e){ WATCH=[]; }
-function saveWatch(){ try{ localStorage.setItem('wsWatch',JSON.stringify(WATCH)); }catch(e){} try{ sbPush(); }catch(e){} }
+function saveWatch(){ try{ localStorage.setItem('wsWatch',JSON.stringify(WATCH)); }catch(e){} try{ accPush(); }catch(e){} }
 const inWatch=t=>WATCH.includes(t);
 function watchBtn(t){ const on=inWatch(t); return `<button type="button" class="wbtn${on?' w1':''}" data-w="${esc(t)}" aria-pressed="${on}" title="${on?'הסרה ממניות במעקב':'הוספה למניות שלי'}">${on?'★ במעקב':'☆ מעקב'}</button>`; }
 function toggleWatch(t){ WATCH=inWatch(t)?WATCH.filter(x=>x!==t):[t,...WATCH].slice(0,60); saveWatch(); renderWatch();
@@ -2969,31 +2969,34 @@ document.addEventListener('input',e=>{ if(e.target.id==='thQ'){ thQ=e.target.val
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#secChips button'); if(b){ $('fSector').value=b.dataset.sec; renderEarn(); } });
 renderNews(); try{ renderIdx(); }catch(e){} renderTop(); fillSectors(); renderThemes(); renderBreadth(); renderIpos(); renderEarn(); renderSec(); renderG('all'); renderOverview(); renderCal(); renderAlerts(); renderGloss(); renderHub(); renderFresh(); renderMktStatus(); renderHomeMovers(); renderAgenda(); renderRecap(); renderWatch(); renderScr();
 
-/* ---------- accounts: Google sign-in through Supabase; the watchlist follows the account ----------
-   Off until SB_URL / SB_KEY are filled in (the anon key is public by design; table access is limited by row-level security). */
-const SB_URL='', SB_KEY='';
-let SB=null, SBU=null;
-const sbHasSession=()=>{ try{ return Object.keys(localStorage).some(k=>/^sb-.*-auth-token$/.test(k)); }catch(e){ return false; } };
-async function sbLoad(){ if(SB) return SB; const m=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'); SB=m.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,detectSessionInUrl:true,flowType:'pkce'}});
-  SB.auth.onAuthStateChange((ev,ses)=>{ const u=ses&&ses.user||null; const was=SBU&&SBU.id; SBU=u; authRender(); if(u&&u.id!==was) sbSyncIn(); }); return SB; }
+/* ---------- accounts: sign-in with Clerk (Google + email); the watchlist follows the account ----------
+   Off until CLK_PK is filled in (the publishable key is public by design). Clerk's scripts load only on a click,
+   or on later visits once this browser has signed in. Watchlist: user.unsafeMetadata.watch (the user's own field);
+   a paid plan, later, goes in publicMetadata, which only the server can write. */
+const CLK_PK='';
+let CLK=null, CLKP=null;
+const clkFapi=()=>{ try{ return atob(CLK_PK.split('_')[2]).replace(/\$$/,''); }catch(e){ return ''; } };
+function clkScript(src,attrs){ return new Promise((ok,no)=>{ const e=document.createElement('script'); e.src=src; e.crossOrigin='anonymous'; e.async=true; Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v)); e.onload=ok; e.onerror=no; document.head.appendChild(e); }); }
+function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
+  CLKP=Promise.all([clkScript(`https://${f}/npm/@clerk/ui@1/dist/ui.browser.js`), clkScript(`https://${f}/npm/@clerk/clerk-js@6/dist/clerk.browser.js`,{'data-clerk-publishable-key':CLK_PK}),
+      import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(m=>m.heIL).catch(()=>undefined)])
+    .then(async ([,,heIL])=>{ await window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}, localization:heIL,
+        appearance:{variables:{colorPrimary:'#2f81f7',colorBackground:'#161b22',colorText:'#e6edf3',colorInputBackground:'#0d1117',colorInputText:'#e6edf3',borderRadius:'10px'}}});
+      CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); } }); authRender(); return CLK; })
+    .catch(e=>{ CLKP=null; console.log('clerk',e); }); return CLKP; }
 function authRender(){ const b=$('authBox'); if(!b) return; b.classList.remove('hidden');
-  if(!SBU){ b.innerHTML=`<button class="authbtn" id="authIn" aria-label="התחברות עם Google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.3-1.6 3.9-5.4 3.9-3.2 0-5.9-2.7-5.9-6s2.7-6 5.9-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.8 3.4 14.6 2.4 12 2.4 6.7 2.4 2.4 6.7 2.4 12s4.3 9.6 9.6 9.6c5.5 0 9.2-3.9 9.2-9.4 0-.6-.1-1.1-.2-1.6H12z"/></svg><span>התחברות</span></button>`; return; }
-  const m=SBU.user_metadata||{}, nm=m.full_name||m.name||SBU.email||'', pic=m.avatar_url||m.picture||'';
-  b.innerHTML=`<button class="authbtn on" id="authMe" aria-haspopup="true" aria-label="החשבון שלי">${pic?`<img src="${esc(pic)}" alt="" referrerpolicy="no-referrer">`:`<b>${esc(nm.slice(0,1))}</b>`}</button>
-    <div class="authmenu hidden" id="authMenu"><div class="authwho"><b>${esc(nm)}</b><small>${esc(SBU.email||'')}</small></div><p>רשימת המעקב נשמרת בחשבון ומופיעה בכל מכשיר.</p><button id="authOut">התנתקות</button><button id="authDel" class="danger">מחיקת החשבון</button></div>`; }
-async function sbSyncIn(){ if(!SBU) return; try{ const {data}=await SB.from('profiles').select('watch').eq('id',SBU.id).maybeSingle(); const remote=(data&&data.watch)||[];
-    const merged=[...new Set([...WATCH,...remote])].filter(x=>typeof x==='string').slice(0,60); const changed=merged.length!==WATCH.length; WATCH=merged; try{ localStorage.setItem('wsWatch',JSON.stringify(WATCH)); }catch(e){}
-    if(!data||merged.length!==remote.length) await SB.from('profiles').upsert({id:SBU.id,watch:WATCH,updated_at:new Date().toISOString()});
+  if(CLK&&CLK.user){ if(!b.querySelector('.cl-userButtonBox, .cl-rootBox')){ b.innerHTML='<div id="authUB"></div>'; CLK.mountUserButton($('authUB')); } try{ localStorage.setItem('clkOn','1'); }catch(e){} return; }
+  b.innerHTML=`<button class="authbtn" id="authIn" aria-label="התחברות"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.3-1.6 3.9-5.4 3.9-3.2 0-5.9-2.7-5.9-6s2.7-6 5.9-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.8 3.4 14.6 2.4 12 2.4 6.7 2.4 2.4 6.7 2.4 12s4.3 9.6 9.6 9.6c5.5 0 9.2-3.9 9.2-9.4 0-.6-.1-1.1-.2-1.6H12z"/></svg><span>התחברות</span></button>`;
+  if(CLK&&!CLK.user){ try{ localStorage.removeItem('clkOn'); }catch(e){} } }
+async function clkSyncIn(){ const u=CLK&&CLK.user; if(!u) return; try{
+    const remote=Array.isArray((u.unsafeMetadata||{}).watch)?u.unsafeMetadata.watch:[];
+    const merged=[...new Set([...WATCH,...remote])].filter(x=>typeof x==='string').slice(0,60), changed=merged.length!==WATCH.length; WATCH=merged;
+    try{ localStorage.setItem('wsWatch',JSON.stringify(WATCH)); }catch(e){}
+    if(merged.length!==remote.length) await u.update({unsafeMetadata:{...u.unsafeMetadata,watch:WATCH}});
     if(changed){ try{ renderWatch(); }catch(e){} } }catch(e){ console.log('sync',e); } }
-let sbPushT=null; function sbPush(){ if(!SB||!SBU) return; clearTimeout(sbPushT); sbPushT=setTimeout(()=>SB.from('profiles').upsert({id:SBU.id,watch:WATCH,updated_at:new Date().toISOString()}).then(()=>{},()=>{}),800); }
-document.addEventListener('click',async e=>{
-  if(e.target.closest('#authIn')){ await sbLoad(); SB.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname+location.hash}}); return; }
-  if(e.target.closest('#authMe')){ $('authMenu').classList.toggle('hidden'); return; }
-  if(e.target.closest('#authOut')){ await SB.auth.signOut(); return; }
-  if(e.target.closest('#authDel')){ if(!confirm('למחוק את החשבון? רשימת המעקב תישאר רק בדפדפן הזה.')) return; try{ await SB.rpc('delete_me'); }catch(_){} await SB.auth.signOut(); return; }
-  const m=$('authMenu'); if(m&&!m.classList.contains('hidden')&&!e.target.closest('#authBox')) m.classList.add('hidden');
-});
-if(SB_URL&&SB_KEY){ authRender(); if(sbHasSession()||/[?&]code=/.test(location.search)) sbLoad().then(s=>s.auth.getSession()).then(r=>{ SBU=r&&r.data&&r.data.session&&r.data.session.user||null; authRender(); if(SBU) sbSyncIn(); }).catch(()=>{}); }
+let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; clearTimeout(clkPushT); clkPushT=setTimeout(()=>u.update({unsafeMetadata:{...u.unsafeMetadata,watch:WATCH}}).catch(()=>{}),800); }
+document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(c&&!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
+if(CLK_PK){ authRender(); let on=false; try{ on=localStorage.getItem('clkOn')==='1'; }catch(e){} if(on||/__clerk|clerk_/.test(location.search+location.hash)) clkLoad(); }
 route(); loadStocks(); loadLive();
 if ('serviceWorker' in navigator && location.protocol==='https:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 (async () => {
