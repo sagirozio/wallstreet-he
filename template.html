@@ -260,7 +260,7 @@ tr:last-child td{border-bottom:0}
 .ldwk{border:1px solid #2f4f86;background:#111a2b;border-radius:12px;padding:12px 14px;margin-bottom:12px}.ldwh{display:flex;gap:8px;align-items:baseline;margin-bottom:8px}.ldwh b{font-size:15.5px}.ldwh small{color:var(--muted);font-size:12px}
 .ldwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}.ldwg>div{background:var(--panel);border-radius:10px;padding:8px 10px}.ldwg small{color:var(--muted);font-size:12px}
 .ldwg ul{list-style:none;margin:4px 0 0;padding:0}.ldwg li{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:2px 0}.ldwg li a{font:600 13px 'JetBrains Mono',monospace;color:var(--text);text-decoration:none}.ldwg li span{font-size:12px}.mu{color:var(--muted)}
-#rotBody{max-width:760px}.rotr{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;padding:7px 2px;border-top:1px solid var(--line);color:var(--text);text-decoration:none}.rotr:hover{background:var(--panel)}
+#rotBody{max-width:760px}.rotsum{font-size:14px;margin:0 0 10px;line-height:1.6}.rotlg{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}.rotlg>b{font-size:14px}.rotlg p{margin:6px 0 0;font-size:13px;line-height:1.6;color:var(--muted)}.rotlg p b{color:var(--text)}.rotr{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;padding:7px 2px;border-top:1px solid var(--line);color:var(--text);text-decoration:none}.rotr:hover{background:var(--panel)}
 .rotn{display:flex;flex-direction:column}.rotn b{font:600 13.5px 'JetBrains Mono',monospace;text-align:right}.rotn small{color:var(--muted);font-size:12px}
 .rotb{position:relative;height:16px;background:var(--panel2);border-radius:4px}.rotb i{position:absolute;right:0;top:0;bottom:0;border-radius:4px;opacity:.6}.rotb i.pos{background:var(--green)}.rotb i.neg{background:var(--red)}
 .rotb em{position:absolute;top:-4px;bottom:-4px;width:2px;background:#e3e7ec;opacity:.7;transform:translateX(50%)}.rotv{text-align:left;direction:ltr;font-size:14px}.rotv small{font-size:12px}
@@ -2429,10 +2429,17 @@ function renderRot(){
   const he=t=>(((SECTORS||{}).rows||[]).find(x=>x.t===t)||{}).name||'', en=t=>(Object.entries(SEC_HE).find(([e,h])=>h===he(t))||[''])[0];
   const rows=Object.entries(R).filter(([,v])=>v[0]!=null).sort((a,b)=>b[1][0]-a[1][0]);
   if(!rows.length){ b.innerHTML='<div class="empty">הנתונים יופיעו אחרי העדכון הלילי.</div>'; return; }
-  b.innerHTML=`<div class="rotl">${rows.map(([t,[n,o]])=>{ const d=o==null?null:n-o;
+  const ch=rows.filter(([,v])=>v[1]!=null).map(([t,v])=>[t,v[0]-v[1]]), upS=ch.filter(x=>x[1]>=3).sort((a,b)=>b[1]-a[1]).slice(0,3), dnS=ch.filter(x=>x[1]<=-3).sort((a,b)=>a[1]-b[1]).slice(0,3);
+  const sum=(upS.length||dnS.length)?`<p class="rotsum">בחודש האחרון: ${upS.length?`<span class="up">התחזקו ${upS.map(([t,d])=>`${esc(he(t))} (${t}, ▲${d})`).join(', ')}</span>`:''}${upS.length&&dnS.length?' · ':''}${dnS.length?`<span class="down">נחלשו ${dnS.map(([t,d])=>`${esc(he(t))} (${t}, ▼${-d})`).join(', ')}</span>`:''}</p>`:'';
+  b.innerHTML=sum+`<div class="rotl">${rows.map(([t,[n,o]])=>{ const d=o==null?null:n-o;
     return `<a class="rotr" href="#sector/${encodeURIComponent(en(t))}"><span class="rotn"><b>${esc(t)}</b><small>${esc(he(t))}</small></span>
       <span class="rotb"><i class="${d==null||d>=0?'pos':'neg'}" style="width:${n}%"></i>${o!=null?`<em style="right:${o}%" title="לפני 4 שבועות: ${o}"></em>`:''}</span>
-      <span class="rotv num ${d==null?'':d>=0?'up':'down'}">${n}${d!=null?` <small>${d>0?'▲':d<0?'▼':'•'}${Math.abs(d)}</small>`:''}</span></a>`; }).join('')}</div>`;
+      <span class="rotv num ${d==null?'':d>=0?'up':'down'}">${n}${d!=null?` <small>${d>0?'▲':d<0?'▼':'•'}${Math.abs(d)}</small>`:''}</span></a>`; }).join('')}</div>
+    +`<div class="rotlg"><b>איך לקרוא</b>
+      <p><b>המספר הגדול</b> הוא דירוג ה-RS של קרן הסל של הסקטור, מ-1 עד 99. הוא משווה את הביצועים שלה ב-12 החודשים האחרונים (3 החודשים האחרונים נספרים כפול) לכל מניות ה-S&amp;P 500. RS 77 = הסקטור חזק מ-77% מהמניות.</p>
+      <p><b>נקודות דירוג</b> (▲ / ▼) = בכמה הדירוג השתנה ב-4 השבועות האחרונים. ▲13 אומר שהסקטור עלה מ-19 ל-32: הוא עוקף עכשיו עוד 13% מהמניות לעומת לפני חודש. ▼44 אומר שירד 44 נקודות.</p>
+      <p><b>הפס</b> = הדירוג היום. <b>הקו הלבן</b> = הדירוג לפני 4 שבועות. ירוק = התחזק, אדום = נחלש.</p>
+      <p><b>רוטציה</b> = כסף שעובר מסקטורים שנחלשים לסקטורים שמתחזקים. מעבר לחשמל ומים, צריכה בסיסית ובריאות נחשב בדרך כלל מעבר לסקטורים דפנסיביים. זה תיאור של הנתונים, לא תחזית ולא המלצה.</p></div>`;
 }
 function renderSnap(){
   const b=$('snapBody'); if(!b) return; const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
