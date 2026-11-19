@@ -8,6 +8,14 @@ Edit only `data.json` (and `scripts/he_names.json`), then build. Everything else
 
 **Banned source: Al Jazeera.** Never use aljazeera.com / Al Jazeera (any language) as a source, link or attribution: not for news items, the brief, report cards or anything else. If a story appears only there, find it on another reliable outlet or skip it.
 
+## Health check — every run, first (2–3 minutes)
+Applies to every scheduled run, including the short hourly / half-hour ones.
+- Failed workflow runs in the last few hours: `gh api "repos/sagirozio/wallstreet-he/actions/runs?per_page=50" --jq '.workflow_runs[]|select(.conclusion=="failure")|[.name,.path,.created_at,.id]|@tsv'`. If a workflow's latest run is still a failure, read the log (`gh run view <id> --log-failed | tail -40`). Transient cause (network, rate limit, timeout, push race): re-dispatch it once with `gh api -X POST repos/sagirozio/wallstreet-he/actions/workflows/<file>/dispatches -f ref=main`. A real bug with a small, obvious fix: fix, test locally, commit with scripts/commit.sh. Otherwise report it.
+- Open issues labeled `health` or `health-live`: read the latest comment and act the same way.
+- During the US session (16:30–23:00 Israel): live.json `asOf` must be under 15 minutes old (`git fetch -q origin +live:refs/remotes/origin/live && git show origin/live:live.json | head -c 200`). Stale and no "Live quotes" run in progress: dispatch live.yml. (The intraday loop also restarts it automatically.)
+- Never cancel a running "Intraday loop" run, never force-push main, never delete data.
+- Start the final summary with one line on health: all OK, or what failed and what you did.
+
 ## Your job, in this order (stop when time runs out; the rest waits for the next run)
 
 | Run | When (Israel) | Do |
