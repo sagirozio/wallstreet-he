@@ -1586,7 +1586,7 @@ async function renderStock(t){
   const peers=s.ind?(((THEMES||FALLBACK.themes).stocks||{})[s.ind]||[]).filter(x=>x[0]!==t).sort((a,b)=>capNum(b[2])-capNum(a[2])).slice(0,8):[];
   const news=stockNews(t,s), d=s.r&&s.r.d!=null?s.r.d:null;
   SPT='ov';
-  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','דוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
+  const tabs=[['ov','סקירה'],['ch','גרף'],['rp','נתונים ודוחות'],...(news.length?[['nw',`חדשות<b>${news.length}</b>`]]:[])];
   const desc = prof.desc ? esc(prof.desc) : (s.indHe||secHe) ? `<bdi>${esc(s.co)}</bdi> היא חברה ${s.indHe?`בתחום ${esc(s.indHe)}`:''}${secHe?` בסקטור ${esc(secHe)}`:''}.` : '<span class="flat">תיאור החברה בעברית יתווסף בקרוב.</span>';
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
@@ -1598,7 +1598,6 @@ async function renderStock(t){
       ${whyBlock(t,s,news)}
       ${repMini(rep)}
       <div id="spPerf">${perfTiles(s)}</div>
-      <div id="spSnap"></div>
       <div id="spPx"></div>
       <div id="spMv"></div>
       ${news.filter(n=>n!==WHY_USED).length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.filter(n=>n!==WHY_USED).slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
@@ -1608,6 +1607,7 @@ async function renderStock(t){
     </div>
     <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · <span style="color:#58a6ff">ממוצע נע 50 יום (כחול)</span> · <span style="color:#f5b942">ממוצע נע אקספוננציאלי 200 יום (צהוב)</span></span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
+      <div id="spSnap"></div>
       ${repTiles(SDET[t],rep,reps)}
       ${rep?`<details class="how mdet"><summary>הדוח המלא של ${esc(rep.q||'הרבעון')}: תחזית, מה אמרה ההנהלה, תגובת המניה</summary><div class="earn">${card(rep)}</div></details>`:'<div class="empty">עוד לא הוספנו דוח של החברה הזו למאגר.</div>'}
       ${reps.length>1?`<a class="ewmore allrep" href="#reports" data-rq="${esc(t)}">לכל ${reps.length} הדוחות של ${esc(t)} במאגר ←</a>`:''}
@@ -1804,7 +1804,6 @@ async function renderStkSnap(t){
   add('רבעונים ברצף עם צמיחת רווח 15%+', streak!=null?`<span class="num">${streak}</span>`:null, 'EPSSTREAK');
   add('צמיחת רווח, 4 רבעונים', P(ann), 'EPS4Q');
   add('RS', r.rs!=null?`<span class="num">${r.rs}</span>`:null, 'RS');
-  add('ROE', F.roe&&F.roe.v!=null?N(F.roe.v,1,'%'):null, 'ROE');
   add('שולי רווח נקי', x.nm!=null?N(x.nm,1,'%'):null, 'MARGIN');
   add('מכפיל רווח', x.pe!=null?N(x.pe):null, 'PE');
   add('מכפיל מכירות', x.ps!=null?N(x.ps):null, 'PS');
@@ -1813,12 +1812,9 @@ async function renderStkSnap(t){
   const m50=ma(50), m200=ma(200);
   add('מרחק מממוצע 50 יום', last&&m50?P((last/m50-1)*100,1):null, 'MA');
   add('מרחק מממוצע 200 יום', last&&m200?P((last/m200-1)*100,1):null, 'MA');
-  add('שורט מהמניות הצפות', F.si!=null?N(F.si,1,'%'):null, 'SHORT');
-  add('בעלות מוסדיים', F.inst!=null?N(F.inst,0,'%'):null, 'INST');
-  const nx=det.e&&det.e.d&&det.e.d>=new Date().toISOString().slice(0,10)?det.e.d:null; add('הדוח הבא', nx?`<span class="num">${dm(nx)}</span>${det.e.est?' <i class="snq">הערכה</i>':''}`:null, 'NEXTREP');
   b.innerHTML=C.length?`<h3 class="sph3">תקציר נתונים</h3><div class="snap">${C.join('')}</div><p class="legend">רווח למניה ומכפילים לפי הדוחות לרשות ניירות הערך האמריקאית (GAAP). ממוצעים לפי מחירי סגירה.</p>`:'';
 }
-function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t); try{ renderMoves(t); }catch(e){} } }); try{ renderStkSnap(t); }catch(e){} }
+function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t); try{ renderMoves(t); }catch(e){} } }); }
 /* "why did it move": days of 5%+ since the news archive starts, each with our per-stock item from that day (or "no confirmed reason") */
 let MVALL=false;
 function renderMoves(t){
@@ -1879,7 +1875,7 @@ function spTab(k){
   if(k!=='ov'&&gateOn()&&!accOn()){ const pn=body.querySelector('.sptab.on'); if(pn) gateBox(pn,{ch:'הגרף המלא',rp:'הדוחות של המניה',nw:'כל החדשות של המניה'}[k]||'הלשונית הזו'); return; }
   const done=body.dataset.loaded||'';
   if(k==='ch' && !done.includes('ch')){ body.dataset.loaded=done+'ch'; drawChart(s,'D'); }
-  if(k==='rp' && !done.includes('rp')){ body.dataset.loaded=(body.dataset.loaded||'')+'rp'; loadFund(t); }
+  if(k==='rp' && !done.includes('rp')){ body.dataset.loaded=(body.dataset.loaded||'')+'rp'; loadFund(t); try{ renderStkSnap(t); }catch(e){} }
   const st=body.querySelector('.spstick'), pn=body.querySelector('.sptab.on');
   if(st&&pn){ const navh=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navh'))||0, y=pn.getBoundingClientRect().top+window.scrollY-navh-st.offsetHeight-14; if(window.scrollY>y) window.scrollTo(0,Math.max(0,y)); }
 }
