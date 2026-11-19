@@ -94,14 +94,10 @@ try:
     UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"}
     raw = urllib.request.urlopen(urllib.request.Request("https://www.aaii.com/files/surveys/sentiment.xls", headers=UA), timeout=60).read()
     x = pd.read_excel(io.BytesIO(raw), header=None, engine="xlrd")
-    hr = next(i for i in range(min(12, len(x))) if any(str(v).strip().lower().startswith("bullish") for v in x.iloc[i]))
-    ci = {}
-    for k in ("bullish", "neutral", "bearish"):   # header may span two rows; take the first column whose label starts with the word
-        for r_ in (hr, hr - 1, hr + 1):
-            if r_ < 0: continue
-            hit = [j for j, v in enumerate(x.iloc[r_]) if str(v).strip().lower().startswith(k)]
-            if hit: ci[k] = hit[0]; break
-    if len(ci) < 3: print("aaii header rows:", [list(x.iloc[i, :8]) for i in range(max(0, hr - 1), hr + 2)])
+    # the header row is the one that names Neutral and Bearish (the file has a few title rows above it)
+    hr = next(i for i in range(min(15, len(x))) if {"neutral", "bearish"} <= {str(v).strip().lower() for v in x.iloc[i]})
+    lab = [str(v).strip().lower() for v in x.iloc[hr]]
+    ci = {k: lab.index(k) for k in ("bullish", "neutral", "bearish")}
     a = x.iloc[hr + 1:, [0, ci["bullish"], ci["neutral"], ci["bearish"]]]
     a.columns = ["d", "bu", "ne", "be"]
     a["d"] = pd.to_datetime(a["d"], errors="coerce")
