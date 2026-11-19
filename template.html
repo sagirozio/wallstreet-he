@@ -246,7 +246,15 @@ tr:last-child td{border-bottom:0}
 .news .bar{border-radius:4px;background:var(--accent)}.news .bar.neg{background:var(--red)}.news .bar.pos{background:var(--green)}
 .news h3{margin:0 0 4px;font-size:17px}.news p{margin:0;color:#c6cfdf;font-size:15px}
 .tag{font-size:12px;color:var(--muted)}
-.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.glsr input{width:100%;height:42px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--text);padding:0 14px;font-size:15px;margin:4px 0 10px}
+.glch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.glch button{font:inherit;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
+.glch button.on{background:#1b2a44;border-color:#2f4f86;color:#8fb6ff}
+.glb h3{font-size:14px;color:var(--muted);font-weight:600;margin:18px 0 8px}
+.glc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .3s}.glc.flash{border-color:#58a6ff}
+.glt{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.glt b{color:#e3e7ec;font-size:15px}.glt span{font:12px 'JetBrains Mono',monospace;color:var(--muted);direction:ltr;white-space:nowrap}
+.glc p{margin:6px 0 0;font-size:14px;line-height:1.6;color:var(--text)}.glex{font-size:13px;background:var(--panel2);border-radius:6px;padding:6px 9px;margin-top:8px;color:#9aa3ad}
+.glat{display:inline-block;font-size:13px;margin-top:8px}.glmore{display:inline-block;margin-top:8px;font-size:13px}.glnone{color:var(--muted)}
 .gl b{display:block;margin-bottom:2px}.gl p{margin:0;color:#c6cfdf;font-size:14px}
 footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0 40px;color:var(--muted);font-size:13px}
 footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
@@ -1203,6 +1211,7 @@ function pageOf(h){
   if(h==='#reports') return ['reports',$('earnings')];
   if(h.startsWith('#stock/')) return ['stock',null];
   if(h.startsWith('#sector/')||h.startsWith('#ind/')) return ['group',null];
+  if(h.startsWith('#glossary')) return ['gloss',$('glossary')];
   if(h==='#terms') return ['legal',$('termsPage')];
   if(h==='#accessibility') return ['legal',$('accessPage')];
   const el=document.getElementById(h.slice(1));
@@ -1221,6 +1230,7 @@ function route(){
   $('subnav').classList.toggle('hidden',!showSub);
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)?'on':''}">${l}</a>`).join('');
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
+  if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
   if(pg==='reports') loadReports();
   if(pg==='news') loadNews();
   if(pg==='stocks'||(pg==='home'&&WATCH.length)) loadScr();
@@ -1749,12 +1759,88 @@ document.addEventListener('click',e=>{
   e.preventDefault(); e.stopPropagation();
   const g=GLOSS[b.dataset.gl]; if(!g) return;
   if(!pop.classList.contains('hidden') && pop.dataset.k===b.dataset.gl){ pop.classList.add('hidden'); return; }
-  pop.dataset.k=b.dataset.gl; pop.innerHTML=`<b>${esc(g[0])}</b><p>${esc(g[1])}</p>`; pop.classList.remove('hidden');
+  pop.dataset.k=b.dataset.gl; pop.innerHTML=`<b>${esc(g[0])}</b><p>${esc(g[1])}</p><a class="glmore" href="#glossary/${b.dataset.gl}">במילון המונחים ←</a>`; pop.classList.remove('hidden');
   const r=b.getBoundingClientRect(), w=pop.offsetWidth, x=Math.min(Math.max(8, r.left+r.width/2-w/2), document.documentElement.clientWidth-w-8);
   pop.style.left=(x+window.scrollX)+'px'; pop.style.top=(r.bottom+window.scrollY+8)+'px';
 }, true);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('glPop').classList.add('hidden'); });
-function renderGloss(){ $('glList').innerHTML=Object.values(GLOSS).map(([t,d])=>`<div class="card"><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join(''); }
+/* extra terms for the glossary page (same format: [title, explanation]) */
+Object.assign(GLOSS,{
+  STOCK:['מניה','חלק קטן בבעלות על חברה. מי שמחזיק מניה זכאי לחלק מהרווחים (אם החברה מחלקת דיבידנד) ומשתתף בהצבעות של בעלי המניות. המחיר נקבע בכל רגע לפי ההיצע והביקוש בבורסה.'],
+  INDEX:['מדד','סל מניות שמייצג חלק מהשוק, ומחושב כמספר אחד. כשאומרים ״השוק עלה״ מתכוונים בדרך כלל למדד S&P 500.'],
+  SPX:['S&P 500','מדד של כ-500 החברות הגדולות בארה״ב, משוקלל לפי שווי שוק: לחברה גדולה יותר יש השפעה גדולה יותר. נחשב המדד המייצג של שוק המניות האמריקאי.'],
+  NDX:['נאסד״ק','הבורסה השנייה בגודלה בארה״ב, וגם שם המדד של כל המניות שנסחרות בה. יש בו משקל גבוה לחברות טכנולוגיה. נאסד״ק 100 כולל את 100 הגדולות שבהן.'],
+  DOW:['דאו ג׳ונס','מדד ותיק של 30 חברות אמריקאיות גדולות. משוקלל לפי מחיר המניה ולא לפי שווי, ולכן מניה במחיר גבוה משפיעה עליו יותר.'],
+  RUT:['ראסל 2000','מדד של כ-2,000 חברות קטנות בארה״ב. רגיש יותר לריבית ולמצב הכלכלה המקומית, ולכן משמש מדד למצב החברות הקטנות.'],
+  VOL:['נפח מסחר','כמה מניות החליפו ידיים ביום. נפח גבוה מהרגיל מראה שיש עניין מיוחד במניה, למשל אחרי דוח או חדשות. באתר מוצגות רק מניות עם מחזור יומי ממוצע של 500 אלף מניות לפחות.'],
+  BULL:['שוק שורי / שוק דובי','שוק שורי: תקופה ארוכה של עליות. שוק דובי: ירידה של 20% ומעלה מהשיא. השמות באים מהדרך שבה השור תוקף (מלמטה למעלה) והדוב (מלמעלה למטה).'],
+  CORR:['תיקון','ירידה של 10% עד 20% מהשיא האחרון. קורה בממוצע פעם בשנה-שנתיים, וברוב המקרים לא הופך לשוק דובי.'],
+  SURP:['הפתעה (Surprise)','הפער באחוזים בין התוצאה בפועל לצפי האנליסטים. הפתעה חיובית גדולה לא תמיד מעלה את המניה: הרבה תלוי בתחזית להמשך.'],
+  GAAPX:['EPS מתואם מול חשבונאי (GAAP)','חשבונאי (GAAP) = לפי כללי החשבונאות, כולל כל ההוצאות. מתואם (Adjusted / Non-GAAP) = בלי הוצאות שהחברה מגדירה כחד-פעמיות ובלי תגמול במניות. האנליסטים משווים בדרך כלל למתואם. באתר, האות G מסמנת נתון חשבונאי.'],
+  FY:['רבעון ושנה פיסקלית','השנה החשבונאית של החברה. אצל רוב החברות היא זהה לשנה הקלנדרית, אבל לא אצל כולן: למשל אצל Nvidia השנה הפיסקלית 2027 מתחילה בפברואר 2026. לכן לפעמים כתוב ליד הדוח Q1 FY27.'],
+  CALL:['שיחת ועידה (Earnings call)','שיחה שההנהלה מקיימת עם אנליסטים ומשקיעים אחרי הדוח. בה מוסברים המספרים, ניתנת תחזית ועונים לשאלות. דברים שנאמרים בה מזיזים לא פעם את המניה.'],
+  MARGIN:['שולי רווח','הרווח כאחוז מההכנסות. שולי רווח גולמי = רווח גולמי חלקי הכנסות. שולי רווח תפעולי ונקי מחושבים באותו אופן. שוליים שעולים מראים שהחברה מרוויחה יותר על כל דולר מכירות.'],
+  DEBT:['חוב נטו','החובות של החברה (הלוואות ואג״ח) פחות המזומנים שלה. חוב נטו שלילי = יש לחברה יותר מזומן מחוב.'],
+  PE:['מכפיל רווח (P/E)','מחיר המניה חלקי הרווח למניה ב-4 הרבעונים האחרונים. כמה דולרים משלמים היום על כל דולר רווח שנתי. מכפיל גבוה מעיד בדרך כלל על ציפייה לצמיחה.'],
+  FPE:['מכפיל רווח עתידי (Forward P/E)','מחיר המניה חלקי הרווח שהאנליסטים צופים ל-12 החודשים הבאים. מראה כמה המניה ״יקרה״ ביחס לרווח הצפוי, ולא לרווח שכבר היה.'],
+  PS:['מכפיל מכירות (P/S)','שווי השוק חלקי ההכנסות השנתיות. שימושי לחברות שעדיין לא מרוויחות, שאין להן מכפיל רווח.'],
+  PEG:['PEG','מכפיל הרווח חלקי קצב צמיחת הרווח השנתי באחוזים. מנסה להתאים את המכפיל לצמיחה: PEG סביב 1 נחשב מאוזן.'],
+  DIV:['דיבידנד ותשואת דיבידנד','דיבידנד = חלק מהרווח שהחברה מחלקת במזומן לבעלי המניות, לרוב פעם ברבעון. תשואת דיבידנד = הדיבידנד השנתי חלקי מחיר המניה.'],
+  EVEBITDA:['EV/EBITDA','שווי החברה כולל החוב נטו (EV), חלקי הרווח לפני ריבית, מסים, פחת והפחתות (EBITDA). מאפשר להשוות בין חברות עם מבנה חוב שונה.'],
+  OFFHI:['מרחק מהשיא','כמה אחוזים המניה מתחת למחיר הסגירה הגבוה ביותר שלה ב-52 השבועות האחרונים. 0% = המניה בשיא.'],
+  CANDLE:['גרף נרות','כל ״נר״ מראה יום מסחר אחד: פתיחה, סגירה, גבוה ונמוך. נר ירוק = נסגר מעל הפתיחה, נר אדום = נסגר מתחתיה. הקווים הדקים מראים את הטווח של היום.'],
+  SUPRES:['תמיכה והתנגדות','תמיכה = אזור מחיר שבו המניה נעצרה בעבר בירידות. התנגדות = אזור שבו נעצרה בעליות. אלה רמות שמשקיעים רבים עוקבים אחריהן, לא חוקים.'],
+  GAP:['פער (Gap)','כשמניה נפתחת רחוק ממחיר הסגירה של יום קודם, בגלל חדשות או דוח שיצאו כשהבורסה הייתה סגורה. בגרף נראה כרווח ריק בין שני נרות.'],
+  SPDR:['קרנות הסל של הסקטורים (SPDR)','סדרת קרנות סל שכל אחת עוקבת אחרי סקטור אחד במדד S&P 500, למשל XLK לטכנולוגיה ו-XLE לאנרגיה. באתר, הביצועים של כל סקטור מחושבים לפי מחיר הקרן שלו.'],
+  CEF:['קרן סגורה','קרן השקעות שנסחרת בבורסה כמו מניה, עם מספר יחידות קבוע. המחיר יכול להיות גבוה או נמוך משווי הנכסים שהיא מחזיקה (פרמיה או דיסקאונט). רבות מהן מחלקות הכנסה חודשית.'],
+  REIT:['קרן ריט (REIT)','חברה שמחזיקה נדל״ן מניב, כמו משרדים, דירות, מחסנים או מרכזי נתונים. לפי החוק היא חייבת לחלק לפחות 90% מהרווח החייב במס כדיבידנד.'],
+  BDC:['BDC – חברה לפיתוח עסקים','חברה שמלווה כסף או משקיעה בחברות פרטיות קטנות ובינוניות. כמו קרן ריט, היא מחלקת את רוב הרווח כדיבידנד.'],
+  TNX:['תשואת אג״ח ל-10 שנים','הריבית שממשלת ארה״ב משלמת על הלוואה ל-10 שנים. משמשת בסיס לריבית על משכנתאות והלוואות. כשהיא עולה, מניות צמיחה נוטות להיפגע.'],
+  SPLIT:['פיצול מניה','חלוקה של כל מניה לכמה מניות במחיר נמוך יותר. למשל פיצול 1:10 הופך מניה של 1,000 דולר ל-10 מניות של 100 דולר. שווי החברה לא משתנה.'],
+  BUYBACK:['רכישה עצמית (Buyback)','כשחברה קונה בחזרה את המניות שלה בבורסה. מספר המניות קטן, ולכן הרווח למניה עולה. דרך נוספת, מלבד דיבידנד, להחזיר כסף לבעלי המניות.'],
+  TARGET:['מחיר יעד','המחיר שאנליסט מעריך שהמניה תגיע אליו, בדרך כלל בתוך 12 חודשים. זו הערכה ולא תחזית מדויקת, והיא משתנה לעיתים קרובות.'],
+  OPT:['אופציות','חוזה שנותן זכות (לא חובה) לקנות (Call) או למכור (Put) מניה במחיר קבוע עד תאריך מסוים. משמש להגנה על תיק או להימור על כיוון. סיכון גבוה.'],
+  SHORT:['שורט (מכירה בחסר)','מכירה של מניה שאולה, מתוך ציפייה לקנות אותה בחזרה בזול יותר. ״ריבית שורט״ = כמה מהמניות מוחזקות בשורט. שורט גבוה יכול להוביל לזינוק חד אם המניה עולה (Short squeeze).'],
+  VOLAT:['תנודתיות','כמה מחיר המניה משתנה. מניה תנודתית יכולה לעלות ולרדת בחדות בזמן קצר. מניות קטנות וביוטק בדרך כלל תנודתיות יותר.']
+});
+/* category, English name, example, where on the site — for the glossary page */
+const GLC=[['b','יסודות השוק'],['r','דוחות'],['f','דוחות כספיים'],['v','מכפילים ושווי'],['t','טכני ומומנטום'],['s','סקטורים וקרנות'],['m','מאקרו'],['e','אירועים ומסחר']];
+const GLM={
+  STOCK:['b','Stock'],INDEX:['b','Index'],SPX:['b','S&P 500','','#','עמוד ראשי'],NDX:['b','Nasdaq'],DOW:['b','Dow Jones'],RUT:['b','Russell 2000'],
+  CAP:['b','Market Cap','מחיר ‎$50 × מיליארד מניות = שווי ‎$50B'],VOL:['b','Volume'],PRE:['b','Pre / After market','','#stock/NVDA','תעודת זהות של מניה'],BULL:['b','Bull / Bear'],CORR:['b','Correction'],SCREEN:['b','Screener','','#screener','סורק מניות'],
+  EPS:['r','EPS','‎$2.10 בפועל מול צפי ‎$1.80 = עקיפה של 17%','#page/reports','דוחות'],GAAPX:['r','Adjusted / GAAP','','#page/reports','מאגר הדוחות'],REV:['r','Revenue'],BEAT:['r','Beat / Miss'],SURP:['r','Surprise','צפי ‎$1.00, בפועל ‎$1.10 = הפתעה של ‎+10%'],
+  GUIDE:['r','Guidance'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
+  F_Q:['f','Quarterly'],F_REVOP:['f','Revenue / Operating Income'],F_GP:['f','Gross Profit / OpEx'],F_NI:['f','Net Income'],F_EPS:['f','Diluted EPS'],MARGIN:['f','Margins','רווח גולמי ‎$40 מהכנסות ‎$100 = שולי רווח גולמי 40%'],F_BAL:['f','Balance Sheet'],FCF:['f','Free Cash Flow'],DEBT:['f','Net Debt'],
+  PE:['v','P/E','מחיר ‎$100 / EPS שנתי ‎$5 = מכפיל 20'],FPE:['v','Forward P/E'],PS:['v','P/S'],PEG:['v','PEG','מכפיל 30 / צמיחה של 30% בשנה = PEG 1'],DIV:['v','Dividend Yield','דיבידנד ‎$2 בשנה / מחיר ‎$50 = תשואה 4%'],EVEBITDA:['v','EV/EBITDA'],
+  RS:['t','RS Rating','RS 90 = חזקה מ-90% ממניות S&P 500','#themes','טבלת תעשיות'],MA:['t','Moving Average','','#themes','טבלת תעשיות'],HILO:['t','52-week High / Low','','#breadth','רוחב שוק'],OFFHI:['t','Off High','שיא ‎$100, מחיר ‎$80 = ‎-20% מהשיא'],
+  BREADTH:['t','Market Breadth','','#breadth','רוחב שוק'],ADV:['t','Advancers / Decliners','','#breadth','רוחב שוק'],MOVE10:['t','10% Movers','','#breadth','רוחב שוק'],CANDLE:['t','Candlestick'],SUPRES:['t','Support / Resistance'],GAP:['t','Gap'],
+  SECTOR:['s','Sector / Industry','','#sectors','סקטורים'],ETF:['s','ETF'],SPDR:['s','Sector SPDR','','#sectors','טבלת סקטורים'],CEF:['s','Closed-end Fund'],REIT:['s','REIT'],BDC:['s','BDC'],
+  MACRO:['m','Macro','','#macro','מאקרו'],RATE:['m','Fed Funds Rate','','#macro','מאקרו'],FED:['m','FedWatch','','#macro','מאקרו'],CPI:['m','CPI','','#macro','מאקרו'],PPI:['m','PPI'],PCE:['m','PCE'],NFP:['m','Nonfarm Payrolls'],UNEMP:['m','Unemployment Rate'],GDP:['m','GDP'],TNX:['m','10-Year Treasury Yield'],VIX:['m','VIX','','#','עמוד ראשי'],
+  IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],OPT:['e','Options'],SHORT:['e','Short Selling'],VOLAT:['e','Volatility']
+};
+let GLCAT='';
+function glCard(k){ const [t,d]=GLOSS[k], m=GLM[k]||[], en=m[1]&&!t.includes(m[1])?m[1]:'';
+  return `<div class="glc" id="gl-${k}" data-k="${esc((t+' '+(m[1]||'')+' '+k+' '+d).toLowerCase())}"><div class="glt"><b>${esc(t)}</b>${en?`<span>${esc(en)}</span>`:''}</div><p>${esc(d)}</p>${m[2]?`<div class="glex">${esc(m[2])}</div>`:''}${m[3]?`<a class="glat" href="${m[3]}">איפה באתר: ${esc(m[4])} ←</a>`:''}</div>`; }
+function renderGloss(){
+  const box=$('glList'); if(!box) return;
+  if(!box.dataset.built){
+    box.dataset.built=1;
+    const keys=[...Object.keys(GLM).filter(k=>GLOSS[k]), ...Object.keys(GLOSS).filter(k=>!GLM[k])];
+    box.innerHTML=`<div class="glsr"><input id="glQ" type="search" placeholder="חפש מונח: EPS, מכפיל רווח, ריבית…" aria-label="חיפוש במילון"></div>
+      <div class="glch" id="glCh"><button class="on" data-c="">הכול</button>${GLC.map(([c,l])=>`<button data-c="${c}">${l}</button>`).join('')}</div>
+      <p class="glnone hidden" id="glNone">לא נמצא מונח מתאים.</p>
+      ${GLC.map(([c,l])=>{ const ks=keys.filter(k=>(GLM[k]||['b'])[0]===c); return ks.length?`<div class="glb" data-c="${c}"><h3>${l}</h3><div class="gl">${ks.map(glCard).join('')}</div></div>`:''; }).join('')}`;
+    $('glQ').addEventListener('input',glFilter);
+    $('glCh').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; GLCAT=b.dataset.c; $('glCh').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); glFilter(); });
+    const n=$('glossary').querySelector('.sub'); if(n) n.textContent=`${keys.length} מונחים שחוזרים באתר, בהסבר קצר. בכל מקום באתר שיש סימן ? אפשר ללחוץ ולקבל את ההסבר.`;
+  }
+  const m=location.hash.match(/^#glossary\/(\w+)/);
+  if(m){ const el=document.getElementById('gl-'+m[1]); if(el){ if($('glQ').value||GLCAT){ $('glQ').value=''; GLCAT=''; $('glCh').querySelectorAll('button').forEach((x,i)=>x.classList.toggle('on',i===0)); glFilter(); }
+    requestAnimationFrame(()=>{ el.scrollIntoView({block:'center'}); el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1600); }); } }
+}
+function glFilter(){ const v=$('glQ').value.trim().toLowerCase(); let any=0;
+  document.querySelectorAll('#glList .glb').forEach(b=>{ let n=0; b.querySelectorAll('.glc').forEach(c=>{ const ok=(!GLCAT||b.dataset.c===GLCAT)&&(!v||c.dataset.k.includes(v)); c.classList.toggle('hidden',!ok); if(ok) n++; }); b.classList.toggle('hidden',!n); any+=n; });
+  $('glNone').classList.toggle('hidden',!!any); }
 
 /* ---------- "updated X minutes ago" labels ---------- */
 function ilNow(){ const d=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'})); return d; }
