@@ -165,6 +165,23 @@ py = close[close.index.year < last.year]
 R = {"d": ret(1), "w": ret(5), "m": ret(21), "q": ret(63), "h": ret(126), "y": ret(252),
      "ytd": (close.iloc[-1] / py.iloc[-1] - 1) * 100}
 
+# 3b) ADR% (average daily range): mean of (high / low - 1) over the last 20 sessions, from Yahoo daily bars
+ADR = {}
+try:
+    _all = list(close.columns)
+    for i in range(0, len(_all), 400):
+        try:
+            hl = yf.download(_all[i:i+400], period="1mo", interval="1d", auto_adjust=False, group_by="column", threads=True, progress=False)
+            hi_, lo_ = hl["High"], hl["Low"]
+            if isinstance(hi_, pd.Series): hi_, lo_ = hi_.to_frame(_all[i]), lo_.to_frame(_all[i])
+            rng = ((hi_ / lo_ - 1) * 100).tail(20)
+            for t in rng.columns:
+                v = rng[t].dropna()
+                if len(v) >= 10 and v.median() < 60: ADR[t] = round(float(v.mean()), 1)
+        except Exception as e: print("adr chunk failed", type(e).__name__, flush=True)
+    print("adr", len(ADR), flush=True)
+except Exception as e: print("adr failed", e, flush=True)
+
 # 4) aggregate per industry
 def cap(v): return f"{v/1e12:.2f}T" if v >= 1e12 else f"{v/1e9:.2f}B"
 by = {}
@@ -184,6 +201,7 @@ for ind, mem in by.items():
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
         _h = HI52.get(s)
         if _h is not None and not pd.isna(_h): rr["hi"] = round(float(_h), 1)   # % below the 52-week closing high (0 = at the high)
+        if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
     elif ind in T.get("stocks", {}): stocks[ind] = [e for e in T["stocks"][ind] if e[0] in uni]
