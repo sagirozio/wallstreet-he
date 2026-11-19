@@ -318,6 +318,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .wa:hover{background:rgba(37,211,102,.2)}
 .wa svg{width:16px;height:16px;fill:currentColor}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.actions .irlink{margin-top:0}
+.gated>*:not(.gate){display:none!important}.gate{max-width:520px;margin:40px auto;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 22px}.gate h2{font-size:20px;margin:10px 0 8px}.gate p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0 0 18px}.gatei{width:48px;height:48px;margin:0 auto;border-radius:50%;background:rgba(47,129,247,.12);color:#58a6ff;display:flex;align-items:center;justify-content:center}.gatei svg{width:24px;height:24px}.gatebtn{background:#2f81f7;color:#fff;border:0;border-radius:10px;padding:11px 22px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
 .authbtn{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:5px 12px 5px 10px;font:inherit;font-size:13.5px;cursor:pointer;min-height:36px}.authbtn svg{width:16px;height:16px}.authbtn.on{padding:2px;width:36px;height:36px;justify-content:center}.authbtn img{width:30px;height:30px;border-radius:50%}.authbtn b{font-size:15px}
 #authBox{position:relative;flex:none}.authmenu{position:absolute;top:44px;left:0;z-index:60;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;width:240px;box-shadow:0 8px 24px rgba(0,0,0,.4)}.authmenu p{font-size:12.5px;color:var(--muted);margin:8px 0}.authwho b{display:block}.authwho small{color:var(--muted);font-size:12px}.authmenu button{display:block;width:100%;text-align:right;background:none;border:0;border-top:1px solid var(--line);color:var(--text);font:inherit;font-size:14px;padding:9px 2px;cursor:pointer}.authmenu .danger{color:#f85149}
 @media(max-width:760px){.authbtn span{display:none}.authbtn{padding:0;width:36px;justify-content:center}}
@@ -1323,6 +1324,7 @@ function route(){
   if(el && el.classList.contains('fold')) el.classList.add('open');
   if(el && pg!=='legal' && pg!=='market' && pg!=='reports') requestAnimationFrame(()=>el.scrollIntoView());
   else window.scrollTo(0,0);
+  try{ applyGate(); }catch(e){}
   setNavH(); lazyScan();
 }
 window.addEventListener('hashchange',route);
@@ -2983,7 +2985,7 @@ function clkLoad(){ if(CLKP) return CLKP; const f=clkFapi();
       import('https://cdn.jsdelivr.net/npm/@clerk/localizations@4/dist/he-IL.mjs').then(m=>m.heIL).catch(()=>undefined)])
     .then(async ([,,heIL])=>{ await window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}, localization:heIL,
         appearance:{variables:{colorPrimary:'#2f81f7',colorPrimaryForeground:'#ffffff',colorBackground:'#161b22',colorForeground:'#e6edf3',colorText:'#e6edf3',colorMutedForeground:'#9aa4af',colorTextSecondary:'#9aa4af',colorNeutral:'#e6edf3',colorInput:'#0d1117',colorInputBackground:'#0d1117',colorInputForeground:'#e6edf3',colorInputText:'#e6edf3',colorBorder:'#30363d',colorShimmer:'rgba(255,255,255,.06)',borderRadius:'10px',fontFamily:'Heebo, system-ui, sans-serif'},elements:{socialButtonsBlockButton:{borderColor:'#30363d',color:'#e6edf3'},footerActionLink:{color:'#58a6ff'}}}});
-      CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); } }); authRender(); return CLK; })
+      CLK=window.Clerk; let was=null; CLK.addListener(({user})=>{ const id=user&&user.id||null; if(id!==was){ was=id; authRender(); if(id) clkSyncIn(); try{ applyGate(); }catch(e){} } }); authRender(); try{ applyGate(); }catch(e){} return CLK; })
     .catch(e=>{ CLKP=null; console.log('clerk',e); }); return CLKP; }
 function authRender(){ const b=$('authBox'); if(!b) return; b.classList.remove('hidden');
   if(CLK&&CLK.user){ if(!b.querySelector('.cl-userButtonBox, .cl-rootBox')){ b.innerHTML='<div id="authUB"></div>'; CLK.mountUserButton($('authUB')); } try{ localStorage.setItem('clkOn','1'); }catch(e){} return; }
@@ -2997,6 +2999,16 @@ async function clkSyncIn(){ const u=CLK&&CLK.user; if(!u) return; try{
     if(changed){ try{ renderWatch(); }catch(e){} } }catch(e){ console.log('sync',e); } }
 let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; clearTimeout(clkPushT); clkPushT=setTimeout(()=>u.update({unsafeMetadata:{...u.unsafeMetadata,watch:WATCH}}).catch(()=>{}),800); }
 document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
+
+/* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
+const GATED={leaders:'מובילים',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים'};
+function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
+function applyGate(){ if(!CLK_PK||!CLK_LIVE) return; const on=accOn();
+  document.querySelectorAll('main>section').forEach(sec=>{ const g=GATED[sec.id]; const was=sec.querySelector(':scope>.gate');
+    if(!g||on||!sec.classList.contains('on')){ if(was){ was.remove(); sec.classList.remove('gated'); } return; }
+    if(!was){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); }
+    sec.classList.add('gated'); }); }
+document.addEventListener('click',async e=>{ if(e.target.closest('[data-gin]')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 try{ if(/[?&]login=1/.test(location.search)) localStorage.setItem('clkBeta','1'); }catch(e){}
 const clkShow=()=>{ if(CLK_LIVE) return true; try{ return localStorage.getItem('clkBeta')==='1'; }catch(e){ return false; } };
 if(CLK_PK&&clkShow()){ authRender(); let on=false; try{ on=localStorage.getItem('clkOn')==='1'; }catch(e){} if(on||/__clerk|clerk_/.test(location.search+location.hash)) clkLoad(); }
