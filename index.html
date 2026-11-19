@@ -217,6 +217,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
 .snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
+.glillw{margin:8px 0 2px}.glill{width:100%;max-width:420px;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px}.glillc{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
 .spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
 .spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
@@ -2055,6 +2056,13 @@ document.addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('glPop').classList.add('hidden'); });
 /* extra terms for the glossary page (same format: [title, explanation]) */
 Object.assign(GLOSS,{
+  P_CUP:['ספל עם ידית','תבנית שבה המניה יורדת בהדרגה ועולה בחזרה בצורת U (הספל), ואז יורדת קצת שוב במחזור נמוך (הידית) לפני שהיא עוברת את השיא של הצד השמאלי. הירידה בספל היא בדרך כלל 12%–35%, והתבנית נמשכת לרוב 7 שבועות ומעלה. מחזור נמוך בידית מראה שמעט מוכרים נשארו. היציאה מעל השיא, במחזור גבוה, נקראת פריצה. זה תיאור של צורה בגרף, לא תחזית.'],
+  P_FLAT:['בסיס שטוח','המניה נעה בטווח צר (עד כ-15% בין השיא לשפל) במשך 5 שבועות ומעלה, בדרך כלל אחרי עלייה קודמת. המחזור יורד בזמן ההתכנסות. הבסיס נגמר כשהמחיר יוצא מהטווח למעלה או למטה.'],
+  P_DBL:['תחתית כפולה','צורת W: המניה יורדת לשפל, מתאוששת, ויורדת שוב לשפל דומה או מעט נמוך יותר, ואז עולה. השפל השני מראה שהקונים חזרו באותו אזור מחיר. נקודת הייחוס היא שיא האמצע של ה-W.'],
+  P_BRK:['פריצה במחזור','יום שבו המחיר עובר רמה שעצרה אותו קודם (שיא של בסיס או התנגדות), במחזור גבוה בהרבה מהממוצע, לרוב 40%–50% ויותר מעל ממוצע 50 הימים. מחזור גבוה מראה השתתפות של גופים גדולים. פריצה במחזור נמוך נכשלת לעיתים קרובות יותר.'],
+  P_PULL:['חזרה לממוצע נע','אחרי עלייה, המניה יורדת עד ממוצע נע (21 או 50 יום) ונעצרת שם, לרוב במחזור נמוך, ואז ממשיכה. הממוצע משמש כרצפה, כי גופים גדולים קונים באזור. שבירה של הממוצע במחזור גבוה היא סימן הפוך.'],
+  P_CLIMAX:['שיא אקלים (Climax top)','אחרי עלייה ארוכה, המניה מאיצה: כמה ימים של עליות חדות במחזור הגבוה ביותר מאז תחילת המהלך, לעיתים עם פער (Gap) כלפי מעלה. לרוב זה סוף המהלך, ולאחריו ירידה חדה. מתואר כאן כדפוס היסטורי, לא כתחזית.'],
+  P_RSLEAD:['קו RS מקדים','קו ה-RS (מחיר המניה חלקי S&P 500) מגיע לשיא חדש לפני שהמחיר עצמו מגיע לשיא. זה אומר שהמניה מחזיקה טוב יותר מהשוק גם כשהיא עוד מתחת לשיא. באתר אפשר להדליק את קו ה-RS בגרף של כל מניה.'],
   EPSSTREAK:['רבעונים ברצף עם צמיחת רווח 15%+','כמה רבעונים רצופים, עד הרבעון האחרון, הרווח למניה (EPS) צמח ב-15% או יותר לעומת אותו רבעון שנה קודם. מספר גבוה מראה צמיחה עקבית ולא קפיצה חד-פעמית. 0 אומר שברבעון האחרון הצמיחה הייתה מתחת ל-15%. מחושב מהדוחות לרשות ניירות הערך (GAAP).'],
   EPS4Q:['צמיחת רווח, 4 רבעונים','סכום הרווח למניה (EPS) ב-4 הרבעונים האחרונים, לעומת סכום 4 הרבעונים שלפניהם. מראה את קצב הצמיחה על פני שנה שלמה, ומחליק תנודות של רבעון בודד. מחושב מהדוחות לרשות ניירות הערך (GAAP).'],
   NEXTREP:['הדוח הבא','התאריך שבו החברה צפויה לפרסם את הדוח הרבעוני הבא. "הערכה" אומר שהחברה עוד לא אישרה את התאריך, והוא מבוסס על מועדי הדוחות הקודמים. ביום הדוח המניה זזה לרוב יותר מהרגיל.'],
@@ -2096,12 +2104,12 @@ Object.assign(GLOSS,{
   VOLAT:['תנודתיות','כמה מחיר המניה משתנה. מניה תנודתית יכולה לעלות ולרדת בחדות בזמן קצר. מניות קטנות וביוטק בדרך כלל תנודתיות יותר.']
 });
 /* category, English name, example, where on the site — for the glossary page */
-const GLC=[['b','יסודות השוק'],['r','דוחות'],['f','דוחות כספיים'],['v','מכפילים ושווי'],['t','טכני ומומנטום'],['s','סקטורים וקרנות'],['m','מאקרו'],['e','אירועים ומסחר']];
+const GLC=[['b','יסודות השוק'],['p','תבניות גרף'],['r','דוחות'],['f','דוחות כספיים'],['v','מכפילים ושווי'],['t','טכני ומומנטום'],['s','סקטורים וקרנות'],['m','מאקרו'],['e','אירועים ומסחר']];
 const GLM={
   STOCK:['b','Stock'],INDEX:['b','Index'],SPX:['b','S&P 500','','#','עמוד ראשי'],NDX:['b','Nasdaq'],DOW:['b','Dow Jones'],RUT:['b','Russell 2000'],
   CAP:['b','Market Cap','מחיר ‎$50 × מיליארד מניות = שווי ‎$50B'],VOL:['b','Volume'],PRE:['b','Pre / After market','','#stock/NVDA','תעודת זהות של מניה'],BULL:['b','Bull / Bear'],CORR:['b','Correction'],SCREEN:['b','Screener','','#screener','סורק מניות'],
   EPS:['r','EPS','‎$2.10 בפועל מול צפי ‎$1.80 = עקיפה של 17%','#page/reports','דוחות'],GAAPX:['r','Adjusted / GAAP','','#page/reports','מאגר הדוחות'],REV:['r','Revenue'],BEAT:['r','Beat / Miss'],SURP:['r','Surprise','צפי ‎$1.00, בפועל ‎$1.10 = הפתעה של ‎+10%'],
-  GUIDE:['r','Guidance'],EPSSTREAK:['r','EPS Streak','4 רבעונים ברצף עם צמיחה של 18%, 25%, 31%, 40% = רצף של 4'],EPS4Q:['r','Trailing 4Q EPS growth','‎$8 ב-4 הרבעונים האחרונים מול ‎$6 לפניהם = ‎+33%'],NEXTREP:['r','Next Earnings Date','','#upcoming','לוח השבוע'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
+  GUIDE:['r','Guidance'],P_CUP:['p','Cup with Handle'],P_FLAT:['p','Flat Base'],P_DBL:['p','Double Bottom'],P_BRK:['p','Volume Breakout','מחזור ממוצע 2M, ביום הפריצה 5M = ‎+150%','#leaders','מובילים'],P_PULL:['p','Pullback to MA'],P_CLIMAX:['p','Climax Top'],P_RSLEAD:['p','RS Line Leading','','#stock/NVDA','גרף מניה › קו RS'],EPSSTREAK:['r','EPS Streak','4 רבעונים ברצף עם צמיחה של 18%, 25%, 31%, 40% = רצף של 4'],EPS4Q:['r','Trailing 4Q EPS growth','‎$8 ב-4 הרבעונים האחרונים מול ‎$6 לפניהם = ‎+33%'],NEXTREP:['r','Next Earnings Date','','#upcoming','לוח השבוע'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
   F_Q:['f','Quarterly'],F_REVOP:['f','Revenue / Operating Income'],F_GP:['f','Gross Profit / OpEx'],F_NI:['f','Net Income'],F_EPS:['f','Diluted EPS'],MARGIN:['f','Margins','רווח גולמי ‎$40 מהכנסות ‎$100 = שולי רווח גולמי 40%'],F_BAL:['f','Balance Sheet'],FCF:['f','Free Cash Flow'],DEBT:['f','Net Debt'],ROE:['f','Return on Equity','רווח שנתי ‎$20B / הון עצמי ‎$100B = ROE של 20%'],
   PE:['v','P/E','מחיר ‎$100 / EPS שנתי ‎$5 = מכפיל 20'],FPE:['v','Forward P/E'],PS:['v','P/S'],PEG:['v','PEG','מכפיל 30 / צמיחה של 30% בשנה = PEG 1'],DIV:['v','Dividend Yield','דיבידנד ‎$2 בשנה / מחיר ‎$50 = תשואה 4%'],EVEBITDA:['v','EV/EBITDA'],
   RS:['t','RS Rating','RS 90 = חזקה מ-90% ממניות S&P 500','#themes','טבלת תעשיות'],MA:['t','Moving Average','','#themes','טבלת תעשיות'],HILO:['t','52-week High / Low','','#breadth','רוחב שוק'],OFFHI:['t','Off High','שיא ‎$100, מחיר ‎$80 = ‎-20% מהשיא'],
@@ -2111,8 +2119,34 @@ const GLM={
   IPO:['e','IPO','','#ipos','הנפקות'],LOCK:['e','Lock-up'],SPLIT:['e','Stock Split','פיצול 1:10: מניה של ‎$1,000 = עשר מניות של ‎$100'],BUYBACK:['e','Buyback'],INSIDER:['e','Insider Trading'],TARGET:['e','Price Target'],INST:['e','Institutional Ownership'],OPT:['e','Options'],SHORT:['e','Short Interest','8% שורט = 8 מכל 100 מניות צפות מוחזקות במכירה בחסר'],VOLAT:['e','Volatility']
 };
 let GLCAT='';
+/* ---------- glossary chart-pattern illustrations (schematic, generated; not a real stock) ---------- */
+const GLILL={
+  P_CUP:{k:[[0,62],[6,80],[10,78],[22,48],[34,40],[46,50],[58,76],[62,74],[66,69],[70,71],[74,70],[78,82],[86,92],[90,96]],v:[[0,.5],[8,.6],[22,.9],[34,.4],[52,.6],[62,.5],[64,.3],[74,.25],[77,1.6],[80,1.2],[90,.7]],m:[[22,'ספל'],[68,'ידית'],[77,'פריצה']],ln:79},
+  P_FLAT:{k:[[0,40],[14,72],[18,80],[24,74],[30,79],[36,73],[44,78],[52,72],[60,78],[66,74],[72,80],[78,90],[90,96]],v:[[0,.6],[16,.8],[24,.5],[60,.3],[72,1.5],[78,1.1],[90,.7]],m:[[42,'טווח צר'],[73,'פריצה']],ln:80.5},
+  P_DBL:{k:[[0,82],[10,64],[18,46],[26,58],[34,66],[42,52],[48,43],[56,56],[64,66],[70,67],[78,80],[90,88]],v:[[0,.6],[18,1],[30,.5],[48,.8],[64,.5],[69,1.5],[78,1],[90,.6]],m:[[18,'שפל 1'],[48,'שפל 2'],[66,'אמצע ה-W']],ln:66.5},
+  P_BRK:{k:[[0,50],[10,60],[20,57],[34,62],[46,58],[58,63],[64,61],[66,72],[76,80],[90,86]],v:[[0,.5],[40,.45],[62,.4],[64,.45],[66,1.9],[68,1.2],[76,.8],[90,.6]],m:[[66,'מחזור פי 3 מהממוצע']],ln:63.5},
+  P_PULL:{k:[[0,30],[14,46],[28,62],[38,74],[44,70],[50,64],[54,62],[58,66],[66,78],[78,88],[90,96]],v:[[0,.6],[30,.9],[44,.45],[54,.3],[58,.8],[66,1],[90,.7]],m:[[54,'נגיעה בממוצע']],ma:1},
+  P_CLIMAX:{k:[[0,20],[20,36],[40,52],[56,64],[64,74],[68,86],[70,94],[72,90],[76,76],[82,68],[90,62]],v:[[0,.5],[40,.6],[60,.8],[66,1.4],[69,2],[71,1.8],[74,1.2],[82,.9],[90,.7]],m:[[69,'האצה במחזור שיא','l']]},
+  P_RSLEAD:{k:[[0,70],[12,84],[22,74],[34,62],[46,68],[58,64],[68,74],[78,78],[90,82]],rs:[[0,40],[12,58],[22,52],[34,46],[46,56],[58,60],[68,66],[78,72],[90,78]],m:[[84,'קו RS בשיא, המחיר עוד לא','l']]},
+};
+function glInterp(k,n){ const o=[]; for(let i=0;i<=n;i++){ let j=0; while(j<k.length-2&&k[j+1][0]<i) j++; const [x0,y0]=k[j],[x1,y1]=k[j+1], f=Math.min(1,Math.max(0,(i-x0)/((x1-x0)||1))); const w=(1-Math.cos(f*Math.PI))/2; o.push(y0+(y1-y0)*w+Math.sin(i*2.3)*1.1+Math.sin(i*0.9)*0.7); } return o; }
+function glIll(k){ const g=GLILL[k]; if(!g) return ''; const n=90, W=320, H=150, top=8, ph=92, vb=H-8, vh=32;
+  const p=glInterp(g.k,n), lo=Math.min(...p)-4, hi=Math.max(...p)+4, X=i=>(i/n*(W-8)+4).toFixed(1), Y=v=>(top+(1-(v-lo)/(hi-lo))*ph).toFixed(1);
+  const vol=g.v?glInterp(g.v,n).map((v,i)=>Math.max(.15,v+Math.sin(i*1.7)*.08)):null, vmax=vol?Math.max(...vol):1;
+  let h=`<svg viewBox="0 0 ${W} ${H}" class="glill" role="img" aria-label="איור להמחשה" style="direction:ltr">`;
+  if(vol) h+=vol.map((v,i)=>`<rect x="${(+X(i)-1.2).toFixed(1)}" y="${(vb-v/vmax*vh).toFixed(1)}" width="2.4" height="${(v/vmax*vh).toFixed(1)}" fill="${v/vmax>.6?'#3fb950':'#30363d'}"/>`).join('');
+  if(g.ln!=null) h+=`<line x1="4" x2="${W-4}" y1="${Y(g.ln)}" y2="${Y(g.ln)}" stroke="#d29922" stroke-dasharray="4 3" stroke-width="1"/>`;
+  if(g.ma){ const m=p.map((_,i)=>{ const w=p.slice(Math.max(0,i-12),i+1); return w.reduce((a,b)=>a+b,0)/w.length-3; }); h+=`<polyline points="${m.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="#58a6ff" stroke-width="1.2" stroke-dasharray="3 2"/>`; }
+  if(g.rs){ const r=glInterp(g.rs,n), rl=Math.min(...r), rh=Math.max(...r), YR=v=>(top+ph*0.55+(1-(v-rl)/(rh-rl))*ph*0.45).toFixed(1); h+=`<polyline points="${r.map((v,i)=>`${X(i)},${YR(v)}`).join(' ')}" fill="none" stroke="#f0f3f6" stroke-width="1.2"/>`; }
+  h+=`<polyline points="${p.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="#3fb950" stroke-width="1.6"/>`;
+  let RSY=null; if(g.rs){ const r=glInterp(g.rs,n), rl=Math.min(...r), rh=Math.max(...r); RSY=i=>+(top+ph*0.55+(1-(r[i]-rl)/(rh-rl))*ph*0.45).toFixed(1); }
+  (g.m||[]).forEach(([i,t,md])=>{ const x=+X(i), y=RSY?RSY(i):+Y(p[i]);
+    if(md==='l'){ const dy=RSY?28:0; h+=`<line x1="${x-12}" x2="${x-3}" y1="${y+dy}" y2="${y+(RSY?3:0)}" stroke="#8b949e" stroke-width=".8"/><text x="${x-15}" y="${y+dy+3.5}" direction="rtl" text-anchor="start" font-size="10" fill="#c9d1d9">${t}</text>`; return; }
+    const up=y>top+30, an=x>W-70?'start':x<70?'end':'middle';
+    h+=`<line x1="${x}" x2="${x}" y1="${y+(up?-4:4)}" y2="${y+(up?-16:16)}" stroke="#8b949e" stroke-width=".8"/><text x="${x}" y="${y+(up?-20:27)}" direction="rtl" text-anchor="${an}" font-size="10" fill="#c9d1d9">${t}</text>`; });
+  return h+`</svg><small class="glillc">איור סכמטי להמחשה, לא מניה אמיתית${g.v?' · עמודות: מחזור מסחר':''}${g.ln!=null?' · קו מקווקו: רמת הפריצה':''}${g.ma?' · כחול: ממוצע נע':''}${g.rs?' · לבן: קו RS':''}</small>`; }
 function glCard(k){ const [t,d]=GLOSS[k], m=GLM[k]||[], en=m[1]&&!t.includes(m[1])?m[1]:'';
-  return `<div class="glc" id="gl-${k}" data-k="${esc((t+' '+(m[1]||'')+' '+k+' '+d).toLowerCase())}"><div class="glt"><b>${esc(t)}</b>${en?`<span>${esc(en)}</span>`:''}</div><p>${esc(d)}</p>${m[2]?`<div class="glex">${esc(m[2])}</div>`:''}${m[3]?`<a class="glat" href="${m[3]}">איפה באתר: ${esc(m[4])} ←</a>`:''}</div>`; }
+  return `<div class="glc" id="gl-${k}" data-k="${esc((t+' '+(m[1]||'')+' '+k+' '+d).toLowerCase())}"><div class="glt"><b>${esc(t)}</b>${en?`<span>${esc(en)}</span>`:''}</div><p>${esc(d)}</p>${GLILL[k]?`<div class="glillw">${glIll(k)}</div>`:''}${m[2]?`<div class="glex">${esc(m[2])}</div>`:''}${m[3]?`<a class="glat" href="${m[3]}">איפה באתר: ${esc(m[4])} ←</a>`:''}</div>`; }
 function renderGloss(){
   const box=$('glList'); if(!box) return;
   if(!box.dataset.built){
