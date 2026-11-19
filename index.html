@@ -217,6 +217,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
 .alp{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 10px;font-size:14px}.alp summary{padding:10px 14px;cursor:pointer;list-style:none}.alp summary::-webkit-details-marker{display:none}.alp summary small{color:var(--muted)}.alb{padding:0 14px 10px;border-top:1px solid var(--line)}.alb label{display:flex;gap:8px;align-items:center;margin:10px 0;line-height:1.45}.alb input[type=checkbox]{width:18px;height:18px;flex:none;accent-color:#2f81f7}.alb select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:2px 4px;font:inherit}.alsw{font-weight:600}.alopts{padding-right:6px}.alopts.off{opacity:.45;pointer-events:none}
+.fstamp{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:12px 0 0;line-height:1.6}
 .myday{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}.myday b{color:var(--text)}.myday a{text-decoration:none}
 .qgwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px;margin:8px 0 4px}.qgw{margin-bottom:8px}.qgw>small{display:block;color:var(--muted);font-size:12px;margin-bottom:2px}.qgb,.qgq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;direction:ltr}.qgc{display:flex;flex-direction:column;align-items:center;gap:2px}.qgc i{font-style:normal;font-size:10px;white-space:nowrap;letter-spacing:-.3px}.qgc .qgn{color:var(--muted)}.qgc span{height:56px;width:70%;display:flex;align-items:flex-end}.qgc b{display:block;width:100%;border-radius:3px 3px 0 0}.qgc b.p{background:#238636}.qgc b.p.a{background:#3fb950}.qgc b.n{background:#da3633}.qgq span{text-align:center;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden}
 .snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
@@ -2206,12 +2207,12 @@ function fundChart(title,q,series,isEps,gl){
   let mx=Math.max(0,...all), mn=Math.min(0,...all); if(mx===mn) mx=mn+1;
   const y=v=>T+(mx-v)/(mx-mn)*(H-T-B), gw=(W-L-R)/n, bw=Math.max(2,(gw*0.72)/series.length);
   const ticks=[mn,0,(mx+mn)/2,mx].filter((v,i,a)=>a.indexOf(v)===i&&(v===0||Math.abs(v)>=(mx-mn)*0.15));
-  const fmt=v=>isEps?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
+  const fmt=v=>isEps==='pct'?(v>0?'+':'')+Math.round(v)+'%':isEps?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
   let g=ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?'#3a4660':'#1f2a3d'}" stroke-dasharray="${v===0?'':'3 3'}"/><text x="${L-5}" y="${y(v)+3.5}" text-anchor="end">${fmt(v)}</text>`).join('');
   series.forEach((s,si)=>s.v.forEach((v,i)=>{ if(v==null) return; const x=L+i*gw+(gw-bw*series.length)/2+si*bw, y0=y(0), y1=y(v);
     g+=`<rect x="${x.toFixed(1)}" y="${Math.min(y0,y1).toFixed(1)}" width="${(bw-0.6).toFixed(1)}" height="${Math.max(0.8,Math.abs(y1-y0)).toFixed(1)}" rx="1" fill="${v<0&&series.length===1?'#ef4444':s.c}"><title>${qLbl(q[i])} · ${s.n}: ${fmt(v)}</title></rect>`; }));
   q.forEach((e,i)=>{ if(i%4===n%4||i===n-1) g+=`<text x="${(i===n-1?W-R:L+i*gw+gw/2).toFixed(1)}" y="${H-6}" text-anchor="${i===n-1?'end':'middle'}">${qLbl(e)}</text>`; });
-  const meta=esc(JSON.stringify({W,H,L,R,T,B,mx,mn,n,e:isEps?1:0,q:q.map(qLbl),s:series.map(x=>({n:x.n,c:x.c,v:x.v}))}));
+  const meta=esc(JSON.stringify({W,H,L,R,T,B,mx,mn,n,e:isEps==='pct'?2:isEps?1:0,q:q.map(qLbl),s:series.map(x=>({n:x.n,c:x.c,v:x.v}))}));
   g+=`<g class="xh" style="display:none"><line class="xv" y1="${T}" y2="${H-B}" stroke="#8b97ad" stroke-dasharray="3 3"/><line class="xhz" x1="${L}" x2="${W-R}" stroke="#8b97ad" stroke-dasharray="3 3"/><rect class="xyb" x="0" width="${L-2}" height="15" rx="3" fill="#2a3550"/><text class="xyt" x="${L-5}" text-anchor="end" style="fill:#e8edf6"></text><rect class="xqb" height="15" rx="3" fill="#2a3550"/><text class="xqt" text-anchor="middle" style="fill:#e8edf6"></text></g>`;
   return `<div class="fch"><div class="fct">${title}${gl?gq(gl):''}</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}" data-m="${meta}">${g}</svg><div class="fcv"></div><div class="fcl">${series.map(s=>`<span><i style="background:${s.c}"></i>${s.n}</span>`).join('')}</div></div>`;
 }
@@ -2221,7 +2222,7 @@ function fchMove(ev){
   const m=JSON.parse(sv.dataset.m), r=sv.getBoundingClientRect(), k=m.W/r.width;
   const px=(ev.clientX-r.left)*k, py=Math.min(m.H-m.B,Math.max(m.T,(ev.clientY-r.top)*k));
   const gw=(m.W-m.L-m.R)/m.n, i=Math.min(m.n-1,Math.max(0,Math.floor((px-m.L)/gw))), cx=m.L+i*gw+gw/2;
-  const val=m.mx-(py-m.T)/(m.H-m.T-m.B)*(m.mx-m.mn), fmt=v=>v==null?'—':m.e?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
+  const val=m.mx-(py-m.T)/(m.H-m.T-m.B)*(m.mx-m.mn), fmt=v=>v==null?'—':m.e===2?(v>0?'+':'')+Math.round(v)+'%':m.e?(v<0?'-$':'$')+Math.abs(v).toFixed(2):fmtBig(v);
   const xh=sv.querySelector('.xh'); xh.style.display='';
   xh.querySelector('.xv').setAttribute('x1',cx); xh.querySelector('.xv').setAttribute('x2',cx);
   xh.querySelector('.xhz').setAttribute('y1',py); xh.querySelector('.xhz').setAttribute('y2',py);
@@ -2237,17 +2238,11 @@ document.addEventListener('pointermove',fchMove); document.addEventListener('poi
 document.addEventListener('pointerleave',fchOut,true);
 /* quarterly growth: EPS and revenue vs the same quarter a year earlier, last 8 quarters (from the filings) */
 function growthChart(f){ const q=f.q||[], n=q.length; if(n<9) return '';
-  const yy=a=>a?a.map((v,i)=>i>=4&&v!=null&&a[i-4]!=null&&a[i-4]>0?(v/a[i-4]-1)*100:null):[];
-  const E=yy(f.eps), R=yy(f.rev), k=Math.min(8,n-4), idx=[...Array(k)].map((_,j)=>n-k+j);
-  if(!idx.some(i=>E[i]!=null||R[i]!=null)) return '';
-  const ql=d=>{ const p=String(d).split('-'); return `${['Q1','Q1','Q1','Q2','Q2','Q2','Q3','Q3','Q3','Q4','Q4','Q4'][+p[1]-1]} ${p[0].slice(2)}`; };
-  const row=(A,label)=>{ const vals=idx.map(i=>A[i]); const ok=vals.filter(v=>v!=null); if(!ok.length) return '';
-    const mx=Math.max(20,...ok.map(v=>Math.min(Math.abs(v),400)));
-    return `<div class="qgw"><small>${label}</small><div class="qgb">${vals.map((v,j)=>{ if(v==null) return `<div class="qgc"><i class="qgn">—</i><span></span></div>`;
-      const h=Math.max(3,Math.min(Math.abs(v),400)/mx*100), prev=j>0?vals[j-1]:null, acc=prev!=null?v-prev:null;
-      return `<div class="qgc" title="${ql(q[idx[j]])}: ${v>0?'+':''}${v.toFixed(0)}%${acc!=null?` (${acc>=0?'+':''}${acc.toFixed(0)} נק׳ מהרבעון הקודם)`:''}"><i class="num ${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${Math.abs(v)>=1000?Math.round(v/100)/10+'K':v.toFixed(0)}%</i><span><b class="${v>=0?'p':'n'}${acc!=null&&acc>0&&v>0?' a':''}" style="height:${h.toFixed(0)}%"></b></span></div>`; }).join('')}</div></div>`; };
-  const e=row(E,'רווח למניה (EPS)'), r=row(R,'הכנסות');
-  return `<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="qgwrap">${e}${r}<div class="qgq">${idx.map(i=>`<span>${ql(q[i])}</span>`).join('')}</div></div><p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם. עמודה בהירה = הצמיחה גבוהה מברבעון הקודם (האצה). לפי הדוחות לרשות ניירות הערך (GAAP); רבעון שהבסיס שלו הפסד מסומן —.</p>`; }
+  const yy=a=>a?a.map((v,i)=>i>=4&&v!=null&&a[i-4]!=null&&a[i-4]>0?Math.round((v/a[i-4]-1)*1000)/10:null).slice(4):[];
+  const qq=q.slice(4), E=yy(f.eps), R=yy(f.rev);
+  const ch=[fundChart('צמיחת רווח למניה (EPS)',qq,[{n:'שינוי מול שנה קודמת',c:'#a855f7',v:E}],'pct','YOY'),
+            fundChart('צמיחת הכנסות',qq,[{n:'שינוי מול שנה קודמת',c:'#5b8cff',v:R}],'pct','YOY')].filter(Boolean);
+  return ch.length?`<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם, לפי הדוחות לרשות ניירות הערך (GAAP). רבעון שהבסיס שלו הפסד לא מוצג.</p>`:''; }
 async function loadFund(t){
   const box=$('spFund'); if(!box) return;
   try{
@@ -2263,7 +2258,10 @@ async function loadFund(t){
       fundChart('מאזן',q,[{n:'נכסים',c:'#22c55e',v:f.assets},{n:'התחייבויות',c:'#ec4899',v:f.liab}],false,'F_BAL')
     ].filter(Boolean);
     if(!ch.length) return;
-    box.innerHTML=growthChart(f)+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
+    const dmy=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}.${p[0]}`:''; }, lastQ=q[q.length-1], rp0=REPORTS.find(r=>r.t===t);
+    const newer=rp0&&rp0.date>lastQ&&rp0.date>(f.asOf||'')?`<br>הדוח האחרון (${esc(rp0.q||'')}, ${dmy(rp0.date)}) עוד לא מופיע כאן: הוא ייכנס אחרי שהחברה תגיש את הדוח המלא לרשות ניירות הערך, בדרך כלל תוך כמה שבועות.`:'';
+    const stamp=`<p class="fstamp">הרבעון האחרון בנתונים: ${qLbl(lastQ)} (הרבעון שהסתיים ב-${dmy(lastQ)}) · עודכן ${dmy(f.asOf)}${newer}</p>`;
+    box.innerHTML=growthChart(f).replace('<h3 class="sph3">צמיחה רבעונית',stamp+'<h3 class="sph3">צמיחה רבעונית')+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
     try{ rpTidy(); }catch(e){}
   }catch(e){}
 }
