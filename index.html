@@ -416,6 +416,9 @@ body[data-pg="home"] #brief{padding-top:6px}
   body[data-pg="home"] #today-reports{grid-column:1;grid-row:4/8}
   body[data-pg="home"] #homeWatch{grid-column:2;grid-row:4}body[data-pg="home"] #todayAgenda{grid-column:2;grid-row:5}body[data-pg="home"] #recap{grid-column:2;grid-row:6}
   body[data-pg="home"] #homeWatch{border-top:0}
+  body.mehome[data-pg="home"].r main{grid-template-rows:auto auto auto auto auto auto auto 1fr}
+  body.mehome[data-pg="home"] #homeWatch{grid-column:1/-1;grid-row:1}body.mehome[data-pg="home"] #market{grid-row:2}body.mehome[data-pg="home"] #brief{grid-row:3}body.mehome[data-pg="home"] #homeMovers{grid-row:4}
+  body.mehome[data-pg="home"] #today-reports{grid-row:5/9}body.mehome[data-pg="home"] #todayAgenda{grid-row:5}body.mehome[data-pg="home"] #recap{grid-row:6}
 }
 @media(max-width:760px){.pmbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.pmbox .pml,.pmbox .pmt{grid-column:1/-1}.pmbox .pmi{display:flex;justify-content:space-between;gap:6px;white-space:nowrap}.pmbox .pmi .t,.pmbox .pmi .pmp{display:none}}
 .how{margin-top:14px}.how>summary{cursor:pointer;color:var(--muted);font-size:13px;padding:4px 0}.how[open]>summary{margin-bottom:6px}.how .sub{margin:0 0 8px}
@@ -2406,6 +2409,7 @@ function myDayHtml(){ const ix=stockIndex(), now=Date.now(); let up=0, dn=0, sum
   if(vb.length) parts.push(`<span>פריצה במחזור: ${vb.map(lk).join(', ')}</span>`);
   return `<div class="myday">${parts.join('')}</div>`; }
 function placeMyHome(){ const h=$('homeWatch'); if(!h) return; const me=accOn()&&WATCH.length>0, first=document.querySelector('main>section[data-pg="home"]');
+  document.body.classList.toggle('mehome',me);
   if(me){ if(first&&first!==h) first.parentNode.insertBefore(h,first); h.classList.remove('fold'); h.classList.add('mine'); const t=h.querySelector('h2'); if(t&&!t.dataset.me){ t.dataset.me=1; t.firstChild.textContent='הרשימה שלי '; } }
   else if(h.classList.contains('mine')){ const m=$('market'); h.classList.remove('mine'); h.classList.add('fold'); const t=h.querySelector('h2'); if(t){ delete t.dataset.me; t.firstChild.textContent='מניות במעקב '; } const ag=$('todayAgenda'); if(ag) ag.parentNode.insertBefore(h,ag); } }
 function renderWatch(){
