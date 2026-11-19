@@ -106069,6 +106069,493 @@
  },
  "news": [
   {
+   "id": "2026-11-19-trump-xi-30-for-30",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "pos",
+   "title": "טראמפ: ארה״ב וסין הסכימו להוריד מכסים על סחר של $30 מיליארד",
+   "body": "בפגישה עם שי בשנזן אמר טראמפ שכל צד הסכים להפחית מכסים על סחר בהיקף של $30 מיליארד, וייחס זאת ל״מועצת הסחר״ שהוקמה בבייג׳ינג במאי. שיעורים, מוצרים ומועד תחילה לא פורסמו, ולפי TRT ההצעה גובשה כבר בביקור של שי בוושינגטון בספטמבר.",
+   "src": "TASS, TRT",
+   "url": "https://tass.com/world/2221049",
+   "time": "09:57"
+  },
+  {
+   "id": "2026-11-19-trump-china-farmers-hormuz",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ יבקש מסין לעשות יותר למען החקלאים האמריקאים",
+   "body": "טראמפ אמר שיבקש מסין לעשות יותר עבור החקלאים בארה״ב, ושהוא ושי רוצים שהנפט ימשיך לזרום במצר הורמוז. משרד המסחר הסיני מסר שקבוצת העבודה לחקלאות של מועצת הסחר תתכנס בקרוב, והביע ״התנגדות נחרצת״ להגבלות הסחר האמריקאיות האחרונות.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/analysis-us-china-russia-meetings-where-we-stand",
+   "time": "10:04"
+  },
+  {
+   "id": "2026-11-19-trump-putin-trilateral",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ ופוטין נפגשו בלי הצהרה משותפת, הפסגה המשולשת החלה",
+   "body": "פגישת טראמפ ופוטין בשנזן נמשכה כ-35–40 דקות, בהשתתפות רוביו ובסנט, ולפי היועץ אושקוב אוקראינה הייתה הנושא המרכזי; לא פורסמה הצהרה משותפת. לאחר מכן החלה הפסגה המשולשת עם שי: לפי הבית הלבן צמצום הנשק הגרעיני במוקד, ובכיר אמריקאי אמר שלא צפוי הסכם.",
+   "src": "UA.News, NTD, Newsquawk",
+   "url": "https://www.ntd.com/trump-meets-russias-putin-chinas-xi-in-1st-ever-trilateral-summit_1186164.html",
+   "time": "10:35"
+  },
+  {
+   "id": "2026-11-19-trump-apec-investment-ai",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ ב-APEC: התחייבויות השקעה של $22 טריליון בארה״ב",
+   "body": "בנאום בפסגת APEC אמר טראמפ שהושגו התחייבויות להשקעות של $22 טריליון בארה״ב ושההשקעה בציוד עלתה השנה ב-21%. הוא הביע התנגדות ל״רגולציה גלובליסטית״ של בינה-על, וקרא לאמריקאים ״להירגע״ בנוגע לתקלות האחרונות בתעופה, בבנקים ובתקשורת, ואמר שלא היו מתקפות מתואמות.",
+   "src": "Fox News",
+   "url": "https://www.foxnews.com/live-news/trump-to-meet-xi-in-shenzhen-ahead-of-high-stakes-trilateral-talks-with-putin",
+   "time": "05:14"
+  },
+  {
+   "id": "2026-11-19-trump-nvidia-chip-curbs",
+   "date": "2026-11-19",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: לא קיבלתי אישור שאליס הואנג הייתה מרגלת",
+   "body": "טראמפ אמר שלא קיבל אישור לכך שאליס הואנג הייתה מרגלת סינית. לפי AP, טראמפ נמנע מהחמרת מגבלות השבבים על סין כדי לא להחריף את היחסים, ודירקטוריון Nvidia אמר שאין לו סיבה להאמין שסודות דלפו ופתח בחקירה בלתי תלויה.",
+   "src": "AP, Fox News",
+   "url": "https://www.wral.com/news/ap/a04dc-trump-meets-xi-and-putin-in-china-with-nuclear-arms-and-two-wars-on-the-table/",
+   "time": "03:03"
+  },
+  {
+   "id": "2026-11-19-trump-iran-waste-of-time",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neg",
+   "title": "טראמפ: ההסכם המקדמי עם איראן ״בזבוז זמן״",
+   "body": "טראמפ כינה את ההסכם המקדמי עם איראן ״בזבוז זמן״ ואמר שהמצור הימי הוא ״הדבר היעיל ביותר שעשינו״. לפי Newsquawk הוא שוקל תקיפות חדשות באיראן, וטרם התקבלה החלטה.",
+   "src": "Fox News, Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/analysis-us-china-russia-meetings-where-we-stand",
+   "time": "01:20"
+  },
+  {
+   "id": "2026-11-19-futures-nasdaq-up-anthropic",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "החוזים עולים, הנאסד״ק 100 בכ-2% לפני הנפקת Anthropic",
+   "body": "החוזים על הנאסד״ק 100 עלו בעד 2% ל-27,730, על ה-S&P 500 ב-1.1% ל-7,422.75 ועל הדאו ב-0.7% ל-50,628. היום יפורסמו ב-15:30 (שעון ישראל) דמי האבטלה (צפי 199 אלף) ומדד פילדלפיה (צפי 19.2), ובשוק מתמחרים כ-90% סיכוי להעלאת ריבית בדצמבר.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/wall-street-futures-climb-ahead-of-anthropics-15-trillion-mega-ipo-4968360",
+   "time": "09:12"
+  },
+  {
+   "id": "2026-11-19-asia-taiex-hang-seng-fall",
+   "date": "2026-11-19",
+   "t": [
+    "TSM"
+   ],
+   "tag": "אסיה",
+   "tone": "neg",
+   "title": "אסיה: הטייוואני צנח ב-3.1%, הנג סנג ב-1.9%",
+   "body": "מדד Taiex ירד ב-3.1%, הנג סנג ב-1.9% ל-22,854.15, הקוספי ב-0.7% ושנגחאי ב-0.4%, בעוד הניקיי עלה ב-0.1% ל-59,084.79. TSMC, סמסונג ו-SK Hynix ירדו כל אחת בכ-2%.",
+   "src": "AP, TradingView",
+   "url": "https://www.ksat.com/business/2026/11/19/asian-stocks-are-mixed-and-us-futures-climb-ahead-of-anthropics-blockbuster-ipo/",
+   "time": "07:00"
+  },
+  {
+   "id": "2026-11-19-europe-up-core-cpi",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "אירופה",
+   "tone": "neu",
+   "title": "אירופה עולה קלות, האינפלציה הבסיסית עלתה ל-2.6%",
+   "body": "ה-Stoxx 600 עלה ב-0.3%, ה-DAX ב-0.6% וה-CAC ב-0.4%, וה-FTSE 100 ללא שינוי. אינפלציית הליבה בגוש האירו עלתה באופן לא צפוי ל-2.6%; לגארד תנאם היום ב-15:30 (שעון ישראל).",
+   "src": "Investing.com, MarketScreener",
+   "url": "https://www.investing.com/news/stock-market-news/european-stocks-inch-up-as-massive-anthropic-ipo-counters-hawkish-fed-5037955",
+   "time": "09:12"
+  },
+  {
+   "id": "2026-11-19-anthropic-ant-debut",
+   "date": "2026-11-19",
+   "t": [
+    "GS",
+    "MS"
+   ],
+   "tag": "הנפקות",
+   "tone": "neu",
+   "title": "Anthropic תיסחר היום בנאסד״ק תחת הסימול ANT",
+   "body": "המניה תיסחר בנאסד״ק תחת הסימול ANT, אחרי שההנפקה הוגדלה ל-980 מיליון מניות. לפי Stocktitan לא נקבעה שעה לעסקה הראשונה, שעשויה להתבצע שעות אחרי הפתיחה; Goldman Sachs ו-Morgan Stanley מובילות את ההנפקה.",
+   "src": "Fast Company, Stocktitan",
+   "url": "https://www.stocktitan.net/articles/anthropic-ipo-live-ant-first-trading-day-2026",
+   "time": "00:31"
+  },
+  {
+   "id": "2026-11-19-txt-sells-industrial",
+   "date": "2026-11-19",
+   "t": [
+    "TXT"
+   ],
+   "tag": "Textron",
+   "tone": "pos",
+   "title": "Textron תמכור את מגזר התעשייה ב-$1.2 מיליארד",
+   "body": "Textron תמכור את מגזר התעשייה (Kautex ו-Textron Specialized Vehicles) לגוף הקשור ל-Kingswood Capital ב-$1.2 מיליארד, עם תמורה נטו של כ-$1.1 מיליארד. העסקה צפויה להיסגר במחצית הראשונה של 2027, התמורה תופנה בעיקר לרכישה חוזרת, והחברה תתמקד בתעופה ובביטחון.",
+   "src": "SEC 8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000217346/000110465926129345/tm2629751d1_ex99-1.htm",
+   "time": "03:31",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-gm-2027-cost-pressure",
+   "date": "2026-11-19",
+   "t": [
+    "GM"
+   ],
+   "tag": "General Motors",
+   "tone": "neu",
+   "title": "GM: נשאף ש-2027 תהיה טובה מ-2026, למרות לחצי עלויות",
+   "body": "סמנכ״ל הכספים פול ג׳ייקובסון אמר שהחברה ״תשאף״ לשפר את 2027 לעומת 2026, וציין לחצי עלויות נוספים של $1–1.5 מיליארד, בעיקר שבבי זיכרון ולוגיסטיקה. התחזית הרשמית תפורסם בינואר, וההנחה היא מכירות של 16 מיליון כלי רכב בארה״ב ב-2027.",
+   "src": "MarketBeat via Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/general-motors-targets-higher-2027-011314523.html",
+   "time": "03:13",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-ugi-lpg-spin",
+   "date": "2026-11-19",
+   "t": [
+    "UGI"
+   ],
+   "tag": "UGI",
+   "tone": "neu",
+   "title": "UGI תפצל את עסקי הגז הנוזלי לחברה ציבורית נפרדת",
+   "body": "UGI מתכננת פיצול פטור ממס של עסקי הגז הנוזלי (UGI International ו-AmeriGas) במחצית השנייה של 2027. הרווח המתואם לשנת 2026 הסתכם ב-$3.00 למניה, והתחזית ל-2027 היא $2.90–3.20; ההכנסות ברבעון הרביעי ירדו ל-$1.157 מיליארד מ-$1.197 מיליארד.",
+   "src": "UGI via Yahoo Finance, MarketScreener",
+   "url": "https://finance.yahoo.com/energy/articles/ugi-corporation-announces-plan-pursue-230100078.html",
+   "time": "01:01",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-joyy-q3",
+   "date": "2026-11-19",
+   "t": [
+    "JOYY"
+   ],
+   "tag": "JOYY",
+   "tone": "pos",
+   "title": "JOYY: ההכנסות עלו ב-15.6%, הכנסות הפרסום של BIGO זינקו",
+   "body": "ההכנסות ברבעון השלישי עלו ב-15.6% ל-$624.6 מיליון, והכנסות BIGO Ads עלו ב-39.6% ל-$145.7 מיליון. הרווח הנקי ירד ל-$59.6 מיליון מ-$62.0 מיליון, והתחזית לרבעון הרביעי היא הכנסות של $650–669 מיליון.",
+   "src": "GlobeNewswire via StockTitan",
+   "url": "https://www.stocktitan.net/news/JOYY/joyy-reports-third-quarter-2026-unaudited-financial-6z4stv0tppdq.html",
+   "time": "02:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-hp-impairment",
+   "date": "2026-11-19",
+   "t": [
+    "HP"
+   ],
+   "tag": "Helmerich & Payne",
+   "tone": "neg",
+   "title": "Helmerich & Payne: הפסד של $490 מיליון בשל מחיקה במזרח התיכון",
+   "body": "ההכנסות ברבעון הרביעי הסתכמו ב-$1.09 מיליארד וההפסד הנקי ב-$489.8 מיליון ($4.91 למניה), בעקבות מחיקה של $609.9 מיליון, בעיקר במזרח התיכון. הרווח המתואם היה $0.36 למניה, וה-EBITDA המתואם עלה ב-14% לעומת הרבעון הקודם ל-$268.6 מיליון.",
+   "src": "SEC 8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000046765/000004676526000058/q4fy26earningsrelease.htm",
+   "time": "10:55",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-regn-livsayis-fda",
+   "date": "2026-11-19",
+   "t": [
+    "REGN"
+   ],
+   "tag": "Regeneron",
+   "tone": "pos",
+   "title": "Regeneron: ה-FDA אישר את Livsayis למיאסטניה גרביס",
+   "body": "ה-FDA אישר את Livsayis (cemdisiran), טיפול siRNA ראשון למיאסטניה גרביס כללית, בזריקה תת-עורית ארבע פעמים בשנה. בניסוי שלב 3 נרשם שיפור של 4.5 נקודות במדד MG-ADL לעומת 2.2 בפלצבו; המניה נסגרה אתמול בירידה של 1.28%.",
+   "src": "RTTNews",
+   "url": "https://www.rttnews.com/3716112/regeneron-wins-fda-approval-for-livsayis-in-generalized-myasthenia-gravis.aspx",
+   "time": "01:03",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-18-klic-q4",
+   "date": "2026-11-18",
+   "t": [
+    "KLIC"
+   ],
+   "tag": "Kulicke & Soffa",
+   "tone": "pos",
+   "title": "Kulicke & Soffa: הכנסות של $410 מיליון ותחזית לרווח גבוה יותר",
+   "body": "ההכנסות ברבעון הרביעי הסתכמו ב-$410.3 מיליון והרווח המתואם ב-$1.52 למניה. לרבעון הבא החברה צופה הכנסות של כ-$410 מיליון (±$20 מיליון) ורווח מתואם של כ-$1.65 למניה.",
+   "src": "PR Newswire",
+   "url": "https://www.prnewswire.com/news-releases/kulicke--soffa-reports-fourth-quarter-2026-results-302943641.html",
+   "time": "23:05",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-njr-fy27-guide",
+   "date": "2026-11-19",
+   "t": [
+    "NJR"
+   ],
+   "tag": "New Jersey Resources",
+   "tone": "neu",
+   "title": "New Jersey Resources צופה ירידה ברווח ב-2027",
+   "body": "הרווח הפיננסי-נטו לשנת 2026 עלה ל-$3.58 למניה מ-$3.29, והתחזית ל-2027 היא $3.25–3.40. החברה שמרה על יעד צמיחה ארוך טווח של 7%–9% בשנה.",
+   "src": "SEC 8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000356309/000114036126044760/ef20085865_ex99-1.htm",
+   "time": "00:37",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-borr-q3",
+   "date": "2026-11-19",
+   "t": [
+    "BORR"
+   ],
+   "tag": "Borr Drilling",
+   "tone": "neu",
+   "title": "Borr Drilling: ההכנסות עלו ב-13%, הפסד של $38.7 מיליון",
+   "body": "ההכנסות ברבעון השלישי עלו ב-13% לעומת הרבעון הקודם ל-$263.1 מיליון, וההפסד הנקי הסתכם ב-$38.7 מיליון. אסדת Prospector 5, ששקעה מול גבון באוקטובר, היא אובדן מלא, והביטוח של $200 מיליון צפוי להשתלם ב-24 בנובמבר.",
+   "src": "PR Newswire",
+   "url": "https://www.prnewswire.com/news-releases/borr-drilling-limited-announces-third-quarter-2026-results-302944498.html",
+   "time": "00:09",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-btu-target-cut",
+   "date": "2026-11-19",
+   "t": [
+    "BTU"
+   ],
+   "tag": "Peabody Energy",
+   "tone": "neg",
+   "title": "Freedom Broker הורידה את מחיר היעד של Peabody ל-$22",
+   "body": "האנליסט ויטלי קונונוב הוריד את מחיר היעד ל-$22 מ-$30 והשאיר המלצת קנייה, בשל שלוש הורדות של תחזית התפוקה במכרה Centurion השנה. המניה ירדה אתמול ב-1.45% ל-$16.99.",
+   "src": "Motley Fool",
+   "url": "https://www.fool.com/investing/2026/11/18/why-peabody-energy-stock-slumped-today/",
+   "time": "03:09",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-18-crk-ms-downgrade",
+   "date": "2026-11-18",
+   "t": [
+    "CRK"
+   ],
+   "tag": "Comstock Resources",
+   "tone": "neg",
+   "title": "Morgan Stanley הורידה את Comstock Resources לתת-משקל",
+   "body": "Morgan Stanley הורידה את ההמלצה ל-Underweight מ-Equal-Weight, עם מחיר יעד של $13. המניה נסגרה אתמול בירידה של 2.64% ל-$14.01.",
+   "src": "MT Newswires via MarketScreener",
+   "url": "https://www.marketscreener.com/news/morgan-stanley-downgrades-comstock-resources-to-underweight-price-target-is-13-ce785eddd881f420",
+   "time": "14:18",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-ko-wolfe-initiate",
+   "date": "2026-11-19",
+   "t": [
+    "KO"
+   ],
+   "tag": "Coca-Cola",
+   "tone": "pos",
+   "title": "Wolfe פתחה סיקור על Coca-Cola בהמלצת תשואת יתר",
+   "body": "Wolfe Research פתחה סיקור על Coca-Cola בהמלצת Outperform ומחיר יעד של $110, וכינתה אותה מניית הצמיחה האיכותית ביותר במשקאות. לצידה נבחרו Keurig Dr Pepper ו-Celsius כבחירות המובילות.",
+   "src": "Seeking Alpha via TradingView",
+   "url": "https://www.tradingview.com/news/seekingalpha:76457b23b094b:0-beverage-breakdown-coca-cola-keurig-dr-pepper-and-celsius-are-top-picks-at-wolfe-research/",
+   "time": "02:05",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-tsla-musk-spacex-merge",
+   "date": "2026-11-19",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "Tesla",
+   "tone": "neu",
+   "title": "מאסק: Tesla ו-SpaceX ״כנראה כן״ טובות יותר יחד",
+   "body": "בכנס DealBook אמר מאסק ש-Tesla ו-SpaceX ״כנראה כן״ יהיו טובות יותר יחד, והוסיף שלא צריך לקבל את מענקי האופציות רק בזכות מיזוג עם SpaceX. מניית Tesla עלתה אתמול בכ-1% ויורדת מתחילת השנה ב-15%.",
+   "src": "Stocktwits via Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-spacex-better-together-musk-015619735.html",
+   "time": "03:56",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-ddog-cfo-demand",
+   "date": "2026-11-19",
+   "t": [
+    "DDOG"
+   ],
+   "tag": "Datadog",
+   "tone": "pos",
+   "title": "סמנכ״ל הכספים של Datadog: ״מחזור ביקושים חזק״",
+   "body": "בכנס RBC אמר סמנכ״ל הכספים דייוויד אובסטלר שיש ״מחזור ביקושים חזק״ ושה-AI ״בשלב מוקדם מאוד״. לדבריו, תחום ניטור התשתיות עבר $2 מיליארד בהכנסה שנתית חוזרת, וכשליש מהלקוחות משתמשים במוצר AI.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/transcripts/datadog-at-rbc-conference-ai-and-modernization-fuel-growth-93CH-5036652",
+   "time": "01:12",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-mcd-value-bundles",
+   "date": "2026-11-19",
+   "t": [
+    "MCD"
+   ],
+   "tag": "McDonald's",
+   "tone": "neu",
+   "title": "McDonald's בודקת חבילות זולות בכ-1,900 סניפים",
+   "body": "McDonald's מקיימת ניסוי של שמונה שבועות בשני פורמטים של חבילות ״במחיר נגיש״ בכ-1,900 סניפים, וזכיינים של כ-4,000 סניפים נוספים מפעילים חבילות דומות. תוכנית ארצית מתוכננת לתחילת 2027.",
+   "src": "TheStreet via Yahoo Finance",
+   "url": "https://finance.yahoo.com/small-business/articles/mcdonalds-testing-cheaper-menu-prices-001700177.html",
+   "time": "02:17",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-cost-mizuho-generators",
+   "date": "2026-11-19",
+   "t": [
+    "COST"
+   ],
+   "tag": "Costco",
+   "tone": "pos",
+   "title": "Mizuho: מכירות Costco זינקו אחרי התקלות, היעד הועלה ל-$1,150",
+   "body": "לפי Mizuho, המכירות בחנויות זהות בארה״ב (בלי דלק) עלו ב-11%–12% בשבוע האחרון של אוקטובר, אחרי רצף תקלות טכנולוגיות; 21 מ-26 הגנרטורים היקרים באתר אזלו. הבנק צופה צמיחה של יותר מ-10% בנובמבר והעלה את מחיר היעד ל-$1,150 מ-$1,100.",
+   "src": "Seoul Economic Daily (לפי CNBC)",
+   "url": "https://en.sedaily.com/world/2026/11/19/us-tech-outages-spark-panic-buying-lifting-costco-sales",
+   "time": "07:28",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-v-recurrent",
+   "date": "2026-11-19",
+   "t": [
+    "V"
+   ],
+   "tag": "Visa",
+   "tone": "neu",
+   "title": "Visa משיקה כלי לניהול מינויים באפליקציות הבנקים",
+   "body": "Visa השיקה את Visa Recurrent, שמאפשר לצרכנים לראות ולנהל תשלומים חוזרים באפליקציית הבנק. השירות זמין לבנקים באסיה-פסיפיק מ-19 בנובמבר, ו-Kiwibank הניו-זילנדי הוא הראשון שמצטרף.",
+   "src": "PR Newswire via TradingView",
+   "url": "https://www.tradingview.com/news/prnewswire:938657d062373:0-visa-unveils-next-generation-of-subscription-management-solutions-with-visa-recurrent/",
+   "time": "02:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-fls-starboard",
+   "date": "2026-11-19",
+   "t": [
+    "FLS"
+   ],
+   "tag": "Flowserve",
+   "tone": "pos",
+   "title": "Starboard: Flowserve מתומחרת בחסר",
+   "body": "קרן Starboard אמרה בכנס בטורונטו ש-Flowserve מתומחרת בחסר, וצופה צמיחה בהכנסות בשיעור חד-ספרתי גבוה ומרווח תפעולי של יותר מ-22% עד 2030. לפי דוח 13F, הקרן הוסיפה 1.97 מיליון מניות ברבעון השלישי.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/starboard-value-sees-upside-in-flowserve-and-riot-platforms-93CH-5036933",
+   "time": "00:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-riot-starboard",
+   "date": "2026-11-19",
+   "t": [
+    "RIOT"
+   ],
+   "tag": "Riot Platforms",
+   "tone": "pos",
+   "title": "Starboard: השוק לא מעריך את המעבר של Riot למרכזי נתונים",
+   "body": "Starboard אמרה שהשוק לא הכיר במלואו במעבר של Riot Platforms לתשתיות מרכזי נתונים ל-AI, וצופה הכנסות שכירות של כ-$2.3 מיליארד מהעסקאות שהוכרזו עד אמצע-סוף 2028.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/starboard-value-sees-upside-in-flowserve-and-riot-platforms-93CH-5036933",
+   "time": "00:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-knf-starboard-stake",
+   "date": "2026-11-19",
+   "t": [
+    "KNF"
+   ],
+   "tag": "Knife River",
+   "tone": "neu",
+   "title": "Starboard רכשה 2.5 מיליון מניות Knife River",
+   "body": "לפי דוח 13F לרבעון השלישי, Starboard Value פתחה אחזקה חדשה של 2.5 מיליון מניות ב-Knife River.",
+   "src": "Seeking Alpha via TradingView",
+   "url": "https://www.tradingview.com/news/seekingalpha:278d311b2094b:0-starboard-adds-knife-rive-shake-shack-cuts-lamb-weston-among-q3-moves/",
+   "time": "02:15",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-ntes-q3",
+   "date": "2026-11-19",
+   "t": [
+    "NTES"
+   ],
+   "tag": "NetEase",
+   "tone": "neg",
+   "title": "NetEase: ההכנסות ירדו ב-1.8%",
+   "body": "ההכנסות ברבעון השלישי ירדו ב-1.8% ל-27.9 מיליארד יואן ($4.2 מיליארד), והכנסות המשחקים ב-1.7% ל-22.9 מיליארד יואן. הרווח הנקי המתואם הסתכם ב-9.2 מיליארד יואן ($2.13 ל-ADS), והחברה תחלק דיבידנד של $0.585 ל-ADS.",
+   "src": "PR Newswire",
+   "url": "https://www.prnewswire.com/news-releases/netease-announces-third-quarter-2026-unaudited-financial-results-302945011.html",
+   "time": "10:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-futu-q3",
+   "date": "2026-11-19",
+   "t": [
+    "FUTU"
+   ],
+   "tag": "Futu",
+   "tone": "neu",
+   "title": "Futu: ההכנסות עלו ב-4.5%, מספר החשבונות ב-27.9%",
+   "body": "ההכנסות ברבעון השלישי עלו ב-4.5% ל-6.69 מיליארד דולר הונג קונגי ($852.7 מיליון), והרווח הנקי נותר כמעט ללא שינוי ב-3.19 מיליארד. מספר החשבונות הממומנים עלה ב-27.9% ל-4.01 מיליון.",
+   "src": "GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/19/3406322/0/en/futu-announces-third-quarter-2026-unaudited-financial-results.html",
+   "time": "10:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-baba-reports-today",
+   "date": "2026-11-19",
+   "t": [
+    "BABA"
+   ],
+   "tag": "Alibaba",
+   "tone": "neu",
+   "title": "Alibaba מדווחת היום לפני הפתיחה",
+   "body": "Alibaba תפרסם את תוצאות הרבעון לפני פתיחת המסחר, ושיחת הוועידה תתקיים ב-14:00 (שעון ישראל). הצפי הוא להכנסות של כ-269.85 מיליארד יואן (צמיחה של 8.9%) ולצמיחה של כ-50% בענן.",
+   "src": "Alibaba, Longbridge",
+   "url": "https://longbridge.com/en/news/305889191",
+   "time": "10:55",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-18-rxrx-fda-alignment",
+   "date": "2026-11-18",
+   "t": [
+    "RXRX"
+   ],
+   "tag": "Recursion",
+   "tone": "pos",
+   "title": "Recursion הגיעה להסכמה עם ה-FDA על ניסוי שלב 3",
+   "body": "Recursion הגיעה להסכמה עם ה-FDA על מבנה ניסוי שלב 3 רישומי ל-REC-4881 בפוליפוזיס משפחתי (FAP), עם כ-200 משתתפים. הניסוי צפוי להתחיל במחצית השנייה של 2027.",
+   "src": "GlobeNewswire, RTTNews",
+   "url": "https://www.globenewswire.com/news-release/2026/11/18/3405436/0/en/recursion-announces-alignment-with-fda-on-registrational-phase-3-trial-design-for-rec-4881-in-familial-adenomatous-polyposis.html",
+   "time": "11:59",
+   "k": "stock"
+  },
+  {
    "id": "2026-11-18-close-dow-561",
    "date": "2026-11-18",
    "t": [
