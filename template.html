@@ -1605,7 +1605,7 @@ function qvClose(){ const p=$('qv'); if(p) p.classList.remove('on'); const b=$('
 function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
   p.querySelectorAll('.qvtabs button').forEach(b=>b.classList.toggle('on',b.dataset.qt===k));
   const box=$('qvBody'); if(!box) return;
-  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · <span style="color:#58a6ff">ממוצע 50</span> · <span style="color:#f5b942">ממוצע אקספוננציאלי 200</span> · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); return; }
+  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול העבה · ממוצע אקספוננציאלי 200: הקו הכחול הדק · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); return; }
   if(k!=='ch'&&gateOn()&&!accOn()){ box.innerHTML=''; gateBox(box,k==='rp'?'הדוחות של המניה':'כל החדשות של המניה'); return; }
   box.innerHTML='<div class="empty">טוען…</div>';
   loadDet(t).then(det=>{ if(QV.L[QV.i]!==t||QV.tab!==k) return;
@@ -1778,7 +1778,7 @@ async function renderStock(t){
       <div id="spIns"></div>
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · <span style="color:#58a6ff">ממוצע נע 50 יום (כחול)</span> · <span style="color:#f5b942">ממוצע נע אקספוננציאלי 200 יום (צהוב)</span></span></div><div class="spchart" id="spChart"></div></div>
+    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 50 יום: הקו הכחול העבה · ממוצע נע אקספוננציאלי 200 יום: הקו הכחול הדק</span></div><div class="spchart" id="spChart"></div></div>
     <div class="sptab" data-st="rp">
       ${repCard(t,SDET[t],rep,reps)}
       <div id="spSnap"></div>
