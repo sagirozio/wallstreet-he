@@ -1194,7 +1194,7 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
   market:[['#snapshot','תמונת מצב'],['#sectors','סקטורים'],['#themes','תעשיות'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית']],
-  reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#top-reports','הבולטים']],
+  reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#top-reports','הבולטים'],['#glossary','מילון מונחים']],
   stocks:[['#watch','מניות במעקב'],['#screener','סורק מניות'],['#stocksHub','מניות'],['#gainers','זינקו לאחרונה'],['#ytd','הכפילו ב-2026'],['#ipos','הנפקות']]
 };
 const PG_TITLE={home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
@@ -1224,11 +1224,11 @@ function route(){
   if(pg==='reports'&&el) RSUB=el.id;
   if(pg==='market'&&el) MSUB=el.id;   /* market page: one tool at a time (sectors / industries / breadth / macro) */
   document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? s.id===MSUB : pg==='reports' ? s.id===RSUB : s.dataset.pg===pg));
-  const navp = pg==='stock'?'stocks':pg==='group'?'market':pg;
+  const navp = pg==='stock'?'stocks':pg==='group'?'market':pg==='gloss'?'reports':pg;
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
-  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)?'on':''}">${l}</a>`).join('');
+  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')?'on':''}">${l}</a>`).join('');
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
   if(pg==='reports') loadReports();
