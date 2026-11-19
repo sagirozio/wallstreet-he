@@ -49,8 +49,15 @@ _now = _dtn.datetime.now(_zi.ZoneInfo("Asia/Jerusalem"))
 _first = _nt is None; _nt = _nt or {}
 for _n in news:
     _k = (_n.get("date") or "") + "|" + (_n.get("title") or "")
-    if _k not in _nt: _nt[_k] = _now.strftime("%Y-%m-%d %H:%M") if not _first and _n.get("date") == _now.strftime("%Y-%m-%d") else ""
-    if not _n.get("time") and _nt[_k] and _nt[_k][:10] == _n.get("date"): _n["time"] = _nt[_k][11:]
+    # US-dated items written after midnight Israel time still count as new (date = yesterday)
+    _recent = _n.get("date") in (_now.strftime("%Y-%m-%d"), (_now - _dtn.timedelta(days=1)).strftime("%Y-%m-%d"))
+    if _k not in _nt: _nt[_k] = _now.strftime("%Y-%m-%d %H:%M") if not _first and _recent else ""
+    if _nt[_k]:
+        try: _gap = (_dtn.date.fromisoformat(_nt[_k][:10]) - _dtn.date.fromisoformat(_n.get("date") or "")).days
+        except ValueError: _gap = 9
+        if 0 <= _gap <= 1:
+            if not _n.get("time"): _n["time"] = _nt[_k][11:]
+            if _gap: _n["tday"] = _nt[_k][:10]   # Israel date of that time (the item's own date is the US one)
 _keep = {(_n.get("date") or "") + "|" + (_n.get("title") or "") for _n in news}
 _nt = {k: v for k, v in _nt.items() if k in _keep}
 

@@ -1144,7 +1144,7 @@ const DAYS_HE=['ראשון','שני','שלישי','רביעי','חמישי','ש�
 /* after-hours change of SPY / QQQ / DIA (live.json postIdx) for the status line */
 const pxFmt=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2);
 function postIdxTxt(){ const P=LIVE&&LIVE.postIdx&&LIVE.date===nyToday()?LIVE.postIdx:null; if(!P) return '';
-  return '<br><span class="pxl">'+[['SPY','S&P 500'],['QQQ','נאסד״ק'],['DIA','דאו'],['BTC','ביטקוין']].filter(([k])=>P[k]).map(([k,n])=>`${n} <span class="num">$${pxFmt(P[k][0])}</span> <b class="num ${P[k][1]>=0?'up':'down'}">${pct(P[k][1],2)}</b>`).join(' · ')+'</span>'; }
+  return '<br><span class="pxl">'+[['SPY','S&P 500'],['QQQ','נאסד״ק'],['DIA','דאו'],['BTC','ביטקוין']].filter(([k])=>P[k]).map(([k,n])=>`${n} <span class="num">$${pxFmt(P[k][0])}</span> <b class="num ${P[k][1]>=0?'up':'down'}">${pct(P[k][1],2)}</b>`).join(' · ')+(liveTm()?` · <span class="lvs">עודכן ${esc(liveTm())}</span>`:'')+'</span>'; }
 function renderMktStatus(){
   const ny=nyNow(), dow=ny.getDay(), m=ny.getHours()*60+ny.getMinutes(), wk=dow>=1&&dow<=5;
   $('market').classList.toggle('sess', wk&&m>=570&&m<960);   /* TradingView boxes only while the session is open */
@@ -1275,7 +1275,7 @@ function newsIcon(n){ const one=Array.isArray(n.t)&&n.t.length===1;
   if(one) return `<span class="sth">${mono(n.t[0])}</span>`;
   const g=(n.tag||'')+' '+(n.title||''), k=/טראמפ|ממשל|הבית הלבן/.test(g)?'flag':/גיאופול|סין|מלחמ|איראן|מכס/.test(g)?'globe':/ריבית|הפד|פרוטוקול/.test(g)?'pct':/מאקרו|אינפלצ|תעסוק|צמיחה|תמ״ג/.test(g)?'bank':/דוח|הנפק/.test(g)?'doc':'chart';
   return `<span class="sth ic" style="color:${N_COL[k]};background:${N_COL[k]}1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${N_IC[k]}</svg></span>`; }
-function newsWhen(n){ const p=String(n.date||'').split('-'), today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'}); return (n.date===today?'היום':p.length===3?`${+p[2]}.${+p[1]}`:'')+(n.time?' '+esc(n.time):''); }
+function newsWhen(n){ const dd=n.tday||n.date, p=String(dd||'').split('-'), today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jerusalem'}); return (dd===today?'היום':p.length===3?`${+p[2]}.${+p[1]}`:'')+(n.time?' '+esc(n.time):''); }
 const newsSrc=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener"><bdi>${esc(n.src||'למקור')}</bdi> ↗</a>`:`<bdi>${esc(n.src||'')}</bdi>`;
 const newsTk=n=>(n.t||[]).slice(0,3).map(t=>`<a class="ntk" href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`).join('');
 const newsBig=n=>`<article class="sa">${newsIcon(n)}<div><h3>${esc(n.title)}</h3>${n.body?`<p>${esc(n.body)}</p>`:''}<small>${newsWhen(n)} · ${newsSrc(n)} ${newsTk(n)}</small></div></article>`;
@@ -1590,7 +1590,7 @@ function spDayHtml(t,s){
   const L=liveQ(t);
   if(L){ const open=mktOpen()&&LIVE.date===nyToday(), tm=(String(LIVE.asOf||'').split('· ')[1]||''), dd=String(LIVE.date||'').split('-');
     const P=!open&&LIVE.post&&LIVE.post[t]&&LIVE.date===nyToday()?LIVE.post[t]:null;
-    return `<b class="sppx num">$${L[0].toFixed(2)}</b><b class="spch ${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span></small>`:''}${preLine(t)}`; }
+    return `<b class="sppx num">$${L[0].toFixed(2)}</b><b class="spch ${L[1]>=0?'up':'down'}">${pct(L[1],2)}</b><small>${open?`<i class="livedot"></i>לייב · ${esc(tm)}`:`בסגירה · ${dd.length===3?(+dd[2])+'.'+(+dd[1]):''}`}</small>${P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span>${tm?` · עודכן ${esc(tm)}`:''}</small>`:''}${preLine(t)}`; }
   const d=s&&s.r&&s.r.d!=null?s.r.d:null;
   return d==null?preLine(t):`<b class="${d>=0?'up':'down'}">${pct(d,2)}</b><small>בסגירה${closeLbl()?' · '+closeLbl():''}</small>${preLine(t)}`;
 }

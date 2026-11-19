@@ -46,7 +46,8 @@ Never invent a reason for a move — no source, no explanation.
   `vix` `{"v","c","week","from","note"}`. Macro labels keep the indicator name (CPI, PPI, PCE, ריבית…).
 
 **`news`** — prepend; never edit or delete old items (archive). No duplicates (check today's titles and tickers).
-`{"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["NVDA"],"tag":"…","tone":"pos|neg|neu","title":"<Hebrew>","body":"<1–3 sentences, numbers>","src":"…","url":"…"}`
+`{"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["NVDA"],"tag":"…","tone":"pos|neg|neu","title":"<Hebrew>","body":"<1–3 sentences, numbers>","src":"…","url":"…","time":"HH:MM"}`
+- `time`: when the source published the item, in Israel time (24h). If the source shows no time, use the time you write it. The site shows it next to the item; without it, the site falls back to the time the build first saw the item.
 - Main items: no `k`. Stock items: `"k":"stock"`, one ticker, cover as many different stocks as possible.
 - Stock priority: today's reporters → `movers` (why) → analyst actions on $10B+ → deals/guidance/legal/execs → mega caps.
   Prefer stocks without a recent item. Start from `news_src.json`, confirm in the article, write in your own Hebrew.
