@@ -43497,7 +43497,7 @@
   }
  ],
  "overview": {
-  "asOf": "19.11.2026 · 16:35",
+  "asOf": "19.11.2026 · 17:15",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43556,8 +43556,8 @@
   ],
   "brief": [
    {
-    "h": "החוזים עולים לפני הבכורה של Anthropic",
-    "t": "מניית Anthropic (ANT) תתחיל להיסחר בנאסד״ק אחרי הפתיחה; לפי Forbes, שציטט את Bloomberg, השוק האפור מצביע על פתיחה של 20%–26% מעל מחיר ההנפקה של $83. במסחר המקדים Alphabet עולה ב-4.3% ו-Amazon ב-2.2% (Reuters), ותשואת ה-10 שנים סביב 5.07%.",
+    "h": "Anthropic בבכורה, הנאסד״ק מוביל",
+    "t": "לפי Reuters, הנאסד״ק עלה ביותר מ-1% בפתיחה אחרי שההנפקה של Anthropic תומחרה ב-$83, מעל הטווח; מניית ANT צפויה להתחיל להיסחר במהלך הבוקר בניו יורק, ומניות ה-AI והשבבים מובילות, בזמן שתשואת ה-10 שנים סביב 5.09%.",
     "tone": "pos"
    },
    {
@@ -43571,13 +43571,13 @@
     "tone": "neu"
    },
    {
-    "h": "במסחר המקדים: Palo Alto, AST ו-Ambarella",
-    "t": "Palo Alto עולה בכ-9.5% אחרי דוח מעל הצפי והעלאת התחזית; AST SpaceMobile עולה בכ-9.7% אחרי ש-ULA ייחסה את כשל שיגור ה-Vulcan לאספקת הדלק; Ambarella עולה בכ-9% על דיווח שעסקת הרכישה בידי NXP בשלבים סופיים (Seeking Alpha).",
-    "tone": "pos"
+    "h": "מזנקות: Everpure, PDD, Coherent; StoneX צונחת",
+    "t": "Everpure עולה בכ-12% אחרי צמיחה של 51% בהכנסות והעלאת התחזית; Coherent בכ-10% עם מניות תשתית ה-AI; USA Rare Earth בכ-10% אחרי רכישת מניות של דירקטור; StoneX יורדת בכ-16% אחרי רווח של $0.66 למניה מול צפי של $0.81.",
+    "tone": "neu"
    },
    {
-    "h": "וושינגטון: שבבים לסין במוקד",
-    "t": "בראיון ל-Fox News אמר טראמפ שבעוד שנתיים–שלוש היה מאשר ל-Nvidia למכור שבבי Blackwell לסין; במקביל, לפי Reuters, דמוקרטים בבית הנבחרים בודקים אם החלטות השר לטניק על ייצוא שבבים הושפעו מ-Cantor Fitzgerald.",
+    "h": "טראמפ: תאילנד תבטל מכסים",
+    "t": "טראמפ אמר שתאילנד תבטל מכסים על סחורות אמריקאיות ותרכוש מוצרי חקלאות ב-$2.6 מיליארד (ההסכם טרם נחתם); קודם לכן אמר בראיון ל-Fox News שבעוד שנתיים–שלוש היה מאשר ל-Nvidia למכור שבבי Blackwell לסין.",
     "tone": "neu"
    }
   ],
@@ -43650,7 +43650,7 @@
    "from": 19.3,
    "note": "המדד ירד ב-3.5% ל-24.58, אבל נשאר מעל 24 אחרי הקפיצה בתחילת השבוע."
   },
-  "rev": 202611191635,
+  "rev": 202611191715,
   "market": {
    "note": "סגירה ביום רביעי, 18.11.2026. הדאו ירד ב-561 נקודות וה-S&P 500 ירד ביום החמישי ברציפות, בזמן שהנאסד״ק וראסל 2000 עלו לפני הנפקת Anthropic. פרוטוקול הפד הראה שכמעט כל החברים צופים העלאת ריבית נוספת.",
    "idx": [
@@ -106368,6 +106368,105 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-19-nasdaq-open-anthropic",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "הנאסד״ק עלה ביותר מ-1% בפתיחה אחרי תמחור ההנפקה של Anthropic",
+   "body": "לפי Reuters, בפתיחת המסחר עלה הנאסד״ק ב-1.55% ל-24,809 נקודות, ה-S&P 500 ב-0.90% ל-7,389 והדאו ב-0.47% ל-50,432. לפי הסוכנות, תמחור ההנפקה של Anthropic מעל הטווח שהוצע חיזק את הציפיות לבכורה חזקה ואת מניות ה-AI.",
+   "src": "Reuters (Investing.com)",
+   "url": "https://investing.com/news/stock-market-news/nasdaq-rises-over-1-at-open-asanthropic-ipo-pricing-bolsters-ai-trade-5039286",
+   "time": "16:34"
+  },
+  {
+   "id": "2026-11-19-trump-thailand-trade",
+   "date": "2026-11-19",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: תאילנד תבטל את המכסים על סחורות אמריקאיות ותרכוש מוצרי חקלאות ב-$2.6 מיליארד",
+   "body": "לפי טראמפ, תאילנד הסכימה לבטל מכסים על יצוא אמריקאי ולהסיר חסמים על רכב, ציוד רפואי, תרופות, אתנול ועופות, ותבצע רכישות נוספות של כ-$2.6 מיליארד של מוצרי חקלאות. שר החוץ התאילנדי אמר, לפי Bloomberg, שהמדינה תתקדם לעבר מכס אפס ותפתח את שוקה לבשר חזיר אמריקאי; ההסכם טרם נחתם ורשימת המוצרים לא פורסמה.",
+   "src": "Morning Ag Clips / Farm Policy News",
+   "url": "https://www.morningagclips.com/thailand-trade-deal-will-include-2-6b-in-us-ag-purchases-pork-market-access-trump-says/",
+   "time": "16:45"
+  },
+  {
+   "id": "2026-11-19-p-q3-guidance",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "P"
+   ],
+   "tag": "Everpure",
+   "tone": "pos",
+   "title": "Everpure עולה בכ-12% אחרי דוח: ההכנסות קפצו ב-51% והתחזית השנתית הועלתה",
+   "body": "ההכנסות ברבעון השלישי של שנת הכספים 2027 עלו ב-51%, עם הכנסות ממוצרים של $948 מיליון (77%+) ומשירותי מנוי של $512 מיליון (19%+), ושיעור הרווח התפעולי הגיע לשיא של 23.6%; התוצאות עקפו את תחזית החברה. Everpure העלתה את תחזית ההכנסות השנתית ל-$5.20–$5.21 מיליארד וצופה ברבעון הרביעי $1.505–$1.515 מיליארד.",
+   "src": "Yahoo Finance (GuruFocus)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/everpure-inc-p-q3-2027-050048289.html",
+   "time": "07:00"
+  },
+  {
+   "id": "2026-11-19-snex-q4-miss",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "SNEX"
+   ],
+   "tag": "StoneX",
+   "tone": "neg",
+   "title": "StoneX צונחת בכ-16% אחרי החטאה ברווח הרבעוני",
+   "body": "ברבעון הרביעי של שנת הכספים 2026 הרוויחה StoneX ‏$0.66 למניה בדילול, מול צפי של $0.81 לפי Investing.com; הרווח הנקי ירד ב-2% ל-$84.2 מיליון, וההכנסות התפעוליות נטו עלו ב-12% ל-$655.2 מיליון. בשנה כולה עלה הרווח הנקי ב-72% לשיא של $525.4 מיליון.",
+   "src": "Investing.com / StoneX (SEC)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/stonex-group-falls-fourth-quarter-215923742.html",
+   "time": "17:15"
+  },
+  {
+   "id": "2026-11-19-usar-director-buy",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "USAR"
+   ],
+   "tag": "USA Rare Earth",
+   "tone": "pos",
+   "title": "USA Rare Earth עולה בכ-10% אחרי רכישת מניות של דירקטור ב-$3 מיליון",
+   "body": "לפי דיווח Form 4, הדירקטור מייקל בליצר רכש ב-17 וב-18 בנובמבר 450 אלף מניות במחיר ממוצע של $6.64–$6.72, בהיקף של כ-$3 מיליון. המניה עלתה כבר במסחר המקדים בכ-5.8%.",
+   "src": "Yahoo Finance (GuruFocus)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/usa-rare-earth-stock-rises-122415592.html",
+   "time": "14:24"
+  },
+  {
+   "id": "2026-11-19-sls-offering",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "SLS"
+   ],
+   "tag": "SELLAS",
+   "tone": "neg",
+   "title": "SELLAS יורדת בכ-13% אחרי הנפקה של $150 מיליון בהנחה של 28%",
+   "body": "SELLAS תמחרה הנפקה של 11.54 מיליון מניות ב-$13 למניה, הנחה של כ-28% ממחיר הסגירה ביום רביעי, וההנפקה צפויה להיסגר ב-20 בנובמבר. ההנפקה הגיעה יום אחרי שהמניה זינקה על תוצאות חיוביות בניסוי שלב 3 בלוקמיה.",
+   "src": "GlobeNewswire / Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/sls-stock-sellas-discounted-share-offering-retail-bulls-crying-foul-low-price/cNbLDqPR9ii",
+   "time": "06:42"
+  },
+  {
+   "id": "2026-11-19-cohr-ai-rally",
+   "date": "2026-11-19",
+   "k": "stock",
+   "t": [
+    "COHR"
+   ],
+   "tag": "Coherent",
+   "tone": "pos",
+   "title": "Coherent עולה בכ-10% עם מניות תשתית ה-AI לפני הבכורה של Anthropic",
+   "body": "Coherent עלתה כבר במסחר המקדים ב-8.3%, עם עליות במניות האופטיקה Lumentum ‏(4.2%), Ciena ו-Applied Optoelectronics, כחלק מעלייה רחבה במניות הקשורות ל-AI לקראת תחילת המסחר במניית Anthropic.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/us-ai-linked-stocks-rise-ahead-of-anthropics-market-debut-1b5099f3e0aafe7c",
+   "time": "15:00"
+  },
   {
    "id": "2026-11-19-amba-nxp-final-stages",
    "date": "2026-11-19",
