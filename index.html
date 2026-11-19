@@ -216,6 +216,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .sptoday{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:10px 0 8px}
 .sptl{font-weight:700;font-size:14px}.sptl span{color:var(--muted);font-weight:400;font-size:12px}
 #spTodayW{direction:ltr;min-height:0}
+.snap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 4px}.snap div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.snap small{color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px}.snap b{font-size:15px;font-weight:600}.snap .snq{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
 .spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
 .spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
@@ -1590,6 +1591,7 @@ async function renderStock(t){
       ${whyBlock(t,s,news)}
       ${repMini(rep)}
       <div id="spPerf">${perfTiles(s)}</div>
+      <div id="spSnap"></div>
       <div id="spPx"></div>
       <div id="spMv"></div>
       ${news.filter(n=>n!==WHY_USED).length?`<h3 class="sph3">חדשות אחרונות</h3><div class="spnews">${news.filter(n=>n!==WHY_USED).slice(0,2).map(spNewsItem).join('')}</div>${news.length>2?`<a href="#" data-goto="nw">לכל ${news.length} הידיעות ←</a>`:''}`:''}
@@ -1719,8 +1721,8 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadLive
 /* ---------- year-to-date daily price line on the stock overview (`px` branch: _dates.json + <T>.json, from our own history) + crosshair ---------- */
 const PX_BASE='https://raw.githubusercontent.com/sagirozio/wallstreet-he/px/';
 let PXD=null, pxdP=null; const PXC={}, PXF={};   /* PXC = year to date (aligned to PXD.dates); PXF = with up to 199 earlier sessions, for the averages */
-function loadPxDates(){ if(pxdP) return pxdP; pxdP=fetch(PX_BASE+'_dates.json',{cache:'default'}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.y0) j={...j, full:j.dates, dates:j.dates.slice(j.y0)}; PXD=j; return j; }).catch(()=>{ pxdP=null; return null; }); return pxdP; }
-function loadPx(t){ if(PXC[t]) return Promise.resolve(PXC[t]); return loadPxDates().then(()=>fetch(PX_BASE+encodeURIComponent(t)+'.json',{cache:'default'})).then(r=>r.ok?r.json():null).then(a=>{ if(Array.isArray(a)){ const y0=(PXD&&PXD.y0)||0; PXF[t]=a; PXC[t]=y0?a.slice(y0):a; } return PXC[t]; }).catch(()=>null); }
+function loadPxDates(){ if(pxdP) return pxdP; pxdP=fetch(PX_BASE+'_dates.json?h='+Math.floor(Date.now()/36e5),{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.y0) j={...j, full:j.dates, dates:j.dates.slice(j.y0)}; PXD=j; return j; }).catch(()=>{ pxdP=null; return null; }); return pxdP; }
+function loadPx(t){ if(PXC[t]) return Promise.resolve(PXC[t]); return loadPxDates().then(()=>fetch(PX_BASE+encodeURIComponent(t)+'.json?v='+((PXD&&PXD.asOf)||''),{cache:'default'})).then(r=>r.ok?r.json():null).then(a=>{ if(Array.isArray(a)){ const nd=PXD&&PXD.dates?PXD.dates.length:a.length, y0=Math.max(0,a.length-nd);   /* line the closes up with the dates even if one of the two files is an older copy */ PXF[t]=a; PXC[t]=y0?a.slice(y0):a; } return PXC[t]; }).catch(()=>null); }
 const pxF=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), pxD=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:String(d||''); };
 const PXDT={};   /* series with their own dates (sector ETFs) */
 function pxSeries(t){ let a0=PXC[t], D=PXDT[t]||(PXD||{}).dates; if(!a0||!D) return {};
@@ -1756,7 +1758,7 @@ function pxChart(t){
     <div class="pxf"><span>${pxD(D[a[0][0]])}</span><span>מחירי סגירה יומיים עד ${pxD(D[a[a.length-1][0]])}</span></div></div>`;
 }
 let PXO=(()=>{ const d={m50:0,m200:0,er:0,rs:0}; try{ return Object.assign(d,JSON.parse(localStorage.getItem('pxo2')||'{}')); }catch(e){ return d; } })();   /* all extras off until the reader turns them on */ const PXER={}, PXRSH={}, PXRSL={}, PXRSV=t=>((stockIndex()[t]||{}).r||{}).rs;
-function pxMA(t,n){ const f=PXF[t]; if(!f) return null; const y0=(PXD&&PXD.y0)||0, out=[];
+function pxMA(t,n){ const f=PXF[t]; if(!f) return null; const y0=Math.max(0,f.length-(PXC[t]||f).length), out=[];
   for(let i=y0;i<f.length;i++){ if(i<n-1){ out.push(null); continue; } let s=0,k=0; for(let j=i-n+1;j<=i;j++) if(f[j]!=null){ s+=f[j]; k++; } out.push(k>=n*0.9?s/k:null); }
   return out; }
 /* report dots: past report days (det.ed, newest first) paired with the quarters (det.eh, newest first); acceleration = change in EPS growth vs the quarter before */
@@ -1773,7 +1775,43 @@ document.addEventListener('click',e=>{
 });
 function pxRep(d){ const c=d.closest('.pxc'), r=(PXER[c.dataset.px]||[])[+d.dataset.k]; if(!r) return;
     c.querySelector('#pxInfo').innerHTML=`<b>דוח ${esc(r.q||'')}</b> · ${pxD(r.d)}${typeof r.a==='number'?` · EPS <span class="num">${eps(r.a)}</span>`:''}${typeof r.e==='number'?` מול צפי <span class="num">${eps(r.e)}</span>`:''}${r.ay!=null?` · צמיחה <span class="num ${r.ay>=0?'up':'down'}">${pct(r.ay,0)}</span>`:''}${r.acc!=null?` · <span class="${r.acc>=0?'up':'down'}">${r.acc>=0?'האצה':'האטה'} של ${Math.abs(r.acc)} נק׳</span>`:''}`; }
-function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t); try{ renderMoves(t); }catch(e){} } }); }
+/* ---------- stock snapshot card: the key numbers in one box (facts only) ---------- */
+const FUNDC={};
+function snapFund(t){ if(t in FUNDC) return Promise.resolve(FUNDC[t]); return fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null).then(f=>(FUNDC[t]=f)); }
+async function renderStkSnap(t){
+  const box=$('spSnap'); if(!box) return;
+  await Promise.all([loadScr(), snapFund(t), loadPxDates().then(()=>loadPx(t))].map(p=>Promise.resolve(p).catch(()=>null)));
+  const b=$('spSnap'); if(!b||$('spBody').dataset.t!==t) return;
+  const s=stockIndex()[t]||{}, r=s.r||{}, det=SDET[t]||{}, F=det.f||{}, eh=det.eh||[], x=(SCR||{})[t]||{}, fu=FUNDC[t], C=[];
+  const P=(v,d=0)=>v==null||!isFinite(v)?null:`<span class="num ${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(d)}%</span>`, N=(v,d=1,u='')=>v==null||!isFinite(v)?null:`<span class="num" dir="ltr">${v.toFixed(d)}${u}</span>`;
+  const add=(l,v,k)=>{ if(v!=null) C.push(`<div><small>${l}${k?gq(k):''}</small><b>${v}</b></div>`); };
+  // EPS: quarter growth, streak of quarters at +15% or more, trailing-year growth (from the filings)
+  let streak=null, ann=null, pe=null;
+  if(fu&&Array.isArray(fu.eps)){ const e=fu.eps, yy=[]; for(let i=4;i<e.length;i++) yy.push(e[i]!=null&&e[i-4]!=null&&e[i-4]>0?(e[i]/e[i-4]-1)*100:null);
+    streak=0; for(let i=yy.length-1;i>=0&&yy[i]!=null&&yy[i]>=15;i--) streak++;
+    if(e.length>=8){ const a=e.slice(-4), p=e.slice(-8,-4); if(a.every(v=>v!=null)&&p.every(v=>v!=null)){ const sa=a.reduce((x,y)=>x+y,0), sp=p.reduce((x,y)=>x+y,0); if(sp>0) ann=(sa/sp-1)*100; } } }
+  const q0=eh[0], q1=eh[1];
+  add('רווח למניה, רבעון אחרון', q0&&q0.ay!=null?P(q0.ay)+` <i class="snq">${esc(q0.q)}</i>`:null, 'EPS');
+  add('רבעון קודם', q1&&q1.ay!=null?P(q1.ay)+` <i class="snq">${esc(q1.q)}</i>`:null, 'YOY');
+  add('הכנסות, רבעון אחרון', q0&&q0.ry!=null?P(q0.ry):null, 'REV');
+  add('רבעונים ברצף עם צמיחת רווח 15%+', streak!=null?`<span class="num">${streak}</span>`:null, 'EPSSTREAK');
+  add('צמיחת רווח, 4 רבעונים', P(ann), 'EPS4Q');
+  add('RS', r.rs!=null?`<span class="num">${r.rs}</span>`:null, 'RS');
+  add('ROE', F.roe&&F.roe.v!=null?N(F.roe.v,1,'%'):null, 'ROE');
+  add('שולי רווח נקי', x.nm!=null?N(x.nm,1,'%'):null, 'MARGIN');
+  add('מכפיל רווח', x.pe!=null?N(x.pe):null, 'PE');
+  add('מכפיל מכירות', x.ps!=null?N(x.ps):null, 'PS');
+  add('מרחק משיא 52 שבועות', P(r.hi,1), 'OFFHI');
+  const A=PXF[t]; const last=A&&A.length?A[A.length-1]:null, ma=n=>{ if(!A||A.length<n) return null; const w=A.slice(-n).filter(v=>v!=null); return w.length>=n*0.9?w.reduce((a,b)=>a+b,0)/w.length:null; };
+  const m50=ma(50), m200=ma(200);
+  add('מרחק מממוצע 50 יום', last&&m50?P((last/m50-1)*100,1):null, 'MA');
+  add('מרחק מממוצע 200 יום', last&&m200?P((last/m200-1)*100,1):null, 'MA');
+  add('שורט מהמניות הצפות', F.si!=null?N(F.si,1,'%'):null, 'SHORT');
+  add('בעלות מוסדיים', F.inst!=null?N(F.inst,0,'%'):null, 'INST');
+  const nx=det.e&&det.e.d&&det.e.d>=new Date().toISOString().slice(0,10)?det.e.d:null; add('הדוח הבא', nx?`<span class="num">${dm(nx)}</span>${det.e.est?' <i class="snq">הערכה</i>':''}`:null, 'NEXTREP');
+  b.innerHTML=C.length?`<h3 class="sph3">תקציר נתונים</h3><div class="snap">${C.join('')}</div><p class="legend">רווח למניה ומכפילים לפי הדוחות לרשות ניירות הערך האמריקאית (GAAP). ממוצעים לפי מחירי סגירה.</p>`:'';
+}
+function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t); try{ renderMoves(t); }catch(e){} } }); try{ renderStkSnap(t); }catch(e){} }
 /* "why did it move": days of 5%+ since the news archive starts, each with our per-stock item from that day (or "no confirmed reason") */
 let MVALL=false;
 function renderMoves(t){
@@ -2017,6 +2055,9 @@ document.addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('glPop').classList.add('hidden'); });
 /* extra terms for the glossary page (same format: [title, explanation]) */
 Object.assign(GLOSS,{
+  EPSSTREAK:['רבעונים ברצף עם צמיחת רווח 15%+','כמה רבעונים רצופים, עד הרבעון האחרון, הרווח למניה (EPS) צמח ב-15% או יותר לעומת אותו רבעון שנה קודם. מספר גבוה מראה צמיחה עקבית ולא קפיצה חד-פעמית. 0 אומר שברבעון האחרון הצמיחה הייתה מתחת ל-15%. מחושב מהדוחות לרשות ניירות הערך (GAAP).'],
+  EPS4Q:['צמיחת רווח, 4 רבעונים','סכום הרווח למניה (EPS) ב-4 הרבעונים האחרונים, לעומת סכום 4 הרבעונים שלפניהם. מראה את קצב הצמיחה על פני שנה שלמה, ומחליק תנודות של רבעון בודד. מחושב מהדוחות לרשות ניירות הערך (GAAP).'],
+  NEXTREP:['הדוח הבא','התאריך שבו החברה צפויה לפרסם את הדוח הרבעוני הבא. "הערכה" אומר שהחברה עוד לא אישרה את התאריך, והוא מבוסס על מועדי הדוחות הקודמים. ביום הדוח המניה זזה לרוב יותר מהרגיל.'],
   STOCK:['מניה','חלק קטן בבעלות על חברה. מי שמחזיק מניה זכאי לחלק מהרווחים (אם החברה מחלקת דיבידנד) ומשתתף בהצבעות של בעלי המניות. המחיר נקבע בכל רגע לפי ההיצע והביקוש בבורסה.'],
   INDEX:['מדד','סל מניות שמייצג חלק מהשוק, ומחושב כמספר אחד. כשאומרים ״השוק עלה״ מתכוונים בדרך כלל למדד S&P 500.'],
   SPX:['S&P 500','מדד של כ-500 החברות הגדולות בארה״ב, משוקלל לפי שווי שוק: לחברה גדולה יותר יש השפעה גדולה יותר. נחשב המדד המייצג של שוק המניות האמריקאי.'],
@@ -2060,7 +2101,7 @@ const GLM={
   STOCK:['b','Stock'],INDEX:['b','Index'],SPX:['b','S&P 500','','#','עמוד ראשי'],NDX:['b','Nasdaq'],DOW:['b','Dow Jones'],RUT:['b','Russell 2000'],
   CAP:['b','Market Cap','מחיר ‎$50 × מיליארד מניות = שווי ‎$50B'],VOL:['b','Volume'],PRE:['b','Pre / After market','','#stock/NVDA','תעודת זהות של מניה'],BULL:['b','Bull / Bear'],CORR:['b','Correction'],SCREEN:['b','Screener','','#screener','סורק מניות'],
   EPS:['r','EPS','‎$2.10 בפועל מול צפי ‎$1.80 = עקיפה של 17%','#page/reports','דוחות'],GAAPX:['r','Adjusted / GAAP','','#page/reports','מאגר הדוחות'],REV:['r','Revenue'],BEAT:['r','Beat / Miss'],SURP:['r','Surprise','צפי ‎$1.00, בפועל ‎$1.10 = הפתעה של ‎+10%'],
-  GUIDE:['r','Guidance'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
+  GUIDE:['r','Guidance'],EPSSTREAK:['r','EPS Streak','4 רבעונים ברצף עם צמיחה של 18%, 25%, 31%, 40% = רצף של 4'],EPS4Q:['r','Trailing 4Q EPS growth','‎$8 ב-4 הרבעונים האחרונים מול ‎$6 לפניהם = ‎+33%'],NEXTREP:['r','Next Earnings Date','','#upcoming','לוח השבוע'],YOY:['r','Year over Year','EPS ‎$1.20 לעומת ‎$1.00 לפני שנה = ‎+20%'],BMO:['r','BMO / AMC','','#upcoming','לוח השבוע'],FY:['r','Fiscal Year'],CALL:['r','Earnings Call'],ANALYST:['r','Analysts'],
   F_Q:['f','Quarterly'],F_REVOP:['f','Revenue / Operating Income'],F_GP:['f','Gross Profit / OpEx'],F_NI:['f','Net Income'],F_EPS:['f','Diluted EPS'],MARGIN:['f','Margins','רווח גולמי ‎$40 מהכנסות ‎$100 = שולי רווח גולמי 40%'],F_BAL:['f','Balance Sheet'],FCF:['f','Free Cash Flow'],DEBT:['f','Net Debt'],ROE:['f','Return on Equity','רווח שנתי ‎$20B / הון עצמי ‎$100B = ROE של 20%'],
   PE:['v','P/E','מחיר ‎$100 / EPS שנתי ‎$5 = מכפיל 20'],FPE:['v','Forward P/E'],PS:['v','P/S'],PEG:['v','PEG','מכפיל 30 / צמיחה של 30% בשנה = PEG 1'],DIV:['v','Dividend Yield','דיבידנד ‎$2 בשנה / מחיר ‎$50 = תשואה 4%'],EVEBITDA:['v','EV/EBITDA'],
   RS:['t','RS Rating','RS 90 = חזקה מ-90% ממניות S&P 500','#themes','טבלת תעשיות'],MA:['t','Moving Average','','#themes','טבלת תעשיות'],HILO:['t','52-week High / Low','','#breadth','רוחב שוק'],OFFHI:['t','Off High','שיא ‎$100, מחיר ‎$80 = ‎-20% מהשיא'],
