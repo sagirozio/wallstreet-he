@@ -289,7 +289,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
 .spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
 .spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
-.ocd{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 12px;margin:0 0 16px}.ocd .oh{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;font-size:12.5px;color:var(--muted)}.ocd .oh b{color:var(--text);font-size:14px}.ocd .oh .rg{display:flex;gap:4px;margin-inline-start:auto}.ocd .oh button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:2px 9px;font:inherit;cursor:pointer}.ocd .oh button.on{background:var(--panel2);color:var(--text)}.ocd .oh label{display:flex;gap:4px;align-items:center;cursor:pointer}.ocd .oi{min-height:18px;font-size:12px;color:var(--text);direction:ltr;text-align:left;margin-bottom:4px}.ocd svg{display:block;width:100%;touch-action:none;direction:ltr}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}
+.ocd{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 12px;margin:0 0 16px}.ocd .oh{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;font-size:12.5px;color:var(--muted)}.ocd .oh b{color:var(--text);font-size:14px}.ocd .oh .rg{display:flex;gap:4px;margin-inline-start:auto}.ocd .oh button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:2px 9px;font:inherit;cursor:pointer}.ocd .oh button.on{background:var(--panel2);color:var(--text)}.ocd .oh label{display:flex;gap:4px;align-items:center;cursor:pointer}.ocd .oi{min-height:18px;font-size:12px;color:var(--text);direction:ltr;text-align:left;margin-bottom:4px}.ocd svg{display:block;width:100%;touch-action:none;direction:ltr;cursor:crosshair;user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
 a.tlink{color:inherit;text-decoration:none}a.tlink:hover .tick,a.tlink:hover{text-decoration:underline}
@@ -2204,7 +2204,7 @@ document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList
 /* ---------- own candlestick chart (below the TradingView chart; NVDA only for now). Data: ohlc/<T>.json from the nightly run ---------- */
 const OC={};
 function ownCandle(t){ const box=$('ownCd'); if(!box) return;
-  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg">${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
+  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg">${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה: הזזה. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
     box._n=box._n||90; ocDraw(t); };
   if(OC[t]) return go(OC[t]);
   fetch('ohlc/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/36e5),{cache:'default'}).then(r=>r.ok?r.json():null).then(go).catch(()=>{}); }
@@ -2212,10 +2212,24 @@ function ocData(t){ const j=OC[t]; if(!j) return []; const A=j.d.map((d,i)=>({d,
   const L=liveQ(t), last=A[A.length-1];   /* today's candle from the live quote while the session runs (until the nightly file covers today) */
   if(L&&liveOn()&&LIVE.date>last.d&&L[0]){ const lc=last.c; A.push({d:LIVE.date,o:lc,h:Math.max(L[2]||L[0],L[0]),l:Math.min(L[3]||L[0],L[0]),c:L[0],v:0,lv:1}); }
   const ma=(n,i)=>i<n-1?null:A.slice(i-n+1,i+1).reduce((a,x)=>a+x.c,0)/n; A.forEach((x,i)=>{ x.m50=ma(50,i); x.m200=ma(200,i); }); return A; }
+
+/* like TradingView: the wheel over the chart zooms (and never scrolls the page), dragging pans */
+document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; e.preventDefault();
+  const box=$('ownCd'), g=box._g; if(!g||!box._L) return; const L=box._L, n=box._n, r=svg.getBoundingClientRect();
+  const f=Math.max(0,Math.min(1,((e.clientX-r.left)/r.width*g.W-g.pl)/(g.W-g.pl-g.pr))), ci=(L-n-box._off)+f*n;
+  const nn=Math.round(Math.max(15,Math.min(L,n*(e.deltaY>0?1.15:1/1.15)))); if(nn===n&&e.deltaY<0) return;
+  const st=ci-f*nn; box._n=nn; box._off=Math.max(0,Math.min(L-nn,Math.round(L-nn-st))); ocDraw(box.querySelector('.oh b').textContent); },{passive:false});
+let OCD=null;
+document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg||(e.pointerType==='mouse'&&e.button!==0)) return; const box=$('ownCd'); OCD={x:e.clientX,off:box._off||0}; try{ svg.setPointerCapture(e.pointerId); }catch(_){} svg.style.cursor='grabbing'; });
+document.addEventListener('pointermove',e=>{ if(!OCD) return; const box=$('ownCd'), g=box&&box._g, svg=$('ocS'); if(!g||!svg) return; const r=svg.getBoundingClientRect(), px=r.width/g.W*g.cw;
+  const off=Math.max(0,Math.min(box._L-box._n,OCD.off+Math.round((e.clientX-OCD.x)/px))); if(off!==box._off){ box._off=off; ocDraw(box.querySelector('.oh b').textContent); } });
+document.addEventListener('pointerup',()=>{ if(OCD){ OCD=null; const s=$('ocS'); if(s) s.style.cursor=''; } });
+document.addEventListener('pointercancel',()=>{ OCD=null; });
 function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) return;
   const n=box._n||90, c50=box.querySelector('[data-oc="50"]').checked, c200=box.querySelector('[data-oc="200"]').checked, cv=box.querySelector('[data-oc="v"]').checked;
-  box.querySelectorAll('[data-ocn]').forEach(b=>b.classList.toggle('on',+b.dataset.ocn===n));
-  const V=ocData(t).slice(-n); if(!V.length) return; box._V=V;
+  const A=ocData(t), L=A.length, nn=Math.max(15,Math.min(L,n)); box._n=nn; box._off=Math.max(0,Math.min(L-nn,box._off||0)); box._L=L;
+  box.querySelectorAll('[data-ocn]').forEach(b=>b.classList.toggle('on',+b.dataset.ocn===nn&&!box._off));
+  const V=A.slice(L-nn-box._off,L-box._off); if(!V.length) return; box._V=V;
   const W=680,H=360,pl=8,pr=52,pt=10,pb=22,vh=70, ph=H-pt-pb-(cv?vh+8:0);
   let lo=Infinity,hi=-Infinity; V.forEach(x=>{ lo=Math.min(lo,x.l); hi=Math.max(hi,x.h); if(c50&&x.m50){ lo=Math.min(lo,x.m50); hi=Math.max(hi,x.m50); } if(c200&&x.m200){ lo=Math.min(lo,x.m200); hi=Math.max(hi,x.m200); } });
   const pad=(hi-lo)*.05; lo-=pad; hi+=pad; const cw=(W-pl-pr)/V.length, X=i=>pl+cw*(i+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP='#22c55e', DN='#ef4444';
@@ -2237,7 +2251,7 @@ document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.targe
   $('ocY').setAttribute('y1',yc); $('ocY').setAttribute('y2',yc); $('ocB').setAttribute('y',yc-9); $('ocT').setAttribute('y',yc+4); $('ocT').textContent=pv>=1000?Math.round(pv):pv.toFixed(1);
   const pc=(x.c/x.o-1)*100; $('ocI').innerHTML=`${pxD(x.d)} &nbsp; O ${x.o.toFixed(2)} &nbsp; H ${x.h.toFixed(2)} &nbsp; L ${x.l.toFixed(2)} &nbsp; C ${x.c.toFixed(2)} &nbsp; <span class="${pc>=0?'up':'down'}">${pc>=0?'+':''}${pc.toFixed(1)}%</span>${x.v?` &nbsp; Vol ${(x.v/1e6).toFixed(1)}M`:''}`; });
 document.addEventListener('pointerleave',e=>{ if(e.target&&e.target.id==='ocS'){ const c=$('ocC'); if(c) c.style.display='none'; const i=$('ocI'); if(i) i.textContent=''; } },true);
-document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-ocn]'); if(b){ const box=$('ownCd'); box._n=+b.dataset.ocn; ocDraw(box.querySelector('.oh b').textContent); } });
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-ocn]'); if(b){ const box=$('ownCd'); box._n=+b.dataset.ocn; box._off=0; ocDraw(box.querySelector('.oh b').textContent); } });
 document.addEventListener('change',e=>{ if(e.target.dataset&&e.target.dataset.oc!=null){ const box=$('ownCd'); ocDraw(box.querySelector('.oh b').textContent); } });
 function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
