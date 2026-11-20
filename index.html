@@ -47,7 +47,7 @@ nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:12px}
 nav a{color:var(--muted);text-decoration:none;padding:7px 4px;min-width:0;border-radius:999px;border:1px solid var(--line);font-size:14px;white-space:nowrap}
 nav a:hover{color:var(--text);border-color:var(--accent)}
 section{padding:28px 0 8px;scroll-margin-top:112px}
-.navbar{position:sticky;top:0;z-index:30;background:rgba(12,13,16,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:10px}
+.navbar{position:sticky;top:0;z-index:30;background:rgba(12,13,16,.97);border-bottom:1px solid var(--line);padding-top:10px}
 .navbar nav{padding-bottom:10px}.navbar .subnav{padding-bottom:10px}
 h2{font-size:22px;margin:0 0 4px;font-weight:800}
 .sub{color:var(--muted);margin:0 0 16px;font-size:14px}
@@ -595,7 +595,7 @@ nav a svg,.bnav svg{width:18px;height:18px;flex:none;fill:none;stroke:currentCol
 @media(max-width:760px){
   .nvrow nav{display:none}.gsearch{flex:1 1 auto}
   .navbar{padding-top:8px}.nvrow{padding-bottom:8px}
-  .bnav{display:flex;position:fixed;bottom:0;inset-inline:0;z-index:45;background:rgba(12,13,16,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
+  .bnav{display:flex;position:fixed;bottom:0;inset-inline:0;z-index:45;background:rgba(12,13,16,.98);border-top:1px solid var(--line);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
   .bnav a{border:0!important;background:none!important;flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;color:var(--muted);text-decoration:none;font-size:11.5px;font-weight:600;border-radius:10px;min-height:50px;justify-content:center}
   .bnav a svg{width:22px;height:22px}
   .bnav a.on{color:var(--accent)}.bnav a.on svg{stroke-width:2.4}
@@ -1405,7 +1405,7 @@ function route(){
   if(pg==='stocks'||(pg==='home'&&WATCH.length)) loadScr();
   if(pg==='stock') renderStock(decodeURIComponent(h.slice(7)).toUpperCase());
   if(pg==='group'){ const sec=h.startsWith('#sector/'); renderGroup(sec?'sector':'ind', decodeURIComponent(h.slice(sec?8:5))); }
-  CURPG=pg; document.body.dataset.pg=pg;
+  CURPG=pg; document.body.dataset.pg=pg; if(pg==='stocks'&&HUB.stale){ HUB.stale=0; renderHub(); }
   if(el && el.classList.contains('fold')) el.classList.add('open');
   if(el && pg!=='legal' && pg!=='market' && pg!=='reports') requestAnimationFrame(()=>el.scrollIntoView());
   else window.scrollTo(0,0);
@@ -1587,6 +1587,8 @@ $('gq').addEventListener('blur',()=>setTimeout(()=>$('gqRes').classList.add('hid
 
 /* ---------- stocks page hub ---------- */
 function hubTile(t,co,ch,sub){ return `<a class="hubt" href="#stock/${encodeURIComponent(t)}" title="${esc(co)}${sub?' · '+esc(sub):''}">${mono(t)}<span class="ht"><b>${esc(t)}</b><small dir="auto">${esc(co)}</small></span>${ch==null?'':`<span class="hc ${ch>=0?'up':'down'}">${pct(ch,1)}</span>`}</a>`; }
+/* the stocks table is rebuilt only while that page is open; live refreshes just mark it stale */
+const hubLazy=()=>{ if(CURPG==='stocks') renderHub(); else HUB.stale=1; };
 const HUB={f:'all',sec:'',sort:'cap',dir:-1,lim:40};
 const HUB_F=[['all','הכל'],['big','ענקיות'],['up','זינקו היום'],['dbl','הכפילו ב-2026'],['hi','קרוב לשיא'],['rs','RS 90+'],['er','מדווחות השבוע']];
 function hubRows(){ const ix=stockIndex(), now=Date.now(), wk=new Date(now+7*864e5).toISOString().slice(0,10), td=new Date(now-864e5).toISOString().slice(0,10);
@@ -1996,7 +1998,7 @@ async function loadLive(){
     try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){}
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     if(CURPG==='stock'&&t&&$('spWhy')){ const s0=stockIndex()[t]; if(s0) $('spWhy').outerHTML=whyBlock(t,s0,stockNews(t,s0)); }
-    renderHub();
+    hubLazy();
     try{ const q=$('qvQ'); if(q&&$('qv').classList.contains('on')) q.innerHTML=qvQuote(QV.L[QV.i]); }catch(e){}
   }catch(e){}
 }
@@ -2873,7 +2875,7 @@ async function refreshLive(){
     if (d.calendar && (d.calendar.rev||0) >= ((CAL||{}).rev||0) && !same(d.calendar,CAL)) { CAL=d.calendar; renderCal(); renderAgenda(); }
     if (d.ipos && !same(d.ipos,IPOS)) { IPOS=d.ipos; renderIpos(); }
     if (d.premarket) { FALLBACK.premarket=d.premarket; renderPremarket(); }
-    if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); renderHub(); renderHomeMovers(); }
+    if (d.movers || d.news) { if(d.movers) FALLBACK.movers=d.movers; renderMovers(); hubLazy(); renderHomeMovers(); }
     if (d.themes && d.themes.asOf && THEMES && (d.themes.asOf!==THEMES.asOf || !same(d.themes.check,THEMES.check))) {   /* rows get live numbers on the page, so compare the nightly stamp */
       const keep={stocks:THEMES.stocks,ex:THEMES.ex}; THEMES=Object.assign(d.themes,keep); FALLBACK.themes=THEMES; renderThemes(); loadStocks(true); }
     if (d.gainers && !same(d.gainers,FALLBACK.gainers)) { FALLBACK.gainers=d.gainers; renderG(); }
@@ -2898,7 +2900,7 @@ async function loadIntra(){
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
       const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
     if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); try{ renderBriefSum(); }catch(e){} }
-    if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); renderHub(); renderHomeMovers(); }
+    if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); hubLazy(); renderHomeMovers(); }
   }catch(e){}
 }
 setInterval(refreshLive, 3*60*1000);
