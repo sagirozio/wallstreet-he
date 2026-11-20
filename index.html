@@ -2539,14 +2539,14 @@ function annualCharts(f){ const A=fundAnnual(f); if(!A) return '';
     fundChart('רווח למניה (EPS)',A.q,[{n:'EPS מדולל',c:'#a855f7',v:A.eps}],true,'F_EPS',lb),
     fundChart('מאזן',A.q,[{n:'נכסים',c:'#22c55e',v:A.assets},{n:'התחייבויות',c:'#ec4899',v:A.liab}],false,'F_BAL',lb)].filter(Boolean);
   if(!ch.length) return '';
-  return (g.length?`<h3 class="sph3">צמיחה שנתית${gq('YOY')}</h3><div class="fgrid">${g.join('')}</div>${revStrip(f)}`:'')+`<h3 class="sph3">נתונים שנתיים</h3><div class="fgrid">${ch.join('')}</div><p class="legend">כל עמודה היא סכום של 4 רבעונים רצופים שמסתיימים ברבעון המסומן (12 חודשים), ובמאזן הערך בסוף אותו רבעון. אלה לא שנות כספים רשמיות, והמקור הוא הדוחות לרשות ניירות הערך (GAAP).</p>`; }
+  return (g.length?`<h3 class="sph3">צמיחה שנתית${gq('YOY')}</h3><div class="fgrid">${g.join('')}</div>`:'')+`<h3 class="sph3">נתונים שנתיים</h3>${revStrip(f)}<div class="fgrid">${ch.join('')}</div><p class="legend">כל עמודה היא סכום של 4 רבעונים רצופים שמסתיימים ברבעון המסומן (12 חודשים), ובמאזן הערך בסוף אותו רבעון. אלה לא שנות כספים רשמיות, והמקור הוא הדוחות לרשות ניירות הערך (GAAP).</p>`; }
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-fv]'); if(!b) return; const w=b.closest('.fvw'); if(!w) return; w.querySelectorAll('[data-fv]').forEach(x=>x.classList.toggle('on',x===b)); w.querySelectorAll('[data-fvb]').forEach(x=>{ x.hidden=x.dataset.fvb!==b.dataset.fv; }); });
 function growthChart(f){ const q=f.q||[], n=q.length; if(n<9) return '';
   const yy=a=>a?a.map((v,i)=>i>=4&&v!=null&&a[i-4]!=null&&a[i-4]>0?Math.round((v/a[i-4]-1)*1000)/10:null).slice(4):[];
   const qq=q.slice(4), E=yy(f.eps), R=yy(f.rev);
   const ch=[fundChart('צמיחת רווח למניה (EPS)',qq,[{n:'שינוי מול שנה קודמת',c:'#a855f7',v:E}],'pct','YOY'),
             fundChart('צמיחת הכנסות',qq,[{n:'שינוי מול שנה קודמת',c:'#5b8cff',v:R}],'pct','YOY')].filter(Boolean);
-  return ch.length?`<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="fgrid">${ch.join('')}</div>${revStrip(f)}<p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם, לפי הדוחות לרשות ניירות הערך (GAAP). רבעון שהבסיס שלו הפסד לא מוצג.</p>`:''; }
+  return ch.length?`<h3 class="sph3">צמיחה רבעונית${gq('YOY')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">כל עמודה: השינוי לעומת אותו רבעון שנה קודם, לפי הדוחות לרשות ניירות הערך (GAAP). רבעון שהבסיס שלו הפסד לא מוצג.</p>`:''; }
 async function loadFund(t,el){   /* el: another container (the quick view) instead of the stock page's #spFund */
   const box=el||$('spFund'); if(!box) return;
   try{
@@ -2565,7 +2565,7 @@ async function loadFund(t,el){   /* el: another container (the quick view) inste
     const dmy=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}.${p[0]}`:''; }, lastQ=q[q.length-1], rp0=REPORTS.find(r=>r.t===t);
     const newer=rp0&&rp0.date>lastQ&&rp0.date>(f.asOf||'')?`<br>הדוח האחרון (${esc(rp0.q||'')}, ${dmy(rp0.date)}) עוד לא מופיע כאן: הוא ייכנס אחרי שהחברה תגיש את הדוח המלא לרשות ניירות הערך, בדרך כלל תוך כמה שבועות.`:'';
     const stamp=`<p class="fstamp">הרבעון האחרון בנתונים: ${qLbl(lastQ)} (הרבעון שהסתיים ב-${dmy(lastQ)}) · עודכן ${dmy(f.asOf)}${newer}</p>`;
-    const qHtml=growthChart(f).replace('<h3 class="sph3">צמיחה רבעונית',stamp+'<h3 class="sph3">צמיחה רבעונית')+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3><div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
+    const qHtml=growthChart(f).replace('<h3 class="sph3">צמיחה רבעונית',stamp+'<h3 class="sph3">צמיחה רבעונית')+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3>${revStrip(f)}<div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
     const aHtml=annualCharts(f);
     box.innerHTML=aHtml?`<div class="fvw"><div class="fvsw"><button type="button" data-fv="q" class="on">רבעוני</button><button type="button" data-fv="y">שנתי</button></div><div data-fvb="q">${qHtml}</div><div data-fvb="y" hidden>${aHtml}</div></div>`:qHtml;
     if(!el){ try{ rpTidy(); }catch(e){} }
