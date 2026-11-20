@@ -94,4 +94,53 @@ def vol_ok(kind, v, vols):
         j1,j2=n-1-v[2],n-1-v[4]
         a=_avg(vols[max(0,j1-3):j1+4]); b=_avg(vols[max(0,j2-3):j2+4])
         return a is not None and b is not None and b<=0.9*a
+    if kind=="bull":
+        p,f=v[1],v[2]
+        if len(vols)<f+p+50: return False
+        pole=_avg(vols[n-f-p:n-f]); pre=_avg(vols[n-f-p-50:n-f-p])
+        return pole is not None and pre is not None and pre>0 and pole>=1.5*pre
     return False
+
+
+def _slope(pts):
+    """least-squares slope (per session) of [(x, y)]"""
+    n=len(pts)
+    if n<3: return 0.0
+    mx=sum(x for x,_ in pts)/n; my=sum(y for _,y in pts)/n
+    d=sum((x-mx)**2 for x,_ in pts)
+    return sum((x-mx)*(y-my) for x,y in pts)/d if d else 0.0
+
+
+def bull_flag(c):
+    """Flagpole (+25% or more in 5-25 sessions) followed by a 5-25 session consolidation that gives back at most half the pole.
+    Returns [pole gain %, pole days, flag days, retracement %, shape] with shape 0 up-flat, 1 channel, 2 down-flat, 3 symmetrical."""
+    c=[x for x in c if x is not None]; n=len(c)
+    if n<120: return None
+    best=None
+    for f in range(5,26):                                  # flag length
+        t=n-1-f                                            # pole top
+        if t<40: continue
+        for p in range(5,26):                              # pole length
+            s0=t-p
+            if s0<0: break
+            gain=c[t]/c[s0]-1
+            if gain<0.30: continue
+            if c[t]!=max(c[s0:t+1]): continue
+            fl=c[t:]; hi=max(fl[1:]) if len(fl)>1 else fl[0]; lo=min(fl)
+            if hi>c[t]*1.02: continue                      # flag stays under the pole top
+            ret=(c[t]-lo)/(c[t]-c[s0])
+            if ret>0.45 or ret<0.05: continue
+            if c[-1]>c[t]*1.03 or c[-1]<lo: continue
+            mid=sorted(fl)[len(fl)//2]
+            up=[(i,x) for i,x in enumerate(fl) if x>=mid]; dn=[(i,x) for i,x in enumerate(fl) if x<=mid]
+            sh=_slope(up)/c[t]*100; sl=_slope(dn)/c[t]*100          # % of pole top per session
+            e=0.12
+            if sh>e: continue
+            if sh<-e and sl>e: shape=3
+            elif sh<-e and abs(sl)<=e: shape=2
+            elif abs(sh)<=e and sl>e: shape=0
+            else: shape=1
+            if (hi-lo)/c[t]>0.2: continue                  # flag range at most 20% of the pole top
+            sc=-gain
+            if best is None or sc<best[0]: best=(sc,[round(gain*100,1),p,f,round(ret*100,1),shape])
+    return best[1] if best else None

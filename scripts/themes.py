@@ -193,6 +193,8 @@ try:
         _r = {}
         _ch = _cup.detect(_cl)
         if _ch: _r["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
+        _bf = _cup.bull_flag(_cl)
+        if _bf: _r["bull"] = _bf
         if _r: _cand[_s] = _r
     _vol = None
     if _cand:

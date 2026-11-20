@@ -2112,13 +2112,14 @@ async function renderStkSnap(t){
   b.innerHTML=C.length?`<h3 class="sph3">תקציר נתונים</h3><div class="snap">${C.join('')}</div><p class="legend">רווח למניה ומכפילים לפי הדוחות לרשות ניירות הערך האמריקאית (GAAP). ממוצעים לפי מחירי סגירה.</p>`:'';
 }
 /* price-shape patterns (cup & handle, flat base, double bottom): our own SVG; offsets come from the nightly detector, counted back from the newest close */
-const PAT_N={cup:'Cup & Handle',flat:'Flat Base',dbl:'Double Bottom'};
-function patKinds(rr){ return ['cup'].filter(k=>rr&&rr[k]); }
-function patTitle(k,v){ return k==='cup'?`כוס ${v[1]} ימים · עומק ${v[0]}% · ידית ${v[2]} ימים (ירידה ${v[3]}%)`:k==='flat'?`בסיס שטוח ${v[1]} ימים · טווח ${v[0]}%`:`שני שפלים · ירידה ${v[0]}% מהשיא · ${v[2]-v[4]} ימים בין השפלים`; }
+const PAT_N={cup:'Cup & Handle',bull:'Bull Flag',flat:'Flat Base',dbl:'Double Bottom'}, BF_N=['Up Flat Flag','Channel','Down Flat Flag','Symmetrical Flag'];
+function patKinds(rr){ return ['cup','bull'].filter(k=>rr&&rr[k]); }
+function patTitle(k,v){ return k==='bull'?`תורן +${v[0]}% ב-${v[1]} ימים · דגל ${v[2]} ימים (${BF_N[v[4]]}) · ירידה ${v[3]}% מהתורן`:k==='cup'?`כוס ${v[1]} ימים · עומק ${v[0]}% · ידית ${v[2]} ימים (ירידה ${v[3]}%)`:k==='flat'?`בסיס שטוח ${v[1]} ימים · טווח ${v[0]}%`:`שני שפלים · ירידה ${v[0]}% מהשיא · ${v[2]-v[4]} ימים בין השפלים`; }
 function patTags(rr,t){ return patKinds(rr).map(k=>`<i class="ptag" dir="ltr" data-cup="${esc(t)}" data-k="${k}" title="${esc(patTitle(k,rr[k]))}">${PAT_N[k].replace('&','&amp;')}</i>`).join(''); }
 function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t]; if(!v||!A) return '';
   const n=A.length; let lo0,sx=[],extra='';                                   /* lo0 = first index shown */
   if(k==='cup'){ if(n<v[1]+v[2]+5) return ''; lo0=Math.max(0,n-1-v[2]-v[1]-20); }
+  else if(k==='bull'){ if(n<v[1]+v[2]+20) return ''; lo0=Math.max(0,n-1-v[2]-v[1]-15); }
   else if(k==='flat'){ if(n<v[1]+30) return ''; lo0=Math.max(0,n-v[1]-30); }
   else { if(n<=v[1]+5) return ''; lo0=Math.max(0,n-1-v[1]-12); }
   const seg=A.slice(lo0), m=seg.length-1, vals=seg.filter(x=>x!=null); if(vals.length<10) return '';
@@ -2131,6 +2132,9 @@ function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t];
   if(k==='cup'){ const [dep,L,h]=v, sk=ix(h), si=sk-L, rim=Math.max(...seg.slice(si,si+Math.max(3,Math.round(L/6))+1).filter(x=>x!=null)); let sj=si, lo=Infinity; for(let i=si;i<=sk;i++) if(seg[i]!=null&&seg[i]<lo){ lo=seg[i]; sj=i; }
     svg=hl(rim,'var(--muted)')+pl(0,si,'#8b949e',1.4)+pl(si,sk,'#58a6ff',2.2)+pl(sk,m,'#f5882a',2.6)+dot(si,'#58a6ff')+dot(sj,'#58a6ff')+dot(sk,'#f5882a');
     leg='<span><i style="background:#58a6ff"></i>הכוס</span><span><i style="background:#f5882a"></i>הידית</span><span>קו מקווקו: השיא השמאלי של הכוס</span>'; }
+  else if(k==='bull'){ const f=v[2], tt=ix(f), s0=tt-v[1], fl=seg.slice(tt).filter(x=>x!=null), top=Math.max(...fl.slice(1)), bot=Math.min(...fl);
+    svg=hl(top,'var(--muted)')+hl(bot,'var(--muted)')+pl(0,s0,'#8b949e',1.4)+pl(s0,tt,'#58a6ff',2.8)+pl(tt,m,'#f5882a',2.4)+dot(tt,'#58a6ff');
+    leg='<span><i style="background:#58a6ff"></i>התורן</span><span><i style="background:#f5882a"></i>הדגל ('+BF_N[v[4]]+')</span><span>קווים מקווקווים: גבול עליון ותחתון של הדגל</span>'; }
   else if(k==='flat'){ const L=v[1], s0=ix(L-1), b=seg.slice(s0).filter(x=>x!=null), top=Math.max(...b), bot=Math.min(...b);
     svg=hl(top,'var(--muted)')+hl(bot,'var(--muted)')+pl(0,s0,'#8b949e',1.4)+pl(s0,m,'#58a6ff',2.4);
     leg='<span><i style="background:#58a6ff"></i>הבסיס</span><span>קווים מקווקווים: גבול עליון ותחתון של הבסיס</span>'; }
@@ -2141,7 +2145,7 @@ function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t];
   return `<div class="cupc"><div class="cuph"><b dir="ltr">${PAT_N[k].replace('&','&amp;')}</b><small>${esc(patTitle(k,v))}</small></div>
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(PAT_N[k])}">${svg}</svg>
     <div class="cupl">${leg}<small>${dt(0)} - ${dt(m)}</small></div>
-    <p class="legend">תיאור צורת מחיר לפי סגירות יומיות${rr.pv?', כשנפח המסחר תומך בתבנית (דעיכת נפח בידית/בבסיס, או נפח נמוך יותר בשפל השני)':', בלי אישור מנפח מסחר'}. אינו אות קנייה ואינו המלצה.</p></div>`; }
+    <p class="legend">תיאור צורת מחיר לפי סגירות יומיות${rr.pv?(k==='bull'?', כשנפח המסחר בתורן גבוה פי 1.5 לפחות מהממוצע של 50 הימים שלפניו':', כשנפח המסחר דועך בידית'):', בלי אישור מנפח מסחר'}. אינו אות קנייה ואינו המלצה.</p></div>`; }
 function cupSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}; return (k?[k]:patKinds(rr)).map(x=>patSvg(t,x)).join(''); }
 function cupInto(el,t){ if(!el) return; const rr=((stockIndex()[t]||{}).r)||{}; if(!patKinds(rr).length) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(el.isConnected) el.innerHTML=cupSvg(t); }); }
 /* hover (or tap) on the Cup & Handle tag: small floating box with our chart */
@@ -2824,7 +2828,7 @@ const SC_OPT={
   m50:[['','כל המיקומים מול ממוצע 50'],['above','מעל ממוצע 50 יום'],['below','מתחת לממוצע 50 יום']],
   m200:[['','כל המיקומים מול ממוצע 200'],['above','מעל ממוצע 200 יום'],['below','מתחת לממוצע 200 יום']],
   dv:[['','כל המחזורים'],['1000','מחזור יומי מעל $1B'],['500','מחזור יומי מעל $500M'],['100','מחזור יומי מעל $100M'],['50','מחזור יומי מעל $50M'],['10','מחזור יומי מעל $10M']],
-  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle']],
+  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle'],['bull','Bull Flag']],
   adr:[['','כל ה-ADR%'],['3','ADR 3% ומעלה'],['5','ADR 5% ומעלה'],['8','ADR 8% ומעלה'],['low','ADR עד 2%']],
   bp:[['','כל הדירוגים'],['70','70%+ ממליצים קנייה'],['90','90%+ ממליצים קנייה'],['low','פחות מ-40% קנייה']]};
 const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['מנהלים קנו',{ib:true}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
@@ -2841,7 +2845,7 @@ function scPass(r){ const x=r.x||{}, rr=r.rr||{}, cb=r.cn/1e9, pf=rr[SC.per], hi
   if(SC.adr){ const v=r.adr; if(v==null) return false; if(SC.adr==='low'?v>2:v<+SC.adr) return false; }
   if(SC.dv){ const v=rr.dv; if(v==null||v<+SC.dv) return false; }
   for(const [k,f] of [['m50','a50'],['m200','a200']]) if(SC[k]){ const v=rr[f]; if(v==null) return false; if(SC[k]==='above'?v<=0:v>=0) return false; }
-  if(SC.pat&&!rr[{ch:'cup',flat:'flat',dbl:'dbl'}[SC.pat]]) return false;
+  if(SC.pat&&!rr[{ch:'cup',bull:'bull',flat:'flat',dbl:'dbl'}[SC.pat]]) return false;
   if(SC.ib&&!x.ib) return false;
   if(SC.er){ if(!x.e) return false; const dd=(new Date(x.e+'T12:00:00')-Date.now())/864e5; if(dd<-1||dd>14) return false; }
   return true; }
