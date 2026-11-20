@@ -193,10 +193,6 @@ try:
         _r = {}
         _ch = _cup.detect(_cl)
         if _ch: _r["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
-        _fb = _cup.flat_base(_cl)
-        if _fb: _r["flat"] = _fb
-        _db = _cup.double_bottom(_cl)
-        if _db: _r["dbl"] = _db
         if _r: _cand[_s] = _r
     _vol = None
     if _cand:

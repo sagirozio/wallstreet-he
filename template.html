@@ -2113,7 +2113,7 @@ async function renderStkSnap(t){
 }
 /* price-shape patterns (cup & handle, flat base, double bottom): our own SVG; offsets come from the nightly detector, counted back from the newest close */
 const PAT_N={cup:'Cup & Handle',flat:'Flat Base',dbl:'Double Bottom'};
-function patKinds(rr){ return ['cup','flat','dbl'].filter(k=>rr&&rr[k]); }
+function patKinds(rr){ return ['cup'].filter(k=>rr&&rr[k]); }
 function patTitle(k,v){ return k==='cup'?`כוס ${v[1]} ימים · עומק ${v[0]}% · ידית ${v[2]} ימים (ירידה ${v[3]}%)`:k==='flat'?`בסיס שטוח ${v[1]} ימים · טווח ${v[0]}%`:`שני שפלים · ירידה ${v[0]}% מהשיא · ${v[2]-v[4]} ימים בין השפלים`; }
 function patTags(rr,t){ return patKinds(rr).map(k=>`<i class="ptag" dir="ltr" data-cup="${esc(t)}" data-k="${k}" title="${esc(patTitle(k,rr[k]))}">${PAT_N[k].replace('&','&amp;')}</i>`).join(''); }
 function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t]; if(!v||!A) return '';
@@ -2824,7 +2824,7 @@ const SC_OPT={
   m50:[['','כל המיקומים מול ממוצע 50'],['above','מעל ממוצע 50 יום'],['below','מתחת לממוצע 50 יום']],
   m200:[['','כל המיקומים מול ממוצע 200'],['above','מעל ממוצע 200 יום'],['below','מתחת לממוצע 200 יום']],
   dv:[['','כל המחזורים'],['1000','מחזור יומי מעל $1B'],['500','מחזור יומי מעל $500M'],['100','מחזור יומי מעל $100M'],['50','מחזור יומי מעל $50M'],['10','מחזור יומי מעל $10M']],
-  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle'],['flat','Flat Base'],['dbl','Double Bottom']],
+  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle']],
   adr:[['','כל ה-ADR%'],['3','ADR 3% ומעלה'],['5','ADR 5% ומעלה'],['8','ADR 8% ומעלה'],['low','ADR עד 2%']],
   bp:[['','כל הדירוגים'],['70','70%+ ממליצים קנייה'],['90','90%+ ממליצים קנייה'],['low','פחות מ-40% קנייה']]};
 const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['מנהלים קנו',{ib:true}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
