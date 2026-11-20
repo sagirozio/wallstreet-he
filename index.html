@@ -443,6 +443,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .mvstrip a{color:var(--text);text-decoration:none;margin:0 12px;direction:ltr}.mvstrip a b{color:var(--green);margin-inline-start:5px}
 .rvstrip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;color:var(--muted)}.rvstrip .rvl{font-weight:600}.rvstrip .rvs{white-space:nowrap}.rvstrip b{font-variant-numeric:tabular-nums;unicode-bidi:isolate}.rvstrip b.up{color:var(--green)}.rvstrip b.dn{color:var(--red,#ef4444)}
 .fxl{display:flex;justify-content:flex-end;margin:0 0 6px}.fxcsv{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.fxcsv:hover{border-color:var(--green)}
+.ptag{font-style:normal;font-size:10.5px;font-weight:600;color:#7fb2f0;background:#12203a;border-radius:6px;padding:1px 6px;margin-inline-start:6px;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.mvstrip .in{animation:none}.mvstrip .mvs{overflow-x:auto}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
 @media(prefers-reduced-motion:reduce){.strip .in{animation:none}.strip{overflow-x:auto}}
@@ -1611,7 +1612,7 @@ function renderHub(){
   const C=[['t','מניה'],['px','מחיר'],['d','1D'],['m','1M'],['ytd','YTD'],['rs','RS'],['adr','<bdi dir="ltr">ADR%</bdi>'],['cap','שווי'],['g','צמיחה רבעונית'],['ga','צמיחה שנתית'],['pe','P/E'],['hi','מהשיא']];
   const pc=v=>v==null?'<span class="flat">—</span>':`<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
   const head=`<div class="sxr sxhd">${C.map(([c,l])=>`<button data-hs="${c}" class="hx-${c}${HUB.sort===c?' on':''}">${l}${HUB.sort===c?(HUB.dir<0?' ▾':' ▴'):''}</button>`).join('')}</div>`;
-  const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b><small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
+  const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b>${r.rr&&r.rr.cup?`<i class="ptag" dir="ltr" title="כוס ${r.rr.cup[1]} ימים · עומק ${r.rr.cup[0]}% · ידית ${r.rr.cup[2]} ימים (${r.rr.cup[3]}%)">Cup &amp; Handle</i>`:''}<small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
   HUB.last=rows.map(r=>r.t); HUB.rows=rows; $('hubCnt').textContent=`${rows.length.toLocaleString('en-US')} מניות`;
   $('hubTable').innerHTML=rows.length?head+body+(rows.length>HUB.lim?`<button class="sxmore" data-hm>עוד ${Math.min(40,rows.length-HUB.lim)} מתוך ${rows.length-HUB.lim} ↓</button>`:''):'<div class="empty">אין מניות שמתאימות לסינון.</div>';
 }
@@ -2764,7 +2765,7 @@ document.addEventListener('submit',e=>{ if(e.target.id!=='wAdd') return; e.preve
   else { $('wQ').value=''; $('wQ').placeholder='לא מצאנו "'+q+'". נסו סימול, למשל NVDA'; } });
 
 /* ---------- screener ---------- */
-const SC={sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',ib:false,er:false,sort:'cap',dir:-1,lim:10};
+const SC={sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false,sort:'cap',dir:-1,lim:10};
 const SC_OPT={
   cap:[['','כל הגדלים'],['200','מעל $200B'],['50','$50B–$200B'],['10','$10B–$50B'],['1','$1B–$10B']],
   pf:[['','כל התשואות'],['0+','עלתה'],['10+','עלתה 10%+'],['25+','עלתה 25%+'],['50+','עלתה 50%+'],['0-','ירדה'],['10-','ירדה 10%+'],['25-','ירדה 25%+']],
@@ -2776,6 +2777,7 @@ const SC_OPT={
   m50:[['','כל המיקומים מול ממוצע 50'],['above','מעל ממוצע 50 יום'],['below','מתחת לממוצע 50 יום']],
   m200:[['','כל המיקומים מול ממוצע 200'],['above','מעל ממוצע 200 יום'],['below','מתחת לממוצע 200 יום']],
   dv:[['','כל המחזורים'],['1000','מחזור יומי מעל $1B'],['500','מחזור יומי מעל $500M'],['100','מחזור יומי מעל $100M'],['50','מחזור יומי מעל $50M'],['10','מחזור יומי מעל $10M']],
+  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle']],
   adr:[['','כל ה-ADR%'],['3','ADR 3% ומעלה'],['5','ADR 5% ומעלה'],['8','ADR 8% ומעלה'],['low','ADR עד 2%']],
   bp:[['','כל הדירוגים'],['70','70%+ ממליצים קנייה'],['90','90%+ ממליצים קנייה'],['low','פחות מ-40% קנייה']]};
 const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['מנהלים קנו',{ib:true}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
@@ -2792,6 +2794,7 @@ function scPass(r){ const x=r.x||{}, rr=r.rr||{}, cb=r.cn/1e9, pf=rr[SC.per], hi
   if(SC.adr){ const v=r.adr; if(v==null) return false; if(SC.adr==='low'?v>2:v<+SC.adr) return false; }
   if(SC.dv){ const v=rr.dv; if(v==null||v<+SC.dv) return false; }
   for(const [k,f] of [['m50','a50'],['m200','a200']]) if(SC[k]){ const v=rr[f]; if(v==null) return false; if(SC[k]==='above'?v<=0:v>=0) return false; }
+  if(SC.pat==='ch'&&!rr.cup) return false;
   if(SC.ib&&!x.ib) return false;
   if(SC.er){ if(!x.e) return false; const dd=(new Date(x.e+'T12:00:00')-Date.now())/864e5; if(dd<-1||dd>14) return false; }
   return true; }
@@ -2799,7 +2802,7 @@ function renderScr(){
   const F=$('scF'); if(!F) return;
   if(!F.dataset.ok){
     const sel=(k,opts)=>`<select data-sc="${k}" aria-label="${k}">${opts.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join('')}</select>`;
-    F.innerHTML = sel('cap',SC_OPT.cap)+sel('per',PER.map(([k,l])=>[k,'תשואה: '+l]))+sel('pf',SC_OPT.pf)+sel('g',SC_OPT.g)+sel('ga',SC_OPT.ga)+sel('pe',SC_OPT.pe)+sel('hi',SC_OPT.hi)+sel('bp',SC_OPT.bp)+sel('rs',SC_OPT.rs)+sel('adr',SC_OPT.adr)+(Object.values(stockIndex()).some(s=>s.r&&s.r.dv!=null)?sel('dv',SC_OPT.dv):'')+sel('m50',SC_OPT.m50)+sel('m200',SC_OPT.m200)+
+    F.innerHTML = sel('cap',SC_OPT.cap)+sel('per',PER.map(([k,l])=>[k,'תשואה: '+l]))+sel('pf',SC_OPT.pf)+sel('g',SC_OPT.g)+sel('ga',SC_OPT.ga)+sel('pe',SC_OPT.pe)+sel('hi',SC_OPT.hi)+sel('bp',SC_OPT.bp)+sel('rs',SC_OPT.rs)+sel('adr',SC_OPT.adr)+sel('pat',SC_OPT.pat)+(Object.values(stockIndex()).some(s=>s.r&&s.r.dv!=null)?sel('dv',SC_OPT.dv):'')+sel('m50',SC_OPT.m50)+sel('m200',SC_OPT.m200)+
       `<label class="sck"><input type="checkbox" data-sc="ib"> מנהלים קנו</label><label class="sck"><input type="checkbox" data-sc="er"> דוח ב-14 יום</label><button type="button" class="btn2" id="scReset">איפוס</button>`;
     $('scPre').innerHTML=SC_PRE.map(([l],i)=>`<button type="button" data-pre="${i}">${esc(l)}</button>`).join('');
     F.dataset.ok='1';
@@ -2810,7 +2813,7 @@ function renderScr(){
 }
 document.addEventListener('change',e=>{ const el=e.target; if(!el.dataset||!el.dataset.sc||!el.closest('#scF')) return; SC[el.dataset.sc]=el.type==='checkbox'?el.checked:el.value; HUB.lim=40; if(el.dataset.sc==='pf'&&el.value) { HUB.sort=SC.per; HUB.dir=el.value.endsWith('-')?1:-1; } renderScr(); });
 document.addEventListener('click',e=>{ const t=e.target.closest&&e.target.closest('#scD button'); if(!t) return;
-  if(t.id==='scReset'||t.dataset.pre!=null){ Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',ib:false,er:false}); HUB.f='all'; HUB.sec=''; HUB.lim=40; const hs=$('hubSec'); if(hs) hs.value='';
+  if(t.id==='scReset'||t.dataset.pre!=null){ Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false}); HUB.f='all'; HUB.sec=''; HUB.lim=40; const hs=$('hubSec'); if(hs) hs.value='';
     if(t.dataset.pre!=null){ const P=SC_PRE[+t.dataset.pre][1]; Object.assign(SC,P); if(P.sort) HUB.sort=P.sort, HUB.dir=-1; else if(SC.pf){ HUB.sort=SC.per; HUB.dir=SC.pf.endsWith('-')?1:-1; } else if(SC.g){ HUB.sort='g'; HUB.dir=-1; } delete SC.sort; }
     renderScr(); } });
 

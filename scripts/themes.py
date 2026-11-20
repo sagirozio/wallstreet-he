@@ -3,6 +3,7 @@ Universe: US equities with market cap > $1B and avg daily volume >= 500k (Yahoo 
 Group performance = equal-weight average of members (Finviz-style windows)."""
 import urllib.request, json, pathlib, time
 import pandas as pd, yfinance as yf
+import sys as _sys, pathlib as _pl; _sys.path.insert(0, str(_pl.Path(__file__).parent)); import cuphandle as _cup
 from yfinance import EquityQuery
 
 root = pathlib.Path(__file__).resolve().parent.parent
@@ -208,6 +209,10 @@ for ind, mem in by.items():
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
         _av, _lv = x.get("averageDailyVolume3Month"), _last.get(s)
         if _av and _lv is not None and not pd.isna(_lv): rr["dv"] = round(float(_lv) * float(_av) / 1e6, 1)   # average daily dollar volume, $M (last close x 3-month average volume)
+        try:
+            _ch = _cup.detect(close[s].dropna().tolist())   # price-shape description only: cup with handle
+            if _ch: rr["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
+        except Exception: pass
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
