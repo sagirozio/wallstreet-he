@@ -212,6 +212,9 @@ for ind, mem in by.items():
         try:
             _ch = _cup.detect(close[s].dropna().tolist())   # price-shape description only: cup with handle
             if _ch: rr["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
+            _cl = close[s].dropna().tolist(); _fb = _cup.flat_base(_cl); _db = _cup.double_bottom(_cl)
+            if _fb: rr["flat"] = _fb
+            if _db: rr["dbl"] = _db
         except Exception: pass
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])

@@ -28,3 +28,43 @@ def detect(c):
             if best is None or sc<best[0]:
                 best=(sc,{'depth':round(depth*100,1),'cup_days':L,'handle_days':h,'handle_pct':round(hd*100,1),'rim':round(hh,2),'low':round(lo,2),'i':i,'j':j,'k':k})
     return best[1] if best else None
+
+
+def flat_base(c):
+    """Flat base: 25-80 sessions in a tight band (<=15%), after a 30%+ advance, price near the top of the band."""
+    c=[x for x in c if x is not None]; n=len(c)
+    if n<150: return None
+    best=None
+    for L in range(25,81,5):
+        seg=c[n-L:]; hi=max(seg); lo=min(seg); rng=1-lo/hi
+        if rng>0.12: continue
+        if c[-1]<hi*0.95 or c[-1]<lo+(hi-lo)*0.5: continue          # near the top of the band
+        pre=c[max(0,n-L-120):n-L]
+        if not pre or hi<min(pre)*1.3: continue                    # prior advance of 30%+
+        if max(pre)>hi*1.15: continue                              # base sits near the prior high, not after a collapse
+        if best is None or L>best[0]: best=(L,round(rng*100,1))
+    return [best[1],best[0]] if best else None
+
+
+def double_bottom(c):
+    """Double bottom (W): two lows within ~5% of each other, 15+ sessions apart, a middle peak 10%+ above them.
+    Returns [depth %, left peak, first low, middle peak, second low], the last four as sessions back from the newest close."""
+    c=[x for x in c if x is not None]; n=len(c)
+    if n<150: return None
+    best=None
+    for j2 in range(n-30,n-5):
+        if c[j2]!=min(c[max(0,j2-5):j2+6]): continue                # local low
+        for gap in range(15,70):
+            j1=j2-gap
+            if j1<30: break
+            if c[j1]!=min(c[max(0,j1-5):j1+6]): continue
+            lo=min(c[j1],c[j2])
+            if abs(c[j2]/c[j1]-1)>0.05: continue
+            seg=c[j1:j2+1]; mid=max(seg); m=j1+seg.index(mid)
+            if mid<lo*1.10 or mid>lo*1.35: continue
+            a=max(0,j1-60); pre=c[a:j1+1]; p0=max(pre); i0=a+pre.index(p0); dep=1-lo/p0
+            if not(0.15<=dep<=0.40): continue
+            if c[-1]<lo*1.08 or c[-1]>mid*1.03 or c[-1]<lo+(mid-lo)*0.5: continue   # recovering, not far above the middle peak
+            sc=abs(c[j2]/c[j1]-1)+abs(dep-0.25)
+            if best is None or sc<best[0]: best=(sc,[round(dep*100,1),n-1-i0,n-1-j1,n-1-m,n-1-j2])
+    return best[1] if best else None

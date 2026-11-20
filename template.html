@@ -1614,7 +1614,7 @@ function renderHub(){
   const C=[['t','מניה'],['px','מחיר'],['d','1D'],['m','1M'],['ytd','YTD'],['rs','RS'],['adr','<bdi dir="ltr">ADR%</bdi>'],['cap','שווי'],['g','צמיחה רבעונית'],['ga','צמיחה שנתית'],['pe','P/E'],['hi','מהשיא']];
   const pc=v=>v==null?'<span class="flat">—</span>':`<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
   const head=`<div class="sxr sxhd">${C.map(([c,l])=>`<button data-hs="${c}" class="hx-${c}${HUB.sort===c?' on':''}">${l}${HUB.sort===c?(HUB.dir<0?' ▾':' ▴'):''}</button>`).join('')}</div>`;
-  const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b>${r.rr&&r.rr.cup?`<i class="ptag" dir="ltr" data-cup="${esc(r.t)}" title="כוס ${r.rr.cup[1]} ימים · עומק ${r.rr.cup[0]}% · ידית ${r.rr.cup[2]} ימים (${r.rr.cup[3]}%)">Cup &amp; Handle</i>`:''}<small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
+  const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b>${patTags(r.rr,r.t)}<small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
   HUB.last=rows.map(r=>r.t); HUB.rows=rows; $('hubCnt').textContent=`${rows.length.toLocaleString('en-US')} מניות`;
   $('hubTable').innerHTML=rows.length?head+body+(rows.length>HUB.lim?`<button class="sxmore" data-hm>עוד ${Math.min(40,rows.length-HUB.lim)} מתוך ${rows.length-HUB.lim} ↓</button>`:''):'<div class="empty">אין מניות שמתאימות לסינון.</div>';
 }
@@ -2111,25 +2111,45 @@ async function renderStkSnap(t){
   add('שורט מהמניות הצפות', F.si!=null?N(F.si,1,'%'):null, 'SHORT');
   b.innerHTML=C.length?`<h3 class="sph3">תקציר נתונים</h3><div class="snap">${C.join('')}</div><p class="legend">רווח למניה ומכפילים לפי הדוחות לרשות ניירות הערך האמריקאית (GAAP). ממוצעים לפי מחירי סגירה.</p>`:'';
 }
-/* Cup & Handle: our own SVG of the detected shape (cup = blue, handle = orange); offsets come from the nightly detector, counted from the newest close */
-function cupSvg(t){ const rr=((stockIndex()[t]||{}).r)||{}, cu=rr.cup, A=PXF[t]; if(!cu||!A||A.length<cu[1]+cu[2]+5) return '';
-  const [dep,L,h,hp]=cu, n=A.length, k=n-1-h, i0=k-L, a=Math.max(0,i0-20), seg=A.slice(a), off=a;
-  const vals=seg.filter(v=>v!=null); if(vals.length<10) return ''; const mn=Math.min(...vals), mx=Math.max(...vals), W=600, H=170, P=10, m=seg.length-1;
-  const X=i=>(i/m*W).toFixed(1), Y=v=>(P+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1), pl=(f,g,c,w)=>{ const q=[]; for(let i=f;i<=g;i++) if(seg[i]!=null) q.push(X(i)+','+Y(seg[i])); return q.length>1?`<polyline points="${q.join(' ')}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`:''; };
-  const si=i0-off, sk=k-off; let sj=si, lo=Infinity; for(let i=si;i<=sk;i++) if(seg[i]!=null&&seg[i]<lo){ lo=seg[i]; sj=i; }
-  const rim=Math.max(...seg.slice(si,si+Math.max(3,Math.round(L/6))+1).filter(v=>v!=null)), D=(PXD&&PXD.full)||null, dt=j=>{ const d=D&&D[D.length-n+off+j]; return d?pxD(d):''; };
+/* price-shape patterns (cup & handle, flat base, double bottom): our own SVG; offsets come from the nightly detector, counted back from the newest close */
+const PAT_N={cup:'Cup & Handle',flat:'Flat Base',dbl:'Double Bottom'};
+function patKinds(rr){ return ['cup','flat','dbl'].filter(k=>rr&&rr[k]); }
+function patTitle(k,v){ return k==='cup'?`כוס ${v[1]} ימים · עומק ${v[0]}% · ידית ${v[2]} ימים (ירידה ${v[3]}%)`:k==='flat'?`בסיס שטוח ${v[1]} ימים · טווח ${v[0]}%`:`שני שפלים · ירידה ${v[0]}% מהשיא · ${v[2]-v[4]} ימים בין השפלים`; }
+function patTags(rr,t){ return patKinds(rr).map(k=>`<i class="ptag" dir="ltr" data-cup="${esc(t)}" data-k="${k}" title="${esc(patTitle(k,rr[k]))}">${PAT_N[k].replace('&','&amp;')}</i>`).join(''); }
+function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t]; if(!v||!A) return '';
+  const n=A.length; let lo0,sx=[],extra='';                                   /* lo0 = first index shown */
+  if(k==='cup'){ if(n<v[1]+v[2]+5) return ''; lo0=Math.max(0,n-1-v[2]-v[1]-20); }
+  else if(k==='flat'){ if(n<v[1]+30) return ''; lo0=Math.max(0,n-v[1]-30); }
+  else { if(n<=v[1]+5) return ''; lo0=Math.max(0,n-1-v[1]-12); }
+  const seg=A.slice(lo0), m=seg.length-1, vals=seg.filter(x=>x!=null); if(vals.length<10) return '';
+  const mn=Math.min(...vals), mx=Math.max(...vals), W=600, H=170, P=10;
+  const X=i=>(i/m*W).toFixed(1), Y=x=>(P+(1-(mx>mn?(x-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1), ix=back=>n-1-back-lo0;   /* session index in seg from "sessions back" */
+  const pl=(f,g,c,w)=>{ const q=[]; for(let i=Math.max(0,f);i<=Math.min(m,g);i++) if(seg[i]!=null) q.push(X(i)+','+Y(seg[i])); return q.length>1?`<polyline points="${q.join(' ')}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`:''; };
+  const hl=(y,c)=>`<line x1="0" x2="${W}" y1="${Y(y)}" y2="${Y(y)}" stroke="${c}" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>`;
   const dot=(i,c)=>seg[i]!=null?`<circle cx="${X(i)}" cy="${Y(seg[i])}" r="3.2" fill="${c}" vector-effect="non-scaling-stroke"/>`:'';
-  return `<div class="cupc"><div class="cuph"><b dir="ltr">Cup &amp; Handle</b><small>כוס ${L} ימים · עומק ${dep}% · ידית ${h} ימים (ירידה ${hp}%)</small></div>
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="צורת כוס וידית במחיר הסגירה"><line x1="${X(si)}" x2="${W}" y1="${Y(rim)}" y2="${Y(rim)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>${pl(0,si,'#8b949e',1.4)}${pl(si,sk,'#58a6ff',2.2)}${pl(sk,m,'#f5882a',2.6)}${dot(si,'#58a6ff')}${dot(sj,'#58a6ff')}${dot(sk,'#f5882a')}</svg>
-    <div class="cupl"><span><i style="background:#58a6ff"></i>הכוס</span><span><i style="background:#f5882a"></i>הידית</span><span>קו מקווקו: השיא השמאלי של הכוס</span><small>${dt(0)} - ${dt(m)}</small></div>
+  let svg='', leg='';
+  if(k==='cup'){ const [dep,L,h]=v, sk=ix(h), si=sk-L, rim=Math.max(...seg.slice(si,si+Math.max(3,Math.round(L/6))+1).filter(x=>x!=null)); let sj=si, lo=Infinity; for(let i=si;i<=sk;i++) if(seg[i]!=null&&seg[i]<lo){ lo=seg[i]; sj=i; }
+    svg=hl(rim,'var(--muted)')+pl(0,si,'#8b949e',1.4)+pl(si,sk,'#58a6ff',2.2)+pl(sk,m,'#f5882a',2.6)+dot(si,'#58a6ff')+dot(sj,'#58a6ff')+dot(sk,'#f5882a');
+    leg='<span><i style="background:#58a6ff"></i>הכוס</span><span><i style="background:#f5882a"></i>הידית</span><span>קו מקווקו: השיא השמאלי של הכוס</span>'; }
+  else if(k==='flat'){ const L=v[1], s0=ix(L-1), b=seg.slice(s0).filter(x=>x!=null), top=Math.max(...b), bot=Math.min(...b);
+    svg=hl(top,'var(--muted)')+hl(bot,'var(--muted)')+pl(0,s0,'#8b949e',1.4)+pl(s0,m,'#58a6ff',2.4);
+    leg='<span><i style="background:#58a6ff"></i>הבסיס</span><span>קווים מקווקווים: גבול עליון ותחתון של הבסיס</span>'; }
+  else { const a=ix(v[1]), s1=ix(v[2]), mm=ix(v[3]), s2=ix(v[4]);
+    svg=hl(seg[mm],'var(--muted)')+pl(0,a,'#8b949e',1.4)+pl(a,m,'#58a6ff',2.4)+dot(s1,'#f5882a')+dot(s2,'#f5882a')+dot(mm,'#58a6ff');
+    leg='<span><i style="background:#f5882a"></i>שני השפלים</span><span>קו מקווקו: השיא שבין השפלים</span>'; }
+  const D=(PXD&&PXD.full)||null, dt=j=>{ const d=D&&D[D.length-n+lo0+j]; return d?pxD(d):''; };
+  return `<div class="cupc"><div class="cuph"><b dir="ltr">${PAT_N[k].replace('&','&amp;')}</b><small>${esc(patTitle(k,v))}</small></div>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(PAT_N[k])}">${svg}</svg>
+    <div class="cupl">${leg}<small>${dt(0)} - ${dt(m)}</small></div>
     <p class="legend">תיאור צורת מחיר לפי סגירות יומיות, בלי נפח מסחר. אינו אות קנייה ואינו המלצה.</p></div>`; }
-function cupInto(el,t){ if(!el) return; const rr=((stockIndex()[t]||{}).r)||{}; if(!rr.cup) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(el.isConnected) el.innerHTML=cupSvg(t); }); }
+function cupSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}; return (k?[k]:patKinds(rr)).map(x=>patSvg(t,x)).join(''); }
+function cupInto(el,t){ if(!el) return; const rr=((stockIndex()[t]||{}).r)||{}; if(!patKinds(rr).length) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(el.isConnected) el.innerHTML=cupSvg(t); }); }
 /* hover (or tap) on the Cup & Handle tag: small floating box with our chart */
 let CUPH=null, CUPT=null;
 function cupHide(){ clearTimeout(CUPT); const p=document.getElementById('cupPop'); if(p) p.classList.remove('on'); CUPH=null; }
 function cupShow(tag){ const t=tag.dataset.cup; if(!t) return; CUPH=t; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(CUPH!==t||!tag.isConnected) return;
   let p=document.getElementById('cupPop'); if(!p){ p=document.createElement('div'); p.id='cupPop'; document.body.appendChild(p); }
-  p.innerHTML=`<b class="cpt" dir="ltr">${esc(t)}</b>`+cupSvg(t); p.classList.add('on');
+  p.innerHTML=`<b class="cpt" dir="ltr">${esc(t)}</b>`+cupSvg(t,tag.dataset.k); p.classList.add('on');
   const r=tag.getBoundingClientRect(), w=Math.min(340,innerWidth-16), pw=p.offsetWidth||w, ph=p.offsetHeight;
   let x=Math.max(8,Math.min(innerWidth-pw-8,r.left+r.width/2-pw/2)), y=r.bottom+8; if(y+ph>innerHeight-8) y=Math.max(8,r.top-ph-8);
   p.style.left=x+'px'; p.style.top=y+'px'; }); }
@@ -2804,7 +2824,7 @@ const SC_OPT={
   m50:[['','כל המיקומים מול ממוצע 50'],['above','מעל ממוצע 50 יום'],['below','מתחת לממוצע 50 יום']],
   m200:[['','כל המיקומים מול ממוצע 200'],['above','מעל ממוצע 200 יום'],['below','מתחת לממוצע 200 יום']],
   dv:[['','כל המחזורים'],['1000','מחזור יומי מעל $1B'],['500','מחזור יומי מעל $500M'],['100','מחזור יומי מעל $100M'],['50','מחזור יומי מעל $50M'],['10','מחזור יומי מעל $10M']],
-  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle']],
+  pat:[['','כל תבניות המחיר'],['ch','Cup & Handle'],['flat','Flat Base'],['dbl','Double Bottom']],
   adr:[['','כל ה-ADR%'],['3','ADR 3% ומעלה'],['5','ADR 5% ומעלה'],['8','ADR 8% ומעלה'],['low','ADR עד 2%']],
   bp:[['','כל הדירוגים'],['70','70%+ ממליצים קנייה'],['90','90%+ ממליצים קנייה'],['low','פחות מ-40% קנייה']]};
 const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['מנהלים קנו',{ib:true}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
@@ -2821,7 +2841,7 @@ function scPass(r){ const x=r.x||{}, rr=r.rr||{}, cb=r.cn/1e9, pf=rr[SC.per], hi
   if(SC.adr){ const v=r.adr; if(v==null) return false; if(SC.adr==='low'?v>2:v<+SC.adr) return false; }
   if(SC.dv){ const v=rr.dv; if(v==null||v<+SC.dv) return false; }
   for(const [k,f] of [['m50','a50'],['m200','a200']]) if(SC[k]){ const v=rr[f]; if(v==null) return false; if(SC[k]==='above'?v<=0:v>=0) return false; }
-  if(SC.pat==='ch'&&!rr.cup) return false;
+  if(SC.pat&&!rr[{ch:'cup',flat:'flat',dbl:'dbl'}[SC.pat]]) return false;
   if(SC.ib&&!x.ib) return false;
   if(SC.er){ if(!x.e) return false; const dd=(new Date(x.e+'T12:00:00')-Date.now())/864e5; if(dd<-1||dd>14) return false; }
   return true; }
