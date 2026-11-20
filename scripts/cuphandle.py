@@ -37,8 +37,10 @@ def flat_base(c):
     best=None
     for L in range(25,81,5):
         seg=c[n-L:]; hi=max(seg); lo=min(seg); rng=1-lo/hi
-        if rng>0.12: continue
+        if rng>0.10: continue
         if c[-1]<hi*0.95 or c[-1]<lo+(hi-lo)*0.5: continue          # near the top of the band
+        mid=(hi+lo)/2; cr=sum(1 for x,y in zip(seg,seg[1:]) if (x-mid)*(y-mid)<0)
+        if cr<4 or abs(c[-1]-seg[0])>0.35*(hi-lo): continue           # sideways, not a drift from the bottom to the top of the band
         pre=c[max(0,n-L-120):n-L]
         if not pre or hi<min(pre)*1.3: continue                    # prior advance of 30%+
         if max(pre)>hi*1.15: continue                              # base sits near the prior high, not after a collapse
