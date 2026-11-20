@@ -7,12 +7,11 @@ permissions:
 jobs:
   ohlc:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q yfinance pandas
-      - run: python scripts/ohlc.py
-      - name: Commit
-        run: bash scripts/commit.sh "OHLC data for the own candle chart" ohlc
+      - env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: python scripts/ohlc.py
