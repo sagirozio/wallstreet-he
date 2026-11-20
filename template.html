@@ -3007,7 +3007,7 @@ const SC_OPT={
   pat:[['','כל תבניות המחיר'],['ch','Cup & Handle'],['bull','Bull Flag']],
   adr:[['','כל ה-ADR%'],['3','ADR 3% ומעלה'],['5','ADR 5% ומעלה'],['8','ADR 8% ומעלה'],['low','ADR עד 2%']],
   bp:[['','כל הדירוגים'],['70','70%+ ממליצים קנייה'],['90','90%+ ממליצים קנייה'],['low','פחות מ-40% קנייה']]};
-const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['מנהלים קנו',{ib:true}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
+const SC_PRE=[['RS 90 ומעלה',{rs:'90',sort:'rs'}],['צמיחה 25%+ וקרוב לשיא',{g:'25',hi:'10'}],['P/E עד 15',{pe:'15'}],['עד 5% מהשיא השנתי',{hi:'5'}],['דוח ב-14 הימים הקרובים',{er:true}],['ירדה 25%+ בחודש',{per:'m',pf:'25-'}]];
 /* advanced filters (formerly the separate screener): applied to the same rows as the chips */
 function scPass(r){ const x=r.x||{}, rr=r.rr||{}, cb=r.cn/1e9, pf=rr[SC.per], hi=r.hi;
   if(SC.cap){ const lo=+SC.cap, up={200:1e9,50:200,10:50,1:10}[SC.cap]; if(cb<lo||cb>=up) return false; }
@@ -3036,7 +3036,7 @@ function renderScr(){
     F.innerHTML = grp('גודל ותשואה', fld('cap','שווי שוק',SC_OPT.cap)+`<label class="scfl" data-k="pf"><span>תשואה</span><span class="scpf">${sel('per',PER.map(([k,l])=>[k,l]))}${sel('pf',SC_OPT.pf)}</span></label>`+(dv?fld('dv','מחזור יומי',SC_OPT.dv):''))
       +grp('צמיחה ושווי', fld('g','צמיחת הכנסות (רבעון)',SC_OPT.g)+fld('ga','צמיחת הכנסות (שנה)',SC_OPT.ga)+fld('pe','מכפיל רווח',SC_OPT.pe)+fld('bp','המלצות אנליסטים',SC_OPT.bp))
       +grp('מחיר וטכני', fld('hi','מרחק מהשיא השנתי',SC_OPT.hi)+fld('rs','חוזק יחסי (RS)',SC_OPT.rs)+fld('adr','תנודתיות (ADR%)',SC_OPT.adr)+fld('m50','ממוצע 50 יום',SC_OPT.m50)+fld('m200','ממוצע 200 יום',SC_OPT.m200)+fld('pat','תבנית מחיר',SC_OPT.pat))
-      +grp('אירועים', `<label class="sck"><input type="checkbox" data-sc="ib"><span>מנהלים קנו</span></label><label class="sck"><input type="checkbox" data-sc="er"><span>דוח ב-14 יום</span></label>`)
+      +grp('אירועים', `<label class="sck"><input type="checkbox" data-sc="er"><span>דוח ב-14 יום</span></label>`)
       +`<div class="scft"><span id="scN"></span><button type="button" class="scrst" id="scReset">ניקוי כל המסננים</button></div>`;
     $('scPre').innerHTML='<span class="scph">מוכנים:</span>'+SC_PRE.map(([l],i)=>`<button type="button" data-pre="${i}">${esc(l)}</button>`).join('');
     F.dataset.ok='1';
