@@ -929,15 +929,16 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div id="rotBody"></div>
 </section>
 <section id="etfs" data-pg="research">
-  <div class="sxh"><h2>קרנות נושאיות</h2><span class="sxn" id="etfAsOf"></span></div>
-  <p class="sub">קרנות סל (ETF) שעוקבות אחרי נושא או תעשייה. לחיצה על שורה פותחת את האחזקות הגדולות, ולחיצה על הסימול פותחת כרטיס קרן עם גרף.</p>
+  <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors">סקטורים</a><a href="#themes" data-sw="themes">תעשיות</a><a href="#etfs" data-sw="etfs" class="on">תעודות סל</a></div>
+  <div class="sxh"><h2>תעודות סל</h2><span class="sxn" id="etfAsOf"></span></div>
+  <p class="sub">תעודות סל (ETF) שעוקבות אחרי נושא או תעשייה. לחיצה על שורה פותחת את האחזקות הגדולות, ולחיצה על הסימול פותחת כרטיס קרן עם גרף.</p>
   <div class="sxf"><div class="sxc" id="etfChips"></div></div>
   <div class="tb2" id="etfTable"><div class="empty">טוען…</div></div>
   <p class="legend">מחירים ואחזקות: Yahoo Finance. האחזקות מתעדכנות פעם בשבוע. מידע עובדתי בלבד, לא המלצה.</p>
 </section>
 
 <section id="sectors" data-pg="research">
-  <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors" class="on">סקטורים</a><a href="#themes" data-sw="themes">תעשיות</a></div>
+  <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors" class="on">סקטורים</a><a href="#themes" data-sw="themes">תעשיות</a><a href="#etfs" data-sw="etfs">תעודות סל</a></div>
   <h2>סקטורים<button class="gq" data-gl="ETF" aria-label="הסבר">?</button><span class="fresh" data-fr="sectors"></span></h2>
     <div class="tabs" id="secTabs"></div>
   <div class="tb2" id="secTable"></div>
@@ -950,7 +951,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 
 <section id="themes" data-pg="research">
-  <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors">סקטורים</a><a href="#themes" data-sw="themes" class="on">תעשיות</a></div>
+  <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors">סקטורים</a><a href="#themes" data-sw="themes" class="on">תעשיות</a><a href="#etfs" data-sw="etfs">תעודות סל</a></div>
   <h2>תעשיות<button class="gq" data-gl="SECTOR" aria-label="הסבר">?</button><span class="fresh" data-fr="themes"></span></h2>
   <div class="tabs" id="thTabs"></div>
   <div class="thctl"><input id="thQ" type="search" placeholder="חיפוש תעשייה, למשל שבבים, זהב, Banks…" aria-label="חיפוש תעשייה"></div>
@@ -1356,7 +1357,7 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
   market:[['#snapshot','תמונת מצב'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית']],
-  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות'],['#rotation','רוטציה'],['#etfs','קרנות נושאיות'],['#evidence','מחקר מבוסס ראיות']],
+  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות'],['#rotation','רוטציה'],['#evidence','מחקר מבוסס ראיות']],
   reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#ipos','הנפקות']],
   stocks:[['#stocksHub','מניות'],['#screener','סורק מניות'],['#compare','השוואת גרפים']]
 };
@@ -1393,7 +1394,7 @@ function route(){
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
-  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')||(pg==='compare'&&hh==='#compare')||(h==='#page/stocks'&&hh==='#stocksHub')||(pg==='research'&&(hh==='#'+XSUB||(hh==='#sectors'&&XSUB==='themes')))?'on':''}">${l}</a>`).join('');
+  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')||(pg==='compare'&&hh==='#compare')||(h==='#page/stocks'&&hh==='#stocksHub')||(pg==='research'&&(hh==='#'+XSUB||(hh==='#sectors'&&(XSUB==='themes'||XSUB==='etfs'))))?'on':''}">${l}</a>`).join('');
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
   if(pg==='research'&&XSUB==='leaders') renderLeaders();
@@ -1689,14 +1690,14 @@ function qvShowEtf(t,p){
     <div class="qvq"><div class="qvp"><small>${E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
       <div class="qvt">${tile('שבוע',pc(r.w))}${tile('חודש',pc(r.m))}${tile('3 חודשים',pc(r.q))}${tile('מתחילת השנה',pc(r.ytd))}${tile('שנה',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div></div>
     <div class="qvb" id="qvBody"></div>
-    <a class="qvgo" href="#etfs">לכל הקרנות ←</a>`;
+    <a class="qvgo" href="#etfs">לכל תעודות הסל ←</a>`;
   qvTab(QV.tab==='hd'?'hd':'ch');
 }
 function qvTabEtf(k,t){ QV.tab=k; const p=$('qv'), box=$('qvBody'), r=etfRow(t); if(!p||!box) return;
   p.querySelectorAll('.qvtabs button').forEach(b=>b.classList.toggle('on',b.dataset.qt===k));
   if(k==='hd'){ const ix=stockIndex();
-    const h=((r&&r.h)||[]).map(([tk,nm,w])=>{ const s=ix[tk], y=s&&s.r?s.r.ytd:null; return `<a class="stk2 ${s?'tlink':''}" ${s?`href="#stock/${encodeURIComponent(tk)}"`:'data-nolink'}><span class="tk">${esc(tk)}</span><span class="co" title="${esc(nm||'')}">${esc(nm||'')}</span><span class="mc">${w}%</span><span class="ch ${y==null?'flat':y>=0?'up':'down'}">${y==null?'—':pct(y,0)}</span></a>`; }).join('');
-    box.innerHTML=h?`<div class="stks">${h}</div><p class="legend keep">משקל בקרן · תשואה מתחילת השנה (למניות שבאתר)${r.hAt?` · עודכן ${dm(r.hAt)}`:''}. מקור: Yahoo Finance.</p>`:'<div class="empty">אין נתוני אחזקות.</div>'; return; }
+    const h=((r&&r.h)||[]).map(([tk,nm,w])=>{ const s=ix[tk], y=s&&s.r?s.r.ytd:null; return `<a class="stk2 ${s?'tlink':''}" ${s?`href="#stock/${encodeURIComponent(tk)}"`:'data-nolink title="המניה לא נמצאת במאגר האתר"'}><span class="tk">${esc(tk)}</span><span class="co" title="${esc(nm||'')}">${esc(nm||'')}</span><span class="mc">${w}%</span><span class="ch ${y==null?'flat':y>=0?'up':'down'}">${y==null?'—':pct(y,0)}</span></a>`; }).join('');
+    box.innerHTML=h?`<div class="stks">${h}</div><p class="legend keep">משקל בקרן · תשואה מתחילת השנה (למניות שבאתר) · סימול בכחול = המניה לא במאגר האתר (מתחת למיליארד דולר, נפח נמוך או נסחרת מחוץ לארה&quot;ב), ולכן בלי קישור${r.hAt?` · עודכן ${dm(r.hAt)}`:''}. מקור: Yahoo Finance.</p>`:'<div class="empty">אין נתוני אחזקות.</div>'; return; }
   box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול המקווקו · ממוצע אקספוננציאלי 200: הקו הכחול הרציף · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart({t},'D',box.querySelector('.qvtv'));
 }
 function qvOpen(t,list,etf){
@@ -1726,7 +1727,7 @@ document.addEventListener('keydown',e=>{ const p=$('qv'); if(!p||!p.classList.co
   if(e.key==='Escape') qvClose(); else if(e.key==='ArrowLeft'){ e.preventDefault(); qvStep(1); } else if(e.key==='ArrowRight'){ e.preventDefault(); qvStep(-1); } });
 window.addEventListener('hashchange',qvClose);
 
-/* ---------- thematic ETFs (מחקר → קרנות נושאיות) ---------- */
+/* ---------- thematic ETFs (מחקר → תעודות סל) ---------- */
 const ETF={g:'',sort:'m',dir:-1,open:new Set()};
 function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable'); if(!b) return;
   if(!R.length){ b.innerHTML='<div class="empty">הנתונים יתעדכנו בריצה הלילית הקרובה.</div>'; return; }
@@ -1738,9 +1739,9 @@ function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable');
   const rows=R.filter(r=>!ETF.g||r.g===ETF.g).sort((a,b)=>{ const k=ETF.sort; if(k==='n') return a.n.localeCompare(b.n,'he')*ETF.dir; const x=a[k],y=b[k]; if(x==null) return 1; if(y==null) return -1; return (x-y)*ETF.dir; });
   const ix=stockIndex();
   b.innerHTML=`<div class="rw2 hd2"><span data-es="n" class="${ETF.sort==='n'?'on':''}" style="cursor:pointer">קרן · נושא${ETF.sort==='n'?(ETF.dir<0?' ▾':' ▴'):''}</span>${C.map(([c,l])=>`<span class="n${['q','y'].includes(c)?' dq':''}${ETF.sort===c?' on':''}" data-es="${c}" style="cursor:pointer">${l}${ETF.sort===c?(ETF.dir<0?' ▾':' ▴'):''}</span>`).join('')}</div>`+rows.map((r,i)=>{ const op=ETF.open.has(r.t), has=r.h&&r.h.length;
-    const h=(r.h||[]).map(([t,n,w])=>{ const s=ix[t], y=s&&s.r?s.r.ytd:null; return `<a class="stk2 ${s?'tlink':''}" ${s?`href="#stock/${encodeURIComponent(t)}"`:'data-nolink'}><span class="tk">${esc(t)}</span><span class="co" title="${esc(n||'')}">${esc(n||'')}</span><span class="mc">${w}%</span><span class="ch ${y==null?'flat':y>=0?'up':'down'}">${y==null?'—':pct(y,0)}</span></a>`; }).join('');
+    const h=(r.h||[]).map(([t,n,w])=>{ const s=ix[t], y=s&&s.r?s.r.ytd:null; return `<a class="stk2 ${s?'tlink':''}" ${s?`href="#stock/${encodeURIComponent(t)}"`:'data-nolink title="המניה לא נמצאת במאגר האתר"'}><span class="tk">${esc(t)}</span><span class="co" title="${esc(n||'')}">${esc(n||'')}</span><span class="mc">${w}%</span><span class="ch ${y==null?'flat':y>=0?'up':'down'}">${y==null?'—':pct(y,0)}</span></a>`; }).join('');
     return `<div class="rw2 ${has?'has':''} ${op?'open':''}" data-et="${esc(r.t)}"><div class="nm2 nmk"><span class="rkn">${i+1}</span>${has?`<button class="thcp" data-ecopy="${esc(r.t)}" title="העתק את סימולי האחזקות" aria-label="העתק סימולים"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button>`:''}<b><bdi>${esc(r.t)}</bdi></b><small>${has?'<span class="car">◀</span>':''}${esc(r.n)}</small></div>${cell(r.d,ETF.sort==='d')}${cell(r.m,ETF.sort==='m')}<span class="dsk">${cell(r.q,ETF.sort==='q')}</span>${cell(r.ytd,ETF.sort==='ytd')}<span class="dsk">${cell(r.y,ETF.sort==='y')}</span></div>`+
-      (op&&h?`<div class="thsub"><div class="stks">${h}</div><div class="stknote">${(r.h||[]).length} האחזקות הגדולות · משקל בקרן · תשואה מתחילת השנה (למניות שבאתר)${r.hAt?` · עודכן ${dm(r.hAt)}`:''} · <button class="thcpt" data-ecopy="${esc(r.t)}">העתק סימולים</button></div></div>`:''); }).join('');
+      (op&&h?`<div class="thsub"><div class="stks">${h}</div><div class="stknote">${(r.h||[]).length} האחזקות הגדולות · משקל בקרן · תשואה מתחילת השנה (למניות שבאתר) · סימול בכחול = המניה לא במאגר האתר (מתחת למיליארד דולר, נפח נמוך או נסחרת מחוץ לארה&quot;ב), ולכן בלי קישור${r.hAt?` · עודכן ${dm(r.hAt)}`:''} · <button class="thcpt" data-ecopy="${esc(r.t)}">העתק סימולים</button></div></div>`:''); }).join('');
 }
 document.addEventListener('click',async e=>{
   const g=e.target.closest&&e.target.closest('[data-eg]'); if(g){ ETF.g=g.dataset.eg; renderEtfs(); return; }
@@ -3370,7 +3371,7 @@ let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; cle
 document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 
 /* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
-const GATED={leaders:'מובילים',etfs:'קרנות נושאיות',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
+const GATED={leaders:'מובילים',etfs:'תעודות סל',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
 function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
 const gateOn=()=>!!(CLK_PK&&CLK_LIVE);
 function gateBox(sec,g){ if(!sec.querySelector(':scope>.gate')){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); } sec.classList.add('gated'); }

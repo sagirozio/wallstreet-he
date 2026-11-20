@@ -1,4 +1,4 @@
-"""Thematic ETFs page (מחקר → קרנות נושאיות): returns of a fixed list of theme ETFs and each fund's top holdings.
+"""Thematic ETFs page (מחקר → תעודות סל): returns of a fixed list of theme ETFs and each fund's top holdings.
 
 Prices and holdings from Yahoo (yfinance): history for the returns, Ticker.funds_data.top_holdings for the holdings.
 Holdings change slowly, so they are refreshed only when older than 7 days (or missing). Writes data.json["etfs"].
