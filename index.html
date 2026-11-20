@@ -942,7 +942,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <details class="how"><summary>הסבר ואיך זה מחושב</summary>
   <p class="sub" id="secSub">תשואת 11 הסקטורים של השוק האמריקאי. אפשר ללחוץ על טווח זמן כדי למיין לפיו.</p>
   <div class="legend">ירוק = עלייה, אדום = ירידה. התשואה של כל סקטור היא שינוי המחיר של קרן הסל (ETF) של SPDR שמייצגת אותו (XLK, XLF וכו׳), כמו שמוצג ב-Google Finance וב-TradingView.</div>
-  <p class="legend">איך מחושב: לפי תאריכים, כמו ב-Google Finance וב-TradingView. "היום" = מול סגירת יום המסחר הקודם. "5 ימים" = מול הסגירה של לפני 7 ימים. "חודש", "3 חודשים", "חצי שנה" ו"שנה" = מול הסגירה באותו תאריך לפני חודש, 3, 6 ו-12 חודשים (או יום המסחר האחרון שלפניו). "מתחילת השנה" = מול סגירת השנה הקודמת. מחיר הקרן בלי דיבידנדים. התשואות של התעשיות מחושבות אחרת: ממוצע המניות בכל תעשייה.</p>
+  <p class="legend">איך מחושב: לפי תאריכים, כמו ב-Google Finance וב-TradingView. 1D = מול סגירת יום המסחר הקודם. 5D = מול הסגירה של לפני 7 ימים. 1M, 3M, 6M ו-1Y = מול הסגירה באותו תאריך לפני חודש, 3, 6 ו-12 חודשים (או יום המסחר האחרון שלפניו). YTD = מתחילת השנה, מול סגירת השנה הקודמת. מחיר הקרן בלי דיבידנדים. התשואות של התעשיות מחושבות אחרת: ממוצע המניות בכל תעשייה.</p>
   <p class="legend">לחיצה על סקטור פותחת את התעשיות שלו, ולחיצה על תעשייה פותחת את המניות המובילות בה. RS של סקטור = דירוג מ-1 עד 99 של ביצועי הסקטור ב-12 החודשים האחרונים מול מניות S&P 500 (3 החודשים האחרונים נספרים כפול), באותה שיטה כמו בתעשיות. "מעל ממוצע 50" = כמה מהמניות בסקטור או בתעשייה נסחרות מעל הממוצע הנע של 50 יום (אחוז, ומספר מתוך הסך). השורה שמעל הטבלה מציגה את אותו נתון למניות מדד S&P 500. האחוז הזה מחושב על כל מניות הסקטור באתר, במשקל שווה. הגרף הקטן של כל סקטור = מחיר קרן הסל מתחילת השנה.</p>
   </details>
 </section>
@@ -957,7 +957,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <details class="how"><summary>הסבר ואיך זה מחושב</summary>
   <p class="sub" id="thSub">איך כל אחת מ-143 קבוצות התעשייה בשוק האמריקאי ביצעה. זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים. חישוב עצמי מנתוני Yahoo Finance לכל המניות מעל מיליארד דולר, מתעדכן אוטומטית כל ערב.</p>
   <div class="legend" id="thLegend"></div>
-  <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם ממוצע של כל המניות בה. "5 ימים" = 5 ימי המסחר האחרונים, "חודש" ≈ 21 ימי מסחר, "3 חודשים" ≈ 63, "חצי שנה" ≈ 126, "שנה" ≈ 252. "היום" = השינוי מסגירת יום המסחר הקודם.</p>
+  <p class="legend">איך מחושב: כמו ב-Finviz. הביצועים של כל קבוצה הם החציון של המניות בה. 5D = 5 ימי המסחר האחרונים, 1M ≈ 21 ימי מסחר, 3M ≈ 63, 6M ≈ 126, 1Y ≈ 252. 1D = השינוי מסגירת יום המסחר הקודם. YTD = מתחילת השנה.</p>
   </details>
 </section>
 
@@ -1525,7 +1525,7 @@ const CRYPTO={
 function cryptoHits(q){ const ql=q.trim().toLowerCase(); if(ql.length<2) return [];
   return Object.values(CRYPTO).filter(c=>c.kw.some(k=>k.startsWith(ql)||(ql.length>=3&&ql.startsWith(k)))).map(c=>({t:c.t,co:c.co,cap:'',sec:'',secHe:'מטבע קריפטו',crypto:1})); }
 function cryptoPerf(t){ const C=FALLBACK.crypto||{}, r=(C.rows||{})[t]; if(!r) return '<div id="crPerf"></div>';
-  const P=[['w','שבוע'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
+  const P=[['w','5D'],['m','1M'],['q','3M'],['h','6M'],['ytd','YTD'],['y','1Y']];
   return `<div id="crPerf"><h3 class="sph3">ביצועים</h3><div class="spperf">${P.map(([k,l])=>`<div><small>${l}</small><b class="num ${r[k]==null?'flat':r[k]>=0?'up':'down'}">${r[k]==null?'—':pct(r[k],1)}</b></div>`).join('')}</div><p class="legend">שינוי במחיר בדולר, לפי ימים קלנדריים (המסחר פעיל כל יום). עודכן ${esc(C.asOf||'')} · Yahoo Finance.</p></div>`; }
 function renderCrypto(c){
   document.title=`${c.sym} – ${c.co} | Wallstreeter`;
@@ -1605,7 +1605,7 @@ function renderHub(){
   // table
   const rows=hubRows(), k=HUB.sort, val=r=>k==='cap'?r.cn:k==='t'?r.t:(k in r?r[k]:(r.rr||{})[k]);
   rows.sort((a,b)=>{ const x=val(a), y=val(b); if(x==null) return 1; if(y==null) return -1; return (x<y?-1:x>y?1:0)*HUB.dir; });
-  const C=[['t','מניה'],['px','מחיר'],['d','יום'],['m','חודש'],['ytd','מתחילת השנה'],['rs','RS'],['adr','<bdi dir="ltr">ADR%</bdi>'],['cap','שווי'],['g','צמיחה רבעונית'],['ga','צמיחה שנתית'],['pe','P/E'],['hi','מהשיא']];
+  const C=[['t','מניה'],['px','מחיר'],['d','1D'],['m','1M'],['ytd','YTD'],['rs','RS'],['adr','<bdi dir="ltr">ADR%</bdi>'],['cap','שווי'],['g','צמיחה רבעונית'],['ga','צמיחה שנתית'],['pe','P/E'],['hi','מהשיא']];
   const pc=v=>v==null?'<span class="flat">—</span>':`<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
   const head=`<div class="sxr sxhd">${C.map(([c,l])=>`<button data-hs="${c}" class="hx-${c}${HUB.sort===c?' on':''}">${l}${HUB.sort===c?(HUB.dir<0?' ▾':' ▴'):''}</button>`).join('')}</div>`;
   const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b><small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
@@ -1647,7 +1647,7 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
 function qvQuote(t){ const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d, x=(SCR||{})[t]||{};
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`, tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`;
   return `<div class="qvp"><small>${liveStamp()||'מחיר סגירה'}</small><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}</div>${extLines(t)}
-      <div class="qvt">${tile('RS',r.rs??'—')}${tile('מתחילת השנה',pc(r.ytd))}${tile('חודש',pc(r.m))}${tile('מהשיא',pc(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div>`; }
+      <div class="qvt">${tile('RS',r.rs??'—')}${tile('YTD',pc(r.ytd))}${tile('1M',pc(r.m))}${tile('מהשיא',pc(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div>`; }
 function qvShow(){
   const t=QV.L[QV.i], p=$('qv'); if(!t||!p) return;
   if(QV.etf){ qvShowEtf(t,p); return; }
@@ -1682,7 +1682,7 @@ function qvShowEtf(t,p){
       <span class="qvact"><button class="qvx" aria-label="סגירה">✕</button></span></div>
     <p class="qvdesc" dir="rtl">קרן סל (ETF) בנושא ${esc(r.n||'')}. ${r.h&&r.h.length?`מוצגות ${r.h.length} האחזקות הגדולות שלה${wsum?`, ביחד כ-${wsum.toFixed(0)}% מהקרן`:''}.`:''}</p>
     <div class="qvq"><div class="qvp"><small>${E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
-      <div class="qvt">${tile('שבוע',pc(r.w))}${tile('חודש',pc(r.m))}${tile('3 חודשים',pc(r.q))}${tile('מתחילת השנה',pc(r.ytd))}${tile('שנה',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div>${(()=>{ const I=r.i||{}; const T=[]; if(I.f) T.push(tile('מנפיק','<bdi>'+esc(I.f)+'</bdi>')); if(I.er!=null) T.push(tile('דמי ניהול שנתיים',I.er.toFixed(2)+'%')); if(I.aum!=null) T.push(tile('היקף נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M'))); if(I.inc) T.push(tile('הוקמה',I.inc.slice(0,4))); return T.length?`<div class="qvt">${T.join('')}</div>`:''; })()}</div>
+      <div class="qvt">${tile('5D',pc(r.w))}${tile('1M',pc(r.m))}${tile('3M',pc(r.q))}${tile('YTD',pc(r.ytd))}${tile('1Y',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div>${(()=>{ const I=r.i||{}; const T=[]; if(I.f) T.push(tile('מנפיק','<bdi>'+esc(I.f)+'</bdi>')); if(I.er!=null) T.push(tile('דמי ניהול שנתיים',I.er.toFixed(2)+'%')); if(I.aum!=null) T.push(tile('היקף נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M'))); if(I.inc) T.push(tile('הוקמה',I.inc.slice(0,4))); return T.length?`<div class="qvt">${T.join('')}</div>`:''; })()}</div>
     <div class="qvb" id="qvBody"></div>
     <a class="qvgo" href="#etfs">לכל תעודות הסל ←</a>`;
   qvTab(QV.tab==='hd'?'hd':'ch');
@@ -1728,7 +1728,7 @@ function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable');
   $('etfAsOf').textContent=E.asOf?`סגירת ${dm(E.asOf)}`:'';
   const G=[...new Set(R.map(r=>r.g))];
   $('etfChips').innerHTML=[['','הכל'],...G.map(g=>[g,g])].map(([k,l])=>`<button data-eg="${esc(k)}" class="${ETF.g===k?'on':''}">${esc(l)}</button>`).join('');
-  const C=[['d','יום'],['m','חודש'],['q','3 חודשים'],['ytd','מתחילת השנה'],['y','שנה']];
+  const C=[['d','1D'],['m','1M'],['q','3M'],['ytd','YTD'],['y','1Y']];
   const cell=(v,big)=>v==null?'<span class="n flat">—</span>':`<span class="n ${big?'big ':''}${v>0?'up':v<0?'down':'flat'}">${pct(v,1)}</span>`;
   const rows=R.filter(r=>!ETF.g||r.g===ETF.g).sort((a,b)=>{ const k=ETF.sort; if(k==='n') return a.n.localeCompare(b.n,'he')*ETF.dir; const x=a[k],y=b[k]; if(x==null) return 1; if(y==null) return -1; return (x-y)*ETF.dir; });
   const ix=stockIndex();
@@ -2035,7 +2035,7 @@ function pxChart(t){
   const erow=O.er&&ER.length?`<div class="pxer">${ER.map((e,k)=>`<span class="${e.c}" style="left:${(e.i/n*100).toFixed(2)}%;transform:translateX(${e.i/n>0.93?'-100%':e.i/n<0.07?'0':'-50%'})">${e.ay!=null?(e.ay>0?'+':'')+e.ay+'%':'—'}</span>`).join('')}${ER.slice(1).map((e,k)=>{ const p=ER[k], l=Math.min(p.i,e.i)/n*100, r=Math.max(p.i,e.i)/n*100; return `<i class="${e.i>p.i?p.c:e.c}" style="left:calc(${l.toFixed(2)}% + 22px);width:calc(${(r-l).toFixed(2)}% - 44px)"></i>`; }).join('')}</div>`:'';
   PXER[t]=ER;
   const tg=stk?`<div class="pxtg"><button data-o="m50" class="${O.m50?'on':''}"><i style="border-color:#58a6ff"></i>ממוצע 50</button><button data-o="m200" class="${O.m200?'on':''}"><i style="border-color:#f5b942"></i>ממוצע 200</button>${ER.length?`<button data-o="er" class="${O.er?'on':''}"><b></b>דוחות (EPS)</button>`:''}<button data-o="rs" class="${O.rs?'on':''}"><i style="border-color:#f0f3f6;border-top-style:solid"></i>קו RS</button></div>`:'';
-  return `<div class="pxc" data-px="${esc(t)}"><div class="pxh"><b>מתחילת השנה</b><span class="num ${ch>=0?'up':'down'}" id="pxCh">${pct(ch,1)}</span><small id="pxInfo">שיא <span class="num">${pxF(mx)}</span> · שפל <span class="num">${pxF(mn)}</span></small></div>${tg}
+  return `<div class="pxc" data-px="${esc(t)}"><div class="pxh"><b>YTD</b><span class="num ${ch>=0?'up':'down'}" id="pxCh">${pct(ch,1)}</span><small id="pxInfo">שיא <span class="num">${pxF(mx)}</span> · שפל <span class="num">${pxF(mn)}</span></small></div>${tg}
     <div class="pxw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="המחיר מתחילת השנה"><polygon points="${X(a[0][0])},${H} ${pts} ${X(a[a.length-1][0])},${H}" fill="${col}" opacity=".10"/>${ma}<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/>${rsl}</svg>
       <i class="pxv"></i><i class="pxz"></i><i class="pxdot"></i><span class="pxl num"></span><span class="pxt num"></span>${dots}${O.rs&&rsl&&PXRSV(t)!=null?`<span class="pxrsg num" style="left:${(PXRSL[t][0]/W*100).toFixed(2)}%;top:${(PXRSL[t][1]/H*100).toFixed(2)}%">${PXRSV(t)}</span>`:''}</div>${erow}
     <div class="pxf"><span>${pxD(D[a[0][0]])}</span><span>מחירי סגירה יומיים עד ${pxD(D[a[a.length-1][0]])}</span></div></div>`;
@@ -2201,7 +2201,7 @@ async function renderLeaders(){
   box.innerHTML=wk+
     block('vb','פריצות עם נפח',`עלו 4% ומעלה היום, בנפח של פי 2 לפחות מהממוצע (3 חודשים)${vbd?' · '+dm2(vbd):''}`,['שינוי','נפח','RS'],vb,'אין כרגע מניות שעומדות בתנאים. הרשימה מתעדכנת בזמן המסחר.')+
     block('rsl','קו RS בשיא של 52 שבועות',`היחס בין מחיר המניה ל-S&P 500 בשיא שנתי${X.asOf?' · סגירת '+dm2(X.asOf):''}`,['מהשיא במחיר','','RS'],rsl,'אין מניות ברשימה.')+
-    block('newl','נכנסו לטופ ה-RS השבוע','דירוג RS עבר את 90 ב-5 ימי המסחר האחרונים',['RS לפני שבוע','RS היום','מתחילת השנה'],nl,'אין מניות חדשות השבוע.')+
+    block('newl','נכנסו לטופ ה-RS השבוע','דירוג RS עבר את 90 ב-5 ימי המסחר האחרונים',['RS לפני שבוע','RS היום','YTD'],nl,'אין מניות חדשות השבוע.')+
     `<div class="ldb${LDOPEN.ti?' open':''}" data-ld="ti"><button class="ldh"><b>המובילות בתעשיות החזקות</b><span class="ldn">${rows.length}</span><small>10 התעשיות עם ה-RS הגבוה, ו-3 המניות עם ה-RS הגבוה בכל אחת</small></button><div class="ldl"><div class="ldr hd"><span>מניה</span><span>RS</span><span>מתחילת השנה</span></div>${ti.join('')}</div></div>`;
   box.onclick=e=>{ const h=e.target.closest('.ldh'); if(!h) return; const b=h.parentElement; b.classList.toggle('open'); LDOPEN[b.dataset.ld]=b.classList.contains('open'); };
 }
@@ -2236,7 +2236,7 @@ async function renderCompare(arg){
   const ix=stockIndex(), etfs=((SECTORS||{}).rows||[]).map(r=>r.t);
   const opts=[...Object.keys(ix).map(t=>`<option value="${esc(t)}">${esc(ix[t].co||'')}</option>`), ...etfs.map(t=>`<option value="${t}">${esc(cmpName(t))}</option>`),'<option value="SPY">S&P 500</option>'].join('');
   box.innerHTML=`<div class="cmpc" id="cmpChips"></div>
-    <div class="cmpper" id="cmpPer">${[[21,'חודש'],[63,'3 חודשים'],[126,'6 חודשים'],[0,'מתחילת השנה']].map(([p,l])=>`<button data-p="${p}" class="${p===CMPP?'on':''}">${l}</button>`).join('')}</div>
+    <div class="cmpper" id="cmpPer">${[[21,'1M'],[63,'3M'],[126,'6M'],[0,'YTD']].map(([p,l])=>`<button data-p="${p}" class="${p===CMPP?'on':''}">${l}</button>`).join('')}</div>
     <div class="cmptip" id="cmpTip"></div><div id="cmpChart" class="cmpch"><div class="empty">טוען…</div></div><div id="cmpTab"></div>
     <datalist id="cmpList">${opts}</datalist>`;
   $('cmpPer').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CMPP=+b.dataset.p; $('cmpPer').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); cmpDraw(); };
@@ -2922,7 +2922,7 @@ setTimeout(refreshLive, 1500);   // a cached copy of the page picks up fresh dat
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refreshLive(); });
 
 /* ---------- sectors ---------- */
-const PER = [['d','היום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
+const PER = [['d','1D'],['w','5D'],['m','1M'],['q','3M'],['h','6M'],['ytd','YTD'],['y','1Y']];
 let secKey = 'm', secOpen=new Set();
 const PL=Object.fromEntries(PER); PL.rs='RS';
 const WIDE=matchMedia('(min-width:901px)');
@@ -2939,7 +2939,7 @@ function spark(a,q){ if(!a||a.length<2) return '<span class="n flat">—</span>'
   return `<span class="spk"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${(q!=null?q>=0:a[a.length-1]>=a[0])?'var(--green)':'var(--red)'}" stroke-width="1.5"/></svg></span>`; }
 const rsCell=(v,on)=>v==null?'<span class="n flat">—</span>':`<span class="n rsn ${on?'big ':''}${v>=80?'up':v<=20?'down':''}">${v}</span>`;
 const mCols=key=>WIDE.matches?PER.map(p=>p[0]):[key==='rs'?'m':key];   /* phones: one period + RS + sparkline */
-const mHead=(lbl,c,key)=>`<div class="rw2 hd2 mx"><span>${lbl}</span>${c.map(k=>`<span class="n${k===key?' on':''}" data-sk="${k}">${PL[k]}${k===key?' ▾':''}</span>`).join('')}<span class="n${key==='rs'?' on':''}" data-sk="rs">RS${key==='rs'?' ▾':''}</span><span class="n a5c">מעל ממוצע 50</span><span class="n">גרף מתחילת השנה</span></div>`;
+const mHead=(lbl,c,key)=>`<div class="rw2 hd2 mx"><span>${lbl}</span>${c.map(k=>`<span class="n${k===key?' on':''}" data-sk="${k}">${PL[k]}${k===key?' ▾':''}</span>`).join('')}<span class="n${key==='rs'?' on':''}" data-sk="rs">RS${key==='rs'?' ▾':''}</span><span class="n a5c">מעל ממוצע 50</span><span class="n">גרף YTD</span></div>`;
 const a5Cell=x=>x&&x.a50!=null?`<span class="n a5c ${x.a50>=60?'up':x.a50<=40?'down':''}" title="${x.c50} מתוך ${x.n} מניות מעל ממוצע 50 יום">${x.a50}% <i>${x.c50}/${x.n}</i></span>`:'<span class="n a5c flat">—</span>';
 function mktStrip(){ const r=((FALLBACK.breadth||{}).rows||[])[0]; if(!r||r.ma50==null) return ''; const n=r.up!=null&&r.dn!=null?Math.max(500,r.up+r.dn):503, c=v=>Math.round(v/100*n);
   return `<a class="mstrip" href="#breadth"><span>מניות S&P 500 מעל ממוצע 50: <b class="${r.ma50>=60?'up':r.ma50<=40?'down':''}">${c(r.ma50)} מתוך ${n}</b> (${r.ma50}%)</span>${r.ma200!=null?`<span>מעל ממוצע 200: <b>${c(r.ma200)}</b> (${r.ma200}%)</span>`:''}<span class="flat">${esc(r.d||'')} · לרוחב השוק ←</span></a>`; }
@@ -3044,18 +3044,18 @@ async function renderGroup(kind,en){
     if(py&&pd&&py.length===pd.length){ PXC[etf]=py; PXDT[etf]=pd; } else { delete PXC[etf]; delete PXDT[etf]; } }
   const tile=(l,v)=>`<div><small>${l}</small><b class="num ${v==null?'flat':v>=0?'up':'down'}">${v==null?'—':pct(v,1)}</b></div>`;
   const gpx=e?e[0]:(isSec&&row&&row.px)||null, gd=e?e[1]:(row?row.d:null);
-  const perf=row?`<div class="spperf">${gpx?`<div><small>מחיר <bdi>${esc(etf)}</bdi></small><b class="num">$${gpx.toFixed(2)}</b></div>`:''}${tile('היום',gd)}${PER.filter(([k])=>k!=='d').map(([k,l])=>tile(l,row[k])).join('')}${rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${rs>=80?'up':rs<=20?'down':''}">${rs}</b></div>`:''}</div>`:'';
+  const perf=row?`<div class="spperf">${gpx?`<div><small>מחיר <bdi>${esc(etf)}</bdi></small><b class="num">$${gpx.toFixed(2)}</b></div>`:''}${tile('1D',gd)}${PER.filter(([k])=>k!=='d').map(([k,l])=>tile(l,row[k])).join('')}${rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${rs>=80?'up':rs<=20?'down':''}">${rs}</b></div>`:''}</div>`:'';
   const ranked=(T.rows||[]).filter(r=>thCnt(r)>=3&&r.ytd!=null).sort(byKey('ytd')), rk=!isSec&&row?ranked.findIndex(r=>r.en===en)+1:0;
   const facts=[`${mem.length} מניות באתר`, rk?`מקום ${rk} מתוך ${ranked.length} תעשיות מתחילת השנה`:'', etf?`קרן סל: <span class="num">${esc(etf)}</span>`:''].filter(Boolean);
   const key=GSORT, val=s=>key==='cap'?capNum(s.cap):(s.r||{})[key];
   const list=mem.filter(s=>val(s)!=null).sort((a,b)=>val(b)-val(a));
   const P=v=>v==null?'<span class="n flat">—</span>':`<span class="n ${v>=0?'up':'down'}">${pct(v,1)}</span>`;
   const hd=(k,l,c='')=>`<span class="n ${c}${key===k?' on':''}" data-gs="${k}">${l}${key===k?' ▾':''}</span>`;
-  const stocks=`<div class="tb2 gtb"><div class="gtr ghd"><span>מניה</span>${hd('ytd','מתחילת השנה')}${hd('m','חודש')}${hd('q','3 חודשים','gw')}${hd('y','שנה','gw')}${hd('rs','RS')}${hd('cap','שווי','gw')}<span class="n">מתחילת השנה</span></div>${list.slice(0,GLIM).map((s,i)=>`<a class="gtr" href="#stock/${encodeURIComponent(s.t)}"><span class="gnm"><span class="rkn">${i+1}</span>${mono(s.t)}<span><b>${esc(s.t)}</b><small dir="auto">${esc(s.co||'')}${!isSec||!s.ind?'':` · ${esc(s.indHe||s.ind)}`}</small></span></span>${P(s.r.ytd)}${P(s.r.m)}<span class="gw">${P(s.r.q)}</span><span class="gw">${P(s.r.y)}</span>${s.r.rs==null?'<span class="n flat">—</span>':`<span class="n rsn ${s.r.rs>=80?'up':s.r.rs<=20?'down':''}">${s.r.rs}</span>`}<span class="n gw flat">${s.cap?'$'+esc(s.cap):'—'}</span>${GSPK&&GSPK[s.t]?spark(GSPK[s.t].filter(v=>v!=null),s.r.ytd):'<span class="n flat">'+(GSPK?'—':'')+'</span>'}</a>`).join('')}</div>${list.length>GLIM?`<button class="ewmore" id="grMore" style="display:block;margin:12px auto 0">הצג את כל ${list.length} המניות</button>`:''}`;
+  const stocks=`<div class="tb2 gtb"><div class="gtr ghd"><span>מניה</span>${hd('ytd','YTD')}${hd('m','1M')}${hd('q','3M','gw')}${hd('y','1Y','gw')}${hd('rs','RS')}${hd('cap','שווי','gw')}<span class="n">מתחילת השנה</span></div>${list.slice(0,GLIM).map((s,i)=>`<a class="gtr" href="#stock/${encodeURIComponent(s.t)}"><span class="gnm"><span class="rkn">${i+1}</span>${mono(s.t)}<span><b>${esc(s.t)}</b><small dir="auto">${esc(s.co||'')}${!isSec||!s.ind?'':` · ${esc(s.indHe||s.ind)}`}</small></span></span>${P(s.r.ytd)}${P(s.r.m)}<span class="gw">${P(s.r.q)}</span><span class="gw">${P(s.r.y)}</span>${s.r.rs==null?'<span class="n flat">—</span>':`<span class="n rsn ${s.r.rs>=80?'up':s.r.rs<=20?'down':''}">${s.r.rs}</span>`}<span class="n gw flat">${s.cap?'$'+esc(s.cap):'—'}</span>${GSPK&&GSPK[s.t]?spark(GSPK[s.t].filter(v=>v!=null),s.r.ytd):'<span class="n flat">'+(GSPK?'—':'')+'</span>'}</a>`).join('')}</div>${list.length>GLIM?`<button class="ewmore" id="grMore" style="display:block;margin:12px auto 0">הצג את כל ${list.length} המניות</button>`:''}`;
   /* sector page: performance table of its industry groups (all periods, RS, 3-month line), sortable */
-  const ik=GISORT, iv=r=>r[ik], cols=[['d','יום'],['w','5 ימים'],['m','חודש'],['q','3 חודשים'],['h','חצי שנה'],['ytd','מתחילת השנה'],['y','שנה']];
+  const ik=GISORT, iv=r=>r[ik], cols=[['d','1D'],['w','5D'],['m','1M'],['q','3M'],['h','6M'],['ytd','YTD'],['y','1Y']];
   const ihd=(k,l,c='')=>`<span class="n ${c}${ik===k?' on':''}" data-gis="${k}">${l}${ik===k?' ▾':''}</span>`, wideCol=k=>['ytd','m'].includes(k)?'':'giw';
-  const indTbl=isSec&&inds.length?`<h3 class="sph3">ביצועי התעשיות בסקטור</h3><div class="tb2 gitb"><div class="gir2 ghd"><span>תעשייה</span>${cols.map(([k,l])=>ihd(k,l,wideCol(k))).join('')}${ihd('rs','RS')}<span class="n">גרף מתחילת השנה</span></div>${inds.filter(r=>iv(r)!=null).sort(byKey(ik)).map((r,n)=>{ const xi=(X.ind||{})[r.en]||{}; return `<a class="gir2" href="#ind/${encodeURIComponent(r.en)}"><span class="nm2"><b><bdi>${esc(r.en)}</bdi></b><small>${esc(r.n)} · ${thCnt(r)} מניות</small></span>${cols.map(([k])=>`<span class="${wideCol(k)}">${P(r[k])}</span>`).join('')}${r.rs==null?'<span class="n flat">—</span>':`<span class="n rsn ${r.rs>=80?'up':r.rs<=20?'down':''}">${r.rs}</span>`}${spark(xi.sp,r.ytd)}</a>`; }).join('')}</div>`:'';
+  const indTbl=isSec&&inds.length?`<h3 class="sph3">ביצועי התעשיות בסקטור</h3><div class="tb2 gitb"><div class="gir2 ghd"><span>תעשייה</span>${cols.map(([k,l])=>ihd(k,l,wideCol(k))).join('')}${ihd('rs','RS')}<span class="n">גרף YTD</span></div>${inds.filter(r=>iv(r)!=null).sort(byKey(ik)).map((r,n)=>{ const xi=(X.ind||{})[r.en]||{}; return `<a class="gir2" href="#ind/${encodeURIComponent(r.en)}"><span class="nm2"><b><bdi>${esc(r.en)}</bdi></b><small>${esc(r.n)} · ${thCnt(r)} מניות</small></span>${cols.map(([k])=>`<span class="${wideCol(k)}">${P(r[k])}</span>`).join('')}${r.rs==null?'<span class="n flat">—</span>':`<span class="n rsn ${r.rs>=80?'up':r.rs<=20?'down':''}">${r.rs}</span>`}${spark(xi.sp,r.ytd)}</a>`; }).join('')}</div>`:'';
   box.innerHTML=`<a class="back" href="#${isSec?'sectors':'themes'}">→ ${isSec?'לכל הסקטורים':'לכל התעשיות'}</a>
     <div class="grh"><h2><bdi>${esc(en)}</bdi>${etf?` <span class="grtk">${esc(etf)}</span>`:''}</h2><div class="grs">${esc(he)}${!isSec&&parent?` · סקטור: <a href="#sector/${encodeURIComponent(parent)}"><bdi>${esc(parent)}</bdi></a>`:''}</div></div>
     ${isSec&&SEC_DESC[etf]?`<p class="grdesc">${SEC_DESC[etf]}</p>`:''}
@@ -3123,7 +3123,7 @@ let yK='all', yAll=false; const Y_LIM=20;
 function capFmt(b){ return b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.round(b)}B`:`$${b.toFixed(2)}B`; }
 function renderYtd(){
   const Y=FALLBACK.ytd||{rows:[]}, allR=Y.rows.filter(r=>yK==='all'||r.cap>=10), rows=yAll?allR:allR.slice(0,Y_LIM);
-  $('ytable').innerHTML=gRows(rows.map(r=>({t:r.t,n:r.n,p:r.p,cap:capFmt(r.cap),il:r.il})),'מתחילת השנה');
+  $('ytable').innerHTML=gRows(rows.map(r=>({t:r.t,n:r.n,p:r.p,cap:capFmt(r.cap),il:r.il})),'YTD');
   $('ywarn').classList.toggle('hidden',yK!=='all');
   const b=$('ymore'); b.classList.toggle('hidden',allR.length<=Y_LIM); b.textContent=yAll?'הצג פחות':`הצג את כולן (${allR.length})`;
 }
@@ -3312,7 +3312,7 @@ function thStocks(st,key){ key=key||thKey;
 }
 function renderThemes(){
   const T=THEMES; if(!T||!T.rows) return;
-  PL.d = LIVE_IND ? 'היום' : 'יום אחרון';
+  PL.d = '1D';
   $('thTabs').innerHTML = [...PER,['rs','RS']].map(([k,l])=>`<button data-tk="${k}" class="${k===thKey?'on':''}">${PL[k]}</button>`).join('');
   const c=mCols(thKey), q=thQ.trim().toLowerCase(), cnt=thCnt;
   /* groups with fewer than 3 stocks are left out of the ranking (one stock would decide the result); search still finds them */
