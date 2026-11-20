@@ -43835,7 +43835,7 @@
   }
  ],
  "overview": {
-  "asOf": "20.11.2026 · 23:00",
+  "asOf": "21.11.2026 · 00:25",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43894,28 +43894,28 @@
   ],
   "brief": [
    {
-    "h": "ה-S&P 500 והדאו בתיקון, ה-VIX מעל 35",
-    "t": "המכירות מעמיקות לקראת הסגירה: ה-S&P 500 והדאו יותר מ-10% מתחת לשיא, ה-S&P 500 בדרך לירידה שביעית ברציפות והנאסד״ק מחק את כל עליות השנה; מדד ה-VIX עלה ל-35.13.",
+    "h": "ה-S&P 500 נסגר בתיקון אחרי שבוע קשה",
+    "t": "ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר יותר מ-10% מתחת לשיא ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה וה-VIX נסגר ב-35.89.",
     "tone": "neg"
    },
    {
-    "h": "Nvidia צונחת על דיווח חקירת חשבונאות",
-    "t": "לפי Reuters חקירת ה-SEC בוחנת בעיות חשבונאיות אפשריות ב-Nvidia; המניה יורדת ביותר מ-12%, לכ-$128, ולפי Yahoo Finance איבדה היום כ-$400 מיליארד משוויה. Micron, AMD ו-Astera Labs יורדות ביותר מ-12%, Celestica ו-Nebius בכ-15%.",
+    "h": "Nvidia מאבדת כ-$491 מיליארד ביום",
+    "t": "לפי Motley Fool, Nvidia ירדה בכ-14%, אל מתחת ל-$126, אחרי דיווח Reuters שחקירת ה-SEC בוחנת בעיות חשבונאיות; שוויה ירד מכ-$3.52 טריליון לכ-$3.03 טריליון, כ-48% מתחת לשיא של 6 באוקטובר.",
+    "tone": "neg"
+   },
+   {
+    "h": "Broadcom ב-12% על קיצוץ של Google",
+    "t": "לפי Ming-Chi Kuo, Google קיצצה בכמיליון יחידות את משלוחי ה-TPU שתוכננו ל-2027; Broadcom איבדה כ-$191 מיליארד, Arm ירדה ב-14% ולפי Yahoo מדד השבבים איבד כמעט שליש מאז סוף ספטמבר.",
     "tone": "neg"
    },
    {
     "h": "טראמפ: מס על מרכזי נתונים בחו״ל",
-    "t": "במסיבת עיתונאים אמר טראמפ שחברות אמריקאיות שיבנו מרכזי נתוני AI מחוץ לארה״ב יחויבו ב״מס אדיר״, שהריבית גבוהה מדי ושחוק הרישוי שעבר בסנאט (62 מול 33) הוא ״עניין גדול״; Global Payments מזנקת ביותר מ-10% על דיווח ש-GTCR שוקלת רכישה של כ-$50 מיליארד.",
-    "tone": "neg"
+    "t": "במסיבת עיתונאים אמר טראמפ שחברות אמריקאיות שיבנו מרכזי נתוני AI מחוץ לארה״ב יחויבו ב״מס אדיר״ ושהריבית גבוהה מדי; לפי Bloomberg אמר גם שארה״ב קרובה להסכם סחר עם מקסיקו ופחות עם קנדה.",
+    "tone": "neu"
    },
    {
     "h": "קוק ופולסון: עוד העלאות ריבית",
-    "t": "נגידת הפד ליסה קוק אמרה היום שהריבית (3.75%–4%) אינה גבוהה מספיק ושאסור לפד להמתין, ונגידת פילדלפיה פולסון אמרה ש״יש עוד הידוק לבצע״; לפי Reuters השווקים מצפים להעלאה ב-8–9 בדצמבר.",
-    "tone": "neg"
-   },
-   {
-    "h": "הביטקוין מתחת ל-$60,000, הכורים צונחים",
-    "t": "הביטקוין ירד מתחת ל-$60,000 לראשונה מאז יולי; Hut 8 יורדת בכמעט 15%, Core Scientific ו-Bitdeer ביותר מ-13% ו-Cipher Digital ב-13%.",
+    "t": "נגידת הפד ליסה קוק אמרה שהריבית (3.75%–4%) אינה גבוהה מספיק ושאסור לפד להמתין; צריכה בסיסית הייתה הסקטור היחיד שעלה היום, ו-General Mills עלתה ב-4.4%.",
     "tone": "neg"
    }
   ],
@@ -43982,35 +43982,35 @@
    ]
   },
   "vix": {
-   "v": 27.98,
-   "c": 24.56,
+   "v": 35.89,
+   "c": 28.47,
    "week": 22.1,
    "from": 19.3,
-   "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
+   "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611202300,
+  "rev": 202611210025,
   "market": {
-   "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
+   "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
     {
      "k": "S&P 500",
-     "v": "7,175.83",
-     "d": -2.02
+     "v": "6,910.39",
+     "d": -3.72
     },
     {
      "k": "נאסד״ק",
-     "v": "23,879.20",
-     "d": -2.25
+     "v": "22,617.73",
+     "d": -5.29
     },
     {
      "k": "דאו ג׳ונס",
-     "v": "49,097.06",
-     "d": -2.19
+     "v": "48,147.33",
+     "d": -1.97
     },
     {
      "k": "ראסל 2000",
-     "v": "2,664.79",
-     "d": -1.82
+     "v": "2,581.79",
+     "d": -2.8
     }
    ]
   }
@@ -113737,6 +113737,493 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-close-correction-seven-days",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "ה-S&P 500 נסגר בירידה של 3.7%, יום שביעי ברציפות",
+   "body": "לפי AP, ה-S&P 500 נסגר יותר מ-10% מתחת לשיא של 6 באוקטובר, כלומר בתיקון, אחרי הרצף הארוך ביותר של ירידות יומיות מאז פרוץ הקורונה ב-2020. הנאסד״ק ירד ב-5.3% ועבר לירידה מתחילת השנה, והדאו ירד ב-1.9%.",
+   "src": "AP",
+   "url": "https://www.whec.com/ap-top-news/sp-500-sinks-3-7-and-the-nasdaq-composite-goes-negative-for-the-year/",
+   "time": "23:22"
+  },
+  {
+   "id": "2026-11-20-sp500-weekly-loss",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "ה-S&P 500 איבד 8.6% השבוע; כל 11 הסקטורים ירדו",
+   "body": "לפי Seeking Alpha, ה-S&P 500 ירד ב-8.61% בשבוע, וכל 11 הסקטורים סיימו בירידה; לפי AP זה ההפסד השבועי הגדול ביותר של המדד מזה יותר מ-18 חודשים.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675345-tech-stocks-lead-wall-street-bloodbath-as-s-and-p-500-posts-massive-weekly-loss?feed_item_type=news",
+   "time": "23:13"
+  },
+  {
+   "id": "2026-11-20-chips-worst-two-months",
+   "date": "2026-11-20",
+   "t": [
+    "SOXX",
+    "NVDA"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Yahoo: מדד השבבים איבד כמעט שליש מסוף ספטמבר",
+   "body": "לפי Yahoo Finance, מדד השבבים SOX איבד כמעט שליש מערכו מאז 30 בספטמבר, קצב ירידה שבחודשיים האחרונים היה גרוע רק בבועת הדוט-קום ובמשבר הפיננסי; הנאסד״ק 100 מתקרב לשוק דובי (ירידה של 20% מהשיא). לפי האתר, ה-S&P 500 איבד היום יותר מטריליון דולר משוויו וכ-$7 טריליון מאז השיא.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/article/chips-are-crashing-like-its-2008-as-the-nasdaq-100-nears-a-bear-market-192805534.html",
+   "time": "21:28"
+  },
+  {
+   "id": "2026-11-20-ai-weekly-heatmap",
+   "date": "2026-11-20",
+   "t": [
+    "NBIS",
+    "CRWV",
+    "MU"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "השבוע ב-AI: Nebius, CoreWeave ו-Micron איבדו יותר מ-20%",
+   "body": "לפי Yahoo Finance, Nebius, CoreWeave ו-Micron ירדו השבוע ביותר מ-20%; TSMC, AMD, Oracle, Nvidia ויצרניות ציוד השבבים ירדו בכ-15%–20%, ו-Microsoft, Amazon ו-SpaceX בכ-6%.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/article/chips-are-crashing-like-its-2008-as-the-nasdaq-100-nears-a-bear-market-192805534.html",
+   "time": "21:28"
+  },
+  {
+   "id": "2026-11-20-staples-only-sector-up",
+   "date": "2026-11-20",
+   "t": [
+    "GIS",
+    "LEN"
+   ],
+   "tag": "סקטורים",
+   "tone": "pos",
+   "title": "צריכה בסיסית הסקטור היחיד שעלה; General Mills עלתה ב-4.4%",
+   "body": "לפי AP, רוב המניות מחוץ לטכנולוגיה עלו היום: General Mills עלתה ב-4.4% ו-Lennar ב-2.5%. קרן הצריכה הבסיסית XLP עלתה ב-0.72% והייתה הסקטור היחיד בעלייה, בעוד קרן הטכנולוגיה XLK ירדה ב-7.1%.",
+   "src": "AP",
+   "url": "https://www.whec.com/ap-top-news/sp-500-sinks-3-7-and-the-nasdaq-composite-goes-negative-for-the-year/",
+   "time": "23:22"
+  },
+  {
+   "id": "2026-11-20-white-house-hedge-funds-rail",
+   "date": "2026-11-20",
+   "t": [
+    "NSC",
+    "UNP"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "Bloomberg: פקידי ממשל נפגשו בחשאי עם קרנות גידור על מיזוג הרכבות",
+   "body": "לפי Bloomberg, פקידים בממשל טראמפ נפגשו השבוע בפגישה פרטית עם משקיעי ארביטראז׳ שמהמרים על אישור המיזוג של Union Pacific ו-Norfolk Southern בשווי $72 מיליארד. הבית הלבן מסר שהשתתף בארוחה עובד זוטר שכבר אינו עובד שם, ושהשתתפותו לא אושרה; לפי הדיווח לא נמסר מידע פנימי. הפער בעסקה התרחב השבוע לשיא של יותר מ-$65 למניה.",
+   "src": "Bloomberg",
+   "url": "https://finnhub.io/api/news?id=05962dc7b0162ca27a9fdf90a6ffd9ba0e3ffce61a38b5e6ae463442cf02def6",
+   "time": "18:35"
+  },
+  {
+   "id": "2026-11-20-trump-mexico-canada-deal",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: ארה״ב קרובה להסכם סחר עם מקסיקו, פחות עם קנדה",
+   "body": "לפי Bloomberg, טראמפ אמר היום שארה״ב קרובה להסכם סחר עם מקסיקו, ושעם קנדה ההסכם רחוק יותר. ארה״ב הודיעה ביולי שלא תחדש את הסכם USMCA במתכונתו הנוכחית.",
+   "src": "Bloomberg",
+   "url": "https://www.bloomberg.com/news/articles/2026-11-20/trump-says-us-close-to-mexico-trade-deal-less-so-with-canada",
+   "time": "00:15"
+  },
+  {
+   "id": "2026-11-20-avgo-kuo-google-tpu",
+   "date": "2026-11-20",
+   "t": [
+    "AVGO"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Broadcom צנחה ב-12% על דיווח ש-Google קיצצה הזמנות שבבים",
+   "body": "לפי 24/7 Wall St., האנליסט Ming-Chi Kuo כתב ש-Google קיצצה בכמיליון יחידות (כ-20%) את משלוחי שבבי ה-TPU 8i המתוכננים ל-2027; Google ו-Broadcom לא אישרו. המניה ירדה ל-$306.55 ואיבדה כ-$191 מיליארד משוויה; Goldman הורידה את היעד ל-$460 ו-Redburn הורידה להמלצה ניטרלית.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/broadcom-stock-plunges-12-and-loses-191-billion-after-a-report-that-google-cut-its-plans-for-broadcom-ai-chips/",
+   "time": "21:13",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-dell-plunge-before-earnings",
+   "date": "2026-11-20",
+   "t": [
+    "DELL"
+   ],
+   "tag": "חומרה",
+   "tone": "neg",
+   "title": "Dell צונחת בכ-10% ללא חדשות, ארבעה ימים לפני הדוח",
+   "body": "לפי 24/7 Wall St., Dell ירדה ל-$281.12 ללא חדשות על החברה, ירידה של 34% בנובמבר ו-52% מתחת לשיא של ספטמבר. Morgan Stanley הורידה את היעד ל-$403 ו-Citi ל-$550; הדוח יפורסם ביום שלישי, 24.11, אחרי הסגירה.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/dell-stock-plunges-10-in-the-ai-selloff-and-heads-for-its-worst-month-since-its-2018-return-to-the-stock-market-earnings-are-tuesday/",
+   "time": "20:07",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-hum-td-cowen-upgrade",
+   "date": "2026-11-20",
+   "t": [
+    "HUM"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "TD Cowen העלתה את Humana לקנייה, יעד $485",
+   "body": "לפי Investing.com, TD Cowen העלתה את Humana ואת UnitedHealth להמלצת קנייה בזכות סביבת תמחור רציונלית יותר ב-Medicare Advantage; האנליסט צופה ל-Humana רווח מתואם של $40.42 למניה ב-2028, מעל הקונצנזוס של $37.81.",
+   "src": "Investing.com",
+   "url": "https://finnhub.io/api/news?id=66c7b60d088a76e2fe0a6c6d52fdc5ab1a107a97d1b3b463979519a079e762f8",
+   "time": "17:58",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-kkr-edgecore-talks",
+   "date": "2026-11-20",
+   "t": [
+    "KKR"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Bloomberg: KKR במגעים לרכישת EdgeCore בשווי $8–10 מיליארד",
+   "body": "לפי Bloomberg, KKR מנהלת מגעים לרכישת שליטה במפעילת מרכזי הנתונים EdgeCore מידי Partners Group, דרך זרוע ה-AI שלה Helix, בעסקה שעשויה לשקף שווי של $8–10 מיליארד; המגעים עשויים להסתיים ללא עסקה. מניית KKR ירדה בכ-3.9%.",
+   "src": "Bloomberg",
+   "url": "https://finnhub.io/api/news?id=c32fd0e443d3be8d34096ce1dfeb726a5daf04bf0b21c88ae2e3f3b93ff42746",
+   "time": "20:15",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-fast-baird-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "FAST"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Baird הורידה את Fastenal לנייטרלי, יעד $56",
+   "body": "Baird הורידה את ההמלצה על Fastenal מ-Outperform לנייטרלי והורידה את מחיר היעד מ-$61 ל-$56.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=dfe1b4f94eadbc2b94cac3b1e12cda7c39ba1f53d863e85e9abc0676fecef3be",
+   "time": "10:48",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-gww-baird-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "GWW"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Baird הורידה את ההמלצה על Grainger",
+   "body": "לפי Benzinga, Baird הורידה היום את ההמלצה על W.W. Grainger, ובמקביל גם על Fastenal, לנייטרלי.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=db6c355ce6c2d9295a779720e35a63cffbff058d3111f6cd1953eac40013b4b2",
+   "time": "11:43",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-emn-jpm-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "EMN"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "JPMorgan הורידה את Eastman Chemical לתשואת חסר",
+   "body": "JPMorgan הורידה את ההמלצה על Eastman Chemical מנייטרלי ל-Underweight והורידה את מחיר היעד מ-$65 ל-$62.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=a0623a683c945d8be4562f55a5560337e26800b071c10dc147abdafaff90e837",
+   "time": "11:04",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-vvv-jpm-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "VVV"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "JPMorgan הורידה את Valvoline לתשואת חסר",
+   "body": "JPMorgan הורידה את ההמלצה על Valvoline מנייטרלי ל-Underweight והשאירה את מחיר היעד על $35.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=6afa5c3328dde9ddde17d9badc8b69a81bb99f6535c3a86b694af3a631832faf",
+   "time": "11:01",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-xpev-hsbc-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "XPEV"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "HSBC הורידה את XPeng להחזק, יעד $10.1",
+   "body": "HSBC הורידה את ההמלצה על XPeng מקנייה להחזק וקבעה מחיר יעד של $10.1.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=bf98ae82bc24ba7aef810c85a3357d4ac1d904c852b6ebb995ab0920af9b9638",
+   "time": "10:47",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-tu-barclays-upgrade",
+   "date": "2026-11-20",
+   "t": [
+    "TU"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Barclays העלתה את TELUS לתשואת יתר, יעד $13",
+   "body": "Barclays העלתה את ההמלצה על TELUS מ-Equal-Weight ל-Overweight והעלתה את מחיר היעד מ-$10 ל-$13.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=14c68dd605c066e20de3bd7ed1d255a369268a93a6010aff0c35747a3241bb8f",
+   "time": "10:37",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-orcl-bernstein-downside",
+   "date": "2026-11-20",
+   "t": [
+    "ORCL"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Oracle ירדה ב-6%; Bernstein: שווי של $133 גם אם עסקי ה-AI ייכשלו",
+   "body": "לפי Yahoo Finance, Oracle ירדה ביותר מ-6%. האנליסט Mark Moerdler מ-Bernstein מעריך שעסקי מסדי הנתונים, התוכנה והענן המסורתי לבדם יכולים לתמוך במחיר של $133 למניה; Bernstein שומרת על Outperform ויעד של $325.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=3d8f2f1d947a61c16a7e8065656a704ce1a12d4d8bd6d9196d45bee7455fd9eb",
+   "time": "20:04",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-cat-52-week-low",
+   "date": "2026-11-20",
+   "t": [
+    "CAT"
+   ],
+   "tag": "תעשייה",
+   "tone": "neg",
+   "title": "Caterpillar ירדה ב-11% בשבוע לשפל של 52 שבועות",
+   "body": "לפי Yahoo Finance, Caterpillar ירדה ב-11% בשבוע האחרון לשפל של 52 שבועות, כמחצית מהשיא של יוני, עם המכירות בתשתיות ה-AI, ללא חדשות שליליות על החברה; ההנהלה אמרה בכנס של Bernstein שהיא רואה שנה טובה ב-2027.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=0b241d413782f4d73b49fc065f7a76d1c599eae5e9b7c594b4875e7e5620d4bf",
+   "time": "18:05",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-gis-rises-defensive",
+   "date": "2026-11-20",
+   "t": [
+    "GIS"
+   ],
+   "tag": "מזון",
+   "tone": "pos",
+   "title": "General Mills עלתה ב-4.4% נגד המגמה",
+   "body": "לפי AP, General Mills עלתה ב-4.4% ביום שבו רוב המניות מחוץ לטכנולוגיה עלו; AP לא ציינה סיבה ספציפית לחברה.",
+   "src": "AP",
+   "url": "https://www.whec.com/ap-top-news/sp-500-sinks-3-7-and-the-nasdaq-composite-goes-negative-for-the-year/",
+   "time": "23:22",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-len-rises",
+   "date": "2026-11-20",
+   "t": [
+    "LEN"
+   ],
+   "tag": "נדל״ן",
+   "tone": "pos",
+   "title": "Lennar עלתה ב-2.5%",
+   "body": "לפי AP, Lennar עלתה ב-2.5% ביום שבו רוב המניות מחוץ לטכנולוגיה עלו; AP לא ציינה סיבה ספציפית לחברה.",
+   "src": "AP",
+   "url": "https://www.whec.com/ap-top-news/sp-500-sinks-3-7-and-the-nasdaq-composite-goes-negative-for-the-year/",
+   "time": "23:22",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-wmt-rises",
+   "date": "2026-11-20",
+   "t": [
+    "WMT"
+   ],
+   "tag": "קמעונאות",
+   "tone": "pos",
+   "title": "Walmart עולה ביותר מ-2% במכירות בשוק",
+   "body": "לפי Motley Fool, מניית Walmart עלתה בצהריים ב-2.3%–3.2% כשהמשקיעים בחנו את ביצועי החברה ואת תחזיתה לקראת עונת החגים.",
+   "src": "Motley Fool",
+   "url": "https://www.fool.com/coverage/stock-market-today/2026/11/20/stock-market-midday-nov-20-nasdaq-plunges-nearly-3-as-amd-and-micron-lead-a-brutal-semiconductor-sell-off/",
+   "time": "19:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-cme-ceo-sale",
+   "date": "2026-11-20",
+   "t": [
+    "CME"
+   ],
+   "tag": "מכירת מקורבים",
+   "tone": "neu",
+   "title": "מנכ״ל CME מכר מניות ב-$8.4 מיליון",
+   "body": "לפי Benzinga, יו״ר ומנכ״ל CME Group, טרנס דאפי, מכר 27,000 מניות ב-$8.36 מיליון ב-18 בנובמבר, וצמצם את אחזקותיו ב-43.24%.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=00b69e789fd46e44a5342977bd7a9ab4b2e0c49b54099ca33b1c87ae5c22589f",
+   "time": "12:05",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-fdx-inpost-completed",
+   "date": "2026-11-20",
+   "t": [
+    "FDX"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "קונסורציום עם FedEx השלים את רכישת InPost",
+   "body": "קונסורציום של Advent, FedEx, A&R ו-PPF הודיע היום על השלמת הרכישה של חברת הלוקרים והמשלוחים InPost.",
+   "src": "Business Wire",
+   "url": "https://finnhub.io/api/news?id=7baa943f7592b3e3fe568810c2706f746055ec65477578cdf0583e01d2baccb5",
+   "time": "15:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-wmb-permitting",
+   "date": "2026-11-20",
+   "t": [
+    "WMB"
+   ],
+   "tag": "אנרגיה",
+   "tone": "neu",
+   "title": "מנכ״ל Williams קורא לבית הנבחרים לאשר את רפורמת הרישוי",
+   "body": "מנכ״ל Williams, צ׳אד זמרין, קרא לבית הנבחרים לפעול אחרי שהסנאט אישר את רפורמת הרישוי הדו-מפלגתית, שמשפיעה על אישור צינורות ופרויקטי אנרגיה.",
+   "src": "Business Wire",
+   "url": "https://finnhub.io/api/news?id=7720f476b96dc0b4ea729e4e4b84bfd2ed51c80f38ed8595062c1ff0b7e3d0cd",
+   "time": "21:26",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bkng-bernstein-pt",
+   "date": "2026-11-20",
+   "t": [
+    "BKNG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Bernstein הורידה את היעד ל-Booking ל-$172",
+   "body": "Bernstein שומרת על Market Perform ל-Booking Holdings והורידה את מחיר היעד מ-$188 ל-$172.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=bf8f100fcace47c07b5a118f499eff6e4d1938ecec82f2c2f7c4d20c76e4a33c",
+   "time": "12:02",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-abnb-bernstein-pt",
+   "date": "2026-11-20",
+   "t": [
+    "ABNB"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Bernstein העלתה את היעד ל-Airbnb ל-$234",
+   "body": "Bernstein שומרת על Outperform ל-Airbnb והעלתה את מחיר היעד מ-$217 ל-$234.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=23be89d1c4a0d6a1a38900c6edab3f133c333fbff2313085ac801e96b2296c83",
+   "time": "11:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-all-mizuho-pt",
+   "date": "2026-11-20",
+   "t": [
+    "ALL"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Mizuho העלתה את היעד ל-Allstate ל-$311",
+   "body": "Mizuho שומרת על Outperform ל-Allstate והעלתה את מחיר היעד מ-$295 ל-$311.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=6fa8d74c39187ab954bc1e3df0d3ceac03e2322f71cc833e87813dae1d2591c2",
+   "time": "11:18",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-pgr-mizuho-pt",
+   "date": "2026-11-20",
+   "t": [
+    "PGR"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Mizuho הורידה את היעד ל-Progressive ל-$236",
+   "body": "Mizuho שומרת על המלצה ניטרלית ל-Progressive והורידה את מחיר היעד מ-$242 ל-$236.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=4064944fd751e48e3f6dc0ace321eda8d58e57917ba77de1a4a4d2c4aec9475f",
+   "time": "11:19",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-dlr-truist-pt",
+   "date": "2026-11-20",
+   "t": [
+    "DLR"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Truist הורידה את היעד ל-Digital Realty ל-$215",
+   "body": "Truist שומרת על קנייה ל-Digital Realty Trust והורידה את מחיר היעד מ-$220 ל-$215.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=a66512ddf5cbc59555102c48b9fda327004033882dbc7ca73c68dda157a6e958",
+   "time": "11:40",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-powl-cantor-pt",
+   "date": "2026-11-20",
+   "t": [
+    "POWL"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Cantor הורידה את היעד ל-Powell Industries ל-$178",
+   "body": "Cantor Fitzgerald שומרת על המלצה ניטרלית ל-Powell Industries והורידה את מחיר היעד מ-$235 ל-$178.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=54ba36fff2da09033cfebf8d6e3dd854f630382c31b4946893ddc4c0e8970136",
+   "time": "09:40",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-wwd-guggenheim-pt",
+   "date": "2026-11-20",
+   "t": [
+    "WWD"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Guggenheim העלתה את היעד ל-Woodward ל-$410",
+   "body": "Guggenheim שומרת על קנייה ל-Woodward והעלתה את מחיר היעד מ-$404 ל-$410.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=33c234aa705fb5e91f4594c386bcd01531a5a77d44e7f3ea7a4d10d80a1b03c5",
+   "time": "11:44",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-arm-chip-selloff",
+   "date": "2026-11-20",
+   "t": [
+    "ARM"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Arm צונחת ביותר מ-14% עם מניות השבבים",
+   "body": "Arm נסגרה בירידה של 14.1%. לפי 24/7 Wall St., בשעות אחר הצהריים ירדה המניה ב-11%, יחד עם Marvell ו-Arista, ביום שבו Broadcom צנחה על דיווח שהזמנות השבבים של Google קוצצו.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/broadcom-stock-plunges-12-and-loses-191-billion-after-a-report-that-google-cut-its-plans-for-broadcom-ai-chips/",
+   "time": "21:13",
+   "k": "stock"
+  },
   {
    "id": "2026-11-20-trump-permitting-reform",
    "date": "2026-11-20",
