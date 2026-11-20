@@ -41,6 +41,7 @@ jobs:
       - run: timeout 120 python scripts/crypto.py || true
       - run: timeout 300 python scripts/evidence.py || true
       - run: timeout 300 python scripts/etfs.py || true
+      - run: timeout 120 python scripts/ohlc.py || true
       - run: python scripts/build.py
       - name: Commit
-        run: bash scripts/commit.sh "Nightly data update" data.json industries.json
+        run: bash scripts/commit.sh "Nightly data update" data.json industries.json ohlc
