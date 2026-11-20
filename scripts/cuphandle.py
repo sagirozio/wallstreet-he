@@ -3,25 +3,25 @@ def detect(c):
     c=[x for x in c if x is not None]; n=len(c)
     if n<120: return None
     best=None
-    for h in range(5,26):                       # handle length (trading days)
+    for h in range(5,21):                       # handle length (trading days)
         k=n-1-h                                  # right rim index
         if k<60: continue
-        for L in range(40,200,5):                # cup length
+        for L in range(45,200,5):                # cup length
             i=k-L
             if i<0: break
             seg=c[i:k+1]; p1=max(seg[:max(3,L//6)]); 
             if seg.index(p1)>L//6: continue      # left peak must be near the cup start
             lo=min(seg); j=i+seg.index(lo); depth=1-lo/p1
-            if not(0.12<=depth<=0.35): continue
+            if not(0.15<=depth<=0.33): continue
             if not(0.25<=(j-i)/L<=0.75): continue   # bottom roughly mid-cup
-            if c[k]<p1*0.95 or c[k]>p1*1.03: continue   # right rim near left peak
+            if c[k]<p1*0.97 or c[k]>p1*1.03: continue   # right rim near left peak
             if p1<max(c[max(0,i-60):k+1]): continue        # left peak is a real high
             if p1<min(c[max(0,i-120):i+1])*1.3: continue    # prior advance of 30%+
             thr=lo+(p1-lo)/3
-            if sum(1 for x in seg if x<=thr)/len(seg)<0.25: continue   # rounded, not a V
+            if sum(1 for x in seg if x<=thr)/len(seg)<0.30: continue   # rounded, not a V
             hs=c[k:]; hh=max(hs); hl=min(hs[1:]) if len(hs)>1 else hs[0]
             hd=1-hl/hh
-            if not(0.01<=hd<=min(0.12,depth/3)): continue
+            if not(0.01<=hd<=min(0.10,depth/3)): continue
             if hl<lo+(p1-lo)*0.5: continue          # handle stays in upper half of the cup
             if c[-1]<hl or c[-1]>hh*1.01: continue    # still inside the handle
             sc=abs(depth-0.22)+hd+abs((j-i)/L-0.5)
@@ -56,17 +56,42 @@ def double_bottom(c):
     best=None
     for j2 in range(n-30,n-5):
         if c[j2]!=min(c[max(0,j2-5):j2+6]): continue                # local low
-        for gap in range(15,70):
+        for gap in range(20,70):
             j1=j2-gap
             if j1<30: break
             if c[j1]!=min(c[max(0,j1-5):j1+6]): continue
             lo=min(c[j1],c[j2])
-            if abs(c[j2]/c[j1]-1)>0.05: continue
+            if abs(c[j2]/c[j1]-1)>0.04: continue
             seg=c[j1:j2+1]; mid=max(seg); m=j1+seg.index(mid)
-            if mid<lo*1.10 or mid>lo*1.35: continue
+            if mid<lo*1.12 or mid>lo*1.35: continue
             a=max(0,j1-60); pre=c[a:j1+1]; p0=max(pre); i0=a+pre.index(p0); dep=1-lo/p0
-            if not(0.15<=dep<=0.40): continue
-            if c[-1]<lo*1.08 or c[-1]>mid*1.03 or c[-1]<lo+(mid-lo)*0.5: continue   # recovering, not far above the middle peak
+            if not(0.15<=dep<=0.35): continue
+            if c[-1]<lo*1.10 or c[-1]>mid*1.03 or c[-1]<lo+(mid-lo)*0.5: continue   # recovering, not far above the middle peak
             sc=abs(c[j2]/c[j1]-1)+abs(dep-0.25)
             if best is None or sc<best[0]: best=(sc,[round(dep*100,1),n-1-i0,n-1-j1,n-1-m,n-1-j2])
     return best[1] if best else None
+
+
+def _avg(a):
+    a=[x for x in a if x is not None and x==x]
+    return sum(a)/len(a) if a else None
+
+
+def vol_ok(kind, v, vols):
+    """Volume confirmation from daily share volumes (oldest first, same trailing alignment as the closes).
+    cup: volume dries up in the handle; flat: last 10 sessions quieter than the 50-session average;
+    dbl: volume around the second low lower than around the first low."""
+    vols=[x for x in vols if x is not None and x==x]
+    if len(vols)<80: return False
+    base=_avg(vols[-60:])
+    if not base: return False
+    n=len(vols)
+    if kind=="cup":
+        h=v[2]; r=_avg(vols[-h:]); return r is not None and r<=0.85*base
+    if kind=="flat":
+        r=_avg(vols[-10:]); return r is not None and r<=0.85*base
+    if kind=="dbl":
+        j1,j2=n-1-v[2],n-1-v[4]
+        a=_avg(vols[max(0,j1-3):j1+4]); b=_avg(vols[max(0,j2-3):j2+4])
+        return a is not None and b is not None and b<=0.9*a
+    return False

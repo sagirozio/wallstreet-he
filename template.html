@@ -2141,7 +2141,7 @@ function patSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}, v=rr[k], A=PXF[t];
   return `<div class="cupc"><div class="cuph"><b dir="ltr">${PAT_N[k].replace('&','&amp;')}</b><small>${esc(patTitle(k,v))}</small></div>
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(PAT_N[k])}">${svg}</svg>
     <div class="cupl">${leg}<small>${dt(0)} - ${dt(m)}</small></div>
-    <p class="legend">תיאור צורת מחיר לפי סגירות יומיות, בלי נפח מסחר. אינו אות קנייה ואינו המלצה.</p></div>`; }
+    <p class="legend">תיאור צורת מחיר לפי סגירות יומיות${rr.pv?', כשנפח המסחר תומך בתבנית (דעיכת נפח בידית/בבסיס, או נפח נמוך יותר בשפל השני)':', בלי אישור מנפח מסחר'}. אינו אות קנייה ואינו המלצה.</p></div>`; }
 function cupSvg(t,k){ const rr=((stockIndex()[t]||{}).r)||{}; return (k?[k]:patKinds(rr)).map(x=>patSvg(t,x)).join(''); }
 function cupInto(el,t){ if(!el) return; const rr=((stockIndex()[t]||{}).r)||{}; if(!patKinds(rr).length) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(el.isConnected) el.innerHTML=cupSvg(t); }); }
 /* hover (or tap) on the Cup & Handle tag: small floating box with our chart */

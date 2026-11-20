@@ -183,6 +183,34 @@ try:
     print("adr", len(ADR), flush=True)
 except Exception as e: print("adr failed", e, flush=True)
 
+# price-shape patterns (cup & handle, flat base, double bottom): shape from closes, then confirmed by daily volume (candidates only, one small download)
+PAT = {}
+try:
+    _cand = {}
+    for _s in close.columns:
+        _cl = close[_s].dropna().tolist()
+        if len(_cl) < 150: continue
+        _r = {}
+        _ch = _cup.detect(_cl)
+        if _ch: _r["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
+        _fb = _cup.flat_base(_cl)
+        if _fb: _r["flat"] = _fb
+        _db = _cup.double_bottom(_cl)
+        if _db: _r["dbl"] = _db
+        if _r: _cand[_s] = _r
+    _vol = None
+    if _cand:
+        _tk = list(_cand)
+        _vv = yf.download(_tk, period="14mo", interval="1d", auto_adjust=False, group_by="column", threads=True, progress=False)["Volume"]
+        _vol = _vv if hasattr(_vv, "columns") else _vv.to_frame(_tk[0])
+    for _s, _r in _cand.items():
+        if _vol is None or _s not in _vol.columns: continue
+        _vs = _vol[_s].dropna().tolist()
+        _ok = {k: v for k, v in _r.items() if _cup.vol_ok(k, v, _vs)}
+        if _ok: PAT[_s] = _ok
+    print(f"patterns: {len(_cand)} by shape, {len(PAT)} confirmed by volume", flush=True)
+except Exception as e: print("patterns failed", e, flush=True)
+
 # 4) aggregate per industry
 def cap(v): return f"{v/1e12:.2f}T" if v >= 1e12 else f"{v/1e9:.2f}B"
 _ma50, _ma200 = close.rolling(50, min_periods=50).mean().iloc[-1], close.rolling(200, min_periods=200).mean().iloc[-1]   # % above/below the 50 / 200-day average
@@ -209,13 +237,8 @@ for ind, mem in by.items():
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
         _av, _lv = x.get("averageDailyVolume3Month"), _last.get(s)
         if _av and _lv is not None and not pd.isna(_lv): rr["dv"] = round(float(_lv) * float(_av) / 1e6, 1)   # average daily dollar volume, $M (last close x 3-month average volume)
-        try:
-            _ch = _cup.detect(close[s].dropna().tolist())   # price-shape description only: cup with handle
-            if _ch: rr["cup"] = [_ch["depth"], _ch["cup_days"], _ch["handle_days"], _ch["handle_pct"]]
-            _cl = close[s].dropna().tolist(); _fb = _cup.flat_base(_cl); _db = _cup.double_bottom(_cl)
-            if _fb: rr["flat"] = _fb
-            if _db: rr["dbl"] = _db
-        except Exception: pass
+        for _k, _v in PAT.get(s, {}).items(): rr[_k] = _v   # price-shape patterns, only those confirmed by volume
+        if s in PAT: rr["pv"] = 1                                          # volume confirmed
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
