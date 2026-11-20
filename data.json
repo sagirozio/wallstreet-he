@@ -4141,25 +4141,23 @@
   {
    "id": "BJ-2026-11",
    "t": "BJ",
-   "co": "BJ's Wholesale Club Holdings, I",
-   "sector": "",
+   "co": "BJ's Wholesale",
+   "sector": "צריכה",
    "date": "2026-11-20",
    "q": "Q3 2027",
    "epsAct": 1.73,
    "epsEst": 1.29,
-   "epsYoy": null,
+   "epsYoy": 49.1,
    "epsBasis": "מתואם",
    "revAct": 6.2835,
    "revEst": 6.1389,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 17.5,
+   "guide": "raised",
+   "guideText": "לשנת הכספים 2026 (עד 30.1.2027): צמיחה של 2.5%–3.0% במכירות בחנויות זהות ללא דלק ורווח מתואם של $5.10–5.30 למניה; החברה ציינה ששתי התחזיות הועלו. השקעות הון של כ-$800 מיליון.",
+   "note": "המכירות בחנויות זהות עלו ב-13.5% כולל דלק וב-4.1% בלעדיו; המכירות הדיגיטליות עלו ב-38%. הכנסות דמי החבר עלו ב-9.5% ל-$138.4 מיליון והרווח הנקי ב-44% ל-$219.5 מיליון. מרווח הסחורה ירד בכ-170 נקודות בסיס בגלל מבצעי יום ההולדת ה-42. צפי הרווח לפי Finnhub.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/BJ",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001531152/000153115226000083/bj-2026103126x8kex991.htm",
+   "hook": "רווח מתואם +49% ל-$1.73, מכירות זהות ללא דלק +4.1% והעלאת התחזית השנתית"
   },
   {
    "id": "FRO-2026-11",
@@ -43824,7 +43822,7 @@
   }
  ],
  "overview": {
-  "asOf": "20.11.2026 · 15:00",
+  "asOf": "20.11.2026 · 15:40",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43977,7 +43975,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
   },
-  "rev": 202611201500,
+  "rev": 202611201540,
   "market": {
    "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
    "idx": [
@@ -111989,6 +111987,360 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-doj-closes-nee-dominion-probe",
+   "date": "2026-11-20",
+   "t": [
+    "NEE",
+    "D"
+   ],
+   "tag": "ממשל",
+   "tone": "pos",
+   "title": "משרד המשפטים סגר את חקירת ההגבלים על מיזוג NextEra ו-Dominion",
+   "body": "לפי Investing.com, משרד המשפטים האמריקאי הודיע ביום חמישי שסגר את חקירת ההגבלים העסקיים על רכישת Dominion Energy ע״י NextEra תמורת $66.8 מיליארד, אחרי שהחברות התחייבו לאמצעי הגנה בנוגע למחירי החשמל בניו אינגלנד. העסקה עדיין טעונה אישור של FERC.",
+   "src": "Investing.com",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/doj-closes-antitrust-probe-nextera-032504407.html",
+   "time": "05:25"
+  },
+  {
+   "id": "2026-11-20-sp500-earnings-beat-rate",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "LSEG: 83.5% מחברות ה-S&P 500 עקפו את הצפי ברבעון",
+   "body": "לפי Reuters, מתוך 462 חברות ב-S&P 500 שדיווחו עד יום רביעי, 83.5% עקפו את תחזיות האנליסטים, לפי נתוני LSEG. במקביל השוק מתמחר 98.4% להעלאת ריבית בפגישת הפד בדצמבר, לפי CME FedWatch.",
+   "src": "Reuters",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-slip-anthropic-104746137.html",
+   "time": "12:47"
+  },
+  {
+   "id": "2026-11-20-barclays-equity-weakness",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "Barclays: המניות עלולות להמשיך להיחלש עד סוף השנה",
+   "body": "לפי Investing.com, Barclays מעריכה שהמניות עלולות להיחלש עוד לקראת סוף השנה אם תקשורת הפד תהפוך ניצית יותר או אם נתוני האינפלציה יגיעו גבוהים, כשהמשקיעים תוהים אם התמיכה של הבנק המרכזי נעלמה. אסטרטגים ב-UBS כתבו כי ״אי הוודאות במדיניות המוניטרית הוסיפה לסנטימנט השברירי״.",
+   "src": "Investing.com",
+   "url": "https://finnhub.io/api/news?id=0cb23049ceaf9b241cb1b22aa8cdc6a9767fac17e4c5759f31b470672b91bce7",
+   "time": "10:19"
+  },
+  {
+   "id": "2026-11-20-bj-q3",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "BJ"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "BJ's Wholesale: רווח מתואם של $1.73 למניה, התחזית השנתית הועלתה",
+   "body": "ההכנסות עלו ב-17.5% ל-$6.28 מיליארד והרווח המתואם עלה ב-49% ל-$1.73 למניה (צפי Finnhub: $1.29). המכירות בחנויות זהות ללא דלק עלו ב-4.1%, המכירות הדיגיטליות ב-38% והכנסות דמי החבר ב-9.5%. תחזית הרווח המתואם לשנה הועלתה ל-$5.10–5.30 למניה.",
+   "src": "BJ's (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001531152/000153115226000083/bj-2026103126x8kex991.htm",
+   "time": "13:45"
+  },
+  {
+   "id": "2026-11-20-pg-10b-savings",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "PG"
+   ],
+   "tag": "P&G",
+   "tone": "neu",
+   "title": "P&G מכוונת לחיסכון של עד $10 מיליארד בעזרת AI ואוטומציה",
+   "body": "לפי MarketBeat, ביום המשקיעים הציגה Procter & Gamble יעד פריון של עד $10 מיליארד בשנות הכספים 2027–2030, כולל עד $1.8 מיליארד בשנה בעלויות הייצור, לצורך השקעה מחדש. החברה מעריכה צמיחה אורגנית של כ-3% במחצית הראשונה של שנת הכספים 2027 והותירה את התחזית ללא שינוי.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-procter-gamble-targets-up-to-10-billion-in-savings-with-ai-and-automation-2026-11-20/",
+   "time": "10:12"
+  },
+  {
+   "id": "2026-11-20-mdt-hugo-fda",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "MDT"
+   ],
+   "tag": "Medtronic",
+   "tone": "pos",
+   "title": "Medtronic קיבלה אישור FDA למערכת Hugo בניתוחים כלליים",
+   "body": "לפי Simply Wall St, ה-FDA אישר את מערכת הניתוחים הרובוטית Hugo לניתוחים כלליים בארה״ב, מעבר לניתוחי אורולוגיה. בארה״ב מבוצעים כ-3.5 מיליון ניתוחים כלליים בשנה.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/healthcare/articles/medtronic-mdt-won-fda-clearance-101315658.html",
+   "time": "12:13"
+  },
+  {
+   "id": "2026-11-20-qcom-500-layoffs",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "QCOM"
+   ],
+   "tag": "Qualcomm",
+   "tone": "neg",
+   "title": "Qualcomm מפטרת יותר מ-500 עובדים בקליפורניה",
+   "body": "לפי Simply Wall St, Qualcomm מקצצת יותר מ-500 משרות בקליפורניה במסגרת התארגנות מחדש תחת לחץ בעסקי הסמארטפונים, ומעבירה משאבים ליוזמות הסקה (inference) ב-AI. החברה מכוונת להכנסות של כ-$40 מיליארד מחוץ לטלפונים ב-2029.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/technology/ai/articles/qualcomm-qcom-investors-watch-500-021653323.html",
+   "time": "04:16"
+  },
+  {
+   "id": "2026-11-20-apo-2027-fre",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "APO"
+   ],
+   "tag": "Apollo",
+   "tone": "pos",
+   "title": "Apollo מכוונת לצמיחה של יותר מ-20% ברווחי העמלות ב-2027",
+   "body": "לפי MarketBeat, סמנכ״ל הכספים מרטין קלי אמר בכנס של TD Cowen שהחברה מכוונת לצמיחה של יותר מ-20% ברווחים מעמלות ושל יותר מ-15% בדמי הניהול ב-2027. לפי האנליסט, Apollo העמידה כמעט $115 מיליארד באשראי ברבעון האחרון.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-apollo-global-management-targets-over-20-earnings-growth-in-2027-as-credit-expands-2026-11-19/",
+   "time": "06:12"
+  },
+  {
+   "id": "2026-11-20-unh-td-cowen-upgrade",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "UNH"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "TD Cowen העלתה את UnitedHealth לקנייה, יעד $455",
+   "body": "לפי Stocktwits, TD Cowen העלתה את ההמלצה לקנייה מהחזק, בחרה במניה כ״רעיון הטוב ביותר״ ל-2027 והעלתה את מחיר היעד ל-$455 מ-$402. המניה עלתה ב-1.4% במסחר המקדים, אחרי שלושה ימי ירידות בעקבות הצעת הכלל של CMS ל-Medicare Advantage.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/td-cowen-names-united-health-its-2027-best-idea-why-analyst-sees-mid-to-high-teens-eps-growth-for-unh-stock/cNbSgzzR9KA",
+   "time": "13:37"
+  },
+  {
+   "id": "2026-11-20-skhy-kioxia-bonds",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "SKHY"
+   ],
+   "tag": "SK hynix",
+   "tone": "neu",
+   "title": "דיווח: SK hynix שוקלת להמיר אג״ח של Kioxia למניות",
+   "body": "לפי Investing.com, שציטט את Korea JoongAng Daily, המהלך יהפוך את SK hynix לבעלת המניות הגדולה ב-Kioxia, והיא מתכוונת להחזיק במניות. ההשקעה מ-2018, במסגרת קונסורציום בהובלת Bain Capital, הסתכמה ב-395 מיליארד ין ($2.48 מיליארד).",
+   "src": "Investing.com",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/sk-hynix-weighs-converting-kioxia-065103840.html",
+   "time": "08:51"
+  },
+  {
+   "id": "2026-11-20-mstr-strc-buyback",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "MSTR"
+   ],
+   "tag": "Strategy",
+   "tone": "neu",
+   "title": "Strategy רכשה בחזרה מניות בכורה STRC בכ-$3 מיליארד",
+   "body": "לפי MarketBeat, Strategy רכשה את מניות הבכורה במחירים של $95–99, מתחת למחיר ההנפקה של $100. המנכ״ל פונג לה אמר שהחברה מחזיקה ביותר מ-850 אלף ביטקוין ו-$4.9 מיליארד בנכסים דולריים.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-strategy-buys-back-3-billion-in-strc-shares-as-credit-markets-tighten-2026-11-19/",
+   "time": "04:12"
+  },
+  {
+   "id": "2026-11-20-coin-prediction-markets",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "COIN"
+   ],
+   "tag": "Coinbase",
+   "tone": "neu",
+   "title": "Bloomberg: Coinbase תשיק שוקי תחזיות משלה במחצית הראשונה של 2027",
+   "body": "לפי Decrypt, שציטט את Bloomberg, החברה מתכננת חוזי שוקי תחזיות עצמאיים בארה״ב ללקוחות פרטיים ומוסדיים; כיום היא מציעה אותם דרך Kalshi. ההכנסות משוקי תחזיות עברו $200 מיליון בקצב שנתי ברבעון השלישי. דובר החברה אמר שאין ״שום דבר חדש להודיע היום״.",
+   "src": "Decrypt",
+   "url": "https://decrypt.co/383682/coinbase-targets-in-house-prediction-markets-by-first-half-of-2027-report",
+   "time": "13:23"
+  },
+  {
+   "id": "2026-11-20-so-composite-units",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "SO"
+   ],
+   "tag": "Southern",
+   "tone": "neu",
+   "title": "Southern השלימה הנפקת יחידות מורכבות של $1.75 מיליארד",
+   "body": "לפי Simply Wall St, ההנפקה כללה 35 מיליון יחידות, שכל אחת מהן משלבת רכיב הוני ורכיב נגזר. התמורה תשמש למטרות כלליות.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/southern-wraps-1-75-billion-091154176.html",
+   "time": "11:11"
+  },
+  {
+   "id": "2026-11-20-pwr-dividend",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "PWR"
+   ],
+   "tag": "Quanta",
+   "tone": "pos",
+   "title": "Quanta Services מעלה את הדיבידנד ב-18%",
+   "body": "לפי Simply Wall St, הדירקטוריון אישר דיבידנד רבעוני של 13 סנט למניה, עלייה של 18% לעומת התשלום מאוקטובר 2026. המניה ירדה ב-3.09% בשבוע האחרון.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/quanta-services-pwr-shares-moved-071251057.html",
+   "time": "09:12"
+  },
+  {
+   "id": "2026-11-20-uthr-extend-transplant",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "UTHR"
+   ],
+   "tag": "United Therapeutics",
+   "tone": "pos",
+   "title": "United Therapeutics ביצעה השתלה ראשונה בניסוי הכליה מחזיר",
+   "body": "החברה הודיעה על ההשתלה הראשונה של UThymoKidney בניסוי EXTEND בחולי כליות סופניים, שבוצעה ב-NYU Langone. שש ההשתלות הראשונות יבוצעו בשני מרכזים, והנתונים יוצגו ל-FDA לפני הרחבת הניסוי.",
+   "src": "Business Wire",
+   "url": "https://finance.yahoo.com/healthcare/articles/united-therapeutics-corporation-announces-first-120000915.html",
+   "time": "14:00"
+  },
+  {
+   "id": "2026-11-20-ccl-ace-class",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "CCL"
+   ],
+   "tag": "Carnival",
+   "tone": "neu",
+   "title": "Carnival חשפה סדרת ספינות חדשה המונעות בגז טבעי",
+   "body": "לפי Simply Wall St, Carnival הציגה את סדרת Ace Class של שתי ספינות LNG, שמועדי המסירה שלהן ב-2033 וב-2035, לצד הרחבת יעדי Celebration Key ו-RelaxAway בין 2027 ל-2030.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/energy/articles/carnival-ccl-unveiled-two-lng-090741211.html",
+   "time": "11:07"
+  },
+  {
+   "id": "2026-11-20-bx-vivid-seats",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "BX"
+   ],
+   "tag": "Blackstone",
+   "tone": "neu",
+   "title": "Blackstone ו-Carlyle בין המלווים שישתלטו על Vivid Seats",
+   "body": "לפי MT Newswires, Blackstone ו-Carlyle Group הן חלק מקבוצת מלווים שתשתלט על Vivid Seats במסגרת עסקת חוב. פרטים כספיים לא פורסמו.",
+   "src": "MT Newswires",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/market-chatter-blackstone-carlyle-among-093957540.html",
+   "time": "11:39"
+  },
+  {
+   "id": "2026-11-20-mtz-murphy",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "MTZ"
+   ],
+   "tag": "מיזוגים",
+   "tone": "pos",
+   "title": "MasTec תרכוש את Murphy Corporation בכ-$1.25 מיליארד",
+   "body": "MasTec תשלם במזומן, עם אפשרות לתשלום מותנה לפי ביצועי שלוש שנים. ל-Murphy צפויות ב-2026 הכנסות של כ-$775 מיליון ו-EBITDA מתואם של כ-$140 מיליון. העסקה ממומנת בהלוואה בנקאית וצפויה להיסגר בקרוב.",
+   "src": "Business Wire",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/mastec-enters-definitive-agreement-acquire-115800040.html",
+   "time": "13:58"
+  },
+  {
+   "id": "2026-11-20-lyb-dividend",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "LYB"
+   ],
+   "tag": "דיבידנד",
+   "tone": "neu",
+   "title": "LyondellBasell הכריזה על דיבידנד רבעוני של 69 סנט",
+   "body": "הדיבידנד ישולם ב-7 בדצמבר 2026; התאריך הקובע ויום האקס הם 30 בנובמבר.",
+   "src": "GlobeNewswire",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/lyondellbasell-announces-quarterly-dividend-113000126.html",
+   "time": "13:30"
+  },
+  {
+   "id": "2026-11-20-mga-targets",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "MGA"
+   ],
+   "tag": "Magna",
+   "tone": "neu",
+   "title": "Magna חוזרת על יעד צמיחה שנתית של 15% לפחות ברווח למניה עד 2030",
+   "body": "לפי MarketBeat, סמנכ״ל הכספים פיל פרקאסה אמר בכנס של Scotiabank שהחברה מכוונת לשיפור של 200 נקודות בסיס לפחות במרווח ה-EBIT עד 2030, ולצמיחה של 2%–4% מעל שוק הרכב. החשיפה נטו למכסים מוערכת בכ-$30 מיליון בשנה.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-magna-international-targets-15-eps-growth-as-automation-and-buybacks-drive-strategy-2026-11-20/",
+   "time": "09:12"
+  },
+  {
+   "id": "2026-11-20-ally-conference",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "ALLY"
+   ],
+   "tag": "Ally",
+   "tone": "neu",
+   "title": "Ally: התשואה להון עלתה ל-13%, היעד באמצע העשרות",
+   "body": "לפי MarketBeat, סמנכ״ל הכספים ראס האצ׳ינסון אמר שהחברה שומרת על תחזית מחיקות נטו של 1.8%–2% באשראי לרכב, ושהפסדי ליסינג על רכבי Stellantis שהוחזרו בריקול העבירו את תיק הליסינג להפסד. החברה רכשה מניות בכ-$500 מיליון ב-12 חודשים.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-ally-financial-bets-on-loan-growth-to-boost-returns-as-lease-losses-mount-2026-11-20/",
+   "time": "13:12"
+  },
+  {
+   "id": "2026-11-20-fcx-copper-slide",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "FCX"
+   ],
+   "tag": "סחורות",
+   "tone": "neg",
+   "title": "Freeport-McMoRan ירדה בכמעט 7% עם צניחת הנחושת",
+   "body": "לפי Simply Wall St, הנחושת ירדה בחדות לשפל של שבעה חודשים על רקע הדולר החזק והציפיות להעלאת ריבית, ו-Freeport ירדה בכמעט 7% עם כורות גדולות נוספות. המניה ירדה ב-18.7% בשבוע האחרון.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/freeport-mcmoran-fcx-stock-slid-080849937.html",
+   "time": "10:08"
+  },
+  {
+   "id": "2026-11-20-orcl-lowest-since-2024",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "ORCL"
+   ],
+   "tag": "Oracle",
+   "tone": "neg",
+   "title": "Oracle בשפל מאז אפריל 2024",
+   "body": "לפי Motley Fool, המניה נסגרה ב-$110.57 ביום חמישי, ירידה של 2.92%, כ-65% מתחת לשיא של ספטמבר 2025 ומתחת למחיר של $116 שבו גייסה הון ב-2 בנובמבר.",
+   "src": "Motley Fool",
+   "url": "https://www.fool.com/investing/2026/11/20/oracle-stock-just-closed-at-its-lowest-price-since-april-2024-is-it-a-buy-now/",
+   "time": "10:47"
+  },
+  {
+   "id": "2026-11-20-uls-buyback",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "ULS"
+   ],
+   "tag": "UL Solutions",
+   "tone": "neu",
+   "title": "UL Solutions רוכשת מניות בחזרה ב-$130 מיליון מבעלת השליטה",
+   "body": "לפי Simply Wall St, החברה רוכשת 1,641,817 מניות Class B מ-UL Standards & Engagement, וכל המניות יבוטלו.",
+   "src": "Simply Wall St",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/ul-solutions-uls-following-130-051811042.html",
+   "time": "07:18"
+  },
   {
    "id": "2026-11-20-nvda-inception",
    "date": "2026-11-20",
