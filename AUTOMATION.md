@@ -58,6 +58,7 @@ Never invent a reason for a move — no source, no explanation.
 - `asOf` `"DD.MM.YYYY · HH:MM"` (Israel), `rev` `YYYYMMDDHHMM` (number, higher than before).
 - Evening: `market` `{"note", "idx":[{"k":"S&P 500","v":"7,416.59","d":-1.92}, נאסד״ק, דאו ג׳ונס, ראסל 2000]}` and
   `vix` `{"v","c","week","from","note"}`. Macro labels keep the indicator name (CPI, PPI, PCE, ריבית…).
+- `macro` (shown on the Macro and rates page): every card in `cards` gets `u` = the date the figure was released or last changed (`DD.MM.YYYY`, from the official release: BLS, BEA, the Fed); `rateU` = date of the last Fed decision, `fedU` = date of the FedWatch reading used. Never write today's date unless you re-read the source today. Without `u` the site shows "נבדק <date of the last run>" instead.
 
 **`news`** — prepend; never edit or delete old items (archive). No duplicates (check today's titles and tickers).
 `{"id":"YYYY-MM-DD-slug","date":"YYYY-MM-DD","t":["NVDA"],"tag":"…","tone":"pos|neg|neu","title":"<Hebrew>","body":"<1–3 sentences, numbers>","src":"…","url":"…","time":"HH:MM"}`

@@ -446,6 +446,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .ptag{font-style:normal;font-size:10.5px;font-weight:600;color:#7fb2f0;background:#12203a;border-radius:6px;padding:1px 6px;margin-inline-start:6px;white-space:nowrap}
 .cupc{margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px}.cuph{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.cuph small{color:var(--muted);font-size:12px}.cupc svg{width:100%;height:150px;display:block;margin:6px 0}.cupl{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}.cupl i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:4px;vertical-align:-1px}.cupl small{margin-inline-start:auto}
 #cupPop{position:fixed;z-index:60;width:min(340px,calc(100vw - 16px));background:#0b1220;border:1px solid var(--line);border-radius:12px;padding:8px 10px;box-shadow:0 8px 24px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .12s}#cupPop.on{opacity:1;pointer-events:auto}#cupPop .cpt{display:block;margin:0 0 2px;background:none;padding:0;position:static;font-size:14px}#cupPop .cupc{margin:0;padding:0;border:0}#cupPop .cupc svg{height:110px}#cupPop .legend{display:none}
+.mcu{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.mvstrip .in{animation:none}.mvstrip .mvs{overflow-x:auto}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
 @media(prefers-reduced-motion:reduce){.strip .in{animation:none}.strip{overflow-x:auto}}
@@ -844,9 +845,9 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="macro">
     <div class="card rate">
       <div class="tag">ריבית הפד כרגע<button class="gq" data-gl="RATE" aria-label="הסבר">?</button></div><div class="big num" id="mRate"></div>
-      <div class="note" id="mRateNote" style="margin-top:4px"></div>
+      <div class="note" id="mRateNote" style="margin-top:4px"></div><div id="mRateU"></div>
       <div style="margin-top:14px;font-weight:700">מה השוק מתמחר להחלטה ב-<span id="mMeet"></span><button class="gq" data-gl="FED" aria-label="הסבר">?</button></div>
-      <div class="prob" id="mProb"></div><div class="plg" id="mProbLg"></div>
+      <div class="prob" id="mProb"></div><div class="plg" id="mProbLg"></div><div id="mFedU"></div>
       <div class="legend">לפי CME FedWatch, שמחשב את הסיכויים מתוך מחירי חוזים עתידיים על הריבית. זו הערכה של השוק, לא החלטה.</div>
     </div>
     <div class="card"><div style="font-weight:700">אירועים קרובים</div><ul class="cal" id="mCal"></ul></div>
@@ -3213,6 +3214,8 @@ renderYtd();
 let OVERVIEW = FALLBACK.overview;
 function macroGl(t){ t=String(t||'');
   return /PCE/.test(t)?'PCE':/CPI|מחירים לצרכן/.test(t)?'CPI':/PPI|ליצרן/.test(t)?'PPI':/אבטלה/.test(t)?'UNEMP':/משרות|תעסוקה|NFP/.test(t)?'NFP':/GDP|צמיחה|תוצר/.test(t)?'GDP':/ריבית|פד/.test(t)?'RATE':''; }
+/* "when was this figure updated": u = release/update date set by the run (DD.MM.YYYY or DD.MM); without it, the date of the last run that checked it */
+function macroU(u){ const o=OVERVIEW||{}, d=String(u||'').trim(), chk=!d, t=d||String(o.asOf||'').split(' ')[0]; if(!t) return ''; const sh=t.split('.').slice(0,2).join('.'); return `<span class="mcu">${chk?'נבדק':'עודכן'} ${esc(sh)}</span>`; }
 function renderOverview(){
   const o = OVERVIEW||{}, m=o.macro||{};
   const one = (o.strip||[]).map(s=>`<span class="it"><span class="k">${esc(s.k)}</span><span class="v num">${esc(s.v)}</span>${
@@ -3229,11 +3232,12 @@ function renderOverview(){
   try{ renderBriefNews(); }catch(e){}
   renderFresh();
   $('mRate').textContent = m.rate||''; $('mRateNote').textContent = m.rateNote||''; $('mMeet').textContent = m.meeting||'';
+  $('mRateU').innerHTML = macroU(m.rateU); $('mFedU').innerHTML = macroU(m.fedU);
   const parts=[['hold','ללא שינוי','#8a97ae'],['hike25','העלאה של 0.25%','#f5b942'],['hike50','העלאה של 0.5%','#ef4444']].filter(p=>m[p[0]]>0);
   $('mProb').innerHTML = parts.map(p=>`<span style="width:${m[p[0]]}%;background:${p[2]}"></span>`).join('');
   $('mProbLg').innerHTML = [['hold','ללא שינוי','#8a97ae'],['hike25','העלאה של 0.25%','#f5b942'],['hike50','העלאה של 0.5%','#ef4444']]
     .map(p=>`<span><i style="background:${p[2]}"></i>${p[1]}: <b class="num" style="color:var(--text)">${(m[p[0]]||0).toFixed(1)}%</b></span>`).join('');
-  $('mCards').innerHTML = (m.cards||[]).map(c=>`<div class="card mc"><div class="k">${esc(c.k)}${macroGl(c.k)?gq(macroGl(c.k)):''}</div><div class="v num ${c.bad?'down':'up'}">${esc(c.v)}</div><div class="s">${esc(c.s)}</div>${c.n?`<div class="n">${esc(c.n)}</div>`:''}</div>`).join('');
+  $('mCards').innerHTML = (m.cards||[]).map(c=>`<div class="card mc"><div class="k">${esc(c.k)}${macroGl(c.k)?gq(macroGl(c.k)):''}</div><div class="v num ${c.bad?'down':'up'}">${esc(c.v)}</div><div class="s">${esc(c.s)}</div>${c.n?`<div class="n">${esc(c.n)}</div>`:''}${macroU(c.u)}</div>`).join('');
   $('mCal').innerHTML = (m.calendar||[]).map(c=>`<li><span class="d num">${esc(c.d)}</span><span><b>${esc(c.e)}</b>${macroGl(c.e)?gq(macroGl(c.e)):''}${c.n?`<br><span class="flat" style="font-size:12px">${esc(c.n)}</span>`:''}</span></li>`).join('');
 }
 
