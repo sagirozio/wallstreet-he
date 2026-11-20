@@ -108066,6 +108066,36 @@
  },
  "news": [
   {
+   "id": "2026-11-20-dollar-19-month-high",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "מט״ח",
+   "tone": "neu",
+   "title": "הדולר ליד השיא של 19 חודשים, בדרך לשבוע רביעי של עליות",
+   "body": "לפי Reuters, מדד הדולר נע סביב 103.9, הרמה הגבוהה מאז תחילת אפריל 2025, על רקע החששות בתחום ה-AI. העלייה התחזקה אחרי נתוני האינפלציה מ-10 בנובמבר, והשוק מתמחר העלאת ריבית של 0.25% בדצמבר.",
+   "src": "Reuters / Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-november-19-dow-sp-500-nasdaq-anthropic-nvidia-volatility-092827348.html",
+   "time": "12:00"
+  },
+  {
+   "id": "2026-11-20-premarket-ai-cloud-megacaps",
+   "date": "2026-11-20",
+   "t": [
+    "AMZN",
+    "META",
+    "MSFT",
+    "CRWV",
+    "NBIS"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "Amazon, Meta ו-Microsoft יורדות ביותר מ-1.8% במסחר המקדים, CoreWeave ו-Nebius ביותר מ-5%",
+   "body": "לפי Reuters, ב-04:57 שעון ניו יורק החוזים על הנאסד״ק 100 ירדו ב-1.63% ועל ה-S&P 500 ב-0.76%; Nvidia ירדה ב-2.6%, ו-IREN, ‏Applied Digital ו-Core Scientific ב-2.8%–4%. וול סטריט בדרך לירידה השבועית החדה מאז אפריל 2025.",
+   "src": "Reuters",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-slip-anthropic-104746137.html",
+   "time": "12:47"
+  },
+  {
    "id": "2026-11-20-premarket-chips-fall",
    "date": "2026-11-20",
    "t": [
