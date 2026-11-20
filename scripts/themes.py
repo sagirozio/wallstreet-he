@@ -195,7 +195,7 @@ for ind, mem in by.items():
     for k, s in R.items():
         v = s.reindex(mem).dropna()
         # only update when most members have data (otherwise one stock would stand in for the whole industry)
-        if len(v) and len(v) >= max(1, 0.6 * len(mem)): rows[ind][k] = round(float(v.mean()), 2)
+        if len(v) and len(v) >= max(1, 0.6 * len(mem)): rows[ind][k] = round(float(v.median()), 2)   # median: one outlier stock must not drag the industry (e.g. 7 of 8 down, one +15%)
     lst = []
     for s in mem:
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
