@@ -2204,7 +2204,7 @@ document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList
 /* ---------- own candlestick chart (below the TradingView chart; NVDA only for now). Data: ohlc/<T>.json from the nightly run ---------- */
 const OC={};
 function ownCandle(t){ const box=$('ownCd'); if(!box) return;
-  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg">${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה: הזזה. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
+  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg"><button data-ocau dir="rtl" style="display:none" title="חזרה לסקלת מחיר אוטומטית">מחיר אוטומטי</button><button data-oclk dir="rtl" title="כשהכפתור פעיל, גרירה וגלגלת על הגרף מזיזות את ציר הזמן וציר המחיר יחד">⛓ זזים יחד</button>${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה: הזזה · גרירה או גלגלת על ציר המחיר (מימין) ועל ציר הזמן (למטה): סקלה נפרדת · לחיצה כפולה על ציר המחיר: אוטומטי. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
     box._n=box._n||90; ocDraw(t); };
   if(OC[t]) return go(OC[t]);
   fetch('ohlc/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/36e5),{cache:'default'}).then(r=>r.ok?r.json():null).then(go).catch(()=>{}); }
@@ -2213,26 +2213,38 @@ function ocData(t){ const j=OC[t]; if(!j) return []; const A=j.d.map((d,i)=>({d,
   if(L&&liveOn()&&LIVE.date>last.d&&L[0]){ const lc=last.c; A.push({d:LIVE.date,o:lc,h:Math.max(L[2]||L[0],L[0]),l:Math.min(L[3]||L[0],L[0]),c:L[0],v:0,lv:1}); }
   const ma=(n,i)=>i<n-1?null:A.slice(i-n+1,i+1).reduce((a,x)=>a+x.c,0)/n; A.forEach((x,i)=>{ x.m50=ma(50,i); x.m200=ma(200,i); }); return A; }
 
-/* like TradingView: the wheel over the chart zooms (and never scrolls the page), dragging pans */
+/* like TradingView: wheel over the chart zooms the time axis (never scrolls the page), dragging pans it; the price axis (right strip) has its own wheel/drag scale,
+   the time strip (bottom) its own drag scale. The link button makes the chart body move both axes together. Double-click the price axis = auto price scale again. */
+const ocN=()=>$('ownCd').querySelector('.oh b').textContent;
+function ocZoomX(box,f,k){ const L=box._L, n=box._n, ci=(L-n-box._off)+f*n, nn=Math.round(Math.max(15,Math.min(L,n*k))); if(nn===n) return; const st=ci-f*nn; box._n=nn; box._off=Math.max(0,Math.min(L-nn,Math.round(L-nn-st))); }
+function ocZoomY(box,pv,k){ const g=box._g; box._y=[pv-(pv-g.lo)*k, pv+(g.hi-pv)*k]; }
+function ocZone(svg,e,g){ const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*360; return {xx,yy,z:xx>g.W-g.pr?'y':yy>360-22?'x':'b'}; }
 document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; e.preventDefault();
-  const box=$('ownCd'), g=box._g; if(!g||!box._L) return; const L=box._L, n=box._n, r=svg.getBoundingClientRect();
-  const f=Math.max(0,Math.min(1,((e.clientX-r.left)/r.width*g.W-g.pl)/(g.W-g.pl-g.pr))), ci=(L-n-box._off)+f*n;
-  const nn=Math.round(Math.max(15,Math.min(L,n*(e.deltaY>0?1.15:1/1.15)))); if(nn===n&&e.deltaY<0) return;
-  const st=ci-f*nn; box._n=nn; box._off=Math.max(0,Math.min(L-nn,Math.round(L-nn-st))); ocDraw(box.querySelector('.oh b').textContent); },{passive:false});
+  const box=$('ownCd'), g=box._g; if(!g||!box._L) return; const q=ocZone(svg,e,g), k=e.deltaY>0?1.15:1/1.15, f=Math.max(0,Math.min(1,(q.xx-g.pl)/(g.W-g.pl-g.pr))), pv=g.hi-(Math.max(g.pt,Math.min(g.pt+g.ph,q.yy))-g.pt)/g.ph*(g.hi-g.lo);
+  if(q.z==='y') ocZoomY(box,pv,k); else { ocZoomX(box,f,k); if(q.z==='b'&&box._link) ocZoomY(box,pv,k); }
+  ocDraw(ocN()); },{passive:false});
 let OCD=null;
-document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg||(e.pointerType==='mouse'&&e.button!==0)) return; const box=$('ownCd'); OCD={x:e.clientX,off:box._off||0}; try{ svg.setPointerCapture(e.pointerId); }catch(_){} svg.style.cursor='grabbing'; });
-document.addEventListener('pointermove',e=>{ if(!OCD) return; const box=$('ownCd'), g=box&&box._g, svg=$('ocS'); if(!g||!svg) return; const r=svg.getBoundingClientRect(), px=r.width/g.W*g.cw;
-  const off=Math.max(0,Math.min(box._L-box._n,OCD.off+Math.round((e.clientX-OCD.x)/px))); if(off!==box._off){ box._off=off; ocDraw(box.querySelector('.oh b').textContent); } });
+document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg||(e.pointerType==='mouse'&&e.button!==0)) return; const box=$('ownCd'), g=box._g; if(!g) return; const q=ocZone(svg,e,g);
+  OCD={x:e.clientX,y:e.clientY,z:q.z,off:box._off||0,n:box._n,lo:g.lo,hi:g.hi}; try{ svg.setPointerCapture(e.pointerId); }catch(_){} if(q.z==='b') svg.style.cursor='grabbing'; });
+document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.target.closest('#ocS')||(OCD&&$('ocS')); if(!svg) return; const box=$('ownCd'), g=box&&box._g; if(!g) return;
+  if(!OCD){ svg.style.cursor={y:'ns-resize',x:'ew-resize',b:'crosshair'}[ocZone(svg,e,g).z]; return; }
+  const r=svg.getBoundingClientRect(), px=r.width/g.W*g.cw, dx=e.clientX-OCD.x, dy=(e.clientY-OCD.y)/r.height*360;
+  if(OCD.z==='y'){ const k=Math.exp(dy/200), c=(OCD.lo+OCD.hi)/2, h=(OCD.hi-OCD.lo)/2*k; box._y=[c-h,c+h]; }
+  else if(OCD.z==='x'){ const nn=Math.round(Math.max(15,Math.min(box._L,OCD.n*Math.exp(-dx/200)))); box._n=nn; box._off=Math.max(0,Math.min(box._L-nn,OCD.off)); }
+  else { box._off=Math.max(0,Math.min(box._L-box._n,OCD.off+Math.round(dx/px))); if(box._link){ const d=dy/g.ph*(OCD.hi-OCD.lo); box._y=[OCD.lo+d,OCD.hi+d]; } }
+  ocDraw(ocN()); });
 document.addEventListener('pointerup',()=>{ if(OCD){ OCD=null; const s=$('ocS'); if(s) s.style.cursor=''; } });
 document.addEventListener('pointercancel',()=>{ OCD=null; });
+document.addEventListener('dblclick',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; const box=$('ownCd'), g=box._g; if(g&&ocZone(svg,e,g).z==='y'){ box._y=null; ocDraw(ocN()); } });
 function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) return;
   const n=box._n||90, c50=box.querySelector('[data-oc="50"]').checked, c200=box.querySelector('[data-oc="200"]').checked, cv=box.querySelector('[data-oc="v"]').checked;
   const A=ocData(t), L=A.length, nn=Math.max(15,Math.min(L,n)); box._n=nn; box._off=Math.max(0,Math.min(L-nn,box._off||0)); box._L=L;
-  box.querySelectorAll('[data-ocn]').forEach(b=>b.classList.toggle('on',+b.dataset.ocn===nn&&!box._off));
+  box.querySelectorAll('[data-ocn]').forEach(b=>b.classList.toggle('on',+b.dataset.ocn===nn&&!box._off&&!box._y));
+  const lk=box.querySelector('[data-oclk]'); if(lk) lk.classList.toggle('on',!!box._link); const au=box.querySelector('[data-ocau]'); if(au) au.style.display=box._y?'':'none';
   const V=A.slice(L-nn-box._off,L-box._off); if(!V.length) return; box._V=V;
   const W=680,H=360,pl=8,pr=52,pt=10,pb=22,vh=70, ph=H-pt-pb-(cv?vh+8:0);
   let lo=Infinity,hi=-Infinity; V.forEach(x=>{ lo=Math.min(lo,x.l); hi=Math.max(hi,x.h); if(c50&&x.m50){ lo=Math.min(lo,x.m50); hi=Math.max(hi,x.m50); } if(c200&&x.m200){ lo=Math.min(lo,x.m200); hi=Math.max(hi,x.m200); } });
-  const pad=(hi-lo)*.05; lo-=pad; hi+=pad; const cw=(W-pl-pr)/V.length, X=i=>pl+cw*(i+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP='#22c55e', DN='#ef4444';
+  const pad=(hi-lo)*.05; lo-=pad; hi+=pad; if(box._y){ lo=box._y[0]; hi=box._y[1]; } const cw=(W-pl-pr)/V.length, X=i=>pl+cw*(i+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP='#22c55e', DN='#ef4444';
   box._g={W,pl,pr,pt,ph,cw,lo,hi};
   let o=''; for(let k=0;k<=4;k++){ const v=lo+(hi-lo)*k/4, y=Y(v); o+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#24272e" stroke-width=".7"/><text x="${W-pr+6}" y="${y+4}" font-size="11" fill="#7d8590">${v>=1000?Math.round(v):v.toFixed(1)}</text>`; }
   const st=Math.max(1,Math.round(V.length/6)); V.forEach((x,i)=>{ if(i%st===0) o+=`<text x="${X(i)}" y="${H-6}" font-size="11" fill="#7d8590" text-anchor="middle">${pxD(x.d)}</text>`; });
@@ -2251,7 +2263,8 @@ document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.targe
   $('ocY').setAttribute('y1',yc); $('ocY').setAttribute('y2',yc); $('ocB').setAttribute('y',yc-9); $('ocT').setAttribute('y',yc+4); $('ocT').textContent=pv>=1000?Math.round(pv):pv.toFixed(1);
   const pc=(x.c/x.o-1)*100; $('ocI').innerHTML=`${pxD(x.d)} &nbsp; O ${x.o.toFixed(2)} &nbsp; H ${x.h.toFixed(2)} &nbsp; L ${x.l.toFixed(2)} &nbsp; C ${x.c.toFixed(2)} &nbsp; <span class="${pc>=0?'up':'down'}">${pc>=0?'+':''}${pc.toFixed(1)}%</span>${x.v?` &nbsp; Vol ${(x.v/1e6).toFixed(1)}M`:''}`; });
 document.addEventListener('pointerleave',e=>{ if(e.target&&e.target.id==='ocS'){ const c=$('ocC'); if(c) c.style.display='none'; const i=$('ocI'); if(i) i.textContent=''; } },true);
-document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-ocn]'); if(b){ const box=$('ownCd'); box._n=+b.dataset.ocn; box._off=0; ocDraw(box.querySelector('.oh b').textContent); } });
+document.addEventListener('click',e=>{ const lk=e.target.closest&&e.target.closest('[data-oclk]'); if(lk){ const box=$('ownCd'); box._link=!box._link; ocDraw(ocN()); return; } const au=e.target.closest&&e.target.closest('[data-ocau]'); if(au){ const box=$('ownCd'); box._y=null; ocDraw(ocN()); return; }
+  const b=e.target.closest&&e.target.closest('[data-ocn]'); if(b){ const box=$('ownCd'); box._n=+b.dataset.ocn; box._off=0; box._y=null; ocDraw(box.querySelector('.oh b').textContent); } });
 document.addEventListener('change',e=>{ if(e.target.dataset&&e.target.dataset.oc!=null){ const box=$('ownCd'); ocDraw(box.querySelector('.oh b').textContent); } });
 function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
