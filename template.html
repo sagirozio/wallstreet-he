@@ -1688,7 +1688,7 @@ function qvShowEtf(t,p){
       <span class="qvact"><button class="qvx" aria-label="סגירה">✕</button></span></div>
     <p class="qvdesc" dir="rtl">קרן סל (ETF) בנושא ${esc(r.n||'')}. ${r.h&&r.h.length?`מוצגות ${r.h.length} האחזקות הגדולות שלה${wsum?`, ביחד כ-${wsum.toFixed(0)}% מהקרן`:''}.`:''}</p>
     <div class="qvq"><div class="qvp"><small>${E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
-      <div class="qvt">${tile('שבוע',pc(r.w))}${tile('חודש',pc(r.m))}${tile('3 חודשים',pc(r.q))}${tile('מתחילת השנה',pc(r.ytd))}${tile('שנה',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div></div>
+      <div class="qvt">${tile('שבוע',pc(r.w))}${tile('חודש',pc(r.m))}${tile('3 חודשים',pc(r.q))}${tile('מתחילת השנה',pc(r.ytd))}${tile('שנה',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div>${(()=>{ const I=r.i||{}; const T=[]; if(I.f) T.push(tile('מנפיק','<bdi>'+esc(I.f)+'</bdi>')); if(I.er!=null) T.push(tile('דמי ניהול שנתיים',I.er.toFixed(2)+'%')); if(I.aum!=null) T.push(tile('היקף נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M'))); if(I.inc) T.push(tile('הוקמה',I.inc.slice(0,4))); return T.length?`<div class="qvt">${T.join('')}</div>`:''; })()}</div>
     <div class="qvb" id="qvBody"></div>
     <a class="qvgo" href="#etfs">לכל תעודות הסל ←</a>`;
   qvTab(QV.tab==='hd'?'hd':'ch');
