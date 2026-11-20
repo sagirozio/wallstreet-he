@@ -2204,7 +2204,7 @@ document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList
 /* ---------- own candlestick chart (below the TradingView chart; NVDA only for now). Data: ohlc/<T>.json from the nightly run ---------- */
 const OC={};
 function ownCandle(t){ const box=$('ownCd'); if(!box) return;
-  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg"><button data-ocau dir="rtl" style="display:none" title="חזרה לסקלת מחיר אוטומטית">מחיר אוטומטי</button><button data-oclk dir="rtl" title="כשהכפתור פעיל, גרירה וגלגלת על הגרף מזיזות את ציר הזמן וציר המחיר יחד">⛓ זזים יחד</button>${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה: הזזה בזמן · לחיצה ארוכה והחזקה על הגרף: הזזה חופשית בשני הצירים · גרירה או גלגלת על ציר המחיר (מימין) ועל ציר הזמן (למטה): סקלה נפרדת · לחיצה כפולה על ציר המחיר: אוטומטי. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
+  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg"><button data-ocau dir="rtl" style="display:none" title="חזרה לסקלת מחיר אוטומטית">מחיר אוטומטי</button><button data-oclk dir="rtl" title="כשהכפתור פעיל, הגלגלת על הגרף עושה זום בציר הזמן ובציר המחיר יחד">⛓ זום בשני הצירים</button>${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה עם העכבר: הזזה חופשית לכל כיוון (בנייד: לחיצה ארוכה ואז גרירה) · גרירה או גלגלת על ציר המחיר (מימין) ועל ציר הזמן (למטה): סקלה נפרדת · לחיצה כפולה על ציר המחיר: אוטומטי. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
     box._n=box._n||90; ocDraw(t); };
   if(OC[t]) return go(OC[t]);
   fetch('ohlc/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/36e5),{cache:'default'}).then(r=>r.ok?r.json():null).then(go).catch(()=>{}); }
@@ -2217,7 +2217,7 @@ function ocData(t){ const j=OC[t]; if(!j) return []; const A=j.d.map((d,i)=>({d,
    the time strip (bottom) its own drag scale. The link button makes the chart body move both axes together. Double-click the price axis = auto price scale again. */
 const ocN=()=>$('ownCd').querySelector('.oh b').textContent;
 const ocClamp=(box,v)=>Math.max(-(box._n-3),Math.min(box._L-3,v));   /* the chart can be dragged past the data (empty space), like TradingView */
-function ocZoomX(box,f,k){ const L=box._L, n=box._n, ci=(L-n-box._off)+f*n, nn=Math.round(Math.max(15,Math.min(L,n*k))); if(nn===n) return; const st=ci-f*nn; box._n=nn; box._off=ocClamp(box,Math.round(L-nn-st)); }
+function ocZoomX(box,f,k){ const L=box._L, n=box._n, ci=(L-n-box._off)+f*n, nn=Math.round(Math.max(15,Math.min(L,n*k))); if(nn===n) return; const st=ci-f*nn; box._n=nn; box._off=ocClamp(box,L-nn-st); }
 function ocZoomY(box,pv,k){ const g=box._g; box._y=[pv-(pv-g.lo)*k, pv+(g.hi-pv)*k]; }
 function ocZone(svg,e,g){ const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*360; return {xx,yy,z:xx>g.W-g.pr?'y':yy>360-22?'x':'b'}; }
 document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; e.preventDefault();
@@ -2226,19 +2226,19 @@ document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.clos
   ocDraw(ocN()); },{passive:false});
 let OCD=null;
 document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg||(e.pointerType==='mouse'&&e.button!==0)) return; const box=$('ownCd'), g=box._g; if(!g) return; const q=ocZone(svg,e,g);
-  OCD={x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,z:q.z,off:box._off||0,n:box._n,lo:g.lo,hi:g.hi,hold:0}; try{ svg.setPointerCapture(e.pointerId); }catch(_){}
-  /* press and hold (no movement) = grab the whole chart: it then moves on both axes at once */
-  if(q.z==='b'){ svg.style.cursor='grabbing'; OCD.t=setTimeout(()=>{ if(!OCD) return; const g2=box._g; OCD.hold=1; OCD.bx=OCD.lx; OCD.by=OCD.ly; OCD.boff=box._off||0; OCD.blo=g2.lo; OCD.bhi=g2.hi; box.querySelector('.ocd').classList.add('hold'); try{ navigator.vibrate&&navigator.vibrate(15); }catch(_){} },350); } });
+  OCD={x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,z:q.z,off:box._off||0,n:box._n,lo:g.lo,hi:g.hi,hold:0,free:e.pointerType!=='touch'}; try{ svg.setPointerCapture(e.pointerId); }catch(_){}
+  /* mouse: dragging the chart body moves it freely on both axes right away (like TradingView). Touch: a drag pans the time axis (the page still scrolls vertically); press and hold grabs the chart for the free move */
+  if(q.z==='b'){ svg.style.cursor='grabbing'; if(!OCD.free) OCD.t=setTimeout(()=>{ if(!OCD) return; const g2=box._g; OCD.hold=1; OCD.bx=OCD.lx; OCD.by=OCD.ly; OCD.boff=box._off||0; OCD.blo=g2.lo; OCD.bhi=g2.hi; box.querySelector('.ocd').classList.add('hold'); try{ navigator.vibrate&&navigator.vibrate(15); }catch(_){} },350); } });
 document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.target.closest('#ocS')||(OCD&&$('ocS')); if(!svg) return; const box=$('ownCd'), g=box&&box._g; if(!g) return;
   if(!OCD){ svg.style.cursor={y:'ns-resize',x:'ew-resize',b:'crosshair'}[ocZone(svg,e,g).z]; return; }
   const r=svg.getBoundingClientRect(), px=r.width/g.W*g.cw; OCD.lx=e.clientX; OCD.ly=e.clientY;
   if(!OCD.hold&&OCD.t&&Math.hypot(e.clientX-OCD.x,e.clientY-OCD.y)>6){ clearTimeout(OCD.t); OCD.t=0; }
   if(OCD.hold){ const hx=e.clientX-OCD.bx, hy=(e.clientY-OCD.by)/r.height*360, d=hy/g.ph*(OCD.bhi-OCD.blo);
-    box._off=ocClamp(box,OCD.boff+Math.round(hx/px)); box._y=[OCD.blo+d,OCD.bhi+d]; ocDraw(ocN()); return; }
+    box._off=ocClamp(box,OCD.boff+hx/px); box._y=[OCD.blo+d,OCD.bhi+d]; ocDraw(ocN()); return; }
   const dx=e.clientX-OCD.x, dy=(e.clientY-OCD.y)/r.height*360;
   if(OCD.z==='y'){ const k=Math.exp(dy/200), c=(OCD.lo+OCD.hi)/2, h=(OCD.hi-OCD.lo)/2*k; box._y=[c-h,c+h]; }
   else if(OCD.z==='x'){ const nn=Math.round(Math.max(15,Math.min(box._L,OCD.n*Math.exp(-dx/200)))); box._n=nn; box._off=ocClamp(box,OCD.off); }
-  else { box._off=ocClamp(box,OCD.off+Math.round(dx/px)); if(box._link){ const d=dy/g.ph*(OCD.hi-OCD.lo); box._y=[OCD.lo+d,OCD.hi+d]; } }
+  else { if(!OCD.mv&&Math.hypot(dx,e.clientY-OCD.y)<3) return; OCD.mv=1; box._off=ocClamp(box,OCD.off+dx/px); if(OCD.free||box._link){ const d=dy/g.ph*(OCD.hi-OCD.lo); box._y=[OCD.lo+d,OCD.hi+d]; } }
   ocDraw(ocN()); });
 const ocEnd=()=>{ if(OCD){ clearTimeout(OCD.t); OCD=null; const s=$('ocS'); if(s) s.style.cursor=''; const c=document.querySelector('.ocd'); if(c) c.classList.remove('hold'); } };
 document.addEventListener('pointerup',ocEnd); document.addEventListener('pointercancel',ocEnd);
@@ -2249,25 +2249,28 @@ function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) r
   const A=ocData(t), L=A.length, nn=Math.max(15,Math.min(L,n)); box._n=nn; box._L=L; box._off=ocClamp(box,box._off||0);
   box.querySelectorAll('[data-ocn]').forEach(b=>b.classList.toggle('on',+b.dataset.ocn===nn&&!box._off&&!box._y));
   const lk=box.querySelector('[data-oclk]'); if(lk) lk.classList.toggle('on',!!box._link); const au=box.querySelector('[data-ocau]'); if(au) au.style.display=box._y?'':'none';
-  const s0=L-nn-box._off, V=[]; for(let k=0;k<nn;k++){ const a=s0+k; if(a>=0&&a<L) V.push({...A[a],k}); } if(!V.length) return; box._V=V;
+  const s0=L-nn-box._off, V=[];   /* the offset is fractional, so the chart moves smoothly and not candle by candle */
+  for(let a=Math.max(0,Math.ceil(s0-1)); a<=Math.min(L-1,Math.floor(s0+nn)); a++) V.push({...A[a],k:a-s0,a}); if(!V.length) return; box._V=V;
   const W=680,H=360,pl=8,pr=52,pt=10,pb=22,vh=70, ph=H-pt-pb-(cv?vh+8:0);
   let lo=Infinity,hi=-Infinity; V.forEach(x=>{ lo=Math.min(lo,x.l); hi=Math.max(hi,x.h); if(c50&&x.m50){ lo=Math.min(lo,x.m50); hi=Math.max(hi,x.m50); } if(c200&&x.m200){ lo=Math.min(lo,x.m200); hi=Math.max(hi,x.m200); } });
   const pad=(hi-lo)*.05; lo-=pad; hi+=pad; if(box._y){ lo=box._y[0]; hi=box._y[1]; } const cw=(W-pl-pr)/nn, X=i=>pl+cw*(i+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP='#22c55e', DN='#ef4444';
   box._g={W,pl,pr,pt,ph,cw,lo,hi};
   let o=''; for(let k=0;k<=4;k++){ const v=lo+(hi-lo)*k/4, y=Y(v); o+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#24272e" stroke-width=".7"/><text x="${W-pr+6}" y="${y+4}" font-size="11" fill="#7d8590">${v>=1000?Math.round(v):v.toFixed(1)}</text>`; }
-  const st=Math.max(1,Math.round(nn/6)); V.forEach((x,i)=>{ if(x.k%st===0) o+=`<text x="${X(x.k)}" y="${H-6}" font-size="11" fill="#7d8590" text-anchor="middle">${pxD(x.d)}</text>`; });
+  const st=Math.max(1,Math.round(nn/6)); V.forEach((x,i)=>{ if(x.a%st===0&&x.k>=0&&x.k<=nn-1) o+=`<text x="${X(x.k)}" y="${H-6}" font-size="11" fill="#7d8590" text-anchor="middle">${pxD(x.d)}</text>`; });
+  o+=`<defs><clipPath id="ocCl"><rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}"/></clipPath></defs><g clip-path="url(#ocCl)">`;
   V.forEach((x,i)=>{ const col=x.c>=x.o?UP:DN, bw=Math.max(1,cw*.65); o+=`<line x1="${X(x.k)}" x2="${X(x.k)}" y1="${Y(x.h)}" y2="${Y(x.l)}" stroke="${col}"/><rect x="${X(x.k)-bw/2}" y="${Y(Math.max(x.o,x.c))}" width="${bw}" height="${Math.max(1,Math.abs(Y(x.o)-Y(x.c)))}" fill="${col}"/>`; });
   const ln=(k,col)=>{ let d=''; V.forEach((x,i)=>{ if(x[k]!=null) d+=(d?'L':'M')+X(x.k)+' '+Y(x[k]); }); return d?`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.5"/>`:''; };
   if(c50) o+=ln('m50','#58a6ff'); if(c200) o+=ln('m200','#f5b942');
   if(cv){ const mv=Math.max(...V.map(x=>x.v),1); V.forEach((x,i)=>{ if(!x.v) return; const h=x.v/mv*vh, bw=Math.max(1,cw*.65); o+=`<rect x="${X(x.k)-bw/2}" y="${H-pb-h}" width="${bw}" height="${h}" fill="${x.c>=x.o?UP:DN}" opacity=".45"/>`; }); }
+  o+='</g>';
   const la=A[A.length-1], ly=Y(la.c), lc=la.c>=la.o?UP:DN;   /* the real latest price (live while the session runs, else the last close) even when panned away; hidden when outside the visible price range */
   if(la.c>=lo&&la.c<=hi) o+=`<line x1="${pl}" x2="${W-pr}" y1="${ly}" y2="${ly}" stroke="${lc}" stroke-dasharray="4 4"/><rect x="${W-pr+1}" y="${ly-9}" width="${pr-2}" height="18" rx="3" fill="${lc}"/><text x="${W-pr+pr/2}" y="${ly+4}" font-size="11" fill="#fff" text-anchor="middle">${la.c.toFixed(1)}</text>`;
   o+=`<g id="ocC" style="display:none"><line id="ocX" y1="${pt}" y2="${H-pb}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><line id="ocY" x1="${pl}" x2="${W-pr}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><rect id="ocB" x="${W-pr+1}" width="${pr-2}" height="18" rx="3" fill="#c5cbd3"/><text id="ocT" x="${W-pr+pr/2}" font-size="11" fill="#0c0d10" text-anchor="middle"></text><rect id="ocDB" y="${H-pb+2}" width="64" height="18" rx="3" fill="#c5cbd3"/><text id="ocDT" y="${H-pb+15}" font-size="11" fill="#0c0d10" text-anchor="middle"></text></g>`;
   svg.innerHTML=o; $('ocI').textContent=''; }
 document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; const box=$('ownCd'), g=box._g, V=box._V; if(!g||!V) return;
   const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*360;
-  const i=Math.max(0,Math.min(box._n-1,Math.floor((xx-g.pl)/g.cw))), x=V.find(c=>c.k===i), yc=Math.max(g.pt,Math.min(g.pt+g.ph,yy)), pv=g.hi-(yc-g.pt)/g.ph*(g.hi-g.lo);
-  $('ocC').style.display=''; const cx=g.pl+g.cw*(i+.5); $('ocX').setAttribute('x1',cx); $('ocX').setAttribute('x2',cx);
+  const kf=(xx-g.pl)/g.cw-.5, x=V.find(c=>Math.abs(c.k-kf)<=.5), yc=Math.max(g.pt,Math.min(g.pt+g.ph,yy)), pv=g.hi-(yc-g.pt)/g.ph*(g.hi-g.lo);
+  $('ocC').style.display=''; const cx=x?g.pl+g.cw*(x.k+.5):Math.min(xx,g.W-g.pr); $('ocX').setAttribute('x1',cx); $('ocX').setAttribute('x2',cx);
   $('ocY').setAttribute('y1',yc); $('ocY').setAttribute('y2',yc); $('ocB').setAttribute('y',yc-9); $('ocT').setAttribute('y',yc+4); $('ocT').textContent=pv>=1000?Math.round(pv):pv.toFixed(1);
   if(!x){ $('ocDT').textContent=''; $('ocDB').setAttribute('width',0); $('ocI').textContent=''; return; } $('ocDB').setAttribute('width',64);
   const dl=String(x.d).split('-').reverse().map(Number).join('.'), tx=Math.max(g.pl+32,Math.min(g.W-g.pr-32,cx)); $('ocDB').setAttribute('x',tx-32); $('ocDT').setAttribute('x',tx); $('ocDT').textContent=dl;
