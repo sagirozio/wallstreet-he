@@ -1077,7 +1077,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <h3>4. אחריות</h3>
   <p>המידע ניתן "כמות שהוא" (AS IS). מפעילי האתר לא יישאו באחריות לכל נזק, הפסד או הוצאה שייגרמו כתוצאה מהשימוש במידע באתר או מהסתמכות עליו.</p>
   <h3>5. תכנים של צד שלישי</h3>
-  <p>באתר משולבים רכיבים של TradingView (מחירים חיים) וקישורים לאתרים חיצוניים. השימוש בהם כפוף לתנאים של אותם אתרים, ומפעילי האתר אינם אחראים לתוכנם. שמות חברות וסימני מסחר שייכים לבעליהם, ומוזכרים לצורך זיהוי בלבד.</p>
+  <p>באתר משולבים רכיבים של TradingView (מחירים חיים וגרפי הקריפטו) וקישורים לאתרים חיצוניים. השימוש בהם כפוף לתנאים של אותם אתרים, ומפעילי האתר אינם אחראים לתוכנם. שמות חברות וסימני מסחר שייכים לבעליהם, ומוזכרים לצורך זיהוי בלבד.</p>
   <h3>6. קניין רוחני</h3>
   <p>הטקסטים, העיצוב והחישובים באתר שייכים למפעילי האתר. אפשר לצטט בהיקף סביר עם קישור לאתר. אסור להעתיק את האתר או חלקים מהותיים ממנו באופן שיטתי או אוטומטי.</p>
   <h3>7. פרטיות</h3>
@@ -1103,7 +1103,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   </ul>
   <h3>מגבלות ידועות</h3>
   <ul>
-    <li>רכיבי TradingView (מחירים חיים) מגיעים מצד שלישי, ואין לנו שליטה מלאה על הנגישות שלהם. אותו מידע מופיע גם בטבלאות ובטקסט באתר.</li>
+    <li>רכיבי TradingView (מחירים חיים וגרפי הקריפטו) מגיעים מצד שלישי, ואין לנו שליטה מלאה על הנגישות שלהם. אותו מידע מופיע גם בטבלאות ובטקסט באתר.</li>
     <li>חלק מהטבלאות רחבות ודורשות גלילה הצידה במסכים קטנים.</li>
   </ul>
   <h3>נתקלתם בבעיה?</h3>
@@ -1124,7 +1124,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
     <li><a href="https://www.cmelitegroup.com/knowledge-hub/nvidia-earnings-date-fiscal-q3-2027-report-time-guidance-and-expected-move/?nocache=1">מועד הדוח של Nvidia</a> · <a href="https://www.earningswhispers.com/stocks/Nvda">Earnings Whispers</a> · <a href="https://www.stocktitan.net/rankings/stock-gains-monthly/2026/november">StockTitan – העולות של נובמבר</a></li>
   </ul></details>
   <p class="flinks"><a href="#glossary">מילון מונחים</a> · <a href="#terms">תנאי שימוש</a> · <a href="#accessibility">הצהרת נגישות</a> · צור קשר: <a href="mailto:sagirozio@gmail.com">sagirozio@gmail.com</a></p>
-  <p class="flinks">נתוני שוק: Yahoo Finance · Finnhub · Massive · SEC EDGAR · מחירים חיים: <a href="https://www.tradingview.com/">TradingView</a></p>
+  <p class="flinks">נתוני שוק: Yahoo Finance · Finnhub · Massive · SEC EDGAR · מחירים חיים וגרפי קריפטו: <a href="https://www.tradingview.com/">TradingView</a></p>
   <p>עדכניות הנתונים: מחירים חיים בשעות המסחר עשויים להתעכב ואינם בזמן אמת. הטבלאות, התשואות, ממוצעי הנעים והדירוגים מבוססים על מחירי הסגירה של יום המסחר האחרון ומתעדכנים אחת ללילה. נתוני הדוחות הכספיים לפי הדיווחים של החברות ל-SEC ומתעדכנים לאחר הפרסום.</p>
   <p>האתר מיועד למידע ולמידה בלבד ואינו ייעוץ השקעות. נתונים מאתרים חיצוניים עשויים להשתנות. כדאי לאמת מול המקור לפני כל החלטה.</p>
 </div></footer>
@@ -1541,11 +1541,11 @@ function renderCrypto(c){
   $('spBody').innerHTML=`<div class="sphead">${mono(c.sym)}<div class="sphn"><h2 style="text-align:right">${esc(c.he)} <bdi style="color:var(--muted);font-weight:500;font-size:.75em">${esc(c.co)}</bdi></h2><div class="meta"><span class="tick" style="margin:0">${esc(c.sym)}</span> · מטבע קריפטו · נסחר 24/7 · מחיר בדולר</div></div>
       <div class="sphr"><div class="spday">${(()=>{ const r=((FALLBACK.crypto||{}).rows||{})[c.t]; return r?`<b class="sppx num">$${r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)}</b>${r.d!=null?`<b class="spch ${r.d>=0?'up':'down'}">${pct(r.d,2)}</b>`:''}<small>${esc((FALLBACK.crypto||{}).asOf||'')}</small>`:''; })()}</div></div></div>
     ${cryptoPerf(c.t)}
-    <div id="crCh" style="margin-top:14px"></div>
+    <div class="spchart" id="crCh" style="margin-top:14px"></div>
     <p class="spdesc">${esc(c.about)}</p>
     ${rel.length?`<h3 class="sph3">מניות שקשורות ל${esc(c.he)}</h3><div class="peers">${rel.map(t=>hubTile(t,ix[t].co,ix[t].r?ix[t].r.m:null,ix[t].cap?'$'+ix[t].cap:'')).join('')}</div><p class="legend">השינוי בחודש האחרון. הרשימה היא לצורך התמצאות בלבד ואינה המלצה.</p>`:''}
-    <p class="legend">מחירי סגירה יומיים (Yahoo Finance), מתעדכנים פעם ביום. מידע בלבד, לא ייעוץ השקעות. מטבעות קריפטו תנודתיים במיוחד.</p>`;
-  ocMount($('crCh'),c.t,{clock:false,label:c.sym});
+    <p class="legend">הגרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a> (בורסת Bitstamp). מידע בלבד, לא ייעוץ השקעות. מטבעות קריפטו תנודתיים במיוחד.</p>`;
+  drawChart({t:c.sym,tv:c.tv},'D',$('crCh'));
 }
 function searchStocks(q){
   q=q.trim(); if(!q) return [];
@@ -2201,8 +2201,8 @@ function pxOut(ev){ const w=ev.target.closest&&ev.target.closest('.pxw'); if(!w)
 document.addEventListener('pointermove',pxMove); document.addEventListener('pointerdown',pxMove);
 document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList&&ev.target.classList.contains('pxw')) pxOut(ev); },true);
 
-/* ---------- our own price chart (candles or line; daily / weekly / monthly; moving averages; volume). It is the only chart on the site:
-   stock page, floating card, ETF card, crypto page. Data: <SYMBOL>.json on the `ohlc` branch (scripts/ohlc.py, nightly, 3 years of daily bars).
+/* ---------- our own price chart (candles or line; daily / weekly / monthly; moving averages; volume). It is the chart of the stock page, the floating card and the ETF card
+   (the crypto pages keep the TradingView chart: a 24/7 market). Data: <SYMBOL>.json on the `ohlc` branch (scripts/ohlc.py, nightly, 3 years of daily bars).
    One instance per container (.ocbox); all the state of an instance lives on its container element, so several charts can be open at once. ---------- */
 const OC={};
 /* moving averages of the chart: the visitor adds as many as wanted, each with its own days, colour, opacity and line width. Kept in this browser (localStorage), for every chart */
@@ -2369,6 +2369,25 @@ document.addEventListener('click',e=>{ const c=e.target.closest&&e.target.closes
   else if(c.dataset.ocmreset!=null){ OCMA=OCMA_DEF.map(m=>({...m})); }
   ocMaAll(); if(!p.hidden) ocMaPanel(box); });
 function spNewsItem(n){ return `<a class="spn" href="${esc(n.url||'#page/news')}" target="_blank" rel="noopener"><span class="d">${esc((n.date||'').split('-').reverse().join('.'))}</span><b>${esc(n.title)}</b><small>${esc(n.body||'')}</small><span class="src">${esc(n.src||'')}</span></a>`; }
+/* TradingView chart: only on the crypto pages (24/7 market, live; our own chart has daily bars from the nightly run) */
+function tvSym(s){ return s.tv || (s.ex?s.ex+':':'')+s.t.replace('-','.'); }
+function drawChart(s,iv,box){
+  if(!box) return; box.innerHTML='';
+  const len = iv==='W' ? 40 : 200, len2 = iv==='W' ? 10 : 50;   // weekly candles: 40 ≈ 200 trading days, 10 ≈ 50; the 200 is exponential so it gets its own colour
+  // tv.js (TradingView's free chart widget) accepts indicator inputs, so the moving average gets length 200 / 40
+  const id='tvc'+Date.now(); box.innerHTML=`<div id="${id}" style="height:100%"></div>`;
+  loadTvJs().then(()=>{ if(!document.getElementById(id)) return;
+    new TradingView.widget({container_id:id,autosize:true,symbol:tvSym(s),interval:iv,style:'1',timezone:'Asia/Jerusalem',theme:'dark',locale:'he_IL',
+      enable_publishing:false,allow_symbol_change:false,hide_side_toolbar:true,withdateranges:true,save_image:false,details:false,calendar:false,
+      toolbar_bg:'#0c0d10',backgroundColor:'rgba(12,13,16,1)',
+      studies:[{id:'MASimple@tv-basicstudies',inputs:{length:len2},styles:{plot:{color:'#58a6ff',linewidth:2}},overrides:{'plot.color':'#58a6ff','plot.linewidth':2}},{id:'MAExp@tv-basicstudies',inputs:{length:len},styles:{plot:{color:'#f5b942',linewidth:2}},overrides:{'plot.color':'#f5b942','plot.linewidth':2}}],
+      studies_overrides:{'moving average.ma.color':'#58a6ff','moving average.ma.linewidth':2,'moving average.plot.color':'#58a6ff','moving average.plot.linewidth':2,'moving average.plot.linestyle':2,'moving average.ma.linestyle':2,'moving average exponential.plot.color':'#f5b942','moving average exponential.plot.linewidth':2,'moving average exponential.ema.color':'#f5b942','Moving Average Exponential.plot.color':'#f5b942','moving average exponential.plot.color.0':'#f5b942'}});
+  }).catch(()=>{ box.innerHTML='<div class="empty">הגרף לא נטען. נסו לרענן את העמוד.</div>'; });
+}
+let tvJsP=null;
+function loadTvJs(){ if(window.TradingView&&TradingView.widget) return Promise.resolve(); if(tvJsP) return tvJsP;
+  tvJsP=new Promise((ok,no)=>{ const sc=document.createElement('script'); sc.src='https://s3.tradingview.com/tv.js'; sc.async=true; sc.onload=ok; sc.onerror=()=>{ tvJsP=null; no(); }; document.head.appendChild(sc); });
+  return tvJsP; }
 function spTab(k){
   const body=$('spBody'), t=body.dataset.t, s=stockIndex()[t]; if(!s) return;
   SPT=k;

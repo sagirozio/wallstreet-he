@@ -1,4 +1,4 @@
-"""Daily OHLC + volume of every stock on the site (plus the ETFs with a card and the two crypto pages), for our own price chart.
+"""Daily OHLC + volume of every stock on the site (plus the ETFs with a card), for our own price chart.
 
 Yahoo (yfinance), 3 years, split-adjusted and not dividend-adjusted. One file per stock:
 <T>.json = {"d":[dates],"o":[],"h":[],"l":[],"c":[],"v":[]}, pushed as a single commit to the `ohlc` branch
@@ -15,8 +15,8 @@ TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
 URL = f"https://x-access-token:{TOKEN}@github.com/{REPO}.git" if TOKEN else f"https://github.com/{REPO}.git"
 
 uni = sorted({s[0] for lst in json.loads((root / "stocks.json").read_text(encoding="utf-8"))["stocks"].values() for s in lst})
-# besides the stocks: the ETFs that have a card on the site (thematic table, sector funds, index funds) and the two crypto pages
-EXTRA = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU", "SPY", "QQQ", "DIA", "IWM", "BTC-USD", "ETH-USD"]
+# besides the stocks: the ETFs that have a card on the site (thematic table, sector funds, index funds) 
+EXTRA = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU", "SPY", "QQQ", "DIA", "IWM"]
 try:
     EXTRA += [r["t"] for r in json.loads((root / "data.json").read_text(encoding="utf-8")).get("etfs", {}).get("rows", [])]
     import re as _re
@@ -37,7 +37,7 @@ def take(t, df):
     except Exception as e:
         print(t, "skipped", type(e).__name__, flush=True)
 
-chunks = [uni[i:i + 150] for i in range(0, len(uni), 150)] + [EXTRA]   # the extras in their own batch (crypto trades on weekends too)
+chunks = [uni[i:i + 150] for i in range(0, len(uni), 150)] + [EXTRA]   # the extras in their own batch
 for i, chunk in enumerate(chunks):
     if not chunk: continue
     for k in range(2):
@@ -49,7 +49,7 @@ for i, chunk in enumerate(chunks):
             break
         except Exception as e:
             print("batch", i, "failed", type(e).__name__, str(e)[:120], flush=True); time.sleep(10)
-print("ohlc:", len(out), "of", len(uni), "stocks +", len(EXTRA), "ETFs / crypto", flush=True)
+print("ohlc:", len(out), "of", len(uni), "stocks +", len(EXTRA), "ETFs", flush=True)
 if not out: raise SystemExit("nothing downloaded, the ohlc branch stays as it is")
 
 with tempfile.TemporaryDirectory() as d:
