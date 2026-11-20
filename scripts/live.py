@@ -164,12 +164,18 @@ while True:
             try: ETF_T += [r["t"] for r in json.loads((root / "data.json").read_text(encoding="utf-8")).get("etfs", {}).get("rows", []) if r["t"] not in ETF_T]   # thematic ETFs table
             except Exception as e: print("etf list", type(e).__name__, flush=True)
             try:
-                px = yf.download(ETF_T, period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
+                bars = yf.download(ETF_T, period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)
+                px = bars["Close"]
                 for e in px.columns:
                     c = px[e].dropna()
-                    if len(c) >= 2: etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
+                    if len(c) >= 2:
+                        etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]
+                        try:   # today's range and open, same shape as a stock quote [price, change %, high, low, open] (today's candle on the chart)
+                            d = c.index[-1]; hi, lo, op = (float(bars[k][e].loc[d]) for k in ("High", "Low", "Open"))
+                            if hi == hi and lo == lo and op == op and hi > 0 and lo > 0 and op > 0: etf[e] += [round(hi, 2), round(lo, 2), round(op, 2)]
+                        except Exception: pass
             except Exception as e: print("etf", type(e).__name__, flush=True)
-            if etf: payload["etf"] = etf   # sector ETF price + change (XLK, XLF ...)
+            if etf: payload["etf"] = etf   # ETF price + change (+ day high, low, open): sector funds (XLK, XLF ...) and the thematic table
             if VB: payload["vb"] = dict(VB)
             if EXT and mins >= 16 * 60: payload["post"] = dict(EXT)   # after-hours prices (16:00-20:00 New York)
             if mins >= 16 * 60:   # after-hours for the index ETFs (status line on the home page)
