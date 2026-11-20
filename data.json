@@ -43822,7 +43822,7 @@
   }
  ],
  "overview": {
-  "asOf": "20.11.2026 · 18:57",
+  "asOf": "20.11.2026 · 19:58",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43881,13 +43881,13 @@
   ],
   "brief": [
    {
-    "h": "ה-S&P 500 בדרך לירידה שביעית ברציפות",
-    "t": "הדאו כמעט ללא שינוי, אבל ה-S&P 500 והנאסד״ק יורדים עם השבבים, וה-S&P 500 בדרך לירידה שביעית ברציפות, הרצף הארוך מאז 2020 לפי AP; תשואת ה-10 שנים ירדה ל-4.95% והנפט ל-$91.07.",
+    "h": "הנאסד״ק מוביל ירידות חדות",
+    "t": "המכירות העמיקו בצהריים: הנאסד״ק יורד בחדות יותר מה-S&P 500 והדאו, וה-S&P 500 בדרך לירידה שביעית ברציפות, הרצף הארוך מאז 2020 לפי AP; תשואת ה-10 שנים ירדה לכ-4.99%.",
     "tone": "neg"
    },
    {
     "h": "השבבים ותשתיות ה-AI צונחים",
-    "t": "Micron יורדת ביותר מ-11%, AMD ו-Broadcom בכ-9%, Coherent בכ-14% ו-Bloom Energy בכ-12%, על רקע החשש מהיקף ההוצאות על AI; Anthropic ממשיכה לרדת, והביטקוין ירד מתחת ל-$60,000.",
+    "t": "קרן השבבים SOXX יורדת ב-7.8%: Micron ביותר מ-11%, Broadcom ביותר מ-10%, SanDisk ו-Coherent בכ-12% ו-Nvidia ירדה ל-$139; Anthropic יורדת ב-11% אחרי ש-Seaport פתחה סיקור בהמלצה ניטרלית.",
     "tone": "neg"
    },
    {
@@ -43901,9 +43901,9 @@
     "tone": "neg"
    },
    {
-    "h": "טראמפ ב-19:00, קוק ב-19:15",
-    "t": "טראמפ יציג ב-19:00 את עסקאות הסחר מביקורו באסיה, כולל הסכמים של יותר מ-$17 מיליארד ומכירת מטוסי Boeing ומנועי GE ל-Philippine Airlines ב-$12 מיליארד; נגידת הפד ליסה קוק תנאם ב-19:15.",
-    "tone": "neu"
+    "h": "הביטקוין מתחת ל-$60,000, הכורים צונחים",
+    "t": "הביטקוין ירד מתחת ל-$60,000 לראשונה מאז יולי; Hut 8 יורדת בכמעט 15%, Core Scientific ו-Bitdeer ביותר מ-13% ו-Cipher Digital ב-13%.",
+    "tone": "neg"
    }
   ],
   "macro": {
@@ -43975,7 +43975,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
   },
-  "rev": 202611201857,
+  "rev": 202611201958,
   "market": {
    "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
    "idx": [
@@ -112085,6 +112085,112 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-midday-nasdaq-331",
+   "date": "2026-11-20",
+   "t": [
+    "AVGO",
+    "SNDK",
+    "COHR"
+   ],
+   "tag": "שווקים",
+   "tone": "neg",
+   "title": "בצהריים: הנאסד״ק מעמיק לירידה של 3.31%, ה-S&P 500 יורד ב-1.89%",
+   "body": "לפי 24/7 Wall St, בשעה 12:00 בניו יורק הנאסד״ק ירד ב-3.31%, ה-S&P 500 ב-1.89% והדאו ב-0.47%. Broadcom ירדה ב-10.48%, SanDisk ב-12.10% ו-Coherent ב-12.36%, על רקע הירידה במניית Anthropic.",
+   "src": "24/7 Wall St",
+   "url": "https://247wallst.com/cards/the-nasdaq-is-shedding-3-31-by-midday-while-the-dow-gives-u-gspc-market-bell-01m7wygvawtxjvw66d0rkd9qb7",
+   "time": "19:00"
+  },
+  {
+   "id": "2026-11-20-soxx-78-nvda-139",
+   "date": "2026-11-20",
+   "t": [
+    "NVDA",
+    "SOXX"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "קרן השבבים SOXX יורדת ב-7.8%; Nvidia ירדה ל-$139",
+   "body": "לפי CoinDesk, קרן השבבים SOXX ירדה ב-7.8% בצהריים, Nvidia ירדה ב-5% ל-$139 ו-Anthropic ירדה ב-11% לכ-$86. הביטקוין נסחר מתחת ל-$60,000 לראשונה מאז תחילת יולי.",
+   "src": "CoinDesk",
+   "url": "https://www.coindesk.com/tech/2026/11/20/live-news-bitcoin-hovers-just-above-usd61-000-as-anthropic-slides-13-after-nasdaq-debut",
+   "time": "18:59"
+  },
+  {
+   "id": "2026-11-20-hut-15",
+   "k": "stock",
+   "date": "2026-11-20",
+   "t": [
+    "HUT"
+   ],
+   "tag": "קריפטו",
+   "tone": "neg",
+   "title": "Hut 8 צונחת בכמעט 15% עם ירידת הביטקוין מתחת ל-$60,000",
+   "body": "לפי CoinDesk, Hut 8 ירדה בכמעט 15%, Core Scientific ו-Bitdeer ביותר מ-13% ו-Riot ב-8.5%, כשהביטקוין ירד מתחת ל-$60,000 ומניית Anthropic המשיכה לרדת.",
+   "src": "CoinDesk",
+   "url": "https://www.coindesk.com/tech/2026/11/20/live-news-bitcoin-hovers-just-above-usd61-000-as-anthropic-slides-13-after-nasdaq-debut",
+   "time": "18:59"
+  },
+  {
+   "id": "2026-11-20-cifr-13",
+   "k": "stock",
+   "date": "2026-11-20",
+   "t": [
+    "CIFR"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "neg",
+   "title": "Cipher Digital יורדת ב-13% עם מכירות תשתיות ה-AI",
+   "body": "לפי 24/7 Wall St, Cipher Digital ירדה ב-13.05% ל-$5.50 בצהריים, יחד עם Applied Digital, ללא חדשה ספציפית מהחברה, על רקע הירידה במניית Anthropic.",
+   "src": "24/7 Wall St",
+   "url": "https://247wallst.com/cards/the-nasdaq-is-shedding-3-31-by-midday-while-the-dow-gives-u-gspc-market-bell-01m7wygvawtxjvw66d0rkd9qb7",
+   "time": "19:00"
+  },
+  {
+   "id": "2026-11-20-sndk-12",
+   "k": "stock",
+   "date": "2026-11-20",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "SanDisk מעמיקה לירידה של כ-12% ביום הראשון אחרי הפיצול",
+   "body": "לפי 24/7 Wall St, SanDisk ירדה ב-12.10% ל-$79.15 בצהריים, ללא חדשה ספציפית מהחברה, עם מכירות השבבים ותשתיות ה-AI.",
+   "src": "24/7 Wall St",
+   "url": "https://247wallst.com/cards/the-nasdaq-is-shedding-3-31-by-midday-while-the-dow-gives-u-gspc-market-bell-01m7wygvawtxjvw66d0rkd9qb7",
+   "time": "19:00"
+  },
+  {
+   "id": "2026-11-20-avgo-10",
+   "k": "stock",
+   "date": "2026-11-20",
+   "t": [
+    "AVGO"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Broadcom יורדת ביותר מ-10%",
+   "body": "לפי 24/7 Wall St, Broadcom ירדה ב-10.48% ל-$306.97 בצהריים, המניה הבולטת בירידות השבבים; בבוקר ירדה על דיווח ש-Google תרכוש זיכרון HBM ישירות.",
+   "src": "24/7 Wall St",
+   "url": "https://247wallst.com/cards/the-nasdaq-is-shedding-3-31-by-midday-while-the-dow-gives-u-gspc-market-bell-01m7wygvawtxjvw66d0rkd9qb7",
+   "time": "19:00"
+  },
+  {
+   "id": "2026-11-20-ant-seaport",
+   "k": "stock",
+   "date": "2026-11-20",
+   "t": [
+    "ANT"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Seaport פתחה סיקור על Anthropic בהמלצה ניטרלית; המניה יורדת ב-11%",
+   "body": "לפי StockTitan בהסתמך על CNBC, Seaport Research פתחה סיקור על Anthropic בהמלצה ניטרלית. המניה ירדה ב-11.35% בבוקר, והירידה בה מעיבה על מסחר ה-AI כולו.",
+   "src": "StockTitan / CNBC",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-20-2026",
+   "time": "16:02"
+  },
   {
    "id": "2026-11-20-crdo-ai-suppliers",
    "date": "2026-11-20",
