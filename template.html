@@ -328,7 +328,6 @@ tr:last-child td{border-bottom:0}
 .ldwk{border:1px solid #2f4f86;background:#111a2b;border-radius:12px;padding:12px 14px;margin-bottom:12px}.ldwh{display:flex;gap:8px;align-items:baseline;margin-bottom:8px}.ldwh b{font-size:15.5px}.ldwh small{color:var(--muted);font-size:12px}
 .ldwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}.ldwg>div{background:var(--panel);border-radius:10px;padding:8px 10px}.ldwg small{color:var(--muted);font-size:12px}
 .ldwg ul{list-style:none;margin:4px 0 0;padding:0}.ldwg li{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:2px 0}.ldwg li a{font:600 13px 'JetBrains Mono',monospace;color:var(--text);text-decoration:none}.ldwg li span{font-size:12px}.mu{color:var(--muted)}
-#rotBody{max-width:760px}
 .evu{margin-top:10px;background:var(--panel2);border-radius:8px;padding:8px 10px}.evu b{font-size:12.5px}.evu p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
 .evaa{display:flex;height:22px;border-radius:6px;overflow:hidden;margin:8px 0 4px;font:600 11.5px 'JetBrains Mono',monospace}.evaa i{display:flex;align-items:center;justify-content:center;font-style:normal;color:#0c0d10}.evaa .bu{background:#3fb950}.evaa .ne{background:#7d8590}.evaa .be{background:#f85149}
 .evaal{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;font-size:12.5px}.evaal small{color:var(--muted)}
@@ -918,17 +917,12 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <p class="legend">לפי תשואת החודש האחרון (21 ימי מסחר). תעשיות: רק קבוצות עם 3 מניות ומעלה. "שינויים בחמישייה" = מי נכנסה לחמש התעשיות המובילות ומי יצאה מהן ב-5 ימי המסחר האחרונים. נתונים בלבד, לא המלצה.</p>
 </section>
 
-<section id="evidence" data-pg="research">
+<section id="evidence" data-pg="market">
   <h2>מחקר מבוסס ראיות</h2>
   <p class="sub">אינדיקטורים שמשקיעים מוסדיים בודקים כדי להבין את מצב השוק: פחד וחמדנות, עקום התנודתיות, מרווחי אשראי ועונתיות. מה קרה בעבר במצבים דומים, בלי תחזית ובלי המלצה.</p>
   <div id="evBody"></div>
 </section>
 
-<section id="rotation" data-pg="research">
-  <h2>רוטציה בין סקטורים<span class="fresh" data-fr="themes"></span></h2>
-  <p class="sub">דירוג ה-RS של קרן הסל של כל סקטור (1–99, מול מניות ה-S&amp;P 500) היום. הקו הלבן מראה איפה היה לפני 4 שבועות, והחץ את הכיוון.</p>
-  <div id="rotBody"></div>
-</section>
 <section id="etfs" data-pg="research">
   <div class="stsw" role="tablist"><a href="#sectors" data-sw="sectors">סקטורים</a><a href="#themes" data-sw="themes">תעשיות</a><a href="#etfs" data-sw="etfs" class="on">תעודות סל</a></div>
   <div class="sxh"><h2>תעודות סל</h2><span class="sxn" id="etfAsOf"></span></div>
@@ -1000,7 +994,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
 </section>
 
 <section id="stocksHub" data-pg="stocks">
-  <div class="sxh"><h2>מניות</h2><span class="sxn" id="hubN"></span><a class="sxadv" href="#screener">סורק מתקדם ←</a></div>
+  <div class="stsw" role="tablist"><a href="#stocksHub" data-sw="stocksHub" class="on">מניות</a><a href="#screener" data-sw="screener">סורק מתקדם</a></div>
+  <div class="sxh"><h2>מניות</h2><span class="sxn" id="hubN"></span></div>
   <div class="sxs" id="hubSum"></div>
   <div class="sxf"><div class="sxc" id="hubChips"></div><select id="hubSec" aria-label="סינון לפי סקטור"><option value="">כל הסקטורים</option></select></div>
   <div class="sxa"><span id="hubCnt"></span><button data-hcopy><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>העתק סימולים</button><button data-hwall>☆ הוסף הכל למעקב</button></div>
@@ -1025,7 +1020,8 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <p class="legend">חישוב עצמי מנתוני Yahoo Finance: בזמן המסחר כל 10 דקות (שיא ושפל לפי הגבוה והנמוך של היום עד עכשיו), ובערב חישוב מלא אחרי הסגירה. מחזור המסחר: ממוצע 3 חודשים. מניות שהונפקו השנה לא נכללות. 🇮🇱 = חברה ישראלית.</p>
 </section>
 <section id="screener" data-pg="stocks">
-  <h2>סורק מניות<button class="gq" data-gl="SCREEN" aria-label="הסבר">?</button></h2>
+  <div class="stsw" role="tablist"><a href="#stocksHub" data-sw="stocksHub">מניות</a><a href="#screener" data-sw="screener" class="on">סורק מתקדם</a></div>
+  <h2>סורק מתקדם<button class="gq" data-gl="SCREEN" aria-label="הסבר">?</button></h2>
   <p class="sub">סינון של כל המניות באתר לפי סקטור, גודל, תשואה, צמיחה, מכפיל רווח, מרחק מהשיא השנתי ועוד. לחיצה על כותרת עמודה ממיינת לפיה.</p>
   <div class="scp" id="scPre"></div>
   <details class="scd"><summary>סינון מתקדם</summary><div class="scf" id="scF"></div></details>
@@ -1357,14 +1353,14 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    Each <section> has data-pg (home / market / reports / stocks / news / archive / stock / legal).
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
-  market:[['#snapshot','תמונת מצב'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית']],
-  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות'],['#rotation','רוטציה'],['#evidence','מחקר מבוסס ראיות']],
+  market:[['#snapshot','תמונת מצב'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית'],['#evidence','מחקר מבוסס ראיות']],
+  research:[['#leaders','מובילים'],['#sectors','סקטורים ותעשיות']],
   reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#ipos','הנפקות']],
-  stocks:[['#stocksHub','מניות'],['#screener','סורק מניות'],['#compare','השוואת גרפים']]
+  stocks:[['#stocksHub','מניות'],['#compare','השוואת גרפים']]
 };
 const PG_TITLE={etfs:'Theme ETFs',compare:'Compare',research:'Research',watch:'My list',home:'',market:'Market',reports:'Earnings',stocks:'Stocks',news:'News',archive:'Earnings archive',gloss:'Glossary'};
 const BASE_TITLE=document.title;
-let CURPG=null, MSUB='snapshot', RSUB='earnings', XSUB='leaders';
+let CURPG=null, MSUB='snapshot', RSUB='earnings', XSUB='leaders', SSUB='stocksHub';
 document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
 (function(){ const mq=matchMedia('(max-width:760px)'), lg=document.querySelector('header .logo'), row=document.querySelector('.nvrow'), top=document.querySelector('header .top');
   const fit=()=>{ if(!lg||!row||!top) return; const ab=document.getElementById('authBox'), bx=top.querySelector('div[style]'); if(mq.matches){ if(lg.parentNode!==row) row.insertBefore(lg,row.firstChild); if(ab&&ab.parentNode!==row) row.appendChild(ab); } else { if(lg.parentNode!==top) top.insertBefore(lg,top.firstChild); if(ab&&bx&&ab.parentNode!==bx) bx.insertBefore(ab,bx.firstChild); } };
@@ -1389,13 +1385,14 @@ function route(){
   document.body.classList.add('r');
   if(pg==='reports'&&el) RSUB=el.id;
   if(pg==='market'&&el) MSUB=el.id;
+  if(pg==='stocks'&&el&&(el.id==='stocksHub'||el.id==='screener')) SSUB=el.id;
   if(pg==='research'&&el) XSUB=el.id;   /* market page: one tool at a time (sectors / industries / breadth / macro) */
-  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? s.id===MSUB : pg==='research' ? s.id===XSUB : pg==='reports' ? s.id===RSUB : s.dataset.pg===pg));
+  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? s.id===MSUB : pg==='research' ? s.id===XSUB : pg==='reports' ? s.id===RSUB : pg==='stocks' ? s.id===SSUB : s.dataset.pg===pg));
   const navp = pg==='stock'?'stocks':pg==='group'?'research':pg==='gloss'?'reports':pg==='compare'?'stocks':pg==='watch'?'':pg;
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
-  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')||(pg==='compare'&&hh==='#compare')||(h==='#page/stocks'&&hh==='#stocksHub')||(pg==='research'&&(hh==='#'+XSUB||(hh==='#sectors'&&(XSUB==='themes'||XSUB==='etfs'))))?'on':''}">${l}</a>`).join('');
+  if(showSub) $('subnav').innerHTML=sub.map(([hh,l])=>`<a href="${hh}" class="${hh===h||(pg==='reports'&&(hh==='#'+RSUB||(hh==='#reports'&&RSUB==='earnings')))||(pg==='market'&&hh==='#'+MSUB)||(pg==='gloss'&&hh==='#glossary')||(pg==='compare'&&hh==='#compare')||(pg==='stocks'&&hh==='#stocksHub')||(pg==='research'&&(hh==='#'+XSUB||(hh==='#sectors'&&(XSUB==='themes'||XSUB==='etfs'))))?'on':''}">${l}</a>`).join('');
   if(pg!=='stock'&&pg!=='group') document.title = PG_TITLE[pg] ? `${PG_TITLE[pg]} | Wallstreeter` : BASE_TITLE;
   if(pg==='gloss'){ renderGloss(); if(h.startsWith('#glossary/')){ CURPG=pg; document.body.dataset.pg=pg; setNavH(); return; } }
   if(pg==='research'&&XSUB==='leaders') renderLeaders();
@@ -2990,23 +2987,6 @@ function renderEv(){
       <p class="evn">התשואה החודשית הממוצעת של המדד בכל חודש מאז ${S.since}.</p>${evUse('עונתיות היא נטייה סטטיסטית, לא חוק. היא שימושית כרקע, למשל לדעת שספטמבר היה היסטורית החודש החלש ונובמבר–דצמבר החזקים, אבל בכל שנה בודדת אירועים, דוחות וריבית חשובים יותר. אחוז השנים החיוביות חשוב לא פחות מהממוצע, כי ממוצע יכול להיות מושפע משנה קיצונית אחת.')}</div>`); }
   b.innerHTML=`<div class="evgrid">${cards.join('')}</div><p class="legend">כל הנתונים הם היסטוריה ותיאור של המצב היום, לא תחזית ולא המלצה. מתעדכן כל לילה (${dmy(E.asOf)}).</p>`;
 }
-function renderRot(){
-  const b=$('rotBody'); if(!b) return; const R=((THEMES||{}).x||{}).rot||{};
-  const he=t=>(((SECTORS||{}).rows||[]).find(x=>x.t===t)||{}).name||'', en=t=>(Object.entries(SEC_HE).find(([e,h])=>h===he(t))||[''])[0];
-  const rows=Object.entries(R).filter(([,v])=>v[0]!=null).sort((a,b)=>b[1][0]-a[1][0]);
-  if(!rows.length){ b.innerHTML='<div class="empty">הנתונים יופיעו אחרי העדכון הלילי.</div>'; return; }
-  const ch=rows.filter(([,v])=>v[1]!=null).map(([t,v])=>[t,v[0]-v[1]]), upS=ch.filter(x=>x[1]>=3).sort((a,b)=>b[1]-a[1]).slice(0,3), dnS=ch.filter(x=>x[1]<=-3).sort((a,b)=>a[1]-b[1]).slice(0,3);
-  const sum=(upS.length||dnS.length)?`<p class="rotsum">בחודש האחרון: ${upS.length?`<span class="up">התחזקו ${upS.map(([t,d])=>`${esc(he(t))} (${t}, ▲${d})`).join(', ')}</span>`:''}${upS.length&&dnS.length?' · ':''}${dnS.length?`<span class="down">נחלשו ${dnS.map(([t,d])=>`${esc(he(t))} (${t}, ▼${-d})`).join(', ')}</span>`:''}</p>`:'';
-  b.innerHTML=sum+`<div class="rotl">${rows.map(([t,[n,o]])=>{ const d=o==null?null:n-o;
-    return `<a class="rotr" href="#sector/${encodeURIComponent(en(t))}"><span class="rotn"><b>${esc(t)}</b><small>${esc(he(t))}</small></span>
-      <span class="rotb"><i class="${d==null||d>=0?'pos':'neg'}" style="width:${n}%"></i>${o!=null?`<em style="right:${o}%" title="לפני 4 שבועות: ${o}"></em>`:''}</span>
-      <span class="rotv num ${d==null?'':d>=0?'up':'down'}">${n}${d!=null?` <small>${d>0?'▲':d<0?'▼':'•'}${Math.abs(d)}</small>`:''}</span></a>`; }).join('')}</div>`
-    +`<div class="rotlg"><b>איך לקרוא</b>
-      <p><b>המספר הגדול</b> הוא דירוג ה-RS של קרן הסל של הסקטור, מ-1 עד 99. הוא משווה את הביצועים שלה ב-12 החודשים האחרונים (3 החודשים האחרונים נספרים כפול) לכל מניות ה-S&amp;P 500. RS 77 = הסקטור חזק מ-77% מהמניות.</p>
-      <p><b>נקודות דירוג</b> (▲ / ▼) = בכמה הדירוג השתנה ב-4 השבועות האחרונים. ▲13 אומר שהסקטור עלה מ-19 ל-32: הוא עוקף עכשיו עוד 13% מהמניות לעומת לפני חודש. ▼44 אומר שירד 44 נקודות.</p>
-      <p><b>הפס</b> = הדירוג היום. <b>הקו הלבן</b> = הדירוג לפני 4 שבועות. ירוק = התחזק, אדום = נחלש.</p>
-      <p><b>רוטציה</b> = כסף שעובר מסקטורים שנחלשים לסקטורים שמתחזקים. מעבר לחשמל ומים, צריכה בסיסית ובריאות נחשב בדרך כלל מעבר לסקטורים דפנסיביים. זה תיאור של הנתונים, לא תחזית ולא המלצה.</p></div>`;
-}
 function renderSnap(){
   const b=$('snapBody'); if(!b) return; const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
   const sec=[...(SECTORS.rows||[])].filter(r=>r.m!=null).sort(byKey('m')), ind=(T.rows||[]).filter(r=>thCnt(r)>=3&&r.m!=null).sort(byKey('m'));
@@ -3091,7 +3071,7 @@ function renderSec(){
     return `<div class="rw2 mx has sec ${op?'open':''}" data-sec="${esc(r.t||'')}"><div class="nm2"><b><bdi>${esc(r.en||r.name)}</bdi>${r.t?`<span class="sxt">${esc(r.t)}</span>`:''}</b><small><span class="car">◀</span>${esc(r.name)}${r.t?``:''}${TS.has(r.t)?' '+TRB:''}</small>${(e||r.px)?`<span class="sxq"><span class="num sxp">$${(e?e[0]:r.px).toFixed(2)}</span>${r.d!=null?` <span class="num sxd ${r.d>=0?'up':'down'}">${pct(r.d,2)}</span>`:''}</span>`:''}</div>${c.map(k=>pc(r[k],k===secKey)).join('')}${rsCell(r.rs,secKey==='rs')}${a5Cell(x)}${spark(r.sp||x.sp,r.ytd)}</div>`+
       (op?`<div class="thsub"><div class="stks">${top.map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':secKey==='rs'?(ch>=80?'up':ch<=20?'down':'flat'):ch>=0?'up':'down'}">${ch==null?'—':secKey==='rs'?'RS '+ch:pct(ch,1)}</span></a>`).join('')}</div><div class="stknote">${top.length} המניות החזקות בסקטור מתוך ${mem.length} מניות ה-S&P 500 שבו, לפי ${secKey==='rs'?'RS':'תשואת '+esc(PLs)}. <a href="#sector/${encodeURIComponent(r.en)}">לכל המניות בסקטור ←</a></div></div>`:''); }).join('');
   $('secSub').textContent = `תשואת 11 הסקטורים של השוק האמריקאי, נכון ל-${SECTORS.asOf||''}.${E?` עמודת "היום" מתעדכנת במהלך המסחר (עודכנה ב-${liveTm()}).`:''} אפשר ללחוץ על טווח זמן כדי למיין לפיו.`;
-  try{ renderSnap(); }catch(e){} try{ renderRot(); }catch(e){} try{ renderEv(); }catch(e){}
+  try{ renderSnap(); }catch(e){} try{ renderEv(); }catch(e){}
 }
 document.addEventListener('click',e=>{ const k=e.target.dataset&&e.target.dataset.k; if(k && e.target.closest('#sectors')){ secKey=k; renderSec(); return; }
   const rw=e.target.closest&&e.target.closest('#secTable .rw2.has'); if(rw&&!e.target.closest('a')){ if(rw.dataset.th){ const k=rw.dataset.th; thOpen.has(k)?thOpen.delete(k):thOpen.add(k); } else { const t=rw.dataset.sec; secOpen.has(t)?secOpen.delete(t):secOpen.add(t); } renderSec(); } });
@@ -3335,7 +3315,7 @@ function renderThemes(){
   $('thMore').textContent = thAll ? 'הצג רק את 15 המובילות' : `הצג את כל ${T.rows.length} התעשיות`;
   $('thSub').textContent = `15 קבוצות התעשייה המובילות בתקופה שנבחרה, מתוך ${T.rows.filter(r=>(r.cnt??3)>=3).length} קבוצות עם 3 מניות ומעלה בשוק האמריקאי, נכון ל${T.asOf}. קבוצות קטנות יותר לא מדורגות, אבל אפשר למצוא אותן בחיפוש.${LIVE_IND?` עמודת "היום" חיה ומתעדכנת כל 3 דקות (עודכנה ב-${liveTm()}).`:` עמודת "יום אחרון" היא השינוי ביום המסחר האחרון (${closeLbl()}); בזמן המסחר היא הופכת ל"היום" ומתעדכנת כל 3 דקות.`} זו הדרך לראות לאן הכסף זורם, ברזולוציה גבוהה יותר מהסקטורים. ↑↑ = מגמה עקבית: ברבע העליון גם בחודש וגם ב-3 חודשים.`;
   $('thLegend').innerHTML = `▲/▼ ליד מספר המניות = כמה מקומות התעשייה עלתה או ירדה בדירוג החודשי מול לפני 5 ימי מסחר. הגרף הקטן = מהלך התעשייה מתחילת השנה. RS (חוזק יחסי) = דירוג מ-1 עד 99 של ביצועי התעשייה ב-12 החודשים האחרונים מול מניות מדד S&P 500, כש-3 החודשים האחרונים נספרים כפול. 90 = חזקה מ-90% ממניות המדד. ◀ = אפשר ללחוץ על תעשייה כדי לראות את המניות המובילות בה. ירוק = עלייה, אדום = ירידה. הדירוג (#) הוא לפי התקופה שנבחרה. התשואה של כל תעשייה היא ממוצע פשוט של כל המניות בה (כל מניה באותו משקל), ולכן בקבוצה קטנה מניה אחת יכולה להזיז אותה.${T.check&&T.check.hist?` מחירי הסגירה של ${T.check.hist.toLocaleString('en-US')} מניות מגיעים ממאגר מבוקר (Massive) עד ${esc(T.check.histTo||'')}; ימים מאוחרים יותר מ-Yahoo, עד שהם מאומתים בבוקר.`:''} כשיש בקבוצה מעט מניות, הנתון פחות מייצג. המידע הוא נתונים בלבד ואינו המלצה.${T.src?` מקור: ${esc(T.src)}.`:''}`;
-  try{ renderSnap(); }catch(e){} try{ renderRot(); }catch(e){} try{ renderEv(); }catch(e){}
+  try{ renderSnap(); }catch(e){} try{ renderEv(); }catch(e){}
 }
 document.addEventListener('click',e=>{ const sk=e.target.dataset&&e.target.dataset.sk; if(!sk) return;   /* click on a period header = sort by it */
   if(e.target.closest('#secTable')){ secKey=sk; renderSec(); } else if(e.target.closest('#thTable')){ thKey=sk; renderThemes(); } });
@@ -3379,7 +3359,7 @@ let clkPushT=null; function accPush(){ const u=CLK&&CLK.user; if(!u) return; cle
 document.addEventListener('click',async e=>{ if(e.target.closest('#authIn')){ const c=await clkLoad(); if(!c){ alert('ההתחברות עוד לא זמינה. נסה שוב מאוחר יותר.'); return; } if(!c.user) c.openSignIn({forceRedirectUrl:location.href}); } });
 
 /* ---------- members-only tools: a sign-in wall in the page (the data files stay public; this is a nudge, not protection) ---------- */
-const GATED={leaders:'מובילים',etfs:'תעודות סל',rotation:'רוטציה',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
+const GATED={leaders:'מובילים',etfs:'תעודות סל',evidence:'מחקר מבוסס ראיות',screener:'סורק מניות',compare:'השוואת גרפים',sectors:'סקטורים',themes:'תעשיות',groupPage:'סקטורים ותעשיות',breadth:'רוחב שוק',macro:'מאקרו',earnings:'דוחות',upcoming:'לוח השבוע'};
 function accOn(){ if(CLK) return !!CLK.user; try{ return localStorage.getItem('clkOn')==='1'; }catch(e){ return false; } }
 const gateOn=()=>!!(CLK_PK&&CLK_LIVE);
 function gateBox(sec,g){ if(!sec.querySelector(':scope>.gate')){ const d=document.createElement('div'); d.className='gate'; d.innerHTML=`<div class="gatei"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z" fill="currentColor"/></svg></div><h2>${g}: למשתמשים רשומים</h2><p>ההרשמה חינם ולוקחת כמה שניות, עם חשבון Google או מייל. אחרי ההתחברות נפתחים כל הכלים, ורשימת המעקב נשמרת בכל מכשיר.</p><button class="gatebtn" data-gin>התחברות / הרשמה חינם</button>`; sec.prepend(d); } sec.classList.add('gated'); }
