@@ -289,7 +289,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .spperf{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin:10px 0 16px}
 .spperf div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
 .spperf small{display:block;color:var(--muted);font-size:11.5px}.spperf b{direction:ltr;display:inline-block}
-.ocd{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 12px;margin:0 0 16px}.ocd .oh{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;font-size:12.5px;color:var(--muted)}.ocd .oh b{color:var(--text);font-size:14px}.ocd .oh .rg{display:flex;gap:4px;margin-inline-start:auto}.ocd .oh button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:2px 9px;font:inherit;cursor:pointer}.ocd .oh button.on{background:var(--panel2);color:var(--text)}.ocd .oh label{display:flex;gap:4px;align-items:center;cursor:pointer}.ocd .oi{min-height:18px;font-size:12px;color:var(--text);direction:ltr;text-align:left;margin-bottom:4px}.ocd.hold{border-color:var(--accent)}.ocd svg{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}
+.ocd{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 12px;margin:0 0 16px}.ocd .oh{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px;font-size:12.5px;color:var(--muted)}.ocd .oh b{color:var(--text);font-size:14px}.ocd .oh .rg{display:flex;gap:4px;margin-inline-start:auto}.ocd .oh button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:2px 9px;font:inherit;cursor:pointer}.ocd .oh button.on{background:var(--panel2);color:var(--text)}.ocd .oh label{display:flex;gap:4px;align-items:center;cursor:pointer}.ocd .oi{min-height:18px;font-size:12px;color:var(--text);direction:ltr;text-align:left;margin-bottom:4px}.ocd.hold{border-color:var(--accent)}.ocd svg{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}.ocd .ocmb{display:none}@media(hover:none),(max-width:640px){.ocd .ocds,.ocd [data-oclk]{display:none}.ocd .ocmb{display:inline}.ocd{padding:8px 6px}.ocd .oh{gap:6px 10px}.ocd .oh .rg{margin-inline-start:0;width:100%;order:9}.ocd .oh .rg button{flex:1;padding:5px 0}.ocd .oi{font-size:11px;white-space:nowrap;overflow:hidden}}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
 a.tlink{color:inherit;text-decoration:none}a.tlink:hover .tick,a.tlink:hover{text-decoration:underline}
@@ -1899,7 +1899,7 @@ async function renderStock(t){
       <div id="spIns"></div>
       ${peers.length?`<h3 class="sph3">מניות דומות${s.indHe?` · ${esc(s.indHe)}`:''}</h3><div class="peers">${peers.map(p=>hubTile(p[0],p[1],p[3]&&typeof p[3]==='object'?p[3].m:null,'$'+p[2])).join('')}</div><p class="legend">השינוי בחודש האחרון. מניות מאותה תעשייה, לפי שווי שוק.</p>`:''}
     </div>
-    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 50 יום: הקו הכחול המקווקו · ממוצע נע אקספוננציאלי 200 יום: הקו הכחול הרציף</span></div><div class="spchart" id="spChart"></div>${t==='NVDA'?'<div id="ownCd"></div>':''}</div>
+    <div class="sptab" data-st="ch"><div class="chtg"><span class="chn" id="chNote" style="margin:0">נרות יפניים יומיים · ממוצע נע 50 יום: הקו הכחול המקווקו · ממוצע נע אקספוננציאלי 200 יום: הקו הכחול הרציף</span></div><div class="spchart" id="spChart"></div><div id="ownCd"></div></div>
     <div class="sptab" data-st="rp">
       ${repCard(t,SDET[t],rep,reps)}
       <div id="spSnap"></div>
@@ -2201,17 +2201,20 @@ function pxOut(ev){ const w=ev.target.closest&&ev.target.closest('.pxw'); if(!w)
 document.addEventListener('pointermove',pxMove); document.addEventListener('pointerdown',pxMove);
 document.addEventListener('pointerleave',ev=>{ if(ev.target&&ev.target.classList&&ev.target.classList.contains('pxw')) pxOut(ev); },true);
 
-/* ---------- own candlestick chart (below the TradingView chart; NVDA only for now). Data: ohlc/<T>.json from the nightly run ---------- */
+/* ---------- own candlestick chart (below the TradingView chart, every stock). Data: <T>.json on the `ohlc` branch, from the nightly run (scripts/ohlc.py) ---------- */
 const OC={};
 function ownCandle(t){ const box=$('ownCd'); if(!box) return;
-  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span>נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg"><button data-ocau dir="rtl" style="display:none" title="חזרה לסקלת מחיר אוטומטית">מחיר אוטומטי</button><button data-oclk dir="rtl" title="כשהכפתור פעיל, הגלגלת על הגרף עושה זום בציר הזמן ובציר המחיר יחד">⛓ זום בשני הצירים</button>${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" viewBox="0 0 680 360" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2">גלגלת: זום · גרירה עם העכבר: הזזה חופשית לכל כיוון (בנייד: לחיצה ארוכה ואז גרירה) · גרירה או גלגלת על ציר המחיר (מימין) ועל ציר הזמן (למטה): סקלה נפרדת · לחיצה כפולה על ציר המחיר: אוטומטי. הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
-    box._n=box._n||90; ocDraw(t); };
+  const go=j=>{ if(!j||!j.d||!$('ownCd')) return; OC[t]=j; box.innerHTML=`<div class="ocd" dir="rtl"><div class="oh"><b dir="ltr">${esc(t)}</b><span class="ocds">נרות יומיים · הגרף שלנו</span><label><input type="checkbox" data-oc="50" checked> ממוצע 50</label><label><input type="checkbox" data-oc="200" checked> ממוצע 200</label><label><input type="checkbox" data-oc="v" checked> נפח</label><span class="rg"><button data-ocau dir="rtl" style="display:none" title="חזרה לסקלת מחיר אוטומטית">מחיר אוטומטי</button><button data-oclk dir="rtl" title="כשהכפתור פעיל, הגלגלת על הגרף עושה זום בציר הזמן ובציר המחיר יחד">⛓ זום בשני הצירים</button>${[['1M',22],['3M',63],['6M',126],['1Y',252]].map(([l,n])=>`<button data-ocn="${n}" dir="ltr">${l}</button>`).join('')}</span></div><div class="oi" id="ocI"></div><svg id="ocS" role="img" aria-label="גרף נרות יומי של ${esc(t)}"></svg><div class="on2"><span class="ocds">גלגלת: זום · גרירה עם העכבר: הזזה חופשית לכל כיוון · גרירה או גלגלת על ציר המחיר (מימין) ועל ציר הזמן (למטה): סקלה נפרדת · לחיצה כפולה על ציר המחיר: אוטומטי. </span><span class="ocmb">גרירה לצדדים: הזזה בזמן · צביטה בשתי אצבעות: זום · לחיצה ארוכה ואז גרירה: הזזה חופשית · נגיעה: נתוני הנר. </span>הנתונים עד סגירת ${pxD(j.d[j.d.length-1])}. מחיר מותאם לפיצולי מניה, בלי דיבידנדים. מידע בלבד, לא ייעוץ השקעות.</div></div>`;
+    box._n=box._n||(box.clientWidth<520?63:90); ocDraw(t); };
   if(OC[t]) return go(OC[t]);
-  fetch('ohlc/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/36e5),{cache:'default'}).then(r=>r.ok?r.json():null).then(go).catch(()=>{}); }
-function ocData(t){ const j=OC[t]; if(!j) return []; const A=j.d.map((d,i)=>({d,o:j.o[i],h:j.h[i],l:j.l[i],c:j.c[i],v:j.v[i]}));
-  const L=liveQ(t), last=A[A.length-1];   /* today's candle from the live quote while the session runs (until the nightly file covers today) */
-  if(L&&liveOn()&&LIVE.date>last.d&&L[0]){ const lc=last.c; A.push({d:LIVE.date,o:lc,h:Math.max(L[2]||L[0],L[0]),l:Math.min(L[3]||L[0],L[0]),c:L[0],v:0,lv:1}); }
-  const ma=(n,i)=>i<n-1?null:A.slice(i-n+1,i+1).reduce((a,x)=>a+x.c,0)/n; A.forEach((x,i)=>{ x.m50=ma(50,i); x.m200=ma(200,i); }); return A; }
+  fetch('https://raw.githubusercontent.com/sagirozio/wallstreet-he/ohlc/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/36e5),{cache:'default'}).then(r=>r.ok?r.json():null).then(go).catch(()=>{}); }
+function ocData(t){ const j=OC[t]; if(!j) return []; const key=(LIVE&&liveOn()?LIVE.asOf:'')+'|'+j.d.length; if(j._A&&j._k===key) return j._A;
+  const A=j.d.map((d,i)=>({d,o:j.o[i],h:j.h[i],l:j.l[i],c:j.c[i],v:j.v[i]}));
+  /* today's candle from the live quote [price, change %, high, low, open] while the session runs (until the nightly file covers today) */
+  const L=liveQ(t), last=A[A.length-1];
+  if(L&&liveOn()&&L[0]&&LIVE.date>=last.d){ const prev=LIVE.date>last.d?last.c:(A.length>1?A[A.length-2].c:last.o), o=L[4]||(LIVE.date>last.d?prev:last.o), c={d:LIVE.date,o,h:Math.max(L[2]||L[0],L[0],o),l:Math.min(L[3]||L[0],L[0],o),c:L[0],v:LIVE.date>last.d?0:last.v,lv:1};
+    if(LIVE.date>last.d) A.push(c); else A[A.length-1]=c; }
+  const ma=(n,i)=>i<n-1?null:A.slice(i-n+1,i+1).reduce((a,x)=>a+x.c,0)/n; A.forEach((x,i)=>{ x.m50=ma(50,i); x.m200=ma(200,i); }); j._A=A; j._k=key; return A; }
 
 /* like TradingView: wheel over the chart zooms the time axis (never scrolls the page), dragging pans it; the price axis (right strip) has its own wheel/drag scale,
    the time strip (bottom) its own drag scale. The link button makes the chart body move both axes together. Double-click the price axis = auto price scale again. */
@@ -2219,7 +2222,7 @@ const ocN=()=>$('ownCd').querySelector('.oh b').textContent;
 const ocClamp=(box,v)=>Math.max(-(box._n-3),Math.min(box._L-3,v));   /* the chart can be dragged past the data (empty space), like TradingView */
 function ocZoomX(box,f,k){ const L=box._L, n=box._n, ci=(L-n-box._off)+f*n, nn=Math.round(Math.max(15,Math.min(L,n*k))); if(nn===n) return; const st=ci-f*nn; box._n=nn; box._off=ocClamp(box,L-nn-st); }
 function ocZoomY(box,pv,k){ const g=box._g; box._y=[pv-(pv-g.lo)*k, pv+(g.hi-pv)*k]; }
-function ocZone(svg,e,g){ const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*360; return {xx,yy,z:xx>g.W-g.pr?'y':yy>360-22?'x':'b'}; }
+function ocZone(svg,e,g){ const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*g.H; return {xx,yy,z:xx>g.W-g.pr?'y':yy>g.H-g.pb?'x':'b'}; }
 document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; e.preventDefault();
   const box=$('ownCd'), g=box._g; if(!g||!box._L) return; const q=ocZone(svg,e,g), k=e.deltaY>0?1.15:1/1.15, f=Math.max(0,Math.min(1,(q.xx-g.pl)/(g.W-g.pl-g.pr))), pv=g.hi-(Math.max(g.pt,Math.min(g.pt+g.ph,q.yy))-g.pt)/g.ph*(g.hi-g.lo);
   if(q.z==='y') ocZoomY(box,pv,k); else { ocZoomX(box,f,k); if(q.z==='b'&&box._link) ocZoomY(box,pv,k); }
@@ -2233,16 +2236,16 @@ document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.targe
   if(!OCD){ svg.style.cursor={y:'ns-resize',x:'ew-resize',b:'crosshair'}[ocZone(svg,e,g).z]; return; }
   const r=svg.getBoundingClientRect(), px=r.width/g.W*g.cw; OCD.lx=e.clientX; OCD.ly=e.clientY;
   if(!OCD.hold&&OCD.t&&Math.hypot(e.clientX-OCD.x,e.clientY-OCD.y)>6){ clearTimeout(OCD.t); OCD.t=0; }
-  if(OCD.hold){ const hx=e.clientX-OCD.bx, hy=(e.clientY-OCD.by)/r.height*360, d=hy/g.ph*(OCD.bhi-OCD.blo);
+  if(OCD.hold){ const hx=e.clientX-OCD.bx, hy=(e.clientY-OCD.by)/r.height*g.H, d=hy/g.ph*(OCD.bhi-OCD.blo);
     box._off=ocClamp(box,OCD.boff+hx/px); box._y=[OCD.blo+d,OCD.bhi+d]; ocDraw(ocN()); return; }
-  const dx=e.clientX-OCD.x, dy=(e.clientY-OCD.y)/r.height*360;
+  const dx=e.clientX-OCD.x, dy=(e.clientY-OCD.y)/r.height*g.H;
   if(OCD.z==='y'){ const k=Math.exp(dy/200), c=(OCD.lo+OCD.hi)/2, h=(OCD.hi-OCD.lo)/2*k; box._y=[c-h,c+h]; }
   else if(OCD.z==='x'){ const nn=Math.round(Math.max(15,Math.min(box._L,OCD.n*Math.exp(-dx/200)))); box._n=nn; box._off=ocClamp(box,OCD.off); }
   else { if(!OCD.mv&&Math.hypot(dx,e.clientY-OCD.y)<3) return; OCD.mv=1; box._off=ocClamp(box,OCD.off+dx/px); if(OCD.free||box._link){ const d=dy/g.ph*(OCD.hi-OCD.lo); box._y=[OCD.lo+d,OCD.hi+d]; } }
   ocDraw(ocN()); });
 const ocEnd=()=>{ if(OCD){ clearTimeout(OCD.t); OCD=null; const s=$('ocS'); if(s) s.style.cursor=''; const c=document.querySelector('.ocd'); if(c) c.classList.remove('hold'); } };
 document.addEventListener('pointerup',ocEnd); document.addEventListener('pointercancel',ocEnd);
-document.addEventListener('touchmove',e=>{ if(OCD&&OCD.hold) e.preventDefault(); },{passive:false});
+document.addEventListener('touchmove',e=>{ if((OCD&&OCD.hold)||PIN) e.preventDefault(); },{passive:false});
 document.addEventListener('dblclick',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; const box=$('ownCd'), g=box._g; if(g&&ocZone(svg,e,g).z==='y'){ box._y=null; ocDraw(ocN()); } });
 function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) return;
   const n=box._n||90, c50=box.querySelector('[data-oc="50"]').checked, c200=box.querySelector('[data-oc="200"]').checked, cv=box.querySelector('[data-oc="v"]').checked;
@@ -2251,12 +2254,13 @@ function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) r
   const lk=box.querySelector('[data-oclk]'); if(lk) lk.classList.toggle('on',!!box._link); const au=box.querySelector('[data-ocau]'); if(au) au.style.display=box._y?'':'none';
   const s0=L-nn-box._off, V=[];   /* the offset is fractional, so the chart moves smoothly and not candle by candle */
   for(let a=Math.max(0,Math.ceil(s0-1)); a<=Math.min(L-1,Math.floor(s0+nn)); a++) V.push({...A[a],k:a-s0,a}); if(!V.length) return; box._V=V;
-  const W=680,H=360,pl=8,pr=52,pt=10,pb=22,vh=70, ph=H-pt-pb-(cv?vh+8:0);
+  const W=Math.max(300,Math.round(svg.clientWidth||box.clientWidth||680)), sm=W<520, H=sm?330:Math.round(Math.min(460,W*.53)), pl=sm?4:8, pr=sm?46:52, pt=10, pb=22, vh=sm?52:70, ph=H-pt-pb-(cv?vh+8:0);
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.style.height=H+'px';
   let lo=Infinity,hi=-Infinity; V.forEach(x=>{ lo=Math.min(lo,x.l); hi=Math.max(hi,x.h); if(c50&&x.m50){ lo=Math.min(lo,x.m50); hi=Math.max(hi,x.m50); } if(c200&&x.m200){ lo=Math.min(lo,x.m200); hi=Math.max(hi,x.m200); } });
   const pad=(hi-lo)*.05; lo-=pad; hi+=pad; if(box._y){ lo=box._y[0]; hi=box._y[1]; } const cw=(W-pl-pr)/nn, X=i=>pl+cw*(i+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP='#22c55e', DN='#ef4444';
-  box._g={W,pl,pr,pt,ph,cw,lo,hi};
+  box._g={W,H,pl,pr,pt,pb,ph,cw,lo,hi};
   let o=''; for(let k=0;k<=4;k++){ const v=lo+(hi-lo)*k/4, y=Y(v); o+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#24272e" stroke-width=".7"/><text x="${W-pr+6}" y="${y+4}" font-size="11" fill="#7d8590">${v>=1000?Math.round(v):v.toFixed(1)}</text>`; }
-  const st=Math.max(1,Math.round(nn/6)); V.forEach((x,i)=>{ if(x.a%st===0&&x.k>=0&&x.k<=nn-1) o+=`<text x="${X(x.k)}" y="${H-6}" font-size="11" fill="#7d8590" text-anchor="middle">${pxD(x.d)}</text>`; });
+  const st=Math.max(1,Math.round(nn/(sm?4:6))); V.forEach((x,i)=>{ if(x.a%st===0&&x.k>=0&&x.k<=nn-1) o+=`<text x="${X(x.k)}" y="${H-6}" font-size="11" fill="#7d8590" text-anchor="middle">${pxD(x.d)}</text>`; });
   o+=`<defs><clipPath id="ocCl"><rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}"/></clipPath></defs><g clip-path="url(#ocCl)">`;
   V.forEach((x,i)=>{ const col=x.c>=x.o?UP:DN, bw=Math.max(1,cw*.65); o+=`<line x1="${X(x.k)}" x2="${X(x.k)}" y1="${Y(x.h)}" y2="${Y(x.l)}" stroke="${col}"/><rect x="${X(x.k)-bw/2}" y="${Y(Math.max(x.o,x.c))}" width="${bw}" height="${Math.max(1,Math.abs(Y(x.o)-Y(x.c)))}" fill="${col}"/>`; });
   const ln=(k,col)=>{ let d=''; V.forEach((x,i)=>{ if(x[k]!=null) d+=(d?'L':'M')+X(x.k)+' '+Y(x[k]); }); return d?`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.5"/>`:''; };
@@ -2267,15 +2271,27 @@ function ocDraw(t){ const box=$('ownCd'), svg=$('ocS'); if(!box||!svg||!OC[t]) r
   if(la.c>=lo&&la.c<=hi) o+=`<line x1="${pl}" x2="${W-pr}" y1="${ly}" y2="${ly}" stroke="${lc}" stroke-dasharray="4 4"/><rect x="${W-pr+1}" y="${ly-9}" width="${pr-2}" height="18" rx="3" fill="${lc}"/><text x="${W-pr+pr/2}" y="${ly+4}" font-size="11" fill="#fff" text-anchor="middle">${la.c.toFixed(1)}</text>`;
   o+=`<g id="ocC" style="display:none"><line id="ocX" y1="${pt}" y2="${H-pb}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><line id="ocY" x1="${pl}" x2="${W-pr}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><rect id="ocB" x="${W-pr+1}" width="${pr-2}" height="18" rx="3" fill="#c5cbd3"/><text id="ocT" x="${W-pr+pr/2}" font-size="11" fill="#0c0d10" text-anchor="middle"></text><rect id="ocDB" y="${H-pb+2}" width="64" height="18" rx="3" fill="#c5cbd3"/><text id="ocDT" y="${H-pb+15}" font-size="11" fill="#0c0d10" text-anchor="middle"></text></g>`;
   svg.innerHTML=o; $('ocI').textContent=''; }
-document.addEventListener('pointermove',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; const box=$('ownCd'), g=box._g, V=box._V; if(!g||!V) return;
-  const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*360;
+function ocHover(e){ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg) return; const box=$('ownCd'), g=box._g, V=box._V; if(!g||!V||!$('ocC')) return;
+  const r=svg.getBoundingClientRect(), xx=(e.clientX-r.left)/r.width*g.W, yy=(e.clientY-r.top)/r.height*g.H;
   const kf=(xx-g.pl)/g.cw-.5, x=V.find(c=>Math.abs(c.k-kf)<=.5), yc=Math.max(g.pt,Math.min(g.pt+g.ph,yy)), pv=g.hi-(yc-g.pt)/g.ph*(g.hi-g.lo);
   $('ocC').style.display=''; const cx=x?g.pl+g.cw*(x.k+.5):Math.min(xx,g.W-g.pr); $('ocX').setAttribute('x1',cx); $('ocX').setAttribute('x2',cx);
   $('ocY').setAttribute('y1',yc); $('ocY').setAttribute('y2',yc); $('ocB').setAttribute('y',yc-9); $('ocT').setAttribute('y',yc+4); $('ocT').textContent=pv>=1000?Math.round(pv):pv.toFixed(1);
   if(!x){ $('ocDT').textContent=''; $('ocDB').setAttribute('width',0); $('ocI').textContent=''; return; } $('ocDB').setAttribute('width',64);
   const dl=String(x.d).split('-').reverse().map(Number).join('.'), tx=Math.max(g.pl+32,Math.min(g.W-g.pr-32,cx)); $('ocDB').setAttribute('x',tx-32); $('ocDT').setAttribute('x',tx); $('ocDT').textContent=dl;
-  const pc=(x.c/x.o-1)*100; $('ocI').innerHTML=`${pxD(x.d)} &nbsp; O ${x.o.toFixed(2)} &nbsp; H ${x.h.toFixed(2)} &nbsp; L ${x.l.toFixed(2)} &nbsp; C ${x.c.toFixed(2)} &nbsp; <span class="${pc>=0?'up':'down'}">${pc>=0?'+':''}${pc.toFixed(1)}%</span>${x.v?` &nbsp; Vol ${(x.v/1e6).toFixed(1)}M`:''}`; });
-document.addEventListener('pointerleave',e=>{ if(e.target&&e.target.id==='ocS'){ const c=$('ocC'); if(c) c.style.display='none'; const i=$('ocI'); if(i) i.textContent=''; } },true);
+  const pc=(x.c/x.o-1)*100; $('ocI').innerHTML=`${pxD(x.d)} &nbsp; O ${x.o.toFixed(2)} &nbsp; H ${x.h.toFixed(2)} &nbsp; L ${x.l.toFixed(2)} &nbsp; C ${x.c.toFixed(2)} &nbsp; <span class="${pc>=0?'up':'down'}">${pc>=0?'+':''}${pc.toFixed(1)}%</span>${x.v?` &nbsp; Vol ${(x.v/1e6).toFixed(1)}M`:''}`; }
+document.addEventListener('pointermove',ocHover); document.addEventListener('pointerdown',e=>{ if(e.pointerType==='touch') ocHover(e); });   /* touch: a tap shows the candle's figures (and they stay) */
+/* touch: two fingers = pinch zoom of the time axis, around the point between them */
+const OCP=new Map(); let PIN=null;
+document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('#ocS'); if(!svg||e.pointerType!=='touch') return; OCP.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(OCP.size===2){ ocEnd(); const box=$('ownCd'), g=box._g, [a,b]=[...OCP.values()], r=svg.getBoundingClientRect(), mid=((a.x+b.x)/2-r.left)/r.width*g.W;
+    PIN={d:Math.hypot(a.x-b.x,a.y-b.y)||1,n:box._n,off:box._off||0,f:Math.max(0,Math.min(1,(mid-g.pl)/(g.W-g.pl-g.pr)))}; } });
+document.addEventListener('pointermove',e=>{ if(!OCP.has(e.pointerId)) return; OCP.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(!PIN||OCP.size<2) return;
+  const box=$('ownCd'), [a,b]=[...OCP.values()], d=Math.hypot(a.x-b.x,a.y-b.y)||1, L=box._L, ci=(L-PIN.n-PIN.off)+PIN.f*PIN.n, nn=Math.round(Math.max(15,Math.min(L,PIN.n*PIN.d/d)));
+  box._n=nn; box._off=ocClamp(box,L-nn-(ci-PIN.f*nn)); ocDraw(ocN()); });
+const ocPinEnd=e=>{ OCP.delete(e.pointerId); if(OCP.size<2) PIN=null; };
+document.addEventListener('pointerup',ocPinEnd); document.addEventListener('pointercancel',ocPinEnd);
+window.addEventListener('resize',()=>{ const b=$('ownCd'); if(b&&b._g&&b.querySelector('.oh b')) ocDraw(ocN()); });
+document.addEventListener('pointerleave',e=>{ if(e.pointerType==='touch') return; if(e.target&&e.target.id==='ocS'){ const c=$('ocC'); if(c) c.style.display='none'; const i=$('ocI'); if(i) i.textContent=''; } },true);
 document.addEventListener('click',e=>{ const lk=e.target.closest&&e.target.closest('[data-oclk]'); if(lk){ const box=$('ownCd'); box._link=!box._link; ocDraw(ocN()); return; } const au=e.target.closest&&e.target.closest('[data-ocau]'); if(au){ const box=$('ownCd'); box._y=null; ocDraw(ocN()); return; }
   const b=e.target.closest&&e.target.closest('[data-ocn]'); if(b){ const box=$('ownCd'); box._n=+b.dataset.ocn; box._off=0; box._y=null; ocDraw(box.querySelector('.oh b').textContent); } });
 document.addEventListener('change',e=>{ if(e.target.dataset&&e.target.dataset.oc!=null){ const box=$('ownCd'); ocDraw(box.querySelector('.oh b').textContent); } });

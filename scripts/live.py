@@ -2,7 +2,7 @@
 
 Runs inside one long GitHub Actions job (live.yml) that loops until the market closes.
 Each round: Yahoo screener (US, cap > $1B, ~12 pages of 250) -> live.json
-{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%, dayHigh, dayLow]}}
+{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%, dayHigh, dayLow, open]}}
 pushed as a single commit to the `live` branch (force-push, so it never grows the history).
 The page reads it from raw.githubusercontent.com.
 
@@ -54,6 +54,8 @@ def round_once():
             out[t] = [round(float(p), 2), round(float(c), 2)]
             h, l = q.get("regularMarketDayHigh"), q.get("regularMarketDayLow")
             if h and l: out[t] += [round(float(h), 2), round(float(l), 2)]   # today's range (52-week highs/lows intraday)
+            op = q.get("regularMarketOpen")
+            if h and l and op: out[t].append(round(float(op), 2))   # today's open (own candlestick chart: today's candle)
             pp, pc = q.get("postMarketPrice"), q.get("postMarketChangePercent")
             if pp and pc is not None and q.get("postMarketTime", 0) >= q.get("regularMarketTime", 0): EXT[t] = [round(float(pp), 2), round(float(pc), 2)]
             v, av = q.get("regularMarketVolume"), q.get("averageDailyVolume3Month")
