@@ -1345,7 +1345,7 @@ function renderTop(){ $('topGrid').innerHTML=topReports().map(card).join(''); $(
    Each <section> has data-pg (home / market / reports / stocks / news / archive / stock / legal).
    #page/<name> opens a page; #<section-id> opens that section's page and scrolls to it (old links keep working). */
 const SUBNAV={
-  market:[['#snapshot','תמונת מצב ומובילים'],['#breadth','רוחב שוק'],['#macro','מאקרו וריבית'],['#evidence','מחקר מבוסס ראיות']],
+  market:[['#snapshot','תמונת מצב ורוחב שוק'],['#macro','מאקרו ואינדיקטורים']],
   research:[['#sectors','סקטורים ותעשיות']],
   reports:[['#reports','מאגר הדוחות'],['#upcoming','לוח השבוע'],['#ipos','הנפקות']],
   stocks:[['#stocksHub','מניות'],['#compare','השוואת גרפים']]
@@ -1377,9 +1377,9 @@ function route(){
   const h=location.hash, [pg,el]=pageOf(h);
   document.body.classList.add('r');
   if(pg==='reports'&&el) RSUB=el.id;
-  if(pg==='market'&&el) MSUB=el.id==='leaders'?'snapshot':el.id;
+  if(pg==='market'&&el) MSUB=({leaders:'snapshot',breadth:'snapshot',evidence:'macro'})[el.id]||el.id;
   if(pg==='research'&&el) XSUB=el.id;   /* market page: one tool at a time (sectors / industries / breadth / macro) */
-  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? (s.id===MSUB||(MSUB==='snapshot'&&s.id==='leaders')) : pg==='research' ? s.id===XSUB : pg==='reports' ? s.id===RSUB : pg==='stocks' ? s.id==='stocksHub' : s.dataset.pg===pg));
+  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on', pg==='legal' ? s===el : pg==='market' ? (s.id===MSUB||(MSUB==='snapshot'&&(s.id==='leaders'||s.id==='breadth'))||(MSUB==='macro'&&s.id==='evidence')) : pg==='research' ? s.id===XSUB : pg==='reports' ? s.id===RSUB : pg==='stocks' ? s.id==='stocksHub' : s.dataset.pg===pg));
   const navp = pg==='stock'?'stocks':pg==='group'?'research':pg==='gloss'?'reports':pg==='compare'?'stocks':pg==='watch'?'':pg;
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
