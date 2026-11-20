@@ -112086,6 +112086,21 @@
  },
  "news": [
   {
+   "id": "2026-11-20-crdo-ai-suppliers",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "CRDO"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Credo יורדת ביותר מ-10% עם הלחץ על ספקיות ה-AI של Nvidia",
+   "body": "לפי TIKR ב-Yahoo Finance, המניה ירדה כשהצרות של Nvidia, שקיבלה צו חקירה מהתובע הכללי של קליפורניה, הכבידו על ספקיות ה-AI; Stifel הורידה את מחיר היעד ל-$250 מ-$310 והשאירה המלצת קנייה. לפי investingLive, Credo ירדה ב-10.4% ל-$105.56.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/credo-sinks-6-marvell-down-143904477.html",
+   "time": "16:39"
+  },
+  {
    "id": "2026-11-20-trump-philippines-boeing-ge",
    "date": "2026-11-20",
    "t": [
