@@ -158,8 +158,11 @@ while True:
                 except Exception as e: print("index", sym, type(e).__name__, flush=True)
             if ix: payload["idx"] = ix
             etf = {}
+            ETF_T = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU"]
+            try: ETF_T += [r["t"] for r in json.loads((root / "data.json").read_text(encoding="utf-8")).get("etfs", {}).get("rows", []) if r["t"] not in ETF_T]   # thematic ETFs table
+            except Exception as e: print("etf list", type(e).__name__, flush=True)
             try:
-                px = yf.download(["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU"], period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
+                px = yf.download(ETF_T, period="5d", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
                 for e in px.columns:
                     c = px[e].dropna()
                     if len(c) >= 2: etf[e] = [round(float(c.iloc[-1]), 2), round(float((c.iloc[-1] / c.iloc[-2] - 1) * 100), 2)]

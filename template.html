@@ -1687,7 +1687,11 @@ function qvShow(){
   if(!SDET[t]) loadDet(t).then(d=>{ const el=$('qvDesc'); if(el&&QV.L[QV.i]===t) el.textContent=((d||{}).p||{}).desc||''; });
 }
 /* ETF ID card: the same floating window, with the fund's chart, returns and top holdings */
-const etfRow=t=>((FALLBACK.etfs||{}).rows||[]).find(x=>x.t===t);
+/* live: while the session runs (or after the close until the nightly update) the ETF's price and every period = last night's return compounded with today's live change */
+function etfLive(r){ const E=FALLBACK.etfs||{}, L=(r&&LIVE&&LIVE.etf&&liveOn()&&E.asOf&&LIVE.date>E.asOf)?LIVE.etf[r.t]:null;
+  if(!L||L[1]==null||Math.abs(L[1])>60) return r; const o={...r,d:L[1],p:L[0],_lv:1};
+  ['w','m','q','ytd','y'].forEach(k=>{ if(r[k]!=null) o[k]=Math.round(((1+r[k]/100)*(1+L[1]/100)-1)*10000)/100; }); return o; }
+const etfRow=t=>{ const r=((FALLBACK.etfs||{}).rows||[]).find(x=>x.t===t); return r?etfLive(r):r; };
 function etfOpen(t){ const L=[...document.querySelectorAll('#etfTable .rw2[data-et]')].map(x=>x.dataset.et); qvOpen(t,L,true); }
 function qvShowEtf(t,p){
   const r=etfRow(t)||{t,n:t,h:[]}, E=FALLBACK.etfs||{}, n=QV.L.length;
@@ -1700,7 +1704,7 @@ function qvShowEtf(t,p){
       <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="hd">אחזקות</button></span>
       <span class="qvact"><button class="qvx" aria-label="סגירה">✕</button></span></div>
     <p class="qvdesc" dir="rtl">קרן סל (ETF) בנושא ${esc(r.n||'')}. ${r.h&&r.h.length?`מוצגות ${r.h.length} האחזקות הגדולות שלה${wsum?`, ביחד כ-${wsum.toFixed(0)}% מהקרן`:''}.`:''}</p>
-    <div class="qvq"><div class="qvp"><small>${E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
+    <div class="qvq"><div class="qvp"><small>${r._lv?'לייב':E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
       <div class="qvt">${tile('5D',pc(r.w))}${tile('1M',pc(r.m))}${tile('3M',pc(r.q))}${tile('YTD',pc(r.ytd))}${tile('1Y',pc(r.y))}${tile('10 הגדולות',wsum?wsum.toFixed(0)+'%':'—')}</div>${(()=>{ const I=r.i||{}; const T=[]; if(I.f) T.push(tile('מנפיק','<bdi>'+esc(I.f)+'</bdi>')); if(I.er!=null) T.push(tile('דמי ניהול שנתיים',I.er.toFixed(2)+'%')); if(I.aum!=null) T.push(tile('היקף נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M'))); if(I.inc) T.push(tile('הוקמה',I.inc.slice(0,4))); return T.length?`<div class="qvt">${T.join('')}</div>`:''; })()}</div>
     <div class="qvb" id="qvBody"></div>
     <a class="qvgo" href="#etfs">לכל תעודות הסל ←</a>`;
@@ -1742,9 +1746,9 @@ window.addEventListener('hashchange',qvClose);
 
 /* ---------- thematic ETFs (מחקר → תעודות סל) ---------- */
 const ETF={g:'',sort:'m',dir:-1,open:new Set()};
-function renderEtfs(){ const E=FALLBACK.etfs||{}, R=E.rows||[], b=$('etfTable'); if(!b) return;
+function renderEtfs(){ const E=FALLBACK.etfs||{}, R=(E.rows||[]).map(etfLive), b=$('etfTable'); if(!b) return;
   if(!R.length){ b.innerHTML='<div class="empty">הנתונים יתעדכנו בריצה הלילית הקרובה.</div>'; return; }
-  $('etfAsOf').textContent=E.asOf?`סגירת ${dm(E.asOf)}`:'';
+  $('etfAsOf').textContent=R.some(r=>r._lv)?`לייב · עודכן ${liveTm()}`:(E.asOf?`סגירת ${dm(E.asOf)}`:'');
   const G=[...new Set(R.map(r=>r.g))];
   $('etfChips').innerHTML=[['','הכל'],...G.map(g=>[g,g])].map(([k,l])=>`<button data-eg="${esc(k)}" class="${ETF.g===k?'on':''}">${esc(l)}</button>`).join('');
   const C=[['d','1D'],['m','1M'],['q','3M'],['ytd','YTD'],['y','1Y']];
@@ -2006,7 +2010,7 @@ function renderIdx(){
 async function loadLive(){
   if(document.hidden||location.protocol==='file:') return;
   try{ const r=await ghLive('live','live.json',LIVE_URL); if(!r.ok) return;
-    LIVE=await r.json(); liveAgg(); try{ renderMktStatus(); }catch(e){} try{ renderIdx(); }catch(e){} try{ renderScr(); }catch(e){} try{ renderFresh(); }catch(e){}
+    LIVE=await r.json(); liveAgg(); try{ renderMktStatus(); }catch(e){} try{ renderIdx(); }catch(e){} try{ renderScr(); }catch(e){} try{ renderFresh(); }catch(e){} try{ if(CURPG==='research'&&XSUB==='etfs') renderEtfs(); }catch(e){}
     try{ const t0=$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spPerf')){ $('spPerf').innerHTML=perfTiles(stockIndex()[t0]); renderPx(t0); } }catch(e){}
     try{ if(CURPG==='compare'&&$('cmpChart')) cmpDraw(); }catch(e){}
     try{ if(CURPG==='market'&&MSUB==='snapshot') renderLeaders(); }catch(e){}
