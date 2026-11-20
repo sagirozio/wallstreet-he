@@ -249,6 +249,7 @@ nav button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 @media(max-width:640px){.sxs{grid-template-columns:repeat(2,minmax(0,1fr))}.sxf{flex-direction:column;align-items:stretch}.sxc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.sxc button{white-space:nowrap;flex:none}.sxr{grid-template-columns:minmax(0,2fr) 1fr .9fr .6fr;padding:8px 10px;font-size:13px}.sxr .hx-m,.sxr .hx-ytd,.sxr .hx-cap,.sxr .hx-adr{display:none}}
 .sxa{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:13px;color:var(--muted)}.sxa span{margin-inline-end:auto}.sxa button{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.sxa svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 #toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:#161b22;border:1px solid #30363d;color:var(--text);padding:8px 16px;border-radius:999px;font-size:13.5px;opacity:0;pointer-events:none;transition:.2s;z-index:90}#toast.on{opacity:1;transform:translate(-50%,0)}
+.qvah{display:flex;flex-wrap:wrap;gap:2px 14px;padding:0 2px 6px}.qvah .ahr{display:block;font-size:12px;color:var(--muted)}
 #qvBg{position:fixed;inset:0;background:rgba(1,4,9,.62);backdrop-filter:blur(2px);z-index:80;display:none}#qvBg.on{display:block}body.qvon{overflow:hidden}
 #qv{position:fixed;top:50%;left:50%;width:min(1100px,94vw);height:min(860px,90vh);background:var(--panel);border:1px solid #30363d;border-radius:16px;z-index:81;display:flex;flex-direction:column;overflow:hidden;opacity:0;pointer-events:none;transform:translate(-50%,-48%) scale(.98);transition:opacity .18s,transform .18s;box-shadow:0 24px 80px rgba(0,0,0,.7)}#qv.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
 .qvh{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}.qvid b{font-size:20px}.qvpos{color:var(--muted);font-size:14px;margin-inline-start:6px}.qvid small{display:block;color:var(--muted);font-size:12.5px}
@@ -1654,7 +1655,7 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
 }
 function qvQuote(t){ const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d, x=(SCR||{})[t]||{};
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`, tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`;
-  return `<div class="qvp"><small>${liveStamp()||'מחיר סגירה'}</small><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}</div>
+  return `<div class="qvp"><small>${liveStamp()||'מחיר סגירה'}</small><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}</div>${extLines(t)}
       <div class="qvt">${tile('RS',r.rs??'—')}${tile('מתחילת השנה',pc(r.ytd))}${tile('חודש',pc(r.m))}${tile('מהשיא',pc(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div>`; }
 function qvShow(){
   const t=QV.L[QV.i], p=$('qv'); if(!t||!p) return;
@@ -1945,6 +1946,11 @@ function liveAgg0(){
 }
 const liveTm=()=>String((LIVE||{}).asOf||'').split('· ')[1]||'';
 function closeLbl(){ const m=String((THEMES||{}).asOf||'').match(/(\d{1,2})\.(\d{1,2})/); return m?(+m[1])+'.'+(+m[2]):''; }
+/* after-hours + pre-market lines of a stock, for the floating card (same rules as the stock page) */
+function extLines(t){ const L=liveQ(t), open=L&&mktOpen()&&LIVE.date===nyToday(), tm=(String((LIVE||{}).asOf||'').split('· ')[1]||'');
+  const P=L&&!open&&LIVE.post&&LIVE.post[t]&&LIVE.date===nyToday()?LIVE.post[t]:null;
+  const h=(P?`<small class="ahr">מסחר מאוחר <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span>${tm?` · עודכן ${esc(tm)}`:''}</small>`:'')+preLine(t);
+  return h?`<div class="qvah">${h}</div>`:''; }
 /* pre-market price of the stock (intra.json "premkt"): shown from 04:00 New York until the open, then it disappears */
 let PREMKT=null;
 function preLine(t){ const P=PREMKT&&PREMKT.date===nyToday()&&nyMin()<570&&PREMKT.q?PREMKT.q[t]:null;
