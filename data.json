@@ -108066,6 +108066,35 @@
  },
  "news": [
   {
+   "id": "2026-11-20-global-week-asia-worst-since-2020",
+   "date": "2026-11-20",
+   "t": [
+    "TSM"
+   ],
+   "tag": "שווקים",
+   "tone": "neg",
+   "title": "מדד MSCI העולמי יורד יום שביעי ברציפות; אסיה בשבוע הגרוע מאז מרץ 2020",
+   "body": "לפי Reuters, מדד MSCI העולמי בדרך לרצף הירידות הארוך שלו מאז 2023, ומדד MSCI אסיה-פסיפיק ללא יפן ירד השבוע ב-8%, הירידה השבועית החדה מאז מרץ 2020. בורסת טייוואן ירדה השבוע ב-17%, הירידה השבועית החדה מאז 1990, ומדד ה-VIX בשיא מאז מרץ.",
+   "src": "Reuters",
+   "url": "https://live.euronext.com/en/financial-news/stocks-slide-ai-selloff-deepens-asia-set-worst-week-2020",
+   "time": "12:12"
+  },
+  {
+   "id": "2026-11-20-intc-premarket",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "INTC"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Intel יורדת ביותר מ-4% במסחר המקדים עם מניות השבבים",
+   "body": "לפי Investing.com, Intel יורדת ביותר מ-4% לפני הפתיחה, יחד עם Marvell; AMD ו-SanDisk יורדות ביותר מ-5%, ו-Broadcom, Applied Materials, Lam Research ו-Micron בכ-2.5%–4%.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/premarket-movers-anthropic-slides-after-debut-intuit-tumbles-on-mailchimp-sale-5041130",
+   "time": "12:26"
+  },
+  {
    "id": "2026-11-20-wall-st-worst-week-since-apr-2025",
    "date": "2026-11-20",
    "t": [],
