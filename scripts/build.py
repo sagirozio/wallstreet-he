@@ -165,6 +165,10 @@ for _ind, _lst in stocks.items():
                         _g = (_rv[-1] / _rv[_i] - 1) * 100
                         if -95 < _g < 900: _x["g"] = round(_g, 1)
                         break
+                # annual growth: last 4 quarters vs the 4 before them (needs 8 contiguous quarters)
+                if len(_q) >= 8 and len(_rv) >= 8 and all(_rv[-8:]) and 600 <= (_d0 - _dts.date.fromisoformat(_q[-8])).days <= 700:
+                    _p4, _c4 = sum(_rv[-8:-4]), sum(_rv[-4:])
+                    if _p4 > 0 and -95 < (_c4 / _p4 - 1) * 100 < 900: _x["ga"] = round((_c4 / _p4 - 1) * 100, 1)
         except Exception: pass
         if _t in _insb: _x["ib"] = int(_insb[_t])
         _e = (earn.get(_t) or {}).get("d") if isinstance(earn.get(_t), dict) else None
