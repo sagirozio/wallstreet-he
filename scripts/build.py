@@ -10,7 +10,7 @@ This script derives everything the browser loads:
   sitemap.xml
 Files are only rewritten when their content changes, to keep git history small.
 """
-import json, pathlib, re, html
+import json, os, pathlib, re, html
 
 root = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://wallstreeter.co.il/"
@@ -309,7 +309,51 @@ new = '''  try {
     if (window.claude && window.claude.use) db = await window.claude.use("db");
   } catch(e) {}
 '''
-page = t.replace(old, new).replace("__DATA__", core_txt.replace("</", "<\\/"))
+page = t.replace(old, new)
+
+# The big stylesheet and the app script go to their own files (assets/app.<hash>.css / .js): the browser keeps them
+# between visits, and only the HTML (with the core data) is downloaded again. Minified with esbuild when it is available
+# (pinned version, so a local build and a GitHub build give the same files); otherwise they are written as they are.
+import hashlib, re as _re, shutil, subprocess
+ESB_V = "0.24.0"
+def _esbuild():
+    for c in (os.environ.get("ESBUILD"), str(root / "node_modules/.bin/esbuild"), "/tmp/esb/node_modules/.bin/esbuild"):
+        if c and pathlib.Path(c).exists():
+            try:
+                if subprocess.run([c, "--version"], capture_output=True, text=True, timeout=20).stdout.strip() == ESB_V: return [c]
+            except Exception: pass
+    if shutil.which("npx"): return ["npx", "--yes", f"esbuild@{ESB_V}"]
+    return None
+ESB = _esbuild()
+def minify(text, loader):
+    if not ESB: return text
+    try:
+        r = subprocess.run(ESB + [f"--loader={loader}", "--minify", "--charset=utf8", "--log-level=error"], input=text, capture_output=True, text=True, timeout=180)
+        if r.returncode == 0 and len(r.stdout) > len(text) // 5: return r.stdout
+        print("esbuild failed, unminified:", r.stderr[:300])
+    except Exception as e: print("esbuild failed, unminified:", type(e).__name__, e)
+    return text
+def asset(text, ext):
+    h = hashlib.sha1(text.encode("utf-8")).hexdigest()[:10]
+    name = f"assets/app.{h}.{ext}"; write(name, text); return name
+m_css = _re.search(r"<style>\n(:root\{.*?)</style>\n", page, _re.S)
+m_js = _re.search(r"<script>\nconst FALLBACK = __DATA__;\n(.*?)</script>\n</body>", page, _re.S)
+if m_css and m_js:
+    css_name = asset(minify(m_css.group(1), "css"), "css")
+    js_name = asset(minify(m_js.group(1), "js"), "js")
+    page = (page[:m_js.start()] + '<script>const FALLBACK = __DATA__;</script>\n<script src="' + js_name + '"></script>\n</body>' + page[m_js.end():])
+    page = page[:m_css.start()] + '<link rel="stylesheet" href="' + css_name + '">\n' + page[m_css.end():]
+    # keep the files of the last builds (a page opened a little earlier still finds its own), delete older ones
+    kp = root / "assets/keep.json"
+    try: keep = json.loads(kp.read_text(encoding="utf-8"))
+    except Exception: keep = []
+    keep = [n for n in keep if n not in (css_name, js_name)][-10:] + [css_name, js_name]
+    write("assets/keep.json", json.dumps(keep, indent=0) + "\n")
+    for f in (root / "assets").glob("app.*"):
+        if f"assets/{f.name}" not in keep: f.unlink()
+else:
+    print("WARNING: style/script block not found, index.html keeps them inline")
+page = page.replace("__DATA__", core_txt.replace("</", "<\\/"))
 write("index.html", page)
 
 # ---------- static stock pages (SEO) ----------
