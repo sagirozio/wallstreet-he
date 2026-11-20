@@ -442,6 +442,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .mvstrip .in{display:flex;width:max-content;padding:3px 0;animation:tick var(--dur,40s) linear infinite}
 .mvstrip a{color:var(--text);text-decoration:none;margin:0 12px;direction:ltr}.mvstrip a b{color:var(--green);margin-inline-start:5px}
 .rvstrip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;color:var(--muted)}.rvstrip .rvl{font-weight:600}.rvstrip .rvs{white-space:nowrap}.rvstrip b{font-variant-numeric:tabular-nums;unicode-bidi:isolate}.rvstrip b.up{color:var(--green)}.rvstrip b.dn{color:var(--red,#ef4444)}
+.fxl{display:flex;justify-content:flex-end;margin:0 0 6px}.fxcsv{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.fxcsv:hover{border-color:var(--green)}
 @media(prefers-reduced-motion:reduce){.mvstrip .in{animation:none}.mvstrip .mvs{overflow-x:auto}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
 @media(prefers-reduced-motion:reduce){.strip .in{animation:none}.strip{overflow-x:auto}}
@@ -1001,7 +1002,7 @@ a.cwr:hover{background:rgba(255,255,255,.025)}.cwr.ch{border-top:0;padding:2px 1
   <div class="sxs" id="hubSum"></div>
   <div class="sxf"><div class="sxc" id="hubChips"></div><select id="hubSec" aria-label="סינון לפי סקטור"><option value="">כל הסקטורים</option></select></div>
   <details class="scd" id="scD"><summary>סינון מתקדם</summary><div class="scp" id="scPre"></div><div class="scf" id="scF"></div></details>
-  <div class="sxa"><span id="hubCnt"></span><button data-hcopy><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>העתק סימולים</button><button data-hwall>☆ הוסף הכל למעקב</button></div>
+  <div class="sxa"><span id="hubCnt"></span><button data-hcsv><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>ייצוא ל-Excel</button><button data-hcopy><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>העתק סימולים</button><button data-hwall>☆ הוסף הכל למעקב</button></div>
   <div class="hxt" id="hubTable"><div class="empty">טוען…</div></div>
   <p class="legend">שווי, תשואות ומרחק מהשיא: מחירי הסגירה האחרונים. צמיחה, מכפיל רווח (P/E) ושולי רווח: מהדוחות הרשמיים ל-SEC (4 הרבעונים האחרונים, רווח חשבונאי). אחוז המלצות הקנייה: Finnhub. נתונים בלבד, לא המלצה.</p>
 </section>
@@ -1611,7 +1612,7 @@ function renderHub(){
   const pc=v=>v==null?'<span class="flat">—</span>':`<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
   const head=`<div class="sxr sxhd">${C.map(([c,l])=>`<button data-hs="${c}" class="hx-${c}${HUB.sort===c?' on':''}">${l}${HUB.sort===c?(HUB.dir<0?' ▾':' ▴'):''}</button>`).join('')}</div>`;
   const body=rows.slice(0,HUB.lim).map(r=>`<a class="sxr" href="#stock/${encodeURIComponent(r.t)}"><span class="hx-t"><b>${esc(r.t)}</b><small dir="auto">${esc(r.co)}</small><small class="ex num">$${esc(r.cap)}${r.m!=null?` · חודש ${r.m>0?'+':''}${r.m.toFixed(0)}%`:''}${r.g!=null?` · צמיחה רבעונית ${r.g>0?'+':''}${Math.round(r.g)}%`:''}${r.ga!=null?` · שנתית ${r.ga>0?'+':''}${Math.round(r.ga)}%`:''}${r.pe!=null?` · P/E ${r.pe.toFixed(0)}`:''}${r.hi!=null?` · מהשיא ${r.hi.toFixed(0)}%`:''}</small></span><span class="hx-px num">${r.px!=null?'$'+(r.px>=1000?Math.round(r.px).toLocaleString('en-US'):r.px.toFixed(2)):'—'}</span><span class="hx-d num">${pc(r.d)}</span><span class="hx-m num">${pc(r.m)}</span><span class="hx-ytd num">${pc(r.ytd)}</span><span class="hx-rs num ${r.rs>=80?'up':r.rs!=null&&r.rs<=20?'down':''}">${r.rs??'—'}</span><span class="hx-adr num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</span><span class="hx-cap num">$${esc(r.cap)}</span><span class="hx-g num">${pc(r.g)}</span><span class="hx-ga num">${pc(r.ga)}</span><span class="hx-pe num">${r.pe!=null?r.pe.toFixed(1):'<span class="flat">—</span>'}</span><span class="hx-hi num">${r.hi==null?'<span class="flat">—</span>':`<span class="${r.hi>-5?'up':'flat'}">${r.hi.toFixed(0)}%</span>`}</span></a>`).join('');
-  HUB.last=rows.map(r=>r.t); $('hubCnt').textContent=`${rows.length.toLocaleString('en-US')} מניות`;
+  HUB.last=rows.map(r=>r.t); HUB.rows=rows; $('hubCnt').textContent=`${rows.length.toLocaleString('en-US')} מניות`;
   $('hubTable').innerHTML=rows.length?head+body+(rows.length>HUB.lim?`<button class="sxmore" data-hm>עוד ${Math.min(40,rows.length-HUB.lim)} מתוך ${rows.length-HUB.lim} ↓</button>`:''):'<div class="empty">אין מניות שמתאימות לסינון.</div>';
 }
 document.addEventListener('click',e=>{ const f=e.target.closest&&e.target.closest('[data-hf]'); if(f){ HUB.f=f.dataset.hf; HUB.lim=40; if(HUB.f==='up'){ HUB.sort='d'; HUB.dir=-1; } else if(HUB.f==='dbl'){ HUB.sort='ytd'; HUB.dir=-1; } else if(HUB.f==='rs'){ HUB.sort='rs'; HUB.dir=-1; } else if(HUB.f==='all'||HUB.f==='big'){ HUB.sort='cap'; HUB.dir=-1; } if(HUB.f==='er') loadScr().then(renderHub); renderHub(); return; }
@@ -1619,8 +1620,20 @@ document.addEventListener('click',e=>{ const f=e.target.closest&&e.target.closes
   if(e.target.closest&&e.target.closest('[data-hm]')){ HUB.lim+=40; renderHub(); } });
 
 /* copy the filtered tickers (comma separated, e.g. for a TradingView watchlist) / add them all to the watchlist */
+function csvDownload(name,rows){ const q=v=>{ if(v==null) return ''; v=String(v); return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
+  const blob=new Blob(['\ufeff'+rows.map(r=>r.map(q).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}); const u=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); }
+function exportHub(){ const R=HUB.rows||[]; if(!R.length){ toast('אין שורות לייצוא'); return; } const n1=v=>v==null?'':Math.round(v*10)/10;
+  const H=['סימול','חברה','סקטור','מחיר $','שינוי 1D %','5D %','1M %','3M %','6M %','YTD %','1Y %','RS','ADR %','שווי שוק $M','צמיחת הכנסות רבעונית %','צמיחת הכנסות שנתית %','P/E','P/S','שולי רווח נקי %','מהשיא %','ממוצע 50','ממוצע 200','דוח הבא'];
+  const out=[H].concat(R.map(r=>{ const x=r.x||{}, w=r.rr||{}; return [r.t,r.co,r.sec||'',r.px,n1(r.d),n1(w.w),n1(r.m),n1(w.q),n1(w.h),n1(r.ytd),n1(w.y),r.rs,n1(r.adr),r.cn!=null?Math.round(r.cn/1e6):'',n1(r.g),n1(r.ga),n1(r.pe),n1(x.ps),n1(x.nm),n1(r.hi),w.a50!=null?Math.round(w.a50*100)/100:'',w.a200!=null?Math.round(w.a200*100)/100:'',r.e||'']; }));
+  csvDownload('wallstreeter-stocks-'+new Date().toISOString().slice(0,10)+'.csv',out); toast(`יוצאו ${R.length} שורות. פתח את הקובץ באקסל`); }
+function exportFund(t){ const f=FUNDC[t]; if(!f||!f.q) return; const q=f.q, K=[['rev','הכנסות'],['gp','רווח גולמי'],['op','רווח תפעולי'],['opex','הוצאות תפעול'],['ni','רווח נקי'],['eps','EPS מדולל'],['fcf','תזרים חופשי'],['assets','נכסים'],['liab','התחייבויות']];
+  const out=[['רבעון שהסתיים ב-'].concat(K.map(k=>k[1]+(k[0]==='eps'?' ($)':' ($)')))].concat(q.map((d,i)=>[d].concat(K.map(k=>{ const v=(f[k[0]]||[])[i]; return v==null?'':v; }))));
+  csvDownload('wallstreeter-'+t+'-financials.csv',out); toast('הקובץ יוצא. פתח אותו באקסל'); }
 function toast(msg){ let t=$('toast'); if(!t){ t=document.createElement('div'); t.id='toast'; document.body.appendChild(t); } t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2200); }
 document.addEventListener('click',async e=>{
+  if(e.target.closest&&e.target.closest('[data-hcsv]')){ exportHub(); return; }
+  const fc=e.target.closest&&e.target.closest('[data-fcsv]'); if(fc){ exportFund(fc.dataset.fcsv); return; }
   if(e.target.closest&&e.target.closest('[data-hcopy]')){ const L=HUB.last||[]; if(!L.length) return; const txt=L.join(',');
     clipAdd('מניות · '+((document.querySelector('#hubChips .on')||{}).textContent||'הכל')+(HUB.sec?' · '+HUB.sec:''),L); try{ await navigator.clipboard.writeText(txt); toast(`הועתקו ${L.length} סימולים ונשמרו ברשימות`); }catch(_){ prompt('העתק:',txt); } return; }
   if(e.target.closest&&e.target.closest('[data-hwall]')){ const L=(HUB.last||[]).filter(t=>!inWatch(t)); if(!L.length){ toast('כל המניות כבר במעקב'); return; }
@@ -2551,7 +2564,7 @@ async function loadFund(t,el){   /* el: another container (the quick view) inste
   const box=el||$('spFund'); if(!box) return;
   try{
     const r=await fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}); if(!r.ok) return;
-    const f=await r.json(); if(el){ if(!el.isConnected) return; } else if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
+    const f=await r.json(); FUNDC[t]=f; if(el){ if(!el.isConnected) return; } else if(location.hash!=='#stock/'+t && decodeURIComponent(location.hash.slice(7)).toUpperCase()!==t) return;
     const q=f.q;
     const ch=[
       fundChart('הכנסות ורווח תפעולי',q,[{n:'הכנסות',c:'#5b8cff',v:f.rev},{n:'רווח תפעולי',c:'#f59e0b',v:f.op}],false,'F_REVOP'),
@@ -2568,6 +2581,7 @@ async function loadFund(t,el){   /* el: another container (the quick view) inste
     const qHtml=growthChart(f).replace('<h3 class="sph3">צמיחה רבעונית',stamp+'<h3 class="sph3">צמיחה רבעונית')+`<h3 class="sph3">נתונים רבעוניים${gq('F_Q')}</h3>${revStrip(f)}<div class="fgrid">${ch.join('')}</div><p class="legend">${q.length} הרבעונים האחרונים, מתוך הדוחות שהחברה הגישה לרשות ניירות הערך האמריקאית (SEC EDGAR). תזרים חופשי = תזרים מפעילות שוטפת פחות השקעות ברכוש קבוע. רבעון רביעי מחושב לפעמים מהדוח השנתי. נתונים בלבד, לא המלצה.</p>`;
     const aHtml=annualCharts(f);
     box.innerHTML=aHtml?`<div class="fvw"><div class="fvsw"><button type="button" data-fv="q" class="on">רבעוני</button><button type="button" data-fv="y">שנתי</button></div><div data-fvb="q">${qHtml}</div><div data-fvb="y" hidden>${aHtml}</div></div>`:qHtml;
+    box.insertAdjacentHTML('afterbegin',`<div class="fxl"><button type="button" class="fxcsv" data-fcsv="${esc(t)}">ייצוא ל-Excel</button></div>`);
     if(!el){ try{ rpTidy(); }catch(e){} }
   }catch(e){}
 }
