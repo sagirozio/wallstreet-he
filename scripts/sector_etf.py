@@ -11,7 +11,7 @@ ETFS = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "
 def returns():
     import yfinance as yf
     import pandas as pd
-    px = yf.download(ETFS + ["SPY"], period="2y", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
+    px = yf.download(ETFS + ["SPY", "^GSPC"], period="2y", interval="1d", progress=False, auto_adjust=False, threads=True)["Close"]
     out = {}
     for e in ETFS + ["SPY"]:   # SPY = the S&P 500 line for the compare tool
         if e not in px.columns: continue
@@ -37,7 +37,26 @@ def returns():
         out[e]["sp"] = [round(float(ytd.iloc[i]), 2) for i in pts]   # year-to-date line for the tables
         out[e]["py"] = [round(float(v), 2) for v in ytd.values]   # daily year-to-date closes for the big chart on the sector page
         out.setdefault("_dates", [d.strftime("%Y-%m-%d") for d in ytd.index])
+    if "^GSPC" in px.columns:   # the S&P 500 index itself (points), last 60 sessions, for the breadth table
+        g = px["^GSPC"].dropna().iloc[-60:]
+        out["_spx"] = {d.strftime("%Y-%m-%d"): round(float(v), 2) for d, v in g.items()}
     return out
+
+def breadth_close(data, spx):
+    """Put the S&P 500 close and its day change (%) on every breadth row whose date we have (idempotent)."""
+    ds = sorted(spx)
+    m = {}
+    for i, d in enumerate(ds):
+        y, mo, da = d.split("-")
+        m[f"{int(da)}.{int(mo)}"] = (spx[d], round((spx[d] / spx[ds[i - 1]] - 1) * 100, 2) if i else None)
+    n = 0
+    for r in (data.get("breadth") or {}).get("rows", []):
+        v = m.get(r.get("d"))
+        if v:
+            r["sp"] = v[0]
+            if v[1] is not None: r["spd"] = v[1]
+            n += 1
+    return n
 
 def apply(data):
     """Overwrite the return fields of data["sectors"]["rows"] with the ETF returns; True when done."""
@@ -47,6 +66,7 @@ def apply(data):
         print("sector ETF returns failed", type(e).__name__, e); return False
     n = 0
     if R.get("_dates"): data.setdefault("sectors", {})["pyDates"] = R.pop("_dates")
+    if R.get("_spx"): print("breadth S&P 500 close on", breadth_close(data, R.pop("_spx")), "rows")
     if R.get("SPY"): data["sectors"]["spy"] = {k: R["SPY"][k] for k in ("py", "px", "d", "m", "q", "h", "ytd") if k in R["SPY"]}
     for row in (data.get("sectors") or {}).get("rows", []):
         r = R.get(row.get("t"))
