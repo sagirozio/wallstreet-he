@@ -206,6 +206,8 @@ for ind, mem in by.items():
         for _k, _m in (("a50", _ma50), ("a200", _ma200)):
             _mv = _m.get(s); _lv = _last.get(s)
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
+        _av, _lv = x.get("averageDailyVolume3Month"), _last.get(s)
+        if _av and _lv is not None and not pd.isna(_lv): rr["dv"] = round(float(_lv) * float(_av) / 1e6, 1)   # average daily dollar volume, $M (last close x 3-month average volume)
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
