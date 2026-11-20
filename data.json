@@ -43822,7 +43822,7 @@
   }
  ],
  "overview": {
-  "asOf": "20.11.2026 · 21:40",
+  "asOf": "20.11.2026 · 22:05",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43887,7 +43887,7 @@
    },
    {
     "h": "השבבים ותשתיות ה-AI צונחים",
-    "t": "קרן השבבים SOXX יורדת ב-7.8%: Micron ביותר מ-11%, Broadcom ביותר מ-10%, SanDisk ו-Coherent בכ-12% ו-Nvidia ירדה ל-$139; Anthropic יורדת ב-11% אחרי ש-Seaport פתחה סיקור בהמלצה ניטרלית.",
+    "t": "Micron יורדת ב-13%, Broadcom ו-AMD ביותר מ-11% ו-TSMC ב-8.5%, ו-Nvidia ירדה ל-$135.51, השפל מאז מאי 2025; Celestica צונחת בכמעט 15%, Nebius בכמעט 14% ו-Anthropic בכ-13%.",
     "tone": "neg"
    },
    {
@@ -43975,7 +43975,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
   },
-  "rev": 202611202140,
+  "rev": 202611202205,
   "market": {
    "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
    "idx": [
@@ -112085,6 +112085,68 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-cls-tech-selloff",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "CLS"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "neg",
+   "title": "Celestica צונחת בכמעט 15% במכירות בטכנולוגיה",
+   "body": "לפי Seeking Alpha, המניה ירדה אחר הצהריים ב-$35.42 לכ-$205, יחד עם ירידה של כמעט 6% בקרן הטכנולוגיה XLK ושל יותר מ-4% ב-QQQ; לא דווחה סיבה ספציפית לחברה. המניה ירדה בכ-20% בחודש האחרון.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675283-celestica-drops-15-percent-amid-broad-tech-selloff",
+   "time": "21:23"
+  },
+  {
+   "id": "2026-11-20-nbis-tech-selloff",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Nebius יורדת בכמעט 14% עם מכירות ה-AI",
+   "body": "לפי Seeking Alpha, המניה נסחרה אחר הצהריים ב-$83.25, ירידה של $13.67, במקביל למכירות רחבות במניות הטכנולוגיה וה-AI; לא דווחה סיבה ספציפית לחברה.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675288-nebius-group-slides-14-percent-amid-tech-selloff",
+   "time": "21:27"
+  },
+  {
+   "id": "2026-11-20-onto-semi-equipment",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "ONTO"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Onto Innovation יורדת בכ-12% עם מניות ציוד השבבים",
+   "body": "לפי Seeking Alpha, המניה ירדה ב-$23.21 ל-$172.72, כשחברות ציוד השבבים Teradyne, ‏Applied Materials, ‏Lam Research, ‏KLA ו-Nova ירדו בין כמעט 5% ליותר מ-8%.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675216-onto-innovation-sinks-12-percent-as-semiconductor-peers-fall",
+   "time": "17:55"
+  },
+  {
+   "id": "2026-11-20-chips-1pm-micron-amd-tsm",
+   "date": "2026-11-20",
+   "t": [
+    "MU",
+    "AVGO",
+    "AMD",
+    "TSM"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "השבבים מעמיקים: Micron ב-13%, Broadcom ו-AMD ביותר מ-11%, TSMC ב-8.5%",
+   "body": "לפי StockTitan, ב-13:01 שעון ניו יורק Micron ירדה ב-13.01%, Broadcom ב-11.85%, ‏ASE ב-11.40%, ‏AMD ב-11.31%, ‏TSMC ב-8.50% ו-Nvidia ב-7.17% ל-$135.51, המחיר הנמוך שלה מאז מאי 2025. קרן ה-SPY נסחרה כ-10.2% מתחת לשיא של 6 באוקטובר.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-20-2026",
+   "time": "20:03"
+  },
   {
    "id": "2026-11-20-trump-huang-nvidia-ceo",
    "date": "2026-11-20",
