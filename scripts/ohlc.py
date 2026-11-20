@@ -1,4 +1,4 @@
-"""Daily OHLC + volume of every stock on the site, for our own candlestick chart (stock page, below the TradingView chart).
+"""Daily OHLC + volume of every stock on the site (plus the ETFs with a card and the two crypto pages), for our own price chart.
 
 Yahoo (yfinance), 3 years, split-adjusted and not dividend-adjusted. One file per stock:
 <T>.json = {"d":[dates],"o":[],"h":[],"l":[],"c":[],"v":[]}, pushed as a single commit to the `ohlc` branch
@@ -15,6 +15,14 @@ TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
 URL = f"https://x-access-token:{TOKEN}@github.com/{REPO}.git" if TOKEN else f"https://github.com/{REPO}.git"
 
 uni = sorted({s[0] for lst in json.loads((root / "stocks.json").read_text(encoding="utf-8"))["stocks"].values() for s in lst})
+# besides the stocks: the ETFs that have a card on the site (thematic table, sector funds, index funds) and the two crypto pages
+EXTRA = ["XLK", "XLC", "XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLRE", "XLB", "XLU", "SPY", "QQQ", "DIA", "IWM", "BTC-USD", "ETH-USD"]
+try:
+    EXTRA += [r["t"] for r in json.loads((root / "data.json").read_text(encoding="utf-8")).get("etfs", {}).get("rows", [])]
+    import re as _re
+    EXTRA += _re.findall(r'\("([A-Z]{2,5})", "', (root / "scripts" / "etfs.py").read_text(encoding="utf-8").split("ETFS = [")[1].split("]")[0])
+except Exception as e: print("extra list", type(e).__name__, e, flush=True)
+EXTRA = sorted(set(EXTRA) - set(uni))
 ny = dt.datetime.now(ZoneInfo("America/New_York"))
 open_today = ny.strftime("%Y-%m-%d") if ny.weekday() < 5 and ny.hour * 60 + ny.minute < 16 * 60 + 10 else None   # today's session is not finished yet
 
@@ -29,8 +37,9 @@ def take(t, df):
     except Exception as e:
         print(t, "skipped", type(e).__name__, flush=True)
 
-for i in range(0, len(uni), 150):
-    chunk = uni[i:i + 150]
+chunks = [uni[i:i + 150] for i in range(0, len(uni), 150)] + [EXTRA]   # the extras in their own batch (crypto trades on weekends too)
+for i, chunk in enumerate(chunks):
+    if not chunk: continue
     for k in range(2):
         try:
             px = yf.download(chunk, period="3y", interval="1d", auto_adjust=False, group_by="ticker", threads=True, progress=False)
@@ -40,7 +49,7 @@ for i in range(0, len(uni), 150):
             break
         except Exception as e:
             print("batch", i, "failed", type(e).__name__, str(e)[:120], flush=True); time.sleep(10)
-print("ohlc:", len(out), "of", len(uni), "stocks", flush=True)
+print("ohlc:", len(out), "of", len(uni), "stocks +", len(EXTRA), "ETFs / crypto", flush=True)
 if not out: raise SystemExit("nothing downloaded, the ohlc branch stays as it is")
 
 with tempfile.TemporaryDirectory() as d:
@@ -49,11 +58,11 @@ with tempfile.TemporaryDirectory() as d:
     old = subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", "ohlc", URL, str(tp)], capture_output=True)   # previous files (kept for stocks that failed now)
     if old.returncode != 0: tp.mkdir(parents=True, exist_ok=True)
     else: subprocess.run(["rm", "-rf", str(tp / ".git")])
-    keep = set(uni)
+    keep = set(uni) | set(EXTRA) | {"_meta"}
     for f in tp.glob("*.json"):
         if f.stem not in keep: f.unlink()          # left the site
     for t, j in out.items(): (tp / f"{t}.json").write_text(json.dumps(j, separators=(",", ":")), encoding="utf-8")
-    last = max(j["d"][-1] for j in out.values())
+    last = max((j["d"][-1] for t, j in out.items() if t in keep and not t.endswith("-USD")), default="")   # crypto also has weekend rows
     (tp / "_meta.json").write_text(json.dumps({"asOf": last, "n": len(list(tp.glob('*.json')))}), encoding="utf-8")
     g("init", "-q"); g("checkout", "-q", "--orphan", "ohlc"); g("add", "-A"); g("commit", "-qm", "daily OHLC for the candlestick chart")
     g("push", "-fq", URL, "ohlc")
