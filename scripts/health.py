@@ -84,6 +84,11 @@ try:
     pxd = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/{REPO}/px/_dates.json?x={int(dt.datetime.now().timestamp())}", timeout=30).read().decode())
     if dt.date.fromisoformat(pxd["dates"][-1]) < exp: P.append(f"גרפי המניות (px): עד {pxd['dates'][-1]}, מצופה {exp:%d.%m}")
 except Exception as e: print("px check failed", e)
+try:   # own candlestick chart: daily OHLC of every stock on the `ohlc` branch (scripts/ohlc.py, nightly)
+    om = json.loads(urllib.request.urlopen(f"https://raw.githubusercontent.com/{REPO}/ohlc/_meta.json?x={int(dt.datetime.now().timestamp())}", timeout=30).read().decode())
+    if dt.date.fromisoformat(om["asOf"]) < exp: P.append(f"גרף הנרות (ohlc): עד {om['asOf']}, מצופה {exp:%d.%m}")
+    if om.get("n", 0) < 1700: P.append(f"גרף הנרות (ohlc): רק {om.get('n')} מניות")
+except Exception as e: print("ohlc check failed", e)
 chk = T.get("check") or {}
 if chk.get("histTo") and (exp - dt.date.fromisoformat(chk["histTo"])).days > 4: P.append(f"מאגר המחירים של Massive עומד על {chk['histTo']}")
 # failed workflow runs in the last 24h

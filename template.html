@@ -1515,7 +1515,7 @@ function stockIndex(){
   let T; try{ T=THEMES; }catch(e){ T=FALLBACK.themes; } T=T||{}; const he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
   Object.entries(T.stocks||{}).forEach(([ind,lst])=>lst.forEach(s=>{ ix[s[0]]={t:s[0],co:s[1],cap:s[2],r:typeof s[3]==='object'?s[3]:null,ind,indHe:he[ind]||'',sec:(T.indSector||{})[ind]||'',ex:(T.ex||{})[s[0]]||''}; }));
   (REPORTS||[]).forEach(r=>{ if(!ix[r.t]) ix[r.t]={t:r.t,co:r.co,cap:'',r:null,ind:'',indHe:'',sec:'',secHe:r.sector,ex:''}; });
-  if(STK_OK) STOCKIX=ix;
+  if(STK_OK){ STOCKIX=ix; try{ if(LIVE) liveReturns(); }catch(e){} }   /* a rebuilt index (e.g. after the reports archive loads) gets the live-compounded returns again, not last night's */
   return ix;
 }
 function capNum(c){ const m=String(c||'').match(/([\d.]+)\s*([TBMK])?/i); if(!m) return 0; return +m[1]*({T:1e12,B:1e9,M:1e6,K:1e3}[(m[2]||'').toUpperCase()]||1); }
