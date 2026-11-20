@@ -444,6 +444,7 @@ footer ul{padding-inline-start:18px;margin:8px 0}footer li{margin:3px 0}
 .rvstrip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;color:var(--muted)}.rvstrip .rvl{font-weight:600}.rvstrip .rvs{white-space:nowrap}.rvstrip b{font-variant-numeric:tabular-nums;unicode-bidi:isolate}.rvstrip b.up{color:var(--green)}.rvstrip b.dn{color:var(--red,#ef4444)}
 .fxl{display:flex;justify-content:flex-end;margin:0 0 6px}.fxcsv{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}.fxcsv:hover{border-color:var(--green)}
 .ptag{font-style:normal;font-size:10.5px;font-weight:600;color:#7fb2f0;background:#12203a;border-radius:6px;padding:1px 6px;margin-inline-start:6px;white-space:nowrap}
+.cupc{margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px}.cuph{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.cuph small{color:var(--muted);font-size:12px}.cupc svg{width:100%;height:150px;display:block;margin:6px 0}.cupl{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}.cupl i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:4px;vertical-align:-1px}.cupl small{margin-inline-start:auto}
 @media(prefers-reduced-motion:reduce){.mvstrip .in{animation:none}.mvstrip .mvs{overflow-x:auto}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(50%)}}
 @media(prefers-reduced-motion:reduce){.strip .in{animation:none}.strip{overflow-x:auto}}
@@ -1650,7 +1651,7 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
   if(QV.etf){ qvTabEtf(k,t); return; }
   p.querySelectorAll('.qvtabs button').forEach(b=>b.classList.toggle('on',b.dataset.qt===k));
   const box=$('qvBody'); if(!box) return;
-  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול המקווקו · ממוצע אקספוננציאלי 200: הקו הכחול הרציף · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); return; }
+  if(k==='ch'){ const st=stockIndex()[t]||{t}; box.innerHTML=`<div class="qvtv"></div><p class="legend keep">נרות יומיים · ממוצע 50: הקו הכחול המקווקו · ממוצע אקספוננציאלי 200: הקו הכחול הרציף · גרף: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>`; drawChart(st,'D',box.querySelector('.qvtv')); box.insertAdjacentHTML('beforeend','<div class="cupq"></div>'); cupInto(box.querySelector('.cupq'),t); return; }
   if(k!=='ch'&&gateOn()&&!accOn()){ box.innerHTML=''; gateBox(box,k==='rp'?'הדוחות של המניה':'כל החדשות של המניה'); return; }
   box.innerHTML='<div class="empty">טוען…</div>';
   loadDet(t).then(det=>{ if(QV.L[QV.i]!==t||QV.tab!==k) return;
@@ -2109,7 +2110,20 @@ async function renderStkSnap(t){
   add('שורט מהמניות הצפות', F.si!=null?N(F.si,1,'%'):null, 'SHORT');
   b.innerHTML=C.length?`<h3 class="sph3">תקציר נתונים</h3><div class="snap">${C.join('')}</div><p class="legend">רווח למניה ומכפילים לפי הדוחות לרשות ניירות הערך האמריקאית (GAAP). ממוצעים לפי מחירי סגירה.</p>`:'';
 }
-function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t); try{ renderMoves(t); }catch(e){} } }); }
+/* Cup & Handle: our own SVG of the detected shape (cup = blue, handle = orange); offsets come from the nightly detector, counted from the newest close */
+function cupSvg(t){ const rr=((stockIndex()[t]||{}).r)||{}, cu=rr.cup, A=PXF[t]; if(!cu||!A||A.length<cu[1]+cu[2]+5) return '';
+  const [dep,L,h,hp]=cu, n=A.length, k=n-1-h, i0=k-L, a=Math.max(0,i0-20), seg=A.slice(a), off=a;
+  const vals=seg.filter(v=>v!=null); if(vals.length<10) return ''; const mn=Math.min(...vals), mx=Math.max(...vals), W=600, H=170, P=10, m=seg.length-1;
+  const X=i=>(i/m*W).toFixed(1), Y=v=>(P+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(H-2*P)).toFixed(1), pl=(f,g,c,w)=>{ const q=[]; for(let i=f;i<=g;i++) if(seg[i]!=null) q.push(X(i)+','+Y(seg[i])); return q.length>1?`<polyline points="${q.join(' ')}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`:''; };
+  const si=i0-off, sk=k-off; let sj=si, lo=Infinity; for(let i=si;i<=sk;i++) if(seg[i]!=null&&seg[i]<lo){ lo=seg[i]; sj=i; }
+  const rim=Math.max(...seg.slice(si,si+Math.max(3,Math.round(L/6))+1).filter(v=>v!=null)), D=(PXD&&PXD.full)||null, dt=j=>{ const d=D&&D[D.length-n+off+j]; return d?pxD(d):''; };
+  const dot=(i,c)=>seg[i]!=null?`<circle cx="${X(i)}" cy="${Y(seg[i])}" r="3.2" fill="${c}" vector-effect="non-scaling-stroke"/>`:'';
+  return `<div class="cupc"><div class="cuph"><b dir="ltr">Cup &amp; Handle</b><small>כוס ${L} ימים · עומק ${dep}% · ידית ${h} ימים (ירידה ${hp}%)</small></div>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="צורת כוס וידית במחיר הסגירה"><line x1="${X(si)}" x2="${W}" y1="${Y(rim)}" y2="${Y(rim)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>${pl(0,si,'#8b949e',1.4)}${pl(si,sk,'#58a6ff',2.2)}${pl(sk,m,'#f5882a',2.6)}${dot(si,'#58a6ff')}${dot(sj,'#58a6ff')}${dot(sk,'#f5882a')}</svg>
+    <div class="cupl"><span><i style="background:#58a6ff"></i>הכוס</span><span><i style="background:#f5882a"></i>הידית</span><span>קו מקווקו: השיא השמאלי של הכוס</span><small>${dt(0)} - ${dt(m)}</small></div>
+    <p class="legend">תיאור צורת מחיר לפי סגירות יומיות, בלי נפח מסחר. אינו אות קנייה ואינו המלצה.</p></div>`; }
+function cupInto(el,t){ if(!el) return; const rr=((stockIndex()[t]||{}).r)||{}; if(!rr.cup) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ if(el.isConnected) el.innerHTML=cupSvg(t); }); }
+function renderPx(t){ const b=$('spPx'); if(!b) return; Promise.all([loadPxDates(),loadPx(t)]).then(()=>{ const b2=$('spPx'); if(b2&&$('spBody').dataset.t===t){ b2.innerHTML=pxChart(t)+cupSvg(t); try{ renderMoves(t); }catch(e){} } }); }
 /* "why did it move": days of 5%+ since the news archive starts, each with our per-stock item from that day (or "no confirmed reason") */
 let MVALL=false;
 function renderMoves(t){
