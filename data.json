@@ -43732,7 +43732,7 @@
   }
  ],
  "overview": {
-  "asOf": "19.11.2026 · 23:55",
+  "asOf": "20.11.2026 · 11:05",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43791,13 +43791,18 @@
   ],
   "brief": [
    {
-    "h": "הדאו צנח ב-1,101 נקודות, ה-S&P 500 ירד ביום השישי",
-    "t": "לפי Yahoo Finance, הדאו נסגר ב-49,097 (ירידה של 1,101 נקודות), ה-S&P 500 ב-7,175.83 והנאסד״ק ב-23,879; מדד ה-VIX קפץ ל-27.98 ותשואת ה-10 שנים נסגרה סביב 5.05%.",
+    "h": "החוזים יורדים אחרי קריסה באסיה",
+    "t": "החוזים על הנאסד״ק 100 ירדו בכ-1% ועל ה-S&P 500 בכ-0.5%; בטייוואן המדד צנח ב-6.2% (השבוע החלש מאז 1991), הניקיי ב-5.1% והקוספי ב-5.2%, וה-STOXX 600 יורד בכ-1%.",
     "tone": "neg"
    },
    {
-    "h": "Anthropic סיימה את יום המסחר הראשון ב-$97.17",
-    "t": "המניה נסגרה כ-17% מעל מחיר ההנפקה של $83, אבל כ-13% מתחת לשער הפתיחה של $111.50, ובמסחר המאוחר ירדה ל-$95.69.",
+    "h": "Anthropic יורדת אחרי השעות ל-$92.60",
+    "t": "אחרי סגירה של $97.17 ביום המסחר הראשון (17% מעל מחיר ההנפקה של $83), המניה ירדה אחרי השעות בכ-4.7%.",
+    "tone": "neg"
+   },
+   {
+    "h": "תשואת ה-10 שנים ירדה לכ-5.00%",
+    "t": "לפי Reuters, זו ירידה חמישית ברציפות בתשואה על רקע ביקוש למקלט, הזהב ירד ב-2% ל-$3,552 ו-CME FedWatch מתמחר כ-96% להעלאת ריבית בדצמבר.",
     "tone": "neu"
    },
    {
@@ -43806,13 +43811,8 @@
     "tone": "neg"
    },
    {
-    "h": "אחרי הסגירה: Ross מעלה תחזית, Gap מורידה",
-    "t": "Ross Stores העלתה את תחזית הרווח השנתי ל-$8.75–8.84 למניה אחרי צמיחה של 8% במכירות בחנויות זהות; Gap הורידה את תחזית הרווח המתואם ל-$2.29–2.34, ו-Keysight עלתה בכ-2.7% אחרי צמיחה של 41% בהכנסות.",
-    "tone": "neu"
-   },
-   {
-    "h": "טראמפ: דיווח מניות, תקלות טכנולוגיה, מסיבת עיתונאים",
-    "t": "דיווח למשרד לאתיקה ממשלתית מראה רכישות של מניות Nvidia בהיקף של עד $265 אלף בספטמבר; טראמפ קרא לציבור ״להירגע״ מגל התקלות הטכנולוגיות, ויקיים מחר מסיבת עיתונאים על עסקאות הסחר.",
+    "h": "טראמפ: מסיבת עיתונאים היום ב-19:00",
+    "t": "טראמפ יציג בבית הלבן את עסקאות הסחר עם תאילנד, הפיליפינים ואחרות; ועדה בבית הנבחרים פרסמה שמשרד המסחר אישר יותר מ-879 אלף שבבי AI לחברות סיניות.",
     "tone": "neu"
    }
   ],
@@ -43885,7 +43885,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
   },
-  "rev": 202611192355,
+  "rev": 202611201105,
   "market": {
    "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
    "idx": [
@@ -108065,6 +108065,563 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-futures-fall-ai-selloff",
+   "date": "2026-11-20",
+   "t": [
+    "ANT"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "החוזים העתידיים יורדים: הנאסד״ק 100 בכ-1%, ה-S&P 500 בכ-0.5%",
+   "body": "לפי Investing.com, בשעה 06:18 GMT ירדו החוזים על ה-S&P 500 ב-0.5% ל-7,159.75, על הנאסד״ק 100 ב-1% ל-26,328.50 ועל הדאו ב-0.2%. לפי CME FedWatch, השוק מתמחר כ-96% להעלאת ריבית של 0.25% בדצמבר.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/wall-street-futures-fall-as-anthropic-debut-fails-to-revive-ai-trade-5040450",
+   "time": "08:18"
+  },
+  {
+   "id": "2026-11-20-asia-taiwan-worst-week-1991",
+   "date": "2026-11-20",
+   "t": [
+    "TSM"
+   ],
+   "tag": "אסיה",
+   "tone": "neg",
+   "title": "אסיה: הטייוואני צנח ב-6.2%, הניקיי והקוספי בכ-5%",
+   "body": "הניקיי ירד ב-5.1% ל-56,436.65, הקוספי ב-5.2% ל-4,869.96 והמדד הטייוואני ב-6.2% ל-36,033.29, השבוע החלש שלו מאז 1991. SoftBank צנחה בכ-14.5%, ולפי Reuters מדד MSCI אסיה-פסיפיק ללא יפן בדרך לשבוע החלש ביותר מאז מרץ 2020, עם ירידה של 8.5%.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/taiwan-stock-market-falls-6-2-to-cap-its-worst-week-since-1991-as-kospi-closes-down-5-2-and-nikkei-225-drops-5-1-in-ai-chip-selloff/",
+   "time": "09:33"
+  },
+  {
+   "id": "2026-11-20-europe-stoxx-weekly-drop",
+   "date": "2026-11-20",
+   "t": [
+    "ASML"
+   ],
+   "tag": "אירופה",
+   "tone": "neg",
+   "title": "אירופה: ה-STOXX 600 יורד ב-1%, בדרך לשבוע החלש מאז מרץ",
+   "body": "ה-STOXX 600 ירד ב-1% ל-631.89 בשעה 08:05 GMT והדאקס ב-1.3%; המדד בדרך לירידה שבועית של יותר מ-4.5%. ASML, ASM International ו-Infineon ירדו ביותר מ-4% כל אחת, ו-Vallourec צנחה ב-12.5% אחרי ירידה של 26% ברווח התפעולי ברבעון.",
+   "src": "Finwire",
+   "url": "https://finwire.io/news/stock-markets-news/european-shares-head-for-steepest-weekly-drop-since-march",
+   "time": "10:05"
+  },
+  {
+   "id": "2026-11-20-yields-gold-oil-dollar",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "אג״ח",
+   "tone": "neu",
+   "title": "תשואת ה-10 שנים ירדה לכ-5.00%, הזהב יורד ב-2% נוסף",
+   "body": "לפי Reuters, תשואת אג״ח ה-10 שנים האמריקאית ירדה לכ-5.00%, ירידה חמישית ברציפות על רקע ביקוש למקלט, ותשואת השנתיים נגעה ב-4.72%. הזהב ירד ב-2% ל-$3,552.20 (כ-8.5% ירידה השבוע), הברנט עלה ב-0.4% ל-$92.37 ומדד הדולר יציב ב-103.86.",
+   "src": "Reuters / Investing.com",
+   "url": "https://www.investing.com/news/economy-news/asian-shares-head-for-worst-week-since-2020-as-ai-trade-gloom-fails-to-abate-5040496",
+   "time": "10:55"
+  },
+  {
+   "id": "2026-11-20-japan-cpi-uk-retail",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "האינפלציה ביפן מתחת לצפי, המכירות הקמעונאיות בבריטניה מעליו",
+   "body": "מדד המחירים לצרכן ביפן (CPI) עלה באוקטובר ב-2.3% בשנה, מול צפי של 2.5%, ומדד הליבה ב-2.2% מול צפי של 2.3%. בבריטניה עלו המכירות הקמעונאיות באוקטובר ב-0.7% בחודש, מול צפי ללא שינוי, וב-2.3% בשנה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/economic-indicators/uk-retail-sales-rise-07-in-october-beating-forecast-as-shoppers-stock-up-5040820",
+   "time": "09:25"
+  },
+  {
+   "id": "2026-11-20-today-waller-umich-trump-presser",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "היום: וולר, סנטימנט הצרכנים של מישיגן ומסיבת העיתונאים של טראמפ",
+   "body": "נגיד הפד וולר נואם ב-15:25 (שעון ישראל), מדד סנטימנט הצרכנים הסופי של אוניברסיטת מישיגן יפורסם ב-17:00 (צפי 51.0), ומסיבת העיתונאים של טראמפ על עסקאות הסחר בבית הלבן נקבעה ל-19:00. הנגידה קוק נואמת ב-19:15.",
+   "src": "Federal Reserve / Investing.com",
+   "url": "https://www.federalreserve.gov/newsevents/2026-November.htm",
+   "time": "10:55"
+  },
+  {
+   "id": "2026-11-20-house-panel-879k-chips-china",
+   "date": "2026-11-20",
+   "t": [
+    "NVDA",
+    "AMD"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "ועדת החוץ של בית הנבחרים: משרד המסחר אישר יותר מ-879 אלף שבבי AI לחברות סיניות",
+   "body": "לפי מסמכים של משרד המסחר שפרסמה הוועדה, בין דצמבר 2025 למאי 2026 אושרו רישיונות ליותר מ-879 אלף שבבי AI מתקדמים, בהם H200 של Nvidia ו-MI325X של AMD; Tencent קיבלה 150 אלף, Alibaba 75 אלף ו-Baidu 43 אלף. משרד המסחר מסר שהרישיונות נבחנים כל מקרה לגופו, ו-Nvidia מסרה שהפסיקה לשלוח H200 לסין.",
+   "src": "Business Standard",
+   "url": "https://www.business-standard.com/world-news/trump-admin-cleared-over-879k-ai-chip-sales-to-chinese-firms-house-panel-126112000194_1.html",
+   "time": "05:53"
+  },
+  {
+   "id": "2026-11-19-trump-xi-ai-regulation",
+   "date": "2026-11-19",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: סוכם עם שי לעבוד יחד על רגולציה ״מתונה״ ל-AI",
+   "body": "בראיון ל-Fox News ממטוס הנשיאות אמר טראמפ ששניהם רוצים ״רגולציה מתונה לצורכי בטיחות״ ושיעבדו יחד על ״רגולציה סבירה״, אך הזהיר מכללים שיפגעו בטריליוני דולרים של ערך. לדבריו, הוא לא דיבר הרבה עם שי על Nvidia.",
+   "src": "Fox News / Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/us-president-trump-says-he-did-not-discuss-nvidia-nvda-or-the-alleged-chinese-spy-much-with-chinese-president-xi-but-did-talk-about-ai-fox-news-reports",
+   "time": "21:39"
+  },
+  {
+   "id": "2026-11-20-bill-tpg-corpay-deal",
+   "date": "2026-11-20",
+   "t": [
+    "BILL"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "BILL תימכר ל-TPG ו-Corpay ב-$63.25 למניה במזומן",
+   "body": "העסקה מעריכה את BILL בכ-$6.0 מיליארד, פרמיה של 31% על המחיר הממוצע ב-60 הימים שעד 16 בנובמבר. Corpay תשקיע $1.1 מיליארד תמורת כשליש מההון עם אופציה לרכוש את כל החברה, והסגירה צפויה במחצית הראשונה של 2027. המניה ירדה אחרי השעות בכ-3.3% ל-$62.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/bill-holdings-taken-private-tpg-233844629.html",
+   "time": "01:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bsx-notes-penumbra",
+   "date": "2026-11-20",
+   "t": [
+    "BSX"
+   ],
+   "tag": "Boston Scientific",
+   "tone": "neu",
+   "title": "Boston Scientific מגייסת $3 מיליארד ו-4.25 מיליארד אירו באג״ח",
+   "body": "החברה תמחרה אג״ח דולריות בארבע סדרות בריבית של 5.375%–5.875% ואג״ח באירו בשש סדרות, למימון החלק במזומן של רכישת Penumbra. הסליקה צפויה ב-1 בדצמבר.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000885725/000110465926130228/tm2630016d7_fwp.htm",
+   "time": "03:45",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-glob-q3-buyback",
+   "date": "2026-11-20",
+   "t": [
+    "GLOB"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Globant: ההכנסות ירדו ב-1%, תוכנית הרכישה הוכפלה ל-$250 מיליון",
+   "body": "ההכנסות ברבעון השלישי היו $611.1 מיליון, ירידה של 1.0%, והרווח המתואם $1.48 למניה לעומת $1.53. החברה צופה הכנסות של $596–604 מיליון ברבעון הרביעי.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001557860/000110465926130143/tm2630201d1_ex99-1.htm",
+   "time": "01:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bku-buyback-150m",
+   "date": "2026-11-20",
+   "t": [
+    "BKU"
+   ],
+   "tag": "BankUnited",
+   "tone": "pos",
+   "title": "BankUnited מגדילה את תוכנית הרכישה החוזרת ב-$150 מיליון",
+   "body": "הדירקטוריון אישר תוספת של $150 מיליון לתוכנית הרכישה החוזרת הקיימת.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001504008/000150400826000094/exhibit991-pressrelease111.htm",
+   "time": "03:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bull-q3",
+   "date": "2026-11-20",
+   "t": [
+    "BULL"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Webull: ההכנסות עלו ב-39%, הרווח הנקי ירד",
+   "body": "ההכנסות ברבעון השלישי עלו ל-$218.7 מיליון, והרווח הנקי היה $31.2 מיליון לעומת $36.9 מיליון. נכסי הלקוחות עלו ב-53% ל-$32.4 מיליארד.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001866364/000121390026122261/ea031291401ex99-1.htm",
+   "time": "01:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-nvda-california-ag-subpoena",
+   "date": "2026-11-20",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "Nvidia",
+   "tone": "neg",
+   "title": "התובע הכללי של קליפורניה שלח צו חקירה ל-Nvidia",
+   "body": "לפי San Francisco Chronicle, התובע הכללי רוב בונטה בודק אם החברה הטעתה משקיעים ואת הציבור בקשר ליחסים של המנכ״ל לשעבר ג׳נסן הואנג עם חשודה בריגול לטובת סין. הדירקטוריון שלל את חזרתו של הואנג.",
+   "src": "SF Chronicle / Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/california-ag-subpoenas-nvidia-over-040938059.html",
+   "time": "06:09",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-c-rwa-misbooking",
+   "date": "2026-11-20",
+   "t": [
+    "C"
+   ],
+   "tag": "Citigroup",
+   "tone": "neg",
+   "title": "Reuters: Citi רשמה עסקאות באופן שגוי ביחידה אירופית",
+   "body": "לפי Reuters, ההון בסיכון ביחידה הוערך בחסר בכ-$35 מיליארד והבנק נדרש להוסיף לה הון. Citi מסרה שהיחידה עמדה בכל הדרישות ושהבעיה במידול ההון נפתרה.",
+   "src": "Reuters / Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/citigroup-misbooked-trades-at-european-unit-underestimated-risk-by-35-bln-reuters-reports-93CH-5040402",
+   "time": "02:21",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-spcx-lenders-chip-safeguards",
+   "date": "2026-11-20",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "SpaceX",
+   "tone": "neu",
+   "title": "FT: המלווים של SpaceX ביקשו הגנה מפני שליחת השבבים המשועבדים לחלל",
+   "body": "לפי FT, בחבילת החוב של $43 מיליארד, המובטחת בשבבי Nvidia, ביקשו המלווים סעיף נגד העברת השבבים למסלול; לא ברור אם הסעיף נכלל במסמכים הסופיים. החבילה כוללת אג״ח בדירוג השקעה של $25 מיליארד בתשואה של כ-8.3%.",
+   "src": "FT / Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/spacex-lenders-seek-safeguards-against-musk-sending-ai-chips-into-space--ft-5040555",
+   "time": "04:48",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-19-aapl-ai-agent",
+   "date": "2026-11-19",
+   "t": [
+    "AAPL"
+   ],
+   "tag": "Apple",
+   "tone": "neu",
+   "title": "Bloomberg: Apple מפתחת סוכן AI שמפעיל את המחשב",
+   "body": "לפי Bloomberg, Apple בונה סוכן אוטונומי שיוכל לכתוב קוד, לגלוש ולהפעיל אפליקציות, והשקה נשקלת כבר בסוף השנה הבאה. הפיתוח בשלב מוקדם.",
+   "src": "Bloomberg / Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/apple-working-ai-agent-device-214456605.html",
+   "time": "23:44",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-meta-net-zero-2030",
+   "date": "2026-11-20",
+   "t": [
+    "META"
+   ],
+   "tag": "Meta",
+   "tone": "neu",
+   "title": "Meta בוחנת מחדש את יעד אפס הפליטות ל-2030",
+   "body": "Meta מסרה ביום חמישי שהיא בוחנת מחדש את לוח הזמנים ליעד אפס פליטות נטו ב-2030, על רקע הבנייה של תשתיות ה-AI. לפי Bloomberg, המניה ירדה בכמעט 2% בשעות המאוחרות אחרי הדיווח על סוכן ה-AI של Apple.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/apple-working-ai-agent-device-214456605.html",
+   "time": "02:43",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bsp-q3-beat",
+   "date": "2026-11-20",
+   "t": [
+    "BSP"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Bending Spoons: הרווח וההכנסות מעל הצפי, התחזית השנתית הועלתה",
+   "body": "הרווח המתואם היה $0.42 למניה מול צפי של $0.32, וההכנסות $780.2 מיליון מול צפי של $745.9 מיליון. לשנת 2026 החברה צופה הכנסות של $3.07–3.09 מיליארד, מול צפי של $2.90 מיליארד, והשיקה הנפקת מניות של $1.3 מיליארד.",
+   "src": "MarketScreener",
+   "url": "https://www.marketscreener.com/news/bending-spoons-q3-adjusted-earnings-revenue-rise-acquires-intuit-s-mailchimp-and-launches-1-3-bil-ce785ed2df8cf62d",
+   "time": "00:45",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-fro-q3",
+   "date": "2026-11-20",
+   "t": [
+    "FRO"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Frontline: רווח של $641 מיליון ברבעון, דיבידנד של $2.38",
+   "body": "הרווח המתואם היה $530.9 מיליון ($2.38 למניה) וההכנסות $921.3 מיליון. התעריף היומי הממוצע למכליות VLCC היה $148,500, והמנכ״ל צופה שהרבעון הרביעי ושנת 2026 יהיו התוצאות החזקות בתולדות החברה.",
+   "src": "GlobeNewswire",
+   "url": "https://www.manilatimes.net/2026/11/20/tmt-newswire/globenewswire/fro-third-quarter-and-nine-months-2026-results/2474780",
+   "time": "08:33",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-ntes-hk-plunge",
+   "date": "2026-11-20",
+   "t": [
+    "NTES"
+   ],
+   "tag": "NetEase",
+   "tone": "neg",
+   "title": "NetEase צונחת בכ-18% בהונג קונג אחרי ירידה בהכנסות",
+   "body": "ההכנסות נטו ברבעון השלישי ירדו ב-1.8% ל-27.9 מיליארד יואן. המניה ירדה ביותר מ-13% בפתיחה בהונג קונג ובכ-18% עד הצהריים, אחרי ירידה של 11.4% ל-ADR בניו יורק אתמול.",
+   "src": "The Standard",
+   "url": "https://www.thestandard.com.hk/finance/article/349105/Hang-Seng-hits-lowest-since-April-2025-at-noon-on-Friday-Alibaba-up-4-percent",
+   "time": "06:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-baba-hk-rises",
+   "date": "2026-11-20",
+   "t": [
+    "BABA"
+   ],
+   "tag": "Alibaba",
+   "tone": "pos",
+   "title": "Alibaba עולה בכ-4% בהונג קונג נגד המגמה",
+   "body": "לפי The Standard, המניה עלתה בכ-4% עד הצהריים בזמן שמדד הנג סנג ירד ב-1.7%. הכנסות הענן וה-AI עלו ב-53% לכמעט 61 מיליארד יואן.",
+   "src": "The Standard",
+   "url": "https://www.thestandard.com.hk/finance/article/349105/Hang-Seng-hits-lowest-since-April-2025-at-noon-on-Friday-Alibaba-up-4-percent",
+   "time": "06:05",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-asml-europe-drop",
+   "date": "2026-11-20",
+   "t": [
+    "ASML"
+   ],
+   "tag": "ASML",
+   "tone": "neg",
+   "title": "ASML יורדת ביותר מ-4% באירופה",
+   "body": "ASML, יחד עם ASM International ו-Infineon, ירדה ביותר מ-4% בבוקר, כשמשקיעים יוצאים מהשקעות הקשורות ל-AI, לפי Finwire.",
+   "src": "Finwire",
+   "url": "https://finwire.io/news/stock-markets-news/european-shares-head-for-steepest-weekly-drop-since-march",
+   "time": "10:06",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-duk-notes-875m",
+   "date": "2026-11-20",
+   "t": [
+    "DUK"
+   ],
+   "tag": "Duke Energy",
+   "tone": "neu",
+   "title": "Duke Energy השלימה הנפקת אג״ח של $875 מיליון",
+   "body": "האג״ח נושאות ריבית של 6.05% לפירעון ב-2036. התמורה תשמש לפירעון אג״ח של $600 מיליון שמועדן בינואר 2027 ולהקטנת ניירות ערך מסחריים.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001326160/000110465926129721/tm2629411-3_424b2.htm",
+   "time": "02:11",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-tsm-china-designers-curbs",
+   "date": "2026-11-20",
+   "t": [
+    "TSM"
+   ],
+   "tag": "TSMC",
+   "tone": "neu",
+   "title": "Taipei Times: TSMC השעתה הזמנות מתקדמות של מתכנני שבבים סיניים",
+   "body": "לפי Taipei Times, בציטוט שני מקורות, TSMC השעתה חלק מהזמנות הייצור המתקדם של מתכנני שבבים סיניים ותגביל אותם בעיקר לטכנולוגיות ישנות יותר, בעקבות כללים אמריקאיים חדשים.",
+   "src": "Taipei Times",
+   "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/20/2003868041",
+   "time": "02:06",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-blco-bl1332-miss",
+   "date": "2026-11-20",
+   "t": [
+    "BLCO"
+   ],
+   "tag": "Bausch + Lomb",
+   "tone": "neg",
+   "title": "Bausch + Lomb: ניסוי בתרופה לכאבי עיניים לא עמד ביעד",
+   "body": "ניסוי שלב 2 ב-BL1332 לא עמד ביעד העיקרי, והמניה ירדה ב-1.8% אחרי השעות, לפי Investing.com.",
+   "src": "Investing.com",
+   "url": "https://finnhub.io/api/news?id=855da325b5ec9d79bcaf62d9d95c5036debafb32baf50d69149979ca0ea7160b",
+   "time": "01:27",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-syk-growth-goals",
+   "date": "2026-11-20",
+   "t": [
+    "SYK"
+   ],
+   "tag": "Stryker",
+   "tone": "neu",
+   "title": "Stryker שומרת על יעדי הצמיחה למרות מתקפת הסייבר",
+   "body": "בכנס בלונדון אמרו מנהלי החברה שהיא צופה לשמור על יעדי הצמיחה והרווחיות לטווח הארוך, למרות מתקפת סייבר, שיבושי אספקה ושוק אורתופדי איטי יותר בארה״ב. ספנסר סטיילס יהיה המנכ״ל בינואר.",
+   "src": "Yahoo",
+   "url": "https://finnhub.io/api/news?id=43ab188c757c1b312eb7fd536cb3a8a865eea32e769991de723d9b435164bc28",
+   "time": "02:14",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-unp-nsc-stb-response",
+   "date": "2026-11-20",
+   "t": [
+    "UNP"
+   ],
+   "tag": "Union Pacific",
+   "tone": "neu",
+   "title": "Union Pacific ו-Norfolk Southern מתנגדות לבקשה לעצור את בחינת המיזוג",
+   "body": "החברות הגישו לרגולטור (STB) תגובה לבקשה של Canadian Pacific Kansas City להפסיק את בחינת המיזוג ביניהן.",
+   "src": "Business Wire",
+   "url": "https://finnhub.io/api/news?id=9242e230ad75412db6d919bf25856795ca8852605b10efc93c9dc1bcd9353b16",
+   "time": "00:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-ajg-wells-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "AJG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Wells Fargo הורידה את Arthur J. Gallagher לנייטרלי",
+   "body": "Wells Fargo הורידה את ההמלצה על Gallagher ל-Equal-Weight מ-Overweight.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=4a860231bc9688ad17743a2a02c07a4f6adf2afa40fb3e3c34d2bc602e5d95d4",
+   "time": "03:26",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-mrsh-wells-upgrade",
+   "date": "2026-11-20",
+   "t": [
+    "MRSH"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Wells Fargo העלתה את Marsh McLennan לתשואת יתר",
+   "body": "Wells Fargo העלתה את ההמלצה על Marsh McLennan ל-Overweight מ-Equal-Weight.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=19eabe4d35687b5dd6c79a471602465f0899884a4b1c57826d2f02dee878d4d7",
+   "time": "02:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-abt-leerink-upgrade",
+   "date": "2026-11-20",
+   "t": [
+    "ABT"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Leerink העלתה את Abbott לתשואת יתר",
+   "body": "Leerink Partners העלתה את ההמלצה על Abbott ל-Outperform מ-Market Perform.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=d0075ab9249be8e8a3d075d56f1cb835fc9715a20845b0c104778115c8855455",
+   "time": "02:19",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-sr-jefferies-downgrade",
+   "date": "2026-11-20",
+   "t": [
+    "SR"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Jefferies הורידה את Spire להחזק",
+   "body": "Jefferies הורידה את ההמלצה על חברת הגז Spire ל-Hold מ-Buy.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=346066ff9bad44541ce03bfbd65655ffcda60d41a36c3f1b6fbfaf44b591217f",
+   "time": "02:59",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-brbr-chair-leave",
+   "date": "2026-11-20",
+   "t": [
+    "BRBR"
+   ],
+   "tag": "BellRing",
+   "tone": "neu",
+   "title": "יו״ר BellRing יוצא לחופשת מחלה",
+   "body": "BellRing Brands הודיעה שהיו״ר רוברט ויטאלה יוצא לחופשה רפואית החל מ-19 בנובמבר.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=62c344d806b8f907abac6fd286f1a48f5047835790e03b3a37c2f4ec9687f690",
+   "time": "02:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-bkr-ichthys-contract",
+   "date": "2026-11-20",
+   "t": [
+    "BKR"
+   ],
+   "tag": "Baker Hughes",
+   "tone": "pos",
+   "title": "Baker Hughes ו-McDermott זכו בחוזה בפרויקט ה-LNG Ichthys",
+   "body": "החברות קיבלו חוזה לתשתית תת-ימית בשלב הבא של פיתוח פרויקט הגז הטבעי הנוזלי Ichthys באוסטרליה.",
+   "src": "Yahoo",
+   "url": "https://finnhub.io/api/news?id=8e7ca9506dbfa0f16c52e88a9c3b9a64640ddcf5a30053c17b5355fc2c38c207",
+   "time": "02:40",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-tbbb-barclays-initiate",
+   "date": "2026-11-20",
+   "t": [
+    "TBBB"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Barclays פתחה סיקור על BBB Foods בהמלצת Overweight",
+   "body": "Barclays החלה לסקר את רשת הדיסקאונט המקסיקנית BBB Foods בהמלצת Overweight.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=84faf61b432aeb26d51f7ecac278907ae5cd6f963cf89c36f8031142712313cd",
+   "time": "02:55",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-hog-stonex-initiate",
+   "date": "2026-11-20",
+   "t": [
+    "HOG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "StoneX פתחה סיקור על Harley-Davidson בהמלצת קנייה",
+   "body": "StoneX החלה לסקר את Harley-Davidson בהמלצת Buy.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=ae3d53176634922748d25cc53741d5a115028853ac72c81597d47d619fa15a8e",
+   "time": "02:18",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-nke-board-changes",
+   "date": "2026-11-20",
+   "t": [
+    "NKE"
+   ],
+   "tag": "Nike",
+   "tone": "neu",
+   "title": "Nike: אלכסנדר ארנו לוועדת התגמול, מוניקה חיל עוזבת את הדירקטוריון",
+   "body": "Nike מינתה את אלכסנדר ארנו לוועדת התגמול, ומוניקה חיל פורשת מהדירקטוריון החל מ-19 בנובמבר.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=28ec502488ac4778cd8423a2d6ab20f97f1957c6e76cdcb1070351898397db40",
+   "time": "02:21",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-20-ant-after-hours-dip",
+   "date": "2026-11-20",
+   "t": [
+    "ANT"
+   ],
+   "tag": "הנפקות",
+   "tone": "neg",
+   "title": "Anthropic יורדת בכ-4.7% אחרי השעות, ל-$92.60",
+   "body": "אחרי סגירה של $97.17 ביום הראשון, המניה ירדה אחרי השעות ל-$92.60. בחוזה הנצחי ב-Hyperliquid היא נסחרה בשעות המסחר באסיה סביב $90–93, כ-5% מתחת לסגירה, לפי CoinDesk.",
+   "src": "Benzinga / Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-stock-slips-hours-blockbuster-015552218.html",
+   "time": "03:55",
+   "k": "stock"
+  },
   {
    "id": "2026-11-19-ese-q4-beat",
    "date": "2026-11-19",
