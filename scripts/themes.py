@@ -184,6 +184,8 @@ except Exception as e: print("adr failed", e, flush=True)
 
 # 4) aggregate per industry
 def cap(v): return f"{v/1e12:.2f}T" if v >= 1e12 else f"{v/1e9:.2f}B"
+_ma50, _ma200 = close.rolling(50, min_periods=50).mean().iloc[-1], close.rolling(200, min_periods=200).mean().iloc[-1]   # % above/below the 50 / 200-day average
+_last = close.ffill().iloc[-1]
 by = {}
 for s in close.columns:
     ind = cache[s][0]
@@ -201,6 +203,9 @@ for ind, mem in by.items():
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
         _h = HI52.get(s)
         if _h is not None and not pd.isna(_h): rr["hi"] = round(float(_h), 1)   # % below the 52-week closing high (0 = at the high)
+        for _k, _m in (("a50", _ma50), ("a200", _ma200)):
+            _mv = _m.get(s); _lv = _last.get(s)
+            if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
         lst.append([s, x.get("shortName") or x.get("longName") or s, cap(x["marketCap"]), rr])
     if sum(1 for e in lst if e[3]["m"] is not None) >= 0.6 * len(lst): stocks[ind] = lst
