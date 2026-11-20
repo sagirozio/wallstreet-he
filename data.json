@@ -43822,7 +43822,7 @@
   }
  ],
  "overview": {
-  "asOf": "20.11.2026 · 18:05",
+  "asOf": "20.11.2026 · 18:40",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43886,8 +43886,8 @@
     "tone": "neg"
    },
    {
-    "h": "השבבים, האופטיקה ומרכזי הנתונים בירידות",
-    "t": "Nvidia יורדת בכ-3%, Micron ביותר מ-5% ו-Broadcom בכ-4%; Anthropic ירדה בכ-5% ל-$92.11 ביום המסחר המלא הראשון, ומניות מרכזי הנתונים כמו IREN, Applied Digital ו-Core Scientific ירדו בכ-5% במסחר המקדים.",
+    "h": "המכירות בשבבים ובתשתיות AI מעמיקות",
+    "t": "SanDisk יורדת בכ-13%, Western Digital בכ-9% ו-Applied Digital ו-Core Scientific בכ-12%; Anthropic ממשיכה לרדת ביום המסחר המלא הראשון, והביטקוין ירד מתחת ל-$60,000 לראשונה מאז יולי.",
     "tone": "neg"
    },
    {
@@ -43975,7 +43975,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-13.8% ל-27.98, הרמה הגבוהה מאז תחילת השבוע, ביום של ירידות חדות במניות הטכנולוגיה."
   },
-  "rev": 202611201805,
+  "rev": 202611201840,
   "market": {
    "note": "סגירה ביום חמישי, 19.11.2026. ביום הבכורה של Anthropic, הדאו ירד ב-1,101 נקודות וה-S&P 500 ירד ביום השישי ברציפות; 10 מתוך 11 הסקטורים ירדו. מניות השבבים התהפכו לירידה, AMD צנחה אחרי פוזיציית שורט של Hunterbrook, ומדד הייצור של פילדלפיה ותביעות האבטלה היו חלשים מהצפי.",
    "idx": [
@@ -112085,6 +112085,66 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-20-bitcoin-below-60k",
+   "date": "2026-11-20",
+   "t": [
+    "MSTR",
+    "COIN"
+   ],
+   "tag": "קריפטו",
+   "tone": "neg",
+   "title": "הביטקוין ירד מתחת ל-$60,000 לראשונה מאז יולי",
+   "body": "לפי Bitcoin Magazine, הביטקוין נסחר סביב $59,600 ב-17:45 (שעון ישראל), ירידה של כ-$1,800 בתוך כשעה, על רקע הירידות בטכנולוגיה, הימורים להעלאת ריבית בדצמבר ושיא של פדיונות ב-IBIT של BlackRock ($541.1 מיליון ביום חמישי). Strategy ירדה בכ-7%.",
+   "src": "Bitcoin Magazine",
+   "url": "https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000",
+   "time": "17:59"
+  },
+  {
+   "id": "2026-11-20-wdc-slide",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "WDC"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Western Digital יורדת בכ-9% עם מכירות בזיכרון ובאחסון",
+   "body": "לפי Investing.com, המניה ירדה בכ-8.9% ל-$270.28 בבוקר, במסגרת מכירות רחבות במניות החומרה, הזיכרון והאחסון של AI; Evercore ISI הוציאה אותה מרשימת Tactical Outperform, ובנוסף דווח על מכירת מניות של המנכ״ל.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/why-is-western-digital-stock-sliding-today-93CH-5042170",
+   "time": "17:32"
+  },
+  {
+   "id": "2026-11-20-apld-slide",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "APLD"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Applied Digital צונחת בכ-12% עם העמקת המכירות בתשתיות AI",
+   "body": "לפי 24/7 Wall St., המניה ירדה בכ-12% ל-$12.27 בבוקר, כשמפתחי מרכזי הנתונים ל-AI בין הנפגעים העיקריים מהמכירות בתשתיות AI.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/applied-digital-and-core-scientific-sink-12-as-ai-infrastructure-sell-off-deepens-terawulf-tumbles-10/",
+   "time": "17:56"
+  },
+  {
+   "id": "2026-11-20-corz-slide",
+   "date": "2026-11-20",
+   "k": "stock",
+   "t": [
+    "CORZ"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Core Scientific יורדת בכ-12% במכירות בתשתיות AI",
+   "body": "לפי 24/7 Wall St., המניה ירדה בכ-12% ל-$11.80 בבוקר; המכירות פוגעות במיוחד במפתחי מרכזי נתונים עם מודל עסקי הממומן בחוב.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/20/applied-digital-and-core-scientific-sink-12-as-ai-infrastructure-sell-off-deepens-terawulf-tumbles-10/",
+   "time": "17:56"
+  },
   {
    "id": "2026-11-20-svra-fda-delay",
    "date": "2026-11-20",
