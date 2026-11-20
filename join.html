@@ -48,6 +48,7 @@ h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin
 .ft .n{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;color:var(--muted);font-size:13px}
 .lv{margin:0;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.lvr{display:grid;grid-template-columns:28px 1fr auto auto;gap:14px;align-items:center;padding:14px 20px;border-top:1px solid var(--line);font-size:16px}.lvr:first-child{border:0}.lvr i{font-style:normal;color:var(--muted);font:500 13px 'JetBrains Mono',monospace}.lvr b{font-weight:600}.lvr em{font-style:normal;font:600 15px 'JetBrains Mono',monospace;direction:ltr;min-width:64px;text-align:left}.lvr em.u{color:var(--g2)}.lvr em.d{color:#f87171}.lvr small{color:var(--muted);font:400 13px 'JetBrains Mono',monospace;min-width:96px;text-align:left}.lvh{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}.lvn{margin:14px 0 0;color:var(--muted);font-size:14px}.lvn a{color:var(--g2);text-decoration:none;font-weight:600}
 .lvr .en{display:block;color:var(--muted);font:400 12px 'JetBrains Mono',monospace;direction:ltr;text-align:right;margin-top:2px}.tv{margin-top:28px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}.tv video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.who>div{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden;display:flex;flex-direction:column}.who .wi{display:block;height:230px;overflow:hidden;border-bottom:1px solid var(--line);background:#0b0d11}.who .wi img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}.who .wb{padding:22px 24px 24px}.who h3{margin:0 0 4px;font-size:21px}.who .wl{color:var(--g2);font:600 12px 'JetBrains Mono',monospace;letter-spacing:.04em;margin-bottom:6px;display:block}.who ul{margin:12px 0 0;padding:0;list-style:none}.who li{position:relative;padding:8px 22px 8px 0;color:var(--muted);font-size:16px;line-height:1.55;border-top:1px solid var(--line)}.who li::before{content:'';position:absolute;right:0;top:17px;width:8px;height:8px;border-radius:50%;background:var(--g2)}.who li b{color:var(--text);font-weight:600}.whn{margin:16px 0 0;color:var(--muted);font-size:14px}@media(max-width:760px){.who{grid-template-columns:1fr}.who .wi{height:190px}}
 .feat .frame{margin:0}.feat .frame img{max-height:430px;object-fit:cover;object-position:top}
 .all{margin-top:110px}.allg{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px;align-items:start}
 .grp{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px}.grp h3{margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--g2)}
@@ -82,12 +83,27 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
 </section>
 
-<section class="sec" id="tour"><div class="lbl">סיור של 30 שניות</div><h2 class="h2">ככה זה נראה מבפנים.</h2><p class="sub">מהטבלה ועד הדוחות, בלי הרשמה לצפייה בסרטון. <span dir="ltr" lang="en" style="display:block;margin-top:4px">A 30-second tour of the site.</span></p>
-  <div class="tv"><video id="tourV" muted loop playsinline controls preload="none" poster="lp/tour.jpg?v=b15b15" aria-label="סיור קצר באתר: טבלת מניות, כרטיס מניה, תעשיות, רוחב שוק ודוחות. Short site tour."><source src="lp/tour.mp4?v=b15b15" type="video/mp4"></video></div></section>
+<section class="sec" id="tour"><div class="lbl">סיור קצר</div><h2 class="h2">מחקר מהיר, מהשוק ועד המניה.</h2><p class="sub">בודקים את השוק, מזהים תעשיות חזקות, מצמצמים לרשימה, בודקים חברה ומעתיקים. בלי הרשמה לצפייה בסרטון. <span dir="ltr" lang="en" style="display:block;margin-top:4px">A short tour: from the market to the stock.</span></p>
+  <div class="tv"><video id="tourV" muted loop playsinline controls preload="none" poster="lp/tour.jpg?v=6daa98" aria-label="סיור קצר באתר: רוחב שוק, תעשיות, מובילות שוק, סורק, כרטיס מניה, העתקת סימולים ודוחות. Short site tour."><source src="lp/tour.mp4?v=6daa98" type="video/mp4"></video></div></section>
 
 <section class="sec" id="live" hidden><div class="lbl">נתון חי מהאתר</div><h2 class="h2">חמש התעשיות החזקות ביום המסחר האחרון.</h2><p class="sub">כך נראית הטבלה בתוך האתר: כל תעשייה עם תשואה יומית ושבועית, מדורגות לפי היום.</p>
   <div class="lv" id="lvBox" style="margin-top:28px"><div class="lvh"><span>תעשייה</span><span id="lvAs"></span></div><div id="lvRows"></div></div>
   <p class="lvn">מתוך <span id="lvN"></span> תעשיות עם 3 מניות ומעלה. <a href="/join" data-join>לכל הטבלה, בחינם</a></p></section>
+
+<section class="sec" id="who"><div class="lbl">למי זה מתאים</div><h2 class="h2">לסוחרים ולמשקיעים.</h2><p class="sub">מקום אחד בעברית במקום עשר לשוניות פתוחות.</p>
+  <div class="who">
+    <div><div class="wi"><img src="lp/stocks.jpg?v=c8e599" alt="טבלת מניות עם RS וסינון" loading="lazy"></div><div class="wb"><span class="wl">סוחרים</span><h3>מחקר מהיר, בלי רעש</h3><ul>
+      <li><b>סינון מהיר:</b> סורק, מובילות שוק ו-RS מצמצמים כ-2,000 מניות לכמה עשרות לבדיקה.</li>
+      <li><b>הקשר שוק:</b> רוחב שוק, סקטורים ותעשיות מראים איפה הכסף זורם.</li>
+      <li><b>דוחות:</b> מי מדווחת השבוע, ומה הייתה תגובת המניה בעבר.</li>
+      <li><b>סדר עבודה:</b> רשימת מעקב והעתקת רשימות סימולים לפלטפורמת המסחר.</li></ul></div></div>
+    <div><div class="wi"><img src="lp/qv.jpg?v=9d9475" alt="כרטיס מניה עם נתונים רבעוניים" loading="lazy"></div><div class="wb"><span class="wl">משקיעים</span><h3>להבין חברה ושוק</h3><ul>
+      <li><b>כרטיס לכל מניה:</b> גרף, דוח אחרון, צמיחה רבעונית וחדשות במקום אחד.</li>
+      <li><b>תמונה רחבה:</b> סקטורים, תעשיות וקרנות נושאיות לאורך זמן.</li>
+      <li><b>נתוני רקע:</b> פחד וחמדנות, תנודתיות ועונתיות, בלי תחזיות.</li>
+      <li><b>הכל בעברית:</b> חדשות, דוחות ומילון מונחים.</li></ul></div></div>
+  </div>
+  <p class="whn">מידע עובדתי בלבד, בלי המלצות. הנתונים בעיכוב קל ולא מיועדים למסחר בזמן אמת.</p></section>
 
 <section class="all" id="all" aria-label="כל הכלים באתר"><div class="lbl">כל הכלים באתר</div><h2 class="h2">17 כלים, חשבון אחד.</h2>
   <div class="allg">
