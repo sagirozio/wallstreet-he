@@ -114,6 +114,7 @@
 <url><loc>https://wallstreeter.co.il/stock/ANET.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/ANF.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/ANRO.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/ANT.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/AON.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/AOS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/APA.html</loc></url>
@@ -719,7 +720,6 @@
 <url><loc>https://wallstreeter.co.il/stock/GCT.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/GD.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/GDDY.html</loc></url>
-<url><loc>https://wallstreeter.co.il/stock/GDRX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/GDS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/GDYN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/GE.html</loc></url>
@@ -942,6 +942,7 @@
 <url><loc>https://wallstreeter.co.il/stock/JCI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JD.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JEF.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/JFR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JHX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JKHY.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JMKE.html</loc></url>
@@ -1135,6 +1136,7 @@
 <url><loc>https://wallstreeter.co.il/stock/MP.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/MPC.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/MPLX.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/MPT.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/MPWR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/MQ.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/MQY.html</loc></url>
@@ -1405,6 +1407,7 @@
 <url><loc>https://wallstreeter.co.il/stock/PRMB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PRU.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PRVA.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/PS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PSA.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PSN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PSNL.html</loc></url>
@@ -1637,6 +1640,7 @@
 <url><loc>https://wallstreeter.co.il/stock/ST.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/STAA.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/STAG.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/STC.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/STDN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/STE.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/STEP.html</loc></url>
@@ -1812,6 +1816,7 @@
 <url><loc>https://wallstreeter.co.il/stock/URGN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/URI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/UROY.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/USA.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USAR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USFD.html</loc></url>
@@ -1872,11 +1877,9 @@
 <url><loc>https://wallstreeter.co.il/stock/VTR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/VTRS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/VVV.html</loc></url>
-<url><loc>https://wallstreeter.co.il/stock/VVVV.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/VVX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/VYX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/VZ.html</loc></url>
-<url><loc>https://wallstreeter.co.il/stock/VZLA.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/W.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WAB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WAFD.html</loc></url>
@@ -1933,7 +1936,6 @@
 <url><loc>https://wallstreeter.co.il/stock/WTW.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WU.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WULF.html</loc></url>
-<url><loc>https://wallstreeter.co.il/stock/WWB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WWD.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WWW.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/WY.html</loc></url>
