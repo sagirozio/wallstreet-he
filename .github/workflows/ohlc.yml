@@ -1,6 +1,8 @@
 name: OHLC for the own candlestick chart
 on:
   workflow_dispatch: {}
+  schedule:
+    - cron: "17 10 * * 6"   # Saturday morning: Yahoo publishes Friday's final daily bar only some hours after the close, so a run late on Friday can miss it
 concurrency: { group: ohlc, cancel-in-progress: false }
 permissions:
   contents: write
