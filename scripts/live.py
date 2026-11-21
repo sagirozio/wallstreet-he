@@ -2,7 +2,8 @@
 
 Runs inside one long GitHub Actions job (live.yml) that loops until the market closes.
 Each round: Yahoo screener (US, cap > $1B, ~12 pages of 250) -> live.json
-{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%, dayHigh, dayLow, open]}}
+{"asOf": "DD.MM.YYYY · HH:MM" (Israel), "date": "YYYY-MM-DD", "state": "REGULAR|PRE|POST|CLOSED", "q": {T: [price, change%, dayHigh, dayLow, open]},
+ "post": {T: [price, change%]} after-hours, "pre": {T: [price, change%]} + "extD" pre-market}
 pushed as a single commit to the `live` branch (force-push, so it never grows the history).
 The page reads it from raw.githubusercontent.com.
 
@@ -33,9 +34,10 @@ except Exception as e:
 
 VB = {}    # volume breakouts today: {T: [change %, volume / 3-month average volume]} for moves of +4% or more on 2x volume
 EXT = {}   # extended hours: {T: [price, change% vs the regular close]} (after-hours 16:00-20:00 ET)
+PREM = {}  # pre-market: {T: [price, change% vs the last regular close]} (until 09:30 ET)
 def round_once():
     out, state, last_ts = {}, None, 0
-    EXT.clear(); VB.clear()
+    EXT.clear(); VB.clear(); PREM.clear()
     for off in range(0, 6000, 250):
         r = None
         for k in range(3):
@@ -58,6 +60,8 @@ def round_once():
             if h and l and op: out[t].append(round(float(op), 2))   # today's open (own candlestick chart: today's candle)
             pp, pc = q.get("postMarketPrice"), q.get("postMarketChangePercent")
             if pp and pc is not None and q.get("postMarketTime", 0) >= q.get("regularMarketTime", 0): EXT[t] = [round(float(pp), 2), round(float(pc), 2)]
+            ep, ec = q.get("preMarketPrice"), q.get("preMarketChangePercent")
+            if ep and ec is not None and q.get("preMarketTime", 0) > q.get("regularMarketTime", 0): PREM[t] = [round(float(ep), 2), round(float(ec), 2)]
             v, av = q.get("regularMarketVolume"), q.get("averageDailyVolume3Month")
             if c >= 4 and v and av and v >= 2 * av: VB[t] = [round(float(c), 2), round(float(v) / float(av), 1)]
             state = state or q.get("marketState")
@@ -138,7 +142,7 @@ while True:
             print("job limit: starting a new run", flush=True)
             subprocess.run(f'gh api -X POST repos/{REPO}/actions/workflows/live.yml/dispatches -f ref=main', shell=True)
             break
-        if mins < 9 * 60 + 25:
+        if mins < 7 * 60:   # pre-market quotes from 07:00 New York (the page shows them as a line on the chart; the regular figures stay last night's until the open)
             time.sleep(60); continue
     t0 = time.time()
     try:
@@ -178,6 +182,7 @@ while True:
             if etf: payload["etf"] = etf   # ETF price + change (+ day high, low, open): sector funds (XLK, XLF ...) and the thematic table
             if VB: payload["vb"] = dict(VB)
             if EXT and mins >= 16 * 60: payload["post"] = dict(EXT)   # after-hours prices (16:00-20:00 New York)
+            if PREM and mins < 9 * 60 + 30: payload["pre"] = dict(PREM); payload["extD"] = ny.strftime("%Y-%m-%d")   # pre-market prices and the day they belong to
             if mins >= 16 * 60:   # after-hours for the index ETFs (status line on the home page)
                 pi = {}
                 for sym in ("SPY", "QQQ", "DIA"):
@@ -196,4 +201,4 @@ while True:
         print("round failed", type(e).__name__, e, flush=True)
     if ONCE:
         break
-    time.sleep(max(30, (180 if mins < 16 * 60 + 5 else 600) - (time.time() - t0)))   # every 3 min in the session, 10 min after-hours
+    time.sleep(max(30, (300 if mins < 9 * 60 + 25 else 180 if mins < 16 * 60 + 5 else 600) - (time.time() - t0)))   # every 5 min pre-market, 3 min in the session, 10 min after-hours
