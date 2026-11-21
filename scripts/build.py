@@ -341,8 +341,8 @@ m_js = _re.search(r"<script>\nconst FALLBACK = __DATA__;\n(.*?)</script>\n</body
 if m_css and m_js:
     css_name = asset(minify(m_css.group(1), "css"), "css")
     js_name = asset(minify(m_js.group(1), "js"), "js")
-    page = (page[:m_js.start()] + '<script>const FALLBACK = __DATA__;</script>\n<script src="' + js_name + '"></script>\n</body>' + page[m_js.end():])
-    page = page[:m_css.start()] + '<link rel="stylesheet" href="' + css_name + '">\n' + page[m_css.end():]
+    page = (page[:m_js.start()] + '<script>const FALLBACK = __DATA__;</script>\n<script src="' + js_name + '" onerror="window.__unboot&&__unboot()"></script>\n</body>' + page[m_js.end():])
+    page = page[:m_css.start()] + '<link rel="stylesheet" href="' + css_name + '">\n<link rel="preload" as="script" href="' + js_name + '">\n' + page[m_css.end():]   # the script is at the end of a long page: start its download right away
     # keep the files of the last builds (a page opened a little earlier still finds its own), delete older ones
     kp = root / "assets/keep.json"
     try: keep = json.loads(kp.read_text(encoding="utf-8"))

@@ -11,7 +11,7 @@ DERIVED="index.html assets core.json breadth.json news.json screen.json ins news
 "$PY" scripts/build.py >/dev/null
 # guard: never publish a page whose script does not parse (one syntax error blanks the whole site)
 if command -v node >/dev/null 2>&1; then
-  node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');const m=[...s.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]).concat([...s.matchAll(/<script src=\"(assets\/[^\"]+)\"><\/script>/g)].map(x=>fs.readFileSync(x[1],'utf8'))).join('\n;\n');try{new Function(m)}catch(e){console.error('index.html script error: '+e.message);process.exit(1)}" || { echo "ABORT: script error in index.html, nothing committed"; exit 1; }
+  node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');const m=[...s.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]).concat([...s.matchAll(/<script src=\"(assets\/[^\"]+)\"[^>]*><\/script>/g)].map(x=>fs.readFileSync(x[1],'utf8'))).join('\n;\n');try{new Function(m)}catch(e){console.error('index.html script error: '+e.message);process.exit(1)}" || { echo "ABORT: script error in index.html, nothing committed"; exit 1; }
 fi
 git add "$@" $DERIVED
 git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
