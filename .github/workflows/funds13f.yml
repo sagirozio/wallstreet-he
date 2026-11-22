@@ -1,0 +1,28 @@
+name: Fund holdings (SEC 13F)
+# Daily: the quarterly 13F reports of well-known funds (SEC EDGAR) -> funds13f.json (research page, "funds").
+# New reports arrive in the 45 days after a quarter ends; on other days the file does not change and nothing is committed.
+on:
+  schedule:
+    - cron: "37 5 * * *"   # ~07:37 Israel
+  workflow_dispatch:
+    inputs:
+      funds: { description: "Only these fund ids (space separated); empty = all", default: "" }
+  push:
+    branches: [main]
+    paths: ["scripts/funds13f.py"]
+permissions:
+  contents: write
+concurrency: { group: funds13f, cancel-in-progress: false }
+jobs:
+  funds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/funds13f.py ${{ github.event.inputs.funds }}
+        env:
+          SEC_UA: ${{ secrets.SEC_UA }}
+          OPENFIGI_KEY: ${{ secrets.OPENFIGI_KEY }}
+      - run: pip install -q yfinance pandas >/dev/null 2>&1; bash scripts/commit.sh "Fund holdings (SEC 13F)" funds13f.json scripts/f13_map.json
