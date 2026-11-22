@@ -1020,7 +1020,7 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
   <div class="sxs" id="hubSum"></div>
   <div class="sxf"><div class="sxc" id="hubChips"></div><select id="hubSec" aria-label="סינון לפי סקטור"><option value="">כל הסקטורים</option></select></div>
   <details class="scd" id="scD"><summary>סינון מתקדם</summary><div class="scp" id="scPre"></div><div class="scf" id="scF"></div></details>
-  <div class="sxa"><span id="hubCnt"></span><button data-hcsv><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>ייצוא ל-Excel</button><button data-hcopy><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>העתק סימולים</button><button data-hwall>☆ הוסף הכל למעקב</button><button data-hlink title="קישור שפותח את הסריקה הזו בדיוק: סינון, סקטור ומיון"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>קישור לסריקה</button></div>
+  <div class="sxa"><span id="hubCnt"></span><button data-hcsv><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>ייצוא ל-Excel</button><button data-hcopy><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>העתק סימולים</button><button data-hwall>☆ הוסף הכל למעקב</button></div>
   <div class="hmix" id="hubMix" dir="ltr"></div>
   <div class="hxt" id="hubTable"><div class="skrows" role="status" aria-label="טוען"><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div><div class="sk" style="height:52px"></div></div></div>
   <p class="legend">שווי, תשואות ומרחק מהשיא: מחירי הסגירה האחרונים. צמיחה, מכפיל רווח (P/E) ושולי רווח: מהדוחות הרשמיים ל-SEC (4 הרבעונים האחרונים, רווח חשבונאי). אחוז המלצות הקנייה: Finnhub. נתונים בלבד, לא המלצה.</p>
@@ -1660,7 +1660,6 @@ function exportFund(t){ const f=FUNDC[t]; if(!f||!f.q) return; const q=f.q, K=[[
 function toast(msg){ let t=$('toast'); if(!t){ t=document.createElement('div'); t.id='toast'; t.setAttribute('role','status'); document.body.appendChild(t); } t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2200); }
 document.addEventListener('click',async e=>{
   if(e.target.closest&&e.target.closest('[data-hcsv]')){ exportHub(); return; }
-  if(e.target.closest&&e.target.closest('[data-hlink]')){ hubUrlWrite(); const u=location.href; try{ await navigator.clipboard.writeText(u); toast('הקישור לסריקה הועתק'); }catch(_){ prompt('העתק את הקישור:',u); } return; }
   const fc=e.target.closest&&e.target.closest('[data-fcsv]'); if(fc){ exportFund(fc.dataset.fcsv); return; }
   if(e.target.closest&&e.target.closest('[data-hcopy]')){ const L=HUB.last||[]; if(!L.length) return; const txt=L.join(',');
     clipAdd('מניות · '+((document.querySelector('#hubChips .on')||{}).textContent||'הכל')+(HUB.sec?' · '+HUB.sec:''),L); try{ await navigator.clipboard.writeText(txt); toast(`הועתקו ${L.length} סימולים ונשמרו ברשימות`); }catch(_){ prompt('העתק:',txt); } return; }
@@ -1909,7 +1908,7 @@ async function renderStock(t){
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
       <div class="sphr"><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>${prof.desc?`<p class="spone">${esc(prof.desc)}</p>`:''}
-      <div class="spchips sphc">${earnChip(t,rep)}<a href="#compare/${encodeURIComponent(cmpDefault(t,s))}"><i class="lbl">השווה </i>⇄</a><a href="#" role="button" class="spshot" data-spshot="${esc(t)}" title="צילום מסך: החברה, גרף המחיר ונתונים שנתיים" aria-label="צילום מסך של המניה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg><i class="lbl"> צילום</i></a>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
+      <div class="spchips sphc">${earnChip(t,rep)}<a href="#compare/${encodeURIComponent(cmpDefault(t,s))}"><i class="lbl">השווה </i>⇄</a><a href="#" role="button" class="spshot" data-spshot="${esc(t)}" title="צילום מסך: על החברה, גרף המחיר ונתונים שנתיים" aria-label="צילום מסך של המניה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg><i class="lbl"> צילום</i></a>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
       <div class="sptabs"><span role="tablist" style="display:contents">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}</span>${watchBtn(t)}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -2651,7 +2650,7 @@ function briefShotBlob(){ return new Promise((res,rej)=>{ try{
     const out=document.createElement('canvas'); out.width=cv.width; out.height=Math.round(H2*S); out.getContext('2d').drawImage(cv,0,0);
     out.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png'); }).catch(rej);
   }catch(e){ rej(e); } }); }
-/* a stock as a picture: header (logo, site, date), the company with its price, the overview price line in the range chosen on the page, and three annual bar charts (EPS, revenue, operating income; each bar = 12 months, as on the financials tab) */
+/* a stock as a picture: header (logo, site, date), the company with its price, "about the company" (text + head office, employees, site), the overview price line in the range chosen on the page, and three annual bar charts (EPS, revenue, operating income; each bar = 12 months, as on the financials tab) */
 function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const s=stockIndex()[t]; if(!s) throw new Error('stock');
   await Promise.all([loadPxDates(), loadPx(t), PXR==='5Y'&&!OC[t]?ocEnsure(t):null, FUNDC[t]?null:fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(f=>{ if(f&&f.q) FUNDC[t]=f; }).catch(()=>{})]);
@@ -2661,7 +2660,12 @@ function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const A=FUNDC[t]?fundAnnual(FUNDC[t]):null, SER=A?[['רווח למניה (EPS)',A.eps,'#a855f7',1],['הכנסות',A.rev,'#5b8cff',0],['רווח תפעולי',A.op,'#f59e0b',0]].filter(z=>z[1]&&z[1].some(v=>v!=null)):[];
   const lg=document.querySelector('.logo .lgi'), lc=lg?lg.cloneNode(true):null; if(lc){ lc.setAttribute('width',64); lc.setAttribute('height',64); lc.removeAttribute('class'); }
   const logo=await new Promise(r=>{ if(!lc) return r(null); const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(lc)); });
-  const CH=190, AH=124, H=56+78+(hasPx?34+CH+30:0)+(SER.length?40+AH+28:0)+34;
+  /* about the company: the text is wrapped here (the picture's height depends on the number of lines) */
+  const mc=document.createElement('canvas').getContext('2d'), wrap=(str,font,mw)=>{ mc.font=font; const out=[]; let cur=''; String(str).split(/\s+/).forEach(w=>{ const nx=cur?cur+' '+w:w; if(cur&&mc.measureText(nx).width>mw){ out.push(cur); cur=w; } else cur=nx; }); if(cur) out.push(cur); return out; };
+  const det=SDET[t]||{}, Fx=det.f||{}, AF='13.5px '+F, AP=String((det.p||{}).about||'').split(/\n+/).filter(z=>z.trim()).map(z=>wrap(z.trim(),AF,W-2*P)), nL=AP.reduce((a,l)=>a+l.length,0);
+  const facts=nL?[Fx.hq?'מטה: '+Fx.hq:'', Fx.emp?'עובדים: '+Fx.emp.toLocaleString('en-US'):'', Fx.web?'אתר החברה: '+String(Fx.web).replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''):''].filter(Boolean):[], fr=[[]]; mc.font='12px '+F; { let fw=0; facts.forEach(f=>{ const w=mc.measureText(f).width; if(fw&&fw+18+w>W-2*P){ fr.push([]); fw=0; } fr[fr.length-1].push([f,w]); fw+=(fw?18:0)+w; }); }
+  const ABH=nL?46+nL*20+(AP.length-1)*7+(facts.length?fr.length*18+6:0)+10:0;
+  const CH=190, AH=124, H=56+78+ABH+(hasPx?(ABH?8:0)+34+CH+30:0)+(SER.length?40+AH+28:0)+34;
   let S=Math.max(2,Math.min(8,Math.ceil(2700/W))); while(S>2&&W*S*H*S>15.5e6) S--;
   const cv=document.createElement('canvas'); cv.width=W*S; cv.height=Math.round(H*S); const x=cv.getContext('2d'); x.scale(S,S); x.fillStyle=BG; x.fillRect(0,0,W,H); x.textBaseline='alphabetic';
   const tx=(str,xx,yy,font,col,al,dir)=>{ x.font=font; x.fillStyle=col; x.textAlign=al||'left'; x.direction=dir||'ltr'; x.fillText(str,xx,yy); return x.measureText(str).width; };
@@ -2670,12 +2674,20 @@ function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const dd=String(nyToday()).split('-'); tx(dd.length===3?`${+dd[2]}.${+dd[1]}.${dd[0]}`:'',14,28,'12px '+F,MUT);
   x.strokeStyle=LN; x.lineWidth=1; x.beginPath(); x.moveTo(0,56.5); x.lineTo(W,56.5); x.stroke();
   /* the company (right) and its price (left) */
-  let y=56+34; const he=heName(t), nm=he||s.co, rtl=/[֐-׿]/.test(nm), w1=tx(nm,W-P,y,'800 24px '+F,INK,'right',rtl?'rtl':'ltr'); tx(t,W-P-w1-10,y,'600 15px '+F,MUT,'right');
+  let y=56+34; const L=liveQ(t), px=L?L[0]:(hasPx?pts[pts.length-1][1]:null), dc=L?L[1]:(s.r&&s.r.d!=null?s.r.d:null), pS=px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'', dS=dc!=null?(dc>=0?'+':'')+dc.toFixed(2)+'%':'';
+  const mw=(str,font)=>{ mc.font=font; return mc.measureText(str).width; }, he=heName(t), nm0=String(he||s.co||t), rtl=/[֐-׿]/.test(nm0), wT=mw(t,'600 15px '+F)+10, room=W-2*P-(pS?mw(pS,'800 24px '+F):0)-(dS?mw(dS,'700 16px '+F)+10:0)-22;
+  let fs=24, nm=nm0; while(fs>16&&mw(nm,'800 '+fs+'px '+F)+wT>room) fs--;   /* a long name: smaller letters first, then cut with … (it must not run into the price) */
+  for(let b=nm0; b.length>6&&mw(nm,'800 '+fs+'px '+F)+wT>room; ){ b=b.slice(0,-1).trimEnd(); nm=b+'…'; }
+  const w1=tx(nm,W-P,y,'800 '+fs+'px '+F,INK,'right',rtl?'rtl':'ltr'); tx(t,W-P-w1-10,y,'600 15px '+F,MUT,'right');
   if(he) tx(String(s.co).slice(0,48),W-P,y+22,'13px '+F,MUT,'right');
-  const L=liveQ(t), px=L?L[0]:(hasPx?pts[pts.length-1][1]:null), dc=L?L[1]:(s.r&&s.r.d!=null?s.r.d:null);
-  if(px!=null){ const w2=tx('$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)),P,y,'800 24px '+F,INK); if(dc!=null) tx((dc>=0?'+':'')+dc.toFixed(2)+'%',P+w2+10,y,'700 16px '+F,dc>=0?GRN:RED);
+  if(pS){ const w2=tx(pS,P,y,'800 24px '+F,INK); if(dS) tx(dS,P+w2+10,y,'700 16px '+F,dc>=0?GRN:RED);
     const ld=String((LIVE&&LIVE.date)||'').split('-'), open=L&&mktOpen()&&LIVE.date===nyToday(); tx(open?'מחיר במהלך המסחר':('מחיר סגירה'+(L&&ld.length===3?` · ${+ld[2]}.${+ld[1]}`:'')),P,y+22,'12px '+F,MUT,'left','rtl'); }
   y=56+78;
+  /* about the company */
+  if(ABH){ x.strokeStyle=LN; x.lineWidth=1; x.beginPath(); x.moveTo(P,y+.5); x.lineTo(W-P,y+.5); x.stroke(); tx('על החברה',W-P,y+26,'800 16px '+F,INK,'right','rtl'); let yy=y+50;
+    AP.forEach(ls=>{ ls.forEach(l=>{ tx(l,W-P,yy,AF,INK,'right','rtl'); yy+=20; }); yy+=7; }); yy-=7;
+    if(facts.length){ yy+=6; fr.forEach(row=>{ let xx=W-P; row.forEach(([f,w])=>{ tx(f,xx,yy,'12px '+F,MUT,'right','rtl'); xx-=w+18; }); yy+=18; }); }
+    y+=ABH; if(hasPx){ x.strokeStyle=LN; x.beginPath(); x.moveTo(P,y+.5); x.lineTo(W-P,y+.5); x.stroke(); y+=8; } }
   /* the price line */
   if(hasPx){ const vs=pts.map(z=>z[1]), mn=Math.min(...vs), mx=Math.max(...vs), n=Math.max(1,a0.length-1), cw=W-2*P-46, ch=(vs[vs.length-1]/vs[0]-1)*100, col=ch>=0?GRN:RED, f$=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2));
     const X=i=>P+i/n*cw, Y=v=>y+34+8+(1-(mx>mn?(v-mn)/(mx-mn):.5))*(CH-16), stk=!!PXF[t];
