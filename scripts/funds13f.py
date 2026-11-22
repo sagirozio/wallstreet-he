@@ -158,7 +158,7 @@ def nice(name):
     """APPLE INC -> Apple Inc; share-class and ADR endings are dropped"""
     x = re.sub(r"\s+", " ", (name or "").upper()).strip()
     x = re.sub(r"/THE$", "", x)
-    x = re.sub(r"[- ](CL(ASS)? ?[A-Z]( SHARES| SHS)?|SP(ONS)? ?ADR|ADR|REG|W/I|NEW)$", "", x).strip(" -")
+    x = re.sub(r"[- ]+(CL(ASS)? ?[A-Z]( SHARES| SHS)?|SP(ONS)? ?ADR|ADR|REG|W/I|NEW|[A-Z])$", "", x).strip(" -")
     return " ".join(w if (w in KEEP_UP or (len(w) <= 4 and "&" in w)) else "-".join(q.capitalize() for q in w.split("-")) for w in x.split(" "))[:48]
 US_EX = {"US", "UN", "UW", "UQ", "UR", "UA", "UP", "UF", "UV"}
 def figi(jobs, key):
@@ -206,8 +206,10 @@ def change(cur, prv):
     for k in (2, 3, 4, 5, 10, 15, 20, 25, 50):     # a share split between the two reports is not a purchase (a reverse split is not a sale)
         if abs(r / k - 1) < 0.002 and vr < k * 0.7: r = 1.0
         if abs(r * k - 1) < 0.002 and vr > 1.4 / k: r = 1.0
-    c = round((r - 1) * 100, 1)
-    return ("hold", 0.0) if abs(c) < 0.5 else (("add" if c > 0 else "cut"), c)
+    if r == 1.0: return "hold", 0.0
+    c = (r - 1) * 100
+    c = round(c, 1) if abs(c) >= 1 else (round(c, 2) or (0.01 if c > 0 else -0.01))      # a small change is still a change: never shown as "unchanged"
+    return ("add" if c > 0 else "cut"), c
 
 def fund(fid, cik, word, name, he, who):
     cik = cik_of(cik)
