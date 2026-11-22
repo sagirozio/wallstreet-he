@@ -17,16 +17,16 @@ root = pathlib.Path(__file__).resolve().parent.parent
 OUT, MAPF = root / "funds13f.json", root / "scripts" / "f13_map.json"
 UA = " ".join(re.sub(r"[^\x20-\x7e]", " ", os.environ.get("SEC_UA") or "").split()) or "Wallstreeter bot@users.noreply.github.com"
 
-# id, CIK, a word that must be in the SEC's name of the filer (a wrong CIK must never show another fund's holdings),
-# display name, Hebrew name, the person the fund is known for
+# id, CIK (or the filer's own ticker: its CIK is then read from the SEC's ticker list), a word that must be in the SEC's
+# name of the filer (a wrong CIK must never show another fund's holdings), display name, Hebrew name, the person the fund is known for
 FUNDS = [
     ("brk", 1067983, "berkshire", "Berkshire Hathaway", "ברקשייר האת׳וויי", "וורן באפט (יו״ר) · גרג אייבל (מנכ״ל)"),
-    ("psq", 1336528, "pershing", "Pershing Square", "פרשינג סקוור", "ביל אקמן"),
+    ("psq", "PS", "pershing square", "Pershing Square", "פרשינג סקוור", "ביל אקמן"),              # files as Pershing Square Inc. (NYSE: PS) since 2026
     ("duq", 1536411, "duquesne", "Duquesne Family Office", "דוקיין", "סטנלי דרקנמילר"),
     ("app", 1656456, "appaloosa", "Appaloosa", "אפלוסה", "דיוויד טפר"),
     ("tp", 1040273, "third point", "Third Point", "ת׳רד פוינט", "דן לואב"),
     ("bau", 1061768, "baupost", "Baupost Group", "באופוסט", "סת׳ קלרמן"),
-    ("gl", 1079114, "greenlight", "Greenlight Capital", "גרינלייט", "דיוויד איינהורן"),
+    ("gl", 1489933, "dme capital", "Greenlight Capital", "גרינלייט", "דיוויד איינהורן"),        # files as DME Capital Management
     ("tig", 1167483, "tiger global", "Tiger Global", "טייגר גלובל", "צ׳ייס קולמן"),
     ("coa", 1135730, "coatue", "Coatue", "קואטו", "פיליפ לאפונט"),
     ("sor", 1029160, "soros", "Soros Fund Management", "קרן סורוס", "ג׳ורג׳ סורוס (מייסד)"),
@@ -71,6 +71,14 @@ def get(url, raw=False):
         except Exception as e:
             time.sleep(3 * (i + 1))
     print(f"  failed: {url}"); return None
+
+TICKERS = {}
+def cik_of(x):
+    """a CIK, or the ticker of a listed filer -> CIK"""
+    if isinstance(x, int): return x
+    if not TICKERS:
+        for v in (get("https://www.sec.gov/files/company_tickers.json") or {}).values(): TICKERS.setdefault(str(v.get("ticker", "")).upper(), int(v.get("cik_str") or 0))
+    return TICKERS.get(x.upper()) or 0
 
 # ---------- reading a filing
 loc = lambda e: e.tag.rsplit("}", 1)[-1]
@@ -145,36 +153,48 @@ def book(rows):
 hk = lambda c: hashlib.sha1(c.encode()).hexdigest()[:16]
 CACHE = json.loads(MAPF.read_text(encoding="utf-8")) if MAPF.exists() else {}
 TODAY = dt.date.today().isoformat()
-KEEP_UP = {"ETF", "ETFS", "SPDR", "ADR", "ADS", "USA", "US", "NV", "SA", "SE", "AG", "PLC", "LP", "LLC", "REIT", "II", "III", "IV", "AI", "IBM", "HP", "AT&T", "S&P", "KKR", "CVS", "UPS", "TJX", "HCA", "GE", "BP", "CRH", "RH", "NRG", "MSCI", "QQQ"}
+KEEP_UP = {"ETF", "ETFS", "SPDR", "ADR", "USA", "US", "NV", "SA", "SE", "AG", "PLC", "LP", "LLC", "REIT", "II", "III", "IV", "AI", "IBM", "HP", "AT&T", "S&P", "KKR", "CVS", "UPS", "TJX", "HCA", "GE", "BP", "CRH", "RH", "NRG", "MSCI", "QQQ", "ASML", "SAP", "UBS", "ICICI", "HDFC", "NU", "ON"}
 def nice(name):
-    w = [x if (x.upper() in KEEP_UP or (len(x) <= 4 and "&" in x)) else x.capitalize() for x in re.sub(r"\s+", " ", name or "").strip().split(" ")]
-    return " ".join(x.upper() if x.upper() in KEEP_UP else x for x in w)[:48]
+    """APPLE INC -> Apple Inc; share-class and ADR endings are dropped"""
+    x = re.sub(r"\s+", " ", (name or "").upper()).strip()
+    x = re.sub(r"/THE$", "", x)
+    x = re.sub(r"[- ](CL(ASS)? ?[A-Z]( SHARES| SHS)?|SP(ONS)? ?ADR|ADR|REG|W/I|NEW)$", "", x).strip(" -")
+    return " ".join(w if (w in KEEP_UP or (len(w) <= 4 and "&" in w)) else "-".join(q.capitalize() for q in w.split("-")) for w in x.split(" "))[:48]
+US_EX = {"US", "UN", "UW", "UQ", "UR", "UA", "UP", "UF", "UV"}
+def figi(jobs, key):
+    for a in range(5):
+        try:
+            req = urllib.request.Request("https://api.openfigi.com/v3/mapping", data=json.dumps(jobs).encode(), headers={"Content-Type": "application/json", **({"X-OPENFIGI-APIKEY": key} if key else {})})
+            with urllib.request.urlopen(req, timeout=40) as r: res = json.loads(r.read())
+            if isinstance(res, list) and len(res) == len(jobs): return res
+        except urllib.error.HTTPError as e:
+            print(f"  OpenFIGI http {e.code}"); time.sleep(30 if e.code == 429 else 5 * (a + 1))
+        except Exception as e:
+            print(f"  OpenFIGI error {e}"); time.sleep(5 * (a + 1))
+    return None
 def lookup(cusips):
-    need = [c for c in dict.fromkeys(cusips) if hk(c) not in CACHE or (CACHE[hk(c)][0] is None and CACHE[hk(c)][1] < (dt.date.today() - dt.timedelta(days=30)).isoformat())]
+    """fills CACHE for the CUSIPs that are not in it. Two passes: US listings only, then (for the ones not found) every listing, of which a US one is taken"""
+    old = (dt.date.today() - dt.timedelta(days=30)).isoformat()
+    need = [c for c in dict.fromkeys(cusips) if hk(c) not in CACHE or (CACHE[hk(c)][0] is None and CACHE[hk(c)][-1] < old)]
     key = os.environ.get("OPENFIGI_KEY") or ""; B = 100 if key else 10
     if need: print(f"OpenFIGI: {len(need)} securities to look up")
-    bad = 0
-    for i in range(0, len(need), B):
-        if bad >= 3: print("  OpenFIGI does not answer: the rest is left for the next run"); break
-        part = need[i:i + B]
-        body = json.dumps([{"idType": "ID_CUSIP", "idValue": c, "exchCode": "US"} for c in part]).encode()
-        res = None
-        for a in range(5):
-            try:
-                req = urllib.request.Request("https://api.openfigi.com/v3/mapping", data=body, headers={"Content-Type": "application/json", **({"X-OPENFIGI-APIKEY": key} if key else {})})
-                with urllib.request.urlopen(req, timeout=40) as r: res = json.loads(r.read()); break
-            except urllib.error.HTTPError as e:
-                print(f"  OpenFIGI http {e.code}"); time.sleep(30 if e.code == 429 else 5 * (a + 1))
-            except Exception as e:
-                print(f"  OpenFIGI error {e}"); time.sleep(5 * (a + 1))
-        if not isinstance(res, list) or len(res) != len(part): bad += 1; continue
-        for c, r in zip(part, res):
-            d = [x for x in (r.get("data") or []) if x.get("ticker")]
-            good = [x for x in d if (x.get("securityType2") or "") in ("Common Stock", "Depositary Receipt", "REIT", "ETP", "Mutual Fund", "Partnership Shares", "MLP", "Unit")]
-            p = (good or d or [None])[0]
-            CACHE[hk(c)] = [p["ticker"].replace("/", "-").replace(" ", "-").upper(), nice(p.get("name")), TODAY] if p else [None, TODAY]
-        time.sleep(0.3 if key else 2.6)                                # without a key: 25 requests a minute
-    return {c: (CACHE.get(hk(c)) or [None])[0] for c in cusips}
+    typ = lambda c: "ID_CINS" if c[:1].isalpha() else "ID_CUSIP"          # a foreign company listed in the US has a CINS: it starts with a letter
+    good = ("Common Stock", "Depositary Receipt", "REIT", "ETP", "Mutual Fund", "Partnership Shares", "MLP", "Unit")
+    for us in (True, False):
+        bad = 0
+        for i in range(0, len(need), B):
+            if bad >= 3: print("  OpenFIGI does not answer: the rest is left for the next run"); break
+            part = need[i:i + B]
+            res = figi([{"idType": typ(c), "idValue": c, **({"exchCode": "US"} if us else {})} for c in part], key)
+            if res is None: bad += 1; continue
+            for c, r in zip(part, res):
+                d = [x for x in (r.get("data") or []) if x.get("ticker") and (us or x.get("exchCode") in US_EX)]
+                p = ([x for x in d if (x.get("securityType2") or "") in good] or d or [None])[0]
+                CACHE[hk(c)] = [p["ticker"].replace("/", "-").replace(" ", "-").upper(), nice(p.get("name")), TODAY] if p else [None, TODAY]
+            time.sleep(0.3 if key else 2.6)                                # without a key: 25 requests a minute
+        need = [c for c in need if (CACHE.get(hk(c)) or [None])[0] is None]
+        if not need: break
+        if us: print(f"  {len(need)} not found among the US listings, second pass")
 
 # ---------- one fund
 def quarter(d): return f"Q{(int(d[5:7]) - 1) // 3 + 1} {d[:4]}"
@@ -190,6 +210,8 @@ def change(cur, prv):
     return ("hold", 0.0) if abs(c) < 0.5 else (("add" if c > 0 else "cut"), c)
 
 def fund(fid, cik, word, name, he, who):
+    cik = cik_of(cik)
+    if not cik: print(f"{fid}: no CIK found"); return None
     sub = get(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
     if not sub: print(f"{fid}: no answer from the SEC"); return None
     if word not in (sub.get("name") or "").lower(): print(f"{fid}: CIK {cik} belongs to \"{sub.get('name')}\", expected \"{word}\". Skipped."); return False
@@ -216,7 +238,7 @@ def finish(F):
     cur, prv, tot, ptot = F.pop("_cur"), F.pop("_prv"), F["tot"], F["ptot"]
     top, ptop, opt = F.pop("_top"), F.pop("_ptop"), F.pop("_opt")
     tk = lambda p: (CACHE.get(hk(p["c"])) or [None])[0]
-    nm = lambda p: ((CACHE.get(hk(p["c"])) or [None, None])[1] if tk(p) else None) or nice(p["n"])
+    nm = lambda p: nice((CACHE.get(hk(p["c"])) or [None, None])[1] if tk(p) else p["n"]) or nice(p["n"])
     # a security whose CUSIP changed between the two reports (a merger, a new share class) is the same holding: match by ticker too
     prv_t = {}
     for p in prv.values():
@@ -231,6 +253,8 @@ def finish(F):
         rows.append({"t": tk(p), "n": nm(p), "w": round(p["v"] / tot * 100, 2), "v": round(p["v"]), "sh": round(p["sh"]), "a": a, "c": c, "pw": round(q["v"] / ptot * 100, 2) if q and ptot else None})
     out = [{"t": tk(p), "n": nm(p), "pw": round(p["v"] / ptot * 100, 2), "pv": round(p["v"])} for p in ptop if p["c"] not in cur and p["c"] not in seen] if F["prev"] else []
     cnt["out"] = len(out)
+    for p in top[:TOP]:                                                 # a large position without a ticker: shown in the log (the CUSIP is in the public filing)
+        if not tk(p) and p["v"] / tot >= 0.01: print(f"  {F['id']}: no ticker for {p['c']} {p['n']} ({p['k']}), {p['v'] / tot * 100:.1f}%")
     F.update({"val": round(tot), "pval": round(ptot) if F["prev"] else None, "n": len(cur), "t10": round(sum(r["w"] for r in rows[:10]), 1), "cnt": cnt,
               "url": f"https://www.sec.gov/Archives/edgar/data/{F['cik']}/{F['acc'].replace('-', '')}/",
               "top": rows[:TOP], "out": out[:30],
