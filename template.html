@@ -2427,7 +2427,7 @@ document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.targe
       OCD={box,svg,mode:'dr',snap:JSON.stringify(OCDR[box._t]||[]),d:h.d,part:h.part,x:e.clientX,y:e.clientY,p0:ocPt(box,q.xx,q.yy,false),a0:{...h.d.a},b0:h.d.b?{...h.d.b}:null,ia:ocPtIdx(A,tfd,h.d.a),ib:h.d.b?ocPtIdx(A,tfd,h.d.b):0};
       try{ svg.setPointerCapture(e.pointerId); }catch(_){} ocDraw(box); return; }
     if(box._sel){ box._sel=null; ocDraw(box); } }
-  OCD={box,svg,mode:'pan',x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,z:q.z,off:box._off||0,n:box._n,lo:g.lo,hi:g.hi,hold:0,free:!touch||!!box._full}; try{ svg.setPointerCapture(e.pointerId); }catch(_){}
+  OCD={box,svg,mode:'pan',x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,z:q.z,off:box._off||0,n:box._n,lo:g.lo,hi:g.hi,hold:0,free:!touch||!!box._full,touch,lock:touch&&!box._full&&q.z==='b'?'':'h'}; try{ svg.setPointerCapture(e.pointerId); }catch(_){}
   /* mouse, and a finger in full screen: dragging the chart body moves it freely on both axes. A finger in the page: a drag pans the time axis and the page still scrolls vertically.
      Touch, press and hold without moving: the crosshair takes over, and the drag then reads the bars' figures without moving the chart */
   if(q.z==='b'){ svg.style.cursor='grabbing'; if(touch) OCD.t=setTimeout(()=>{ if(!OCD||OCD.mode!=='pan'||OCD.mv) return; OCD.hold=1; box.firstElementChild.classList.add('hold'); try{ navigator.vibrate&&navigator.vibrate(15); }catch(_){} },350); } });
@@ -2445,6 +2445,9 @@ document.addEventListener('pointermove',e=>{ const over=e.target.closest&&e.targ
   OCD.lx=e.clientX; OCD.ly=e.clientY;
   if(!OCD.hold&&OCD.t&&Math.hypot(e.clientX-OCD.x,e.clientY-OCD.y)>6){ clearTimeout(OCD.t); OCD.t=0; }
   if(OCD.hold){ box._hv={xx:(e.clientX-r.left)/r.width*g.W,yy:(e.clientY-r.top)/r.height*g.H}; ocCross(box); return; }
+  /* a finger in the page: the first few pixels decide. Mostly sideways = the chart (and from then on the page does not scroll, so a slightly diagonal swipe keeps moving the chart); mostly up / down = the page scrolls and the chart lets go */
+  if(OCD.touch&&!OCD.lock){ const ax=Math.abs(e.clientX-OCD.x), ay=Math.abs(e.clientY-OCD.y); if(Math.max(ax,ay)<5) return;
+    if(ax>=ay*0.7) OCD.lock='h'; else { clearTimeout(OCD.t); OCD.svg.style.cursor=''; OCD=null; return; } }
   const dx=e.clientX-OCD.x, dy=(e.clientY-OCD.y)/r.height*g.H;
   if(OCD.z==='y'){ const k=Math.exp(dy/200), c=(OCD.lo+OCD.hi)/2, h=(OCD.hi-OCD.lo)/2*k; box._y=[c-h,c+h]; }
   else if(OCD.z==='x'){ const nn=Math.round(Math.max(box._min||15,Math.min(box._L,OCD.n*Math.exp(-dx/200)))); box._n=nn; box._off=ocClamp(box,OCD.off); box._uz=1; }
@@ -2456,10 +2459,10 @@ const ocEnd=e=>{
     if(OCD.mode==='dr'&&OCD.mv){ const d=OCD.d; ocSnap(b._t,OCD.snap); if(d.al&&d.al.on) ocArm(b._t,d); ocDrSave(); ocAlRefresh(); }
     if(b._rq) ocDraw(b);
     /* a flick: the chart keeps moving. Only when the pointer was still moving at the release (a stop before letting go = no glide) */
-    if(OCD.mode==='pan'&&OCD.z==='b'&&OCD.mv&&!OCD.hold&&!PIN&&e&&e.type==='pointerup'&&OCD.vs&&OCD.vs.length>2){ const v=OCD.vs, a=v[0], z=v[v.length-1], dt=z[0]-a[0], vx=dt>0?(z[1]-a[1])/dt:0; if(e.timeStamp-z[0]<70&&dt<220&&Math.abs(vx)>.3&&OCD.px>0) ocKin(b,Math.max(-3,Math.min(3,vx))/OCD.px,OCD.px); }   /* at most 3px per ms: about 600px of glide */
+    if(OCD.mode==='pan'&&OCD.z==='b'&&OCD.mv&&!OCD.hold&&!PIN&&e&&e.type==='pointerup'&&OCD.vs&&OCD.vs.length>1){ const v=OCD.vs, z=v[v.length-1], w=v.filter(s=>z[0]-s[0]<=120), a=w.length>1?w[0]:v[v.length-2], dt=z[0]-a[0], vx=dt>0?(z[1]-a[1])/dt:0; if(e.timeStamp-z[0]<(OCD.touch?100:70)&&Math.abs(vx)>.3&&OCD.px>0) ocKin(b,Math.max(-3,Math.min(3,vx))/OCD.px,OCD.px); }   /* speed = the last ~120ms of the drag */   /* at most 3px per ms: about 600px of glide */
     OCD=null; } };
 document.addEventListener('pointerup',ocEnd); document.addEventListener('pointercancel',ocEnd);
-document.addEventListener('touchmove',e=>{ if((OCD&&(OCD.hold||OCD.mode==='dr'))||PIN||OCPEND) e.preventDefault(); },{passive:false});
+document.addEventListener('touchmove',e=>{ if((OCD&&(OCD.hold||OCD.mode==='dr'||(OCD.mode==='pan'&&OCD.touch&&OCD.lock==='h')))||PIN||OCPEND) e.preventDefault(); },{passive:false});   /* the chart owns the gesture: no page scroll under it */
 document.addEventListener('dblclick',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg) return; const box=ocBox(svg), g=box&&box._g; if(g&&ocZone(svg,e,g).z==='y'){ box._y=null; ocDraw(box); } });
 /* Esc cancels the tool / the selection, Delete removes the selected line, Alt+T / Alt+H / Alt+A pick a tool on the chart under the pointer */
 document.addEventListener('keydown',e=>{ const tg=e.target; if(tg&&/^(INPUT|SELECT|TEXTAREA)$/.test(tg.tagName)) return;
