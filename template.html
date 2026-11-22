@@ -2584,9 +2584,9 @@ function ocShotBlob(box){ return new Promise((res,rej)=>{ try{
       const F='Heebo, Arial, Helvetica, sans-serif'; let rx=W-12; if(logo){ x.drawImage(logo,rx-30,12,30,30); rx-=38; }
       x.textBaseline='alphabetic'; x.direction='ltr'; x.textAlign='right'; x.fillStyle='#22c55e'; x.font='700 17px '+F; x.fillText('Wallstreeter',rx,28); x.fillStyle=MUT; x.font='11px '+F; x.fillText('wallstreeter.co.il',rx,42);
       /* left: symbol, bar size and the last date; under it, small, who took the screenshot */
-      const A=box._A, last=A&&A[A.length-1], who=ocWho(); x.textAlign='left'; x.fillStyle=INK; x.font='700 16px '+F; const t1=box._t+' · 1'+(box._tf||'D'); x.fillText(t1,12,28);
+      const A=box._A, last=A&&A[A.length-1]; x.textAlign='left'; x.fillStyle=INK; x.font='700 16px '+F; const t1=box._t+' · 1'+(box._tf||'D'); x.fillText(t1,12,28);
       if(last){ const w1=x.measureText(t1).width, pv=A.length>1?A[A.length-2].c:last.o, pc=(last.c/pv-1)*100; x.font='13px '+F; x.fillStyle=INK; const t2=ocP(last.c); x.fillText(t2,12+w1+10,28); x.fillStyle=pc>=0?'#22c55e':'#ef4444'; x.fillText((pc>=0?'+':'')+pc.toFixed(2)+'%',12+w1+16+x.measureText(t2).width,28); }
-      x.fillStyle=MUT; x.font='11px '+F; const dt=last?ocDate(box,last.d):''; if(who){ x.direction='rtl'; x.fillText('צולם ע״י '+who+(dt?' · '+dt:''),12,42); x.direction='ltr'; } else if(dt) x.fillText(dt,12,42);
+      x.fillStyle=MUT; x.font='11px '+F; const dt=last?ocDate(box,last.d):''; if(dt) x.fillText(dt,12,42);   /* only the date of the last bar (no "taken by" name) */
       x.drawImage(img,0,HD,W,g.H); cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png'); }).catch(rej);
   }catch(e){ rej(e); } }); }
 function ocShot(box){ const pb=ocShotBlob(box); let cp=null;
