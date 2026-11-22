@@ -1908,7 +1908,7 @@ async function renderStock(t){
   $('spBody').innerHTML=`<div class="spstick">
       <div class="sphead">${mono(s.t)}<div class="sphn"><h2 dir="auto" style="text-align:right">${esc(s.co)}</h2><div class="meta"><span class="tick" style="margin:0">${esc(s.t)}</span>${s.cap?' · <span style="white-space:nowrap">שווי <span class="num">$'+esc(s.cap)+'</span></span>':''}${he?' · '+esc(he):''}${s.ex?' · '+esc(s.ex):''}</div></div>
       <div class="sphr"><div class="spday" id="spDay">${spDayHtml(t,s)}</div></div></div>${prof.desc?`<p class="spone">${esc(prof.desc)}</p>`:''}
-      <div class="spchips sphc">${earnChip(t,rep)}<a href="#compare/${encodeURIComponent(cmpDefault(t,s))}"><i class="lbl">השווה </i>⇄</a><a href="#" role="button" class="spshot" data-spshot="${esc(t)}" title="צילום מסך: על החברה, גרף המחיר ונתונים שנתיים" aria-label="צילום מסך של המניה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg><i class="lbl"> צילום</i></a>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
+      <div class="spchips sphc">${earnChip(t,rep)}<a href="#compare/${encodeURIComponent(cmpDefault(t,s))}"><i class="lbl">השווה </i>⇄</a><a href="#" role="button" class="spshot" data-spshot="${esc(t)}" title="צילום מסך: על החברה, גרף המחיר ונתונים רבעוניים" aria-label="צילום מסך של המניה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg><i class="lbl"> צילום</i></a>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><i class="lbl">סקטור: </i><bdi>${esc(s.sec)}</bdi></a>`:secHe?`<span>סקטור: ${esc(secHe)}</span>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><i class="lbl">תעשייה: </i><bdi>${esc(s.ind)}</bdi></a>`:''}</div>
       <div class="sptabs"><span role="tablist" style="display:contents">${tabs.map(([k,l])=>`<button role="tab" data-st="${k}" class="${k==='ov'?'on':''}" aria-selected="${k==='ov'}">${l}</button>`).join('')}</span>${watchBtn(t)}</div>
     </div>
     <div class="sptab on" data-st="ov">
@@ -2650,14 +2650,14 @@ function briefShotBlob(){ return new Promise((res,rej)=>{ try{
     const out=document.createElement('canvas'); out.width=cv.width; out.height=Math.round(H2*S); out.getContext('2d').drawImage(cv,0,0);
     out.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png'); }).catch(rej);
   }catch(e){ rej(e); } }); }
-/* a stock as a picture: header (logo, site, date), the company with its price, "about the company" (text + head office, employees, site), the overview price line in the range chosen on the page, and three annual bar charts (EPS, revenue, operating income; each bar = 12 months, as on the financials tab) */
+/* a stock as a picture: header (logo, site, date), the company with its price, "about the company" (text + head office, employees, site), the overview price line in the range chosen on the page, and three quarterly bar charts, one under the other (EPS, revenue, operating income; the last 8 quarters) */
 function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const s=stockIndex()[t]; if(!s) throw new Error('stock');
   await Promise.all([loadPxDates(), loadPx(t), PXR==='5Y'&&!OC[t]?ocEnsure(t):null, FUNDC[t]?null:fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(f=>{ if(f&&f.q) FUNDC[t]=f; }).catch(()=>{})]);
   const light=document.documentElement.classList.contains('light'), BG=light?'#ffffff':'#121418', INK=light?'#111827':'#e6edf3', MUT=light?'#5b6470':'#8b949e', LN=light?'#e3e6eb':'#24272e', GRN=light?'#12733a':'#22c55e', RED=light?'#c41d1d':'#ef4444';
   const F='Heebo, Arial, Helvetica, sans-serif', W=600, P=24;
   const {a0,D}=pxSeries(t), pts=(a0||[]).map((v,i)=>[i,v]).filter(z=>z[1]!=null), hasPx=pts.length>2;
-  const A=FUNDC[t]?fundAnnual(FUNDC[t]):null, SER=A?[['רווח למניה (EPS)',A.eps,'#a855f7',1],['הכנסות',A.rev,'#5b8cff',0],['רווח תפעולי',A.op,'#f59e0b',0]].filter(z=>z[1]&&z[1].some(v=>v!=null)):[];
+  const Fq=FUNDC[t], nq=Fq&&Fq.q?Math.min(8,Fq.q.length):0, sl=a=>(a||[]).slice(-nq), QQ=nq?sl(Fq.q):[], SER=nq?[['רווח למניה (EPS)',sl(Fq.eps),'#a855f7',1],['הכנסות',sl(Fq.rev),'#5b8cff',0],['רווח תפעולי',sl(Fq.op),'#f59e0b',0]].filter(z=>z[1].length===nq&&z[1].some(v=>v!=null)):[];
   const lg=document.querySelector('.logo .lgi'), lc=lg?lg.cloneNode(true):null; if(lc){ lc.setAttribute('width',64); lc.setAttribute('height',64); lc.removeAttribute('class'); }
   const logo=await new Promise(r=>{ if(!lc) return r(null); const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(lc)); });
   /* about the company: the text is wrapped here (the picture's height depends on the number of lines) */
@@ -2665,7 +2665,7 @@ function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const det=SDET[t]||{}, Fx=det.f||{}, AF='13.5px '+F, AP=String((det.p||{}).about||'').split(/\n+/).filter(z=>z.trim()).map(z=>wrap(z.trim(),AF,W-2*P)), nL=AP.reduce((a,l)=>a+l.length,0);
   const facts=nL?[Fx.hq?'מטה: '+Fx.hq:'', Fx.emp?'עובדים: '+Fx.emp.toLocaleString('en-US'):'', Fx.web?'אתר החברה: '+String(Fx.web).replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''):''].filter(Boolean):[], fr=[[]]; mc.font='12px '+F; { let fw=0; facts.forEach(f=>{ const w=mc.measureText(f).width; if(fw&&fw+18+w>W-2*P){ fr.push([]); fw=0; } fr[fr.length-1].push([f,w]); fw+=(fw?18:0)+w; }); }
   const ABH=nL?46+nL*20+(AP.length-1)*7+(facts.length?fr.length*18+6:0)+10:0;
-  const CH=190, AH=124, H=56+78+ABH+(hasPx?(ABH?8:0)+34+CH+30:0)+(SER.length?40+AH+28:0)+34;
+  const CH=190, QB=134, H=56+78+ABH+(hasPx?(ABH?8:0)+34+CH+30:0)+(SER.length?44+SER.length*QB:0)+34;
   let S=Math.max(2,Math.min(8,Math.ceil(2700/W))); while(S>2&&W*S*H*S>15.5e6) S--;
   const cv=document.createElement('canvas'); cv.width=W*S; cv.height=Math.round(H*S); const x=cv.getContext('2d'); x.scale(S,S); x.fillStyle=BG; x.fillRect(0,0,W,H); x.textBaseline='alphabetic';
   const tx=(str,xx,yy,font,col,al,dir)=>{ x.font=font; x.fillStyle=col; x.textAlign=al||'left'; x.direction=dir||'ltr'; x.fillText(str,xx,yy); return x.measureText(str).width; };
@@ -2698,15 +2698,15 @@ function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
     const dl=d=>{ const q=String(d||'').split('-'); return q.length===3?`${+q[2]}.${+q[1]}.${q[0].slice(2)}`:''; }, d0=dl(D[pts[0][0]]), d1=dl(D[pts[pts.length-1][0]])||dl(LIVE&&LIVE.date);
     tx(d0,P,y+34+CH+16,'11px '+F,MUT); tx(d1,P+cw,y+34+CH+16,'11px '+F,MUT,'right');
     y+=34+CH+30; }
-  /* annual figures: three small bar charts, right to left */
+  /* quarterly figures: three bar charts, full width, one under the other */
   if(SER.length){ x.strokeStyle=LN; x.beginPath(); x.moveTo(P,y+.5); x.lineTo(W-P,y+.5); x.stroke();
-    tx('נתונים שנתיים',W-P,y+26,'800 16px '+F,INK,'right','rtl'); tx('כל עמודה: 12 החודשים שעד סוף הרבעון · מקור: SEC',P,y+26,'11px '+F,MUT,'left','rtl');
-    const gap=16, bw=(W-2*P-gap*2)/3, y0=y+40, q=A.q, n=q.length;
-    SER.forEach(([title,v,c,eps],k)=>{ const bx=W-P-(k+1)*bw-k*gap, vals=v.filter(z=>z!=null), mx=Math.max(0,...vals), mn=Math.min(0,...vals), top=y0+30, hh=AH-34-(mn<0?13:0), Yv=z=>top+(mx-z)/((mx-mn)||1)*hh, gw=bw/n, fm=z=>eps?(z<0?'-$':'$')+Math.abs(z).toFixed(2):fmtBig(z);
-      tx(title,bx+bw,y0+12,'700 13px '+F,INK,'right','rtl');
-      v.forEach((z,i)=>{ const cx=bx+i*gw+gw/2; tx(qLbl(q[i]).replace(' ',"'"),cx,y0+AH+14,'9.5px '+F,MUT,'center'); if(z==null) return; const ya=Yv(0), yb=Yv(z); x.fillStyle=z<0?RED:c; const w=Math.min(26,gw*.62); x.fillRect(cx-w/2,Math.min(ya,yb),w,Math.max(1,Math.abs(yb-ya))); tx(fm(z),cx,(z<0?Math.max(ya,yb)+11:Math.min(ya,yb)-4),'9.5px '+F,INK,'center'); });
-      x.strokeStyle=LN; x.beginPath(); x.moveTo(bx,Math.round(Yv(0))+.5); x.lineTo(bx+bw,Math.round(Yv(0))+.5); x.stroke(); });
-    y=y0+AH+28; }
+    tx('נתונים רבעוניים',W-P,y+26,'800 16px '+F,INK,'right','rtl'); tx(nq+' הרבעונים האחרונים · מקור: SEC',P,y+26,'11px '+F,MUT,'left','rtl');
+    const bw=W-2*P, gw=bw/nq; let y0=y+44;
+    SER.forEach(([title,v,c,eps])=>{ const vals=v.filter(z=>z!=null), mx=Math.max(0,...vals), mn=Math.min(0,...vals), top=y0+34, hh=68-(mn<0?14:0), Yv=z=>top+(mx-z)/((mx-mn)||1)*hh, fm=z=>eps?(z<0?'-$':'$')+Math.abs(z).toFixed(2):fmtBig(z);
+      tx(title,W-P,y0+12,'700 13px '+F,INK,'right','rtl');
+      v.forEach((z,i)=>{ const cx=P+i*gw+gw/2; tx(qLbl(QQ[i]).replace(' ',"'"),cx,y0+34+68+16,'10.5px '+F,MUT,'center'); if(z==null) return; const ya=Yv(0), yb=Yv(z), w=Math.min(36,gw*.58); x.fillStyle=z<0?RED:c; x.fillRect(cx-w/2,Math.min(ya,yb),w,Math.max(1,Math.abs(yb-ya))); tx(fm(z),cx,(z<0?Math.max(ya,yb)+12:Math.min(ya,yb)-5),'10.5px '+F,INK,'center'); });
+      x.strokeStyle=LN; x.beginPath(); x.moveTo(P,Math.round(Yv(0))+.5); x.lineTo(P+bw,Math.round(Yv(0))+.5); x.stroke(); y0+=QB; });
+    y=y0; }
   tx('מידע בלבד, לא ייעוץ השקעות · wallstreeter.co.il',W/2,H-14,'11px '+F,MUT,'center','rtl');
   cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png'); })().catch(rej); }); }
 function spShot(t){ const pb=spShotBlob(t); let cp=null;
