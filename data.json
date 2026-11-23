@@ -113893,6 +113893,409 @@
  },
  "news": [
   {
+   "id": "2026-11-23-us-futures-bounce",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "החוזים בארה״ב עולים בכ-2% אחרי שבוע של ירידות חדות",
+   "body": "לפי Saxo, בשעה 06:00 בישראל עלו החוזים על ה-S&P 500 ב-2.2% ועל הנאסד״ק 100 ב-2.8%; לפי AP עלו החוזים על הדאו ב-1.5%. ביום שישי ירד ה-S&P 500 ב-3.7% ונכנס לתיקון, יותר מ-10% מתחת לשיא של 6 באוקטובר.",
+   "src": "AP / Saxo",
+   "url": "https://www.click2houston.com/business/2026/11/23/us-futures-climb-and-asian-shares-mostly-decline-as-some-tech-stocks-fall/",
+   "time": "06:23"
+  },
+  {
+   "id": "2026-11-23-asia-monday-kospi",
+   "date": "2026-11-23",
+   "t": [
+    "TSM"
+   ],
+   "tag": "שווקים",
+   "tone": "neg",
+   "title": "אסיה: הקוספי צנח בכ-3%–4%, הטייוואני עלה ב-2.2%",
+   "body": "לפי AP ירד הקוספי בדרום קוריאה ב-3.3% ל-4,708.54, עם ירידות של 3.1% ב-Samsung ו-2.5% ב-SK Hynix; לפי Saxo ירד המדד בבוקר עד 5.8% והפעיל מנגנון מעצור (sidecar). מדד טייוואן עלה ב-2.2% ו-TSMC ב-1.5%, הנג סנג ירד ב-0.1% ושנגחאי עלה ב-0.2%; הבורסה בטוקיו סגורה בשל חג.",
+   "src": "AP / Saxo",
+   "url": "https://www.click2houston.com/business/2026/11/23/us-futures-climb-and-asian-shares-mostly-decline-as-some-tech-stocks-fall/",
+   "time": "06:23"
+  },
+  {
+   "id": "2026-11-23-asia-support-measures",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "שווקים",
+   "tone": "neu",
+   "title": "טייוואן, סין וקוריאה נוקטות צעדים לבלימת הירידות",
+   "body": "לפי Reuters, הרגולטור הפיננסי בטייוואן החמיר את כללי המכירה בחסר, הבורסות בסין הקלו בדרישות למימון מרווח (מרג׳ין) ושר האוצר בדרום קוריאה חזר על כוונתו לייצב את השוק במידת הצורך. לפי Saxo, דרום קוריאה הכינה קרן לייצוב שוק המניות שהופעלה לאחרונה ב-2008.",
+   "src": "Reuters / MarketScreener",
+   "url": "https://www.marketscreener.com/news/us-futures-bounce-as-asia-scrambles-to-shore-up-stocks-after-ai-driven-rout-ce785ed3d088f124",
+   "time": "06:45"
+  },
+  {
+   "id": "2026-11-23-europe-open-rebound",
+   "date": "2026-11-23",
+   "t": [
+    "ASML"
+   ],
+   "tag": "אירופה",
+   "tone": "pos",
+   "title": "אירופה: ה-STOXX 600 עולה ב-0.3%, מניות השבבים מתאוששות",
+   "body": "לפי Reuters, ה-STOXX 600 עלה ב-0.3% ל-627.61 נקודות בשעה 10:14 בישראל, אחרי ירידה של כמעט 6% בשבוע שעבר, הירידה השבועית החדה ביותר מאז סוף מרץ 2025. מדד הטכנולוגיה האירופי עלה ב-1.3% ו-ASML, ASM International ו-BE Semiconductor עלו ב-2.8% עד 4%.",
+   "src": "Reuters",
+   "url": "https://www.933thedrive.com/2026/11/23/european-stocks-recover-after-steep-technology-led-selloff/",
+   "time": "10:25"
+  },
+  {
+   "id": "2026-11-23-trump-nvidia-rehire-huang",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ קרא לדירקטוריון Nvidia להחזיר את ג׳נסן הואנג",
+   "body": "בפוסט ביום ראשון בלילה (שעון ארה״ב) כתב טראמפ שהוא מקווה שדירקטוריון Nvidia יחזיר את הואנג לתפקיד, וכי הדבר יהיה הטוב ביותר לחברה ולארה״ב. לפי Forbes, הדירקטוריון אמר בעבר שאין בכוונתו להחזיר את הואנג ושכר את Heidrick & Struggles לחיפוש מנכ״ל קבוע.",
+   "src": "Forbes",
+   "url": "https://www.forbes.com/sites/siladityaray/2026/11/23/trump-urges-nvidia-board-to-bring-back-jensen-huang-amid-new-chinese-spy-agency-revelations/",
+   "time": "08:02"
+  },
+  {
+   "id": "2026-11-22-bessent-fed-overtighten",
+   "date": "2026-11-22",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "בסנט: הפד עלול לטעות אם יהדק את המדיניות יותר מדי",
+   "body": "שר האוצר סקוט בסנט אמר ב-Face the Nation של CBS ביום ראשון שהפד ״עלול לעשות טעות מדיניות אם יהדק יתר על המידה״, והזכיר התבטאויות ניציות של נגידים והידוק בתנאים הפיננסיים. לפי investingLive, החלטת הריבית הבאה ב-9 בדצמבר והשוק מתמחר בעיקר העלאה של רבע נקודה.",
+   "src": "investingLive",
+   "url": "https://investinglive.com/central-banks/us-equity-rout-bessent-cautions-fed-against-overtightening-before-its-december-decision/",
+   "time": "23:26"
+  },
+  {
+   "id": "2026-11-20-trump-datacenter-abroad-tax",
+   "date": "2026-11-20",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: מס ״עצום״ על חברות שיבנו מרכזי נתונים מחוץ לארה״ב",
+   "body": "במסיבת עיתונאים בבית הלבן ביום שישי אמר טראמפ שחברות טכנולוגיה אמריקאיות שיקימו מרכזי נתוני AI במדינות אחרות יחויבו ב״מס עצום״. לפי AP הוא לא פירט את התוכנית ואמר שטרם עדכן עליה את פקידיו; לא נקבו שמות חברות.",
+   "src": "AP / ABC News",
+   "url": "https://abcnews.com/Technology/wireStory/trump-plans-penalize-us-tech-companies-build-ai-138323831",
+   "time": "19:45"
+  },
+  {
+   "id": "2026-11-23-gold-bitcoin-oil-monday",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "סחורות",
+   "tone": "neu",
+   "title": "הזהב עולה ב-2.4%, הביטקוין סביב $61 אלף",
+   "body": "לפי Saxo, הזהב עלה ב-2.4% ל-$3,625 לאונקיה והכסף ב-3.6% ל-$42.65; הביטקוין נסחר סביב $61,224 אחרי שירד לזמן קצר לכ-$57,800, כשפוזיציות ממונפות של כ-$1.8 מיליארד נסגרו בכפייה. לפי AP, הברנט ירד ב-0.4% ל-$92.21 לחבית.",
+   "src": "Saxo / AP",
+   "url": "https://www.home.saxo/en-sg/content/articles/macro/market-quick-take---sentiment-bounces-after-friday-mayhem---23-november-2026-23112026",
+   "time": "07:00"
+  },
+  {
+   "id": "2026-11-23-today-calendar-pmi-hpe-zoom",
+   "date": "2026-11-23",
+   "t": [
+    "HPE",
+    "ZM",
+    "A"
+   ],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "היום: מדדי PMI בארה״ב, דוחות HPE, Zoom ו-Agilent",
+   "body": "לפי Saxo, מדדי מנהלי הרכש המוקדמים (PMI) לנובמבר יתפרסמו ב-16:45 בישראל ומכרז אג״ח לשנתיים ב-20:00. Hewlett Packard Enterprise, Agilent ו-Zoom ידווחו אחרי סגירת המסחר.",
+   "src": "Saxo",
+   "url": "https://www.home.saxo/en-sg/content/articles/macro/market-quick-take---sentiment-bounces-after-friday-mayhem---23-november-2026-23112026",
+   "time": "07:00"
+  },
+  {
+   "id": "2026-11-23-nvda-overnight-rebound",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "Nvidia",
+   "tone": "pos",
+   "title": "Nvidia עלתה ב-6.7% במסחר הלילה אחרי הצניחה של יום שישי",
+   "body": "לפי Benzinga, המניה עלתה ב-6.68% ל-$133.92 במסחר הלילה ב-Robinhood ביום ראשון, אחרי סגירה בירידה של 14.01% ל-$125.53 ביום שישי.",
+   "src": "Benzinga / AOL",
+   "url": "https://www.aol.com/articles/scott-bessent-says-answers-nvidia-065537000.html",
+   "time": "08:55",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-hpe-q4-preview",
+   "date": "2026-11-23",
+   "t": [
+    "HPE"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "HPE תדווח הערב; הצפי: רווח של $1.28 למניה",
+   "body": "לפי Newsquawk, הקונצנזוס לרבעון הרביעי הוא רווח של $1.28 למניה על הכנסות של $14.43 מיליארד. תחזית החברה לרבעון הייתה רווח של $1.12–1.22 למניה והכנסות של $13.9–14.8 מיליארד.",
+   "src": "Newsquawk / Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/anthropic-stock-trend-jensen-huang-s-potential-return-as-nvidia-ceo-and-dell-s-q4-results-to-keep-tech-investors-busy-this-week/cNbYAtgR9Sf",
+   "time": "08:14",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-zm-q3-preview",
+   "date": "2026-11-23",
+   "t": [
+    "ZM"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Zoom תדווח הערב; הצפי: הכנסות של $1.28 מיליארד",
+   "body": "לפי Earnings Whispers, הקונצנזוס הוא רווח מתואם של $1.49 למניה, ירידה של 2% משנה שעברה, על הכנסות של $1.28 מיליארד, עלייה של כ-4%. תחזית החברה: $1.46–1.48 למניה והכנסות של $1.275–1.280 מיליארד.",
+   "src": "Earnings Whispers / Finviz",
+   "url": "https://finviz.com/news/422873/zooms-enterprise-inflection-faces-its-next-test-as-white-label-churn-and-ai-costs-build",
+   "time": "08:14",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-a-q4-preview",
+   "date": "2026-11-23",
+   "t": [
+    "A"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Agilent תדווח הערב; הצפי: הכנסות של כ-$1.99 מיליארד",
+   "body": "לפי Newsquawk, הקונצנזוס לרבעון הרביעי הוא רווח של $1.72–1.73 למניה על הכנסות של כ-$1.99 מיליארד, בתוך תחזית החברה ($1.71–1.74 למניה, $1.98–2.00 מיליארד). הדוח צפוי ב-23:05 בישראל.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---23rd-november-2026-hpe",
+   "time": "08:14",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-j-q4-preview",
+   "date": "2026-11-23",
+   "t": [
+    "J"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Jacobs תדווח הערב; הצפי: רווח של $2.12 למניה",
+   "body": "לפי Newsquawk, הקונצנזוס הוא רווח של $2.12 למניה על הכנסות של $2.55 מיליארד; הדוח צפוי ב-23:10 בישראל.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---23rd-november-2026-hpe",
+   "time": "08:14",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-ant-ark-buys",
+   "date": "2026-11-23",
+   "t": [
+    "ANT"
+   ],
+   "tag": "Anthropic",
+   "tone": "neu",
+   "title": "Ark קנתה מניות Anthropic ב-$145.9 מיליון בשני ימי המסחר הראשונים",
+   "body": "לפי חישובי The Block, קרנות Ark קנו 1.64 מיליון מניות ביום חמישי ושישי, ובמקביל מכרו מניות Nvidia ב-$89.4 מיליון. המניה, שהונפקה ב-$83, ירדה ביום שישי ב-8.5% ל-$88.91.",
+   "src": "The Block",
+   "url": "https://theblock.co/news/business/2026-11-23-ark-buys-146-million-worth-anthropic-since-debut-444866",
+   "time": "09:11",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-cop-norway-var-energi",
+   "date": "2026-11-23",
+   "t": [
+    "COP"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "ConocoPhillips מוכרת את פעילותה בנורווגיה ל-Vår Energi ב-$4.43 מיליארד",
+   "body": "לפי Reuters, Vår Energi תרכוש את פעילות ההפקה של ConocoPhillips בנורווגיה, כולל שדות Greater Ekofisk ומסוף Teesside בבריטניה, לפי שווי פעילות של $4.43 מיליארד; כ-$2.5 מיליארד ישולמו בהשלמה, הצפויה סביב סוף הרבעון הראשון של 2027.",
+   "src": "Reuters / Investing.com",
+   "url": "https://www.globalbankingandfinance.com/norways-vaar-energi-buy-conocophillips-business-4-43-billion/",
+   "time": "08:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-22-ash-clariant-cdr-talks",
+   "date": "2026-11-22",
+   "t": [
+    "ASH"
+   ],
+   "tag": "מיזוגים",
+   "tone": "pos",
+   "title": "Bloomberg: Clariant ו-CD&R במגעים לרכישת Ashland",
+   "body": "לפי Bloomberg, Clariant וקרן CD&R מנהלות מגעים לרכישת Ashland במזומן, במחיר קרוב לשער הסגירה של יום שישי ($72.40), ועסקה עשויה להיות מוכרזת בימים הקרובים; המגעים עדיין עלולים להיכשל. שווי השוק של Ashland כ-$3.3 מיליארד.",
+   "src": "Bloomberg / swissinfo",
+   "url": "https://www.swissinfo.ch/eng/clariant-and-cd&r-are-in-talks-to-buy-chemicals-firm-ashland/92421162",
+   "time": "21:42",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-gme-stonex-buy",
+   "date": "2026-11-23",
+   "t": [
+    "GME"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "StoneX פתחה סיקור על GameStop בהמלצת קנייה, יעד $33",
+   "body": "לפי Stocktwits, האנליסט Mike Hickey מ-StoneX קבע יעד של $33, כ-24% מעל מחיר המניה; המניה עלתה מתחילת השנה בכ-32%.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/gme-stock-wall-street-collectible-gta-sales-meme-stock-hype/cNbYpBxR9SB",
+   "time": "07:17",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-tsla-ai5-optimus",
+   "date": "2026-11-23",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "Tesla",
+   "tone": "neu",
+   "title": "מאסק: שבב AI5 ייכנס ל-Optimus, המכוניות יישארו עם AI4",
+   "body": "לפי Stocktwits, מאסק אמר שהשבב AI5 מיועד לרובוט Optimus, ו-Tesla קיצצה את הזיכרון ב-AI4.5 מ-32GB ל-24GB. המניה ירדה ביום שישי ב-7.64% ל-$345.82 ונמוכה ב-23% מתחילת השנה.",
+   "src": "Stocktwits / Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/elon-musk-says-2027-ai-023231321.html",
+   "time": "04:32",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-glw-germany-premarket",
+   "date": "2026-11-23",
+   "t": [
+    "GLW"
+   ],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "Corning עולה ב-3.75% במסחר המוקדם בגרמניה",
+   "body": "המניה נסחרה ב-90.43 אירו בבורסת Lang & Schwarz, לעומת 87.16 אירו בסגירה ביום שישי. המקור לא ציין סיבה.",
+   "src": "ad-hoc-news.de",
+   "url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/corning-stock-gains-to-eur-90-43-up-3-75-prozent-premarket/70545898",
+   "time": "09:47",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-wulf-muskie-lease",
+   "date": "2026-11-23",
+   "t": [
+    "WULF"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "neu",
+   "title": "מנכ״ל TeraWulf: לא נמהר לחתום על שוכר לקמפוס Muskie",
+   "body": "המנכ״ל Paul Prager כתב ב-X ביום ראשון שהחברה לא תמהר לבחור שוכר לקמפוס של 1 ג׳יגה-ואט בקנטקי ב״שוק נוראי״, כדי לא לדלל את בעלי המניות. לפי Stocktwits המניה עלתה ביותר מ-3% במסחר הלילה אחרי ירידה של 14% ביום שישי.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/wulf-stock-in-focus-as-ceo-muskie-lease-deal-terrible-market/cNbYpMNR9Sa",
+   "time": "07:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-bam-pgp-glass",
+   "date": "2026-11-23",
+   "t": [
+    "BAM"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Brookfield תרכוש את PGP Glass מ-Blackstone ב-$1.7 מיליארד",
+   "body": "לפי הודעת החברה, קרן הפרייבט אקוויטי של Brookfield תרכוש את יצרנית אריזות הזכוכית PGP Glass מקרנות Blackstone; ל-PGP יש 13 כבשנים ויותר מ-70% ממכירותיה בחו״ל. ההשלמה צפויה ברבעון הראשון של 2027.",
+   "src": "GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/23/3408004/0/en/brookfield-to-acquire-pgp-glass-a-leading-global-manufacturer-of-specialty-glass-packaging-from-blackstone-for-1-7-billion.html",
+   "time": "06:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-lly-loqus23",
+   "date": "2026-11-23",
+   "t": [
+    "LLY"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Eli Lilly רוכשת את LoQus23 בעד $725 מיליון",
+   "body": "Lilly רכשה את חברת הביוטק הפרטית LoQus23, המפתחת טיפול במולקולה קטנה למחלת הנטינגטון, בעד $725 מיליון במזומן כולל תשלומי אבני דרך.",
+   "src": "GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/23/3408071/0/en/loqus23-therapeutics-acquired-by-lilly-to-accelerate-development-of-novel-small-molecule-therapy-for-huntington-s-disease.html",
+   "time": "10:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-nvs-leqvio-orion4",
+   "date": "2026-11-23",
+   "t": [
+    "NVS"
+   ],
+   "tag": "פארמה",
+   "tone": "pos",
+   "title": "Novartis: Leqvio עמדה ביעד העיקרי בניסוי ORION-4",
+   "body": "בניסוי שכלל יותר מ-16,000 חולים עם מחלת לב טרשתית, הוספת Leqvio (פעמיים בשנה) הפחיתה באופן מובהק אירועים לבביים חמורים; החברה לא פרסמה את שיעור ההפחתה, והתוצאות המלאות יוצגו במחצית הראשונה של 2027. לפי Newsquawk, המניה עלתה ב-1.4% לפני הפתיחה באירופה.",
+   "src": "Novartis / GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/23/3408011/0/en/twice-yearly-leqvio-inclisiran-reduced-cardiovascular-event-risk-in-first-outcomes-study-of-an-sirna-therapy-in-ascvd.html",
+   "time": "08:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-cfg-baird-upgrade",
+   "date": "2026-11-23",
+   "t": [
+    "CFG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Baird העלתה את Citizens Financial לתשואת יתר, יעד $75",
+   "body": "Baird רואה ״דרך ברורה להרחבת מרווח הריבית נטו עד 2027״, ב-14–17 נקודות בסיס נוספות עד הרבעון הרביעי של 2027. המניה נסחרה ב-$58.71.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/baird-upgrades-citizens-financial-stock-rating-on-margin-outlook-93CH-5044497",
+   "time": "09:08",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-tfc-baird-upgrade",
+   "date": "2026-11-23",
+   "t": [
+    "TFC"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Baird העלתה את Truist לתשואת יתר, יעד $56",
+   "body": "Baird מעריכה שהמנכ״ל החדש Mike Lyons ישפר את התשואה על ההון באמצעות שינוי תמהיל ההלוואות וניירות הערך. המניה נסחרה ב-$45.81, ירידה של 7.6% בשבוע.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/baird-upgrades-truist-financial-stock-rating-on-new-ceo-outlook-93CH-5044523",
+   "time": "09:25",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-zbh-jefferies-upgrade",
+   "date": "2026-11-23",
+   "t": [
+    "ZBH"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Jefferies העלתה את Zimmer Biomet לקנייה, יעד $125",
+   "body": "Jefferies העלתה את היעד מ-$120 ל-$125, לעומת מחיר של $101.10; לפי הבית, המניה נסחרת בכ-11–12 פעמים הרווח הצפוי ל-2027.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/jefferies-upgrades-zimmer-biomet-stock-rating-on-valuation-growth-outlook-93CH-5044600",
+   "time": "10:06",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-23-evr-ms-upgrade",
+   "date": "2026-11-23",
+   "t": [
+    "EVR"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Morgan Stanley העלתה את Evercore לתשואת יתר, יעד $373",
+   "body": "Morgan Stanley העלתה את היעד מ-$326 ל-$373 וציינה ש-Evercore שלישית בעולם בהכנסות מייעוץ וראשונה בין בתי הבוטיק, ונסחרת בהנחה של כשלוש נקודות במכפיל הרווח לעומת המתחרות.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/morgan-stanley-upgrades-evercore-stock-rating-on-quality-franchise-93CH-4974962",
+   "time": "10:02",
+   "k": "stock"
+  },
+  {
    "id": "2026-11-22-bessent-nvidia-face-the-nation",
    "date": "2026-11-22",
    "t": [
