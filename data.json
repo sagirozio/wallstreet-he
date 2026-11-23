@@ -114130,6 +114130,51 @@
  },
  "news": [
   {
+   "id": "2026-11-23-cbrs-huang-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CBRS"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Cerebras מזנקת בכ-19% בראלי ה-AI אחרי החזרת הואנג ל-Nvidia",
+   "body": "לפי The Motley Fool, מניית Cerebras עלתה בכ-19.5% לכ-$98.75 בצהריים, בגל העליות של מניות ה-AI אחרי שדירקטוריון Nvidia הצביע פה אחד על החזרת ג׳נסן הואנג למנכ״ל. בכתבה מצוין שהמניה ירדה כ-80% משיאה.",
+   "src": "The Motley Fool",
+   "url": "https://www.fool.com/investing/2026/11/23/why-did-cerebras-stock-soar-today/",
+   "time": "19:16"
+  },
+  {
+   "id": "2026-11-23-wdc-huang-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "WDC"
+   ],
+   "tag": "אחסון",
+   "tone": "pos",
+   "title": "Western Digital עולה בכ-16% עם ראלי מניות האחסון אחרי שובו של הואנג",
+   "body": "לפי Investing.com, המניה עלתה בכ-15.9% בבוקר ונגעה ב-$308.27, במהלך כלל-ענפי אחרי החזרת ג׳נסן הואנג למנכ״ל Nvidia; SanDisk ו-Micron עלו גם הן בחדות.",
+   "src": "Investing.com",
+   "url": "https://finwire.io/news/stock-markets-news/why-is-western-digital-stock-surging-today-11",
+   "time": "20:35"
+  },
+  {
+   "id": "2026-11-23-docn-tech-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "DOCN"
+   ],
+   "tag": "ענן",
+   "tone": "pos",
+   "title": "DigitalOcean עולה בכ-18% בראלי מניות הטכנולוגיה",
+   "body": "לפי Seeking Alpha, המניה עלתה בכמעט 18% לכ-$78.70 בבוקר, יחד עם הזינוק במניות הטכנולוגיה וללא קטליזטור ספציפי לחברה; לפני כן ירדה כ-23% בחמישה ימי מסחר.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675696-digitalocean-climbs-18-as-tech-shares-rally",
+   "time": "18:21"
+  },
+  {
    "id": "2026-11-23-trump-made-the-deal-nvidia",
    "date": "2026-11-23",
    "t": [
