@@ -160,6 +160,8 @@ try:
         ref = sc[[t_ for t_ in sc.index if t_ in mem]].dropna().sort_values()
         if len(ref) < 100: return {}
         import numpy as np
+        # the same scale for other symbols (etfs.py rates the thematic ETFs with it): 199 evenly spaced scores of the S&P 500 stocks, sorted
+        if back == 0: X["rsq"] = [round(float(v), 4) for v in ref.values[np.linspace(0, len(ref) - 1, 199).astype(int)]]
         return {e: max(1, min(99, round(int(np.searchsorted(ref.values, sc[e], side="left")) / len(ref) * 99))) for e in cols if pd.notna(sc.get(e))}
     a0, a20 = rs_of(etfs, 0), rs_of(etfs, 20)
     if a0: X["rot"] = {e: [a0[e], a20.get(e)] for e in a0}

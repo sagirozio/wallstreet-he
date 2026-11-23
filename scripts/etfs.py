@@ -26,6 +26,8 @@ ETFS = [
 
 data = json.loads((root / "data.json").read_text(encoding="utf-8"))
 old = {e["t"]: e for e in (data.get("etfs") or {}).get("rows", [])}
+import bisect
+RSQ = (((data.get("themes") or {}).get("x") or {}).get("rsq")) or []   # sorted scores of the S&P 500 stocks (written by mktx.py, earlier in the nightly run)
 tick = [t for t, _, _ in ETFS]
 px = yf.download(tick, period="14mo", interval="1d", auto_adjust=True, group_by="column", threads=True, progress=False)["Close"]
 px.index = px.index.tz_localize(None) if px.index.tz is not None else px.index
@@ -42,6 +44,11 @@ for t, he, grp in ETFS:
     py = c[c.index.year < c.index[-1].year]
     r = {"t": t, "n": he, "g": grp, "p": round(float(last), 2), "d": back(1), "w": back(5), "m": back(21), "q": back(63),
          "ytd": round(float((last / py.iloc[-1] - 1) * 100), 2) if len(py) else None, "y": back(252)}
+    # RS rating 1-99, the same formula and scale as the stocks and the sectors (mktx.py): the ETF's score against the S&P 500 stocks
+    if RSQ and len(c) > 252:
+        q_, h_, y_ = (float(last / c.iloc[-1 - n] - 1) for n in (63, 126, 252))
+        sc = 0.4 * q_ + 0.2 * h_ + 0.2 * (h_ + y_) / 2 + 0.2 * y_
+        r["rs"] = max(1, min(99, round(bisect.bisect_left(RSQ, sc) / len(RSQ) * 99)))
     o = old.get(t) or {}
     hold, hAt = o.get("h"), o.get("hAt")
     if not hold or not hAt or (today - dt.date.fromisoformat(hAt)).days >= 7:
