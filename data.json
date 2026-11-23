@@ -114130,6 +114130,35 @@
  },
  "news": [
   {
+   "id": "2026-11-23-ap-best-day-since-april-2025",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "AP: ה-S&P 500 בדרך ליום הטוב ביותר מאז אפריל 2025, Nvidia ליום הטוב מאז 2000",
+   "body": "לפי AP, בצהריים בניו יורק ה-S&P 500 עלה ב-4.9% והדאו בכ-1,549 נקודות, והשוק החזיר יותר ממחצית הירידה של השבוע שעבר. Nvidia עלתה בכ-31.2% אך עדיין נמוכה מרמתה לפני פרשת הואנג; התשואה ל-10 שנים עלתה ל-4.94% מ-4.92% ביום שישי.",
+   "src": "AP",
+   "url": "https://www.wsaw.com/2026/11/23/us-stocks-soar-recover-more-than-half-last-weeks-plunge-after-jensen-huang-returns-nvidia/",
+   "time": "21:04"
+  },
+  {
+   "id": "2026-11-23-orcl-openai-funding",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "ORCL"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "Oracle עולה בכ-12.5% אחרי שאמרה שיש לה את כל המימון לעסקת OpenAI",
+   "body": "לפי AP, Oracle עלתה בכ-12.5% אחרי שאמרה שהשיגה את כל המימון לעסקת המחשוב שלה עם OpenAI, לצד ראלי מניות ה-AI עם שובו של ג׳נסן הואנג ל-Nvidia.",
+   "src": "AP",
+   "url": "https://www.wsaw.com/2026/11/23/us-stocks-soar-recover-more-than-half-last-weeks-plunge-after-jensen-huang-returns-nvidia/",
+   "time": "21:04"
+  },
+  {
    "id": "2026-11-23-nomura-mechanical-bounce",
    "date": "2026-11-23",
    "t": [],
