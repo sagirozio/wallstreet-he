@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 21:00",
+  "asOf": "23.11.2026 · 22:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43948,7 +43948,7 @@
    },
    {
     "h": "Nvidia בכ-32%; בדרך לשיא שווי יומי",
-    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, ולפי 24/7 Wall St Nvidia הוסיפה כ-$828 מיליארד בשווי, מעל השיא היומי של Microsoft; מדד השבבים עולה ביותר מ-13.5%, TSMC בכ-17%, ASE בכ-21%, Corning בכ-15%, ו-Applied Digital בכ-24% גם על חוזה חכירה של כ-$5.4 מיליארד.",
+    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, ולפי 24/7 Wall St Nvidia הוסיפה כ-$828 מיליארד בשווי, מעל השיא היומי של Microsoft; Bernstein החזירה את המניה להמלצת Outperform ביעד $200. מדד השבבים עולה ביותר מ-13.5%, TSMC בכ-17%, ASE בכ-21% ו-Applied Digital בכ-24% גם על חוזה חכירה של כ-$5.4 מיליארד.",
     "tone": "pos"
    },
    {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611232100,
+  "rev": 202611232200,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,51 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-nvda-bernstein-upgrade",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Bernstein העלתה את Nvidia לתשואת יתר, יעד $200",
+   "body": "Bernstein החזירה את Nvidia להמלצת Outperform, 11 יום אחרי שהורידה אותה ל-Market Perform, והותירה את היעד על $200. לפי Business Today, האנליסטים כתבו ששובו של הואנג מסיר את הסיבה העיקרית להורדה, אך ציינו סיכוני ממשל תאגידי וחקירות שעדיין פתוחות.",
+   "src": "Business Today",
+   "url": "https://www.businesstoday.in/markets/stocks/story/nvidia-shares-surge-30-but-bernstein-sees-more-upside-why-the-brokerage-maintains-200-target-569193-2026-11-23",
+   "time": "19:12"
+  },
+  {
+   "id": "2026-11-23-alm-gold-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "ALM"
+   ],
+   "tag": "כרייה",
+   "tone": "pos",
+   "title": "Almonty עולה בכ-14% עם זינוק הזהב ומניות המתכות",
+   "body": "לפי StockStory, מניות הכרייה והמתכות, ובהן Almonty, עלו במסחר אחרי שמחיר הזהב זינק בכמעט 5% לכ-$3,686 לאונקיה; החברה עצמה לא פרסמה היום הודעה שמסבירה את התנועה.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nyse/paas/news/why-up-down/pan-american-silver-wheaton-precious-metals-axt-almonty-industries-and-evolution-metals-and-technologies-shares-are-soaring-what-you-need-to-know",
+   "time": "18:21"
+  },
+  {
+   "id": "2026-11-23-spcx-jefferies-buy",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Jefferies פתחה סיקור על SpaceX בהמלצת קנייה, יעד $210",
+   "body": "Jefferies החלה לסקר את SpaceX בהמלצת קנייה ויעד מחיר של $210, לפי הבלוג החי של Yahoo Finance; המניה עלתה בכ-6.7% במהלך הבוקר בניו יורק.",
+   "src": "Yahoo Finance",
+   "url": "https://sg.finance.yahoo.com/news/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html",
+   "time": "18:30"
+  },
   {
    "id": "2026-11-23-ap-best-day-since-april-2025",
    "date": "2026-11-23",
