@@ -475,15 +475,46 @@ body[data-pg="home"] #brief{padding-top:6px}
   .nvrow .logo{gap:7px;font-size:17px;flex:none}.nvrow .logo .lgi{width:30px;height:30px}.nvrow .logo .lge,.nvrow .logo .tagline{display:none}}
 @media(min-width:901px){
   body[data-pg="home"] .tvq{grid-template-columns:repeat(2,minmax(0,1fr))}
-  body[data-pg="home"].r main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);column-gap:36px;grid-template-rows:auto auto auto auto auto auto 1fr;align-items:start}
-  body[data-pg="home"] #market,body[data-pg="home"] #brief,body[data-pg="home"] #homeMovers{grid-column:1/-1}
-  body[data-pg="home"] #today-reports{grid-column:1;grid-row:4/8}
-  body[data-pg="home"] #homeWatch{grid-column:2;grid-row:4}body[data-pg="home"] #todayAgenda{grid-column:2;grid-row:5}body[data-pg="home"] #recap{grid-column:2;grid-row:6}
-  body[data-pg="home"] #homeWatch{border-top:0}
-  body.mehome[data-pg="home"].r main{grid-template-rows:auto auto auto auto auto auto auto 1fr}
-  body.mehome[data-pg="home"] #homeWatch{grid-column:1/-1;grid-row:1}body.mehome[data-pg="home"] #market{grid-row:2}body.mehome[data-pg="home"] #brief{grid-row:3}body.mehome[data-pg="home"] #homeMovers{grid-row:4}
-  body.mehome[data-pg="home"] #today-reports{grid-row:5/9}body.mehome[data-pg="home"] #todayAgenda{grid-row:5}body.mehome[data-pg="home"] #recap{grid-row:6}
+  /* desktop home: the market line and indices across, then the brief and the movers, with sectors, the day's agenda and the news beside them */
+  body[data-pg="home"].r main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);column-gap:44px;grid-template-rows:auto auto 1fr;align-items:start}
+  body[data-pg="home"] #market{grid-column:1/-1;grid-row:1}
+  body[data-pg="home"] #brief{grid-column:1;grid-row:2}
+  body[data-pg="home"] #homeMovers{grid-column:1;grid-row:3}
+  body[data-pg="home"] #homeSide{grid-column:2;grid-row:2/4}
+  body[data-pg="home"].r main>#today-reports,body[data-pg="home"].r main>#homeWatch,body[data-pg="home"].r main>#todayAgenda,body[data-pg="home"].r main>#recap{display:none}
+  body[data-pg="home"] #brief .bgrid{display:block}body[data-pg="home"] #brief .bnews,body[data-pg="home"] #briefSum{display:none}
+  body[data-pg="home"] #briefList{max-width:none}
+  body[data-pg="home"] #hmvList.hmv{background:none;border:0;border-radius:0}
+  body[data-pg="home"] #hmvList a.hmr{display:grid;grid-template-columns:62px minmax(0,1fr) 70px;align-items:baseline;column-gap:12px;padding:9px 0}
+  body[data-pg="home"] #hmvList a.hmr:first-child{border-top:0}
+  body[data-pg="home"] .hmt{display:contents}
+  body[data-pg="home"] .hmt b{grid-column:1;grid-row:1}
+  body[data-pg="home"] .hmt>.num:not(.hmvv){grid-column:3;grid-row:1;text-align:left;font:600 14px "JetBrains Mono",monospace}
+  body[data-pg="home"] .hmt small,body[data-pg="home"] .hmt .hmvv,body[data-pg="home"] .hmw small{display:none}
+  body[data-pg="home"] .hmw{grid-column:2;grid-row:1;margin:0;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  body[data-pg="home"] .hmr:hover .hmt b{color:var(--accent)}
+  body[data-pg="home"] .hmvn{padding:4px 0 0}body[data-pg="home"] .hmvm{text-align:start;padding:10px 0}
 }
+@media(max-width:900px){#homeSide,#mktHead{display:none!important}}
+#mktHead{font-size:18px;font-weight:600;margin:0 0 4px;line-height:1.45}#mktHead:empty{display:none}
+#homeSide{padding-top:22px}
+.hsd+.hsd{margin-top:26px}
+.hsd .hh{margin-bottom:6px}.hsd h2{font-size:17px}
+.hsr{display:grid;align-items:center;column-gap:12px;padding:7px 0;border-top:1px solid var(--line);color:var(--text);text-decoration:none;font-size:14px}
+.hsr:first-of-type{border-top:0}
+a.hsr:hover b,a.hsr:focus-visible b{color:var(--accent)}
+.hss{grid-template-columns:64px minmax(0,1fr) 92px}
+.hss .p{font:600 13.5px "JetBrains Mono",monospace;direction:ltr;text-align:right}
+.hss .tr{height:7px;border-radius:4px;background:var(--panel2);direction:ltr;overflow:hidden}
+.hss .tr i{display:block;height:100%;border-radius:4px;background:var(--green)}.hss .tr i.dn{background:var(--red)}
+.hss .nm{text-align:left;line-height:1.2;min-width:0}
+.hss .nm b{display:block;font:600 13px "JetBrains Mono",monospace}
+.hss .nm small{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hsa{grid-template-columns:92px minmax(0,1fr)}.hsa>small,.hsn>small{color:var(--muted);font-size:12.5px}
+.hsa .tk{display:inline;font:600 12.5px "JetBrains Mono",monospace;color:var(--text);text-decoration:none}.hsa .tk:hover{color:var(--accent)}
+.hsn{grid-template-columns:48px minmax(0,1fr);align-items:baseline}.hsn>small{font-family:"JetBrains Mono",monospace;direction:ltr;text-align:right}
+.hsn b{font-weight:500;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hsnote{font-size:12px;color:var(--muted);margin:8px 0 0}
 @media(max-width:760px){.pmbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.pmbox .pml,.pmbox .pmt{grid-column:1/-1}.pmbox .pmi{display:flex;justify-content:space-between;gap:6px;white-space:nowrap}.pmbox .pmi .t,.pmbox .pmi .pmp{display:none}}
 .how{margin-top:14px}.how>summary{cursor:pointer;color:var(--muted);font-size:13px;padding:4px 0}.how[open]>summary{margin-bottom:6px}.how .sub{margin:0 0 8px}
 .nm2 b{direction:rtl;overflow-wrap:normal}@media(min-width:901px){.nm2 b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}.nm2 small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hd2 .n[data-sk]{cursor:pointer}.rw2 small .car{margin-inline:0 5px}@media(max-width:900px){.nm2 small .en{display:none}}
@@ -825,6 +856,7 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
 
 <section id="market" data-pg="home">
   <h2 class="sr-only">מצב השוק</h2>
+  <p id="mktHead"></p>
   <div class="mstat" id="mktStatus"></div>
   <p class="sub hidden" id="marketNote"></p>
     <div class="pmbox hidden" id="pmBox"></div>
@@ -846,6 +878,11 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
 
 
 
+<section id="homeSide" data-pg="home" aria-label="סקטורים, אירועי היום וחדשות">
+  <div class="hsd" id="hsSec"></div>
+  <div class="hsd" id="hsAg"></div>
+  <div class="hsd" id="hsNews"></div>
+</section>
 <section id="macro" data-pg="market">
   <h2>מאקרו וריבית<button class="gq" data-gl="MACRO" aria-label="הסבר">?</button></h2>
   <p class="sub">הריבית, האינפלציה והתעסוקה בארה״ב, ומה השוק מצפה שהפד יעשה.</p>
@@ -1352,6 +1389,7 @@ function renderMktStatus(){
   $('mktStatus').className='mstat '+cls; $('mktStatus').innerHTML=`<i></i><span>${txt}</span>`;
 }
 function renderAgenda(){
+  try{ renderHomeSide(); }catch(e){}
   const c=CAL||{days:[]}, il=ilNow(), key=(d,m)=>m*100+d, tk=key(il.getDate(),il.getMonth()+1);
   const parse=x=>{ const m=String(x||'').match(/(\d{1,2})\.(\d{1,2})/); return m?[+m[1],+m[2]]:null; };
   const day=(c.days||[]).find(x=>{ const p=parse(x.d); return p&&key(p[0],p[1])>=tk; });
@@ -1367,6 +1405,33 @@ function renderAgenda(){
     (other.length?`<div class="agt">דוחות, שעה תפורסם</div><div class="achips">${other.map(chip).join('')}</div>`:'')+
     (ev.length?`<div class="agt">אירועי מאקרו</div>${ev.map(e=>`<div class="agm"><b>${esc(e.e)}</b>${macroGl(e.e)?gq(macroGl(e.e)):''}</div>`).join('')}`:'')
     || '<div class="empty">אין דוחות או אירועים מתוכננים.</div>';
+}
+/* desktop home, side column: the 11 sector funds today, the day's agenda, the latest news; and one factual headline over the market line */
+function renderHomeSide(){
+  if(!$('homeSide')) return;
+  const E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null, SEC_EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
+  const rows=((SECTORS||{}).rows||[]).map(r=>({t:r.t,he:r.name,en:SEC_EN[r.name]||'',d:E&&E[r.t]?E[r.t][1]:r.d})).filter(r=>r.t&&r.d!=null).sort((a,b)=>b.d-a.d);
+  const mx=Math.max(...rows.map(r=>Math.abs(r.d)),0.01);
+  $('hsSec').innerHTML=rows.length?`<div class="hh"><h2>סקטורים היום</h2><a href="#sectors">כל הסקטורים ←</a></div>`+rows.map(r=>`<a class="hsr hss" href="#sector/${encodeURIComponent(r.en)}"><span class="p ${r.d>=0?'up':'down'}">${pct(r.d,2)}</span><span class="tr" aria-hidden="true"><i class="${r.d>=0?'':'dn'}" style="width:${Math.max(2,Math.round(Math.abs(r.d)/mx*100))}%"></i></span><span class="nm"><b>${esc(r.t)}</b><small>${esc(r.he)}</small></span></a>`).join('')+`<p class="hsnote">שינוי היום בקרן הסל של כל סקטור${E&&liveTm()?` · עודכן ${esc(liveTm())}`:''}</p>`:'';
+  /* agenda: earnings before the open / after the close (the biggest companies first) and the day's macro events */
+  const c=CAL||{days:[]}, il=ilNow(), key=(d,m)=>m*100+d, tk=key(il.getDate(),il.getMonth()+1), parse=x=>{ const m=String(x||'').match(/(\d{1,2})\.(\d{1,2})/); return m?[+m[1],+m[2]]:null; };
+  const day=(c.days||[]).find(x=>{ const p=parse(x.d); return p&&key(p[0],p[1])>=tk; });
+  let ag='';
+  if(day){ const p=parse(day.d), isT=key(p[0],p[1])===tk, ix=stockIndex(), its=day.items||[];
+    const big=a=>[...a].sort((x,y)=>(y.star?1:0)-(x.star?1:0)||capNum((ix[y.t]||{}).cap)-capNum((ix[x.t]||{}).cap));
+    const grp=(f,l)=>{ const g=big(its.filter(f)); if(!g.length) return ''; const sh=g.slice(0,4);
+      return `<div class="hsr hsa"><small>${l}</small><span>דוחות: ${sh.map(i=>`<a class="tk" href="#stock/${encodeURIComponent(i.t)}">${esc(i.t)}</a>`).join(', ')}${g.length>4?` ועוד ${g.length-4}`:''}</span></div>`; };
+    const ev=(((OVERVIEW||{}).macro||{}).calendar||[]).filter(e=>{ const q=parse(e.d); return q&&q[0]===p[0]&&q[1]===p[1]; });
+    ag=ev.map(e=>`<div class="hsr hsa"><small>מאקרו</small><span>${esc(e.e)}</span></div>`).join('')+grp(i=>i.time==='bmo',`לפני ${ilTime(9,30)}`)+grp(i=>i.time==='amc',`אחרי ${ilTime(16,0)}`)+grp(i=>i.time!=='bmo'&&i.time!=='amc','שעה לא ידועה');
+    ag=ag?`<div class="hh"><h2>${isT?'היום בוול סטריט':'הבא בוול סטריט'} <span class="fresh">${esc(day.d)}</span></h2><a href="#upcoming">ללוח השבוע ←</a></div>`+ag:''; }
+  $('hsAg').innerHTML=ag;
+  const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,5);
+  $('hsNews').innerHTML=N.length?`<div class="hh"><h2>חדשות אחרונות</h2><a href="#page/news">כל החדשות ←</a></div>`+N.map(n=>`<a class="hsr hsn" href="#page/news"><small>${esc(n.time||'')}</small><b>${esc(n.title)}</b></a>`).join(''):'';
+  /* headline: the S&P 500's move and the strongest / weakest sector, in plain words (facts only) */
+  const L=LIVE&&LIVE.idx&&LIVE.idx['^GSPC'], o=(((OVERVIEW||{}).market||{}).idx||[]).find(x=>x.k==='S&P 500'), c0=L?L[1]:o?o.d:null, open=mktOpen()&&LIVE&&LIVE.date===nyToday();
+  if(c0==null||!rows.length){ $('mktHead').textContent=''; return; }
+  const up=c0>=0, vb=open?(up?'עולה':'יורד'):(up?'עלה':'ירד'), t=rows[0], w=rows[rows.length-1];
+  $('mktHead').innerHTML=`מדד S&P 500 ${vb} <bdi class="num ${up?'up':'down'}">${pct(Math.abs(c0),1).replace('+','')}</bdi>${open?' היום':' ביום המסחר האחרון'}. ${up?`בהובלת ${esc(t.he)} (<bdi class="num up">${pct(t.d,1)}</bdi>)`:`הירידה החדה ביותר ב${esc(w.he)} (<bdi class="num down">${pct(w.d,1)}</bdi>)`}.`;
 }
 function renderHomeMovers(){
   const m=FALLBACK.movers||{}, sec=$('homeMovers');
@@ -2264,6 +2329,7 @@ function renderIdx(){
     if(k==='BTC-USD') return `<div class="ixc"><small>${n}</small><b class="num">$${Math.round(v).toLocaleString('en-US')}</b><span class="num ${c>=0?'up':'down'}">${c==null?'':pct(c,2)}</span></div>`;
     return v==null?'':`<div class="ixc"><small>${n}</small><b class="num">${v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</b><span class="num ${c>=0?'up':'down'}">${c==null?'':pct(c,2)}</span></div>`; }).join('');
   b.innerHTML=cells; const f=$('ixFoot'); if(f) f.innerHTML=open?`<i class="livedot"></i>לייב · ${esc(tm)}`:L&&dd.length===3?`סגירת ${+dd[2]}.${+dd[1]}`:'';
+  try{ renderHomeSide(); }catch(e){}
 }
 /* after a live refresh: the price cells that changed flash green (up) or red (down) for a second */
 function liveFlash(prev){ if(!prev||!LIVE||!LIVE.q) return; const ch={}; let n=0; for(const t in LIVE.q){ const a=prev[t], b=LIVE.q[t]; if(a&&b&&a[0]!==b[0]){ ch[t]=b[0]>a[0]?'flu':'fld'; n++; } } if(!n) return;
@@ -3595,6 +3661,7 @@ async function loadFund(t,el){   /* el: another container (the quick view) inste
 function renderBriefNews(){
   const N=(FALLBACK.news||[]).filter(n=>n.k!=='stock').slice(0,5); if(!$('bnList')) return;
   $('bnList').innerHTML=N.map(n=>`<li><i class="${n.tone==='pos'?'pos':n.tone==='neg'?'neg':''}"></i><div><b>${esc(n.title)}</b><small>${n.time?esc(n.time)+' · ':''}${esc((n.date||'').split('-').reverse().slice(0,2).map(Number).join('.'))}</small></div></li>`).join('');
+  try{ renderHomeSide(); }catch(e){}
 }
 function renderBriefSum(){
   const o=OVERVIEW||{}, sp=(k,d)=>`${k} <span class="num ${d>0?'up':d<0?'down':'flat'}">${pct(d,2)}</span>`;
@@ -4106,6 +4173,7 @@ document.addEventListener('click',e=>{ const h=e.target.closest&&e.target.closes
   if(e.target.id==='grMore'){ GLIM=1e4; renderGroup(location.hash.startsWith('#sector/')?'sector':'ind', decodeURIComponent(location.hash.replace(/^#(sector|ind)\//,''))); } });
 window.addEventListener('hashchange',()=>{ if(/^#(sector|ind)\//.test(location.hash)){ GLIM=25; GSORT='ytd'; } });
 function renderSec(){
+  try{ renderHomeSide(); }catch(e){}
   /* an open sector lists stocks: if the stock list has not arrived yet (or its download failed), fetch it and draw again */
   if(!STK_OK&&(secOpen.size||thOpen.size)&&!renderSec.w){ renderSec.w=1; loadStocks(true).then(()=>{ renderSec.w=0; if(STK_OK) renderSec(); },()=>{ renderSec.w=0; }); }
   const SEC_EN=Object.fromEntries(Object.entries(SEC_HE).map(([e,h])=>[h,e]));
