@@ -484,16 +484,7 @@ body[data-pg="home"] #brief{padding-top:6px}
   body[data-pg="home"].r main>#today-reports,body[data-pg="home"].r main>#homeWatch,body[data-pg="home"].r main>#todayAgenda,body[data-pg="home"].r main>#recap{display:none}
   body[data-pg="home"] #brief .bgrid{display:block}body[data-pg="home"] #brief .bnews,body[data-pg="home"] #briefSum{display:none}
   body[data-pg="home"] #briefList{max-width:none}
-  body[data-pg="home"] #hmvList.hmv{background:none;border:0;border-radius:0}
-  body[data-pg="home"] #hmvList a.hmr{display:grid;grid-template-columns:62px minmax(0,1fr) 70px;align-items:baseline;column-gap:12px;padding:9px 0}
-  body[data-pg="home"] #hmvList a.hmr:first-child{border-top:0}
-  body[data-pg="home"] .hmt{display:contents}
-  body[data-pg="home"] .hmt b{grid-column:1;grid-row:1}
-  body[data-pg="home"] .hmt>.num:not(.hmvv){grid-column:3;grid-row:1;text-align:left;font:600 14px "JetBrains Mono",monospace}
-  body[data-pg="home"] .hmt small,body[data-pg="home"] .hmt .hmvv,body[data-pg="home"] .hmw small{display:none}
-  body[data-pg="home"] .hmw{grid-column:2;grid-row:1;margin:0;font-size:14px;font-weight:500;color:var(--muted);white-space:normal;line-height:1.45}
-  body[data-pg="home"] .hmr:hover .hmt b{color:var(--accent)}
-  body[data-pg="home"] .hmvn{padding:4px 0 0}body[data-pg="home"] .hmvm{text-align:start;padding:10px 0}
+  body[data-pg="home"] #briefList li{cursor:pointer}body[data-pg="home"] #briefList li span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}body[data-pg="home"] #briefList li.open span{display:block;overflow:visible}
 }
 @media(min-width:761px) and (max-width:900px){#homeSide,#mktHead{display:none!important}}
 /* phone home: the headline on top; the brief and a narrow sectors column side by side; then compact movers, the agenda and the news */
@@ -505,7 +496,7 @@ body[data-pg="home"] #brief{padding-top:6px}
   body[data-pg="home"] #brief .brief2:not(.bnews){flex:0 0 59%;padding-inline-end:10px}
   body[data-pg="home"] #hsSec{order:2;flex:0 0 41%;border-top:1px solid var(--line);margin-top:12px;padding:14px 0 0 0;border-inline-start:1px solid var(--line);padding-inline-start:10px;min-width:0}
   body[data-pg="home"] #brief .bnews,body[data-pg="home"].r main>#today-reports,body[data-pg="home"].r main>#todayAgenda,body[data-pg="home"].r main>#recap{display:none!important}
-  body[data-pg="home"] #briefList span{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:12.5px}body[data-pg="home"] #briefList b{font-size:14px}
+  body[data-pg="home"] #briefList span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12.5px}body[data-pg="home"] #briefList b{font-size:14px}
   body[data-pg="home"] #hsAg{order:4;margin-top:22px;flex:0 0 100%;min-width:0}body[data-pg="home"] #hsNews{order:5;margin-top:22px;flex:0 0 100%;min-width:0}
   .hsd+.hsd{margin-top:22px}
   #hsSec .hh{margin-bottom:2px}#hsSec h2{font-size:16px!important}#hsSec .hh a{font-size:12px}
@@ -513,18 +504,25 @@ body[data-pg="home"] #brief{padding-top:6px}
   #hsSec .hss .p{grid-area:p;font-size:12px;align-self:start}#hsSec .hss .nm{grid-area:nm}#hsSec .hss .tr{grid-area:tr;height:5px}
   #hsSec .hss .nm b{font-size:12px}#hsSec .hss .nm small{font-size:10.5px}
   #hsSec .hsnote,#hsSec .hsw{display:none}
-  body[data-pg="home"] #hmvList.hmv{background:none;border:0;border-radius:0}
   body[data-pg="home"] .brief2 .bh .bfr{display:none}
-  body[data-pg="home"] #hmvList a.hmr{display:grid;grid-template-columns:50px minmax(0,1fr) 60px;align-items:baseline;column-gap:10px;padding:9px 0}
-  body[data-pg="home"] #hmvList a.hmr:first-child{border-top:0}
-  body[data-pg="home"] .hmt{display:contents}
-  body[data-pg="home"] .hmt b{grid-column:1;grid-row:1;font-size:13px}
-  body[data-pg="home"] .hmt>.num:not(.hmvv){grid-column:3;grid-row:1;text-align:left;margin:0!important;font:600 13px "JetBrains Mono",monospace}
-  body[data-pg="home"] .hmt .hmvv,body[data-pg="home"] .hmw small{display:none}
-  body[data-pg="home"] #hmvList .hmr span.hmw{grid-column:2;grid-row:1;margin:0;font-size:13px;font-weight:500;color:var(--muted);display:block;white-space:normal;line-height:1.45;-webkit-line-clamp:unset;overflow:visible}
-  body[data-pg="home"] .hmvm{text-align:start;padding:10px 0}
   #homeSide .hsa{grid-template-columns:84px minmax(0,1fr)}#homeSide .hsr{font-size:13.5px}#homeSide .hsn b{font-size:13.5px}
 }
+/* home movers: one line each (symbol, company, change); the reason floats on hover (desktop) or on a tap (phones, a second tap opens the stock) */
+body[data-pg="home"] #hmvList.hmv{background:none;border:0;border-radius:0;overflow:visible}
+body[data-pg="home"] #hmvList a.hmr{position:relative;display:grid;grid-template-columns:58px minmax(0,1fr) 66px;align-items:baseline;column-gap:10px;padding:9px 0}
+body[data-pg="home"] #hmvList a.hmr:first-child{border-top:0}
+body[data-pg="home"] #hmvList .hmt{display:contents}
+body[data-pg="home"] #hmvList .hmt b{grid-column:1;grid-row:1;font-size:13.5px}
+body[data-pg="home"] #hmvList .hmt small{grid-column:2;grid-row:1;display:block;font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;direction:ltr;text-align:right;unicode-bidi:plaintext}
+body[data-pg="home"] #hmvList .hmt>.num:not(.hmvv){grid-column:3;grid-row:1;text-align:left;margin:0!important;font:600 13.5px "JetBrains Mono",monospace}
+body[data-pg="home"] #hmvList .hmt .hmvv{display:none}
+body[data-pg="home"] #hmvList .hmr span.hmw{display:none;position:absolute;z-index:20;top:calc(100% - 2px);inset-inline:0;margin:0;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.5);font-size:14px;font-weight:600;line-height:1.5;color:var(--text);white-space:normal;-webkit-line-clamp:unset;overflow:visible}
+html.light body[data-pg="home"] #hmvList .hmr span.hmw{box-shadow:0 12px 30px rgba(15,23,42,.16)}
+body[data-pg="home"] #hmvList .hmr span.hmw small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px;-webkit-line-clamp:unset;overflow:visible}
+body[data-pg="home"] #hmvList .hmr span.hmw .hmgo{display:none;font-weight:500;font-size:13px;color:var(--accent);margin-top:6px}
+@media(hover:hover) and (pointer:fine){body[data-pg="home"] #hmvList a.hmr:hover span.hmw{display:block}body[data-pg="home"] #hmvList a.hmr:hover .hmt b{color:var(--accent)}}
+body[data-pg="home"] #hmvList a.hmr.pop span.hmw{display:block}body[data-pg="home"] #hmvList a.hmr.pop span.hmw .hmgo{display:block}
+body[data-pg="home"] #hmvList .hmvn{padding:4px 0 0}body[data-pg="home"] #hmvList .hmvm{text-align:start;padding:10px 0}
 .hsm{display:none}@media(max-width:760px){.hsm{display:inline}}#mktHead{font-size:18px;font-weight:600;margin:0 0 4px;line-height:1.45}#mktHead:empty{display:none}
 #homeSide{padding-top:22px}
 .hsd+.hsd{margin-top:26px}
@@ -1473,7 +1471,7 @@ function renderHomeMovers(){
   /* each mover with the reason: today's per-stock news item (written by the hourly run); nothing is guessed when there is none */
   const day=m.date||nyToday(), why=t=>(FALLBACK.news||[]).find(n=>Array.isArray(n.t)&&n.t.includes(t)&&n.date===day)||null;
   const vf=v=>v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+'M':v>=1e3?Math.round(v/1e3)+'K':String(v);
-  $('hmvList').innerHTML = (hasV?`<div class="hmvn">דירוג משולב: אחוז העלייה ומחזור המסחר המקדים</div>`:'')+mv.slice(0,lim).map(r=>{ const n=why(r.t); return `<a class="hmr" href="#stock/${encodeURIComponent(r.t)}"><span class="hmt"><b>${esc(r.t)}</b><span class="num ${r.p>=0?'up':'down'}">${pct(r.p,1)}</span>${r.v?`<span class="hmvv num" title="מחזור במסחר המקדים">Vol ${vf(r.v)}</span>`:''}<small>${esc(r.n||'')}</small></span><span class="hmw">${n?`${esc(n.title)}${n.body?`<small>${esc(n.body)}</small>`:''}`:'<span class="flat">עדיין אין סיבה מאומתת. הריצה השעתית מחפשת ותעדכן כאן.</span>'}</span></a>`; }).join('')
+  $('hmvList').innerHTML = (hasV?`<div class="hmvn">דירוג משולב: אחוז העלייה ומחזור המסחר המקדים</div>`:'')+mv.slice(0,lim).map(r=>{ const n=why(r.t); return `<a class="hmr" href="#stock/${encodeURIComponent(r.t)}"><span class="hmt"><b>${esc(r.t)}</b><span class="num ${r.p>=0?'up':'down'}">${pct(r.p,1)}</span>${r.v?`<span class="hmvv num" title="מחזור במסחר המקדים">Vol ${vf(r.v)}</span>`:''}<small>${esc(r.n||'')}</small></span><span class="hmw">${n?`${esc(n.title)}${n.body?`<small>${esc(n.body)}</small>`:''}`:'<span class="flat">עדיין אין סיבה מאומתת. הריצה השעתית מחפשת ותעדכן כאן.</span>'}<span class="hmgo">לכרטיס המניה ←</span></span></a>`; }).join('')
     +(mv.length>5?`<button type="button" class="hmvm" data-hmvm>${all?'הצג פחות ↑':`הצג עוד ${mv.length-5} ↓`}</button>`:'');
 }
 document.addEventListener('click',e=>{ if(!e.target.closest) return; if(e.target.closest('[data-hmvm]')){ renderHomeMovers.all=!renderHomeMovers.all; renderHomeMovers(); return; } });
@@ -1561,6 +1559,11 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return; const sh=$(
   if(e.target.closest('#moreTheme')){ moreClose(); thSet(!document.documentElement.classList.contains('light')); return; }
   if(e.target.closest('#moreBg')||e.target.closest('#moreSheet a')) moreClose(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') moreClose(); });
+/* home movers on touch screens: the first tap floats the reason, a tap on the open card goes to the stock */
+document.addEventListener('click',e=>{ const r=e.target.closest&&e.target.closest('#hmvList a.hmr');
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  document.querySelectorAll('#hmvList a.hmr.pop').forEach(x=>{ if(x!==r) x.classList.remove('pop'); });
+  if(r&&!r.classList.contains('pop')){ e.preventDefault(); r.classList.add('pop'); } },true);
 /* phones, home page: the brief shows a headline and one line; a tap opens the rest */
 document.addEventListener('click',e=>{ const li=e.target.closest&&e.target.closest('#briefList li'); if(li&&!e.target.closest('a')) li.classList.toggle('open'); });
 try{ if(document.documentElement.classList.contains('light')){ const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content='#f6f7f9'; } }catch(e){}
