@@ -43835,7 +43835,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 13:00",
+  "asOf": "23.11.2026 · 14:10",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43900,7 +43900,7 @@
    },
    {
     "h": "השבבים וה-AI מובילים במסחר המקדים",
-    "t": "לפי Investing.com, Micron, Lam Research ו-Marvell עולות ביותר מ-7%, SK hynix בכמעט 10% ו-CoreWeave, Nebius ו-IREN ב-8%–10.5%; ברשימת העולות לפני הפתיחה גם UMC, ASE, FormFactor ו-MaxLinear, עם עליות של 11%–12%.",
+    "t": "לפי Investing.com ו-BigGo, SK hynix עולה ביותר מ-10% במסחר המקדים ו-Nvidia, Micron, Lam Research ו-AMD ב-7%–9%, ו-CoreWeave, Nebius ו-IREN ב-8%–10.5%; ברשימת העולות לפני הפתיחה גם UMC, ASE, FormFactor ו-MaxLinear, עם עליות של 11%–13%.",
     "tone": "pos"
    },
    {
@@ -43909,9 +43909,9 @@
     "tone": "pos"
    },
    {
-    "h": "הפד: 98% להעלאה בדצמבר",
-    "t": "לפי Saxo השוק מתמחר 98% להעלאת ריבית ב-9 בדצמבר ותשואת ה-10 שנים ב-4.94%; בסנט אמר שהפד עלול לטעות אם יהדק יותר מדי, ו-PCE לאוקטובר יפורסם ביום רביעי.",
-    "tone": "neu"
+    "h": "טראמפ מאיים בחידוש התקיפות באיראן",
+    "t": "לפי Newsquawk טראמפ אמר שיתמוך בחידוש הפעולה הצבאית נגד איראן אחרי השנה החדשה אם לא יושג הסכם; הנפט יורד קלות, והשוק מתמחר יותר מ-90% להעלאת ריבית ב-9 בדצמבר.",
+    "tone": "neg"
    },
    {
     "h": "HPE, Zoom ו-Agilent מדווחות הערב",
@@ -43988,7 +43988,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231300,
+  "rev": 202611231410,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114081,6 +114081,59 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-trump-iran-new-year",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neg",
+   "title": "טראמפ: בעד חידוש הפעולה הצבאית נגד איראן אחרי השנה החדשה אם לא יושג הסכם",
+   "body": "לפי Newsquawk, טראמפ אמר שהוא תומך בחידוש הפעולה הצבאית נגד איראן אחרי תחילת השנה אם לא יושג הסכם, ושכל כלי שיט איראני שינסה לפרוץ את המצור יוטבע. לדבריו, השיחות העקיפות לא הניבו התקדמות ממשית; הנפט מסוג ברנט נסחר בירידה קלה של 0.2%.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-european-opening-news---23rd-november-2026",
+   "time": "08:47"
+  },
+  {
+   "id": "2026-11-23-bessent-megaspeed-alibaba",
+   "date": "2026-11-23",
+   "t": [
+    "BABA"
+   ],
+   "tag": "ממשל",
+   "tone": "neg",
+   "title": "בסנט: נבדוק אם Megaspeed היא חברת קש של סין; Alibaba ברשימת הסוחרות עם הצבא הסיני",
+   "body": "לפי Newsquawk, שר האוצר סקוט בסנט אמר שהממשל יבדוק אם Megaspeed היא חברת חזית של סין, ומנה את Alibaba בין החברות שסוחרות עם הצבא הסיני. עוד אמר שריכוז ייצור השבבים בטייוואן הוא נקודת תורפה אסטרטגית.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-european-opening-news---23rd-november-2026",
+   "time": "08:47"
+  },
+  {
+   "id": "2026-11-23-trump-eo-contractors",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ חתם על צו: קבלני ממשל ידווחו לבית הלבן על פניות הקונגרס",
+   "body": "לפי Newsquawk, טראמפ חתם על צו נשיאותי שמחייב קבלנים פדרליים לדווח לבית הלבן על כל בקשה של הקונגרס לקבל את התכתובות שלהם.",
+   "src": "Newsquawk",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-european-opening-news---23rd-november-2026",
+   "time": "08:47"
+  },
+  {
+   "id": "2026-11-23-amzn-decart",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "AMZN"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "FT: Amazon קרובה לעסקה של $7.5 מיליארד לרכישת Decart",
+   "body": "לפי Financial Times, כפי שדווח ב-Newsquawk, Amazon קרובה להסכם לרכישת סטארט-אפ ה-AI Decart תמורת כ-$7.5 מיליארד.",
+   "src": "Newsquawk / FT",
+   "url": "https://www.newsquawk.com/headlines/newsquawk-daily-european-opening-news---23rd-november-2026",
+   "time": "08:47"
+  },
   {
    "id": "2026-11-23-oil-houthi-saudi-refinery",
    "date": "2026-11-23",
