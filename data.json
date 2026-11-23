@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 20:00",
+  "asOf": "23.11.2026 · 21:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43942,8 +43942,8 @@
   ],
   "brief": [
    {
-    "h": "ראלי היסטורי בצהריים",
-    "t": "אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר, QQQ נפתחה בעלייה של כמעט 8%, הגדולה מאז 1999; ה-VIX יורד בכ-24% לכ-27, הזהב עולה בכ-4.2% לכ-$3,663 והנפט יורד בכ-3% לכ-$80.8.",
+    "h": "ראלי היסטורי; Nomura: ריבאונד ״מכני״",
+    "t": "אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר, QQQ נפתחה בעלייה של כמעט 8%, הגדולה מאז 1999; ה-VIX ירד בכ-24% לכ-27, הזהב עולה בכ-4.4% לכ-$3,670 והנפט יורד בכ-3% לכ-$80.8. מקאליגוט מ-Nomura מגדיר את הזינוק כריבאונד ״מכני״ של כיסוי שורטים.",
     "tone": "pos"
    },
    {
@@ -43957,8 +43957,8 @@
     "tone": "neu"
    },
    {
-    "h": "PMI מאט; הפד: כ-96% להעלאה",
-    "t": "מדד השירותים הראשוני של S&P Global ירד ל-54.7, שפל של ארבעה חודשים, והתעשייה ל-54.5; לפי CME FedWatch השוק מתמחר כ-96% להעלאת ריבית ב-9 בדצמבר, וביום רביעי מדד PCE לאוקטובר.",
+    "h": "PMI מאט; שבוע מקוצר עם PCE ו-GDP",
+    "t": "מדד השירותים הראשוני של S&P Global ירד ל-54.7, שפל של ארבעה חודשים; לפי CME FedWatch השוק מתמחר כ-96% להעלאת ריבית ב-9 בדצמבר. ביום רביעי מתפרסמים PCE, GDP והכנסה אישית, ביום חמישי המסחר סגור לרגל חג ההודיה.",
     "tone": "neu"
    },
    {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611232000,
+  "rev": 202611232100,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,135 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-nomura-mechanical-bounce",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "neu",
+   "title": "Nomura: הראלי הוא ריבאונד ״מכני״ של כיסוי פוזיציות שורט",
+   "body": "לפי הבלוג החי של Yahoo Finance, צ׳רלי מקאליגוט מ-Nomura הגדיר את הזינוק של היום כריבאונד ״מכני״, שמונע בעיקר מכיסוי כפוי של פוזיציות שורט, אחרי שבעה ימי ירידות ב-S&P 500.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-nvidia-reinstates-jensen-huang-141511975.html",
+   "time": "19:03"
+  },
+  {
+   "id": "2026-11-23-week-thanksgiving-gdp",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "שבוע מקוצר: GDP והכנסה אישית ביום רביעי, המסחר סגור בחמישי",
+   "body": "לפי StockTitan, נתוני ה-GDP וההכנסה וההוצאה האישית יפורסמו ביום רביעי, 25 בנובמבר, ב-8:30 שעון ניו יורק. הבורסות סגורות ביום חמישי לרגל חג ההודיה, וביום שישי המסחר יסתיים מוקדם, ב-13:00 שעון ניו יורק.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-23-2026",
+   "time": "18:18"
+  },
+  {
+   "id": "2026-11-23-skhy-softbank-not-active",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "SKHY"
+   ],
+   "tag": "שבבים",
+   "tone": "neu",
+   "title": "The Information: SoftBank כבר לא בוחנת באופן פעיל רכישה של SK hynix",
+   "body": "לפי The Information, כפי שצוטט ב-TheFly, הרעיון של מסאיושי סון לרכישה אפשרית של SK hynix בשווי של כ-$1 טריליון ״כבר אינו נבחן באופן פעיל״. המניה עולה היום בכ-19% בגל העליות של מניות השבבים.",
+   "src": "TheFly",
+   "url": "https://www.tipranks.com/news/the-fly/midday-fly-by-nvidia-reinstates-huang-as-ceo-crowdstrike-buys-zscaler-thefly-news",
+   "time": "19:01"
+  },
+  {
+   "id": "2026-11-23-peng-ai-hardware-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "PENG"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Penguin Solutions עולה בכ-18% בראלי חומרת ה-AI אחרי החדשות מ-Nvidia",
+   "body": "לפי GuruFocus, מניית Penguin Solutions עלתה בכ-18% היום בגל העליות של מניות חומרת ה-AI, אחרי שדירקטוריון Nvidia החזיר את ג׳נסן הואנג לתפקיד המנכ״ל.",
+   "src": "GuruFocus",
+   "url": "https://www.gurufocus.com/news/9215464/penguin-solutions-peng-stock-is-up-180-today-ai-hardware-rally-after-nvidia-news",
+   "time": "20:40"
+  },
+  {
+   "id": "2026-11-23-ip-emea-spinoff",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "IP"
+   ],
+   "tag": "אריזה",
+   "tone": "neu",
+   "title": "International Paper: הדירקטוריון אישר פיצול של פעילות האריזה באירופה",
+   "body": "לפי TheFly, מניית International Paper יורדת אחרי שהדירקטוריון אישר את הפיצול (spin-off) של פעילות האריזה שלה באזור EMEA לחברה נפרדת.",
+   "src": "TheFly",
+   "url": "https://www.tipranks.com/news/the-fly/midday-fly-by-nvidia-reinstates-huang-as-ceo-crowdstrike-buys-zscaler-thefly-news",
+   "time": "19:01"
+  },
+  {
+   "id": "2026-11-23-vod-citi-sell",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "VOD"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Citi הורידה את Vodafone להמלצת מכירה",
+   "body": "לפי TheFly, מניית Vodafone נסחרת בירידה בניו יורק אחרי ש-Citi הורידה את המלצתה על המניה למכירה.",
+   "src": "TheFly",
+   "url": "https://www.tipranks.com/news/the-fly/midday-fly-by-nvidia-reinstates-huang-as-ceo-crowdstrike-buys-zscaler-thefly-news",
+   "time": "19:01"
+  },
+  {
+   "id": "2026-11-23-dkng-ms-downgrade",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "DKNG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Morgan Stanley הורידה את DraftKings למשקל שוק, יעד $23",
+   "body": "לפי Benzinga, האנליסט אד יאנג מ-Morgan Stanley הוריד את DraftKings מהמלצת משקל יתר למשקל שוק, והוריד את מחיר היעד מ-$31 ל-$23.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=96bfe317c2639dab01761ef5038429a06885c3278a060282986d6f468927ecfc",
+   "time": "10:29"
+  },
+  {
+   "id": "2026-11-23-dg-piper-upgrade",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "DG"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Piper Sandler העלתה את Dollar General לתשואת יתר",
+   "body": "לפי TheFly, Piper Sandler העלתה את המלצתה על Dollar General לתשואת יתר (Overweight).",
+   "src": "TheFly",
+   "url": "https://www.tipranks.com/news/the-fly/midday-fly-by-nvidia-reinstates-huang-as-ceo-crowdstrike-buys-zscaler-thefly-news",
+   "time": "19:01"
+  },
+  {
+   "id": "2026-11-23-smtc-earnings-tonight",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "SMTC"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Semtech מדווחת הערב אחרי עלייה של כ-16% היום",
+   "body": "לפי StockTitan, Semtech תפרסם את תוצאות הרבעון אחרי סגירת המסחר היום, ושיחת הוועידה תתקיים ב-16:30 שעון ניו יורק (23:30 בישראל).",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-23-2026",
+   "time": "18:18"
+  },
   {
    "id": "2026-11-23-cbrs-huang-rally",
    "date": "2026-11-23",
