@@ -43835,7 +43835,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 14:10",
+  "asOf": "23.11.2026 · 14:26",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43904,9 +43904,9 @@
     "tone": "pos"
    },
    {
-    "h": "Zscaler מזנקת על מגעים עם CrowdStrike",
-    "t": "Zscaler עולה בכ-12.5% במסחר המקדים אחרי דיווח של Bloomberg על מגעים לרכישתה בידי CrowdStrike, בעסקה שתיצור חברה בשווי של כ-$265 מיליארד.",
-    "tone": "pos"
+    "h": "CrowdStrike תרכוש את Zscaler",
+    "t": "CrowdStrike הודיעה על רכישת Zscaler בעסקת מניות של כ-$43.9 מיליארד, פרמיה של כ-34%, ודיווחה על עלייה של 28% בהכנסות ל-$1.58 מיליארד; Zscaler עולה בכ-18% במסחר המקדים ו-CrowdStrike יורדת ביותר מ-8%.",
+    "tone": "neu"
    },
    {
     "h": "טראמפ מאיים בחידוש התקיפות באיראן",
@@ -43914,8 +43914,8 @@
     "tone": "neg"
    },
    {
-    "h": "HPE, Zoom ו-Agilent מדווחות הערב",
-    "t": "אחרי הנעילה ידווחו HPE (צפי רווח של $1.28 למניה), Zoom (צפי הכנסות של $1.28 מיליארד) ו-Agilent; היום יתפרסמו גם מדדי PMI הראשוניים בארה״ב.",
+    "h": "Kymera מזנקת, HPE ו-Zoom הערב",
+    "t": "Kymera עולה בכ-25% במסחר המקדים אחרי שהמינון האמצעי של KT-621 הוריד את מדד EASI ב-72% לעומת 27% בפלצבו בניסוי שלב 2b; אחרי הנעילה ידווחו HPE (צפי רווח של $1.28 למניה), Zoom ו-Agilent.",
     "tone": "neu"
    }
   ],
@@ -43988,7 +43988,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231410,
+  "rev": 202611231426,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114082,6 +114082,93 @@
  },
  "news": [
   {
+   "id": "2026-11-23-crwd-zs-deal",
+   "date": "2026-11-23",
+   "t": [
+    "CRWD",
+    "ZS"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "CrowdStrike תרכוש את Zscaler בעסקת מניות של כ-$43.9 מיליארד",
+   "body": "לפי הודעת CrowdStrike, בעלי מניות Zscaler יקבלו 1.135 מניות CrowdStrike לכל מניה, כ-$260.41 למניה ופרמיה של כ-34% על מחיר הנעילה של יום שישי; בעלי מניות CrowdStrike יחזיקו בכ-84.1% מהחברה המאוחדת. החברות צופות סינרגיות עלויות של $500 מיליון בשנה, והשלמה במחצית השנייה של שנת הכספים 2028 של CrowdStrike. לפי Investing.com, מניית CrowdStrike יורדת ביותר מ-8% במסחר המקדים.",
+   "src": "CrowdStrike",
+   "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero",
+   "time": "14:26"
+  },
+  {
+   "id": "2026-11-23-iran-hormuz-conditions",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "גאופוליטיקה",
+   "tone": "neu",
+   "title": "איראן: השיט בהורמוז יכול לחזור מהר אם ארה״ב תיענה לתנאיה",
+   "body": "לפי ABC News, דובר משרד החוץ האיראני אסמאעיל בקאאי אמר שהשיט הבטוח במצר הורמוז יכול לחזור במהירות אם ארה״ב תסיר את הסנקציות, תסיים את המצור הימי ותעמוד בשאר תנאי מזכר ההבנות מיוני.",
+   "src": "ABC News",
+   "url": "https://abcnews.com/International/live-updates/iran-live-updates-tehran-strait-hormuz-safe-demands/?id=138369648",
+   "time": "11:38"
+  },
+  {
+   "id": "2026-11-23-zs-deal-premarket",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "ZS"
+   ],
+   "tag": "מיזוגים",
+   "tone": "pos",
+   "title": "Zscaler מזנקת בכ-18% במסחר המקדים אחרי הסכם הרכישה עם CrowdStrike",
+   "body": "CrowdStrike הודיעה שתרכוש את Zscaler בעסקת מניות של כ-$43.9 מיליארד: 1.135 מניות CrowdStrike לכל מניית Zscaler, כ-$260.41 למניה ופרמיה של כ-34% על נעילת יום שישי. ג׳יי צ׳אודרי ימשיך להוביל את פעילות Zscaler ויצטרף לדירקטוריון CrowdStrike.",
+   "src": "CrowdStrike",
+   "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero",
+   "time": "14:26"
+  },
+  {
+   "id": "2026-11-23-crwd-q3",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CRWD"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "CrowdStrike: הכנסות של $1.58 מיליארד ברבעון, ARR של $6.26 מיליארד",
+   "body": "לפי הדוח, ההכנסות ברבעון השלישי עלו ב-28% ל-$1.58 מיליארד, ה-ARR עלה ב-27% ל-$6.26 מיליארד והרווח המתואם היה $0.34 למניה. החברה צופה לרבעון הרביעי הכנסות של $1.638–$1.644 מיליארד ורווח מתואם של $0.36 למניה; המניה יורדת ביותר מ-8% במסחר המקדים לפי Investing.com, על רקע הודעת רכישת Zscaler.",
+   "src": "CrowdStrike",
+   "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-third-quarter-fiscal-year-2027-financial",
+   "time": "14:26"
+  },
+  {
+   "id": "2026-11-23-kymr-broaden2",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "KYMR"
+   ],
+   "tag": "ביוטק",
+   "tone": "pos",
+   "title": "Kymera מזנקת בכ-25% במסחר המקדים אחרי תוצאות חיוביות בניסוי שלב 2b",
+   "body": "בניסוי BROADEN2 של KT-621 באטופיק דרמטיטיס, המינון האמצעי הוריד את מדד EASI ב-72% בשבוע 16, לעומת 27% בפלצבו (p<0.0001), ו-62% מהמטופלים הגיעו ל-EASI-75 לעומת 22% בפלצבו. החברה מתכננת להתחיל ניסוי שלב 3 עד אמצע 2027.",
+   "src": "Kymera Therapeutics (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/11/23/3408198/0/en/kymera-therapeutics-announces-positive-results-from-broaden2-phase-2b-clinical-trial-of-kt-621-a-first-in-class-oral-stat6-degrader-in-patients-with-moderate-to-severe-atopic-derma.html",
+   "time": "14:00"
+  },
+  {
+   "id": "2026-11-23-txn-cantor",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "TXN"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Cantor Fitzgerald העלתה את Texas Instruments לתשואת יתר, יעד $385",
+   "body": "לפי Investing.com, Cantor Fitzgerald העלתה את ההמלצה ל-Overweight מ-Neutral והעלתה את מחיר היעד ל-$385 מ-$340; המניה עולה בכ-4.5% במסחר המקדים, אחרי ירידה של יותר מ-5% ב-20 בנובמבר.",
+   "src": "Investing.com",
+   "url": "https://finwire.io/news/stock-markets-news/premarket-movers-chip-stocks-lead-ai-rebound-crowdstrike-falls",
+   "time": "12:23"
+  },
+  {
    "id": "2026-11-23-trump-iran-new-year",
    "date": "2026-11-23",
    "t": [],
@@ -118417,7 +118504,7 @@
    "body": "לפי Reuters, מניית Alphabet עלתה ב-4.3% במסחר המקדים. Alphabet היא ממשקיעות Anthropic, שתמחרה את ההנפקה ב-$83 למניה, מעל הטווח של $70–$78.",
    "src": "Reuters",
    "url": "https://www.marketscreener.com/news/nasdaq-futures-jump-on-hopes-for-strong-anthropic-market-debut-ce785ed2d98bf522",
-   "time": "14:40",
+   "time": "14:26",
    "k": "stock"
   },
   {
@@ -118432,7 +118519,7 @@
    "body": "לפי Reuters, מניית Amazon עלתה ב-2.2% במסחר המקדים. Amazon היא ממשקיעות Anthropic, ונהנתה מהתמחור החזק של ההנפקה.",
    "src": "Reuters",
    "url": "https://www.marketscreener.com/news/nasdaq-futures-jump-on-hopes-for-strong-anthropic-market-debut-ce785ed2d98bf522",
-   "time": "14:40",
+   "time": "14:26",
    "k": "stock"
   },
   {
