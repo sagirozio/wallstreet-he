@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 16:40",
+  "asOf": "23.11.2026 · 17:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43942,13 +43942,13 @@
   ],
   "brief": [
    {
-    "h": "זינוק בחוזים עם שובו של הואנג",
-    "t": "חוזי הדאו עולים בכ-1,100 נקודות וחוזי הנאסד״ק בכ-6% לפני הפתיחה, אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר; ביום חמישי הבורסה סגורה לחג ההודיה.",
+    "h": "ראלי חד בפתיחה עם שובו של הואנג",
+    "t": "המניות פתחו בזינוק אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר; ה-VIX יורד בכ-24% לכ-27, והנפט בכ-1.7% ל-$82.",
     "tone": "pos"
    },
    {
-    "h": "Nvidia החזירה את הואנג; המניה בכ-30%+",
-    "t": "הדירקטוריון החזיר את ג׳נסן הואנג לתפקיד המנכ״ל אחרי התייחסות מהממשל שלפיה אין בכך סיכון ביטחוני; Micron, Lam Research, Applied Materials ו-Seagate עולות ביותר מ-15% במסחר המקדים, ו-TSMC ו-SanDisk ביותר מ-14%.",
+    "h": "Nvidia בכ-30%+; טראמפ: ״החלטה נכונה״",
+    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, וטראמפ כתב ב-Truth Social שאין סיבה להאמין ששובו מסכן את הביטחון הלאומי; Micron, TSMC, Credo ו-Astera Labs מזנקות לצדה.",
     "tone": "pos"
    },
    {
@@ -43957,14 +43957,14 @@
     "tone": "neu"
    },
    {
+    "h": "הפד: כ-96% להעלאה בדצמבר",
+    "t": "לפי CME FedWatch השוק מתמחר כ-96% להעלאת ריבית של 25 נקודות בסיס ב-9 בדצמבר; היום PMI ראשוני ונאום של ג׳ון וויליאמס, וביום רביעי מדד PCE לאוקטובר.",
+    "tone": "neu"
+   },
+   {
     "h": "וושינגטון: איראן וביטוח הבריאות",
     "t": "טראמפ אמר שיתמוך בחידוש הפעולה נגד איראן אחרי השנה החדשה אם לא יושג הסכם, ו-UnitedHealth ו-Humana יורדות בכ-4%–5% על הצעת CMS בתחום Medicare Advantage.",
     "tone": "neg"
-   },
-   {
-    "h": "Kymera מזנקת, HPE ו-Zoom הערב",
-    "t": "Kymera עולה בכ-25% במסחר המקדים אחרי שהמינון האמצעי של KT-621 הוריד את מדד EASI ב-72% לעומת 27% בפלצבו בניסוי שלב 2b; אחרי הנעילה ידווחו HPE (צפי רווח של $1.28 למניה), Zoom ו-Agilent.",
-    "tone": "neu"
    }
   ],
   "macro": {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231640,
+  "rev": 202611231700,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,175 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-trump-huang-truth",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: דירקטוריון Nvidia קיבל החלטה נכונה בהחזרת הואנג",
+   "body": "בפוסט ב-Truth Social כתב טראמפ כי לממשל אין סיבה להאמין ששובו של ג׳נסן הואנג מהווה סיכון לביטחון הלאומי, וכי התובע הכללי טוד בלאנש אישר שאין ראיות לפעילות בלתי חוקית מצדו. טראמפ הוסיף ש-Nvidia צריכה להמשיך בבדיקה הפנימית של עמידתה בפיקוח על הייצוא, לפי Reuters.",
+   "src": "Reuters (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/technology/articles/trump-says-nvidia-board-made-142832710.html",
+   "time": "16:33"
+  },
+  {
+   "id": "2026-11-23-huang-house-hearings",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "הואנג ייתן עדות סגורה בפני שלוש ועדות בבית הנבחרים ב-1–2 בדצמבר",
+   "body": "לפי TNW, הואנג והיועץ המשפטי של Nvidia, טים טטר, יתראיינו בדלתיים סגורות בפני שלוש ועדות. ראש המודיעין הלאומי ג׳יי קלייטון אמר ל-ABC שקיימת חקירה מתמשכת בעניין Alice Huang וחברתה.",
+   "src": "TNW",
+   "url": "https://thenextweb.com/news/trump-no-evidence-jensen-huang-bessent-alice-huang-spy-agency",
+   "time": "16:36"
+  },
+  {
+   "id": "2026-11-23-oil-three-week-slide",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "נפט",
+   "tone": "neu",
+   "title": "הנפט יורד בכ-1.7% ומאריך רצף ירידות של שלושה שבועות",
+   "body": "WTI נסחר סביב $82.01 ו-Brent סביב $88.37. לפי Reuters, תקיפות על ספנות במפרץ מגבילות את הירידה; החות׳ים טענו לתקיפה על בית זיקוק סעודי ביום ראשון.",
+   "src": "Reuters (Yahoo Finance), KuCoin News",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-091118583.html",
+   "time": "16:50"
+  },
+  {
+   "id": "2026-11-23-vix-drops-open",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "מדד הפחד VIX צונח בכ-24% לכ-27 עם פתיחת המסחר",
+   "body": "לפי Yahoo Finance, ה-VIX ירד לכ-27.4 אחרי שבשבוע שעבר הגיע לרמתו הגבוהה מאז הכרזות המכסים של אפריל 2025. הביטקוין עולה בכ-5% לכ-$63,900.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-091118583.html",
+   "time": "16:45"
+  },
+  {
+   "id": "2026-11-23-fed-week-pce",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "הפד",
+   "tone": "neu",
+   "title": "השוק מתמחר כ-96% להעלאת ריבית בדצמבר; PCE ביום רביעי",
+   "body": "לפי CME FedWatch שמצוטט ב-Fox Business, הסיכוי להעלאה של 25 נקודות בסיס בישיבה ב-9 בדצמבר עומד על כ-96%. היום יתפרסמו מדדי PMI ראשוניים לנובמבר ויתראיין נשיא הפד של ניו יורק ג׳ון וויליאמס; מדד PCE לאוקטובר יתפרסם ביום רביעי ב-8:30 שעון ניו יורק.",
+   "src": "Fox Business",
+   "url": "https://www.foxbusiness.com/markets/stocks-november-23-2026",
+   "time": "15:36"
+  },
+  {
+   "id": "2026-11-23-crdo-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CRDO"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Credo עולה ביותר מ-8% במסחר המקדים בגל העליות של מניות ה-AI",
+   "body": "המניה עלתה בכ-8.2% במסחר המקדים לצד Nvidia ומניות תשתית ה-AI, בריבאונד אחרי שבוע של ירידות חדות. לא פורסמה הודעה ספציפית של החברה.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-alab-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "ALAB"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Astera Labs עולה בכ-7% במסחר המקדים בגל העליות של מניות ה-AI",
+   "body": "המניה עלתה בכ-7.3% במסחר המקדים יחד עם מניות התקשורת האופטית והשבבים, בריבאונד אחרי ירידות השבוע שעבר. לא פורסמה הודעה ספציפית של החברה.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-aaoi-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "AAOI"
+   ],
+   "tag": "תקשורת אופטית",
+   "tone": "pos",
+   "title": "Applied Optoelectronics עולה בכ-8% במסחר המקדים בגל העליות של מניות ה-AI",
+   "body": "המניה עלתה בכ-7.8% במסחר המקדים לצד מניות התקשורת האופטית Coherent ו-Lumentum, בריבאונד מניות ה-AI.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-cohr-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "COHR"
+   ],
+   "tag": "תקשורת אופטית",
+   "tone": "pos",
+   "title": "Coherent עולה בכ-7% במסחר המקדים בגל העליות של מניות ה-AI",
+   "body": "המניה עלתה בכ-6.7% במסחר המקדים לצד מניות התקשורת האופטית, בריבאונד מניות ה-AI אחרי שובו של ג׳נסן הואנג ל-Nvidia.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/u-s-stocks-rally-pre-market-as-tech-shares-surge-ben-bernanke-opposes-fed-tightening",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-lite-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "LITE"
+   ],
+   "tag": "תקשורת אופטית",
+   "tone": "pos",
+   "title": "Lumentum עולה בכ-6% במסחר המקדים בגל העליות של מניות ה-AI",
+   "body": "המניה עלתה בכ-6.1% במסחר המקדים לצד Marvell, שרוכשת אותה בעסקת מניות, ולצד מניות התקשורת האופטית.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-cifr-ai-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CIFR"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "Cipher Digital עולה בכ-7% במסחר המקדים בגל העליות של מניות תשתית ה-AI",
+   "body": "המניה עלתה בכ-7.1% במסחר המקדים לצד IREN, Nebius ו-CoreWeave, בריבאונד מניות תשתית ה-AI.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-rklb-price-increase",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "RKLB"
+   ],
+   "tag": "חלל",
+   "tone": "pos",
+   "title": "Rocket Lab עולה ביותר מ-9% במסחר המקדים אחרי פתיחת חלון להעלאת מחירים",
+   "body": "לפי הדיווח, הביקוש הגבוה לשיגורי ה-rideshare של SpaceX הוביל את Rocket Lab לפתוח חלון להעלאת מחירי השיגור שלה.",
+   "src": "KuCoin News",
+   "url": "https://www.kucoin.com/news/flash/u-s-stocks-rally-pre-market-as-tech-shares-surge-ben-bernanke-opposes-fed-tightening",
+   "time": "17:00"
+  },
   {
    "id": "2026-11-23-nvda-huang-reinstated",
    "date": "2026-11-23",
