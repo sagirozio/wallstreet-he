@@ -113770,6 +113770,21 @@
  },
  "news": [
   {
+   "id": "2026-11-23-lscc-chip-rally",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "LSCC"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Lattice Semiconductor עולה בכ-14% עם ראלי השבבים אחרי הזינוק של Nvidia",
+   "body": "לפי GuruFocus, מניית Lattice עלתה ב-13.8% עד 12:01 לפי שעון ניו יורק, כשמניות השבבים עלו בכ-14% בעקבות הראלי של Nvidia אחרי החזרת ג׳נסן הואנג לתפקיד המנכ״ל.",
+   "src": "GuruFocus",
+   "url": "https://finnhub.io/api/news?id=33b59c988a46fd2cb6546444fd411feef298bd03365ac7abc7d6604eea7589f8",
+   "time": "19:02"
+  },
+  {
    "id": "2026-11-23-nvda-bernstein-upgrade",
    "date": "2026-11-23",
    "k": "stock",
