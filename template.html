@@ -2586,6 +2586,9 @@ document.addEventListener('keydown',e=>{ const tg=e.target; if(tg&&/^(INPUT|SELE
   else if(e.key==='ArrowUp'||e.key==='ArrowDown'||e.key==='+'||e.key==='='||e.key==='-'){ ocKinStop(b); ocZoomX(b,1,(e.key==='ArrowDown'||e.key==='-')?1.15:1/1.15); ocDraw(b); e.preventDefault(); } },true);
 window.addEventListener('storage',e=>{ if(e.key==='ocDr'){ try{ const o=JSON.parse(e.newValue||'{}'); if(o&&typeof o==='object') OCDR=o; }catch(_){} ocAlRefresh(); ocEach(ocDraw); } });
 const ocP=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v>=100?v.toFixed(1):v.toFixed(2);   /* axis labels */
+/* in the quick-view window the chart takes the height the window leaves, so the time axis and the volume are never cut off (at least 240px; never taller than usual) */
+function ocFitQv(svg,h){ try{ const q=svg.closest('.qvb'); if(!q) return h; const top=svg.getBoundingClientRect().top-q.getBoundingClientRect().top+q.scrollTop, cs=getComputedStyle(q);
+  return Math.max(240,Math.min(h,Math.round(q.clientHeight-parseFloat(cs.paddingBottom||0)-top-58))); }catch(e){ return h; } }
 function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq){ cancelAnimationFrame(box._rq); box._rq=0; } if(!svg||!OC[t]) return;
   const tf=box._tf||'D', TF=OC_TF[tf], tfd=TF[1], A=ocBars(box), L=A.length, mn=Math.min(TF[2],L), cv=!!OCPREF.v, line=OCPREF.ty==='l';
   const nn=Math.max(mn,Math.min(L,Math.round(box._n||63))); box._n=nn; box._L=L; box._min=mn; box._off=ocClamp(box,box._off||0); box._A=A;
@@ -2598,7 +2601,7 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
   svg.style.touchAction=(box._tool||box._sel)?'none':'';
   const s0=L-nn-box._off, V=[];   /* the offset is fractional, so the chart moves smoothly and not bar by bar */
   for(let a=Math.max(0,Math.ceil(s0-1)); a<=Math.min(L-1,Math.floor(s0+nn)); a++){ const x=A[a]; V.push({d:x.d,o:x.o,h:x.h,l:x.l,c:x.c,v:x.v,k:a-s0,a}); } if(!V.length) return; box._V=V;
-  const full=!!box._full, W=Math.max(260,Math.round(svg.clientWidth||box.clientWidth||680)), sm=W<520, H0=sm?330:Math.round(Math.min(460,W*.53)), H=full?Math.max(170,svg.parentElement.clientHeight):box._big?Math.max(H0,Math.min(780,Math.round(innerHeight*.78))):H0, pl=sm?4:8, pr=sm?46:54, pt=10, pb=22, vh=full?Math.max(36,Math.round(H*.15)):sm?52:Math.round(H*.16), ph=H-pt-pb-(cv?vh+8:0);   /* full screen: the height the screen leaves */
+  const full=!!box._full, W=Math.max(260,Math.round(svg.clientWidth||box.clientWidth||680)), sm=W<520, H0=ocFitQv(svg,sm?330:Math.round(Math.min(460,W*.53))), H=full?Math.max(170,svg.parentElement.clientHeight):box._big?Math.max(H0,Math.min(780,Math.round(innerHeight*.78))):H0, pl=sm?4:8, pr=sm?46:54, pt=10, pb=22, vh=full?Math.max(36,Math.round(H*.15)):sm?52:Math.round(H*.16), ph=H-pt-pb-(cv?vh+8:0);   /* full screen: the height the screen leaves */
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.style.height=H+'px';
   /* latest price: the live quote while it is fresh, otherwise the last close; pre-market / after-hours price only during those hours */
   const q=ocQuote(t), D=ocData(t), dl=D[D.length-1], lp=q&&q[0]?q[0]:dl.c, lup=q&&q[1]!=null?q[1]>=0:dl.c>=(D.length>1?D[D.length-2].c:dl.o), EX=ocExt(t); box._ex=EX;
