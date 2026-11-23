@@ -1,0 +1,20 @@
+name: tmp pre-market volume probe
+on: { workflow_dispatch: {} }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q yfinance pandas
+      - run: |
+          python - <<'P'
+          import yfinance as yf, datetime as dt
+          from zoneinfo import ZoneInfo
+          b = yf.download(["ZS","UMC","NVDA"], period="1d", interval="5m", prepost=True, group_by="column", progress=False, auto_adjust=False)
+          print(type(b), b.shape); print(b.tail(3)); print(b.index[:3], b.index.tz)
+          print("Volume" in b, list(b.columns)[:8])
+          b2 = yf.download(["ZS","UMC"], period="2d", interval="1m", prepost=True, group_by="column", progress=False, auto_adjust=False)
+          print("1m", b2.shape); print(b2["Volume"].tail(5))
+          t = yf.Ticker("ZS"); h = t.history(period="1d", interval="5m", prepost=True); print("hist", h.shape); print(h.tail(3))
+          P
