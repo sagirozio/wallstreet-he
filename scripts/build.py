@@ -158,16 +158,21 @@ for _t in _mem:
         if _n is not None: _m[_cq(_d)] = _n
     if _m: _E[_t] = _m
 if _E:
+    # 12-month sums per company (4 calendar quarters in a row), then the growth from one quarter to the next over the companies that have
+    # both, chained: a company joins as soon as it has 4 quarters and a missing filing does not make a jump (chain-linking, as indices do)
     _qs = sorted({q for m in _E.values() for q in m})
-    # the range: from the first quarter most members have (the SEC files hold ~20 quarters) to the newest one 85% have already reported
     _cov = lambda q: sum(1 for m in _E.values() if q in m) / len(_E)
-    while _qs and _cov(_qs[-1]) < 0.85: _qs.pop()
+    while _qs and _cov(_qs[-1]) < 0.85: _qs.pop()          # the newest quarter only when 85% of the members have reported it
     while _qs and _cov(_qs[0]) < 0.9: _qs.pop(0)
-    _set = [t for t, m in _E.items() if all(q in m for q in _qs)]
-    _sum = [sum(_E[t][q] for t in _set) for q in _qs]
-    _ttm = [(_qs[i], sum(_sum[i - 3:i + 1])) for i in range(3, len(_qs))]
-    write("spxe.json", js({"q": [q for q, _ in _ttm], "e": [round(v / 1e9, 1) for _, v in _ttm], "qs": _qs, "qe": [round(v / 1e9, 1) for v in _sum],
-                           "n": len(_set), "of": len(_mem), "src": "SEC EDGAR"}))
+    _T = {t: {_qs[i]: sum(m[_qs[k]] for k in range(i - 3, i + 1)) for i in range(3, len(_qs)) if all(_qs[k] in m for k in range(i - 3, i + 1))} for t, m in _E.items()}
+    _q4 = _qs[3:]; _lvl = [100.0]; _used = []
+    for a, b in zip(_q4, _q4[1:]):
+        both = [t for t, v in _T.items() if a in v and b in v]
+        sa, sb = sum(_T[t][a] for t in both), sum(_T[t][b] for t in both)
+        _lvl.append(_lvl[-1] * sb / sa if sa > 0 else _lvl[-1]); _used.append(len(both))
+    _last = [_T[t][_q4[-1]] for t in _T if _q4[-1] in _T[t]]
+    write("spxe.json", js({"q": _q4, "e": [round(v, 2) for v in _lvl], "n": _used[-1] if _used else 0, "nmin": min(_used) if _used else 0,
+                           "of": len(_mem), "ttm": round(sum(_last) / 1e9), "src": "SEC EDGAR"}))
 
 
 # ---------- stock universe ----------
