@@ -132,6 +132,43 @@ _stk = (data.get("themes") or {}).get("stocks") or {}
 if _th.get("rows"): _th["rows"] = [{**r, "cnt": len(_stk.get(r.get("en"), []))} for r in _th["rows"]]
 core_txt = js(core)
 write("core.json", core_txt)
+# ---- S&P 500 earnings, quarter by quarter (spxe.json, market page): the net income of the current members from their SEC filings (fund/),
+# summed over 12 months. A company's fiscal quarter counts in the calendar quarter that holds most of it (a quarter ending in Jan / Apr / Jul / Oct
+# goes to the quarter before, one ending in Feb / May / Aug / Nov to the quarter after). Only companies with every quarter of the range are
+# summed, so a company with missing filings does not make a jump. The page compares it in % with the index itself (SPY).
+def _cq(d):
+    y, m = int(d[:4]), int(d[5:7])
+    if int(d[8:10]) <= 7: m -= 1                       # a period ending in the first days of a month belongs to the month before
+    if m == 0: y, m = y - 1, 12
+    r = m % 3
+    if r == 1: m -= 1                                  # Jan / Apr / Jul / Oct -> the quarter before
+    elif r == 2: m += 1                                # Feb / May / Aug / Nov -> the quarter after
+    if m == 0: y, m = y - 1, 12
+    if m == 13: y, m = y + 1, 3
+    return f"{y}-{m:02d}"
+_mem = sorted({t_ for l_ in ((data.get("sectors") or {}).get("mem") or {}).values() for t_ in l_})
+_E = {}
+for _t in _mem:
+    _p = root / "fund" / f"{_t}.json"
+    if not _p.exists(): continue
+    try: _f = json.loads(_p.read_text(encoding="utf-8"))
+    except Exception: continue
+    _m = {}
+    for _d, _n in zip(_f.get("q") or [], _f.get("ni") or []):
+        if _n is not None: _m[_cq(_d)] = _n
+    if _m: _E[_t] = _m
+if _E:
+    _qs = sorted({q for m in _E.values() for q in m})
+    # the range: from the first quarter most members have (the SEC files hold ~20 quarters) to the newest one 85% have already reported
+    _cov = lambda q: sum(1 for m in _E.values() if q in m) / len(_E)
+    while _qs and _cov(_qs[-1]) < 0.85: _qs.pop()
+    while _qs and _cov(_qs[0]) < 0.9: _qs.pop(0)
+    _set = [t for t, m in _E.items() if all(q in m for q in _qs)]
+    _sum = [sum(_E[t][q] for t in _set) for q in _qs]
+    _ttm = [(_qs[i], sum(_sum[i - 3:i + 1])) for i in range(3, len(_qs))]
+    write("spxe.json", js({"q": [q for q, _ in _ttm], "e": [round(v / 1e9, 1) for _, v in _ttm], "qs": _qs, "qe": [round(v / 1e9, 1) for v in _sum],
+                           "n": len(_set), "of": len(_mem), "src": "SEC EDGAR"}))
+
 
 # ---------- stock universe ----------
 write("stocks.json", js({"asOf": themes.get("asOf"), "stocks": stocks, "ex": exch,
