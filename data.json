@@ -114082,6 +114082,48 @@
  },
  "news": [
   {
+   "id": "2026-11-23-oil-houthi-saudi-refinery",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "נפט",
+   "tone": "neu",
+   "title": "הנפט יורד למרות טענת החות׳ים לתקיפת בית זיקוק בסעודיה",
+   "body": "לפי TipRanks, ברנט יורד ב-0.79% ל-$91.84 לחבית ו-WTI ב-0.48% ל-$83.01, אחרי שהחות׳ים הנתמכים בידי איראן טענו ביום ראשון לתקיפת בית זיקוק בסעודיה ובסוף השבוע דווח על כמה תקיפות של ספינות במפרץ ובסמוך להורמוז.",
+   "src": "TipRanks / Reuters",
+   "url": "https://www.tipranks.com/news/stock-market-today-nov-23-markets-see-a-boost-after-last-weeks-ai-selloff",
+   "time": "12:46"
+  },
+  {
+   "id": "2026-11-23-mstr-premarket-bitcoin",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "MSTR"
+   ],
+   "tag": "קריפטו",
+   "tone": "pos",
+   "title": "Strategy עולה ביותר מ-10% במסחר המקדים עם חזרת הביטקוין ל-$61 אלף",
+   "body": "הביטקוין עולה ביותר מ-3% ב-24 שעות לכ-$61,630, אחרי ירידה לכ-$55 אלף בסוף השבוע; ביום שישי ירדה Strategy ביותר מ-9% לשפל של 52 שבועות. החברה מחזיקה 850,849 ביטקוין בעלות ממוצעת של $75,452.",
+   "src": "Stocktwits via Asianet Newsable",
+   "url": "https://newsable.asianetnews.com/markets/mstr-stock-jumps-in-premarket-as-bitcoin-reclaims-61k-after-brutal-nasdaq-sell-off-articleshow-s88hfy3",
+   "time": "12:30"
+  },
+  {
+   "id": "2026-11-23-umc-limit-up-taiwan",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "UMC"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "UMC עולה בכ-12.5% במסחר המקדים אחרי עלייה מקסימלית בטייוואן",
+   "body": "מניית UMC בטייוואן ננעלה על עלייה מקסימלית ל-NT$88.3 זמן קצר אחרי הפתיחה. לפי BigGo, הריבאונד בבורסת טייוואן נזקף לצעדי התמיכה של הרגולטור, כולל איסור על מכירה בחסר מתחת לשער הסגירה הקודם, ולקניות ממניות גדולות.",
+   "src": "BigGo Finance",
+   "url": "https://finance.biggo.com/news/00181ac6-fb4b-4b6a-9b8a-f2ff62e3f9ff",
+   "time": "03:55"
+  },
+  {
    "id": "2026-11-23-trump-meme-coin-gala",
    "date": "2026-11-23",
    "t": [],
