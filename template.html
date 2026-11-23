@@ -2767,8 +2767,8 @@ function tblShotBlob(o){ return new Promise((res,rej)=>{ (async()=>{
   cv.toBlob(b=>b?res(b):rej(new Error('blob')),'image/png'); })().catch(rej); }); }
 function tblShotData(kind){
   if(kind==='etf'){ const E=FALLBACK.etfs||{}, C=[['d','1D'],['w','5D'],['m','1M'],['q','3M'],['ytd','YTD'],['y','1Y'],['rs','RS']];
-    const rows=(E.rows||[]).map(etfLive).filter(r=>!ETF.g||r.g===ETF.g).sort((a,b)=>{ const k=ETF.sort; if(k==='n') return a.n.localeCompare(b.n,'he')*ETF.dir; const p=a[k],q=b[k]; if(p==null) return 1; if(q==null) return -1; return (p-q)*ETF.dir; });
-    return {title:'תעודות סל'+(ETF.g?' · '+ETF.g:''), sub:`${rows.length} קרנות לפי נושא · ממוין לפי ${ETF.sort==='n'?'שם':(C.find(c=>c[0]===ETF.sort)||[,'YTD'])[1]}${E.asOf?' · סגירת '+dm(E.asOf):''}`, cols:C.map(c=>c[1]), on:C.findIndex(c=>c[0]===ETF.sort), rs:C.map(c=>c[0]==='rs'), mono:1,
+    const rows=(E.rows||[]).map(etfLive).filter(r=>!ETF.g||r.g===ETF.g).sort((a,b)=>{ const k=ETF.sort; if(k==='n') return a.n.localeCompare(b.n,'he')*ETF.dir; const p=a[k],q=b[k]; if(p==null) return 1; if(q==null) return -1; return (p-q)*ETF.dir; }), tot=rows.length; if(!ETF.all) rows.length=Math.min(10,tot);   /* the picture shows what the table shows: the first 10, or all after "show more" */
+    return {title:'תעודות סל'+(ETF.g?' · '+ETF.g:''), sub:`${rows.length<tot?`${rows.length} הראשונות מתוך ${tot} קרנות`:`${tot} קרנות לפי נושא`} · ממוין לפי ${ETF.sort==='n'?'שם':(C.find(c=>c[0]===ETF.sort)||[,'YTD'])[1]}${E.asOf?' · סגירת '+dm(E.asOf):''}`, cols:C.map(c=>c[1]), on:C.findIndex(c=>c[0]===ETF.sort), rs:C.map(c=>c[0]==='rs'), mono:1,
       rows:rows.map(r=>({a:r.t,b:r.n,v:C.map(c=>r[c[0]]??null)})), name:'etfs', label:'צילום טבלת תעודות הסל'}; }
   const SR=(THEMES||{}).secRs||{}, E=(LIVE&&LIVE.etf&&liveOn())?LIVE.etf:null, C=[...PER.map(p=>[p[0],String(PL[p[0]]).replace(/<[^>]+>/g,'')]),['rs','RS']];
   const rows=[...(SECTORS.rows||[])].map(r=>({...r,d:E&&E[r.t]?E[r.t][1]:r.d,rs:SR[r.t]??null})).sort(byKey(secKey));
