@@ -34,26 +34,7 @@ for off in range(0, 7000, 250):
         rows.append(r_)
     if not qs or off + 250 >= (r or {}).get("total", 0): break
 rows.sort(key=lambda x: -x["p"])
-# pre-market volume of each mover today (the screener has no such field): 5-minute bars with the extended hours, summed from 04:00 to 09:30 New York.
-# The home page ranks the pre-market movers by it.
-if rows:
-    try:
-        import pandas as pd
-        tk = [x["t"] for x in rows[:40]]
-        bars = yf.download(tk, period="1d", interval="5m", prepost=True, group_by="column", threads=True, progress=False, auto_adjust=False)
-        vol = bars["Volume"] if "Volume" in bars else None
-        if vol is not None:
-            if isinstance(vol, pd.Series): vol = vol.to_frame(tk[0])
-            idx = vol.index.tz_convert("America/New_York") if vol.index.tz is not None else vol.index
-            today_ = dt.datetime.now(ZoneInfo("America/New_York")).date()
-            pre_ = [(i.date() == today_ and (i.hour, i.minute) < (9, 30)) for i in idx]
-            sums = vol[pre_].sum()
-            for x in rows:
-                v_ = sums.get(x["t"]) if hasattr(sums, "get") else None
-                if v_ is not None and v_ == v_ and v_ > 0: x["v"] = int(v_)
-        print("pre-market volume", [(x["t"], x.get("v")) for x in rows[:10]])
-    except Exception as e:
-        print("pre-market volume failed", type(e).__name__, e)
+# no pre-market volume here: Yahoo's screener has no such field and its extended-hours bars carry volume 0 (checked 23.11.2026); Massive's free plan has no intraday bars
 il = dt.datetime.now(ZoneInfo("Asia/Jerusalem")); ny = dt.datetime.now(ZoneInfo("America/New_York"))
 print("with pre-market price", npre, "top", sorted(best, reverse=True)[:8])
 print("state", state, "seen", seen, "pre movers", [(x["t"], x["p"]) for x in rows])
