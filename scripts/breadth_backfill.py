@@ -9,7 +9,8 @@ p = root / "data.json"; data = json.loads(p.read_text(encoding="utf-8"))
 CSV = "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv"
 sp = pd.read_csv(io.StringIO(urllib.request.urlopen(CSV, timeout=60).read().decode()))
 tickers = sp["Symbol"].str.replace(".", "-", regex=False).tolist()
-px = yf.download(tickers, period="2y", interval="1d", auto_adjust=True, group_by="column", threads=True, progress=False)
+px = yf.download(tickers, period="2y", interval="1d", auto_adjust=False, group_by="column", threads=True, progress=False)
+# closes adjusted for splits only (not dividends), as in update.py; highs / lows likewise
 close, high, low = px["Close"].dropna(how="all"), px["High"], px["Low"]
 good = [c for c in close.columns if close[c].notna().sum() > 200]
 close, high, low = close[good], high.reindex(close.index)[good], low.reindex(close.index)[good]

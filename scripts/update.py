@@ -36,8 +36,11 @@ R = {"d": ret(1), "w": ret(5), "m": ret(21), "q": ret(63), "h": ret(126), "y": r
 
 # ---- breadth (S&P 500) ----
 r1, r21 = R["d"], R["m"]
-ma50 = close.rolling(50).mean().iloc[-1]; ma200 = close.rolling(200).mean().iloc[-1]
-c = close.iloc[-1]
+# % above the 50 / 200-day average from closes adjusted for splits only, not for dividends (as $S5FI / $S5TH are computed):
+# dividend-adjusted closes lower the older prices, so the 200-day average reads too low and ~3 points too many stocks look above it
+_rc = px["Close"].reindex(close.index)[close.columns]
+ma50 = _rc.rolling(50).mean().iloc[-1]; ma200 = _rc.rolling(200).mean().iloc[-1]
+c = _rc.iloc[-1]
 hi52 = high.iloc[-252:-1].max(); lo52 = low.iloc[-252:-1].min()
 row = {
     "d": f"{last.day}.{last.month}",
