@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 19:36",
+  "asOf": "23.11.2026 · 20:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43942,13 +43942,13 @@
   ],
   "brief": [
    {
-    "h": "הראלי מתרחב בצהריים",
-    "t": "אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר, הקניות נמשכות; ה-VIX יורד בכ-24% לכ-27, הזהב קופץ בכ-4.4% לכ-$3,670 והנפט יורד לכ-$82.",
+    "h": "ראלי היסטורי בצהריים",
+    "t": "אחרי שבעה ימי ירידות ב-S&P 500 ואובדן של כ-$8 טריליון בשווי מאז השיא ב-6 באוקטובר, QQQ נפתחה בעלייה של כמעט 8%, הגדולה מאז 1999; ה-VIX יורד בכ-24% לכ-27, הזהב עולה בכ-4.2% לכ-$3,663 והנפט יורד בכ-3% לכ-$80.8.",
     "tone": "pos"
    },
    {
     "h": "Nvidia בכ-32%; בדרך לשיא שווי יומי",
-    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, ולפי 24/7 Wall St Nvidia הוסיפה בתחילת המסחר כ-$828 מיליארד בשווי, מעל השיא היומי של Microsoft (כ-$450 מיליארד); מדד השבבים של פילדלפיה עולה ביותר מ-13.5%, TSMC בכ-17%, Intel בכ-15%, ו-CoreWeave, Nebius ו-IREN בכ-24%–30%.",
+    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, ולפי 24/7 Wall St Nvidia הוסיפה כ-$828 מיליארד בשווי, מעל השיא היומי של Microsoft; מדד השבבים עולה ביותר מ-13.5%, TSMC בכ-17%, ASE בכ-21%, Corning בכ-15%, ו-Applied Digital בכ-24% גם על חוזה חכירה של כ-$5.4 מיליארד.",
     "tone": "pos"
    },
    {
@@ -43962,9 +43962,9 @@
     "tone": "neu"
    },
    {
-    "h": "וושינגטון: Nvidia, שבבים וביטוח בריאות",
-    "t": "טראמפ אמר ל-CNBC שהממשל נתן לדירקטוריון של Nvidia הבטחה בעניין הביטחון הלאומי לפני החזרת הואנג, וסנטור רפובליקני דורש מלוטניק ובסנט להעיד בשבועה על הפיקוח על ייצוא שבבים; UnitedHealth ו-Humana יורדות בכ-4%–5% על הצעת CMS בתחום Medicare Advantage.",
-    "tone": "neg"
+    "h": "טראמפ: ״אני עשיתי את העסקה״",
+    "t": "טראמפ אמר ל-CNBC ששכנע את דירקטוריון Nvidia להחזיר את הואנג ושחקירת הממשל ״טיהרה״ אותו, וסנטור רפובליקני דורש מלוטניק ובסנט להעיד על הפיקוח על ייצוא שבבים; UnitedHealth ו-Humana יורדות בכ-4%–5% על הצעת CMS בתחום Medicare Advantage.",
+    "tone": "neu"
    }
   ],
   "macro": {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231936,
+  "rev": 202611232000,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,134 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-trump-made-the-deal-nvidia",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: ״שכנעתי אותם, אני עשיתי את העסקה״ – על החזרת הואנג ל-Nvidia",
+   "body": "בראיון טלפוני ל-CNBC אמר טראמפ שדיבר עם חברי הדירקטוריון של Nvidia ״במישרין ובעקיפין״ ושכנע אותם להחזיר את ג׳נסן הואנג. לדבריו, ״חקירה יסודית מאוד״ של הממשל ״טיהרה״ את הואנג; לפי ABC News, היא פנתה לבית הלבן לשאול לאיזו חקירה הכוונה.",
+   "src": "ABC News",
+   "url": "https://abcnews.com/Politics/made-deal-trump-convinced-nvidia-board-reinstate-jensen/story?id=138373104",
+   "time": "19:39"
+  },
+  {
+   "id": "2026-11-23-qqq-record-open",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "QQQ נפתחה בעלייה של כמעט 8%, הזינוק הגדול בפתיחה מאז 1999",
+   "body": "לפי Yahoo Finance, קרן הנאסד״ק 100 נפתחה בעלייה של כמעט 8%, הקפיצה הגדולה ביותר בפתיחה מאז הושקה ב-1999, וקרן ה-S&P 500 נפתחה בעלייה של 5%. צ׳רלי מקאליגוט מ-Nomura תיאר את המהלך כ״גל עצום של קניות מכניות״ והזהיר שהוא ״לא מבטיח לנו דבר״.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-nvidia-reinstates-jensen-huang-141511975.html",
+   "time": "19:20"
+  },
+  {
+   "id": "2026-11-23-oil-extends-drop-midday",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "נפט",
+   "tone": "neg",
+   "title": "הנפט מעמיק את הירידה לכ-3%, לכ-$80.8 לחבית",
+   "body": "בצהרי יום המסחר בניו יורק ירד הנפט הגולמי בכ-3.1% לכ-$80.82 לחבית, לפי נתוני Yahoo Finance, בהמשך לרצף ירידות של שלושה שבועות; הזהב עולה בכ-4.2% לכ-$3,663.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-nvidia-reinstates-jensen-huang-141511975.html",
+   "time": "19:33"
+  },
+  {
+   "id": "2026-11-23-apld-lease",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "APLD"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "Applied Digital מזנקת בכ-24% על חוזה חכירה של כ-$5.4 מיליארד",
+   "body": "Applied Digital חתמה על חוזה חכירה ל-18 שנה עם חברת ענן שלא נחשפה, בהיקף של כ-$5.4 מיליארד בתקופת הבסיס, וקיבלה הלוואת גישור של $300 מיליון לקמפוס בלואיזיאנה; המניה עלתה בכ-24% בבוקר המסחר.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-23-2026",
+   "time": "18:03"
+  },
+  {
+   "id": "2026-11-23-asx-chip-rebound",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "ASX"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "ASE Technology עולה בכ-21% בריבאונד מניות השבבים",
+   "body": "מניית ASE, חברת האריזה והבדיקה של שבבים מטייוואן, עלתה בכ-21% בבוקר המסחר כשמניות השבבים התאוששו אחרי הירידות החדות בשבוע שעבר ושובו של ג׳נסן הואנג ל-Nvidia.",
+   "src": "StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-23-2026",
+   "time": "18:03"
+  },
+  {
+   "id": "2026-11-23-ttmi-ai-rally",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "TTMI"
+   ],
+   "tag": "חומרה",
+   "tone": "pos",
+   "title": "TTM Technologies עולה בכ-16.7% בראלי מניות ה-AI",
+   "body": "לפי StockStory, TTM זינקה בכ-16.7% בבוקר המסחר, לצד Coherent שעלתה בכ-17.1%, אחרי שהחזרת הואנג ל-Nvidia החזירה את אמון המשקיעים בשוקי ה-AI והשבבים.",
+   "src": "StockStory",
+   "url": "https://stockstory.org/us/stocks/nyse/cohr/news/why-up-down/coherent-td-synnex-everpure-infleqtion-and-ttm-technologies-shares-are-soaring-what-you-need-to-know",
+   "time": "18:21"
+  },
+  {
+   "id": "2026-11-23-mtsi-chip-rally",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "MTSI"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "MACOM עולה בכ-16.7% עם ראלי השבבים אחרי שובו של הואנג",
+   "body": "מניית MACOM עלתה בכ-16.7% כשראלי השבבים נמשך בעקבות החזרת ג׳נסן הואנג לתפקיד מנכ״ל Nvidia, לפי GuruFocus.",
+   "src": "GuruFocus",
+   "url": "https://www.gurufocus.com/news/9215402/macom-stock-jumps-167-as-chip-rally-follows-nvidias-ceo-return-on-nov-23",
+   "time": "19:55"
+  },
+  {
+   "id": "2026-11-23-mpwr-chip-rally",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "MPWR"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Monolithic Power עולה בכ-15% עם ראלי השבבים",
+   "body": "מניית Monolithic Power, יצרנית רכיבי ניהול הספק לשרתי AI, עלתה בכ-14.6% בראלי השבבים שבא בעקבות החדשות מ-Nvidia, לפי GuruFocus.",
+   "src": "GuruFocus",
+   "url": "https://www.gurufocus.com/news/9215396/monolithic-power-stock-jumps-146-as-chip-rally-follows-nvidia-news-on-nov-23",
+   "time": "19:55"
+  },
+  {
+   "id": "2026-11-23-glw-ai-hardware",
+   "k": "stock",
+   "date": "2026-11-23",
+   "t": [
+    "GLW"
+   ],
+   "tag": "חומרה",
+   "tone": "pos",
+   "title": "Corning עולה בכ-15% עם ראלי חומרת ה-AI",
+   "body": "מניית Corning, ספקית סיבים אופטיים למרכזי נתונים, עלתה בכ-15.1% כשהראלי של Nvidia הרים את מניות חומרת ה-AI, לפי GuruFocus.",
+   "src": "GuruFocus",
+   "url": "https://www.gurufocus.com/news/9215406/corning-surges-151-as-nvidia-rally-lifts-ai-hardware-stocks-on-nov-23",
+   "time": "19:55"
+  },
   {
    "id": "2026-11-23-trump-cnbc-nvidia-assurances",
    "date": "2026-11-23",
