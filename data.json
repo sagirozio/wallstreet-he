@@ -113881,6 +113881,63 @@
  },
  "news": [
   {
+   "id": "2026-11-23-trump-6-trillion-democrats",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: השוק איבד יותר מ-$6 טריליון מאז ניצחון הדמוקרטים בבחירות",
+   "body": "בפוסט ב-Truth Social כתב טראמפ שהשוק ירד ביותר מ-$6 טריליון מאז ניצחון הדמוקרטים ב-3 בנובמבר ושהנאסד״ק לבדו ירד ב-20%, ותלה את הירידה במדיניות הדמוקרטים. לפי Seoul Economic Daily, הנאסד״ק שיא ב-6 באוקטובר ומחק את עלייתו מתחילת השנה עד יום שישי.",
+   "src": "Seoul Economic Daily",
+   "url": "https://en.sedaily.com/world/2026/11/23/trump-blames-democratic-election-win-for-6-trillion-market",
+   "time": "09:05"
+  },
+  {
+   "id": "2026-11-23-crwv-premarket-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "CoreWeave עולה בכ-9.6% במסחר המקדים בריבאונד של מניות ה-AI",
+   "body": "לפי Investing.com, CoreWeave, Nebius ו-IREN עולות ב-8%–10.5% לפני הפתיחה, בהתאוששות אחרי השבוע הגרוע של הנאסד״ק מאז 2020 ואחרי שרשויות באסיה נקטו צעדים לתמיכה בשווקים.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/us-chip-and-neocloud-stocks-rally-premarket-after-last-weeks-selloff-4975141",
+   "time": "11:54"
+  },
+  {
+   "id": "2026-11-23-nbis-premarket-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "Nebius עולה בכ-10.8% במסחר המקדים בריבאונד של מניות ה-AI",
+   "body": "לפי Investing.com, מניות הענן ל-AI עולות לפני הפתיחה בהתאוששות מהמכירות של השבוע שעבר, כש-Nebius, CoreWeave ו-IREN עולות ב-8%–10.5%; ברקע צעדי התמיכה של רשויות באסיה בשווקים.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/us-chip-and-neocloud-stocks-rally-premarket-after-last-weeks-selloff-4975141",
+   "time": "11:54"
+  },
+  {
+   "id": "2026-11-23-skhy-premarket-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "SKHY"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "SK hynix עולה בכמעט 10% במסחר המקדים עם ריבאונד השבבים",
+   "body": "לפי Investing.com, ה-ADR של SK hynix עולה בכמעט 10% לפני הפתיחה, יחד עם Micron, Lam Research ו-Marvell שעולות ביותר מ-7%, בהתאוששות אחרי שבוע של מכירות חדות במניות ה-AI.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/us-chip-and-neocloud-stocks-rally-premarket-after-last-weeks-selloff-4975141",
+   "time": "11:54"
+  },
+  {
    "id": "2026-11-23-zs-crwd-talks-premarket",
    "date": "2026-11-23",
    "k": "stock",
