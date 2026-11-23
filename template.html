@@ -1507,15 +1507,15 @@ let STOCKIX=null, HE={}, stkP=null, STK_OK=false;
 function loadStocks(force){
   if(stkP && !force) return stkP;
   stkP = fetch('stocks.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d||!d.stocks) return;
+    if(!d||!d.stocks) throw new Error('stocks');
     FALLBACK.themes.stocks=d.stocks; FALLBACK.themes.ex=d.ex||{};
     if(THEMES && THEMES!==FALLBACK.themes){ THEMES.stocks=d.stocks; THEMES.ex=d.ex||{}; }
     HE=d.he||{}; STOCKIX=null; STK_OK=true; onStocks();
-  }).catch(()=>{ stkP=null; });
+  }).catch(()=>{ stkP=null; if(!STK_OK&&(loadStocks.n=(loadStocks.n||0)+1)<=4) setTimeout(()=>{ if(!STK_OK) loadStocks(); },2000*loadStocks.n); });   /* a failed download (network, a deploy in progress) is tried again: without the list no stock has a link or a daily change */
   return stkP;
 }
 function onStocks(){
-  try{ renderTop(); }catch(e){} try{ liveAgg(); }catch(e){} try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){}
+  try{ renderTop(); }catch(e){} try{ liveAgg(); }catch(e){} try{ renderSec(); }catch(e){} try{ renderThemes(); }catch(e){} try{ renderYtd(); }catch(e){} try{ if(CURPG==='research'&&XSUB==='etfs') renderEtfs(); }catch(e){}
   try{ const b=document.querySelector('#gtabs button.on'); renderG(b?b.dataset.t:'all'); }catch(e){}
   renderHub(); try{ renderAgenda(); }catch(e){} try{ renderWatch(); }catch(e){} try{ renderScr(); }catch(e){} if($('gq')===document.activeElement && $('gq').value) gqRender();
 }
