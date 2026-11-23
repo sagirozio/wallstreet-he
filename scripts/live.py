@@ -142,7 +142,7 @@ while True:
             print("job limit: starting a new run", flush=True)
             subprocess.run(f'gh api -X POST repos/{REPO}/actions/workflows/live.yml/dispatches -f ref=main', shell=True)
             break
-        if mins < 7 * 60:   # pre-market quotes from 07:00 New York (the page shows them as a line on the chart; the regular figures stay last night's until the open)
+        if mins < 4 * 60:   # pre-market quotes from the pre-market open, 04:00 New York (11:00 Israel; the page shows them as a line on the chart; the regular figures stay last night's until the open)
             time.sleep(60); continue
     t0 = time.time()
     try:

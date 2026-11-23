@@ -41,7 +41,7 @@ while True:
         time.sleep(60)
         continue
     t0 = time.time()
-    if m >= 9 * 60 + 15: kick("live.yml")          # live quotes for the session
+    kick("live.yml")                               # live quotes: pre-market from 04:00 New York, then the session and after-hours
     if m < 9 * 60:                                 # morning jobs GitHub's schedule tends to drop
         kick("insiders.yml"); kick("health.yml"); kick("fundamentals.yml", "-f 'inputs[tickers]=--recent 3'")
     # hourly from 07:30 New York (14:30 Israel): headlines + same-day earnings cards, in the background
