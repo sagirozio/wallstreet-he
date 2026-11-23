@@ -6,15 +6,17 @@ jobs:
     steps:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -q yfinance pandas
-      - run: |
+      - env: { MASSIVE_KEY: "${{ secrets.MASSIVE_KEY }}" }
+        run: |
           python - <<'P'
-          import yfinance as yf, datetime as dt
-          from zoneinfo import ZoneInfo
-          b = yf.download(["ZS","UMC","NVDA"], period="1d", interval="5m", prepost=True, group_by="column", progress=False, auto_adjust=False)
-          print(type(b), b.shape); print(b.tail(3)); print(b.index[:3], b.index.tz)
-          print("Volume" in b, list(b.columns)[:8])
-          b2 = yf.download(["ZS","UMC"], period="2d", interval="1m", prepost=True, group_by="column", progress=False, auto_adjust=False)
-          print("1m", b2.shape); print(b2["Volume"].tail(5))
-          t = yf.Ticker("ZS"); h = t.history(period="1d", interval="5m", prepost=True); print("hist", h.shape); print(h.tail(3))
+          import os, json, urllib.request, datetime as dt
+          K = os.environ["MASSIVE_KEY"]; d = dt.date.today().isoformat()
+          for u in [f"https://api.massive.com/v2/aggs/ticker/ZS/range/5/minute/{d}/{d}?adjusted=true&sort=asc&limit=500&apiKey={K}",
+                    f"https://api.massive.com/v2/snapshot/locale/us/markets/stocks/tickers/ZS?apiKey={K}"]:
+              try:
+                  j = json.loads(urllib.request.urlopen(u, timeout=30).read())
+                  r = j.get("results") or j.get("ticker")
+                  print(u.split("?")[0][-60:], j.get("status"), j.get("resultsCount"), str(r)[:400])
+                  if isinstance(r, list): print("sum v", sum(x.get("v", 0) for x in r), "first", r[0] if r else None, "last", r[-1] if r else None)
+              except Exception as e: print("ERR", u.split("?")[0][-60:], e)
           P
