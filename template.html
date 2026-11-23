@@ -2069,8 +2069,13 @@ function extLines(t){ const L=liveQ(t), open=L&&mktOpen()&&LIVE.date===nyToday()
   return h?`<div class="qvah">${h}</div>`:''; }
 /* pre-market price of the stock (intra.json "premkt"): shown from 04:00 New York until the open, then it disappears */
 let PREMKT=null;
-function preLine(t){ const P=PREMKT&&PREMKT.date===nyToday()&&nyMin()<570&&PREMKT.q?PREMKT.q[t]:null;
-  return P?`<small class="ahr">מסחר מוקדם <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span>${PREMKT.asOf?` · ${esc(PREMKT.asOf)}`:''}</small>`:''; }
+/* one pre-market price everywhere (the stock header and the chart): of the two feeds, intra.json "premkt" (every 3 min) and live.json "pre"
+   (every 5 min), the one updated last. -> {v:[price, % from the last close], tm:'HH:MM' Israel} or null */
+function preQ(t){ try{ const td=nyToday(), m=nyMin(); if(m<240||m>=570) return null;
+  const a=PREMKT&&PREMKT.date===td&&PREMKT.q&&PREMKT.q[t]?{v:PREMKT.q[t],tm:String(PREMKT.asOf||'')}:null, b=LIVE&&LIVE.extD===td&&LIVE.pre&&LIVE.pre[t]?{v:LIVE.pre[t],tm:liveTm()}:null;
+  return !a?b:!b?a:(b.tm>a.tm?b:a); }catch(e){ return null; } }
+function preLine(t){ const X=preQ(t), P=X&&X.v;
+  return P?`<small class="ahr">מסחר מוקדם <b class="num ${P[1]>=0?'up':'down'}">${pct(P[1],2)}</b> · <span class="num">$${P[0].toFixed(2)}</span>${X.tm?` · ${esc(X.tm)}`:''}</small>`:''; }
 function perfTiles(s){ if(!s||!s.r) return '';
   return `<div class="spperf">${PER.filter(([k])=>k!=='d').map(([k,l])=>`<div><small>${l}</small><b class="num ${s.r[k]==null?'flat':s.r[k]>=0?'up':'down'}">${s.r[k]==null?'—':pct(s.r[k],1)}</b></div>`).join('')}${s.r.rs!=null?`<div><small>RS${gq('RS')}</small><b class="num ${s.r.rs>=80?'up':s.r.rs<=20?'down':''}">${s.r.rs}</b></div>`:''}</div><div class="lvsw">${liveStamp()}</div>`; }
 function spDayHtml(t,s){
@@ -2409,7 +2414,7 @@ function ocQuote(t){ try{ if(!LIVE||!liveOn()) return null; return (LIVE.q&&LIVE
 /* extended hours: pre-market 04:00-09:30 New York (live.json pre, date extD) and after-hours until 20:00 (live.json post); [price, % from the regular close]. Outside these hours: nothing */
 function ocExt(t){ try{ if(!LIVE) return null; const m=nyMin(), td=nyToday(), dow=nyNow().getDay(); if(dow<1||dow>5||NYSE_OFF.includes(td)) return null; const end=NYSE_HALF.includes(td)?780:960;
     if(m>=end&&m<1200&&LIVE.date===td&&LIVE.post&&LIVE.post[t]) return {k:'post',v:LIVE.post[t]};
-    if(m>=240&&m<570&&LIVE.extD===td&&LIVE.pre&&LIVE.pre[t]) return {k:'pre',v:LIVE.pre[t]}; }catch(e){} return null; }
+    const P=preQ(t); if(P) return {k:'pre',v:P.v}; }catch(e){} return null; }
 function ocPriceNow(t){ const x=ocExt(t); if(x&&x.v[0]) return x.v[0]; const q=ocQuote(t); return q&&q[0]?q[0]:null; }   /* the most current price we have */
 function ocData(t){ const j=OC[t]; if(!j) return []; let q=null; try{ q=LIVE&&((LIVE.q&&LIVE.q[t])||(LIVE.etf&&LIVE.etf[t]))||null; }catch(e){}   /* the quote of live.json's session (LIVE.date), also after the close and on the weekend: it fills that day's candle when the nightly file does not have it yet */
   const key=(q?LIVE.asOf:'')+'|'+j.d.length; if(j._A&&j._k===key) return j._A;
@@ -3716,7 +3721,7 @@ let INTRA_L=null;
 async function loadIntra(){
   try{ const r=await ghLive('intra','intra.json',INTRA_URL); if(!r.ok) return;
     const j=await r.json();
-    if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); }   /* pre-market prices: always the freshest */
+    if(j.premkt){ PREMKT=j.premkt; const t0=$('spBody')&&$('spBody').dataset.t; if(CURPG==='stock'&&t0&&$('spDay')) $('spDay').innerHTML=spDayHtml(t0,stockIndex()[t0]); try{ ocLiveTick(); }catch(e){} }   /* pre-market prices: always the freshest */
     if(!j.ts || j.ts <= (FALLBACK.ts||0)) { INTRA_L=null; return; }
     if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem, pyDates:j.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
     if(j.crypto){ FALLBACK.crypto=j.crypto; try{ renderIdx(); }catch(e){} if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
