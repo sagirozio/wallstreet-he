@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 17:35",
+  "asOf": "23.11.2026 · 17:57",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43947,13 +43947,13 @@
     "tone": "pos"
    },
    {
-    "h": "Nvidia בכ-30%+; Dell ו-Super Micro מזנקות",
-    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, וטראמפ כתב ב-Truth Social שאין סיבה להאמין ששובו מסכן את הביטחון הלאומי; Dell עולה בכ-30% ו-Super Micro בכ-19% על דיווח FT על העלאת מחירי שרתים של עד 45%.",
+    "h": "Nvidia בכ-34%; ה-Neocloud ו-SK hynix מזנקות",
+    "t": "הדירקטוריון החזיר את ג׳נסן הואנג למנכ״ל, ומדד השבבים של פילדלפיה עולה ביותר מ-13.5%; CoreWeave, Nebius ו-IREN עולות בכ-24%–30%, Dell בכ-22% על דיווח FT על העלאת מחירי שרתים, ו-SK hynix בכ-21% על דיווח שלפיו SoftBank בחנה רכישה שלה בכ-$1 טריליון.",
     "tone": "pos"
    },
    {
     "h": "CrowdStrike תרכוש את Zscaler",
-    "t": "CrowdStrike הודיעה על רכישת Zscaler בעסקת מניות של כ-$43.9 מיליארד ודיווחה על הכנסות של $1.58 מיליארד, מעל צפי של $1.53 מיליארד; Zscaler דיווחה על רווח מתואם של $1.23 למניה מעל הצפי ועולה ביותר מ-13% במסחר המקדים, ו-CrowdStrike יורדת ביותר מ-8%.",
+    "t": "CrowdStrike הודיעה על רכישת Zscaler בעסקת מניות של כ-$43.9 מיליארד ודיווחה על הכנסות של $1.58 מיליארד, מעל צפי של $1.53 מיליארד; Zscaler עולה בכ-13% ו-CrowdStrike יורדת בכ-11%.",
     "tone": "neu"
    },
    {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231735,
+  "rev": 202611231757,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,97 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-sox-neocloud-rally",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA",
+    "SNDK",
+    "WDC"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "מדד השבבים של פילדלפיה מזנק ביותר מ-13.5%; קרן ה-Neocloud עולה בכ-26%",
+   "body": "לפי Rallies.ai, מדד השבבים של פילדלפיה עלה ביותר מ-13.5% בתחילת המסחר אחרי החזרת ג׳נסן הואנג למנכ״ל Nvidia. קרן Roundhill Neocloud עלתה בכ-25.9%, SanDisk בכ-20.1% ו-Western Digital בכ-15.3%.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/stocks-soar-as-nvidia-reinstates-huang-reviving-ai-trade-d787608dc320a19e",
+   "time": "17:56"
+  },
+  {
+   "id": "2026-11-23-crwv-huang",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "CoreWeave מזנקת בכ-24%–28% עם שובו של הואנג ל-Nvidia",
+   "body": "מניות ה-Neocloud מובילות את הריבאונד אחרי שהדירקטוריון של Nvidia החזיר את ג׳נסן הואנג לתפקיד המנכ״ל; לפי Rallies.ai CoreWeave עלתה בכ-27.8% בתחילת המסחר, אחרי עלייה של 10.1% במסחר המקדים לפי Fox Business.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/stocks-soar-as-nvidia-reinstates-huang-reviving-ai-trade-d787608dc320a19e",
+   "time": "17:56"
+  },
+  {
+   "id": "2026-11-23-nbis-huang",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "Nebius מזנקת בכ-26%–31% בריבאונד מניות תשתית ה-AI",
+   "body": "לפי Rallies.ai, Nebius עלתה בכ-31.5% בתחילת המסחר אחרי החזרת ג׳נסן הואנג למנכ״ל Nvidia; Benzinga ייחסה את העלייה להתאוששות בסקטור תשתיות ה-AI ולעדכון בהנהגת Nvidia.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/stocks-soar-as-nvidia-reinstates-huang-reviving-ai-trade-d787608dc320a19e",
+   "time": "17:56"
+  },
+  {
+   "id": "2026-11-23-iren-huang",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "IREN"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "pos",
+   "title": "IREN מזנקת בכ-30%–34% עם שובו של הואנג ל-Nvidia",
+   "body": "לפי Rallies.ai, IREN עלתה בכ-34.1% בתחילת המסחר, יחד עם CoreWeave ו-Nebius, אחרי שהדירקטוריון של Nvidia החזיר את ג׳נסן הואנג לתפקיד המנכ״ל; במסחר המקדים עלתה ב-10.2% לפי Fox Business.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/stocks-soar-as-nvidia-reinstates-huang-reviving-ai-trade-d787608dc320a19e",
+   "time": "17:56"
+  },
+  {
+   "id": "2026-11-23-skhy-softbank",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "SKHY"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "SK hynix מזנקת בכ-21% על דיווח: SoftBank בחנה רכישה בשווי $1 טריליון",
+   "body": "לפי The Fly, המניה עלתה כבר במסחר המקדים בכ-8% אחרי ש-The Information דיווח שמסאיושי סון מ-SoftBank בחן רכישה אפשרית של SK hynix בכ-$1 טריליון; העלייה מגיעה גם בתוך הריבאונד הרחב של מניות השבבים.",
+   "src": "TipRanks / The Fly",
+   "url": "https://www.tipranks.com/news/the-fly/morning-movers-nvidia-skyrockets-following-reinstatement-of-ceo-jensen-huang-thefly-news",
+   "time": "16:21"
+  },
+  {
+   "id": "2026-11-23-crwd-falls-zs",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "CRWD"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neg",
+   "title": "CrowdStrike יורדת בכ-11% אחרי הודעת הרכישה של Zscaler",
+   "body": "לפי Yahoo Finance, המניה ירדה בכ-9.6% בתחילת היום אחרי ש-CrowdStrike הודיעה שתרכוש את Zscaler בעסקת מניות של כ-$43.9 מיליארד, בזמן ש-Zscaler עולה בכ-13%.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-091118583.html",
+   "time": "16:20"
+  },
   {
    "id": "2026-11-23-us-flash-pmi-nov",
    "date": "2026-11-23",
