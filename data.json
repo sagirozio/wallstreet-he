@@ -43883,7 +43883,7 @@
   }
  ],
  "overview": {
-  "asOf": "23.11.2026 · 15:40",
+  "asOf": "23.11.2026 · 16:10",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -43947,8 +43947,8 @@
     "tone": "pos"
    },
    {
-    "h": "השבבים וה-AI מובילים במסחר המקדים",
-    "t": "לפי Investing.com ו-BigGo, SK hynix עולה ביותר מ-10% במסחר המקדים ו-Nvidia, Micron, Lam Research ו-AMD ב-7%–9%, ו-CoreWeave, Nebius ו-IREN ב-8%–10.5%; ברשימת העולות לפני הפתיחה גם UMC, ASE, FormFactor ו-MaxLinear, עם עליות של 11%–13%.",
+    "h": "השבבים, ה-AI והקריפטו מובילים במסחר המקדים",
+    "t": "Nvidia עולה בכ-8%, SK hynix בכמעט 10% ו-Micron, Lam Research ו-AMD ב-6%–8%; Nebius, CoreWeave ו-IREN עולות ב-8%–11%, ומניות הקריפטו Bitmine ו-Galaxy Digital בכ-9.5%–10% עם חזרת הביטקוין מעל $61 אלף.",
     "tone": "pos"
    },
    {
@@ -43957,8 +43957,8 @@
     "tone": "neu"
    },
    {
-    "h": "טראמפ מאיים בחידוש התקיפות באיראן",
-    "t": "לפי Newsquawk טראמפ אמר שיתמוך בחידוש הפעולה הצבאית נגד איראן אחרי השנה החדשה אם לא יושג הסכם; הנפט יורד קלות, והשוק מתמחר יותר מ-90% להעלאת ריבית ב-9 בדצמבר.",
+    "h": "וושינגטון: Nvidia, איראן וביטוח הבריאות",
+    "t": "טראמפ קרא לדירקטוריון Nvidia להחזיר את ג׳נסן הואנג ובסנט אמר שהואנג ״מבחוץ עכשיו״; טראמפ אמר שיתמוך בחידוש הפעולה נגד איראן אחרי השנה החדשה אם לא יושג הסכם, ו-UnitedHealth ו-Humana יורדות בכ-4%–5% על הצעת CMS בתחום Medicare Advantage.",
     "tone": "neg"
    },
    {
@@ -44036,7 +44036,7 @@
    "from": 19.3,
    "note": "המדד זינק ב-26% ל-35.89 ביום שבו ה-S&P 500 נסגר בתיקון ומניות השבבים צנחו."
   },
-  "rev": 202611231540,
+  "rev": 202611231610,
   "market": {
    "note": "סגירה ביום שישי, 20.11.2026. ה-S&P 500 ירד יום שביעי ברציפות, הרצף הארוך מאז 2020, נסגר בתיקון ואיבד 8.6% בשבוע; הנאסד״ק עבר לירידה מתחילת השנה. Nvidia צנחה בכ-14% על דיווח שחקירת ה-SEC מתמקדת בחשבונאות ו-Broadcom ב-12%; צריכה בסיסית היה הסקטור היחיד שעלה.",
    "idx": [
@@ -114129,6 +114129,77 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-23-bmnr-premarket-crypto",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "BMNR"
+   ],
+   "tag": "קריפטו",
+   "tone": "pos",
+   "title": "Bitmine עולה בכ-9.9% במסחר המקדים עם ריבאונד מניות הקריפטו",
+   "body": "לפי BlockBeats מניות הקריפטו מתאוששות לפני הפתיחה, כשהביטקוין חזר מעל $61 אלף אחרי שפל של כ-$55 אלף בסוף השבוע. לפי CoinDesk החברה רכשה 7,819 ETH (כ-$13.4 מיליון) ומחזיקה 6,085,564 ETH, כ-4.98% מההיצע.",
+   "src": "CoinDesk",
+   "url": "https://www.coindesk.com/tech/2026/11/23/live-news-wall-street-rebounds-as-dollar-index-hits-highest-since-march-2025",
+   "time": "15:53"
+  },
+  {
+   "id": "2026-11-23-glxy-premarket-rebound",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "GLXY"
+   ],
+   "tag": "קריפטו",
+   "tone": "pos",
+   "title": "Galaxy Digital עולה בכ-9.6% במסחר המקדים בריבאונד מניות ה-AI והקריפטו",
+   "body": "Galaxy Digital בראש מניות תשתיות ה-AI והקריפטו העולות לפני הפתיחה, לצד Nebius, Applied Digital ו-IREN עם עליות של 7.5%–8.5%; הביטקוין חזר מעל $61 אלף.",
+   "src": "KuCoin / MarsBit",
+   "url": "https://www.kucoin.com/news/flash/pre-market-ai-stocks-surge-nvidia-rises-over-8",
+   "time": "16:05"
+  },
+  {
+   "id": "2026-11-23-bessent-nvidia-huang-outside",
+   "date": "2026-11-23",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "בסנט על הואנג: ״הוא מבחוץ עכשיו״; Nvidia נדרשת להשיב עד 25 בנובמבר",
+   "body": "שר האוצר בסנט אמר ב-CBS ביום ראשון, כשנשאל על חזרתו של ג׳נסן הואנג, שקרא למנכ״ל מבחוץ ו״הוא מבחוץ עכשיו״; לפי Tokenist הממשל דורש מ-Nvidia תשובה עד 25 בנובמבר אם חברות קש שימשו למשלוח שבבים לסין. יו״ר הדירקטוריון אמר בעבר שהדירקטוריון אינו מתכוון להחזיר את הואנג, והמניה עולה בכ-8% במסחר המקדים לפי Investing.com.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/trump-admin-circles-the-wagons-in-push-for-nvidia-to-bring--back-jensen-huang-5045613",
+   "time": "15:30"
+  },
+  {
+   "id": "2026-11-23-health-insurers-cms-ma",
+   "date": "2026-11-23",
+   "t": [
+    "UNH",
+    "HUM"
+   ],
+   "tag": "ממשל",
+   "tone": "neg",
+   "title": "מניות ביטוח הבריאות יורדות על הצעת CMS בתחום Medicare Advantage",
+   "body": "UnitedHealth יורדת בכ-5% ו-Humana בכ-4% במסחר המקדים, לפי סיכומי שוק, אחרי הצעה של CMS בתחום Medicare Advantage שלפי Investing.com מאיימת על התשלומים למבטחות.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/health-insurer-stocks-slide-as-medicare-advantage-proposal-threatens-payments-5045476",
+   "time": "15:20"
+  },
+  {
+   "id": "2026-11-23-dxy-104",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "מט״ח",
+   "tone": "neu",
+   "title": "מדד הדולר מעל 104, הגבוה מאז מרץ 2025; הזהב מעל $3,615",
+   "body": "לפי CoinDesk מדד הדולר עלה מעל 104, רמה גבוהה מאז מרץ 2025, הנפט מסוג WTI מעל $80 והזהב מעל $3,615 אחרי שנגע ב-$3,500.",
+   "src": "CoinDesk",
+   "url": "https://www.coindesk.com/tech/2026/11/23/live-news-wall-street-rebounds-as-dollar-index-hits-highest-since-march-2025",
+   "time": "15:01"
+  },
   {
    "id": "2026-11-23-ms-uae-upgrade",
    "date": "2026-11-23",
