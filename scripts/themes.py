@@ -251,7 +251,8 @@ except Exception as e: print("patterns failed", e, flush=True)
 
 # 4) aggregate per industry
 def cap(v): return f"{v/1e12:.2f}T" if v >= 1e12 else f"{v/1e9:.2f}B"
-_ma50, _ma200 = close.rolling(50, min_periods=50).mean().iloc[-1], close.rolling(200, min_periods=200).mean().iloc[-1]   # % above/below the 50 / 200-day average
+_ma50, _ma200 = close.rolling(50, min_periods=50).mean().iloc[-1], close.rolling(200, min_periods=200).mean().iloc[-1]
+_ma20, _ma150 = close.rolling(20, min_periods=20).mean().iloc[-1], close.rolling(150, min_periods=150).mean().iloc[-1]   # also 20 / 150 for the screener's own filters   # % above/below the 50 / 200-day average
 _last = close.ffill().iloc[-1]
 by = {}
 for s in close.columns:
@@ -271,7 +272,7 @@ for ind, mem in by.items():
         _h = HI52.get(s)
         if _h is not None and not pd.isna(_h): rr["hi"] = round(float(_h), 1)   # % below the 52-week closing high (0 = at the high)
         if s in ATH: rr["ath"] = ATH[s]                                        # % below the all-time (intraday) high
-        for _k, _m in (("a50", _ma50), ("a200", _ma200)):
+        for _k, _m in (("a20", _ma20), ("a50", _ma50), ("a150", _ma150), ("a200", _ma200)):
             _mv = _m.get(s); _lv = _last.get(s)
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
         _av, _lv = x.get("averageDailyVolume3Month"), _last.get(s)
