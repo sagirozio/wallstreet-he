@@ -1756,7 +1756,7 @@ const hubLazy=()=>{ if(CURPG==='stocks') renderHub(); else HUB.stale=1; };
 const HUB={f:'all',sec:'',ind:'',sort:'cap',dir:-1,lim:40};
 const SEC_TK={'Technology':'XLK','Communication Services':'XLC','Consumer Cyclical':'XLY','Consumer Defensive':'XLP','Energy':'XLE','Financial Services':'XLF','Healthcare':'XLV','Industrials':'XLI','Real Estate':'XLRE','Basic Materials':'XLB','Utilities':'XLU'}, secTk=x=>SEC_TK[x]||x||'';   /* a sector shown as the ticker of its sector fund */
 /* the screener's state lives in the address (#page/stocks?f=up&sec=Technology&sort=d&g=25…), so a scan can be shared, bookmarked and reopened. Only what differs from the default is written */
-const HUB_SCK=['cap','per','pf','g','ga','pe','hi','bp','rs','adr','m50','m200','dv','pat'];
+const HUB_SCK=['cap','per','pf','g','ga','pe','hi','ath','bp','rs','adr','m50','m200','dv','pat'];
 function hubQuery(){ const q=new URLSearchParams(); if(HUB.f!=='all') q.set('f',HUB.f); if(HUB.sec) q.set('sec',HUB.sec); if(HUB.ind) q.set('ind',HUB.ind);
   if(HUB.sort!=='cap'||HUB.dir!==-1){ q.set('sort',HUB.sort); if(HUB.dir===1) q.set('dir','1'); }
   HUB_SCK.forEach(k=>{ if(SC[k]&&!(k==='per'&&SC.per==='m')) q.set(k,SC[k]); }); if(SC.er) q.set('er','1'); if(SC.ib) q.set('ib','1'); return q.toString(); }
@@ -1764,18 +1764,18 @@ function hubUrlWrite(){ if(CURPG!=='stocks') return; const h=location.hash; if(h
   const q=hubQuery(), nh='#page/stocks'+(q?'?'+q:''); if(nh!==h){ try{ history.replaceState(history.state,'',nh); }catch(e){} } }   /* replaceState: no new history entry and no hashchange */
 function hubUrlRead(h){ const i=h.indexOf('?'); if(i<0) return false; if(h.slice(i+1)===hubQuery()) return false;   /* the same state (e.g. back from a stock page): keep the list as it is */
   const q=new URLSearchParams(h.slice(i+1)), g=k=>(q.get(k)||'').slice(0,60);
-  Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false});
+  Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',ath:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false});
   HUB.f=HUB_F.some(x=>x[0]===g('f'))?g('f'):'all'; HUB.sec=g('sec'); HUB.ind=g('ind'); HUB.lim=40;
   const so=g('sort'); HUB.sort=/^[a-z0-9]{1,6}$/i.test(so)?so:'cap'; HUB.dir=g('dir')==='1'?1:-1;
   HUB_SCK.forEach(k=>{ const v=g(k), O=k==='per'?PER:SC_OPT[k]; if(v&&O&&O.some(o=>String(o[0])===v)) SC[k]=v; });   /* only values the form really has */
   SC.er=g('er')==='1'; SC.ib=g('ib')==='1'; return true; }
-const HUB_F=[['all','הכל'],['big','ענקיות'],['up','זינקו היום'],['dbl','הכפילו ב-2026'],['hi','קרוב לשיא'],['rs','RS 90+'],['er','מדווחות השבוע']];
+const HUB_F=[['all','הכל'],['big','ענקיות'],['up','זינקו היום'],['dbl','הכפילו ב-2026'],['hi','קרוב לשיא'],['ath','קרוב ל-ATH'],['rs','RS 90+'],['er','מדווחות השבוע']];
 function hubRows(){ const ix=stockIndex(), now=Date.now(), wk=new Date(now+7*864e5).toISOString().slice(0,10), td=new Date(now-864e5).toISOString().slice(0,10);
   return Object.values(ix).filter(s=>s.cap&&s.r).map(s=>{ const L=liveQ(s.t), d=L&&liveOn()?L[1]:s.r.d, x=(SCR||{})[s.t]||{};
-    return {t:s.t,co:s.co,en:s.co,cap:s.cap,cn:capNum(s.cap),px:L?L[0]:null,d,m:s.r.m,ytd:s.r.ytd,rs:s.r.rs,hi:s.r.hi,adr:s.r.adr,sec:s.sec,ind:s.ind,e:x.e,g:x.g,ga:x.ga,pe:x.pe,x,rr:s.r}; })
+    return {t:s.t,co:s.co,en:s.co,cap:s.cap,cn:capNum(s.cap),px:L?L[0]:null,d,m:s.r.m,ytd:s.r.ytd,rs:s.r.rs,hi:s.r.hi,ath:s.r.ath,adr:s.r.adr,sec:s.sec,ind:s.ind,e:x.e,g:x.g,ga:x.ga,pe:x.pe,x,rr:s.r}; })
    .filter(r=>{ if(HUB.sec&&r.sec!==HUB.sec) return false; if(HUB.ind&&r.ind!==HUB.ind) return false; if(!scPass(r)) return false; switch(HUB.f){
      case 'big': return r.cn>=2e11; case 'up': return r.d!=null&&r.d>=10; case 'dbl': return r.ytd!=null&&r.ytd>=100;
-     case 'hi': return r.hi!=null&&r.hi>=-5; case 'rs': return r.rs!=null&&r.rs>=90; case 'er': return r.e&&r.e>=td&&r.e<=wk; default: return true; } }); }
+     case 'hi': return r.hi!=null&&r.hi>=-5; case 'ath': return r.ath!=null&&r.ath>=-5; case 'rs': return r.rs!=null&&r.rs>=90; case 'er': return r.e&&r.e>=td&&r.e<=wk; default: return true; } }); }
 /* ---------- screener as a grid of small candle charts (desktop only): the same stocks in the same order as the table, 9 at a time.
    Each card loads the stock's 5-year daily file when it scrolls into view; price axis on the right, moving averages 50 and 200 ---------- */
 const HUBG={o:(()=>{ const d={m50:1,m200:1,vol:0}; try{ return Object.assign(d,JSON.parse(localStorage.getItem('hubgo')||'{}')); }catch(e){ return d; } })(), v:(()=>{ try{ return localStorage.getItem('hubv')||'t'; }catch(e){ return 't'; } })(), r:(()=>{ try{ return localStorage.getItem('hubgr')||'YTD'; }catch(e){ return 'YTD'; } })(), lim:9, io:null};
@@ -1835,7 +1835,7 @@ function renderHub(){
   const box=(l,v,sub,c)=>`<div><small>${l}</small><b class="num ${c||''}">${v}</b>${sub?` <span>${sub}</span>`:''}</div>`;
   $('hubSum').innerHTML=box('עלו היום',up.toLocaleString('en-US'),`/ ירדו ${dn.toLocaleString('en-US')}`,'up')+(br.hi!=null?box('שיא 52 שבועות',br.hi,`שפל ${br.lo}`):'')+box('זינקו 10%+',u10,`צנחו ${d10}`)+(SCR?box('מדווחות השבוע',erW,`היום ${erT}`):'');
   // chips + sectors
-  $('hubChips').innerHTML=HUB_F.map(([k,l])=>`<button data-hf="${k}" class="${HUB.f===k?'on':''}">${l}</button>`).join('');
+  $('hubChips').innerHTML=HUB_F.filter(([k])=>k!=='ath'||HUB.f==='ath'||Object.values(stockIndex()).some(s=>s.r&&s.r.ath!=null)).map(([k,l])=>`<button data-hf="${k}" class="${HUB.f===k?'on':''}">${l}</button>`).join('');
   const sel=$('hubSec'); if(sel.options.length<2){ [...new Set(all.map(s=>s.sec).filter(Boolean))].sort().forEach(x=>{ const o=document.createElement('option'); o.value=x; o.textContent=x; sel.appendChild(o); }); }
   if(sel.value!==HUB.sec) sel.value=HUB.sec;
   // table
@@ -3896,7 +3896,7 @@ document.addEventListener('submit',e=>{ if(e.target.id!=='wAdd') return; e.preve
   else { $('wQ').value=''; $('wQ').placeholder='לא מצאנו "'+q+'". נסו סימול, למשל NVDA'; } });
 
 /* ---------- screener ---------- */
-const SC={sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false,sort:'cap',dir:-1,lim:10};
+const SC={sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',ath:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false,sort:'cap',dir:-1,lim:10};
 const SC_OPT={
   cap:[['','כל הגדלים'],['200','מעל $200B'],['50','$50B–$200B'],['10','$10B–$50B'],['1','$1B–$10B']],
   pf:[['','כל התשואות'],['0+','עלתה'],['10+','עלתה 10%+'],['25+','עלתה 25%+'],['50+','עלתה 50%+'],['0-','ירדה'],['10-','ירדה 10%+'],['25-','ירדה 25%+']],
@@ -3904,6 +3904,7 @@ const SC_OPT={
   ga:[['','כל הצמיחות השנתיות'],['0','הכנסות שנתיות עולות'],['10','צמיחה שנתית 10%+'],['25','צמיחה שנתית 25%+'],['50','צמיחה שנתית 50%+'],['neg','הכנסות שנתיות יורדות']],
   pe:[['','כל המכפילים'],['15','P/E עד 15'],['25','P/E עד 25'],['40','P/E עד 40'],['pos','רווחית'],['neg','לא רווחית']],
   hi:[['','כל המרחקים מהשיא'],['5','עד 5% מהשיא'],['10','עד 10% מהשיא'],['20','עד 20% מהשיא'],['far','30%+ מתחת לשיא']],
+  ath:[['','כל המרחקים מ-ATH'],['1','בשיא כל הזמנים (עד 1%)'],['3','עד 3% מ-ATH'],['5','עד 5% מ-ATH'],['10','עד 10% מ-ATH'],['25','עד 25% מ-ATH']],
   rs:[['','כל ה-RS'],['90','RS 90 ומעלה'],['80','RS 80 ומעלה'],['70','RS 70 ומעלה'],['low','RS עד 30']],
   m50:[['','כל המיקומים מול ממוצע 50'],['above','מעל ממוצע 50 יום'],['below','מתחת לממוצע 50 יום']],
   m200:[['','כל המיקומים מול ממוצע 200'],['above','מעל ממוצע 200 יום'],['below','מתחת לממוצע 200 יום']],
@@ -3920,6 +3921,7 @@ function scPass(r){ const x=r.x||{}, rr=r.rr||{}, cb=r.cn/1e9, pf=rr[SC.per], hi
   if(SC.ga){ if(x.ga==null) return false; if(SC.ga==='neg'?x.ga>=0:(SC.ga==='0'?x.ga<=0:x.ga<+SC.ga)) return false; }
   if(SC.pe){ if(SC.pe==='neg'){ if(x.pe!=null||x.ps==null) return false; } else if(x.pe==null||(SC.pe!=='pos'&&x.pe>+SC.pe)) return false; }
   if(SC.hi){ if(hi==null) return false; if(SC.hi==='far'?hi>-30:hi<-(+SC.hi)) return false; }
+  if(SC.ath){ const v=r.ath; if(v==null||v<-(+SC.ath)) return false; }
   if(SC.bp){ if(x.bp==null) return false; if(SC.bp==='low'?x.bp>=40:x.bp<+SC.bp) return false; }
   if(SC.rs){ const v=r.rs; if(v==null) return false; if(SC.rs==='low'?v>30:v<+SC.rs) return false; }
   if(SC.adr){ const v=r.adr; if(v==null) return false; if(SC.adr==='low'?v>2:v<+SC.adr) return false; }
@@ -3939,7 +3941,7 @@ function renderScr(){
     const grp=(h,body)=>`<div class="scg"><div class="scgh">${h}</div><div class="scgb">${body}</div></div>`;
     F.innerHTML = grp('גודל ותשואה', fld('cap','שווי שוק',SC_OPT.cap)+`<label class="scfl" data-k="pf"><span>תשואה</span><span class="scpf">${sel('per',PER.map(([k,l])=>[k,l]))}${sel('pf',SC_OPT.pf)}</span></label>`+(dv?fld('dv','מחזור יומי',SC_OPT.dv):''))
       +grp('צמיחה ושווי', fld('g','צמיחת הכנסות (רבעון)',SC_OPT.g)+fld('ga','צמיחת הכנסות (שנה)',SC_OPT.ga)+fld('pe','מכפיל רווח',SC_OPT.pe)+fld('bp','המלצות אנליסטים',SC_OPT.bp))
-      +grp('מחיר וטכני', fld('hi','מרחק מהשיא השנתי',SC_OPT.hi)+fld('rs','חוזק יחסי (RS)',SC_OPT.rs)+fld('adr','תנודתיות (ADR%)',SC_OPT.adr)+fld('m50','ממוצע 50 יום',SC_OPT.m50)+fld('m200','ממוצע 200 יום',SC_OPT.m200)+fld('pat','תבנית מחיר',SC_OPT.pat))
+      +grp('מחיר וטכני', fld('hi','מרחק מהשיא השנתי',SC_OPT.hi)+(Object.values(stockIndex()).some(s=>s.r&&s.r.ath!=null)?fld('ath','מרחק משיא כל הזמנים (ATH)',SC_OPT.ath):'')+fld('rs','חוזק יחסי (RS)',SC_OPT.rs)+fld('adr','תנודתיות (ADR%)',SC_OPT.adr)+fld('m50','ממוצע 50 יום',SC_OPT.m50)+fld('m200','ממוצע 200 יום',SC_OPT.m200)+fld('pat','תבנית מחיר',SC_OPT.pat))
       +grp('אירועים', `<label class="sck"><input type="checkbox" data-sc="er"><span>דוח ב-14 יום</span></label>`)
       +`<div class="scft"><span id="scN"></span><button type="button" class="scrst" id="scReset">ניקוי כל המסננים</button></div>`;
     $('scPre').innerHTML='<span class="scph">מוכנים:</span>'+SC_PRE.map(([l],i)=>`<button type="button" data-pre="${i}">${esc(l)}</button>`).join('');
@@ -3947,12 +3949,12 @@ function renderScr(){
   }
   F.querySelectorAll('[data-sc]').forEach(el=>{ if(el.type==='checkbox') el.checked=!!SC[el.dataset.sc]; else el.value=SC[el.dataset.sc]; });
   F.querySelectorAll('.scfl').forEach(l=>l.classList.toggle('on',!!SC[l.dataset.k])); F.querySelectorAll('.sck').forEach(l=>l.classList.toggle('on',!!l.querySelector('input').checked));
-  const n=['cap','pf','g','ga','pe','hi','bp','rs','adr','m50','m200','dv','ib','er'].filter(k=>SC[k]).length, sm=$('scD')&&$('scD').querySelector('summary'); if(sm) sm.textContent='סינון מתקדם'+(n?' ('+n+')':''); const sn=$('scN'); if(sn) sn.textContent=n?`${n} מסננים פעילים`:'אין מסננים פעילים'; const rb=$('scReset'); if(rb) rb.hidden=!n;
+  const n=['cap','pf','g','ga','pe','hi','ath','bp','rs','adr','m50','m200','dv','ib','er'].filter(k=>SC[k]).length, sm=$('scD')&&$('scD').querySelector('summary'); if(sm) sm.textContent='סינון מתקדם'+(n?' ('+n+')':''); const sn=$('scN'); if(sn) sn.textContent=n?`${n} מסננים פעילים`:'אין מסננים פעילים'; const rb=$('scReset'); if(rb) rb.hidden=!n;
   hubLazy();
 }
 document.addEventListener('change',e=>{ const el=e.target; if(!el.dataset||!el.dataset.sc||!el.closest('#scF')) return; SC[el.dataset.sc]=el.type==='checkbox'?el.checked:el.value; HUB.lim=40; if(el.dataset.sc==='pf'&&el.value) { HUB.sort=SC.per; HUB.dir=el.value.endsWith('-')?1:-1; } renderScr(); });
 document.addEventListener('click',e=>{ const t=e.target.closest&&e.target.closest('#scD button'); if(!t) return;
-  if(t.id==='scReset'||t.dataset.pre!=null){ Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false}); HUB.f='all'; HUB.ind=''; HUB.sec=''; HUB.lim=40; const hs=$('hubSec'); if(hs) hs.value='';
+  if(t.id==='scReset'||t.dataset.pre!=null){ Object.assign(SC,{sec:'',cap:'',per:'m',pf:'',g:'',ga:'',pe:'',hi:'',ath:'',bp:'',rs:'',adr:'',m50:'',m200:'',dv:'',pat:'',ib:false,er:false}); HUB.f='all'; HUB.ind=''; HUB.sec=''; HUB.lim=40; const hs=$('hubSec'); if(hs) hs.value='';
     if(t.dataset.pre!=null){ const P=SC_PRE[+t.dataset.pre][1]; Object.assign(SC,P); if(P.sort) HUB.sort=P.sort, HUB.dir=-1; else if(SC.pf){ HUB.sort=SC.per; HUB.dir=SC.pf.endsWith('-')?1:-1; } else if(SC.g){ HUB.sort='g'; HUB.dir=-1; } delete SC.sort; }
     renderScr(); } });
 

@@ -166,6 +166,7 @@ py = close[close.index.year < last.year]
 R = {"d": ret(1), "w": ret(5), "m": ret(21), "q": ret(63), "h": ret(126), "y": ret(252),
      "ytd": (close.iloc[-1] / py.iloc[-1] - 1) * 100}
 
+_recent_high = {}
 # 3b) ADR% (average daily range): mean of (high / low - 1) over the last 20 sessions, from Yahoo daily bars
 ADR = {}
 try:
@@ -175,6 +176,7 @@ try:
             hl = yf.download(_all[i:i+400], period="1mo", interval="1d", auto_adjust=False, group_by="column", threads=True, progress=False)
             hi_, lo_ = hl["High"], hl["Low"]
             if isinstance(hi_, pd.Series): hi_, lo_ = hi_.to_frame(_all[i]), lo_.to_frame(_all[i])
+            for _t, _v in hi_.max().dropna().items(): _recent_high[_t] = float(_v)
             rng = ((hi_ / lo_ - 1) * 100).tail(20)
             for t in rng.columns:
                 v = rng[t].dropna()
@@ -182,6 +184,44 @@ try:
         except Exception as e: print("adr chunk failed", type(e).__name__, flush=True)
     print("adr", len(ADR), flush=True)
 except Exception as e: print("adr failed", e, flush=True)
+
+# all-time high (intraday) per stock: monthly bars over the stock's whole history (Yahoo "max", split-adjusted), cached in ath.json
+# and refreshed about once a week (about a seventh of the stocks a night); every night the last month's daily highs can raise it
+ATH = {}
+try:
+    _ap = root / "ath.json"
+    _ac = json.loads(_ap.read_text(encoding="utf-8")) if _ap.exists() else {}
+    _today = str(last.date()) if hasattr(last, "date") else str(last)[:10]
+    _all = list(close.columns)
+    _lastc = close.ffill().iloc[-1]
+    def _stale(t):
+        c = _ac.get(t)
+        if not c: return True
+        lv = _lastc.get(t)
+        if lv is not None and not pd.isna(lv) and c[0] and lv < 0.4 * c[0]: return True   # likely a split since the last refresh
+        return False
+    _need = [t for t in _all if _stale(t)]
+    _old = sorted([t for t in _all if t not in _need], key=lambda t: _ac[t][1])
+    _need += _old[:max(0, len(_all) // 7 - len(_need))] if len(_need) < len(_all) // 7 else []
+    _need = _need[:1600]
+    for i in range(0, len(_need), 300):
+        try:
+            mh = yf.download(_need[i:i+300], period="max", interval="1mo", auto_adjust=False, group_by="column", threads=True, progress=False)["High"]
+            if isinstance(mh, pd.Series): mh = mh.to_frame(_need[i])
+            for t in mh.columns:
+                v = mh[t].dropna()
+                if len(v): _ac[t] = [round(float(v.max()), 4), _today]
+        except Exception as e: print("ath chunk failed", type(e).__name__, flush=True)
+    _rh = globals().get("_recent_high") or {}
+    for t in _all:
+        c = _ac.get(t); lv = _lastc.get(t)
+        if not c or lv is None or pd.isna(lv) or not c[0]: continue
+        h = max(c[0], float(_rh.get(t) or 0), float(lv))
+        if h > c[0]: c[0] = round(h, 4)
+        ATH[t] = round((float(lv) / h - 1) * 100, 1)
+    _ap.write_text(json.dumps({t: _ac[t] for t in sorted(_ac) if t in set(_all)}, separators=(",", ":")), encoding="utf-8")
+    print("ath", len(ATH), "refreshed", len(_need), flush=True)
+except Exception as e: print("ath failed", e, flush=True)
 
 # price-shape patterns (cup & handle, flat base, double bottom): shape from closes, then confirmed by daily volume (candidates only, one small download)
 PAT = {}
@@ -230,6 +270,7 @@ for ind, mem in by.items():
         x = uni[s]; rr = {k: (None if pd.isna(R[k].get(s)) else round(float(R[k][s]), 2)) for k in R}
         _h = HI52.get(s)
         if _h is not None and not pd.isna(_h): rr["hi"] = round(float(_h), 1)   # % below the 52-week closing high (0 = at the high)
+        if s in ATH: rr["ath"] = ATH[s]                                        # % below the all-time (intraday) high
         for _k, _m in (("a50", _ma50), ("a200", _ma200)):
             _mv = _m.get(s); _lv = _last.get(s)
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
