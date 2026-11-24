@@ -3099,14 +3099,14 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
     if(cv&&x.v){ const h=x.v/mv*vh, q2=`M${R(cx-bw/2)} ${H-pb}v${R(-h)}h${R(bw)}v${R(h)}z`; if(up) vu+=q2; else vd+=q2; }
     if(!line){ let w2='', b2='';   /* a merged candle keeps each bar's own range (same column, one colour), so a price gap between two of its bars stays empty */
       (x.bs||[x]).forEach(q3=>{ const yo=Y(q3.o), yc=Y(q3.c); w2+=`M${R(cx)} ${R(Y(q3.h))}V${R(Y(q3.l))}`;
-        if(ohlc){ const tk=Math.max(1.5,bw/2); w2+=`M${R(cx-tk)} ${R(yo)}H${R(cx)}M${R(cx)} ${R(yc)}H${R(cx+tk)}`; }   /* OHLC bars: open tick left, close tick right */
+        if(ohlc){ if(gw>=3){ const tk=Math.min(Math.max(1.2,gw*.38),6); w2+=`M${R(cx-tk)} ${R(yo)}H${R(cx)}M${R(cx)} ${R(yc)}H${R(cx+tk)}`; } }   /* zoomed out (bars closer than 3px): high-low lines only, so the ticks do not run into each other */   /* OHLC bars: open tick left, close tick right */
         else b2+=`M${R(cx-bw/2)} ${R(Math.min(yo,yc))}h${R(bw)}v${R(Math.max(1,Math.abs(yo-yc)))}h${R(-bw)}z`; });
       if(up){ wu+=w2; pu+=b2; } else { wd+=w2; pd+=b2; } } });
   if(line) V.forEach(x=>{ lp1+=(lp1?'L':'M')+R(X(x.k))+' '+R(Y(x.c)); });
   if(vu) o+=`<path d="${vu}" fill="${UP}" opacity=".4"/>`; if(vd) o+=`<path d="${vd}" fill="${DN}" opacity=".4"/>`;
   if(vm){ let d=''; V.forEach(x=>{ const v=vm[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(H-pb-v*m/mv*vh); }); if(d) o+=`<path d="${d}" fill="none" stroke="${OCPREF.vma.c}" stroke-width="1.3" stroke-linejoin="round"/>`; }
   if(line) o+=`<path d="${lp1}" fill="none" stroke="${/^#[0-9a-f]{6}$/i.test(OCPREF.lc||'')?OCPREF.lc:INK}" stroke-width="${Math.max(.5,Math.min(8,+OCPREF.lw||1.7))}" stroke-linejoin="round"/>`;
-  else if(ohlc){ const bwid=Math.max(1,Math.min(2.2,gw*.22)), hx=c=>/^#[0-9a-f]{6}$/i.test(c||''), BU=hx(OCPREF.bu)?OCPREF.bu:UP, BD=hx(OCPREF.bd)?OCPREF.bd:DN; if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${BU}" stroke-width="${bwid}"/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${BD}" stroke-width="${bwid}"/>`; }
+  else if(ohlc){ const bwid=gw<3?Math.max(.6,Math.min(1,gw*.5)):Math.max(1,Math.min(2,gw*.18)), hx=c=>/^#[0-9a-f]{6}$/i.test(c||''), BU=hx(OCPREF.bu)?OCPREF.bu:UP, BD=hx(OCPREF.bd)?OCPREF.bd:DN; if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${BU}" stroke-width="${bwid}"/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${BD}" stroke-width="${bwid}"/>`; }
   else { if(wu) o+=`<path d="${wu}" fill="none" stroke="${UP}" stroke-width="${ww}"/><path class="cu" d="${pu}" fill="${UP}"/>`; if(wd) o+=`<path d="${wd}" fill="none" stroke="${DN}" stroke-width="${ww}"/><path class="cd" d="${pd}" fill="${DN}"/>`; }
   MAS.forEach(m=>{ let d=''; V.forEach(x=>{ const v=m.v[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(Y(v)); }); if(d) o+=`<path class="ma" d="${d}" fill="none" stroke="${m.c}" stroke-opacity="${m.o/100}" stroke-width="${m.w}" stroke-linejoin="round"/>`; });
   /* the visitor's lines: trend lines, horizontal lines, alerts (dashed, with a bell) */
