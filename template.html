@@ -395,6 +395,40 @@ html.ocfull #qv.on{transform:none!important;inset:0!important;top:0!important;le
 .s2b button.on{outline:2px solid var(--accent);outline-offset:1px}
 .s2p{position:relative;display:inline-flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);background:var(--panel)}.s2p.on{outline:2px solid var(--accent);outline-offset:1px;color:transparent}.s2p input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .s2f{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;padding:9px 14px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.s2f .tx{font-size:12px}
+/* stock card (floating): one header line, small tags, the description, underline tabs, a figures row */
+#qv .q2h{display:flex;align-items:center;gap:14px;padding:14px 18px 8px}
+#qv .q2id{display:flex;align-items:center;gap:10px;min-width:0}
+#qv .q2lg{flex:none;width:38px;height:38px;border-radius:9px;background:var(--panel2);display:flex;align-items:center;justify-content:center;font:700 11px "JetBrains Mono",monospace;color:var(--muted)}
+#qv .q2tk{display:inline-flex;align-items:baseline;gap:8px}#qv .q2tk b{font-size:19px}
+#qv .q2pos{font-size:11.5px;color:var(--muted)}
+#qv .q2cp{background:none;border:0;color:var(--muted);cursor:pointer;font-size:13px;padding:0 2px}#qv .q2cp:hover{color:var(--accent)}
+#qv .q2id small{display:block;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+#qv .q2px{margin-inline-start:auto;text-align:left;direction:rtl;line-height:1.35}
+#qv .q2px>b{font-size:22px}#qv .q2px>span.num{font-size:14px;font-weight:600;margin-inline-start:6px}
+#qv .q2px>small{display:block;color:var(--muted);font-size:11.5px}
+#qv .q2px .ext,#qv .q2px .exl,#qv .q2px>div{font-size:11.5px;color:var(--muted);margin:0}
+#qv .q2ic{display:flex;gap:4px;align-items:center}
+#qv .q2ic>button,#qv .q2ic .wbtn{height:30px;min-width:30px;padding:0 8px;border-radius:8px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;font-size:13px}
+#qv .q2ic>button:hover:not(:disabled){color:var(--text);border-color:var(--muted)}#qv .q2ic>button:disabled{opacity:.35;cursor:default}
+#qv .q2tg{display:flex;gap:6px;flex-wrap:wrap;padding:0 18px}
+#qv .q2tg>*{font-size:11.5px;padding:2px 9px;border-radius:999px;background:var(--panel2);color:var(--muted);text-decoration:none}#qv .q2tg a:hover{color:var(--text)}#qv .q2tg b{color:var(--text);font-weight:600}
+#qv .q2d{margin:8px 18px 0;color:var(--muted);font-size:13px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}#qv .q2d.open{-webkit-line-clamp:unset}
+#qv .q2tb{display:flex;gap:20px;margin:10px 0 0;padding:0 18px;border-bottom:1px solid var(--line);background:none;border-radius:0;width:auto}
+#qv .q2tb button{flex:none;background:none!important;border:0;border-bottom:2px solid transparent;border-radius:0;color:var(--muted);padding:8px 0;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+#qv .q2tb button.on{color:var(--text)!important;border-bottom-color:var(--accent);font-weight:700}
+#qv .q2st{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line)}
+#qv .q2st>div{padding:8px 14px;border-inline-start:1px solid var(--line);min-width:0}#qv .q2st>div:first-child{border-inline-start:0}
+#qv .q2st small{display:block;color:var(--muted);font-size:11px}#qv .q2st b{font-size:13.5px;white-space:nowrap}
+#qv .q2f{display:flex;align-items:center;gap:10px;padding:9px 18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}#qv .q2f .qvgo{margin-inline-start:auto;border:0;padding:0;display:inline;font-size:13px;font-weight:600}
+@media(max-width:760px){
+  #qv .q2h{flex-wrap:wrap;gap:8px 10px;padding:12px 12px 6px}#qv .q2id{flex:1}#qv .q2lg{display:none}#qv .q2ic{order:2}
+  #qv .q2px{order:3;width:100%;text-align:start}#qv .q2px>b{font-size:20px}
+  #qv .q2tg{padding:0 12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}#qv .q2tg>*{flex:none;white-space:nowrap}
+  #qv .q2d{margin:6px 12px 0;font-size:12.5px}
+  #qv .q2tb{padding:0 12px;gap:0}#qv .q2tb button{flex:1}
+  #qv .q2st{grid-template-columns:repeat(4,minmax(0,1fr))}#qv .q2st>div{padding:6px 10px;border-top:1px solid var(--line)}#qv .q2st>div:nth-child(4n+1){border-inline-start:0}
+  #qv .q2f{padding:8px 12px}
+}
 main.wrap{min-height:100vh}#hubSum{min-height:64px}.sxf{min-height:32px}@media(max-width:640px){#hubSum{min-height:137px}.sxf{min-height:72px}}.ocd .ocsel .pop-c{flex-direction:column;gap:8px;padding:10px}.ocd .ocsel .pg{display:grid;grid-template-columns:repeat(10,22px);gap:4px}.ocd .ocsel .pg .gap{grid-column:1/-1;height:3px}.ocd .ocsel .pop .sw{width:22px;height:22px;border-radius:4px;padding:0;border:0;outline:0}.ocd .ocsel .pop .sw.on{box-shadow:0 0 0 2px #1c2128,0 0 0 4px #e6edf3}.ocd .ocsel .pr{display:flex;gap:4px;align-items:center;padding-top:8px;border-top:1px solid #30363d}.ocd .ocsel .padd{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;color:var(--text);cursor:pointer;position:relative;border-radius:4px}.ocd .ocsel .padd:hover{background:#2d333b}.ocd .ocsel .padd input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;margin:0;border:0}.ocd .ocsel .po{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}.ocd .ocsel .po input{flex:1;width:auto;height:auto;margin:0;padding:0;border:0;background:none;accent-color:#e6edf3}.ocd .ocsel .pov{min-width:44px;text-align:center;border:1px solid #30363d;border-radius:6px;padding:3px 0;color:var(--text)}.ocd [data-ocbig] .xx{display:none;font-size:17px;line-height:1}.ocd .ocS{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}html.ocfull,html.ocfull body{overflow:hidden!important;overscroll-behavior:none}html.ocfull .toasts{z-index:2100}.ocbox.full .ocd{position:fixed;inset:0;z-index:2000;margin:0;border:0;border-radius:0;display:flex;flex-direction:column;height:100vh;height:100dvh;box-sizing:border-box;background:var(--panel);touch-action:none;padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}.ocbox.full .tvb{margin:0 0 4px;flex:none}.ocbox.full .tvb>b{display:block}.ocbox.full [data-ocbig] svg{display:none}.ocbox.full [data-ocbig] .xx{display:block}.ocbox.full .tvb button,.ocbox.full .tvb .vol{height:34px}.ocbox.full .oi{flex:none}.ocbox.full .on2,.ocbox.full .occl{display:none}.ocbox.full .ocw{flex:1;min-height:0}.ocbox.full .ocp{min-height:0}.ocbox.full .ocS{position:absolute;left:0;top:0;height:100%!important;touch-action:none}.ocbox.full .map{position:absolute;top:calc(46px + env(safe-area-inset-top));left:8px;right:8px;z-index:6;max-width:none;max-height:calc(100% - 64px);overflow:auto;touch-action:pan-y;box-shadow:0 10px 30px rgba(0,0,0,.6)}.ocd .ocsel .pop{max-height:calc(100vh - 12px);overflow:auto;touch-action:pan-y}@media(orientation:portrait){.ocbox.full .oct button{width:42px;height:38px}}@media(orientation:landscape){.ocbox.full .tvb{flex-wrap:nowrap}.ocbox.full .oi{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-height:17px}.ocbox.full .ocw{flex-direction:row}.ocbox.full .oct{flex-direction:column;border-bottom:0;border-right:1px solid var(--line);padding:0 4px 0 0}.ocbox.full .oct .sp{width:auto;height:1px;margin:3px 4px}.ocbox.full .oct button{width:36px;height:34px}}.ocd .ocld{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}.ocd .seg{display:inline-flex;gap:2px}.ocd .on2 details{display:inline;margin-inline-start:6px}.ocd .on2 summary{display:inline;cursor:pointer;text-decoration:underline dotted}.ocd .on2 details[open]{display:block;margin:4px 0 0}.qvoc .ocd{margin:0 0 12px}.ocd .occl{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px}.ocd .occl.open{color:var(--text)}.ocd .occl i{width:7px;height:7px;border-radius:50%;background:#2ea463;display:block}.ocd.hold{border-color:var(--accent)}.ocd .ocS{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none;-webkit-user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}.ocd .macs{display:flex;flex-wrap:wrap;gap:4px}.ocd .oh .mac{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;color:var(--text)}.ocd .mac i{width:14px;height:3px;border-radius:2px;display:block}.ocd .mac.off{color:var(--muted);text-decoration:line-through}.ocd .mac.off i{background:var(--muted)!important}.ocd .mac.set{color:var(--muted)}.ocd .ocmb{display:none}@media(hover:none),(max-width:640px){.ocd .ocds,.ocd [data-oclk]{display:none}.ocd .ocmb{display:inline}.ocd{padding:8px 6px}.ocd .oh{gap:6px 10px}.ocd .oi{font-size:11px;gap:1px 9px;min-height:32px;align-content:flex-start}.ocd .tvb{flex-wrap:wrap;row-gap:2px}.ocd .tvb>b,.ocd .tvb .mtx,.ocd .tvb>.sp:first-of-type{display:none}.ocd .tvb button,.ocd .tvb .vol{padding:0 5px;min-width:28px}.ocd .tvb .sp{margin:0 2px}}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
@@ -2012,22 +2046,27 @@ function qvQuote(t){ const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=live
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`, tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`, p1=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(1)}%</span>`;
   return `<div class="qvp"><b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${pc(d)}<small>${liveStamp()||'מחיר סגירה'}</small></div>${extLines(t)}
       <div class="qvt">${tile('RS',r.rs??'—')}${tile('YTD',p1(r.ytd))}${tile('1M',p1(r.m))}${tile('מהשיא',p1(r.hi))}${tile('שווי',s.cap?'$'+esc(s.cap):'—')}${tile('דוח הבא',x.e?dm(x.e):'—')}</div>`; }
+/* the stock card's header price (price, change, when; pre-market / after-hours line) and its figures row, refreshed with the live quotes */
+function qvPx(t){ const r=(stockIndex()[t]||{}).r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d;
+  return `<b class="num">${px!=null?'$'+(px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)):'—'}</b> ${d==null?'':`<span class="num ${d>=0?'up':'down'}" dir="ltr">${d>0?'+':''}${d.toFixed(2)}%</span>`}<small>${liveStamp()||'מחיר סגירה'}</small>${extLines(t)}`; }
+function qvStats(t){ const s=stockIndex()[t]||{}, r=s.r||{}, x=(SCR||{})[t]||{}, p1=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(1)}%</span>`, c=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`;
+  return c('RS',r.rs??'—')+c('YTD',p1(r.ytd))+c('חודש',p1(r.m))+c('מהשיא',p1(r.hi))+c('שווי',s.cap?'$'+esc(s.cap):'—')+c('P/E',x.pe!=null?x.pe.toFixed(1):'—')+c('דוח הבא',x.e?dm(x.e):'—'); }
 function qvShow(){
   const t=QV.L[QV.i], p=$('qv'); if(!t||!p) return;
   if(QV.etf){ qvShowEtf(t,p); return; }
   const ix=stockIndex(), s=ix[t]||{t,co:t}, r=s.r||{}, L=liveQ(t), px=L?L[0]:null, d=L&&liveOn()?L[1]:r.d, x=(SCR||{})[t]||{};
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`;
   const tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`, n=QV.L.length;
-  p.innerHTML=`<div class="qvh">
-      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span><span class="qvcp"><button data-qclip="${esc(t)}" title="העתק סימול והוסף לרשימות">📋 ${esc(t)}</button></span><small dir="auto">${esc(s.co||'')}</small></div>
-      ${n>1?`<span class="qvnav"><button data-qn="-1" aria-label="הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הבאה" ${QV.i<n-1?'':'disabled'}>‹</button></span>`:''}
-      <span class="qvmeta"><span>ADR% <b class="num">${r.adr!=null?r.adr.toFixed(1)+'%':'—'}</b></span>${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}">סקטור: <bdi>${esc(s.sec)}</bdi></a>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}">קבוצה: <bdi>${esc(s.ind)}</bdi></a>`:''}</span>
-      <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="rp">פיננסים</button><button data-qt="nw">חדשות</button></span>
-      <span class="qvact">${watchBtn(t)}<button class="qvx" aria-label="סגירה">✕</button></span></div>
-    <p class="qvdesc" id="qvDesc" dir="rtl">${esc(((SDET[t]||{}).p||{}).desc||'')}</p>
-    <div class="qvq" id="qvQ">${qvQuote(t)}</div>
+  p.innerHTML=`<div class="q2h">
+      <div class="q2id"><span class="q2lg" aria-hidden="true">${esc(t.slice(0,4))}</span><div><span class="q2tk" dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="q2pos num">${QV.i+1}/${n}</span>`:''}<button class="q2cp" data-qclip="${esc(t)}" title="העתק סימול והוסף לרשימות" aria-label="העתק סימול">⧉</button></span><small dir="auto">${esc(s.co||'')}</small></div></div>
+      <div class="q2px" id="qvPx">${qvPx(t)}</div>
+      <span class="q2ic">${n>1?`<button data-qn="-1" aria-label="המניה הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="המניה הבאה" ${QV.i<n-1?'':'disabled'}>‹</button>`:''}${watchBtn(t)}<button class="qvx" aria-label="סגירה">✕</button></span></div>
+    <div class="q2tg">${s.sec?`<a href="#sector/${encodeURIComponent(s.sec)}"><bdi>${esc(s.sec)}</bdi></a>`:''}${s.ind?`<a href="#ind/${encodeURIComponent(s.ind)}"><bdi>${esc(s.ind)}</bdi></a>`:''}${r.adr!=null?`<span>ADR <b class="num">${r.adr.toFixed(1)}%</b></span>`:''}</div>
+    <p class="q2d" id="qvDesc" dir="rtl">${esc(((SDET[t]||{}).p||{}).desc||'')}</p>
+    <div class="q2tb qvtabs" role="tablist"><button data-qt="ch">גרף</button><button data-qt="rp">פיננסים</button><button data-qt="nw">חדשות</button></div>
+    <div class="q2st" id="qvSt">${qvStats(t)}</div>
     <div class="qvb" id="qvBody"></div>
-    <a class="qvgo" href="#stock/${encodeURIComponent(t)}">לדף המניה המלא ←</a>`;
+    <div class="q2f"><span>מידע בלבד, לא ייעוץ השקעות</span><a class="qvgo" href="#stock/${encodeURIComponent(t)}">לדף המניה המלא ←</a></div>`;
   qvTab(QV.tab);
   if(!SDET[t]) loadDet(t).then(d=>{ const el=$('qvDesc'); if(el&&QV.L[QV.i]===t) el.textContent=((d||{}).p||{}).desc||''; });
 }
@@ -2119,6 +2158,7 @@ document.addEventListener('click',e=>{
   if(!e.target.closest) return;
   if(e.target.closest('.qvx')||e.target.closest('.qvgo')){ qvClose(); return; }
   const qt=e.target.closest('#qv [data-qt]'); if(qt){ qvTab(qt.dataset.qt); return; }
+  const qd=e.target.closest('#qv .q2d'); if(qd){ qd.classList.toggle('open'); return; }
   const qn=e.target.closest('#qv [data-qn]'); if(qn){ qvStep(+qn.dataset.qn); return; }
   /* every stock link on the site opens the floating window; the full page is one click away inside it ("לדף המניה המלא") */
   if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button) return;
@@ -2521,7 +2561,7 @@ async function loadLive(){
     const t=$('spBody').dataset.t; if(CURPG==='stock'&&t&&$('spDay')) $('spDay').innerHTML=spDayHtml(t,stockIndex()[t]);
     if(CURPG==='stock'&&t&&$('spWhy')){ const s0=stockIndex()[t]; if(s0) $('spWhy').outerHTML=whyBlock(t,s0,stockNews(t,s0)); }
     hubLazy();
-    try{ const q=$('qvQ'); if(q&&$('qv').classList.contains('on')) q.innerHTML=qvQuote(QV.L[QV.i]); }catch(e){}
+    try{ if($('qv').classList.contains('on')){ const t=QV.L[QV.i], q=$('qvQ'), a=$('qvPx'), b=$('qvSt'); if(q) q.innerHTML=qvQuote(t); if(a) a.innerHTML=qvPx(t); if(b) b.innerHTML=qvStats(t); } }catch(e){}
     try{ liveFlash(prevQ); }catch(e){}
   }catch(e){}
 }
