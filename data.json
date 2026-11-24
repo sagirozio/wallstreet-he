@@ -115836,6 +115836,36 @@
  },
  "news": [
   {
+   "id": "2026-11-24-mmed-q2-pumps",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "MMED"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "MiniMed מזנקת בכ-15% אחרי דוח עם האצה במכירות המשאבות",
+   "body": "הכנסות הרבעון עלו ב-9.4% ל-$822 מיליון ומספר המשאבות החדשות שנמכרו עלה ב-18.3% לכ-38 אלף (מ-8% ברבעון הקודם), עם צמיחה של יותר מ-30% בארה״ב. החברה עברה לרווח של 8 סנט למניה, ואישרה מחדש תחזית לצמיחה אורגנית של כ-10.5% בשנה.",
+   "src": "MiniMed (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0002062583/000162828026075612/exhibit991-fy27q2earningsr.htm",
+   "time": "19:40"
+  },
+  {
+   "id": "2026-11-24-dell-ai-selloff",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "DELL"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Dell יורדת בכ-12% בגל המכירות במניות ה-AI, לפני הדוח הערב",
+   "body": "לפי Yahoo Finance, Dell ירדה כבר במסחר המקדים בכ-7% על רקע המכירות במניות ה-AI, בזמן ש-HPE צונחת על אזהרת רווחיות במגזר ה-AI. Dell תפרסם את הדוח הרבעוני אחרי הסגירה.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html",
+   "time": "16:18"
+  },
+  {
    "id": "2026-11-24-admin-huang-assurance",
    "date": "2026-11-24",
    "t": [
