@@ -115836,6 +115836,63 @@
  },
  "news": [
   {
+   "id": "2026-11-24-treasury-10y-two-week-low",
+   "date": "2026-11-24",
+   "t": [],
+   "tag": "אג״ח",
+   "tone": "neu",
+   "title": "התשואה ל-10 שנים יורדת לשפל של שבועיים, סביב 4.91%",
+   "body": "לפי Trading Economics, התשואה על איגרת החוב האמריקאית ל-10 שנים ירדה ל-4.91% (מ-4.95% אתמול) והתשואה לשנתיים ל-4.69%, על רקע ירידת מחירי הנפט וציפיות אינפלציה מתונות יותר. השוק מתמחר כ-95% סיכוי להעלאת ריבית ברבע נקודה בדצמבר, ומחר יפורסם מדד PCE.",
+   "src": "Trading Economics",
+   "url": "https://tradingeconomics.com/united-states/government-bond-yield",
+   "time": "20:30"
+  },
+  {
+   "id": "2026-11-24-axti-drops-tech-slide",
+   "k": "stock",
+   "date": "2026-11-24",
+   "t": [
+    "AXTI"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "AXT יורדת בכ-14% בגל הירידות במניות הטכנולוגיה",
+   "body": "לפי Seeking Alpha, מניית AXT ירדה בכ-14% ל-$32.70 בבוקר המסחר, כשמניות הטכנולוגיה מחזירות חלק מהזינוק של אתמול; קרן XLK ירדה בכמעט 4%. לא דווח על חדשות ספציפיות לחברה.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4676232-axt-drops-14-as-tech-sector-slides",
+   "time": "17:48"
+  },
+  {
+   "id": "2026-11-24-ttmi-drops-tech-weakness",
+   "k": "stock",
+   "date": "2026-11-24",
+   "t": [
+    "TTMI"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "TTM Technologies יורדת בכ-12% בחולשה הרוחבית בטכנולוגיה",
+   "body": "לפי Seeking Alpha, המניה ירדה ב-$8.12 ל-$61.41 בבוקר המסחר, יחד עם ירידה של יותר מ-3% בקרן XLK ושל כ-8%–11% במניות שבבים דומות; לא צוינו חדשות ספציפיות לחברה. אתמול עלתה המניה בכ-17% בראלי שבעקבות שובו של הואנג ל-Nvidia.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4676217-ttm-technologies-drops-12-amid-sector-wide-tech-weakness",
+   "time": "17:38"
+  },
+  {
+   "id": "2026-11-24-cytk-biotech-peers",
+   "k": "stock",
+   "date": "2026-11-24",
+   "t": [
+    "CYTK"
+   ],
+   "tag": "ביוטק",
+   "tone": "pos",
+   "title": "Cytokinetics עולה יחד עם מניות הביוטק, בלי חדשות משלה",
+   "body": "לפי Yahoo Finance, מניית Cytokinetics עלתה ב-7.3% בבוקר יחד עם מניות ביוטק אחרות, בלי חדשות ספציפיות לחברה, בזמן שה-S&P 500 ירד ב-1.2%. מניות הביוטק עולות ביום שבו Sanofi הודיעה על רכישת Insmed ב-$41 מיליארד.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=005910c02bd7fb65348dceea73a00406b40a8ab5c11ba762e4ba8e319da11c07",
+   "time": "18:01"
+  },
+  {
    "id": "2026-11-24-midday-nasdaq-chips",
    "date": "2026-11-24",
    "t": [
