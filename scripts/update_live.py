@@ -70,6 +70,7 @@ def _lst(mask, r, rev=False):
     v = r[mask.reindex(r.index).fillna(False).astype(bool)].dropna().sort_values(ascending=rev)
     return [[t, round(float(x), 1)] for t, x in v.items()]
 row["L"] = {"hi": _lst(hi_m, R["d"]), "lo": _lst(lo_m, R["d"], True), "u": _lst(R["m"] >= 10, R["m"]), "n": _lst(R["m"] <= -10, R["m"], True)}
+if last == today: row["ma50"] = row["ma200"] = None   # % above the 50 / 200-day average: end of day only (filled by the nightly update.py)
 b = data.get("breadth", {"rows": []})
 b["rows"] = [row] + [r for r in b.get("rows", []) if r.get("d") != row["d"]][:19]
 live = last == today

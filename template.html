@@ -459,6 +459,7 @@ html.ocfull #qv.on{transform:none!important;inset:0!important;top:0!important;le
 .brp{display:inline-block;min-width:58px;text-align:center;padding:2px 6px;border-radius:6px;font:600 12.5px "JetBrains Mono",monospace;color:var(--text)}
 .brp.g3{background:rgba(46,164,99,.24)}.brp.g2{background:rgba(46,164,99,.12)}.brp.y1{background:rgba(245,185,66,.16)}.brp.r1{background:rgba(239,68,68,.18)}
 html.light .brp.g3{background:rgba(18,115,58,.18)}html.light .brp.g2{background:rgba(18,115,58,.09)}
+.brpend{font-size:12px}
 .brall{display:block;width:100%;background:none;border:0;border-top:1px solid var(--line);color:var(--accent);font:inherit;font-size:13px;padding:9px;cursor:pointer}
 #brTable .n.l{white-space:nowrap}
 @media(max-width:640px){#brTable .rw2{grid-template-columns:38px 70px minmax(0,1fr) 62px 70px 8px;column-gap:9px;padding:10px 8px}#brTable .n.l,#brTable .spc{font-size:11.5px}#brTable .rw2>.n.l:not(.c){justify-self:center}}
@@ -4757,13 +4758,13 @@ function renderBreadth(){
     return `<div class="bgp"><div class="bgh"><span class="${cls}">●</span>${h} <span class="num ${cls}">${l.length}</span></div>${l.length?sh.map(chip).join('')+(l.length>sh.length?`<button class="bmo" data-k="${esc(key)}">+ עוד ${l.length-sh.length}</button>`:''):'<span class="sm flat">אין</span>'}</div>`; };
   $('brTable').innerHTML = `<div class="rw2 hd2"><span>תאריך</span><span class="n">S&amp;P 500</span><span>עלו / ירדו</span><span class="n on dsk">&rlm;% מעל ממוצע 50</span><span class="n dsk">&rlm;% מעל ממוצע 200</span><span class="n">שיא / שפל</span><span class="n">10%+ בחודש</span><span></span></div>`+
     rows.slice(0,brAll?rows.length:5).map((r,i)=>{ const o=brOpen.has(r.d)&&has(r);
-      return `<div class="rw2${has(r)?' has':''}${o?' open':''}${i?'':' today'}" data-d="${esc(r.d)}"><span>${esc(r.d)}</span>${spc(r)}${ud(r.up,r.dn)}<span class="dsk">${pc2(r.ma50)}</span><span class="dsk">${pc2(r.ma200)}</span>${ud(r.hi,r.lo).replace('n l','n l c')}${ud(r.up10,r.dn10).replace('n l','n l c')}<span>${has(r)?'<span class="car">▾</span>':''}</span></div>`+
+      return `<div class="rw2${has(r)?' has':''}${o?' open':''}${i?'':' today'}" data-d="${esc(r.d)}"><span>${esc(r.d)}</span>${spc(r)}${ud(r.up,r.dn)}<span class="dsk">${r.ma50==null&&!i?'<span class="n flat brpend">בסגירה</span>':pc2(r.ma50)}</span><span class="dsk">${r.ma200==null&&!i?'<span class="n flat brpend">בסגירה</span>':pc2(r.ma200)}</span>${ud(r.hi,r.lo).replace('n l','n l c')}${ud(r.up10,r.dn10).replace('n l','n l c')}<span>${has(r)?'<span class="car">▾</span>':''}</span></div>`+
       (o?`<div class="brx"><div class="mob sm">מעל ממוצע 50 יום ${pc2(r.ma50)} · 200 יום ${pc2(r.ma200)}</div><div class="bg4">${LK.map(([k,h,c])=>grp(i,k,h,c)).join('')}</div></div>`:''); }).join('')+
     (rows.length>5?`<button type="button" class="brall" data-brall>${brAll?'הצג פחות ↑':`עוד ${rows.length-5} ימים ↓`}</button>`:'')+
     (Object.keys(BL).length?`<div class="blg"><span><i class="bnw"></i> חדש ברשימה באותו יום</span><span><span class="bst">5 ימים</span> = ימי מסחר ברציפות ברשימה</span><span>לחיצה על שורה פותחת את המניות</span></div>`:'');
   if(!brL) loadBrL();
   $('brSub').textContent = `רוחב השוק בתוך ה-S&P 500, נכון ל${b.asOf}. כמה מתוך 500 המניות באמת משתתפות בתנועה: המדד יכול לעלות בזכות כמה ענקיות בזמן שרוב המניות יורדות.`;
-  $('brLegend').textContent = 'ירוק = יותר מ-50% מהמניות מעל הממוצע (רוב השוק משתתף בעלייה), אדום = פחות מ-50%. הקו באמצע הפס הוא 50%. חישוב עצמי מנתוני Yahoo Finance: בזמן המסחר כל 10 דקות (שיא ושפל לפי הגבוה והנמוך של היום עד עכשיו), ובערב חישוב מלא אחרי הסגירה. "—" = אין נתון לאותו יום.';
+  $('brLegend').textContent = 'האחוז מעל הממוצעים מחושב פעם ביום, אחרי הסגירה. ירוק = יותר מ-50% מהמניות מעל הממוצע (רוב השוק משתתף בעלייה), אדום = פחות מ-50%. הקו באמצע הפס הוא 50%. חישוב עצמי מנתוני Yahoo Finance: בזמן המסחר כל 10 דקות (שיא ושפל לפי הגבוה והנמוך של היום עד עכשיו), ובערב חישוב מלא אחרי הסגירה. "—" = אין נתון לאותו יום.';
   renderFresh();
 }
 // ===== IPOs =====
