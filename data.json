@@ -115836,6 +115836,33 @@
  },
  "news": [
   {
+   "id": "2026-11-24-trump-iran-blockade-turkey",
+   "date": "2026-11-24",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: לאיראן יכולת מועטה לשגר טילים; יותר נפט עובר בהורמוז מאשר לפני המלחמה",
+   "body": "בטקס החנינה לתרנגולי ההודו בבית הלבן אמר הנשיא טראמפ, לפי The Jerusalem Post, שלאיראן נותרה יכולת מועטה לשגר טילים, ושאף ספינה איראנית לא עברה את הסגר הימי מאז הוטל, למעט הקפאה קצרה. לדבריו, כמות הנפט שעוברת כיום במצר הורמוז גדולה מזו שעברה לפני תחילת המלחמה.",
+   "src": "The Jerusalem Post",
+   "url": "https://www.jpost.com/american-politics/article-916016",
+   "time": "22:05"
+  },
+  {
+   "id": "2026-11-24-zm-first-dividend",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "ZM"
+   ],
+   "tag": "דיבידנד",
+   "tone": "pos",
+   "title": "Zoom עולה בכ-5% אחרי הכרזה על דיבידנד רבעוני ראשון",
+   "body": "לפי Yahoo Finance, מניית Zoom עלתה היום בכ-5% אחרי שהחברה הכריזה על דיבידנד רבעוני ראשון בגובה $0.25 למניה.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html",
+   "time": "17:21"
+  },
+  {
    "id": "2026-11-24-blanche-huang-nvidia",
    "date": "2026-11-24",
    "t": [
