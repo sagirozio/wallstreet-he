@@ -2974,12 +2974,17 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
   PT.v.forEach(v=>{ const y=Y(v); if(y<pt+2||y>pt+ph-1) return; o+=(OCPREF.gh?`<line x1="${pl}" x2="${W-pr}" y1="${R(y)}" y2="${R(y)}" stroke="${GR}" stroke-width=".7"/>`:'')+`<text x="${W-pr+6}" y="${R(y+4)}" font-size="11" fill="${TX}">${pf(v)}</text>`; });
   const vn=OCPREF.gv?(sm?[3,4,6]:[4,7,11])[(+OCPREF.gvn||2)-1]||(sm?4:7):(sm?4:7), XT=ocXTicks(A,V,nn,tf,Math.max(2,Math.min(Math.round(vn*1.35),Math.floor((W-pl-pr)/46))));
   XT.forEach(k=>{ const x=X(k.k); if(x<pl+12||x>W-pr-6) return; o+=(OCPREF.gv?`<line x1="${R(x)}" x2="${R(x)}" y1="${pt}" y2="${H-pb}" stroke="${GR}" stroke-width=".7"/>`:'')+`<text x="${R(x)}" y="${H-6}" font-size="11" fill="${k.y?INK:TX}"${k.y?' font-weight="600"':''} text-anchor="middle">${k.t}</text>`; });
+  o+='<!--VAX-->';
   const cid=box._id+'c'; o+=`<defs><clipPath id="${cid}"><rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}"/></clipPath></defs><g clip-path="url(#${cid})">`;
   /* candles and volume bars as a few paths (up / down), so years of bars stay fast. When the bars are narrower than ~1.6px several of them are drawn as one candle
      (one column and one colour by first open / last close, summed volume): otherwise they overlap and the colour drawn last smears over the other. Display only: the figures row stays per bar */
   const m=cw<1.6?Math.ceil(1.6/cw):1, vm=cv&&OCPREF.vma.on?ocVma(A,OCPREF.vma.n):null; box._vm=vm; let G=V;
   if(m>1){ G=[]; let cur=null; V.forEach(x=>{ const b=Math.floor(x.a/m); if(!cur||cur.b!==b){ cur={b,k0:x.k,k1:x.k,o:x.o,h:x.h,l:x.l,c:x.c,v:x.v||0,bs:[x]}; G.push(cur); } else { cur.k1=x.k; cur.h=Math.max(cur.h,x.h); cur.l=Math.min(cur.l,x.l); cur.c=x.c; cur.v+=x.v||0; cur.bs.push(x); } }); G.forEach(x=>{ x.k=(x.k0+x.k1)/2; }); }
   const gw=cw*m, bw=Math.max(1,gw*.65), ww=Math.min(1,Math.max(.6,gw*.3)); let mv=1; if(cv){ G.forEach(x=>{ if(x.v>mv) mv=x.v; }); if(vm) V.forEach(x=>{ if(vm[x.a]*m>mv) mv=vm[x.a]*m; }); }
+  /* volume axis: two round levels on the price axis's side (K / M / B per bar; merged bars show the per-bar scale) */
+  { let vax=''; if(cv&&mv>1&&vh>=28){ const per=mv/m, st=[1,2,2.5,5,10], e=Math.pow(10,Math.floor(Math.log10(per/2))); let s1=e; for(const f of st){ if(e*f*2<=per*.98) s1=e*f; } const vf=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?0:1).replace(/\.0$/,'')+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1).replace(/\.0$/,'')+'M':v>=1e3?Math.round(v/1e3)+'K':String(Math.round(v));
+      [s1,s1*2].forEach(v=>{ const y=H-pb-v*m/mv*vh; if(y<H-pb-vh-2||y>H-pb-8) return; vax+=`<line x1="${W-pr}" x2="${W-pr+3}" y1="${R(y)}" y2="${R(y)}" stroke="${TX}" stroke-width=".8" opacity=".6"/><text x="${W-pr+6}" y="${R(y+3.5)}" font-size="10" fill="${TX}" opacity=".85">${vf(v)}</text>`; }); }
+    o=o.replace('<!--VAX-->',vax); }
   let pu='',pd='',wu='',wd='',vu='',vd='',lp1='';
   G.forEach(x=>{ const cx=X(x.k), up=x.c>=x.o;
     if(cv&&x.v){ const h=x.v/mv*vh, q2=`M${R(cx-bw/2)} ${H-pb}v${R(-h)}h${R(bw)}v${R(h)}z`; if(up) vu+=q2; else vd+=q2; }
