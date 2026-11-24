@@ -1754,21 +1754,27 @@ const CFD={
   y:{l:'שינוי שנתי',s:'שנה',g:'ביצועים',u:'%',v:r=>r.rr.y,pre:[50,100],q:'שנה 1y'},
   ytd:{l:'מתחילת השנה',s:'YTD',g:'ביצועים',u:'%',v:r=>r.rr.ytd,pre:[25,50,100],q:'ytd מתחילת השנה'},
   cap:{l:'שווי שוק (מיליארד $)',s:'שווי שוק',g:'גודל ומחזור',u:'B',v:r=>r.cn?r.cn/1e9:null,pre:[2,10,50,200],q:'שווי שוק market cap'},
-  dv:{l:'מחזור דולרי יומי (מיליון $)',s:'מחזור',g:'גודל ומחזור',u:'M',v:r=>r.rr.dv,pre:[10,20,50,100],q:'מחזור ווליום volume dollar'},
+  dv:{l:'מחיר × ווליום ממוצע (מיליון $)',s:'מחיר×ווליום 3 חודשים',g:'גודל ומחזור',u:'M',v:r=>r.rr.dv,pre:[10,20,50,100],q:'מחזור ווליום volume dollar מחיר כפול ווליום price avg'},
+  dv10:{l:'מחיר × ווליום ממוצע (מיליון $)',s:'מחיר×ווליום 10 ימים',g:'גודל ומחזור',u:'M',v:r=>r.rr.dv10,pre:[10,20,50,100],q:''},
+  av:{l:'ווליום ממוצע (מיליון מניות)',s:'ווליום ממוצע 3 חודשים',g:'גודל ומחזור',u:'MS',v:r=>r.rr.av,pre:[0.5,1,2,5],q:'ווליום ממוצע avg volume מניות'},
+  av10:{l:'ווליום ממוצע (מיליון מניות)',s:'ווליום ממוצע 10 ימים',g:'גודל ומחזור',u:'MS',v:r=>r.rr.av10,pre:[0.5,1,2,5],q:''},
   px:{l:'מחיר ($)',s:'מחיר',g:'גודל ומחזור',u:'$',v:r=>r.px,pre:[5,10,20,50],q:'מחיר price'},
   g:{l:'צמיחת הכנסות ברבעון',s:'צמיחת הכנסות',g:'יסודות',u:'%',v:r=>r.x.g,pre:[10,20,40],q:'צמיחה הכנסות growth revenue'},
   ga:{l:'צמיחת הכנסות שנתית',s:'צמיחה שנתית',g:'יסודות',u:'%',v:r=>r.x.ga,pre:[10,20,40],q:'צמיחה שנתית annual'},
   pe:{l:'מכפיל רווח (P/E)',s:'P/E',g:'יסודות',u:'',v:r=>r.x.pe,pre:[15,25,40],q:'מכפיל pe רווח'}
 };
 const CF_MA=[20,50,150,200];
-const CF_PF=['d','w','m','q','h','y','ytd'], CF_PFL=[['d','יום'],['w','שבוע'],['m','חודש'],['q','3 חודשים'],['h','6 חודשים'],['ytd','YTD'],['y','שנה']];   /* performance is one parameter: the period is chosen in its editor */
+const CF_PF=['d','w','m','q','h','y','ytd'], CF_PFL=[['d','יום'],['w','שבוע'],['m','חודש'],['q','3 חודשים'],['h','6 חודשים'],['ytd','YTD'],['y','שנה']];
+const CF_GRP=[{keys:CF_PFL,l:'ביצועים (%)',s:'ביצועים',def:'h'},{keys:[['dv10','10 ימים'],['dv','3 חודשים']],l:'מחיר × ווליום ממוצע (מיליון $)',s:'מחיר×ווליום',def:'dv10'},{keys:[['av10','10 ימים'],['av','3 חודשים']],l:'ווליום ממוצע (מיליון מניות)',s:'ווליום ממוצע',def:'av10'}];
+const cfGrp=k=>CF_GRP.find(g=>g.keys.some(x=>x[0]===k));
+const cfHas=k=>Object.values(stockIndex()).some(s=>s.r&&s.r[k]!=null);   /* a period appears once the nightly data has it */   /* performance is one parameter: the period is chosen in its editor */
 let CF=[];
 let _cfMa=null; const cfMaOk=()=>_cfMa&&_cfMa.length>2?_cfMa:(_cfMa=CF_MA.filter(n=>Object.values(stockIndex()).some(s=>s.r&&s.r['a'+n]!=null)));   /* 20 / 150 appear once the nightly data has them */   /* [{k, op:'gt'|'lt'|'bt', a, b}] or {k:'ma', op:'above'|'below', n} */
 const cfNum=v=>{ const n=parseFloat(String(v).replace(',','.')); return isFinite(n)?n:null; };
 function cfPass(r){ for(const f of CF){ if(f.k==='ma'){ const v=r.rr['a'+f.n]; if(v==null) return false; if(f.op==='above'?v<=0:v>=0) return false; continue; }
     const D=CFD[f.k]; if(!D) continue; const v=D.v(r); if(v==null) return false;
     if(f.op==='gt'&&v<f.a) return false; if(f.op==='lt'&&v>f.a) return false; if(f.op==='bt'&&(v<Math.min(f.a,f.b)||v>Math.max(f.a,f.b))) return false; } return true; }
-function cfTxt(f){ if(f.k==='ma') return [f.op==='above'?'מחיר מעל':'מחיר מתחת',`SMA ${f.n}`]; const D=CF_PF.includes(f.k)?{...CFD[f.k],s:'ביצועים '+((CF_PFL.find(x=>x[0]===f.k)||[])[1]||'')}:CFD[f.k], u=D.u==='%'?'%':D.u==='$'?'':D.u?D.u:'', p=D.u==='$'?'$':D.u==='B'||D.u==='M'?'$':'', n=x=>p+x+u;
+function cfTxt(f){ if(f.k==='ma') return [f.op==='above'?'מחיר מעל':'מחיר מתחת',`SMA ${f.n}`]; const G=cfGrp(f.k), D=G?{...CFD[f.k],s:G.s+' '+((G.keys.find(x=>x[0]===f.k)||[])[1]||'')}:CFD[f.k], u=D.u==='%'?'%':D.u==='$'?'':D.u==='MS'?'M':D.u?D.u:'', p=D.u==='$'?'$':D.u==='B'||D.u==='M'?'$':'', n=x=>p+x+u;
   return [D.s, f.op==='gt'?'> '+n(f.a):f.op==='lt'?'< '+n(f.a):n(f.a)+'–'+n(f.b)]; }
 function cfSer(){ return CF.map(f=>f.k==='ma'?`ma.${f.op}.${f.n}`:[f.k,f.op,f.a,f.op==='bt'?f.b:''].filter(x=>x!=='').join('.')).join(','); }
 function cfParse(t){ CF=[]; String(t||'').split(',').slice(0,12).forEach(x=>{ const p=x.split('.'); if(p[0]==='ma'){ if((p[1]==='above'||p[1]==='below')&&CF_MA.includes(+p[2])) CF.push({k:'ma',op:p[1],n:+p[2]}); return; }
@@ -1786,18 +1792,20 @@ function cfOpenList(anchor){ const p=cfPop(); p.onclick=null; p.onkeydown=null; 
   p.innerHTML=`<input class="cfs" type="search" placeholder="חיפוש: rs, adr, ממוצע…" aria-label="חיפוש פרמטר" autocomplete="off"><div class="cfl" role="listbox" aria-label="פרמטרים"></div>`;
   const L=p.querySelector('.cfl'), I=p.querySelector('.cfs');
   const draw=()=>{ const q=I.value.trim().toLowerCase(); let g='', h='';
-    Object.entries(CFD).filter(([k])=>!CF_PF.includes(k)||k==='h').map(([k,D])=>k==='h'?['h',{l:'ביצועים (%)',g:'ביצועים',q:'ביצועים תשואה שינוי perf performance יומי שבוע חודש 3 חודשים 6 חודשים שנה ytd'}]:[k,D]).filter(([k,D])=>!q||(D.l+' '+D.q).toLowerCase().includes(q)).forEach(([k,D])=>{ if(D.g!==g){ g=D.g; h+=`<div class="cfg">${esc(g)}</div>`; } h+=`<button type="button" class="cfi" role="option" data-cfn="${k}">${esc(D.l)}</button>`; });
+    const seen=new Set(); Object.entries(CFD).map(([k,D])=>{ const G=cfGrp(k); if(!G) return [k,D]; if(seen.has(G)) return null; seen.add(G);
+      const dk=G.keys.map(x=>x[0]).filter(x=>CF_PF.includes(x)||cfHas(x)); const k0=dk.includes(G.def)?G.def:dk[0]; if(!k0) return null;
+      return [k0,{l:G.l,g:CFD[k0].g,q:G.keys.map(x=>CFD[x[0]].q).join(' ')+' ביצועים תשואה perf performance'}]; }).filter(Boolean).filter(([k,D])=>!q||(D.l+' '+D.q).toLowerCase().includes(q)).forEach(([k,D])=>{ if(D.g!==g){ g=D.g; h+=`<div class="cfg">${esc(g)}</div>`; } h+=`<button type="button" class="cfi" role="option" data-cfn="${k}">${esc(D.l)}</button>`; });
     L.innerHTML=h||'<div class="cfg">לא נמצא פרמטר</div>'; };
   I.addEventListener('input',draw); I.addEventListener('keydown',e=>{ if(e.key==='Enter'){ const b=L.querySelector('[data-cfn]'); if(b){ e.preventDefault(); b.click(); } } });
   draw(); cfPlace(p,anchor); if(matchMedia('(pointer:fine)').matches) I.focus(); }
-function cfOpenEdit(i,k,anchor){ const p=cfPop(), isPf=CF_PF.includes(k), D0=CFD[k], f=i>=0?CF[i]:(k==='ma'?{k,op:'above',n:50}:{k,op:'gt',a:D0.pre[Math.floor(D0.pre.length/2)]});
-  const st={...f}; p.setAttribute('aria-label','הגדרת מסנן '+(isPf?'ביצועים':D0.l));
+function cfOpenEdit(i,k,anchor){ const p=cfPop(), G=cfGrp(k), isPf=!!G, D0=CFD[k], f=i>=0?CF[i]:(k==='ma'?{k,op:'above',n:50}:{k,op:'gt',a:D0.pre[Math.floor(D0.pre.length/2)]});
+  const st={...f}; p.setAttribute('aria-label','הגדרת מסנן '+(G?G.l:D0.l));
   const draw=()=>{ const seg=(name,opts,cur)=>`<div class="cfo" role="group">${opts.map(([v,l])=>`<button type="button" data-${name}="${v}" aria-pressed="${String(cur)===String(v)}" class="${String(cur)===String(v)?'on':''}">${l}</button>`).join('')}</div>`;
     const D=CFD[st.k]||D0;
-    p.innerHTML=`<div class="cfh">${esc(isPf?'ביצועים (%)':D.l)}</div>`+(isPf?`<div class="cfpl2">טווח זמן</div>`+seg('cfpf',CF_PFL,st.k):'')+(k==='ma'
+    p.innerHTML=`<div class="cfh">${esc(G?G.l:D.l)}</div>`+(G?`<div class="cfpl2">טווח זמן</div>`+seg('cfpf',G.keys.filter(x=>CF_PF.includes(x[0])||x[0]===st.k||cfHas(x[0])),st.k):'')+(k==='ma'
       ? seg('cfop',[['above','מעל'],['below','מתחת']],st.op)+seg('cfma',cfMaOk().map(n=>[n,'SMA '+n]),st.n)
       : seg('cfop',[['gt','מעל'],['lt','מתחת'],['bt','בין']],st.op)
-        +`<div class="cfin"><input type="text" inputmode="decimal" data-cfa value="${st.a??''}" aria-label="ערך">${st.op==='bt'?`<span>עד</span><input type="text" inputmode="decimal" data-cfb value="${st.b??''}" aria-label="ערך עליון">`:''}${D.u?`<span class="u">${D.u==='B'?'מיליארד $':D.u==='M'?'מיליון $':esc(D.u)}</span>`:''}</div>`
+        +`<div class="cfin"><input type="text" inputmode="decimal" data-cfa value="${st.a??''}" aria-label="ערך">${st.op==='bt'?`<span>עד</span><input type="text" inputmode="decimal" data-cfb value="${st.b??''}" aria-label="ערך עליון">`:''}${D.u?`<span class="u">${D.u==='B'?'מיליארד $':D.u==='M'?'מיליון $':D.u==='MS'?'מיליון מניות':esc(D.u)}</span>`:''}</div>`
         +`<div class="cfpre">${D.pre.map(v=>`<button type="button" data-cfv="${v}">${v}${D.u==='%'?'%':''}</button>`).join('')}</div>`)
       +`<div class="cfbt"><button type="button" class="cfok" data-cfok>החל</button>${i>=0?`<button type="button" class="cfdel" data-cfdel>הסר</button>`:''}</div>`;
     const A=p.querySelector('[data-cfa]'); if(A&&matchMedia('(pointer:fine)').matches){ A.focus(); A.select(); } };

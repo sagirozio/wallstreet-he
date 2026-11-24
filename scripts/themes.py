@@ -277,6 +277,10 @@ for ind, mem in by.items():
             if _mv is not None and _lv is not None and not pd.isna(_mv) and not pd.isna(_lv) and _mv > 0: rr[_k] = round(float((_lv / _mv - 1) * 100), 1)
         _av, _lv = x.get("averageDailyVolume3Month"), _last.get(s)
         if _av and _lv is not None and not pd.isna(_lv): rr["dv"] = round(float(_lv) * float(_av) / 1e6, 1)   # average daily dollar volume, $M (last close x 3-month average volume)
+        _a10 = x.get("averageDailyVolume10Day")
+        if _a10 and _lv is not None and not pd.isna(_lv): rr["dv10"] = round(float(_lv) * float(_a10) / 1e6, 1)   # the same over 10 days
+        if _av: rr["av"] = round(float(_av) / 1e6, 2)      # average daily volume, millions of shares (3 months)
+        if _a10: rr["av10"] = round(float(_a10) / 1e6, 2)  # and over 10 days
         for _k, _v in PAT.get(s, {}).items(): rr[_k] = _v   # price-shape patterns, only those confirmed by volume
         if s in PAT: rr["pv"] = 1                                          # volume confirmed
         if s in ADR: rr["adr"] = ADR[s]                                        # average daily range %, 20 sessions
