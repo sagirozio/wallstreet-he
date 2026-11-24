@@ -507,6 +507,36 @@ body[data-pg="home"] #brief{padding-top:6px}
   body[data-pg="home"] .brief2 .bh .bfr{display:none}
   #homeSide .hsa{grid-template-columns:84px minmax(0,1fr)}#homeSide .hsr{font-size:13.5px}#homeSide .hsn b{font-size:13.5px}
 }
+/* home as cards: each block in a card, one heading size (≥901 desktop, ≤760 phones) */
+@media(min-width:901px),(max-width:760px){
+  body[data-pg="home"] #market,body[data-pg="home"] #brief .brief2:not(.bnews),body[data-pg="home"] #homeMovers,body[data-pg="home"] #homeSide .hsd:not(:empty){background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  body[data-pg="home"].r main>section{padding-top:0}
+  body[data-pg="home"] #market{margin-top:14px;padding-bottom:10px}
+  body[data-pg="home"] #brief .brief2:not(.bnews){margin-top:14px;border-top:1px solid var(--line)}
+  body[data-pg="home"] #homeMovers{margin-top:14px}
+  body[data-pg="home"] #homeSide .hsd:not(:empty){margin-top:14px}
+  body[data-pg="home"] .hsd+.hsd{margin-top:14px}
+  body[data-pg="home"] .ixc{background:var(--panel2);border:0;border-radius:9px}
+  body[data-pg="home"] .brief2 .bh h2,body[data-pg="home"] #homeMovers .hh h2,body[data-pg="home"] .hsd h2{font-size:16px!important;font-weight:700}
+  body[data-pg="home"] #homeMovers .hh,body[data-pg="home"] .hsd .hh{margin-bottom:6px}
+  body[data-pg="home"] .hh a,body[data-pg="home"] .hsd .hh a{font-size:12.5px}
+  body[data-pg="home"] .ixf{margin-top:4px}
+  body[data-pg="home"] #mktHead{font-size:17px}
+  body[data-pg="home"] #homeSide,body[data-pg="home"] #brief,body[data-pg="home"] #homeMovers{padding-top:0}
+  body[data-pg="home"] .hss .tr{height:4px!important}
+}
+@media(min-width:901px){body[data-pg="home"].r main{column-gap:14px}}
+@media(max-width:760px){
+  body[data-pg="home"] #market{padding:12px 12px 8px}
+  body[data-pg="home"] #market .ixb{margin-inline:-12px;padding-inline:12px}
+  body[data-pg="home"] #brief .brief2:not(.bnews){align-self:stretch;border-radius:0 14px 14px 0;border-left:0;padding:12px 12px 10px 10px}
+  body[data-pg="home"] #hsSec{align-self:stretch;margin-top:14px!important;border-radius:14px 0 0 14px!important;border-right:1px solid var(--line);padding:12px 10px 10px 12px!important;position:relative}
+  body[data-pg="home"] #hsSec:before{content:'';position:absolute;right:0;top:12px;bottom:12px;width:1px;background:var(--line)}
+  body[data-pg="home"] #hsSec{border-right:0}
+  body[data-pg="home"] #homeMovers,body[data-pg="home"] #homeSide .hsd:not(:empty){padding:12px}
+  body[data-pg="home"] #hsAg,body[data-pg="home"] #hsNews{margin-top:14px!important}
+  body[data-pg="home"] #hsSec .hss .tr{height:3px!important}
+}
 /* home movers: one line each (symbol, company, change); the reason floats on hover (desktop) or on a tap (phones, a second tap opens the stock) */
 body[data-pg="home"] #hmvList.hmv{background:none;border:0;border-radius:0;overflow:visible}
 body[data-pg="home"] #hmvList a.hmr{position:relative;display:grid;grid-template-columns:58px minmax(0,1fr) 66px;align-items:baseline;column-gap:10px;padding:9px 0}
