@@ -2846,7 +2846,7 @@ const OCUN=[];
 function ocSnap(t,v){ OCUN.push({t,v:v||JSON.stringify(OCDR[t]||[])}); if(OCUN.length>40) OCUN.shift(); }
 function ocUndo(box){ const t=box._t; for(let i=OCUN.length-1;i>=0;i--) if(OCUN[i].t===t){ let L=[]; try{ L=JSON.parse(OCUN.splice(i,1)[0].v)||[]; }catch(_){} if(L.length) OCDR[t]=L; else delete OCDR[t]; box._sel=null; box._pend=null; ocDrSave(); ocAlRefresh(); ocEach(ocDraw); return true; } return false; }
 /* the last colour, opacity, width and style chosen for a tool (trend line / horizontal line / alert) are what its next line starts with, on every symbol */
-function ocSty(d,k){ const y=(OCPREF.ds||{})[k]; if(y){ if(y.c) d.c=y.c; if(y.w) d.w=y.w; if(y.s) d.s=y.s; if(y.o) d.o=y.o; } return d; }
+function ocSty(d,k){ const y=(OCPREF.ds||{})[k]; if(y){ if(y.c) d.c=y.c; if(y.w) d.w=y.w; if(y.s) d.s=y.s; if(y.o&&y.o>=40) d.o=y.o; } return d; }   /* a very faint opacity is not carried over: a new line or alert must be visible */
 function ocStyKeep(d){ if(!d) return; (OCPREF.ds||(OCPREF.ds={}))[d.k==='t'?'t':d.al?'a':'h']={c:d.c,w:d.w,s:d.s,o:d.o}; ocPrefSave(); }
 /* round price steps for the price axis (1 / 2 / 5 x a power of ten), about n of them */
 function ocTicks(lo,hi,n){ const r=hi-lo; if(!(r>0)) return {v:[],dec:2}; const raw=r/n, pw=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/pw, st=(f<1.5?1:f<3.5?2:f<7.5?5:10)*pw, dec=st>=1?0:Math.min(4,Math.ceil(-Math.log10(st)-1e-9)), v=[];
