@@ -44328,7 +44328,7 @@
   }
  ],
  "overview": {
-  "asOf": "24.11.2026 · 17:05",
+  "asOf": "24.11.2026 · 17:35",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44392,8 +44392,8 @@
     "tone": "neg"
    },
    {
-    "h": "קמעונאיות מזנקות על הדוחות",
-    "t": "Dick's Sporting Goods עולה בכ-18% במסחר המקדים, Abercrombie & Fitch בכ-11% ו-Kohl's בכ-9%; Best Buy עולה בכ-5% אחרי מכירות זהות של +6.1% והעלאת התחזית השנתית.",
+    "h": "קמעונאיות מזנקות; Cogent ו-Pinterest עולות",
+    "t": "Dick's Sporting Goods, Abercrombie & Fitch ו-Kohl's מזנקות על הדוחות; Cogent Biosciences עולה בכ-15% על אישור FDA ו-Pinterest בכ-11% אחרי שינוי בתגמול ההנהלה במקרה של רכישה.",
     "tone": "pos"
    },
    {
@@ -44407,8 +44407,8 @@
     "tone": "neg"
    },
    {
-    "h": "הפד: העלאה בדצמבר בתמחור כמעט מלא",
-    "t": "השוק מתמחר בכ-95% העלאה ברבע נקודה בדצמבר והתשואה ל-10 שנים סביב 4.92%; נשיא הפד של ניו יורק ויליאמס לא שלל העלאות רצופות, והיום יתפרסם מדד אמון הצרכנים.",
+    "h": "אמון הצרכנים מפתיע; הפד בדרך להעלאה",
+    "t": "מדד אמון הצרכנים של ה-Conference Board קפץ ל-103.3 מול צפי של כ-92; השוק מתמחר בכ-95% העלאה ברבע נקודה בדצמבר והתשואה ל-10 שנים סביב 4.92%.",
     "tone": "neu"
    }
   ],
@@ -44481,7 +44481,7 @@
    "from": 19.3,
    "note": "המדד צנח בכ-26% ל-26.62, אחרי הזינוק של יום שישי, ביום שבו ה-S&P 500 רשם את העלייה החדה מאז אפריל 2025."
   },
-  "rev": 202611241705,
+  "rev": 202611241735,
   "market": {
    "note": "סגירה ביום שני, 23.11.2026. היום הטוב ביותר בוול סטריט מאז אפריל 2025, אחרי שבעה ימי ירידות ב-S&P 500: Nvidia זינקה ב-31.5% אחרי החזרת ג׳נסן הואנג למנכ״ל, וסקטור הטכנולוגיה עלה בכ-8%. הזהב עלה בכ-4% והנפט ירד בכ-3%–4%; אנרגיה וצריכה בסיסית היו הסקטורים היחידים שירדו.",
    "idx": [
@@ -115835,6 +115835,79 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-24-consumer-confidence-nov",
+   "date": "2026-11-24",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "pos",
+   "title": "אמון הצרכנים בארה״ב קופץ ל-103.3 בנובמבר, הרבה מעל הצפי",
+   "body": "מדד אמון הצרכנים של ה-Conference Board עלה בנובמבר ל-103.3, לעומת קונצנזוס של כ-92.1 ו-91.9 בחודש הקודם (מעודכן מ-91.7).",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4676174-consumer-confidence-perks-up-in-november-beating-consensus",
+   "time": "17:02"
+  },
+  {
+   "id": "2026-11-24-memory-chips-reverse",
+   "date": "2026-11-24",
+   "t": [
+    "MU",
+    "SNDK",
+    "NVDA"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "מניות הזיכרון והשבבים מחזירות חלק מהראלי של אתמול",
+   "body": "לפי 24/7 Wall St., Micron יורדת בכ-7%, Sandisk ו-SK hynix בכ-6% ו-Nvidia בכ-6% במימוש רווחים אחרי שאתמול הוסיפה Nvidia כ-$950 מיליארד לשוויה; דאגות מהעלאת ריבית מצד הפד והסנקציות על איראן צוינו גם הן.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/24/micron-falls-7-as-nvidia-pullback-partially-reverses-mondays-ai-chip-rally-sandisk-and-sk-hynix-drop-6/",
+   "time": "16:07"
+  },
+  {
+   "id": "2026-11-24-cogt-fda-ekitna",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "COGT"
+   ],
+   "tag": "FDA",
+   "tone": "pos",
+   "title": "Cogent Biosciences מזנקת בכ-15% אחרי אישור ה-FDA לתרופה EKITNA",
+   "body": "ה-FDA אישר את EKITNA (bezuclastinib) בשילוב עם sunitinib לטיפול במבוגרים עם GIST מתקדם שטופלו בעבר ב-imatinib. בניסוי שלב 3 PEAK החציון ללא התקדמות מחלה עמד על 16.5 חודשים מול 9.2.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/cogent-biosciences-stock-surges-on-fda-approval-of-ekitna-5048574",
+   "time": "16:55"
+  },
+  {
+   "id": "2026-11-24-pins-exec-pay",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "PINS"
+   ],
+   "tag": "הנהלה",
+   "tone": "pos",
+   "title": "Pinterest עולה בכ-11% אחרי שינוי בתנאי התגמול של ההנהלה במקרה של רכישה",
+   "body": "לפי דיווח לרשות ניירות הערך, מענקי המניות של המנכ״ל ביל רדי ושל מנהלת נוספת ישולמו ביעד או מעליו אם החברה תירכש והם יעזבו; לפי Investing.com, הצעד עורר ספקולציות על השתלטות, אך אין דיווחים על מגעים פעילים.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/pinterest-shares-jump-13-after-executive-pay-overhaul-5048592",
+   "time": "17:07"
+  },
+  {
+   "id": "2026-11-24-sndk-falls",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Sandisk יורדת בכ-12% במימוש רווחים אחרי הראלי בשבבים",
+   "body": "לפי 24/7 Wall St., מניות הזיכרון מחזירות חלק מהזינוק של אתמול בעקבות חזרתו של ג׳נסן הואנג ל-Nvidia; Micron יורדת בכ-7% ו-SK hynix בכ-6%.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/24/micron-falls-7-as-nvidia-pullback-partially-reverses-mondays-ai-chip-rally-sandisk-and-sk-hynix-drop-6/",
+   "time": "16:07"
+  },
   {
    "id": "2026-11-24-tariff-301-bloomberg",
    "date": "2026-11-24",
