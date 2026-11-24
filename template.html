@@ -1378,7 +1378,7 @@ function renderHomeMovers(){
   $('hmvH').textContent = m.pre ? 'מזנקות במסחר המקדים' : 'מניות שזינקו היום';
   sec.dataset.pg = mv.length?'home':'none'; sec.classList.toggle('on', !!mv.length && (CURPG==='home'||CURPG==null&&pageOf(location.hash)[0]==='home'));   /* show again when movers arrive after the page loaded */
   /* each mover with the reason: today's per-stock news item (written by the hourly run); nothing is guessed when there is none */
-  const day=m.date||nyToday(), why=t=>(FALLBACK.news||[]).find(n=>Array.isArray(n.t)&&n.t.includes(t)&&n.date===day)||null;
+  const _ad=String(m.asOf||'').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/), day=m.date||(_ad?`${_ad[3]}-${_ad[2].padStart(2,'0')}-${_ad[1].padStart(2,'0')}`:nyToday()), why=t=>(FALLBACK.news||[]).find(n=>Array.isArray(n.t)&&n.t.includes(t)&&n.date===day)||null;
   const vf=v=>v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+'M':v>=1e3?Math.round(v/1e3)+'K':String(v);
   $('hmvList').innerHTML = (hasV?`<div class="hmvn">דירוג משולב: אחוז העלייה ומחזור המסחר המקדים</div>`:'')+mv.slice(0,lim).map(r=>{ const n=why(r.t); return `<a class="hmr" href="#stock/${encodeURIComponent(r.t)}"><span class="hmt"><b>${esc(r.t)}</b><span class="num ${r.p>=0?'up':'down'}">${pct(r.p,1)}</span>${r.v?`<span class="hmvv num" title="מחזור במסחר המקדים">Vol ${vf(r.v)}</span>`:''}<small>${esc(r.n||'')}</small></span><span class="hmw">${n?`${esc(n.title)}${n.body?`<small>${esc(n.body)}</small>`:''}`:'<span class="flat">עדיין אין סיבה מאומתת. הריצה השעתית מחפשת ותעדכן כאן.</span>'}</span></a>`; }).join('')
     +(mv.length>5?`<button type="button" class="hmvm" data-hmvm>${all?'הצג פחות ↑':`הצג עוד ${mv.length-5} ↓`}</button>`:'');
