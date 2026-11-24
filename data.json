@@ -115836,6 +115836,21 @@
  },
  "news": [
   {
+   "id": "2026-11-24-tgtx-briumvi-single-dose",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "TGTX"
+   ],
+   "tag": "FDA",
+   "tone": "pos",
+   "title": "ה-FDA אישר ל-TG Therapeutics משטר התחלה במנה אחת של BRIUMVI",
+   "body": "TG Therapeutics קיבלה את אישור ה-FDA לבקשה המשלימה (sBLA) לתרופה BRIUMVI לטרשת נפוצה: משטר ההתחלה המאושר, 150 מ״ג ביום הראשון ו-450 מ״ג ביום ה-15, יאוחד למתן אחד.",
+   "src": "Benzinga",
+   "url": "https://finnhub.io/api/news?id=7082bffab409f46d0c06bda31f6e9b4b0b513f6692c3ffd7968c56d876e93cc7",
+   "time": "10:32"
+  },
+  {
    "id": "2026-11-24-five-year-auction",
    "date": "2026-11-24",
    "t": [],
