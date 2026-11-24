@@ -1,7 +1,7 @@
 /* וולסטריטר service worker.
    Pages and data: network first (always fresh when online), cached copy only when offline or very slow.
    Icons and fonts: cache first. Third-party widgets (TradingView) are never touched. */
-const V = 'ws-v1';
+const V = 'ws-v2';
 const SHELL = ['./', 'index.html', 'logo.svg', 'manifest.webmanifest', 'icon-192.png'];
 
 self.addEventListener('install', e => {
@@ -17,7 +17,8 @@ async function networkFirst(req) {
   const c = await caches.open(V);
   try {
     const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 8000);
-    const res = await fetch(req, { signal: ctl.signal }); clearTimeout(t);
+    const page = req.mode === 'navigate' || /\.html$|\/$/.test(new URL(req.url).pathname);   // pages: ask the server every time (no stale browser-cache copy)
+    const res = await fetch(page ? new Request(req, { cache: 'no-cache' }) : req, { signal: ctl.signal }); clearTimeout(t);
     if (res.ok) c.put(key(req), res.clone());
     return res;
   } catch (err) {
