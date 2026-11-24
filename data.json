@@ -4167,48 +4167,55 @@
   {
    "id": "ADI-2026-11",
    "t": "ADI",
-   "co": "Analog Devices, Inc.",
-   "sector": "",
+   "co": "Analog Devices",
+   "sector": "שבבים",
    "date": "2026-11-24",
    "q": "Q4 2026",
    "epsAct": 4.06,
-   "epsEst": 3.92,
-   "epsYoy": null,
+   "epsEst": 3.88,
+   "epsYoy": 79.6,
    "epsBasis": "מתואם",
-   "revAct": 4.3734,
-   "revEst": 4.3648,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/ADI",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revAct": 4.37,
+   "revEst": 4.32,
+   "revYoy": 41.9,
+   "guide": "below",
+   "guideText": "לרבעון הראשון של שנת 2027: הכנסות של $4.4 מיליארד (±$150 מיליון), שולי תפעול מתואמים של כ-50.5% ורווח מתואם של $3.82 (±$0.20) למניה, מול צפי של $3.86.",
+   "note": "ההכנסות בשנת 2026 כולה עלו ב-38% ל-$15.18 מיליארד והרווח המתואם ב-68% ל-$13.05. ברבעון: תעשייה +55% ל-$2.19 מיליארד, רכב +21% ל-$1.04 מיליארד, תקשורת +81% ל-$707 מיליון וצרכנות +7%. צפי הרווח וההכנסות לפי rallies.ai ו-24/7 Wall St.",
+   "react": "המניה ירדה בכ-7.3% במסחר המקדים, ל-$351, לפי rallies.ai.",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0000006281/000000628126000087/adiq426exhibit991.htm",
+   "hook": "רווח מתואם של $4.06 מעל הצפי, תחזית רווח מתחת לצפי",
+   "call": [
+    "המנכ״ל וינסנט רוש: השנה השיא נבעה מביקוש לתשתיות AI במרכזי נתונים ובציוד בדיקה אוטומטי (ATE).",
+    "לפי רוש, יותר משני שלישים מהצמיחה ב-2026 הגיעו משווקים שאינם קשורים ישירות ל-AI."
+   ],
+   "delta": "באוגוסט התחזית לרבעון הבא הייתה מעל הצפי; הפעם תחזית הרווח מתחת לצפי."
   },
   {
    "id": "BBY-2026-11",
    "t": "BBY",
-   "co": "Best Buy Co., Inc.",
-   "sector": "",
+   "co": "Best Buy",
+   "sector": "קמעונאות",
    "date": "2026-11-24",
    "q": "Q3 2027",
    "epsAct": 1.62,
-   "epsEst": 1.5,
-   "epsYoy": null,
+   "epsEst": 1.49,
+   "epsYoy": 15.7,
    "epsBasis": "מתואם",
    "revAct": 10.236,
-   "revEst": 9.9958,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/BBY",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revEst": 9.9,
+   "revYoy": 5.8,
+   "guide": "raised",
+   "guideText": "לשנת הכספים 2027: הכנסות של $43.0–43.3 מיליארד (קודם $42.3–42.8), מכירות זהות +3.4%–4.0% (קודם +1.9%–3.0%), שיעור תפעולי מתואם של כ-4.5% ורווח מתואם של $6.90–7.05 (קודם $6.70–6.90). לרבעון הרביעי: מכירות זהות +2%–4%.",
+   "note": "מכירות זהות +6.1% מול צפי של 2.3%; בארה״ב +6.2% ואונליין +10.8%. בידור +27.5%, שירותים +8.7%, מחשוב וטלפונים +7.1%. שולי הרווח הגולמי בארה״ב עלו ל-24.1%, כולל $41 מיליון מהחזרי מכסי IEEPA. המלאי עלה ב-11.4% ל-$8.9 מיליארד. צפי הרווח לפי Yahoo Finance ו-TipRanks.",
+   "react": "המניה עלתה בכ-5% במסחר המקדים, לפי Yahoo Finance.",
+   "ir": "https://www.financialcontent.com/article/bizwire-2026-11-24-best-buy-reports-third-quarter-results",
+   "hook": "מכירות זהות של +6.1% והעלאת התחזית השנתית",
+   "call": [
+    "המנכ״ל ג׳ייסון בונפיג: המכירות הזהות היו מעל הציפיות ונותנות ביטחון להעלות את התחזית השנתית.",
+    "הצמיחה הובלה על ידי מחשוב, טלפונים, משקפי AI וקלפי אספנות.",
+    "תחזית המכירות הזהות לרבעון החגים, 2%–4%, נמוכה מהקצב ברבעון השלישי."
+   ],
+   "delta": "קצב המכירות הזהות האיץ ל-6.1% מ-2.7% לפני שנה, והתחזית השנתית הועלתה."
   },
   {
    "id": "BILI-2026-11",
@@ -4259,25 +4266,23 @@
   {
    "id": "DY-2026-11",
    "t": "DY",
-   "co": "Dycom Industries, Inc.",
-   "sector": "",
+   "co": "Dycom Industries",
+   "sector": "תשתיות",
    "date": "2026-11-24",
    "q": "Q3 2027",
    "epsAct": 5.23,
    "epsEst": 4.7,
-   "epsYoy": null,
+   "epsYoy": 33.1,
    "epsBasis": "מתואם",
-   "revAct": 2.0563,
+   "revAct": 2.056,
    "revEst": 1.9999,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 41.6,
+   "guide": "raised",
+   "guideText": "לשנת הכספים 2027: הכנסות של $7.66–7.73 מיליארד (קודם $7.48–7.66). לרבעון הרביעי: הכנסות של $1.63–1.70 מיליארד ורווח מתואם של $2.48–2.78 למניה.",
+   "note": "צמיחה אורגנית של 11.2%, EBITDA מתואם של $311.7 מיליון (15.2%) וצבר של $12.9 מיליארד, +57%. החברה רשמה הפרשה של $22.7 מיליון אחרי שלקוח כפרי הגיש בקשה לפשיטת רגל. אושרה רכישה עצמית חדשה של $200 מיליון.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/DY",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.globenewswire.com/news-release/2026/11/24/3409110/0/en/dycom-industries-inc-reports-fiscal-2027-third-quarter-results.html",
+   "hook": "הכנסות +41.6% והעלאת התחזית השנתית"
   },
   {
    "id": "KC-2026-11",
@@ -4305,25 +4310,29 @@
   {
    "id": "MDT-2026-11",
    "t": "MDT",
-   "co": "Medtronic plc.",
-   "sector": "",
+   "co": "Medtronic",
+   "sector": "בריאות",
    "date": "2026-11-24",
    "q": "Q2 2027",
    "epsAct": 1.34,
-   "epsEst": 1.34,
-   "epsYoy": null,
+   "epsEst": 1.33,
+   "epsYoy": -1.5,
    "epsBasis": "מתואם",
    "revAct": 9.364,
-   "revEst": 9.5761,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/MDT",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revEst": 9.48,
+   "revYoy": 4.5,
+   "guide": "inline",
+   "guideText": "לשנת הכספים 2027 (ללא שינוי): צמיחה אורגנית בהכנסות של 7.25%–7.75% ורווח מתואם של $5.94–6.00 למניה, מול צפי LSEG של $5.97.",
+   "note": "צמיחה אורגנית של 6.5%. קרדיו-וסקולרי +10.4% אורגנית ל-$3.79 מיליארד, עם זינוק של 58% ב-Cardiac Ablation Solutions (80% בארה״ב); נוירו-מדעים +3.2% אורגנית; כירורגיה +4.4% אורגנית. הרווח לפי GAAP, $2.20 למניה, כולל רווח של $2 מיליארד מהפרדת MiniMed. צפי הרווח לפי דיווח סוכנות (WBOW) ו-MarketBeat.",
+   "react": "המניה ירדה ביותר מ-3% במסחר המקדים, לפי דיווח סוכנות ב-WBOW.",
+   "ir": "https://news.medtronic.com/2026-11-24-Medtronic-reports-second-quarter-fiscal-2027-results-performance-reflects-consistent-execution-across-the-portfolio",
+   "hook": "הכנסות מתחת לצפי, התחזית השנתית נשמרה",
+   "call": [
+    "המנכ״ל ג׳ף מרתה: הפעילויות המובילות מתפקדות היטב ומנועי הצמיחה החדשים מתרחבים.",
+    "החברה תמשיך להשקיע בצמיחה אורגנית ובמיזוגים ורכישות ממושמעים.",
+    "ההודעה מציינת כסיכון את שינויי מדיניות הסחר העולמית."
+   ],
+   "delta": "הרבעון הראשון אחרי השלמת הפרדת MiniMed; התחזית נשמרה, אחרי שברבעון הקודם הועלתה."
   },
   {
    "id": "MMED-2026-11",
@@ -4351,25 +4360,23 @@
   {
    "id": "SJM-2026-11",
    "t": "SJM",
-   "co": "The J.M. Smucker Company",
-   "sector": "",
+   "co": "J.M. Smucker",
+   "sector": "מזון",
    "date": "2026-11-24",
    "q": "Q2 2027",
    "epsAct": 3.2,
    "epsEst": 2.59,
-   "epsYoy": null,
+   "epsYoy": 52.4,
    "epsBasis": "מתואם",
-   "revAct": 2.2832,
+   "revAct": 2.28,
    "revEst": 2.2937,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": -2.0,
+   "guide": "raised",
+   "guideText": "לשנת הכספים 2027: רווח מתואם של $10.80–11.20 למניה (קודם $10.50–11.00), כולל כ-75 סנט מהחזרי מכסים; מכירות -1% עד -2% ותזרים חופשי של כ-$1.1 מיליארד, ללא שינוי.",
+   "note": "הרווח כולל 22 סנט מהחזרי מכסים. קפה קמעונאי: מכירות -5%, רווח +96%; מזון לחיות מחמד: מכירות -2%, רווח -17%; Uncrustables וממרחים: מכירות +7%; מאפים מתוקים: -10%. צפי הרווח לפי Finnhub הוא $2.59 ולפי Investing.com $2.55.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/SJM",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.prnewswire.com/news-releases/the-jm-smucker-co-announces-fiscal-year-2027-second-quarter-results-and-updates-full-year-fiscal-2027-outlook-302949379.html",
+   "hook": "רווח מתואם של $3.20 והעלאת תחזית הרווח"
   },
   {
    "id": "VIPS-2026-11",
@@ -44321,7 +44328,7 @@
   }
  ],
  "overview": {
-  "asOf": "24.11.2026 · 15:05",
+  "asOf": "24.11.2026 · 15:35",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44380,19 +44387,19 @@
   ],
   "brief": [
    {
-    "h": "החוזים בירידה אחרי הראלי",
-    "t": "יום אחרי היום הטוב ביותר מאז אפריל 2025, החוזים על הנאסד״ק 100 מובילים את הירידות, Nvidia יורדת בכ-5% במסחר המקדים אחרי זינוק של 31% ומדד ה-VIX עולה לסביבת 29; ביום חמישי הבורסה סגורה לחג ההודיה.",
+    "h": "החוזים מעמיקים את הירידה",
+    "t": "יום אחרי היום הטוב ביותר מאז אפריל 2025, החוזים על הנאסד״ק 100 מובילים את הירידות, מדד ה-VIX עולה לכ-28.8 ו-Anthropic יורדת במסחר המקדים לכ-$82, מתחת למחיר ההנפקה של $83; ביום חמישי הבורסה סגורה לחג ההודיה.",
     "tone": "neg"
    },
    {
     "h": "קמעונאיות מזנקות על הדוחות",
-    "t": "Dick's Sporting Goods עולה בכ-18% במסחר המקדים, Abercrombie & Fitch בכ-11% ו-Kohl's בכ-9% אחרי הדוחות והעלאות התחזית השנתית; Dollar Tree עולה אחרי רווח מתואם של $1.16 מול צפי של 92 סנט.",
+    "t": "Dick's Sporting Goods עולה בכ-18% במסחר המקדים, Abercrombie & Fitch בכ-11% ו-Kohl's בכ-9%; Best Buy עולה בכ-5% אחרי מכירות זהות של +6.1% והעלאת התחזית השנתית.",
     "tone": "pos"
    },
    {
-    "h": "Insmed מזנקת על עסקת Sanofi",
-    "t": "Insmed עולה בכ-14% במסחר המקדים אחרי ש-Sanofi הסכימה לרכוש אותה ב-$175 למניה במזומן, שווי של כ-$41 מיליארד; ההשלמה צפויה במחצית הראשונה של 2027.",
-    "tone": "pos"
+    "h": "ADI ו-Medtronic יורדות אחרי הדוחות",
+    "t": "Analog Devices יורדת בכ-7% אחרי תחזית רווח של $3.82 לרבעון הבא מול צפי של $3.86, ו-Medtronic יורדת ביותר מ-3% אחרי הכנסות של $9.36 מיליארד מול צפי של $9.48 מיליארד.",
+    "tone": "neg"
    },
    {
     "h": "הורמוז: טענה איראנית על מכליות שנפגעו",
@@ -44474,7 +44481,7 @@
    "from": 19.3,
    "note": "המדד צנח בכ-26% ל-26.62, אחרי הזינוק של יום שישי, ביום שבו ה-S&P 500 רשם את העלייה החדה מאז אפריל 2025."
   },
-  "rev": 202611241505,
+  "rev": 202611241535,
   "market": {
    "note": "סגירה ביום שני, 23.11.2026. היום הטוב ביותר בוול סטריט מאז אפריל 2025, אחרי שבעה ימי ירידות ב-S&P 500: Nvidia זינקה ב-31.5% אחרי החזרת ג׳נסן הואנג למנכ״ל, וסקטור הטכנולוגיה עלה בכ-8%. הזהב עלה בכ-4% והנפט ירד בכ-3%–4%; אנרגיה וצריכה בסיסית היו הסקטורים היחידים שירדו.",
    "idx": [
@@ -115830,7 +115837,7 @@
  },
  "news": [
   {
-   "id": "2026-11-24-pentagon-gm-ford-drones",
+   "id": "2026-11-24-pentagon-drones-gm-ford",
    "date": "2026-11-24",
    "t": [
     "GM",
@@ -115838,26 +115845,396 @@
    ],
    "tag": "ממשל",
    "tone": "neu",
-   "title": "WSJ: הפנטגון במגעים עם GM ו-Ford לייצור המוני של רחפנים צבאיים",
-   "body": "לפי ה-Wall Street Journal, שצוטט ב-Reuters, הפנטגון מנהל מגעים עם General Motors, Ford ויצרנים נוספים כדי שיספקו לחברות רחפנים רכיבים כמו מנועים, מפעילים, חיישנים ו-lidar; GM שוקלת לייצר מנועי רחפנים. לפי הדיווח טרם נחתמו עסקאות, והחברות לא הגיבו.",
-   "src": "Reuters / WSJ",
-   "url": "https://www.investing.com/news/stock-market-news/pentagon-in-talks-with-general-motors-and-ford-on-military-drones-wsj-reports-5047560",
-   "time": "12:44"
+   "title": "WSJ: הפנטגון מנהל מגעים עם GM ו-Ford על ייצור רכיבים לרחפנים צבאיים",
+   "body": "לפי דיווח ב-Wall Street Journal, הפנטגון נמצא במגעים ראשוניים עם General Motors, Ford, Magna ויצרנים נוספים על אספקת מנועים, מפעילים וחיישנים ליצרניות רחפנים, כדי להגדיל את ייצור הרחפנים הצבאיים בארה״ב. לא נחתמו עסקאות ולא פורסמו סכומים; לפי הדיווח, בכירים בתעשייה העלו שאלות לגבי שולי הרווח. Reuters ציינה שלא יכלה לאמת את הדיווח.",
+   "src": "Reuters (דרך Yahoo), Fox Business",
+   "url": "https://www.yahoo.com/news/articles/pentagon-talks-general-motors-ford-104418996.html",
+   "time": "12:50"
   },
   {
-   "id": "2026-11-24-ant-daniela-amodei-form4",
+   "id": "2026-11-24-futures-deepen-nasdaq",
    "date": "2026-11-24",
-   "k": "stock",
    "t": [
     "ANT"
    ],
-   "tag": "בעלי עניין",
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "החוזים מעמיקים את הירידה; הנאסד״ק 100 יורד בכ-1.6%",
+   "body": "לפי Yahoo Finance נכון ל-14:35, החוזה על ה-S&P 500 ירד ב-0.87% ל-7,191, החוזה על הנאסד״ק ב-1.61% והחוזה על הדאו ב-0.44%. מדד ה-VIX עלה ב-8.3% ל-28.8, והתשואה ל-10 שנים עמדה על 4.92%.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-rebound-090614276.html",
+   "time": "14:35"
+  },
+  {
+   "id": "2026-11-24-anthropic-below-ipo",
+   "date": "2026-11-24",
+   "t": [
+    "ANT"
+   ],
+   "tag": "הנפקות",
+   "tone": "neg",
+   "title": "Anthropic יורדת מתחת למחיר ההנפקה של $83",
+   "body": "מניית Anthropic ירדה במסחר המקדים בכ-6.5% לכ-$82, מתחת למחיר ההנפקה של $83, אחרי שנפתחה ב-19 בנובמבר ב-$111.50. Reuters ציינה את מכירות הטכנולוגיה, החשש מתמחור גבוה של חברות AI ומכירה של יותר מ-3.37 מיליון מניות בשווי של יותר מ-$280 מיליון על ידי המנכ״ל דריו אמודיי, לפי דיווח לרשויות.",
+   "src": "Reuters",
+   "url": "https://www.freedom969.com/business/anthropic-breaks-below-83-ipo-price-as-debut-rally-unravels",
+   "time": "14:48"
+  },
+  {
+   "id": "2026-11-24-tesla-spacex-committees",
+   "date": "2026-11-24",
+   "t": [
+    "TSLA",
+    "SPCX"
+   ],
+   "tag": "מיזוגים",
    "tone": "neu",
-   "title": "Anthropic: הנשיאה דניאלה אמודיי מכרה כ-3.38 מיליון מניות במסגרת ההנפקה",
-   "body": "לפי טופס 4 שהוגש ל-SEC, דניאלה אמודיי מכרה ב-20 בנובמבר 3,378,378 מניות Class A במחיר ההנפקה, $83 למניה (כ-$280 מיליון), במכירה לחתמים בהנפקה הראשונית; לאחר המכירה היא מחזיקה ישירות בכ-220.5 מיליון מניות, כולל RSU.",
-   "src": "SEC Form 4 (StockTitan)",
-   "url": "https://www.stocktitan.net/sec-filings/ANT/form-4-anthropic-pbc-insider-trading-activity-d573b7e3f608.html",
-   "time": "00:38"
+   "title": "FT: Tesla ו-SpaceX מינו דירקטורים לניהול שיחות המיזוג",
+   "body": "לפי Financial Times, Tesla ו-SpaceX הקימו ועדות מיוחדות לניהול משא ומתן על מיזוג בעסקת מניות. מטעם Tesla: רובין דנהולם, קתלין וילסון-תומפסון וג׳ק הרטונג; מטעם SpaceX: רולוף בותה ורנדי גליין. Bloomberg דיווחה קודם שעסקה עשויה להגיע כבר בדצמבר.",
+   "src": "RTÉ (לפי FT)",
+   "url": "https://www.rte.ie/news/business/2026/1124/1600411-spacex-tesla-appoint-directors-to-guide-merger-talks-ft/",
+   "time": "10:52"
+  },
+  {
+   "id": "2026-11-24-earnings-morning-roundup",
+   "date": "2026-11-24",
+   "t": [
+    "ADI",
+    "MDT",
+    "BBY",
+    "SJM",
+    "BURL"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "דוחות הבוקר: ADI ו-Medtronic יורדות, Best Buy עולה",
+   "body": "Analog Devices יורדת בכ-7% במסחר המקדים אחרי תחזית רווח לרבעון הבא מתחת לצפי, ו-Medtronic יורדת ביותר מ-3% אחרי הכנסות מתחת לצפי. Best Buy עולה בכ-5% אחרי מכירות זהות של +6.1% והעלאת התחזית השנתית. J.M. Smucker העלתה את תחזית הרווח, ו-Burlington הורידה את תחזית הרווח לרבעון הרביעי.",
+   "src": "Analog Devices, Medtronic, Best Buy (הודעות החברות), Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-rebound-090614276.html",
+   "time": "15:20"
+  },
+  {
+   "id": "2026-11-24-bitcoin-below-60k",
+   "date": "2026-11-24",
+   "t": [],
+   "tag": "קריפטו",
+   "tone": "neg",
+   "title": "הביטקוין יורד לסביבת $60,000",
+   "body": "לפי TradingKey, הביטקוין ירד ב-2.8% ל-$59,499 והאת׳ריום ב-2.6% ל-$1,677. לפי Yahoo Finance, הביטקוין נסחר סביב $60,363, ירידה של 1.45%.",
+   "src": "TradingKey, Yahoo Finance",
+   "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262319957-us-pre-market-trump-jensen-huang-nvidia-ai-chips-xau-wti-oil-gold-ant-tradingkey",
+   "time": "15:25"
+  },
+  {
+   "id": "2026-11-23-doj-binance-forfeiture",
+   "date": "2026-11-23",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "משרד המשפטים מבקש לחלט $1.1 מיליארד בקריפטו שנגנבו מ-Binance",
+   "body": "משרד המשפטים האמריקאי הגיש ביום שני לבית משפט פדרלי בוושינגטון בקשה לחילוט של יותר מ-$1.1 מיליארד ב-USDC, שנגנבו בפריצה ל-Binance ב-29 באוקטובר. לפי Cointelegraph, הרשויות סייעו להקפיא, לתפוס או להשיב כמעט $3 מיליארד מתוך יותר מ-$6 מיליארד שנגנבו, בפריצה שיוחסה להאקרים הקשורים לצפון קוריאה.",
+   "src": "Cointelegraph",
+   "url": "https://cointelegraph.com/news/us-seeks-11b-crypto-stolen-north-korea-binance-hack",
+   "time": "23:04"
+  },
+  {
+   "id": "2026-11-24-adi-q4-guide",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "ADI"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Analog Devices יורדת בכ-7% במסחר המקדים על תחזית רווח מתחת לצפי",
+   "body": "ההכנסות ברבעון הרביעי עלו ב-42% ל-$4.37 מיליארד והרווח המתואם ל-$4.06 למניה, מעל צפי של $3.88. לרבעון הבא החברה צופה הכנסות של $4.4 מיליארד (±$150 מיליון) ורווח מתואם של $3.82 (±$0.20), מול צפי של $3.86. המניה ירדה בכ-7.3% ל-$351 לפי rallies.ai.",
+   "src": "Analog Devices (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000006281/000000628126000087/adiq426exhibit991.htm",
+   "time": "15:00"
+  },
+  {
+   "id": "2026-11-24-mdt-q2-rev-miss",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "MDT"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Medtronic יורדת ביותר מ-3% אחרי הכנסות מתחת לצפי",
+   "body": "ההכנסות ברבעון השני עלו ב-4.5% ל-$9.36 מיליארד (6.5% אורגנית), מתחת לצפי של $9.48 מיליארד, והרווח המתואם היה $1.34 למניה מול צפי של $1.33. החברה שמרה על התחזית השנתית: צמיחה אורגנית של 7.25%–7.75% ורווח מתואם של $5.94–6.00. מכירות ה-Cardiac Ablation זינקו ב-58%.",
+   "src": "Medtronic, WBOW (דיווח סוכנות)",
+   "url": "https://news.medtronic.com/2026-11-24-Medtronic-reports-second-quarter-fiscal-2027-results-performance-reflects-consistent-execution-across-the-portfolio",
+   "time": "14:35"
+  },
+  {
+   "id": "2026-11-24-bby-q3-raise",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "BBY"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Best Buy עולה בכ-5% במסחר המקדים אחרי זינוק במכירות הזהות",
+   "body": "המכירות הזהות עלו ב-6.1% מול צפי של 2.3%, ההכנסות ב-5.8% ל-$10.24 מיליארד והרווח המתואם ל-$1.62 למניה מול צפי של $1.49. Best Buy העלתה את תחזית הרווח השנתית ל-$6.90–7.05 (קודם $6.70–6.90) ואת תחזית ההכנסות ל-$43.0–43.3 מיליארד.",
+   "src": "Best Buy, Yahoo Finance",
+   "url": "https://www.financialcontent.com/article/bizwire-2026-11-24-best-buy-reports-third-quarter-results",
+   "time": "14:00"
+  },
+  {
+   "id": "2026-11-24-sjm-q2-raise",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "SJM"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "J.M. Smucker מעלה את תחזית הרווח השנתית",
+   "body": "הרווח המתואם ברבעון השני עלה ב-52% ל-$3.20 למניה, כולל 22 סנט מהחזרי מכסים, והמכירות ירדו ב-2% ל-$2.28 מיליארד. החברה העלתה את תחזית הרווח השנתית ל-$10.80–11.20 (קודם $10.50–11.00), שכוללת כ-75 סנט מהחזרי מכסים, והשאירה את תחזית המכירות.",
+   "src": "J.M. Smucker (PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/the-jm-smucker-co-announces-fiscal-year-2027-second-quarter-results-and-updates-full-year-fiscal-2027-outlook-302949379.html",
+   "time": "14:00"
+  },
+  {
+   "id": "2026-11-24-burl-q3-guide-cut",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "BURL"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Burlington מורידה את תחזית הרווח לרבעון הרביעי",
+   "body": "המכירות ברבעון השלישי עלו ב-8% ל-$2.93 מיליארד, מתחת לצפי של $2.98 מיליארד לפי 24/7 Wall St., והמכירות הזהות עלו ב-1% בלבד. המנכ״ל מייקל או׳סאליבן אמר שהוא ״מאוכזב״ וציין מזג אוויר חם במיוחד באוקטובר. החברה הורידה ב-20 סנט את תחזית הרווח המתואם לרבעון הרביעי, ל-$4.85–4.95, בגלל עלויות דלק והובלה.",
+   "src": "Burlington (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/11/24/3409093/0/en/burlington-stores-reports-third-quarter-2026-earnings.html",
+   "time": "13:45"
+  },
+  {
+   "id": "2026-11-24-dy-q3-raise",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "DY"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Dycom: הכנסות +41.6% והעלאת התחזית השנתית",
+   "body": "ההכנסות ברבעון השלישי עלו ב-41.6% ל-$2.06 מיליארד (11.2% אורגנית) והרווח המתואם ל-$5.23 למניה מ-$3.93. צבר ההזמנות עלה ב-57% ל-$12.9 מיליארד. החברה העלתה את תחזית ההכנסות השנתית ל-$7.66–7.73 מיליארד והכריזה על תוכנית רכישה עצמית חדשה של $200 מיליון.",
+   "src": "Dycom (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/11/24/3409110/0/en/dycom-industries-inc-reports-fiscal-2027-third-quarter-results.html",
+   "time": "14:00"
+  },
+  {
+   "id": "2026-11-24-bili-q3",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "BILI"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Bilibili: הכנסות הפרסום עלו ב-20%",
+   "body": "ההכנסות ברבעון השלישי עלו ב-8% ל-8.32 מיליארד יואן ($1.24 מיליארד), הכנסות הפרסום עלו ב-20% ל-3.09 מיליארד יואן והרווח הנקי ב-7% ל-504 מיליון יואן. מספר המשתמשים היומיים עלה ב-5% ל-123.5 מיליון.",
+   "src": "Bilibili (Quantisnow)",
+   "url": "https://www.quantisnow.com/insight/bilibili-inc-announces-third-quarter-2026-financial-results-6804688",
+   "time": "12:00"
+  },
+  {
+   "id": "2026-11-24-vips-q3",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "VIPS"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Vipshop: ירידה בהכנסות ותחזית חלשה לרבעון הרביעי",
+   "body": "ההכנסות ברבעון השלישי ירדו ל-20.4 מיליארד יואן מ-21.4 מיליארד, והרווח המתואם ל-ADS ירד ל-2.64 יואן מ-2.98. מספר הלקוחות הפעילים ירד ל-38.3 מיליון. לרבעון הרביעי החברה צופה ירידה של כ-5%–10% בהכנסות, והדירקטוריון אישר תוכנית רכישה עצמית חדשה של $1 מיליארד.",
+   "src": "Vipshop (PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/vipshop-reports-unaudited-third-quarter-2026-financial-results-302949238.html",
+   "time": "12:00"
+  },
+  {
+   "id": "2026-11-24-tex-sells-aerials",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "TEX"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Terex מוכרת את חטיבת Genie ל-Linamar בכ-$1.4 מיליארד",
+   "body": "Terex הסכימה למכור את חטיבת ה-Aerials, כולל המותג Genie, ל-Linamar הקנדית תמורת כ-$1.4 מיליארד במזומן. ההשלמה צפויה ב-2027, והתמורה תשמש להקטנת החוב, החזר הון לבעלי המניות והשקעות בצמיחה. ל-Genie הכנסות של כ-$2.3 מיליארד ב-12 החודשים האחרונים.",
+   "src": "Investing.com, Linamar (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/11/23/3408931/0/en/linamar-corporation-to-acquire-genie-from-terex-corporation-significantly-expanding-its-access-work-platforms-group.html",
+   "time": "00:05"
+  },
+  {
+   "id": "2026-11-24-podd-new-cfo",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "PODD"
+   ],
+   "tag": "הנהלה",
+   "tone": "neu",
+   "title": "Insulet ממנה את טוד טראפ לסמנכ״ל הכספים",
+   "body": "טראפ ייכנס לתפקיד ב-7 בדצמבר ויחליף את פלביה פיז, שתישאר כיועצת. קודם לכן כיהן כסמנכ״ל הכספים של Resonetics, Abiomed ו-Watts Water.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/company-news/insulet-names-todd-trapp-as-cfo-effective-december-7-93CH-5047845",
+   "time": "14:08"
+  },
+  {
+   "id": "2026-11-24-f-revolution-space",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "F"
+   ],
+   "tag": "השקעות",
+   "tone": "neu",
+   "title": "Ford משקיעה בחברת מערכות החלל Revolution Space",
+   "body": "חברה בת של Ford תרכוש אחזקת מיעוט ב-Revolution Space, קבלנית ראשית של מערכות חלל עם הנעה בחלל, ותסייע לה לייצר חלליות בהיקפים גדולים. הסכום וגודל האחזקה לא פורסמו, וההשלמה כפופה לאישורים רגולטוריים.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/articles/ford-confirms-minority-investment-revolution-000531794.html",
+   "time": "02:05"
+  },
+  {
+   "id": "2026-11-24-gm-drone-motors",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "GM"
+   ],
+   "tag": "ביטחון",
+   "tone": "neu",
+   "title": "WSJ: GM שוקלת לייצר מנועים לרחפנים צבאיים",
+   "body": "לפי Wall Street Journal, General Motors שוקלת לייצר מנועים לרחפנים במסגרת המגעים עם הפנטגון על הרחבת ייצור הרחפנים הצבאיים. המגעים ראשוניים ולא נחתמה עסקה.",
+   "src": "Reuters (דרך Yahoo)",
+   "url": "https://www.yahoo.com/news/articles/pentagon-talks-general-motors-ford-104418996.html",
+   "time": "12:50"
+  },
+  {
+   "id": "2026-11-24-insp-upc-default",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "INSP"
+   ],
+   "tag": "משפטי",
+   "tone": "neg",
+   "title": "Inspire Medical: החלטה במחדל נגדה בתביעת הפטנט של Nyxoah באירופה",
+   "body": "בדיווח ל-SEC מסרה Inspire שבית המשפט האירופי לפטנטים (UPC) במינכן נתן נגדה החלטה במחדל בתביעה של Nyxoah, מטעמים פרוצדורליים ולא לגופו של עניין. ההחלטה כוללת צו מניעה על Inspire IV שעדיין לא נכנס לתוקף, והחברה תבקש לבטל אותה ולעכב את הצו.",
+   "src": "Inspire Medical (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609550/000110465926131325/tm2630560d1_8k.htm",
+   "time": "15:00"
+  },
+  {
+   "id": "2026-11-24-crwv-premarket",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "CoreWeave יורדת בכ-5.4% במסחר המקדים אחרי זינוק של 22%",
+   "body": "המניה ירדה במסחר המקדים בכ-5.4% יחד עם מניות הענן ומרכזי הנתונים, אחרי עלייה של 22.3% אתמול. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/premarket-movers-nvidia-slips-hpe-semtech-fall-5047572",
+   "time": "13:54"
+  },
+  {
+   "id": "2026-11-24-nbis-premarket",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Nebius יורדת בכ-4.3% במסחר המקדים",
+   "body": "המניה ירדה במסחר המקדים בכ-4.3% יחד עם מניות הענן ל-AI, אחרי עלייה של כ-20% אתמול. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/premarket-movers-nvidia-slips-hpe-semtech-fall-5047572",
+   "time": "13:54"
+  },
+  {
+   "id": "2026-11-24-iren-premarket",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "IREN"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "IREN יורדת בכ-4% במסחר המקדים אחרי עלייה של 24%",
+   "body": "המניה ירדה במסחר המקדים בכ-4% יחד עם מניות הענן ל-AI, אחרי עלייה של כ-24% אתמול. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/premarket-movers-nvidia-slips-hpe-semtech-fall-5047572",
+   "time": "13:54"
+  },
+  {
+   "id": "2026-11-24-mu-premarket",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "MU"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Micron יורדת במסחר המקדים אחרי זינוק של 19%",
+   "body": "המניה ירדה במסחר המקדים ב-3%–5%, יחד עם Marvell, עם הירידות במניות השבבים, אחרי עלייה של 19% אתמול. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/premarket-movers-nvidia-slips-hpe-semtech-fall-5047572",
+   "time": "13:54"
+  },
+  {
+   "id": "2026-11-24-amzn-decart-deal",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "AMZN"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Amazon הסכימה לרכוש את טכנולוגיית האופטימיזציה של Decart",
+   "body": "Amazon הסכימה לרכוש את ה-Decart Optimization Stack ולקלוט את צוות החברה, וציינה שהטכנולוגיה משלימה את שבבי Trainium שלה. העסקה כפופה לאישורים רגולטוריים; Bloomberg העריכה את שוויה בכ-$7.5 מיליארד, ו-Amazon לא אישרה את הסכום.",
+   "src": "TechBooky",
+   "url": "https://techbooky.com/amazon-to-buy-decart-ai-chip-software-in-reported-7-5bn-deal",
+   "time": "14:35"
+  },
+  {
+   "id": "2026-11-23-pltr-short-list",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "PLTR"
+   ],
+   "tag": "שורט",
+   "tone": "neu",
+   "title": "Goldman: Palantir בשורט השני בגודלו של קרנות הגידור",
+   "body": "לפי רשימה של Goldman Sachs שמכסה 1,001 קרנות גידור, Palantir היא פוזיציית השורט השנייה בגודלה, בכ-$10.3 מיליארד, אחרי Tesla עם כ-$26.4 מיליארד.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675757-tesla-palantir-lead-goldman-s-list-of-hedge-funds-biggest-short-positions",
+   "time": "20:39"
+  },
+  {
+   "id": "2026-11-23-wmt-short-list",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "WMT"
+   ],
+   "tag": "שורט",
+   "tone": "neu",
+   "title": "Goldman: Walmart שלישית ברשימת השורט של קרנות הגידור",
+   "body": "לפי Goldman Sachs, Walmart היא פוזיציית השורט השלישית בגודלה של קרנות הגידור, בכ-$9 מיליארד, אחרי Tesla ו-Palantir.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4675757-tesla-palantir-lead-goldman-s-list-of-hedge-funds-biggest-short-positions",
+   "time": "20:39"
   },
   {
    "id": "2026-11-24-anf-q3-premarket",
