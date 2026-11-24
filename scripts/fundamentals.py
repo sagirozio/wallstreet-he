@@ -138,6 +138,20 @@ def build(facts):
     for i in range(len(uniq)):
         if out["opex"][i] is None and out["gp"][i] is not None and out["op"][i] is not None:
             out["opex"][i] = out["gp"][i] - out["op"][i]
+    # fiscal-year naming: the company's own label minus the calendar year its fiscal year ends in
+    # (Abercrombie calls the year ending Jan 2027 "fiscal 2026" -> -1; Nvidia calls it "fiscal 2027" -> 0)
+    try:
+        last = {}
+        for tg in TAGS["ni"] + TAGS["rev"]:
+            for r in units(facts, tg):
+                if r.get("form") == "10-K" and r.get("fp") == "FY" and r.get("fy") and r.get("accn"):
+                    a = r["accn"]
+                    if a not in last or r["end"] > last[a][1]: last[a] = (r["fy"], r["end"], r.get("filed", ""))
+        if last:
+            fy, end, _ = max(last.values(), key=lambda v: v[2])
+            o = int(fy) - d(end).year
+            if o in (-1, 0, 1): out["fyo"] = o
+    except Exception: pass
     return out
 
 def main():

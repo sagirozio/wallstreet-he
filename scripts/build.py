@@ -238,6 +238,7 @@ def earn_hist(t):
     try: f = json.loads((root / "fund" / f"{t}.json").read_text())
     except Exception: f = {}
     fq, frv, fe = f.get("q") or [], f.get("rev") or [], f.get("eps") or []
+    _fyo = f.get("fyo") or 0   # Finnhub names the fiscal year by the year it ends in; use the company's own naming (from its 10-K)
     def near(day, lst, lo, hi):   # index of the date in lst whose distance from day is within [lo, hi] days, closest to the middle
         best = None
         for i, x in enumerate(lst):
@@ -252,7 +253,7 @@ def earn_hist(t):
     if any(abs(r[3]) > 500 for r in rows[:4]): return None        # per-share figures of another share class (Berkshire A)
     for k, r in enumerate(rows[:4]):
         p, y, q, a, e = r; day = D(p)
-        x = {"q": (f"Q{q} {str(y)[-2:]}" if q and y else p[:7]), "a": a}
+        x = {"q": (f"Q{q} {str(y + _fyo)[-2:]}" if q and y else p[:7]), "a": a}
         if e is not None: x["e"] = e
         j = near(day, per, 335, 395)                      # same quarter a year earlier, adjusted (Finnhub)
         if j is not None:
