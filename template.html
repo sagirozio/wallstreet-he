@@ -354,7 +354,7 @@ html.light .cfpop{box-shadow:0 16px 40px rgba(15,23,42,.18)}.cfpop.on{display:bl
 .cfs{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:14px;margin-bottom:6px}
 .cfg{font-size:11.5px;color:var(--muted);margin:8px 4px 2px}
 .cfi{display:block;width:100%;text-align:start;padding:7px 8px;border:0;border-radius:7px;background:none;color:var(--text);font-size:14px;cursor:pointer}.cfi:hover,.cfi:focus-visible{background:var(--panel2)}
-.cfh{font-weight:700;font-size:14.5px;margin:2px 2px 8px}
+.cfh{font-weight:700;font-size:14.5px;margin:2px 2px 8px}.cfpl2{font-size:11.5px;color:var(--muted);margin:0 2px 4px}.cfo:has([data-cfpf]){flex-wrap:wrap}.cfo [data-cfpf]{flex:1 0 22%}
 .cfo{display:flex;gap:4px;margin-bottom:8px}.cfo button{flex:1;padding:6px 0;border-radius:8px;border:1px solid var(--line);background:none;color:var(--text);font-size:13px;cursor:pointer}.cfo button.on{background:var(--text);color:var(--bg);border-color:transparent}
 .cfin{display:flex;align-items:center;gap:6px}.cfin input{flex:1;min-width:0;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:600 15px "JetBrains Mono",monospace;direction:ltr;text-align:right}
 .cfin input[aria-invalid="true"]{border-color:var(--red)}.cfin span{color:var(--muted);font-size:12.5px;white-space:nowrap}
@@ -1761,13 +1761,14 @@ const CFD={
   pe:{l:'מכפיל רווח (P/E)',s:'P/E',g:'יסודות',u:'',v:r=>r.x.pe,pre:[15,25,40],q:'מכפיל pe רווח'}
 };
 const CF_MA=[20,50,150,200];
+const CF_PF=['d','w','m','q','h','y','ytd'], CF_PFL=[['d','יום'],['w','שבוע'],['m','חודש'],['q','3 חודשים'],['h','6 חודשים'],['ytd','YTD'],['y','שנה']];   /* performance is one parameter: the period is chosen in its editor */
 let CF=[];
 let _cfMa=null; const cfMaOk=()=>_cfMa&&_cfMa.length>2?_cfMa:(_cfMa=CF_MA.filter(n=>Object.values(stockIndex()).some(s=>s.r&&s.r['a'+n]!=null)));   /* 20 / 150 appear once the nightly data has them */   /* [{k, op:'gt'|'lt'|'bt', a, b}] or {k:'ma', op:'above'|'below', n} */
 const cfNum=v=>{ const n=parseFloat(String(v).replace(',','.')); return isFinite(n)?n:null; };
 function cfPass(r){ for(const f of CF){ if(f.k==='ma'){ const v=r.rr['a'+f.n]; if(v==null) return false; if(f.op==='above'?v<=0:v>=0) return false; continue; }
     const D=CFD[f.k]; if(!D) continue; const v=D.v(r); if(v==null) return false;
     if(f.op==='gt'&&v<f.a) return false; if(f.op==='lt'&&v>f.a) return false; if(f.op==='bt'&&(v<Math.min(f.a,f.b)||v>Math.max(f.a,f.b))) return false; } return true; }
-function cfTxt(f){ if(f.k==='ma') return [f.op==='above'?'מחיר מעל':'מחיר מתחת',`SMA ${f.n}`]; const D=CFD[f.k], u=D.u==='%'?'%':D.u==='$'?'':D.u?D.u:'', p=D.u==='$'?'$':D.u==='B'||D.u==='M'?'$':'', n=x=>p+x+u;
+function cfTxt(f){ if(f.k==='ma') return [f.op==='above'?'מחיר מעל':'מחיר מתחת',`SMA ${f.n}`]; const D=CF_PF.includes(f.k)?{...CFD[f.k],s:'ביצועים '+((CF_PFL.find(x=>x[0]===f.k)||[])[1]||'')}:CFD[f.k], u=D.u==='%'?'%':D.u==='$'?'':D.u?D.u:'', p=D.u==='$'?'$':D.u==='B'||D.u==='M'?'$':'', n=x=>p+x+u;
   return [D.s, f.op==='gt'?'> '+n(f.a):f.op==='lt'?'< '+n(f.a):n(f.a)+'–'+n(f.b)]; }
 function cfSer(){ return CF.map(f=>f.k==='ma'?`ma.${f.op}.${f.n}`:[f.k,f.op,f.a,f.op==='bt'?f.b:''].filter(x=>x!=='').join('.')).join(','); }
 function cfParse(t){ CF=[]; String(t||'').split(',').slice(0,12).forEach(x=>{ const p=x.split('.'); if(p[0]==='ma'){ if((p[1]==='above'||p[1]==='below')&&CF_MA.includes(+p[2])) CF.push({k:'ma',op:p[1],n:+p[2]}); return; }
@@ -1785,14 +1786,15 @@ function cfOpenList(anchor){ const p=cfPop(); p.onclick=null; p.onkeydown=null; 
   p.innerHTML=`<input class="cfs" type="search" placeholder="חיפוש: rs, adr, ממוצע…" aria-label="חיפוש פרמטר" autocomplete="off"><div class="cfl" role="listbox" aria-label="פרמטרים"></div>`;
   const L=p.querySelector('.cfl'), I=p.querySelector('.cfs');
   const draw=()=>{ const q=I.value.trim().toLowerCase(); let g='', h='';
-    Object.entries(CFD).filter(([k,D])=>!q||(D.l+' '+D.q).toLowerCase().includes(q)).forEach(([k,D])=>{ if(D.g!==g){ g=D.g; h+=`<div class="cfg">${esc(g)}</div>`; } h+=`<button type="button" class="cfi" role="option" data-cfn="${k}">${esc(D.l)}</button>`; });
+    Object.entries(CFD).filter(([k])=>!CF_PF.includes(k)||k==='h').map(([k,D])=>k==='h'?['h',{l:'ביצועים (%)',g:'ביצועים',q:'ביצועים תשואה שינוי perf performance יומי שבוע חודש 3 חודשים 6 חודשים שנה ytd'}]:[k,D]).filter(([k,D])=>!q||(D.l+' '+D.q).toLowerCase().includes(q)).forEach(([k,D])=>{ if(D.g!==g){ g=D.g; h+=`<div class="cfg">${esc(g)}</div>`; } h+=`<button type="button" class="cfi" role="option" data-cfn="${k}">${esc(D.l)}</button>`; });
     L.innerHTML=h||'<div class="cfg">לא נמצא פרמטר</div>'; };
   I.addEventListener('input',draw); I.addEventListener('keydown',e=>{ if(e.key==='Enter'){ const b=L.querySelector('[data-cfn]'); if(b){ e.preventDefault(); b.click(); } } });
   draw(); cfPlace(p,anchor); if(matchMedia('(pointer:fine)').matches) I.focus(); }
-function cfOpenEdit(i,k,anchor){ const p=cfPop(), D=CFD[k], f=i>=0?CF[i]:(k==='ma'?{k,op:'above',n:50}:{k,op:'gt',a:D.pre[Math.floor(D.pre.length/2)]});
-  const st={...f}; p.setAttribute('aria-label','הגדרת מסנן '+D.l);
+function cfOpenEdit(i,k,anchor){ const p=cfPop(), isPf=CF_PF.includes(k), D0=CFD[k], f=i>=0?CF[i]:(k==='ma'?{k,op:'above',n:50}:{k,op:'gt',a:D0.pre[Math.floor(D0.pre.length/2)]});
+  const st={...f}; p.setAttribute('aria-label','הגדרת מסנן '+(isPf?'ביצועים':D0.l));
   const draw=()=>{ const seg=(name,opts,cur)=>`<div class="cfo" role="group">${opts.map(([v,l])=>`<button type="button" data-${name}="${v}" aria-pressed="${String(cur)===String(v)}" class="${String(cur)===String(v)?'on':''}">${l}</button>`).join('')}</div>`;
-    p.innerHTML=`<div class="cfh">${esc(D.l)}</div>`+(k==='ma'
+    const D=CFD[st.k]||D0;
+    p.innerHTML=`<div class="cfh">${esc(isPf?'ביצועים (%)':D.l)}</div>`+(isPf?`<div class="cfpl2">טווח זמן</div>`+seg('cfpf',CF_PFL,st.k):'')+(k==='ma'
       ? seg('cfop',[['above','מעל'],['below','מתחת']],st.op)+seg('cfma',cfMaOk().map(n=>[n,'SMA '+n]),st.n)
       : seg('cfop',[['gt','מעל'],['lt','מתחת'],['bt','בין']],st.op)
         +`<div class="cfin"><input type="text" inputmode="decimal" data-cfa value="${st.a??''}" aria-label="ערך">${st.op==='bt'?`<span>עד</span><input type="text" inputmode="decimal" data-cfb value="${st.b??''}" aria-label="ערך עליון">`:''}${D.u?`<span class="u">${D.u==='B'?'מיליארד $':D.u==='M'?'מיליון $':esc(D.u)}</span>`:''}</div>`
@@ -1803,10 +1805,11 @@ function cfOpenEdit(i,k,anchor){ const p=cfPop(), D=CFD[k], f=i>=0?CF[i]:(k==='m
     const rd=()=>{ const A=p.querySelector('[data-cfa]'), B=p.querySelector('[data-cfb]'); if(A) st.a=cfNum(A.value); if(B) st.b=cfNum(B.value); };
     if(b.dataset.cfop){ rd(); st.op=b.dataset.cfop; if(st.op==='bt'&&st.b==null) st.b=st.a; draw(); return; }
     if(b.dataset.cfma){ st.n=+b.dataset.cfma; draw(); return; }
+    if(b.dataset.cfpf){ rd(); st.k=b.dataset.cfpf; draw(); return; }
     if(b.dataset.cfv){ const A=p.querySelector('[data-cfa]'); if(A) A.value=b.dataset.cfv; return; }
     if(b.hasAttribute('data-cfdel')){ CF.splice(i,1); cfClose(); cfApply(); return; }
     if(b.hasAttribute('data-cfok')){ rd(); if(k!=='ma'&&(st.a==null||(st.op==='bt'&&st.b==null))){ const A=p.querySelector('[data-cfa]'); if(A){ A.setAttribute('aria-invalid','true'); A.focus(); } return; }
-      const nf=k==='ma'?{k,op:st.op,n:st.n}:{k,op:st.op,a:st.a,b:st.op==='bt'?st.b:undefined}; if(i>=0) CF[i]=nf; else CF.push(nf); cfClose(); cfApply(); } };
+      const nf=k==='ma'?{k,op:st.op,n:st.n}:{k:st.k,op:st.op,a:st.a,b:st.op==='bt'?st.b:undefined}; if(i>=0) CF[i]=nf; else CF.push(nf); cfClose(); cfApply(); } };
   p.onkeydown=e=>{ if(e.key==='Enter'&&e.target.matches('input')){ e.preventDefault(); const ok=p.querySelector('[data-cfok]'); if(ok) ok.click(); } };
   draw(); cfPlace(p,anchor); }
 function cfApply(){ HUB.lim=40; renderCfRow(); renderHub(); }
