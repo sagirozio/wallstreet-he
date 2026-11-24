@@ -17,11 +17,11 @@ q = EquityQuery("and", [EquityQuery("eq", ["region", "us"]),
                         EquityQuery("gt", ["intradaymarketcap", 1_000_000_000])])
 uni, off = {}, 0
 while True:
-    for _try in range(4):
+    for _try in range(7):   # Yahoo answers HTTP 429 in bursts: back off up to ~8 minutes in all before giving up
         try:
             r = yf.screen(q, offset=off, size=250, sortField="intradaymarketcap", sortAsc=False); break
         except Exception as e:
-            print("screen retry", _try, type(e).__name__, flush=True); time.sleep(10 * (_try + 1))
+            print("screen retry", _try, type(e).__name__, flush=True); time.sleep([10, 20, 40, 60, 90, 120, 150][_try])
     else:
         raise SystemExit("Yahoo screener unavailable — keeping previous themes data")
     qs = r.get("quotes", [])
