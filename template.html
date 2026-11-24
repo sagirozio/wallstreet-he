@@ -3555,6 +3555,38 @@ async function cmpSeries(t,long){
   return {t,D,a};
 }
 const CMP_PER=[[21,'1M'],[63,'3M'],[126,'6M'],[0,'YTD'],[252,'1Y'],[-1,'5Y']];
+/* compare: a PNG of the chart (header with the site's logo, the period, each line's return) — copied at once where allowed, with the share / download preview */
+function cmpShotBlob(){ return new Promise((res,rej)=>{ (async()=>{ if(!CMPS) throw 0; const {ser,dates}=CMPS, n=dates.length-1;
+  const light=document.documentElement.classList.contains('light'), BG=light?'#ffffff':'#121418', INK=light?'#111827':'#e6edf3', MUT=light?'#5b6470':'#8b949e', LN=light?'#e3e6eb':'#24272e', GRN=light?'#12733a':'#2ea463', RED=light?'#c41d1d':'#ef4444';
+  const F='Heebo, Arial, Helvetica, sans-serif', M='"JetBrains Mono", ui-monospace, Menlo, monospace', W=960, H=600, per=(CMP_PER.find(x=>x[0]===CMPP)||[])[1]||'';
+  const lg=document.querySelector('.logo .lgi'), lc=lg?lg.cloneNode(true):null; if(lc){ lc.setAttribute('width',64); lc.setAttribute('height',64); lc.removeAttribute('class'); }
+  const logo=await new Promise(r=>{ if(!lc) return r(null); const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(lc)); });
+  const S=3, cv=document.createElement('canvas'); cv.width=W*S; cv.height=H*S; const x=cv.getContext('2d'); x.scale(S,S); x.fillStyle=BG; x.fillRect(0,0,W,H);
+  const tx=(str,xx,yy,font,col,al,dir)=>{ x.font=font; x.fillStyle=col; x.textAlign=al||'left'; x.direction=dir||'ltr'; x.fillText(str,xx,yy); return x.measureText(str).width; };
+  let rx=W-16; if(logo){ x.drawImage(logo,rx-30,12,30,30); rx-=38; } tx('Wallstreeter',rx,28,'700 17px '+F,GRN,'right'); tx('wallstreeter.co.il',rx,42,'11px '+F,MUT,'right');
+  const dd=String(dates[n]).split('-'); tx(`השוואת תשואות · ${per} · עד ${+dd[2]}.${+dd[1]}.${dd[0]}`,16,32,'600 14px '+F,INK,'left','rtl');
+  x.strokeStyle=LN; x.lineWidth=1; x.beginPath(); x.moveTo(0,56.5); x.lineTo(W,56.5); x.stroke();
+  /* legend: colour, symbol, return over the period */
+  let lx=W-20; ser.forEach(s=>{ const l=s.r[n], nm=s.t==='SPY'?'S&P 500':s.t, vt=(l>=0?'+':'')+l.toFixed(Math.abs(l)>=100?0:1)+'%';
+    x.font='700 15px '+M; const w1=x.measureText(nm).width; x.font='600 14px '+M; const w2=x.measureText(vt).width;
+    x.fillStyle=s.c; x.beginPath(); x.arc(lx-6,84,5,0,7); x.fill(); tx(nm,lx-16,89,'700 15px '+M,INK,'right'); tx(vt,lx-24-w1,89,'600 14px '+M,l>=0?GRN:RED,'right'); lx-=w1+w2+52; });
+  /* chart */
+  const L=24, R=70, T=112, B=H-62, vals=ser.flatMap(s=>s.r), lo=Math.min(0,...vals), hi=Math.max(0,...vals), span=(hi-lo)||1, step=[1,2,5,10,20,25,50,100,200,250,500,1000,2500,5000].find(v=>span/v<=7)||10000, pad=span*.06, mn=lo-pad, mx=hi+pad, X=i=>L+(W-L-R)*i/n, Y=v=>T+(B-T)*(1-(v-mn)/((mx-mn)||1));
+  for(let v=Math.ceil(mn/step)*step; v<=mx+1e-9; v+=step){ const y=Math.round(Y(v))+.5; x.strokeStyle=Math.abs(v)<1e-9?MUT:LN; x.setLineDash(Math.abs(v)<1e-9?[4,4]:[]); x.beginPath(); x.moveTo(L,y); x.lineTo(W-R,y); x.stroke(); tx((v>0?'+':'')+Math.round(v)+'%',W-R+8,y+4,'11px '+M,MUT); }
+  x.setLineDash([]); const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; let px=-1e9;
+  dates.forEach((d,i)=>{ if(!i) return; const p=dates[i-1], nm=d.slice(0,7)!==p.slice(0,7), ny=d.slice(0,4)!==p.slice(0,4); let lab='';
+    if(n<=30){ if(i%5===0) lab=`${+d.slice(8)}.${+d.slice(5,7)}`; } else if(n>520){ if(ny) lab=d.slice(0,4); } else if(nm) lab=ny?d.slice(0,4):MON[+d.slice(5,7)-1];
+    if(!lab) return; const xx=X(i); if(xx-px<64||xx>W-R-14) return; px=xx; tx(lab,xx,B+20,(ny&&n>30?'700 ':'')+'11px '+M,ny&&n>30?INK:MUT,'center'); });
+  ser.forEach(s=>{ x.strokeStyle=s.c; x.lineWidth=s.t==='SPY'?1.8:2.4; x.lineJoin='round'; x.beginPath(); s.r.forEach((v,i)=>{ const xx=X(i), yy=Y(v); i?x.lineTo(xx,yy):x.moveTo(xx,yy); }); x.stroke(); });
+  const ends=ser.map(s=>({s,v:s.r[n],y:Y(s.r[n])})).sort((a,b)=>a.y-b.y); ends.forEach((e,i)=>{ e.ly=i&&e.y-ends[i-1].ly<20?ends[i-1].ly+20:e.y; });
+  ends.forEach(e=>{ x.fillStyle=e.s.c; x.beginPath(); x.arc(X(n),e.y,3.5,0,7); x.fill(); x.beginPath(); x.roundRect?x.roundRect(W-R+4,e.ly-9,R-8,18,4):x.rect(W-R+4,e.ly-9,R-8,18); x.fill(); tx((e.v>=0?'+':'')+e.v.toFixed(Math.abs(e.v)>=100?0:1)+'%',W-R+4+(R-8)/2,e.ly+4,'700 11px '+M,'#fff','center'); });
+  tx('תשואה מצטברת באחוזים, מחירים מותאמים. מידע בלבד, לא ייעוץ השקעות.',W-16,H-10,'11px '+F,MUT,'right','rtl');
+  cv.toBlob(b=>b?res(b):rej(),'image/png'); })().catch(rej); }); }
+function cmpShot(){ if(!CMPS){ toast('אין גרף לצילום.'); return; } const pb=cmpShotBlob(); let cp=null;
+  try{ if(navigator.clipboard&&window.ClipboardItem) cp=navigator.clipboard.write([new ClipboardItem({'image/png':pb})]).then(()=>true,()=>false); }catch(e){ cp=null; }
+  const nm='compare-'+CMPS.ser.map(s=>s.t).join('-');
+  pb.then(blob=>Promise.resolve(cp).then(ok=>ocShotUI({_t:nm},blob,!!ok,{name:nm,alt:'צילום השוואת תשואות',label:'צילום ההשוואה',title:'השוואת תשואות'}))).catch(()=>toast('לא הצלחתי ליצור את הצילום.')); }
+document.addEventListener('click',e=>{ if(e.target.closest&&e.target.closest('[data-cmpshot]')){ e.preventDefault(); cmpShot(); } });
 async function renderCompare(arg){
   const box=$('cmpBox'); if(!box) return;
   if(arg) CMPT=arg.split(',').map(x=>x.trim().toUpperCase()).filter(Boolean).slice(0,4);
@@ -3564,7 +3596,7 @@ async function renderCompare(arg){
   const ix=stockIndex(), etfs=((SECTORS||{}).rows||[]).map(r=>r.t);
   const opts=[...Object.keys(ix).map(t=>`<option value="${esc(t)}">${esc(ix[t].co||'')}</option>`), ...etfs.map(t=>`<option value="${t}">${esc(cmpName(t))}</option>`),'<option value="SPY">S&P 500</option>'].join('');
   box.innerHTML=`<div class="cmpcard"><div class="cmpbar"><div class="cmpc" id="cmpChips"></div>
-    <div class="cmpper" id="cmpPer" role="group" aria-label="תקופה">${CMP_PER.map(([p,l])=>`<button type="button" data-p="${p}" class="${p===CMPP?'on':''}" aria-pressed="${p===CMPP}">${l}</button>`).join('')}</div></div>
+    <div class="cmpper" id="cmpPer" role="group" aria-label="תקופה">${CMP_PER.map(([p,l])=>`<button type="button" data-p="${p}" class="${p===CMPP?'on':''}" aria-pressed="${p===CMPP}">${l}</button>`).join('')}</div><button type="button" class="tshot" data-cmpshot title="צילום מסך של הגרף וההשוואה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>צילום</button></div>
     <div id="cmpChart" class="cmpch">${skRows(1,340)}</div></div><div id="cmpTab"></div>
     <datalist id="cmpList">${opts}</datalist>`;
   $('cmpPer').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CMPP=+b.dataset.p; $('cmpPer').querySelectorAll('button').forEach(x=>{ x.classList.toggle('on',x===b); x.setAttribute('aria-pressed',x===b); }); cmpDraw(); };
