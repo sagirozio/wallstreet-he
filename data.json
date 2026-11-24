@@ -44597,15 +44597,6 @@
       "rev": 1.7
      },
      {
-      "t": "ANF",
-      "co": "Abercrombie & Fitch Company",
-      "time": "amc",
-      "star": false,
-      "a": 1,
-      "eps": 3.13,
-      "rev": 1.38
-     },
-     {
       "t": "AMTM",
       "co": "Amentum Holdings, Inc.",
       "time": "amc",
@@ -44629,6 +44620,14 @@
    {
     "d": "שלישי 24.11",
     "items": [
+     {
+      "t": "ANF",
+      "co": "Abercrombie & Fitch Company",
+      "time": "bmo",
+      "star": false,
+      "eps": 3.13,
+      "rev": 1.38
+     },
      {
       "t": "ADI",
       "co": "Analog Devices, Inc.",
@@ -44802,7 +44801,7 @@
     "econ": ""
    }
   ],
-  "rev": 202611231056
+  "rev": 202611241640
  },
  "tomlee": {
   "target": 7700,
