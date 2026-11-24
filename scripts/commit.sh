@@ -7,7 +7,7 @@ PY=$(command -v python3 || command -v python)
 msg="$1"; shift
 git config user.name "wallstreet-bot"
 git config user.email "bot@users.noreply.github.com"
-DERIVED="index.html assets core.json breadth.json news.json screen.json ins news_times.json reports.json stocks.json sitemap.xml stock.css s stock"
+DERIVED="index.html assets core.json spxe.json breadth.json news.json screen.json ins news_times.json reports.json stocks.json sitemap.xml stock.css s stock"
 "$PY" scripts/build.py >/dev/null
 # guard: never publish a page whose script does not parse (one syntax error blanks the whole site)
 if command -v node >/dev/null 2>&1; then
