@@ -115600,6 +115600,35 @@
  },
  "news": [
   {
+   "id": "2026-11-24-fed-ig-bowman-dinner",
+   "date": "2026-11-24",
+   "t": [
+    "BAC"
+   ],
+   "tag": "הפד",
+   "tone": "neu",
+   "title": "המבקר הפנימי של הפד בודק את סגנית היו״ר בואמן על ארוחה עם לקוחות Bank of America",
+   "body": "המבקר הפנימי של הפד פתח בבדיקה אם סגנית היו״ר לפיקוח, מישל בואמן, הפרה כללי אתיקה כשהשתתפה בארוחת לקוחות פרטית של Bank of America בניו יורק ביוני, שעות אחרי סיום ישיבת הריבית של 16–17 ביוני. לפי הדיווח, שהתפרסם לראשונה ב-Financial Times, סנאטורים דמוקרטים ביקשו את הבדיקה ביולי.",
+   "src": "Seoul Economic Daily / Financial Times",
+   "url": "https://en.sedaily.com/world/2026/11/24/trump-picked-fed-vice-chair-faces-probe-over-blackout",
+   "time": "10:41"
+  },
+  {
+   "id": "2026-11-23-ko-cfo-elkins",
+   "date": "2026-11-23",
+   "k": "stock",
+   "t": [
+    "KO"
+   ],
+   "tag": "הנהלה",
+   "tone": "neu",
+   "title": "Coca-Cola ממנה את סמנכ״ל הכספים של Bristol Myers Squibb לסמנכ״ל הכספים שלה",
+   "body": "David Elkins, סמנכ״ל הכספים של Bristol Myers Squibb מאז 2019, ייכנס לתפקיד סמנכ״ל הכספים של Coca-Cola ב-2 באפריל 2027 במקום John Murphy, שיפרוש ב-2027 וימשיך בינתיים כנשיא החברה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/company-news/cocacola-names-bristol-myers-squibb-cfo-as-new-finance-chief-93CH-5046496",
+   "time": "23:36"
+  },
+  {
    "id": "2026-11-24-futures-turn-lower",
    "date": "2026-11-24",
    "t": [
