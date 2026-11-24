@@ -115830,6 +115830,36 @@
  },
  "news": [
   {
+   "id": "2026-11-24-pentagon-gm-ford-drones",
+   "date": "2026-11-24",
+   "t": [
+    "GM",
+    "F"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "WSJ: הפנטגון במגעים עם GM ו-Ford לייצור המוני של רחפנים צבאיים",
+   "body": "לפי ה-Wall Street Journal, שצוטט ב-Reuters, הפנטגון מנהל מגעים עם General Motors, Ford ויצרנים נוספים כדי שיספקו לחברות רחפנים רכיבים כמו מנועים, מפעילים, חיישנים ו-lidar; GM שוקלת לייצר מנועי רחפנים. לפי הדיווח טרם נחתמו עסקאות, והחברות לא הגיבו.",
+   "src": "Reuters / WSJ",
+   "url": "https://www.investing.com/news/stock-market-news/pentagon-in-talks-with-general-motors-and-ford-on-military-drones-wsj-reports-5047560",
+   "time": "12:44"
+  },
+  {
+   "id": "2026-11-24-ant-daniela-amodei-form4",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "ANT"
+   ],
+   "tag": "בעלי עניין",
+   "tone": "neu",
+   "title": "Anthropic: הנשיאה דניאלה אמודיי מכרה כ-3.38 מיליון מניות במסגרת ההנפקה",
+   "body": "לפי טופס 4 שהוגש ל-SEC, דניאלה אמודיי מכרה ב-20 בנובמבר 3,378,378 מניות Class A במחיר ההנפקה, $83 למניה (כ-$280 מיליון), במכירה לחתמים בהנפקה הראשונית; לאחר המכירה היא מחזיקה ישירות בכ-220.5 מיליון מניות, כולל RSU.",
+   "src": "SEC Form 4 (StockTitan)",
+   "url": "https://www.stocktitan.net/sec-filings/ANT/form-4-anthropic-pbc-insider-trading-activity-d573b7e3f608.html",
+   "time": "00:38"
+  },
+  {
    "id": "2026-11-24-anf-q3-premarket",
    "date": "2026-11-24",
    "k": "stock",
