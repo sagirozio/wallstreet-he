@@ -2773,7 +2773,7 @@ let OCMA=(()=>{ try{ const a=JSON.parse(localStorage.getItem('ocMA')||'null'); i
 const ocMaSave=()=>{ try{ localStorage.setItem('ocMA',JSON.stringify(OCMA)); }catch(e){} };
 /* chart type, volume bars, volume average, bar size and zoom: one choice for every chart */
 /* look: bg = background ('' = the site's); wm = watermark on, wmw = its weight 1-3, wmo = its strength in %; gh / gv = horizontal / vertical grid lines on, ghn / gvn = how dense 1-3 */
-const OC_LOOK={bg:'',wm:1,wmw:2,wmo:6,gh:1,ghn:2,gv:0,gvn:2,cu:'#2ea463',cd:'#ef4444',lc:'',lw:1.7};
+const OC_LOOK={bg:'',wm:1,wmw:2,wmo:6,gh:1,ghn:2,gv:0,gvn:2,cu:'#2ea463',cd:'#ef4444',lc:'',lw:1.7,bu:'',bd:''};
 let OCPREF=(()=>{ const d={v:1,ty:'c',tf:'D',n:0,vma:{on:0,n:50,c:'#f5b942'},...OC_LOOK};   /* the look of the chart, see OC_LOOK */ try{ const p=Object.assign(d,JSON.parse(localStorage.getItem('ocPref')||'{}')); p.vma=Object.assign({on:0,n:50,c:'#f5b942'},p.vma||{}); if(!OC_TF[p.tf]) p.tf='D'; return p; }catch(e){ return d; } })();
 let ocPrefT=0; const ocPrefFlush=()=>{ clearTimeout(ocPrefT); ocPrefT=0; try{ localStorage.setItem('ocPref',JSON.stringify(OCPREF)); }catch(e){} }, ocPrefSave=()=>{ clearTimeout(ocPrefT); ocPrefT=setTimeout(ocPrefFlush,250); };
 window.addEventListener('pagehide',()=>{ if(ocPrefT) ocPrefFlush(); });
@@ -3078,7 +3078,7 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
   if(vu) o+=`<path d="${vu}" fill="${UP}" opacity=".4"/>`; if(vd) o+=`<path d="${vd}" fill="${DN}" opacity=".4"/>`;
   if(vm){ let d=''; V.forEach(x=>{ const v=vm[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(H-pb-v*m/mv*vh); }); if(d) o+=`<path d="${d}" fill="none" stroke="${OCPREF.vma.c}" stroke-width="1.3" stroke-linejoin="round"/>`; }
   if(line) o+=`<path d="${lp1}" fill="none" stroke="${/^#[0-9a-f]{6}$/i.test(OCPREF.lc||'')?OCPREF.lc:INK}" stroke-width="${Math.max(.5,Math.min(8,+OCPREF.lw||1.7))}" stroke-linejoin="round"/>`;
-  else if(ohlc){ const bwid=Math.max(1,Math.min(2.2,gw*.22)); if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${UP}" stroke-width="${bwid}"/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${DN}" stroke-width="${bwid}"/>`; }
+  else if(ohlc){ const bwid=Math.max(1,Math.min(2.2,gw*.22)), hx=c=>/^#[0-9a-f]{6}$/i.test(c||''), BU=hx(OCPREF.bu)?OCPREF.bu:UP, BD=hx(OCPREF.bd)?OCPREF.bd:DN; if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${BU}" stroke-width="${bwid}"/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${BD}" stroke-width="${bwid}"/>`; }
   else { if(wu) o+=`<path d="${wu}" fill="none" stroke="${UP}" stroke-width="${ww}"/><path class="cu" d="${pu}" fill="${UP}"/>`; if(wd) o+=`<path d="${wd}" fill="none" stroke="${DN}" stroke-width="${ww}"/><path class="cd" d="${pd}" fill="${DN}"/>`; }
   MAS.forEach(m=>{ let d=''; V.forEach(x=>{ const v=m.v[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(Y(v)); }); if(d) o+=`<path class="ma" d="${d}" fill="none" stroke="${m.c}" stroke-opacity="${m.o/100}" stroke-width="${m.w}" stroke-linejoin="round"/>`; });
   /* the visitor's lines: trend lines, horizontal lines, alerts (dashed, with a bell) */
@@ -3127,6 +3127,7 @@ function ocStPanel(box){ const el=box.querySelector('.ocStP'); if(!el) return; c
   el.innerHTML=`<div class="s2h"><b>הגדרות הגרף</b><button data-ocstp class="s2x" aria-label="סגירה">×</button></div>`+
     `<div class="s2g">סימבול</div>`+
     row('גוף הנר',`${sw('cu',P.cu||'#2ea463','צבע נר עולה')}<span class="s2t">עולה</span>${sw('cd',P.cd||'#ef4444','צבע נר יורד')}<span class="s2t">יורד</span>`)+
+    row('ברים (OHLC)',`${sw('bu',/^#[0-9a-f]{6}$/i.test(P.bu||'')?P.bu:(P.cu||'#2ea463'),'צבע בר עולה')}<span class="s2t">עולה</span>${sw('bd',/^#[0-9a-f]{6}$/i.test(P.bd||'')?P.bd:(P.cd||'#ef4444'),'צבע בר יורד')}<span class="s2t">יורד</span>`)+
     row('גרף קו',`${sw('lc',lc,'צבע גרף הקו')}<input type="number" class="s2n" data-ocst="lw" min="0.5" max="8" step="0.5" value="${+P.lw||1.7}" inputmode="decimal" aria-label="עובי גרף הקו"><span class="s2t">px</span>`)+
     `<div class="s2g">רקע ורשת</div>`+
     row('רקע',`<span class="s2b">${OC_BGS.map(c=>`<button data-ocbg="${c}" class="${c===cur?'on':''}" style="background:${c||'#121418'}" title="${c||'רקע האתר'}" aria-label="רקע ${c||'האתר'}"></button>`).join('')}<label class="s2p${cust?' on':''}" title="צבע אחר" aria-label="צבע רקע אחר"${cust?` style="background:${cur}"`:''}>+<input type="color" data-ocbgin value="${/^#[0-9a-f]{6}$/.test(cur)?cur:'#121418'}"></label></span>`)+
@@ -3404,7 +3405,7 @@ document.addEventListener('change',e=>{ const ds=e.target.dataset; if(!ds) retur
 const ocMaAll=()=>{ ocMaSave(); document.querySelectorAll('.ocbox').forEach(b=>{ if(!b._g) return; ocMaChips(b); }); ocEach(ocDraw); };
 document.addEventListener('input',e=>{ const ds=e.target.dataset; if(!ds) return;
   if(ds.ocsel){ const v=+e.target.value, k=ds.ocsel; OCPREF[k]=v?1:0; if(v) OCPREF[k==='wm'?'wmw':k+'n']=v; ocPrefSave(); ocEach(ocDraw); const b0=e.target.closest('.ocbox'); if(b0&&k==='wm') ocStPanel(b0); return; }
-  if(ds.ocst||ds.ocbgin!=null){ if(ds.ocbgin!=null) OCPREF.bg=e.target.value; else if(ds.ocst==='wmo') OCPREF.wmo=+e.target.value; else if(ds.ocst==='cu'||ds.ocst==='cd'||ds.ocst==='lc') OCPREF[ds.ocst]=e.target.value; else if(ds.ocst==='lw'){ const v=+e.target.value; if(!(v>=.5&&v<=8)) return; OCPREF.lw=v; } else OCPREF[ds.ocst]=e.target.checked?1:0; ocPrefSave(); ocEach(ocDraw); return; }
+  if(ds.ocst||ds.ocbgin!=null){ if(ds.ocbgin!=null) OCPREF.bg=e.target.value; else if(ds.ocst==='wmo') OCPREF.wmo=+e.target.value; else if(['cu','cd','lc','bu','bd'].includes(ds.ocst)) OCPREF[ds.ocst]=e.target.value; else if(ds.ocst==='lw'){ const v=+e.target.value; if(!(v>=.5&&v<=8)) return; OCPREF.lw=v; } else OCPREF[ds.ocst]=e.target.checked?1:0; ocPrefSave(); ocEach(ocDraw); return; }
   if(ds.ocso!=null||ds.ocscin!=null){ const box=ocBox(e.target), d=box&&(OCDR[box._t]||[]).find(x=>x.id===box._sel); if(!d) return;
     if(ds.ocso!=null){ d.o=+e.target.value; const v=e.target.parentElement.querySelector('.pov'); if(v) v.textContent=d.o+'%'; } else { d.c=e.target.value; box._lock=1; }
     ocDraw(box); return; }
