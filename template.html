@@ -463,6 +463,36 @@ html.light .brp.g3{background:rgba(18,115,58,.18)}html.light .brp.g2{background:
 #brTable .n.l{white-space:nowrap}
 @media(max-width:640px){#brTable .rw2{grid-template-columns:38px 70px minmax(0,1fr) 62px 70px 8px;column-gap:9px;padding:10px 8px}#brTable .n.l,#brTable .spc{font-size:11.5px}#brTable .rw2>.n.l:not(.c){justify-self:center}}
 #brTable .rw2.open .car{transform:rotate(180deg);display:inline-block}
+/* macro: clean layout */
+.mx3{display:grid;grid-template-columns:1fr 1fr 1.4fr;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.mxt{padding:14px 16px;border-inline-start:1px solid var(--line)}.mxt:first-child{border-inline-start:0}
+.mxk{color:var(--muted);font-size:12.5px;display:flex;align-items:center;gap:4px}.mxv{font-size:24px;font-weight:700;margin:4px 0 2px;color:var(--text)}.mxs{color:var(--muted);font-size:13px}
+.mxp .prob{margin:10px 0 8px;height:10px}.mxp .plg{font-size:12.5px;gap:4px 12px}
+.mxnote{color:var(--muted);font-size:13.5px;margin:10px 2px 14px;line-height:1.6}
+.mx2{display:grid;grid-template-columns:1.7fr 1fr;gap:12px}
+.mxbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}.mxbox h3{font-size:14.5px;margin:0 0 4px}
+.mxr{display:grid;grid-template-columns:minmax(0,1.2fr) 90px minmax(0,1.6fr);gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line)}.mxbox h3+.mxr{border-top:0}
+.mxrk b{font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:4px}.mxrk small{display:block;color:var(--muted);font-size:12px}
+.mxrv{font-size:17px;font-weight:700;color:var(--text);text-align:left}
+.mxrs{font-size:13px;color:var(--text)}.mxrs small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:2px}
+.mxu{padding-top:6px}
+.mxcal{list-style:none;margin:0;padding:0}.mxcal li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}.mxcal li:first-child{border-top:0}
+.mxd{flex:none;min-width:52px;text-align:center;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:3px 6px;font-size:13px;font-weight:700;color:var(--text)}
+.mxcal b{font-weight:600;font-size:14px}.mxcal small{display:block;color:var(--muted);font-size:12px}
+@media(max-width:760px){.mx3{grid-template-columns:1fr 1fr}.mxp{grid-column:1/-1;border-inline-start:0;border-top:1px solid var(--line)}.mx2{grid-template-columns:1fr}
+.mxr{grid-template-columns:minmax(0,1fr) 78px;gap:4px 10px}.mxrs{grid-column:1/-1}.mxv{font-size:20px}}
+/* evidence: summary tiles + two-column cards */
+.evtiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;margin-bottom:14px}
+.evtile{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-inline-start:1px solid var(--line);text-decoration:none;color:var(--text)}.evtile:first-child{border-inline-start:0}.evtile:hover{background:var(--panel2)}
+.evtile .k{color:var(--muted);font-size:12.5px}.evtile b{font-size:22px;font-weight:700}.evtile .s{color:var(--muted);font-size:12px}
+#evidence .evgrid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+#evidence .evc{padding:14px 16px;scroll-margin-top:130px;transition:border-color .3s}#evidence .evc.evhl{border-color:var(--accent)}
+#evidence .evc h3{font-size:15.5px;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+#evidence details.evu{background:none;border-top:1px solid var(--line);border-radius:0;padding:8px 0 0;margin-top:12px}
+#evidence details.evu summary{cursor:pointer;color:var(--accent);font-size:13px;list-style:none}#evidence details.evu summary::-webkit-details-marker{display:none}#evidence details.evu summary::before{content:'▸ ';}#evidence details.evu[open] summary::before{content:'▾ '}
+#evidence details.evu p{margin:6px 0 0;font-size:13px;line-height:1.7;color:var(--muted)}
+@media(max-width:900px){.evtiles{grid-template-columns:repeat(3,minmax(0,1fr))}.evtile:nth-child(4){border-inline-start:0}.evtile:nth-child(n+4){border-top:1px solid var(--line)}#evidence .evgrid{grid-template-columns:1fr}}
+@media(max-width:520px){.evtiles{grid-template-columns:1fr 1fr}.evtile{border-top:1px solid var(--line)}.evtile:nth-child(-n+2){border-top:0}.evtile:nth-child(odd){border-inline-start:0}.evtile:nth-child(4){border-inline-start:1px solid var(--line)}.evtile b{font-size:19px}.evtile:last-child:nth-child(odd){grid-column:1/-1;border-inline-start:0}}
 main.wrap{min-height:100vh}#hubSum{min-height:64px}.sxf{min-height:32px}@media(max-width:640px){#hubSum{min-height:137px}.sxf{min-height:72px}}.ocd .ocsel .pop-c{flex-direction:column;gap:8px;padding:10px}.ocd .ocsel .pg{display:grid;grid-template-columns:repeat(10,22px);gap:4px}.ocd .ocsel .pg .gap{grid-column:1/-1;height:3px}.ocd .ocsel .pop .sw{width:22px;height:22px;border-radius:4px;padding:0;border:0;outline:0}.ocd .ocsel .pop .sw.on{box-shadow:0 0 0 2px #1c2128,0 0 0 4px #e6edf3}.ocd .ocsel .pr{display:flex;gap:4px;align-items:center;padding-top:8px;border-top:1px solid #30363d}.ocd .ocsel .padd{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;color:var(--text);cursor:pointer;position:relative;border-radius:4px}.ocd .ocsel .padd:hover{background:#2d333b}.ocd .ocsel .padd input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;margin:0;border:0}.ocd .ocsel .po{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}.ocd .ocsel .po input{flex:1;width:auto;height:auto;margin:0;padding:0;border:0;background:none;accent-color:#e6edf3}.ocd .ocsel .pov{min-width:44px;text-align:center;border:1px solid #30363d;border-radius:6px;padding:3px 0;color:var(--text)}.ocd [data-ocbig] .xx{display:none;font-size:17px;line-height:1}.ocd .ocS{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}html.ocfull,html.ocfull body{overflow:hidden!important;overscroll-behavior:none}html.ocfull .toasts{z-index:2100}.ocbox.full .ocd{position:fixed;inset:0;z-index:2000;margin:0;border:0;border-radius:0;display:flex;flex-direction:column;height:100vh;height:100dvh;box-sizing:border-box;background:var(--panel);touch-action:none;padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}.ocbox.full .tvb{margin:0 0 4px;flex:none}.ocbox.full .tvb>b{display:block}.ocbox.full [data-ocbig] svg{display:none}.ocbox.full [data-ocbig] .xx{display:block}.ocbox.full .tvb button,.ocbox.full .tvb .vol{height:34px}.ocbox.full .oi{flex:none}.ocbox.full .on2,.ocbox.full .occl{display:none}.ocbox.full .ocw{flex:1;min-height:0}.ocbox.full .ocp{min-height:0}.ocbox.full .ocS{position:absolute;left:0;top:0;height:100%!important;touch-action:none}.ocbox.full .map{position:absolute;top:calc(46px + env(safe-area-inset-top));left:8px;right:8px;z-index:6;max-width:none;max-height:calc(100% - 64px);overflow:auto;touch-action:pan-y;box-shadow:0 10px 30px rgba(0,0,0,.6)}.ocd .ocsel .pop{max-height:calc(100vh - 12px);overflow:auto;touch-action:pan-y}@media(orientation:portrait){.ocbox.full .oct button{width:42px;height:38px}}@media(orientation:landscape){.ocbox.full .tvb{flex-wrap:nowrap}.ocbox.full .oi{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-height:17px}.ocbox.full .ocw{flex-direction:row}.ocbox.full .oct{flex-direction:column;border-bottom:0;border-right:1px solid var(--line);padding:0 4px 0 0}.ocbox.full .oct .sp{width:auto;height:1px;margin:3px 4px}.ocbox.full .oct button{width:36px;height:34px}}.ocd .ocld{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}.ocd .seg{display:inline-flex;gap:2px}.ocd .on2 details{display:inline;margin-inline-start:6px}.ocd .on2 summary{display:inline;cursor:pointer;text-decoration:underline dotted}.ocd .on2 details[open]{display:block;margin:4px 0 0}.qvoc .ocd{margin:0 0 12px}.ocd .occl{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px}.ocd .occl.open{color:var(--text)}.ocd .occl i{width:7px;height:7px;border-radius:50%;background:#2ea463;display:block}.ocd.hold{border-color:var(--accent)}.ocd .ocS{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none;-webkit-user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}.ocd .macs{display:flex;flex-wrap:wrap;gap:4px}.ocd .oh .mac{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;color:var(--text)}.ocd .mac i{width:14px;height:3px;border-radius:2px;display:block}.ocd .mac.off{color:var(--muted);text-decoration:line-through}.ocd .mac.off i{background:var(--muted)!important}.ocd .mac.set{color:var(--muted)}.ocd .ocmb{display:none}@media(hover:none),(max-width:640px){.ocd .ocds,.ocd [data-oclk]{display:none}.ocd .ocmb{display:inline}.ocd{padding:8px 6px}.ocd .oh{gap:6px 10px}.ocd .oi{font-size:11px;gap:1px 9px;min-height:32px;align-content:flex-start}.ocd .tvb{flex-wrap:wrap;row-gap:2px}.ocd .tvb>b,.ocd .tvb .mtx,.ocd .tvb>.sp:first-of-type{display:none}.ocd .tvb button,.ocd .tvb .vol{padding:0 5px;min-width:28px}.ocd .tvb .sp{margin:0 2px}}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
@@ -1022,17 +1052,17 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
 <section id="macro" data-pg="market">
   <h2>מאקרו וריבית<button class="gq" data-gl="MACRO" aria-label="הסבר">?</button></h2>
   <p class="sub">הריבית, האינפלציה והתעסוקה בארה״ב, ומה השוק מצפה שהפד יעשה.</p>
-  <div class="macro">
-    <div class="card rate">
-      <div class="tag">ריבית הפד כרגע<button class="gq" data-gl="RATE" aria-label="הסבר">?</button></div><div class="big num" id="mRate"></div>
-      <div class="note" id="mRateNote" style="margin-top:4px"></div><div id="mRateU"></div>
-      <div style="margin-top:14px;font-weight:700">מה השוק מתמחר להחלטה ב-<span id="mMeet"></span><button class="gq" data-gl="FED" aria-label="הסבר">?</button></div>
-      <div class="prob" id="mProb"></div><div class="plg" id="mProbLg"></div><div id="mFedU"></div>
-      <div class="legend">לפי CME FedWatch, שמחשב את הסיכויים מתוך מחירי חוזים עתידיים על הריבית. זו הערכה של השוק, לא החלטה.</div>
-    </div>
-    <div class="card"><div style="font-weight:700">אירועים קרובים</div><ul class="cal" id="mCal"></ul></div>
+  <div class="mx3">
+    <div class="mxt"><div class="mxk">ריבית הפד כרגע<button class="gq" data-gl="RATE" aria-label="הסבר">?</button></div><div class="mxv num" id="mRate"></div><div id="mRateU"></div></div>
+    <div class="mxt"><div class="mxk">ההחלטה הבאה</div><div class="mxv num" dir="ltr" id="mMeet" style="text-align:right"></div><div class="mxs" id="mMeetIn"></div></div>
+    <div class="mxt mxp"><div class="mxk">מה השוק מתמחר<button class="gq" data-gl="FED" aria-label="הסבר">?</button></div><div class="prob" id="mProb"></div><div class="plg" id="mProbLg"></div><div id="mFedU"></div></div>
   </div>
-  <div class="mcards" id="mCards"></div>
+  <p class="mxnote" id="mRateNote"></p>
+  <div class="mx2">
+    <div class="mxbox"><h3>הנתונים האחרונים</h3><div id="mCards"></div></div>
+    <div class="mxbox"><h3>אירועים קרובים</h3><ul class="mxcal" id="mCal"></ul></div>
+  </div>
+  <p class="legend">ההסתברויות לפי CME FedWatch, שמחשב אותן ממחירי חוזים עתידיים על הריבית. זו הערכה של השוק, לא החלטה. מידע בלבד, לא ייעוץ השקעות.</p>
 </section>
 
 <!-- tomlee removed -->
@@ -4379,7 +4409,7 @@ function indRow(r,rk,c,key,sub,TS){
   return `<div class="rw2 mx ${st?'has':''} ${sub?'isub':''} ${op?'open':''}" data-th="${esc(r.en)}"><div class="nm2 nmk"><span class="rkn">${rk||''}</span>${st&&st.length?`<button class="thcp" data-thcp="${esc(r.en)}" title="העתק את כל הסימולים בתעשייה" aria-label="העתק סימולים"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button>`:''}<b><bdi>${esc(r.en)}</bdi></b><small>${st?'<span class="car">▾</span>':''}${esc(r.n)}${mv?' · '+mv.replace(/ · $/,''):''}<span class="cn"> · ${n===1?'מניה אחת':n+' מניות'}</span>${TS&&TS.has(r.en)?' '+TRB:''}</small></div>${c.map(k=>pc(r[k],k===key)).join('')}${rsCell(r.rs,key==='rs')}${a5Cell(x)}${spark(x.sp,r.ytd)}</div>`+
     (st&&op?`<div class="thsub"><div class="stks">${thStocks(st,key).map(([tk,co,mc,ch])=>`<a class="stk2 tlink" href="#stock/${encodeURIComponent(tk)}"><span class="tk">${esc(tk)}</span><span class="co" title="${esc(co)}">${esc(co)}</span><span class="mc">${esc(mc)}</span><span class="ch ${ch==null?'flat':key==='rs'?(ch>=80?'up':ch<=20?'down':'flat'):ch>=0?'up':'down'}">${ch==null?'—':key==='rs'?'RS '+ch:pct(ch,1)}</span></a>`).join('')}</div><div class="stknote">${st.length&&typeof st[0][3]==='object'?`המניות המובילות בקבוצה (${PL[key]}).`:'המניות הגדולות בקבוצה.'} רק חברות מעל מיליארד דולר. <a href="#ind/${encodeURIComponent(r.en)}">לעמוד התעשייה ←</a></div></div>`:'');
 }
-const evUse=t=>`<div class="evu"><b>איך משתמשים</b><p>${t}</p></div>`;
+const evUse=t=>`<details class="evu"><summary>איך משתמשים בזה</summary><p>${t}</p></details>`;
 function renderEv(){
   const b=$('evBody'); if(!b) return; const E=FALLBACK.evidence||{};
   if(!E.asOf){ b.innerHTML='<div class="empty">הנתונים יופיעו אחרי העדכון הלילי.</div>'; return; }
@@ -4423,7 +4453,15 @@ function renderEv(){
     cards.push(`<div class="evc"><h3>עונתיות של S&amp;P 500</h3><p class="evt">${MN[S.now-1]}: ממוצע <b class="num ${now.avg>=0?'up':'down'}">${pct(now.avg,2)}</b>, וסיים בעלייה ב-<b>${now.pos}%</b> מהשנים מאז ${S.since}.</p>
       <div class="evs">${S.t.map(x=>`<div class="${x.m===S.now?'on':''}"><span class="evsb"><i class="${x.avg>=0?'pos':'neg'}" style="height:${(Math.abs(x.avg)/mx*100).toFixed(0)}%"></i></span><small>${MN[x.m-1]}</small><small class="num">${x.avg>0?'+':''}${x.avg.toFixed(1)}</small></div>`).join('')}</div>
       <p class="evn">התשואה החודשית הממוצעת של המדד בכל חודש מאז ${S.since}.</p>${evUse('עונתיות היא נטייה סטטיסטית, לא חוק. היא שימושית כרקע, למשל לדעת שספטמבר היה היסטורית החודש החלש ונובמבר–דצמבר החזקים, אבל בכל שנה בודדת אירועים, דוחות וריבית חשובים יותר. אחוז השנים החיוביות חשוב לא פחות מהממוצע, כי ממוצע יכול להיות מושפע משנה קיצונית אחת.')}</div>`); }
-  b.innerHTML=`<div class="evgrid">${cards.join('')}</div><p class="legend">כל הנתונים הם היסטוריה ותיאור של המצב היום, לא תחזית ולא המלצה. מתעדכן כל לילה (${dmy(E.asOf)}).</p>`;
+  const tl=[]; const T=(id,k,v,sub,cls)=>tl.push(`<a class="evtile" href="#ev-${id}" data-evgo="${id}"><span class="k">${k}</span><b class="num ${cls||''}">${v}</b><span class="s">${sub}</span></a>`);
+  if(E.fg) T('fg','פחד וחמדנות',E.fg.s,esc(E.fg.lbl),E.fg.s<40?'down':E.fg.s>60?'up':'');
+  if(E.aaii) T('aaii','סקר AAII',(E.aaii.bu-E.aaii.be>0?'+':'')+(E.aaii.bu-E.aaii.be).toFixed(1),'שוריים פחות דוביים');
+  if(E.vix) T('vix','עקום VIX',E.vix.r!=null?E.vix.r.toFixed(2):'—',E.vix.inv?'הפוך (מעל 1.0)':'רגיל (מתחת ל-1.0)',E.vix.inv?'down':'');
+  if(E.hy) T('hy','מרווח אשראי',E.hy.v.toFixed(2)+'%',E.hy.m1!=null?`${E.hy.m1>0?'+':''}${E.hy.m1.toFixed(2)} בחודש`:'');
+  if(E.season){ const MN=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'], n=E.season.t.find(x=>x.m===E.season.now)||{}; T('season','עונתיות',pct(n.avg,1),`ממוצע ${MN[E.season.now-1]} מאז ${E.season.since}`); }
+  const ids=[E.fg&&'fg',E.aaii&&'aaii',E.vix&&'vix',E.hy&&'hy',E.season&&'season'].filter(Boolean);
+  cards.forEach((c,k)=>{ if(ids[k]) cards[k]=c.replace('<div class="evc">',`<div class="evc" id="ev-${ids[k]}">`); });
+  b.innerHTML=`<div class="evtiles">${tl.join('')}</div><div class="evgrid">${cards.join('')}</div><p class="legend">כל הנתונים הם היסטוריה ותיאור של המצב היום, לא תחזית ולא המלצה. מתעדכן כל לילה (${dmy(E.asOf)}).</p>`;
 }
 function renderSnap(){
   const b=$('snapBody'); if(!b) return; const T=THEMES||{}, he={}; (T.rows||[]).forEach(r=>he[r.en]=r.n);
@@ -4583,13 +4621,14 @@ function renderOverview(){
   try{ renderBriefNews(); }catch(e){}
   renderFresh();
   $('mRate').textContent = m.rate||''; $('mRateNote').textContent = m.rateNote||''; $('mMeet').textContent = m.meeting||'';
+  try{ const mm=String(m.meeting||'').match(/(\d+)\.(\d+)\.(\d{4})\s*$/); if(mm){ const dd=Math.ceil((new Date(+mm[3],+mm[2]-1,+mm[1])-new Date())/864e5); $('mMeetIn').textContent=dd>1?`בעוד ${dd} ימים`:dd===1?'מחר':dd===0?'היום':''; } }catch(e){}
   $('mRateU').innerHTML = macroU(m.rateU); $('mFedU').innerHTML = macroU(m.fedU);
   const parts=[['hold','ללא שינוי','#8a97ae'],['hike25','העלאה של 0.25%','#f5b942'],['hike50','העלאה של 0.5%','#ef4444']].filter(p=>m[p[0]]>0);
   $('mProb').innerHTML = parts.map(p=>`<span style="width:${m[p[0]]}%;background:${p[2]}"></span>`).join('');
   $('mProbLg').innerHTML = [['hold','ללא שינוי','#8a97ae'],['hike25','העלאה של 0.25%','#f5b942'],['hike50','העלאה של 0.5%','#ef4444']]
-    .map(p=>`<span><i style="background:${p[2]}"></i>${p[1]}: <b class="num" style="color:var(--text)">${(m[p[0]]||0).toFixed(1)}%</b></span>`).join('');
-  $('mCards').innerHTML = (m.cards||[]).map(c=>`<div class="card mc"><div class="k">${esc(c.k)}${macroGl(c.k)?gq(macroGl(c.k)):''}</div><div class="v num ${c.bad?'down':'up'}">${esc(c.v)}</div><div class="s">${esc(c.s)}</div>${c.n?`<div class="n">${esc(c.n)}</div>`:''}${macroU(c.u)}</div>`).join('');
-  $('mCal').innerHTML = (m.calendar||[]).map(c=>`<li><span class="d num">${esc(c.d)}</span><span><b>${esc(c.e)}</b>${macroGl(c.e)?gq(macroGl(c.e)):''}${c.n?`<br><span class="flat" style="font-size:12px">${esc(c.n)}</span>`:''}</span></li>`).join('');
+    .filter(p=>m[p[0]]>0).map(p=>`<span><i style="background:${p[2]}"></i>${p[1]}: <b class="num" style="color:var(--text)">${(m[p[0]]||0).toFixed(1)}%</b></span>`).join('');
+  $('mCards').innerHTML = (m.cards||[]).map(c=>{ const kk=String(c.k).split(' · '); return `<div class="mxr"><div class="mxrk"><b>${esc(kk[0])}${macroGl(c.k)?gq(macroGl(c.k)):''}</b>${kk[1]?`<small>${esc(kk.slice(1).join(' · '))}</small>`:''}</div><div class="mxrv num">${esc(c.v)}</div><div class="mxrs">${esc(c.s)}${c.n?`<small>${esc(c.n)}</small>`:''}</div></div>`; }).join('')+`<div class="mxu">${macroU((m.cards||[])[0]&&(m.cards||[])[0].u)}</div>`;
+  $('mCal').innerHTML = (m.calendar||[]).map(c=>`<li><span class="mxd num">${esc(c.d)}</span><span><b>${esc(c.e)}</b>${macroGl(c.e)?gq(macroGl(c.e)):''}${c.n?`<small>${esc(c.n)}</small>`:''}</span></li>`).join('');
 }
 
 /* ---------- calendar + vix ---------- */
@@ -4678,6 +4717,7 @@ async function loadBrL(force){ if(brLoading) return; brLoading=true;
   try{ const d=await (await fetch('breadth.json?v='+Math.floor(Date.now()/60000))).json(); brL={}; (d.rows||[]).forEach(r=>brL[r.d]=r.L);
     if(INTRA_L) Object.assign(brL,INTRA_L);
     renderBreadth(); }catch(e){ brL=brL||{}; } brLoading=false; }
+document.addEventListener('click',e=>{ const g=e.target.closest('[data-evgo]'); if(g){ e.preventDefault(); const c=$('ev-'+g.dataset.evgo); if(c){ c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.add('evhl'); setTimeout(()=>c.classList.remove('evhl'),1400); } } });
 document.addEventListener('click',e=>{ const m=e.target.closest('#brTable .bmo'); if(m){ brMore.add(m.dataset.k); renderBreadth(); return; }
   if(e.target.closest('#brTable [data-brall]')){ brAll=!brAll; renderBreadth(); return; }
   const r=e.target.closest('#brTable .rw2.has'); if(r){ brTouched=true; const d=r.dataset.d; brOpen.has(d)?brOpen.delete(d):brOpen.add(d); renderBreadth(); } });
