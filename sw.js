@@ -18,7 +18,7 @@ async function networkFirst(req) {
   try {
     const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 8000);
     const page = req.mode === 'navigate' || /\.html$|\/$/.test(new URL(req.url).pathname);   // pages: ask the server every time (no stale browser-cache copy)
-    const res = await fetch(page ? new Request(req, { cache: 'no-cache' }) : req, { signal: ctl.signal }); clearTimeout(t);
+    const res = await (page ? fetch(req.url, { cache: 'no-cache', credentials: 'same-origin', signal: ctl.signal }) : fetch(req, { signal: ctl.signal })); clearTimeout(t);
     if (res.ok) c.put(key(req), res.clone());
     return res;
   } catch (err) {
