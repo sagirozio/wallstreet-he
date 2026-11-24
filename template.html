@@ -2892,8 +2892,13 @@ function ocHit(box,xx,yy,tol){ if(box._hide) return null; const g=box._g, A=box.
     if(Math.hypot(xx-(x1+u*dx),yy-(y1+u*dy))<=tol) return {d,part:'m'}; }
   return null; }
 document.addEventListener('wheel',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg) return; e.preventDefault();
-  const box=ocBox(svg), g=box&&box._g; if(!g||!box._L) return; ocKinStop(box); const q=ocZone(svg,e,g), k=e.deltaY>0?1.15:1/1.15, f=Math.max(0,Math.min(1,(q.xx-g.pl)/(g.W-g.pl-g.pr))), pv=g.hi-(Math.max(g.pt,Math.min(g.pt+g.ph,q.yy))-g.pt)/g.ph*(g.hi-g.lo);
-  if(q.z==='y'){ ocZoomY(box,pv,k); ocDraw(box); } else { ocZoomX(box,f,k); ocReq(box); } },{passive:false});
+  const box=ocBox(svg), g=box&&box._g; if(!g||!box._L) return; ocKinStop(box); const q=ocZone(svg,e,g), f=Math.max(0,Math.min(1,(q.xx-g.pl)/(g.W-g.pl-g.pr))), pv=g.hi-(Math.max(g.pt,Math.min(g.pt+g.ph,q.yy))-g.pt)/g.ph*(g.hi-g.lo);
+  /* one feel for a mouse wheel and a trackpad: the zoom follows the size of the scroll (a trackpad sends many small steps; a wheel a few big ones),
+     a sideways swipe (or Shift + wheel) moves the chart in time, and a trackpad pinch (Ctrl + wheel) zooms a little faster */
+  const u=e.deltaMode===1?16:e.deltaMode===2?400:1, dx=(e.shiftKey&&!e.deltaX?e.deltaY:e.deltaX)*u, dy=(e.shiftKey?0:e.deltaY)*u;
+  if(Math.abs(dx)>Math.abs(dy)&&q.z!=='y'){ const r=svg.getBoundingClientRect(), pxb=Math.max(.5,r.width/g.W*g.cw); box._off=ocClamp(box,(box._off||0)-dx/pxb); ocReq(box); return; }
+  if(!dy) return; const k=Math.exp(Math.max(-.35,Math.min(.35,dy*(e.ctrlKey?.01:.0022))));
+  if(q.z==='y'){ ocZoomY(box,pv,k); ocDraw(box); } else { box._zf=(box._zf||1)*k; const nn=box._n*box._zf; if(Math.round(nn)!==box._n){ ocZoomX(box,f,box._zf); box._zf=1; } ocReq(box); } },{passive:false});
 document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg||(e.pointerType==='mouse'&&e.button!==0)) return; const box=ocBox(svg), g=box&&box._g; if(!g) return;
   const q=ocZone(svg,e,g), touch=e.pointerType==='touch'; box._pop=''; box._lock=0; ocKinStop(box);
   if(box._ms&&!box._pend){ box._ms=null; ocReq(box); }   /* the next click clears the measurement */
@@ -2944,7 +2949,8 @@ const ocEnd=e=>{
     OCD=null; } };
 document.addEventListener('pointerup',ocEnd); document.addEventListener('pointercancel',ocEnd);
 document.addEventListener('touchmove',e=>{ if((OCD&&(OCD.hold||OCD.mode==='dr'||(OCD.mode==='pan'&&OCD.touch&&OCD.lock==='h')))||PIN||OCPEND) e.preventDefault(); },{passive:false});   /* the chart owns the gesture: no page scroll under it */
-document.addEventListener('dblclick',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg) return; const box=ocBox(svg), g=box&&box._g; if(g&&ocZone(svg,e,g).z==='y'){ box._y=null; ocDraw(box); } });
+document.addEventListener('dblclick',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg) return; const box=ocBox(svg), g=box&&box._g; if(!g) return; const q=ocZone(svg,e,g); if(q.z==='y'){ box._y=null; ocDraw(box); return; }
+  if(box._tool||ocHit(box,q.xx,q.yy,7)) return; ocKinStop(box); box._off=0; box._y=null; ocDraw(box); });   /* double click on the chart: back to the latest bar with an automatic price scale */
 /* Esc cancels the tool / the selection, Delete removes the selected line, Alt+T / Alt+H / Alt+A pick a tool on the chart under the pointer */
 document.addEventListener('keydown',e=>{ const tg=e.target; if(tg&&/^(INPUT|SELECT|TEXTAREA)$/.test(tg.tagName)) return;
   if(e.key==='Escape'){ let done=0; if(document.querySelector('.ocbox.full')&&![...document.querySelectorAll('.ocbox')].some(b=>b._g&&(b._pend||b._tool||b._sel||b._ms))){ ocFullOff(); e.stopImmediatePropagation(); e.preventDefault(); return; }   /* Esc with nothing to cancel leaves the full screen */ document.querySelectorAll('.ocbox').forEach(b=>{ if(b._g&&(b._pend||b._tool||b._sel||b._ms)){ b._pend=null; b._tool=''; b._sel=null; b._ms=null; ocDraw(b); done=1; } }); OCPEND=null; if(done){ e.stopImmediatePropagation(); e.preventDefault(); } return; }
