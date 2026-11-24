@@ -4369,7 +4369,7 @@ async function loadIntra(){
     if(j.sectors){ SECTORS={...j.sectors, mem:j.sectors.mem||(SECTORS||{}).mem, pyDates:j.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
     if(j.crypto){ FALLBACK.crypto=j.crypto; try{ renderIdx(); }catch(e){} if(CURPG==='stock'&&CRYPTO[decodeURIComponent(location.hash.slice(7)).toUpperCase()]&&$('crPerf')) $('crPerf').outerHTML=cryptoPerf(decodeURIComponent(location.hash.slice(7)).toUpperCase()); }
     if(j.breadth){ FALLBACK.breadth=j.breadth; INTRA_L=j.brL||null; if(brL&&INTRA_L) Object.assign(brL,INTRA_L);
-      const r0=(j.breadth.rows||[])[0]; if(r0&&!brTouched){ brOpen.clear(); brOpen.add(r0.d); } renderBreadth(); }
+      renderBreadth(); }
     if(j.premarket){ FALLBACK.premarket=j.premarket; renderPremarket(); try{ renderBriefSum(); }catch(e){} }
     if(j.movers){ FALLBACK.movers=j.movers; renderMovers(); hubLazy(); renderHomeMovers(); }
   }catch(e){}
