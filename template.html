@@ -2039,15 +2039,15 @@ document.addEventListener('click',async e=>{
 const QV={L:[],i:0,tab:'ch'};
 function qvClose(){ const p=$('qv'); if(p) p.classList.remove('on'); const b=$('qvBg'); if(b) b.classList.remove('on'); document.body.classList.remove('qvon'); }
 /* the stock card's financials: the last report, the last 4 quarters as a small table (each with its change from the same quarter a year before), the growth chart, and a link to everything */
-async function qvFund(t,el,hasRc){ let f=FUNDC[t];
+async function qvFund(t,el,hasRc,det){ let f=FUNDC[t]; let eh=''; try{ eh=ehBlock(det)||''; }catch(_){}
   if(!f) try{ const r=await fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}); if(r.ok){ f=await r.json(); FUNDC[t]=f; } }catch(_){}
   if(!el.isConnected) return;
-  if(!f||!f.q||!f.q.length){ el.innerHTML=hasRc?'':'<div class="empty">אין עדיין נתוני דוחות.</div>'; return; }
+  if(!f||!f.q||!f.q.length){ el.innerHTML=eh+(eh?`<a class="q2fl" href="#stock/${encodeURIComponent(t)}">כל הדוחות והגרפים בדף המניה ←</a>`:hasRc?'':'<div class="empty">אין עדיין נתוני דוחות.</div>'); return; }
   const q=f.q, n=q.length, I=[...Array(Math.min(4,n)).keys()].map(k=>n-1-k), yo=(A,i)=>A&&A[i]!=null&&A[i-4]!=null&&A[i-4]!==0?(A[i]-A[i-4])/Math.abs(A[i-4])*100:null;
   const g=v=>v==null?'':`<small class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${Math.abs(v)>=1000?'>999':v.toFixed(0)}%</small>`, m=v=>v==null?'—':fmtBig(v), e=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toFixed(2);
   const mg=i=>f.op&&f.rev&&f.op[i]!=null&&f.rev[i]?(f.op[i]/f.rev[i]*100).toFixed(1)+'%':'—';
   const row=(l,cell)=>`<tr><th scope="row">${l}</th>${I.map(i=>`<td>${cell(i)}</td>`).join('')}</tr>`;
-  el.innerHTML=`<h3 class="q2fh">4 הרבעונים האחרונים</h3><div class="q2ft"><table><thead><tr><th></th>${I.map(i=>`<th scope="col">${qLbl(q[i])}</th>`).join('')}</tr></thead><tbody>`
+  el.innerHTML=eh?eh+(()=>{ try{ return growthChart(f)||''; }catch(_){ return ''; } })()+`<a class="q2fl" href="#stock/${encodeURIComponent(t)}">כל הדוחות והגרפים בדף המניה ←</a>`:`<h3 class="q2fh">4 הרבעונים האחרונים</h3><div class="q2ft"><table><thead><tr><th></th>${I.map(i=>`<th scope="col">${qLbl(q[i])}</th>`).join('')}</tr></thead><tbody>`
     +row('הכנסות',i=>`<b class="num">${m(f.rev&&f.rev[i])}</b>${g(yo(f.rev,i))}`)
     +row('רווח למניה (EPS)',i=>`<b class="num">${e(f.eps&&f.eps[i])}</b>${g(yo(f.eps,i))}`)
     +row('רווח נקי',i=>`<b class="num">${m(f.ni&&f.ni[i])}</b>${g(yo(f.ni,i))}`)
@@ -2066,7 +2066,7 @@ function qvTab(k){ QV.tab=k; const p=$('qv'), t=QV.L[QV.i]; if(!p||!t) return;
   loadDet(t).then(det=>{ if(QV.L[QV.i]!==t||QV.tab!==k) return;
     if(k==='rp'){ const reps=(REPORTS||[]).filter(r=>r.t===t).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
       let rc=''; try{ rc=repCard(t,det,reps[0],reps)||''; }catch(_){}
-      box.innerHTML=rc+'<div class="qvfund"><div class="empty">טוען נתונים רבעוניים…</div></div>'; qvFund(t,box.querySelector('.qvfund'),!!rc); box.querySelectorAll('[data-rcfull]').forEach(x=>{ x.removeAttribute('data-rcfull'); x.href='#stock/'+encodeURIComponent(t); }); return; }
+      box.innerHTML=rc+'<div class="qvfund"><div class="empty">טוען נתונים רבעוניים…</div></div>'; qvFund(t,box.querySelector('.qvfund'),!!rc,det); box.querySelectorAll('[data-rcfull]').forEach(x=>{ x.removeAttribute('data-rcfull'); x.href='#stock/'+encodeURIComponent(t); }); return; }
     const N=[...(det.nw||[]),...(FALLBACK.news||[]).filter(n=>(n.t||[]).includes(t))].filter((n,i,A)=>A.findIndex(x=>(x.id||x.title)===(n.id||n.title))===i).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,8);
     box.innerHTML=N.length?N.map(n=>`<div class="qvn"><small>${esc(n.date?dm(n.date):'')}${n.time?' · '+esc(n.time):''}${n.tag?' · '+esc(n.tag):''}</small><b>${esc(n.title||'')}</b>${n.body?`<p>${esc(String(n.body).slice(0,260))}${String(n.body).length>260?'…':''}</p>`:''}</div>`).join(''):'<div class="empty">אין חדשות על המניה בארכיון שלנו.</div>'; });
 }
