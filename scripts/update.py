@@ -47,8 +47,9 @@ row = {
     "up": int((r1 > 0).sum()), "dn": int((r1 < 0).sum()),
     # % of S&P 500 members whose last close is above their simple MA, counted only over members
     # that have enough history for that MA — the same definition as S5FI (50-day) / S5TH (200-day)
-    "ma50": round(float((c > ma50)[ma50.notna() & c.notna()].mean() * 100), 1),
-    "ma200": round(float((c > ma200)[ma200.notna() & c.notna()].mean() * 100), 1),
+    # standard ($S5FI / $S5TH, StockCharts $SPXA50R): stocks above their simple average / all index stocks with a price
+    "ma50": round(float((c > ma50).sum() / max(1, c.notna().sum()) * 100), 1),
+    "ma200": round(float((c > ma200).sum() / max(1, c.notna().sum()) * 100), 1),
     "hi": int((high.iloc[-1] >= hi52).sum()), "lo": int((low.iloc[-1] <= lo52).sum()),
     "up10": int((r21 >= 10).sum()), "dn10": int((r21 <= -10).sum()),
 }
