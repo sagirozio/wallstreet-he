@@ -126102,6 +126102,424 @@
  },
  "news": [
   {
+   "id": "2026-11-25-trump-nvidia-stake",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: ״כנראה לא מאוחר מדי״ לנתח של הממשל ב-Nvidia",
+   "body": "בראיון ל-New York Post אמר טראמפ שחשב על נטילת נתח ממשלתי ב-Nvidia ושזה ״כנראה לא מאוחר מדי״, והזכיר את הנתח של 10% שהממשל מחזיק ב-Intel. על חנינה לג׳נסן הואנג אמר שזו ״תמיד אפשרות״ אך לדעתו לא תידרש, וביקש שהואנג יאמר את האמת בעדויותיו בשבוע הבא בקונגרס על פיקוח הייצוא.",
+   "src": "New York Post via Yahoo",
+   "url": "https://www.yahoo.com/news/politics/articles/trump-says-could-pardon-jensen-022947913.html",
+   "time": "04:29"
+  },
+  {
+   "id": "2026-11-25-ustr-tariffs-wsj",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "WSJ: המכסים החדשים על 16 שותפות סחר עדיין לא פורסמו; הגבייה צפויה רק בעוד חודשים",
+   "body": "לפי WSJ, ממצאי נציגות הסחר (USTR) עשויים להתפרסם השבוע, אך לפני מכסים סופיים יתקיימו מגעים עם השותפות, כך שהגבייה ״כנראה רחוקה חודשים״. שותפות עם הסכמים (יפן, האיחוד האירופי, דרום קוריאה) עשויות לקבל שיעור כולל של 15% או פחות, הודו וויאטנם יחס קשוח יותר וסין הקשוח ביותר. ההבנה הזמנית עם סין פוקעת ב-10 בינואר. עד הבוקר לא פורסמה הודעה רשמית.",
+   "src": "WSJ via BigGo Finance",
+   "url": "https://finance.biggo.com/news/59bcbe60-4c9d-4daf-b392-77b332e349f2",
+   "time": "04:14"
+  },
+  {
+   "id": "2026-11-25-asia-chips-plunge",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "אסיה",
+   "tone": "neg",
+   "title": "אסיה: הקוספי צונח ב-6.2% והטאייקס ב-5% בגל מכירות במניות ה-AI",
+   "body": "לפי AP, הקוספי ירד ב-6.2% ל-4,697.51, הטאייקס ב-5% והניקיי ב-2.8% ל-57,011.62; שנגחאי ירד ב-1.5% לשפל של יותר משנה. SK Hynix ירדה ב-11.1%, Samsung ב-9.9%, SoftBank ב-14.8% ו-TSMC ב-3.6%. בהודו הסנסקס עלה ב-2.4% לשיא של חצי שנה.",
+   "src": "AP",
+   "url": "https://www.click2houston.com/business/2026/11/25/asian-stocks-mostly-decline-as-ai-shares-tumble-after-a-retreat-on-wall-street/",
+   "time": "08:31"
+  },
+  {
+   "id": "2026-11-25-europe-open-retail",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "אירופה",
+   "tone": "pos",
+   "title": "אירופה פותחת בעלייה בהובלת מניות המותגים; מניות הטכנולוגיה יורדות",
+   "body": "ה-STOXX 600 עלה ב-0.5% בפתיחה ל-636.01. מגזר מוצרי הצריכה האישיים עלה ב-1.9% ומגזר הטכנולוגיה ירד ב-1.1%. Rémy Cointreau זינקה ב-10.2% אחרי יעדים חדשים לשנים 2031/32, Swatch עלתה ב-6% ו-Prosus ירדה ב-3.4% אחרי רווח מתחת לצפי.",
+   "src": "IUX",
+   "url": "https://www.iux24.com/news/european-shares-advance-on-retail-strength-while-investors-await-us-inflation-data-20261125/",
+   "time": "10:28"
+  },
+  {
+   "id": "2026-11-25-futures-pare-losses",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "החוזים בירידה קלה לפני נתוני האינפלציה",
+   "body": "לפי IC Markets, חוזי ה-S&P 500 ירדו ב-0.2%, חוזי הנאסד״ק 100 ב-0.3% וחוזי הדאו בכ-68 נקודות, על רקע חולשה בטכנולוגיה וחששות מהוצאות על תשתיות AI. בשעות הלילה המוקדמות הירידות בחוזים היו עמוקות יותר.",
+   "src": "IC Markets",
+   "url": "https://www.ic.com/blog/u-s-stock-futures-edge-lower-ahead-of-inflation-data-25-november-ic/",
+   "time": "10:11"
+  },
+  {
+   "id": "2026-11-25-macro-today-consensus",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "מאקרו",
+   "tone": "neu",
+   "title": "היום ב-15:30: תמ״ג, PCE ודמי אבטלה; הצפי ל-PCE הוא 3.8% בשנה",
+   "body": "לפי Investing.com, הצפי לתמ״ג הרבעון השלישי (אומדן שני) הוא 3.4%, ל-PCE של אוקטובר 0.3% בחודש ו-3.8% בשנה, ול-PCE הליבה 0.3% ו-3.2%. הצפי לתביעות דמי אבטלה הוא 201 אלף והזמנות מוצרים בני-קיימא +0.7%. ב-21:00 יפורסם ה-Beige Book. מחר הבורסה סגורה וביום שישי המסחר יסתיים ב-20:00.",
+   "src": "Investing.com",
+   "url": "https://uk.investing.com/news/stock-market-news/gdp-jobless-claims-and-pce-among-key-data-due-wednesday-93CH-5002405",
+   "time": "10:50"
+  },
+  {
+   "id": "2026-11-25-oil-yields-gold",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "סחורות",
+   "tone": "neu",
+   "title": "הנפט יורד, התשואה ל-10 שנים ב-4.93%, הביטקוין מתחת ל-$60 אלף",
+   "body": "לפי AP, הברנט ירד ב-1.4% ל-$87.50 והנפט האמריקאי ב-1.7% ל-$80.69; התשואה ל-10 שנים עלתה ל-4.93%. לפי TraderFactor, הזהב נסחר סביב $3,559 והביטקוין סביב $59,500.",
+   "src": "AP",
+   "url": "https://www.click2houston.com/business/2026/11/25/asian-stocks-mostly-decline-as-ai-shares-tumble-after-a-retreat-on-wall-street/",
+   "time": "08:31"
+  },
+  {
+   "id": "2026-11-25-nscale-stay-private",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA",
+    "MSFT"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "FT: Nscale, שבה השקיעה Nvidia, עשויה להישאר פרטית; הנפקה של $35 מיליארד בספק",
+   "body": "לפי Financial Times, מנכ״ל מפעילת מרכזי הנתונים Nscale אמר לעובדים שיש לה מספיק הון כדי להישאר פרטית ״לעתיד הנראה לעין״, על רקע הירידות במניות ה-AI. לפי הדיווח, Microsoft ויתרה על עסקת מרכז נתונים של $3.2 מיליארד באזור לונדון, ו-Nscale צפתה הפסד של כ-$1.7 מיליארד בתשעת החודשים עד ספטמבר.",
+   "src": "FT via Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/nvidia-backed-nscale-reportedly-eyes-private-route-as-ai-market-sell-off-clouds-35-b-ipo-plans/cNbuDjYR9lc",
+   "time": "02:16"
+  },
+  {
+   "id": "2026-11-25-li-q3",
+   "date": "2026-11-25",
+   "t": [
+    "LI"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Li Auto: ההפסד הרבעוני הצטמצם ב-50%; תחזית ל-110–115 אלף מסירות",
+   "body": "ברבעון השלישי מסרה Li Auto ‏99,964 כלי רכב (+7.2%), וההכנסות עלו ב-5.4% ל-28.8 מיליארד יואן ($4.3 מיליארד). ההפסד הנקי הצטמצם ל-309.7 מיליון יואן. לרבעון הרביעי היא צופה 110–115 אלף מסירות והכנסות של 31.7–33.1 מיליארד יואן (+10.1% עד +15.1%).",
+   "src": "GlobeNewswire",
+   "url": "https://www.globenewswire.com/news-release/2026/11/25/3410023/0/en/li-auto-inc-announces-unaudited-third-quarter-2026-financial-results.html",
+   "time": "10:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-de-preview",
+   "date": "2026-11-25",
+   "t": [
+    "DE"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Deere מדווחת היום לפני הפתיחה; הצפי לרווח של כ-$4.03 למניה",
+   "body": "לפי Investing.com, הצפי לרבעון הרביעי של Deere הוא רווח של $4.03 למניה והכנסות של $10.4 מיליארד. Bernstein מעריכה רווח נקי של כ-$5.4 מיליארד בשנת 2027, לדבריה 5%–10% מתחת לקונצנזוס. שיחת הוועידה ב-17:00.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/earnings/deere-earnings-up-next-can-guidance-ease-downturn-fears-93CH-5048535",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-nflx-radford",
+   "date": "2026-11-25",
+   "t": [
+    "NFLX"
+   ],
+   "tag": "מדיה",
+   "tone": "neu",
+   "title": "Netflix רכשה את אולפני Radford בלוס אנג׳לס ב-$380 מיליון",
+   "body": "Netflix רכשה את מתחם האולפנים Radford Studio Center בסטודיו סיטי (כ-55 אקר), שבו צולמה ״סיינפלד״, ב-$380 מיליון. המלווים בהובלת Goldman Sachs השתלטו על המתחם אחרי ש-Hackman Capital, שרכשה אותו ב-$1.85 מיליארד ב-2021, לא עמדה בהתחייבויותיה.",
+   "src": "NBC Los Angeles",
+   "url": "https://www.nbclosangeles.com/news/local/netflix-radford-studio-center/3974855/",
+   "time": "00:16",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-uhs-aiken-sale",
+   "date": "2026-11-25",
+   "t": [
+    "UHS"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Universal Health Services תמכור בית חולים בדרום קרוליינה ב-$500 מיליון",
+   "body": "UHS תמכור ל-Piedmont Healthcare את Aiken Regional Medical Centers – בית חולים של 211 מיטות ויחידה פסיכיאטרית של 62 מיטות – בכ-$500 מיליון, לפי דיווח ל-SEC. העסקה כפופה לבדיקה רגולטורית וצפויה להיסגר לא לפני 31 בינואר 2027.",
+   "src": "WRDW",
+   "url": "https://www.wrdw.com/2026/11/24/uhs-confirms-deal-sell-aiken-regional-medical-centers-piedmont/",
+   "time": "01:03",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-c-venezuela",
+   "date": "2026-11-25",
+   "t": [
+    "C"
+   ],
+   "tag": "בנקים",
+   "tone": "neu",
+   "title": "Bloomberg: Citigroup שוקלת לחזור לוונצואלה",
+   "body": "לפי Bloomberg, בכירי Citigroup בוחנים עם משרדי החוץ והאוצר אילו פטורים מסנקציות יידרשו לחזרה לוונצואלה, חמש שנים אחרי שיצא משם. לפי הדיווח, הבנק יתחיל כנראה בקשרי בנקאות קורספונדנטית עם בנקים מקומיים ולא בנוכחות פיזית. Citi סירב להגיב.",
+   "src": "Reuters via WHTC",
+   "url": "https://whtc.com/2026/11/24/citi-weighs-return-to-venezuela-five-years-after-exit-bloomberg-news-reports/",
+   "time": "02:36",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-hii-uk-remus",
+   "date": "2026-11-25",
+   "t": [
+    "HII"
+   ],
+   "tag": "ביטחון",
+   "tone": "pos",
+   "title": "HII זכתה בחוזה של $186 מיליון מהצי הבריטי – הגדול שלה מחוץ לארה״ב",
+   "body": "HII קיבלה ממשרד ההגנה הבריטי חוזה של כ-$186 מיליון לכלי שיט תת-ימיים בלתי מאוישים REMUS 620 ושירותים, לתוכנית ציד המוקשים של הצי המלכותי. זה החוזה הבינלאומי הגדול בתולדותיה בתחום המערכות הבלתי מאוישות. המניה ננעלה אתמול ב-$292.81, עלייה של 2.18%.",
+   "src": "RTTNews",
+   "url": "https://www.rttnews.com/3717747/hii-bags-186-mln-uk-royal-navy-contract-to-supply-remus-620.aspx",
+   "time": "07:10",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-hum-keybanc",
+   "date": "2026-11-25",
+   "t": [
+    "HUM"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "KeyBanc משדרגת את Humana ל-Overweight עם מחיר יעד של $500",
+   "body": "KeyBanc העלתה את ההמלצה על Humana ל-Overweight מ-Sector Weight וקבעה מחיר יעד של $500, כ-30% מעל מחיר הסגירה של 23.11 ($383.68).",
+   "src": "TradingView",
+   "url": "https://www.tradingview.com/news/tradingview:a0216897de736:0-keybanc-upgrades-humana-to-overweight-from-sector-weight-sets-price-target-at-500/",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-noc-mizuho",
+   "date": "2026-11-25",
+   "t": [
+    "NOC"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Mizuho מתחילה לסקר את Northrop Grumman בהמלצת Outperform",
+   "body": "Mizuho פתחה סיקור על Northrop Grumman בהמלצת Outperform ומחיר יעד של $680.",
+   "src": "Rallies.ai",
+   "url": "https://rallies.ai/news/northrop-grumman-mizuho-initiates-coverage-with-outperform-rating-target-price-680-b313027e2a0c547f",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-lhx-mizuho",
+   "date": "2026-11-25",
+   "t": [
+    "LHX"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Mizuho מתחילה לסקר את L3Harris עם מחיר יעד של $310",
+   "body": "Mizuho פתחה סיקור על L3Harris בהמלצת Outperform ומחיר יעד של $310, כ-21.6% מעל מחיר הסגירה של 23.11 ($254.83).",
+   "src": "TradingView",
+   "url": "https://www.tradingview.com/news/tradingview:2e449ec5b4c7c:0-mizuho-initiates-coverage-of-l3harris-technologies-at-outperform-sets-price-target-at-310/",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-cp-sp-upgrade",
+   "date": "2026-11-25",
+   "t": [
+    "CP"
+   ],
+   "tag": "דירוג",
+   "tone": "pos",
+   "title": "S&P מעלה את דירוג האשראי של Canadian Pacific Kansas City ל-A-",
+   "body": "S&P העלתה את דירוג CPKC ל-A- מ-BBB+ עם תחזית יציבה, בזכות ביצועים תפעוליים מאז המיזוג עם Kansas City Southern וכ-41% הכנסות חוצות גבולות; לפי S&P, המכסים עולים לחברה פחות מ-1% מההכנסות. המינוף הנקי עמד על 3.2 בסוף הרבעון השלישי, והיעד הוא 2.75 עד סוף השנה הבאה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/sp-upgrades-canadian-pacific-kansas-city-to-a-on-crossborder-growth-momentum-5049273",
+   "time": "00:36",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-bkng-opentable-meu",
+   "date": "2026-11-25",
+   "t": [
+    "BKNG"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "OpenTable של Booking תרכוש את me&u האוסטרלית",
+   "body": "OpenTable, חלק מ-Booking Holdings, הודיעה על הסכם לרכישת חברת טכנולוגיית המסעדות האוסטרלית me&u, שמטפלת ביותר ממיליון הזמנות בשבוע. ההודעה לא כללה מחיר; העסקה צפויה להיסגר במחצית הראשונה של 2027, בכפוף לאישורים.",
+   "src": "OpenTable via Stock Titan",
+   "url": "https://www.stocktitan.net/news/BKNG/open-table-announces-proposed-acquisition-of-australian-restaurant-e1a903jevbfd.html",
+   "time": "01:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-24-ste-notes",
+   "date": "2026-11-24",
+   "t": [
+    "STE"
+   ],
+   "tag": "אג״ח",
+   "tone": "neu",
+   "title": "STERIS גייסה $1.5 מיליארד באג״ח למימון רכישת Xodus Medical",
+   "body": "STERIS השלימה הנפקת אג״ח של $1.5 מיליארד: $750 מיליון בריבית 5.650% לפירעון ב-2033 ו-$750 מיליון בריבית 5.875% לפירעון ב-2036. התמורה, כ-$1.483 מיליארד, תממן יחד עם הלוואה ומזומן את רכישת Xodus Medical.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/sec-filings/steris-completes-15-billion-senior-notes-offering-to-support-xodus-medical-acquisition-93CH-5049041",
+   "time": "23:16",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-24-tjx-closeouts",
+   "date": "2026-11-24",
+   "t": [
+    "TJX"
+   ],
+   "tag": "קמעונאות",
+   "tone": "neu",
+   "title": "מנכ״ל TJX: ״השווקים מוצפים״ בעודפי סחורה לקראת החגים",
+   "body": "מנכ״ל TJX ארני הרמן אמר שהשווקים מוצפים בעודפי מלאי ושהחברה היא לרוב ״הטלפון הראשון״ של הספקים; סחורה חדשה תגיע לחנויות עד כעשרה ימים לפני חג המולד. ברבעון השלישי עלו המכירות ב-6% ל-$16.0 מיליארד והמכירות בחנויות זהות ב-4%.",
+   "src": "TheStreet",
+   "url": "https://www.thestreet.com/investing/stocks/tjx-companies-ceo-herrman-holiday-deals-will-keep-landing-tj-maxx-marshalls-up-to-10-days-before-christmas",
+   "time": "23:00",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-24-kbr-trinzic",
+   "date": "2026-11-24",
+   "t": [
+    "KBR"
+   ],
+   "tag": "פיצול",
+   "tone": "neu",
+   "title": "KBR מסדירה מימון של $1.72 מיליארד לחברה שתפוצל, Trinzic",
+   "body": "KBR תיקנה את הסכם האשראי שלה והקטינה את מסגרת האשראי מ-$1.0 מיליארד ל-$800 מיליון. חטיבת Mission Technology Solutions, שתפוצל בשם Trinzic, קיבלה מסגרות מובטחות של כ-$1.72 מיליארד, כולל מסגרת של $500 מיליון, ובנוסף אג״ח של $500 מיליון בריבית 7.250%.",
+   "src": "TipRanks",
+   "url": "https://www.tipranks.com/news/company-announcements/kbr-amends-credit-agreement-ahead-of-trinzic-spin-off",
+   "time": "23:34",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-24-wen-lawsuit",
+   "date": "2026-11-24",
+   "t": [
+    "WEN"
+   ],
+   "tag": "משפטי",
+   "tone": "neg",
+   "title": "תביעה ייצוגית נגד Wendy's: תיאום מחירים בעזרת נתוני מערכת הקופות",
+   "body": "תביעה ייצוגית שהוגשה לבית משפט פדרלי במרילנד טוענת ש-Wendy's והזכיינים שלה תיאמו העלאות מחירים בשנים 2016–2022 בעזרת נתונים ממערכת הקופות Aloha של NCR Voyix, שגם היא נתבעת. החברות לא הגיבו.",
+   "src": "CBS News",
+   "url": "https://www.cbsnews.com/news/wendys-class-action-lawsuit-dynamic-pricing/",
+   "time": "22:19",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-sndk-overnight",
+   "date": "2026-11-25",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "זיכרון",
+   "tone": "neg",
+   "title": "Sandisk ממשיכה לרדת במסחר הלילי אחרי צניחה של 11%",
+   "body": "Sandisk ננעלה אתמול ב-$77.95, ירידה של 11.1%, ולפי TipRanks ירדה בכ-4% נוספים במסחר הלילי. לפי FinanceFeeds, TrendForce הורידה את תחזית מחירי חוזי ה-NAND לרבעון הראשון של 2027 לטווח של 0% עד ‎-5%, ו-Evercore ISI הורידה את מחיר היעד ל-$175 מ-$200 והשאירה Outperform.",
+   "src": "FinanceFeeds",
+   "url": "https://financefeeds.com/sandisk-sndk-stock-77-wednesday-after-11-percent-drop-erases-monday-rally-bull-88-bear-70/",
+   "time": "09:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-orcl-ai-selloff",
+   "date": "2026-11-25",
+   "t": [
+    "ORCL"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Oracle ירדה ב-3.7% ומחקה כשליש מהעלייה של יום שני",
+   "body": "Oracle ננעלה אתמול ב-$109.50, ירידה של 3.68%, וירדה ב-0.67% נוספים במסחר המאוחר. FinanceFeeds מייחסת את הירידה לגל המכירות במניות ה-AI ולהורדת תחזיות ההשקעות ב-AI של Mizuho.",
+   "src": "FinanceFeeds",
+   "url": "https://financefeeds.com/oracle-orcl-stock-109-wednesday-ai-selloff-undoes-third-of-rebound-bull-119-bear-100/",
+   "time": "09:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-dri-bnp",
+   "date": "2026-11-25",
+   "t": [
+    "DRI"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "BNP Paribas מתחילה לסקר את Darden בהמלצת Outperform",
+   "body": "BNP Paribas Exane פתחה סיקור על Darden Restaurants בהמלצת Outperform ומחיר יעד של $263, כ-13% מעל מחיר הסגירה של 23.11 ($232.27).",
+   "src": "TradingView",
+   "url": "https://www.tradingview.com/news/tradingview:04d580c9b0ce5:0-bnp-paribas-initiates-coverage-of-darden-restaurants-at-outperform-sets-price-target-at-263/",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-24-bwa-seaport",
+   "date": "2026-11-24",
+   "t": [
+    "BWA"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Seaport מתחילה לסקר את BorgWarner בהמלצת Buy",
+   "body": "Seaport Research פתחה סיקור על BorgWarner בהמלצת Buy ומחיר יעד של $60. האנליסט כתב שענף הרכב נמצא ב״נקודת מפנה קריטית״ ושהוא מעדיף ספקים שהמעבר לרכב חשמלי שוחק פחות את משאביהם.",
+   "src": "TipRanks/TheFly",
+   "url": "https://www.tipranks.com/news/the-fly/borgwarner-initiated-with-a-buy-at-seaport-research-thefly-news",
+   "time": "13:36",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-aph-credit",
+   "date": "2026-11-25",
+   "t": [
+    "APH"
+   ],
+   "tag": "מימון",
+   "tone": "neu",
+   "title": "Amphenol מגדילה את מסגרת האשראי ל-$5 מיליארד",
+   "body": "לפי דיווח 8-K, Amphenol הגדילה את מסגרת האשראי הלא מובטחת שלה מ-$3.0 מיליארד ל-$5.0 מיליארד, לפירעון בנובמבר 2031, ותוכנית ניירות הערך המסחריים שלה בארה״ב יכולה להגיע ל-$5.0 מיליארד.",
+   "src": "SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000820313/000110465926131603/tm2630528d1_8k.htm",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-wtrg-director",
+   "date": "2026-11-25",
+   "t": [
+    "WTRG"
+   ],
+   "tag": "הנהלה",
+   "tone": "neu",
+   "title": "Essential Utilities: חברת הדירקטוריון תמרה לינדה הלכה לעולמה",
+   "body": "Essential Utilities הודיעה בדיווח 8-K שחברת הדירקטוריון תמרה לינדה נפטרה באופן פתאומי ב-20 בנובמבר. היא כיהנה בוועדות התגמול וניהול הסיכונים. לא הודע על מחליפה.",
+   "src": "TradingView",
+   "url": "https://www.tradingview.com/news/tradingview:51bf36fa0f7b7:0-essential-utilities-director-tamara-linde-dies-unexpectedly/",
+   "time": "10:50",
+   "k": "stock"
+  },
+  {
    "id": "2026-11-24-clsk-q4-surprise-profit",
    "date": "2026-11-24",
    "t": [
