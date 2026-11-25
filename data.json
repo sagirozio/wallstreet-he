@@ -126149,6 +126149,36 @@
  },
  "news": [
   {
+   "id": "2026-11-25-tsla-eu-fsd-delay",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "רגולציה",
+   "tone": "neg",
+   "title": "Tesla יורדת בכ-6% אחרי שהאיחוד האירופי דחה את הדיון על ה-FSD",
+   "body": "לפי Reuters, ועדה טכנית של האיחוד האירופי לרכב דחתה מ-1 ל-15 בדצמבר את הישיבה על אישור מערכת הנהיגה של Tesla ברחבי האיחוד; צרפת ושוודיה העלו חששות בטיחות. המניה ירדה בכ-6% במסחר המוקדם, ל-$362.91, ונמצאת בירידה של 19% מתחילת השנה.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/25/tesla-slides-6-as-eu-delays-vote-on-its-self-driving-software-rivian-and-lucid-drop-4/",
+   "time": "17:54"
+  },
+  {
+   "id": "2026-11-25-spcx-merger-concerns",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neg",
+   "title": "SpaceX יורדת בכ-7% על רקע ספקות בקרב משקיעים לגבי המיזוג עם Tesla",
+   "body": "לפי Yahoo Finance, מניית SpaceX ירדה בכ-7% ל-$116.91 במסחר המוקדם. גארי בלק מ-The Future Fund כתב ב-X כי בעסקת מניות ב-25% פרמיה SpaceX תצטרך להנפיק כ-52% מניות נוספות; החברות טרם הודיעו על עסקה או על תנאיה.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/article/tesla-and-spacex-stocks-sink-as-merger-concerns-mount-154159372.html",
+   "time": "17:41"
+  },
+  {
    "id": "2026-11-25-nomura-jensen-put",
    "date": "2026-11-25",
    "t": [
