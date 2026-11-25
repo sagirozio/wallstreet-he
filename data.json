@@ -44755,7 +44755,7 @@
   }
  ],
  "overview": {
-  "asOf": "25.11.2026 · 17:26",
+  "asOf": "25.11.2026 · 18:10",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44814,8 +44814,8 @@
   ],
   "brief": [
    {
-    "h": "הירידות מעמיקות, מניות ה-AI מובילות",
-    "t": "לפי Forbes, Nvidia ירדה ביותר מ-8% ו-Oracle ו-Anthropic ב-8.9%; מניות תשתיות ה-AI כמו CoreWeave, Nebius, IREN ו-Bloom Energy יורדות ביותר מ-10%, ה-VIX עלה לכ-31.6 והביטקוין ירד לכ-$57.6 אלף.",
+    "h": "מכירות כבדות במניות ה-AI והשבבים",
+    "t": "Nvidia יורדת בכ-8% ו-Micron, Lam Research, CoreWeave ו-Nebius ביותר מ-10%; לפי Yahoo Finance ה-VIX עלה לכ-33.6, התשואה ל-10 שנים ירדה ל-4.82% והזהב ירד ב-3.5%.",
     "tone": "neg"
    },
    {
@@ -44829,13 +44829,13 @@
     "tone": "neu"
    },
    {
-    "h": "זיכרון: TrendForce מורידה תחזית DRAM",
-    "t": "TrendForce הורידה את תחזית עליות מחירי ה-DRAM לשנה הבאה, ו-Micron ו-Sandisk ירדו במסחר המקדים ב-5.74% וב-6.23% (לפי Longbridge), אחרי צניחה של כ-11% אתמול.",
+    "h": "חשש מחובות תשתיות ה-AI",
+    "t": "לפי Reuters, מרווחי ה-CDS של Oracle, Alphabet ו-CoreWeave בשיא, ו-Lam Research יורדת בכ-10% על רקע הצעת חוק MATCH להגבלת ייצוא ציוד שבבים לסין.",
     "tone": "neg"
    },
    {
-    "h": "דוחות: HP עולה, Urban Outfitters ו-Nutanix יורדות",
-    "t": "HP עולה בכ-10% אחרי רווח של $0.83 למניה (צפי: $0.75) והעלאת הדיבידנד; Urban Outfitters ירדה ב-14.7% במסחר המקדים אחרי הדוח, ו-Nutanix יורדת אחרי הודעה על עזיבת המנכ״ל.",
+    "h": "דוחות: HP ו-Kanzhun עולות",
+    "t": "HP עולה בכ-10% אחרי רווח של $0.83 למניה (צפי: $0.75), Kanzhun עולה בכ-10% אחרי עלייה של 23% ברווח התפעולי ורכישה עצמית של $500 מיליון; Urban Outfitters ו-Nutanix יורדות אחרי הדוחות.",
     "tone": "neu"
    }
   ],
@@ -44908,7 +44908,7 @@
    "from": 19.3,
    "note": "המדד ירד בכ-1% ל-26.36, אחרי הצניחה של 26% אתמול; הדאו עלה בזמן שהנאסד״ק ירד בכ-1.5% על רקע המכירות במניות השבבים."
   },
-  "rev": 202611251726,
+  "rev": 202611251810,
   "market": {
    "note": "סגירה ביום שלישי, 24.11.2026. הדאו ננעל לראשונה מעל 50,000 נקודות, בזמן שהנאסד״ק ירד על רקע מכירות במניות השבבים: קרן השבבים SMH ירדה בכ-7%, Micron ב-11% ו-Nvidia בכ-5.9%, יום אחרי הזינוק של 31.5%. מגזר הבריאות הוביל, עם Insmed שזינקה ב-14% על עסקת Sanofi, והטכנולוגיה היה המגזר החלש. הזהב ירד בכ-2.3% והביטקוין בכ-2.3%, לסביבת $59,800.",
    "idx": [
@@ -126148,6 +126148,94 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-25-lrcx-match-act",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "LRCX"
+   ],
+   "tag": "רגולציה",
+   "tone": "neg",
+   "title": "Lam Research יורדת בכ-10% על רקע הצעת חוק להגבלת ייצוא ציוד שבבים לסין",
+   "body": "לפי Investing.com, המניה ירדה ב-9.7% ל-$177.06 בבוקר, אחרי דיווחים שחברי קונגרס משתי המפלגות פועלים לצרף את חוק MATCH לחוק תקציב הביטחון (NDAA) לשנת 2027. החוק יחמיר את מגבלות הייצוא על ציוד מתקדם לייצור שבבים לחברות כמו SMIC, Huawei ו-YMTC.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/why-is-lam-research-stock-tumbling-today-93CH-4981262",
+   "time": "17:38"
+  },
+  {
+   "id": "2026-11-25-bz-q3-buyback",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BZ"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Kanzhun עולה בכ-10% אחרי עלייה ברווח התפעולי ותוכנית רכישה של $500 מיליון",
+   "body": "ההכנסות ברבעון השלישי עלו ב-11.7% ל-$360.4 מיליון, והרווח המתואם למניה היה $0.35; הרווח התפעולי עלה ב-23%. החברה אישרה רכישה עצמית של עד $500 מיליון ב-12 חודשים, וצופה ברבעון הרביעי הכנסות של 2.19–2.23 מיליארד יואן (צמיחה של 5.3%–7.3%).",
+   "src": "Kanzhun / Bullished",
+   "url": "https://www.stocktitan.net/news/BZ/kanzhun-limited-announces-third-quarter-2026-unaudited-financial-wg7hxfho1kpe.html",
+   "time": "17:42"
+  },
+  {
+   "id": "2026-11-25-crwv-cds",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "אשראי",
+   "tone": "neg",
+   "title": "CoreWeave יורדת בכ-10% לשפל של 52 שבועות; מרווח ה-CDS שלה בשיא",
+   "body": "לפי Investing.com, מרווח ה-CDS ל-5 שנים של CoreWeave עלה לשיא של 1,314 נקודות בסיס, ואגרות החוב שלה ירדו לשפל; האג״ח בריבית 9% לשנת 2031 נסחרה סביב 76 סנט לדולר. לפי Reuters, התשואה על האג״ח הזו עלתה לכמעט 18%.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/why-is-coreweave-stock-sliding-today-93CH-5050957",
+   "time": "16:26"
+  },
+  {
+   "id": "2026-11-25-nbis-neocloud",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "NBIS"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Nebius יורדת בכ-11% ביום שני ברציפות של מכירות בחברות ה-neocloud",
+   "body": "לפי Investing.com, הירידה באה אחרי שמנכ״ל HPE אנטוניו נרי אמר שזרוע המימון של HPE לא מימנה לקוחות neocloud או לקוחות בסיכון גבוה, ועל רקע החשש מעלויות המימון בענף. Nebius הורידה בעבר את תחזית ההכנסות ל-2026 ל-$3.0–3.2 מיליארד.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/why-is-nebius-stock-sliding-today-93CH-5050956",
+   "time": "16:26"
+  },
+  {
+   "id": "2026-11-25-ai-credit-cds",
+   "date": "2026-11-25",
+   "t": [
+    "CRWV",
+    "ORCL",
+    "GOOGL"
+   ],
+   "tag": "אשראי",
+   "tone": "neg",
+   "title": "Reuters: מרווחי ה-CDS של Oracle, Alphabet ו-CoreWeave בשיא; החשש מחובות תשתיות ה-AI גובר",
+   "body": "לפי Reuters, מרווחי ה-CDS ל-5 שנים של Oracle, Alphabet, SpaceX ו-CoreWeave הגיעו לרמות שיא, והחשש מחובות חברות ה-neocloud, שמצטבר מאז אוקטובר, מכביד על מניות ה-AI. Dell ירדה למרות העלאת התחזית השנתית ורכישה עצמית נוספת של $25 מיליארד.",
+   "src": "Reuters",
+   "url": "https://srnnews.com/ai-stocks-slide-on-fears-over-infrastructure-buildout-costs/",
+   "time": "14:17"
+  },
+  {
+   "id": "2026-11-25-bonds-gold-vix",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "שווקים",
+   "tone": "neg",
+   "title": "ה-VIX מעל 33, התשואה ל-10 שנים יורדת ל-4.82% והזהב צונח ב-3.5%",
+   "body": "לפי Yahoo Finance, באמצע הבוקר בניו יורק ה-VIX עלה ב-27% ל-33.6, התשואה ל-10 שנים ירדה ב-7 נקודות בסיס ל-4.82% ול-30 שנה ל-5.24%. הזהב ירד ב-3.5% לכ-$3,467, הנפט עלה ב-1.3% ל-$83.13 ומדד השבבים SOX ירד ביותר מ-6%.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html",
+   "time": "17:33"
+  },
   {
    "id": "2026-11-25-ai-selloff-deepens-orcl",
    "date": "2026-11-25",
