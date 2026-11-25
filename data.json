@@ -126149,6 +126149,50 @@
  },
  "news": [
   {
+   "id": "2026-11-25-ntia-spacex-bead",
+   "date": "2026-11-25",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "SpaceX מוותרת על כ-$738 מיליון ממענקי האינטרנט הפדרליים במסגרת הסכם חדש של NTIA",
+   "body": "לפי TIKR ב-Yahoo Finance, מינהלת התקשורת NTIA פרסמה הסכם חדש לספקי לוויין שמוותרים על מענקי BEAD, ו-SpaceX הראשונה שחתמה: היא מוותרת על כ-$738 מיליון לכ-476 אלף אתרים כפריים ותספק להם ציוד Starlink ללא עלות למנויים חדשים, ובתמורה פטורה מרוב דרישות הביקורת והדיווח. הסכום שווה לכ-1.5% מתחזית ההכנסות של האנליסטים ל-2026.",
+   "src": "Yahoo Finance (TIKR)",
+   "url": "https://finance.yahoo.com/technology/articles/spacex-drops-738-million-federal-154227688.html",
+   "time": "17:42"
+  },
+  {
+   "id": "2026-11-25-amba-downgrades",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "AMBA"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Ambarella צונחת לשפל של 8 שנים: תחזית חלשה והורדות דירוג מ-BofA ו-Morgan Stanley",
+   "body": "לפי Stocktwits, ההכנסות ברבעון היו $115.2 מיליון (צפי: $120 מיליון) והרווח $0.28 למניה (צפי: $0.31), ותחזית ההכנסות לרבעון הבא, $70–75 מיליון, נמוכה בכ-35% מהצפי; ההנהלה ייחסה זאת לעליית מחירי הזיכרון ולמחסור בו. BofA הורידה ל-Underperform עם יעד של $30 (מ-$70), ו-Morgan Stanley ל-Equal Weight עם יעד של $42.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/amba-stock-hits-8-year-low-as-ai-memory-crunch-guts-guidance-sparks-downgrades/cNbHkSJR9mn",
+   "time": "17:53"
+  },
+  {
+   "id": "2026-11-25-ba-kc46",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BA"
+   ],
+   "tag": "ביטחון",
+   "tone": "pos",
+   "title": "Boeing זכתה בחוזה של $2.82 מיליארד מחיל האוויר האמריקאי ל-15 מטוסי תדלוק KC-46A",
+   "body": "לפי Airforce Technology, החוזה כולל 15 מטוסי KC-46A נוספים שייוצרו בסיאטל, והעבודה צפויה להסתיים ב-2030; בכך עולה מספר המטוסים שחיל האוויר הזמין ל-188. בשנה שעברה זכתה Boeing בחוזה של $2.47 מיליארד ל-15 מטוסים.",
+   "src": "Airforce Technology",
+   "url": "https://www.airforce-technology.com/news/boeing-us-kc-461/",
+   "time": "16:20"
+  },
+  {
    "id": "2026-11-25-stocks-pare-losses",
    "date": "2026-11-25",
    "t": [
