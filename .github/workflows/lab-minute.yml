@@ -1,8 +1,11 @@
 name: Lab 5-minute bars (encrypted)
 # Fetches the 5-minute bars of the days in lab_req.json from Alpaca and commits them encrypted (lab_min.enc).
-# Manual only. The log shows counts only.
+# Runs by hand, or when the list of days or the script changes. The log shows counts only.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [lab_req.json, scripts/lab_minute.py]
 permissions:
   contents: write
 concurrency: { group: lab-minute, cancel-in-progress: false }

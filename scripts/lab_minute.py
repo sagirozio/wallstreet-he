@@ -3,7 +3,7 @@
 lab_req.json  = [[ticker, "YYYY-MM-DD"], ...]  (the days to fetch)
 lab_min.enc   = the bars, encrypted: AES-256-GCM with a random key, the key wrapped with RSA-OAEP (scripts/lab_pub.pem).
                 Only the holder of the matching private key (kept outside this repo) can read it.
-The log shows counts only. Secrets: ALPACA_KEY_ID, ALPACA_SECRET.
+The log shows counts only (and the first line of any API error). Secrets: ALPACA_KEY_ID, ALPACA_SECRET.
 """
 import json, os, sys, time, base64, pathlib, urllib.request, urllib.parse, urllib.error
 from collections import defaultdict
