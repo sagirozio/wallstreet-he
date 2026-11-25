@@ -44755,7 +44755,7 @@
   }
  ],
  "overview": {
-  "asOf": "25.11.2026 · 18:40",
+  "asOf": "25.11.2026 · 19:00",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44815,7 +44815,7 @@
   "brief": [
    {
     "h": "מכירות כבדות במניות ה-AI והשבבים",
-    "t": "Nvidia יורדת בכ-8% ו-Micron, Lam Research, CoreWeave ו-Lumentum ביותר מ-10%; לפי Yahoo Finance הנאסד״ק 100 בדרך לסגירה בשוק דובי ומדד השבבים SOX יורד ביותר מ-6%, ה-VIX מעל 33 והתשואה ל-10 שנים ירדה ל-4.82%.",
+    "t": "Nvidia יורדת בכ-8.7%, Alphabet ו-Amazon בכ-5%, ו-Micron, Lam Research, Applied Materials ו-CoreWeave ביותר מ-10%; לפי Reuters ענף הטכנולוגיה ב-S&P 500 יורד ב-5.2%, הנאסד״ק 100 בדרך לסגירה בשוק דובי, ה-VIX מעל 33 והמשקיעים עוברים לאג״ח – התשואה ל-10 שנים ירדה ל-4.82%.",
     "tone": "neg"
    },
    {
@@ -44908,7 +44908,7 @@
    "from": 19.3,
    "note": "המדד ירד בכ-1% ל-26.36, אחרי הצניחה של 26% אתמול; הדאו עלה בזמן שהנאסד״ק ירד בכ-1.5% על רקע המכירות במניות השבבים."
   },
-  "rev": 202611251840,
+  "rev": 202611251900,
   "market": {
    "note": "סגירה ביום שלישי, 24.11.2026. הדאו ננעל לראשונה מעל 50,000 נקודות, בזמן שהנאסד״ק ירד על רקע מכירות במניות השבבים: קרן השבבים SMH ירדה בכ-7%, Micron ב-11% ו-Nvidia בכ-5.9%, יום אחרי הזינוק של 31.5%. מגזר הבריאות הוביל, עם Insmed שזינקה ב-14% על עסקת Sanofi, והטכנולוגיה היה המגזר החלש. הזהב ירד בכ-2.3% והביטקוין בכ-2.3%, לסביבת $59,800.",
    "idx": [
@@ -126148,6 +126148,125 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-25-nomura-jensen-put",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "Nomura: החזרת הואנג לא בלמה את הלחץ על מניות ה-AI",
+   "body": "לפי Yahoo Finance, Nvidia יורדת בכ-8.7% ל-$141.86. צ׳רלי מקאליגוט מ-Nomura ציין שהריבית הגבוהה, התרחבות מרווחי האשראי והתנודתיות דוחפים משקיעים למזומן ולאג״ח ממשלתיות.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html",
+   "time": "18:36"
+  },
+  {
+   "id": "2026-11-25-megacaps-breadth",
+   "date": "2026-11-25",
+   "t": [
+    "GOOGL",
+    "AMZN",
+    "MSFT"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "Alphabet ו-Amazon יורדות בכ-5%; ענף הטכנולוגיה ב-S&P 500 יורד ב-5.2%",
+   "body": "לפי Reuters, Alphabet ירדה ב-5% ו-Amazon ב-4.9%, Microsoft ב-3.2% ו-Apple ב-1.4%. בבורסת ניו יורק היחס בין מניות יורדות לעולות היה 3.51 ל-1, ובנאסד״ק 4.54 ל-1.",
+   "src": "Reuters",
+   "url": "https://www.brecorder.com/news/40450713/nasdaq-slides-4-as-ai-selloff-tariff-proposals-rattle-wall-st",
+   "time": "17:36"
+  },
+  {
+   "id": "2026-11-25-europe-autos-chips",
+   "date": "2026-11-25",
+   "t": [
+    "ASML"
+   ],
+   "tag": "אירופה",
+   "tone": "neu",
+   "title": "אירופה: ה-STOXX 600 סביב שינוי אפסי; יצרניות הרכב עולות, ASML יורדת",
+   "body": "לפי Trading Economics, מדד STOXX 600 נסחר סביב רמת הסגירה הקודמת ו-STOXX 50 ירד ב-0.4%. Volkswagen עלתה ב-6.5% ו-BMW ב-5.1%, ומנגד ASML ירדה ב-2.7% ו-Infineon ב-3.4%.",
+   "src": "Trading Economics",
+   "url": "https://tradingeconomics.com/euro-area/stock-market/news/505758",
+   "time": "18:57"
+  },
+  {
+   "id": "2026-11-25-dell-falls",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "DELL"
+   ],
+   "tag": "דוחות",
+   "tone": "neg",
+   "title": "Dell יורדת בכ-5.4% למרות העלאת התחזית השנתית",
+   "body": "לפי Reuters, מניית Dell ירדה ב-5.4% בבוקר אף שהחברה העלתה את תחזיות ההכנסות והרווח השנתיות, על רקע המכירות הרחבות במניות הטכנולוגיה.",
+   "src": "Reuters",
+   "url": "https://www.brecorder.com/news/40450713/nasdaq-slides-4-as-ai-selloff-tariff-proposals-rattle-wall-st",
+   "time": "17:36"
+  },
+  {
+   "id": "2026-11-25-amat-falls",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "AMAT"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "Applied Materials יורדת בכ-10% עם מניות השבבים; UBS מורידה את מחיר היעד",
+   "body": "לפי Investing.com, המניה ירדה בבוקר ב-8.7% ל-$295.46 במכירות הרחבות במניות ה-AI והשבבים. UBS הורידה את מחיר היעד ל-$575 מ-$640 והשאירה המלצת קנייה, בנימוק של כיווץ מכפילים בענף.",
+   "src": "Investing.com",
+   "url": "https://ca.investing.com/news/stock-market-news/why-is-applied-materials-stock-sliding-today-93CH-4981257",
+   "time": "17:34"
+  },
+  {
+   "id": "2026-11-25-cls-falls",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "CLS"
+   ],
+   "tag": "AI",
+   "tone": "neg",
+   "title": "Celestica יורדת בכ-11% לשפל של 52 שבועות",
+   "body": "לפי Investing.com, המניה ירדה ב-11.3% במכירות במניות תשתיות ה-AI, ונוסף על כך אנליסט הוריד את ההמלצה עליה ל״החזק״. לפי Seeking Alpha, זו ירידה שנייה ברציפות אחרי ירידה של 8% אתמול.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/why-is-celestica-stock-sliding-today-93CH-5051101",
+   "time": "17:07"
+  },
+  {
+   "id": "2026-11-25-ttmi-falls",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "TTMI"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "TTM Technologies יורדת בכ-10% לשפל של 52 שבועות",
+   "body": "לפי Seeking Alpha, יצרנית המעגלים המודפסים ירדה ב-10% ל-$53.44 במכירות הרחבות במניות הטכנולוגיה; קרן הטכנולוגיה XLK ירדה ביותר מ-5%.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4676605-tech-slump-drives-ttm-technologies-down-10?feed_item_type=news",
+   "time": "17:39"
+  },
+  {
+   "id": "2026-11-25-wdc-falls",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "WDC"
+   ],
+   "tag": "זיכרון",
+   "tone": "neg",
+   "title": "Western Digital יורדת בכ-10% עם מניות חומרת ה-AI",
+   "body": "המניה ירדה כבר במסחר המקדים ב-5.6% על רקע החולשה במניות חומרת ה-AI ומימוש רווחים, אחרי עלייה של כ-14% ביום שני וירידה של כ-7.8% ביום שלישי. Weiss Ratings הורידה את דירוג המניה ל״החזק״.",
+   "src": "Finexus",
+   "url": "https://api.finexus.net/api/news/earnings/129212/html",
+   "time": "14:43"
+  },
   {
    "id": "2026-11-25-nasdaq100-bear-pace",
    "date": "2026-11-25",
