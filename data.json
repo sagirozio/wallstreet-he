@@ -4191,48 +4191,49 @@
   {
    "id": "BZ-2026-11",
    "t": "BZ",
-   "co": "KANZHUN LIMITED - American Depo",
-   "sector": "",
+   "co": "Kanzhun",
+   "sector": "אינטרנט",
    "date": "2026-11-25",
    "q": "Q3 2026",
    "epsAct": 2.34,
    "epsEst": 1.93,
-   "epsYoy": null,
+   "epsYoy": 2.06,
    "epsBasis": "מתואם",
-   "revAct": 2.4058,
+   "revAct": 2.4162,
    "revEst": 2.5293,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
+   "revYoy": 11.7,
+   "guide": "given",
+   "guideText": "לרבעון הרביעי: הכנסות של 2.19–2.23 מיליארד יואן (+5.3%–7.3%).",
+   "note": "הנתונים ביואן (מיליארדים; רווח ל-ADS). הכנסות $360.4 מיליון; הפסד נקי של 249 מיליון יואן בגלל הפסד השקעות של 1.44 מיליארד יואן. משתמשים פעילים 73 מיליון (+14.4%), 7.2 מיליון לקוחות עסקיים משלמים (+5.9%). רכישה עצמית חדשה של $500 מיליון.",
    "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/BZ",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "ir": "https://www.sec.gov/Archives/edgar/data/0001842827/000110465926131805/tm2630442d1_ex99-1.htm",
+   "hook": "רווח מתואם מעל הצפי, הכנסות מתחת לצפי ורכישה עצמית חדשה"
   },
   {
    "id": "DE-2026-11",
    "t": "DE",
-   "co": "Deere & Company",
-   "sector": "",
+   "co": "Deere",
+   "sector": "תעשייה",
    "date": "2026-11-25",
    "q": "Q4 2026",
    "epsAct": 3.89,
-   "epsEst": 4.17,
-   "epsYoy": null,
-   "epsBasis": "מתואם",
+   "epsEst": 4.05,
+   "epsYoy": 3.93,
+   "epsBasis": "מדווח",
    "revAct": 10.514,
    "revEst": 10.6774,
-   "revYoy": null,
-   "guide": "none",
-   "guideText": "",
-   "note": "",
-   "react": "",
-   "ir": "https://www.earningswhispers.com/epsdetails/DE",
-   "hook": "",
-   "auto": true,
-   "src": "finnhub"
+   "revYoy": -0.6,
+   "guide": "given",
+   "guideText": "לשנת 2027: רווח נקי של $4.5–5.25 מיליארד, כולל חיוב חד-פעמי של $0.25–0.40 מיליארד על הסדר פנסיה; מכירות חקלאות מדויקת וייצור +5%–15%, חקלאות קטנה ודשא ללא שינוי, בנייה ויערנות 0%–10%+.",
+   "note": "הכנסות כלל החברה $12.1 מיליארד (-2%); מכירות ציוד $10.5 מיליארד. במגזר החקלאות הגדולה המכירות ירדו ב-15% והרווח התפעולי ב-33%, בעוד שהחקלאות הקטנה (+10%) והבנייה (+12%) צמחו. רווח שנתי $4.86 מיליארד (-3%). צפי הרווח לפי 24/7 Wall St; לפי Finnhub $4.17.",
+   "react": "המניה יורדת במסחר המקדים.",
+   "ir": "https://www.sec.gov/Archives/edgar/data/0000315189/000110465926131741/de-ex99d1.htm",
+   "hook": "החמצת רווח ותחזית רחבה ל-2027",
+   "call": [
+    "ג׳ון מיי: מתחילים לראות סימנים מוקדמים לשיפור בחקלאות הגדולה, בהובלת צפון אמריקה.",
+    "לפי מיי, התחזית משקפת טווח תוצאות רחב יותר בגלל אי-ודאות מתמשכת בשווקי היעד.",
+    "בתחזית הענפית: חקלאות גדולה בארה״ב ובקנדה +5%–15%, אירופה 0% עד -5%, דרום אמריקה 0%–5%+."
+   ]
   },
   {
    "id": "URBN-2026-11",
@@ -44754,7 +44755,7 @@
   }
  ],
  "overview": {
-  "asOf": "25.11.2026 · 15:05",
+  "asOf": "25.11.2026 · 15:30",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44814,7 +44815,7 @@
   "brief": [
    {
     "h": "החוזים בירידה חדה, השבבים בלחץ",
-    "t": "לפי Reuters, Nvidia יורדת בכ-5% במסחר המקדים ונמצאת כ-35% מתחת לשיא של אוקטובר, Micron, AMD ו-Marvell יורדות ביותר מ-5% ו-Anthropic נסחרת כ-6% מתחת למחיר ההנפקה של $83, על רקע דיווחים על מכסים חדשים וספקות לגבי החזר ההשקעות ב-AI.",
+    "t": "החוזה על הנאסד״ק 100 יורד בכ-2.9% וה-VIX קופץ מעל 30; לפי Reuters, Nvidia יורדת בכ-5% במסחר המקדים, Micron, AMD ו-Marvell ביותר מ-5%, ו-Anthropic נסחרת מתחת למחיר ההנפקה של $83, על רקע ספקות לגבי החזר ההשקעות ב-AI.",
     "tone": "neg"
    },
    {
@@ -44833,9 +44834,9 @@
     "tone": "neg"
    },
    {
-    "h": "המכסים החדשים: 16 כלכלות, סעיף 301",
-    "t": "לפי AP ו-WSJ, נציגות הסחר צפויה להכריז בקרוב על מכסים לפי סעיף 301 על סין, האיחוד האירופי, יפן, דרום קוריאה, טייוואן ועוד 11 כלכלות, שיתווספו למכסים של 10%–12.5% מיולי; השיעורים לא ידועים.",
-    "tone": "neu"
+    "h": "המכסים: 20% נוספים על סין",
+    "t": "לפי AP, המכסים לפי סעיף 301 יכללו תוספת של 20% על סחורות מסין, מכס של 10% על מטוסים מברזיל והעלאות על האיחוד האירופי, יפן, קוריאה, טייוואן ועוד; לפי בכיר בממשל אין לוח זמנים קשיח ליישום.",
+    "tone": "neg"
    }
   ],
   "macro": {
@@ -44907,7 +44908,7 @@
    "from": 19.3,
    "note": "המדד ירד בכ-1% ל-26.36, אחרי הצניחה של 26% אתמול; הדאו עלה בזמן שהנאסד״ק ירד בכ-1.5% על רקע המכירות במניות השבבים."
   },
-  "rev": 202611251505,
+  "rev": 202611251530,
   "market": {
    "note": "סגירה ביום שלישי, 24.11.2026. הדאו ננעל לראשונה מעל 50,000 נקודות, בזמן שהנאסד״ק ירד על רקע מכירות במניות השבבים: קרן השבבים SMH ירדה בכ-7%, Micron ב-11% ו-Nvidia בכ-5.9%, יום אחרי הזינוק של 31.5%. מגזר הבריאות הוביל, עם Insmed שזינקה ב-14% על עסקת Sanofi, והטכנולוגיה היה המגזר החלש. הזהב ירד בכ-2.3% והביטקוין בכ-2.3%, לסביבת $59,800.",
    "idx": [
@@ -126147,6 +126148,417 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-25-ap-section301-china-20pct",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "AP: מכס נוסף של 20% על סין ומכס של 10% על מטוסים מברזיל",
+   "body": "לפי AP, בכיר בממשל מסר שהמכסים לפי סעיף 301 יכללו תוספת של 20% על סחורות מסין (עד 45% בסך הכול על חלקן), מכס חדש של 10% על מטוסים ומכסים גבוהים יותר על סוכר מברזיל, והעלאות על האיחוד האירופי, יפן, דרום קוריאה, טייוואן ותשע מדינות נוספות. לפי הבכיר אין לוח זמנים קשיח ליישום, והמכסים לא יצטברו על מכסי סעיף 232 ועל המכסים של 10%–12.5% מיולי.",
+   "src": "AP",
+   "url": "https://www.ksat.com/news/politics/2026/11/25/us-plans-to-hike-tariffs-on-china-eu-brazil-and-others-over-subsidized-production/",
+   "time": "15:11"
+  },
+  {
+   "id": "2026-11-25-trump-huang-pardon",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: חנינה לג׳נסן הואנג ״תמיד אפשרות״",
+   "body": "לפי Yahoo Finance, בראיון ל-New York Post ביום שלישי בערב אמר הנשיא טראמפ שחנינה למנכ״ל Nvidia ג׳נסן הואנג היא ״תמיד אפשרות״, אך שאינו חושב שתידרש, ושהואנג צריך ״לומר את האמת״ לקונגרס. הואנג צפוי להעיד בקונגרס בשבוע הבא.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html",
+   "time": "12:00"
+  },
+  {
+   "id": "2026-11-25-futures-vix-30",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "וול סטריט",
+   "tone": "neg",
+   "title": "החוזים: הנאסד״ק 100 יורד בכ-2.9%, ה-VIX מעל 30",
+   "body": "לפי נתוני Yahoo Finance לפני הפתיחה, החוזה על הנאסד״ק 100 יורד בכ-2.9%, על ה-S&P 500 בכ-1.9% ועל הדאו בכ-1.3%, ומדד הפחד VIX קופץ בכ-16.7% ל-30.77. לפי Reuters, ה-S&P 500 והנאסד״ק בדרך לנובמבר החלש ביותר שלהם מאז 2008, ולפי IG מרווחי האשראי של חברות הקשורות ל-AI מתרחבים.",
+   "src": "Yahoo Finance / Reuters",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html",
+   "time": "15:00"
+  },
+  {
+   "id": "2026-11-25-amzn-meta-muse",
+   "date": "2026-11-25",
+   "t": [
+    "AMZN",
+    "META"
+   ],
+   "tag": "AI",
+   "tone": "neu",
+   "title": "Amazon ו-Meta במגעים לחיבור סוכן ה-AI Muse לאתר הקניות",
+   "body": "לפי MT Newswires, Amazon ו-Meta מנהלות מגעים שיאפשרו לסוכן ה-AI של Meta, Muse, לגשת לאתר הקניות של Amazon. החברות לא פרסמו פרטים.",
+   "src": "MT Newswires / Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/market-chatter-amazon-com-meta-104905932.html",
+   "time": "12:49"
+  },
+  {
+   "id": "2026-11-25-opec-meeting-sunday",
+   "date": "2026-11-25",
+   "t": [
+    "COP"
+   ],
+   "tag": "נפט",
+   "tone": "neu",
+   "title": "אופ״ק+ תתכנס ביום ראשון ליעדי התפוקה של 2027",
+   "body": "לפי Stocktwits, אופ״ק+ ובעלות בריתה ייפגשו בפגישה מקוונת ביום ראשון כדי לקבוע את יעדי התפוקה ל-2027, על רקע מחלוקת עם עיראק על כושר הייצור שלה (4.9 מול 5.2 מיליון חביות ביום). הברנט נסחר סביב $90 וה-WTI סביב $80.7.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/oil-market-midweek-wrap-brent-holds-near-90-despite-iran-tensions-opec-meeting-conoco-phillips-sale-in-focus/cNbH5X8R9lK",
+   "time": "07:48"
+  },
+  {
+   "id": "2026-11-25-cftc-crypto-reserves",
+   "date": "2026-11-25",
+   "t": [
+    "MSTR",
+    "COIN"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "ה-CFTC: בורסות נגזרים יוכלו להחזיק ביטקוין ומטבעות יציבים ברזרבות",
+   "body": "לפי TheStreet, הנחיית צוות של רשות המסחר בחוזים עתידיים (CFTC) מ-23 בנובמבר מאפשרת לבורסות נגזרים לכלול ביטקוין, את׳ר ומטבעות יציבים ברזרבות התפעוליות, בהפחתת שווי של 20% לפחות לביטקוין ו-2% למטבעות יציבים. הבורסות עדיין יידרשו להחזיק עלויות של שישה חודשים במזומן או בניירות ערך נזילים.",
+   "src": "TheStreet",
+   "url": "https://www.thestreet.com/crypto/policy/michael-saylor-gets-the-regulators-nod-he-wanted-just-not-at-full-price",
+   "time": "01:00"
+  },
+  {
+   "id": "2026-11-24-us-probes-iran-tanker-cyber",
+   "date": "2026-11-24",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neg",
+   "title": "ABC: ארה״ב בודקת אם איראן עומדת מאחורי מתקפות סייבר על מכליות",
+   "body": "לפי ABC News, בכירים אמריקאים מסרו שלפחות 50 ספינות הותקפו, חלקן קיבלו איומי פיצוץ, ושאיראן היא החשודה העיקרית, אך נבדקת גם מעורבות רוסית. לפי הבכירים, משמר החופים סייע לסכל את כל המתקפות.",
+   "src": "ABC News",
+   "url": "https://abcnews.com/International/live-updates/iran-live-updates-tehran-strait-hormuz-safe-demands/?id=138369648",
+   "time": "18:49"
+  },
+  {
+   "id": "2026-11-25-bz-q3",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BZ"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Kanzhun: הכנסות +11.7% ברבעון ותוכנית רכישה חדשה של $500 מיליון",
+   "body": "מפעילת BOSS Zhipin דיווחה על הכנסות של 2.42 מיליארד יואן ($360.4 מיליון, +11.7%) ורווח מתואם של 2.34 יואן ל-ADS, אך על הפסד נקי של 249 מיליון יואן בגלל הפסד השקעות של 1.44 מיליארד יואן. תחזית הרבעון הרביעי: הכנסות של 2.19–2.23 מיליארד יואן (+5.3%–7.3%), והדירקטוריון אישר רכישה עצמית חדשה של $500 מיליון.",
+   "src": "Kanzhun / SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001842827/000110465926131805/tm2630442d1_ex99-1.htm",
+   "time": "12:00"
+  },
+  {
+   "id": "2026-11-25-bmy-cfo",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BMY"
+   ],
+   "tag": "הנהלה",
+   "tone": "neu",
+   "title": "Bristol Myers: קווין דילון יחליף את סמנכ״ל הכספים במרץ 2027",
+   "body": "Bristol Myers Squibb הודיעה שסמנכ״ל הכספים דייוויד אלקינס יפרוש מתפקידו ב-1 במרץ 2027 לטובת תפקיד מחוץ לענף התרופות, ויוחלף בקווין דילון, היום ראש הכספים התאגידיים. החברה אשררה את תחזית 2026.",
+   "src": "BMS / SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000014272/000114036126045300/ef20086209_ex99-1.htm",
+   "time": "10:08"
+  },
+  {
+   "id": "2026-11-24-cf-faustina",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "CF"
+   ],
+   "tag": "מיזוגים",
+   "tone": "pos",
+   "title": "CF Industries רוכשת מפעל אמוניה מ-Mosaic בעסקה של $600 מיליון",
+   "body": "CF Industries תרכוש את מפעל האמוניה Faustina בלואיזיאנה מ-Mosaic: $360 מיליון במזומן ו-$240 מיליון שמיוחסים להסכם אספקה ארוך טווח. החברה צופה להעלות את הייצור מכ-300 אלף טון בשנה ל-480 אלף טון בשנה הראשונה ולכ-570 אלף טון עד 2030, בהשקעה של כ-$100 מיליון בשלוש שנים.",
+   "src": "CF Industries / SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001324404/000110465926131497/tm2630563d1_ex99-1.htm",
+   "time": "23:10"
+  },
+  {
+   "id": "2026-11-24-mos-faustina-sale",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "MOS"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Mosaic מוכרת את מפעל Faustina ותקבל עד 200 אלף טון אמוניה בשנה",
+   "body": "במסגרת העסקה עם CF Industries, בשווי כולל של $600 מיליון, Mosaic תקבל $360 מיליון במזומן ואספקה של עד 200 אלף טון אמוניה בשנה. העסקה אושרה פה אחד בדירקטוריונים וכפופה לאישורי רגולציה.",
+   "src": "CF Industries / SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001324404/000110465926131497/tm2630563d1_ex99-1.htm",
+   "time": "23:10"
+  },
+  {
+   "id": "2026-11-24-amgn-opdivo-biosimilar",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "AMGN"
+   ],
+   "tag": "משפטי",
+   "tone": "pos",
+   "title": "Amgen: הסדר עם BMS מאפשר להשיק ביוסימילר ל-Opdivo ב-2028",
+   "body": "Amgen הגיעה להסדר עם Bristol Myers Squibb ו-Ono שמסיים את תביעות הפטנטים על ABP 206, הביוסימילר שלה ל-Opdivo. לפי ההסדר, שתנאיו חסויים, ההשקה בארה״ב תהיה ב-1 באוקטובר 2028, בכפוף לאישור ה-FDA, שצפוי להחליט עד סוף 2026.",
+   "src": "Amgen / SEC",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000318154/000119312526475833/amgn-ex99_1.htm",
+   "time": "23:01"
+  },
+  {
+   "id": "2026-11-25-cop-var-energi",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "COP"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "ConocoPhillips מוכרת את פעילותה בנורווגיה ל-Vår Energi",
+   "body": "לפי Stocktwits, ConocoPhillips מכרה את פעילותה בנורווגיה ואת חלקה (40.25%) ב-Teesside ל-Vår Energi בעסקה בשווי כולל של $3.9 מיליארד, עם תמורה נטו במזומן של כ-$2.5 מיליארד. ההשלמה צפויה עד סוף הרבעון הראשון של 2027.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/oil-market-midweek-wrap-brent-holds-near-90-despite-iran-tensions-opec-meeting-conoco-phillips-sale-in-focus/cNbH5X8R9lK",
+   "time": "07:48"
+  },
+  {
+   "id": "2026-11-25-dan-eaton-close",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "DAN"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Dana: רכישת Mobility של Eaton תושלם בסוף הרבעון הראשון של 2027",
+   "body": "לפי MarketBeat, סמנכ״ל הכספים של Dana אמר בכנס של Barclays שהחברה מכוונת לחיסכון של $250 מיליון מהעסקה, כ-$75 מיליון מהם בשנה הראשונה, בעלות של כ-$200 מיליון. Dana רכשה מניות ב-$300 מיליון מאז ההכרזה על העסקה.",
+   "src": "MarketBeat",
+   "url": "https://www.marketbeat.com/instant-alerts/event-dana-targets-250-million-in-savings-from-eaton-mobility-deal-sees-2027-close-2026-11-24/?.tsrc=rss",
+   "time": "06:12"
+  },
+  {
+   "id": "2026-11-24-geo-fitch",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "GEO"
+   ],
+   "tag": "דירוג",
+   "tone": "pos",
+   "title": "Fitch מעלה את דירוג האשראי של GEO Group ל-BB",
+   "body": "לפי Investing.com, Fitch העלתה את דירוג GEO Group ל-BB מ-B+ עם תחזית יציבה, בזכות תמורה נטו של $1.0–1.1 מיליארד ממכירת נכסים ב-2026 ורכישות עצמיות של $600–650 מיליון. Fitch צופה מינוף נטו של כ-1.0 או פחות עד 2029.",
+   "src": "Investing.com / Yahoo",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/fitch-upgrades-geo-group-bb-210247054.html",
+   "time": "23:02"
+  },
+  {
+   "id": "2026-11-25-bg-director-buy",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BG"
+   ],
+   "tag": "בעלי עניין",
+   "tone": "neu",
+   "title": "דירקטור ב-Bunge קנה מניות ב-$1.2 מיליון; המניה בשפל של שנה",
+   "body": "לפי TIKR, הדירקטור כריסטופר מהוני, לשעבר מנכ״ל Glencore Agriculture, קנה 12,500 מניות במחיר ממוצע של $92.93 ב-19–20 בנובמבר. ביום שלישי ירדה המניה ב-8.6% ל-$84.06, מחיר הסגירה הנמוך שלה בשנה האחרונה, בלי חדשות מצד החברה.",
+   "src": "TIKR",
+   "url": "https://www.tikr.com/blog/a-former-glencore-agriculture-ceo-sits-on-bunges-board-he-just-bought-1-2-million-of-stock-31-below-its-high?.tsrc=rss&tlnk=yf-261125-px47ch2m",
+   "time": "06:27"
+  },
+  {
+   "id": "2026-11-25-as-buyback",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "AS"
+   ],
+   "tag": "רכישה עצמית",
+   "tone": "pos",
+   "title": "Amer Sports מכריזה על רכישה עצמית של $1 מיליארד",
+   "body": "לפי Simply Wall St, Amer Sports הכריזה על תוכנית רכישה עצמית של $1 מיליארד ללא מועד סיום. ברבעון השלישי הסתכמו המכירות ב-$2.17 מיליארד והרווח הנקי ב-$239.6 מיליון, והחברה צופה ל-2026 צמיחה של 25%–26% בהכנסות ורווח של $1.32–1.35 למניה.",
+   "src": "Simply Wall St / Yahoo",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/amer-sports-unveils-1-billion-031601048.html",
+   "time": "05:16"
+  },
+  {
+   "id": "2026-11-24-lly-moodys",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "LLY"
+   ],
+   "tag": "דירוג",
+   "tone": "pos",
+   "title": "Moody's מעלה את דירוג Eli Lilly ל-Aa2",
+   "body": "לפי Investing.com, Moody's העלתה את דירוג האשראי של Eli Lilly ל-Aa2 מ-Aa3 ושינתה את התחזית ליציבה, על רקע הביקוש לתרופות ההשמנה; תרופות הסוכרת והמטבוליזם מהוות כ-80% מהמכירות. Moody's ציינה 15 עסקאות שהוכרזו ב-2026 בשווי פוטנציאלי של יותר מ-$30 מיליארד.",
+   "src": "Investing.com / Yahoo",
+   "url": "https://finance.yahoo.com/healthcare/articles/eli-lilly-earns-moody-upgrade-204431978.html",
+   "time": "22:44"
+  },
+  {
+   "id": "2026-11-24-snow-keybanc",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "SNOW"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neu",
+   "title": "KeyBanc מורידה את מחיר היעד ל-Snowflake ל-$400",
+   "body": "לפי TIKR, KeyBanc הורידה את מחיר היעד ל-Snowflake ל-$400 מ-$460 והשאירה המלצת Overweight; ההורדה נובעת מירידת מכפילי החברות המקבילות, וסקר של 26 לקוחות ושותפים העלה תוצאות חיוביות לחברה. Snowflake תדווח ב-2 בדצמבר.",
+   "src": "TIKR",
+   "url": "https://www.tikr.com/blog/keybanc-cut-its-snowflake-target-to-400-and-the-reason-has-nothing-to-do-with-demand",
+   "time": "23:10"
+  },
+  {
+   "id": "2026-11-25-hood-wedbush",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "HOOD"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Wedbush מתחילה לסקר את Robinhood בהמלצת Outperform ויעד $80",
+   "body": "לפי Stocktwits, האנליסט מוֹשֶה קטרי מ-Wedbush התחיל לסקר את Robinhood בהמלצת Outperform עם מחיר יעד של $80, כ-23% מעל מחיר הסגירה של יום שלישי ($65). המניה ירדה ביום שלישי ב-2%.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/robinhood-coinbase-circle-block-wedbush-price-targets-fintech-growth/cNbHcXzR9lX",
+   "time": "06:33"
+  },
+  {
+   "id": "2026-11-25-coin-wedbush",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "COIN"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Wedbush: המלצת Outperform ל-Coinbase עם יעד של $127",
+   "body": "לפי Stocktwits, Wedbush התחילה לסקר את Coinbase בהמלצת Outperform ויעד של $127, כ-25% מעל מחיר הסגירה הקודם ($102), אחרי שהמניה ירדה ביותר מ-5% ביום שלישי. Coinbase מסרה שהיא רוכשת מניות ברבעון הנוכחי; ברבעון השלישי רכשה כ-38 אלף מניות ב-$5.3 מיליון.",
+   "src": "Stocktwits",
+   "url": "https://stocktwits.com/news-articles/markets/equity/robinhood-coinbase-circle-block-wedbush-price-targets-fintech-growth/cNbHcXzR9lX",
+   "time": "06:33"
+  },
+  {
+   "id": "2026-11-25-achr-insitu",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "ACHR"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Archer Aviation מתכננת לרכוש את Insitu, יצרנית הרחפנים של Boeing",
+   "body": "לפי Simply Wall St, Archer Aviation מתכננת לרכוש את Insitu, חברת הבת של Boeing לרחפנים צבאיים, ו-Boeing תהפוך לבעלת המניות הגדולה ב-Archer. Archer צופה הפסד EBITDA מתואם של $160–180 מיליון ברבעון הראשון.",
+   "src": "Simply Wall St / Yahoo",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/archer-aviation-achr-plans-insitu-100929512.html",
+   "time": "12:09"
+  },
+  {
+   "id": "2026-11-25-ba-mizuho",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "BA"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Mizuho מתחילה לסקר את Boeing בהמלצת Outperform",
+   "body": "לפי Fintel, Mizuho התחילה לסקר את Boeing בהמלצת Outperform. המניה נסגרה ב-23 בנובמבר ב-$162.42, ירידה של כ-13.8% בחודש, ומחיר היעד הממוצע של האנליסטים הוא $239.58.",
+   "src": "Fintel",
+   "url": "https://fintel.io/news/mizuho-initiates-coverage-of-boeing-at-outperform-58",
+   "time": "02:25"
+  },
+  {
+   "id": "2026-11-25-urbn-ms-downgrade",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "URBN"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Morgan Stanley מורידה את Urban Outfitters ל-Equal-Weight",
+   "body": "לפי Quantisnow, Morgan Stanley הורידה את ההמלצה על Urban Outfitters ל-Equal-Weight מ-Overweight עם מחיר יעד של $80, יום אחרי הדוח הרבעוני.",
+   "src": "Quantisnow",
+   "url": "https://quantisnow.com/insight/urban-outfitters-downgraded-by-morgan-stanley-with-a-new-price-6806729",
+   "time": "14:36"
+  },
+  {
+   "id": "2026-11-25-mstr-btc-msci",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "MSTR"
+   ],
+   "tag": "קריפטו",
+   "tone": "neu",
+   "title": "Strategy הוסיפה 457 ביטקוין; תוצא ממדדי MSCI ב-30 בנובמבר",
+   "body": "לפי TheStreet, Strategy הגדילה את אחזקותיה ב-457 ביטקוין ל-851,305, אחרי שהמניה איבדה כ-30% בשבוע שעבר. החברה תוצא ממדדי MSCI ב-30 בנובמבר.",
+   "src": "TheStreet",
+   "url": "https://www.thestreet.com/crypto/policy/michael-saylor-gets-the-regulators-nod-he-wanted-just-not-at-full-price",
+   "time": "01:00"
+  },
+  {
+   "id": "2026-11-25-tsla-spacex-advisers",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "TSLA"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "FT: Evercore מייעצת ל-Tesla בשיחות המיזוג עם SpaceX",
+   "body": "לפי Financial Times, כפי שדווח ב-Yahoo Finance, Tesla שכרה את Evercore ו-SpaceX את Morgan Stanley ו-Goldman Sachs לשיחות על מיזוג אפשרי בשווי של $3.5 טריליון, ועסקה עשויה להתגבש לפני סוף השנה. החברות לא אישרו הסכם.",
+   "src": "FT / Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-spacex-3-5-trillion-111122235.html",
+   "time": "13:11"
+  },
+  {
+   "id": "2026-11-24-sny-moodys-outlook",
+   "date": "2026-11-24",
+   "k": "stock",
+   "t": [
+    "SNY"
+   ],
+   "tag": "דירוג",
+   "tone": "neg",
+   "title": "Moody's משנה את תחזית הדירוג של Sanofi לשלילית בגלל עסקת Insmed",
+   "body": "לפי Investing.com, Moody's אשררה את דירוג Aa3 של Sanofi אך שינתה את התחזית לשלילית מיציבה, על רקע עסקת הרכישה של Insmed ב-$41 מיליארד.",
+   "src": "Investing.com / Yahoo",
+   "url": "https://finnhub.io/api/news?id=fe6a406068fe64ae155c6a21d20b479b12d22773019629b3e85a741c2e32b969",
+   "time": "22:48"
+  },
+  {
+   "id": "2026-11-25-crwd-kurtz",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "CRWD"
+   ],
+   "tag": "הנהלה",
+   "tone": "neu",
+   "title": "מנכ״ל CrowdStrike: לקוחות Fortune 50 עצרו פריסת כלי AI עד שיאובטחו",
+   "body": "לפי TIKR, ג׳ורג׳ קורץ אמר שלקוחות מ-Fortune 50 השהו פריסה מלאה של כלי AI כמו CoWork ו-Codex עד ש-CrowdStrike תאבטח אותם. החברה דיווחה ב-23 בנובמבר על תוספת ARR שיא של $419 מיליון (+58%), והמניה ירדה ב-8.9% ביום ההכרזה על רכישת Zscaler.",
+   "src": "TIKR",
+   "url": "https://www.tikr.com/blog/crowdstrike-ceo-says-security-has-gone-from-the-brakes-to-the-gas-as-fortune-50-clients-pause-ai-rollouts?.tsrc=rss&tlnk=yf-261125-p6p2v33f",
+   "time": "13:36"
+  },
   {
    "id": "2026-11-25-trump-trumpcare-el-sayed",
    "date": "2026-11-25",
