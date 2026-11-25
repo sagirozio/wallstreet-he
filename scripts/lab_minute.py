@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes, serialization
 
-KID, SEC = os.environ.get("ALPACA_KEY_ID", ""), os.environ.get("ALPACA_SECRET", "")
+KID, SEC = os.environ.get("ALPACA_KEY_ID", "").strip(), os.environ.get("ALPACA_SECRET", "").strip()   # a pasted secret may end in a newline
 if not KID or not SEC: sys.exit("ALPACA_KEY_ID / ALPACA_SECRET missing")
 req = json.loads(pathlib.Path("lab_req.json").read_text())
 by_day = defaultdict(list)
@@ -29,8 +29,10 @@ def get(url):
             if e.code == 429: time.sleep(30); continue
             if e.code in (401, 403): sys.exit("Alpaca refused the keys (check the two secrets)")
             return None                       # a bad request won't get better on retry
+        except ValueError as e:
+            sys.exit(f"bad request header ({type(e).__name__}): check that the two secrets hold only the key, no spaces or quotes")
         except Exception as e:
-            print("err", type(e).__name__); time.sleep(5)
+            print("err", type(e).__name__, flush=True); time.sleep(5)
     return None
 
 out, n_ok = {}, 0
