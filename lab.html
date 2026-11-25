@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>מעבדת שיטות: פריצות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a quant desk's private research note, sober, the finding first
+   IDEA: a lab report of one rule set, run on five years of candles
+   PICTURE: the equity line of the strategy against SPY, large, with the selected variant
+   COLOUR and TYPE: black and white plus one mint field holding the result; Heebo for Hebrew, Space Grotesk for figures
+   LAYOUT: finding + mint result field and chart in the first screen, then variant grid, exits, trades, rules */
+:root{color-scheme:light dark;--bg:light-dark(#fff,#0e0e0e);--ink:light-dark(#111,#eee);--mut:light-dark(#666,#9a9a9a);--line:light-dark(#e4e4e4,#2a2a2a);--mint:light-dark(#b8f5d0,#173a28);--mintk:light-dark(#0b3d22,#b8f5d0);--up:light-dark(#0f7a43,#5fd69a);--dn:light-dark(#b3261e,#f08a80);--spy:light-dark(#9a9a9a,#777)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Heebo,system-ui,sans-serif;overflow-x:clip}
+.n{font-family:"Space Grotesk",Heebo,sans-serif;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.band{padding:clamp(24px,4vw,56px) max(5vw,16px)}.wrap{max-width:1240px;margin:0 auto}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.08;margin:0 0 10px;text-wrap:balance;font-weight:700}
+h2{font-size:22px;margin:0 0 12px}.sub{color:var(--mut);max-width:70ch;margin:0}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:0;border:1px solid var(--line);margin-top:22px}
+.res{background:var(--mint);color:var(--mintk);padding:22px}
+.res .big{font:700 clamp(40px,6vw,64px)/1 "Space Grotesk",sans-serif;direction:ltr;text-align:right}
+.res .lab{font-size:14px;margin-bottom:6px}.kp{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;margin-top:20px}
+.kp div{font-size:13px}.kp b{display:block;font:700 20px "Space Grotesk",sans-serif;direction:ltr;text-align:right}
+.chartbox{padding:16px 16px 8px}.leg{display:flex;gap:16px;font-size:13px;color:var(--mut);flex-wrap:wrap}.leg i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-inline-end:6px}
+.fig{position:relative;min-height:320px}.fig>svg{position:absolute;inset:0;width:100%;height:100%;direction:ltr}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 22px;margin:18px 0 0;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--ink)}.seg button{font:inherit;font-size:15px;background:none;color:var(--ink);border:0;padding:10px 16px;min-height:44px;cursor:pointer}.seg button.on{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,.f button:focus-visible{outline:2px solid var(--up);outline-offset:2px}
+.ctl label{font-size:14px;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}th{font-weight:500;color:var(--mut);text-align:right;font-size:13px}th,td{padding:9px 10px;border-bottom:1px solid var(--line)}td.r,th.r{text-align:left}
+tr.sel{background:var(--mint);color:var(--mintk)}tbody tr.cl{cursor:pointer}
+.scroll{overflow-x:auto}.up{color:var(--up)}.dn{color:var(--dn)}
+.bars div{display:grid;grid-template-columns:150px minmax(0,1fr) 120px;gap:12px;align-items:center;padding:7px 0;font-size:14px}.bars span.b{height:12px;background:var(--ink)}.bars em{font-style:normal;color:var(--mut);text-align:left}
+.f{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}.f button{font:inherit;font-size:14px;border:1px solid var(--line);background:none;color:var(--ink);padding:8px 12px;min-height:40px;cursor:pointer}.f button.on{border-color:var(--ink);font-weight:500}
+.more{font:inherit;background:none;border:1px solid var(--ink);color:var(--ink);padding:10px 18px;margin-top:12px;cursor:pointer;min-height:44px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 28px}.rules h3{font-size:16px;margin:0 0 4px}.rules p{margin:0;color:var(--mut);font-size:15px}
+.warn{border-inline-start:4px solid var(--ink);padding:4px 16px;margin:0;font-size:15px}
+a{color:inherit}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.fig{min-height:260px}}
+@media(max-width:600px){table{font-size:13px}.bars div{grid-template-columns:110px minmax(0,1fr) 96px}.hm{display:none}}
+</style></head><body>
+<div id="lock" class="band"><div class="wrap" style="max-width:420px">
+<h1 style="font-size:28px">מעבדת שיטות</h1><p class="sub">התוצאות מוצפנות. הזן את הסיסמה כדי לפתוח אותן במכשיר הזה.</p>
+<form id="lf" style="margin-top:18px;display:grid;gap:10px"><label for="lp">סיסמה</label>
+<input id="lp" type="password" autocomplete="current-password" style="font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);min-height:44px">
+<label style="font-size:14px;color:var(--mut)"><input type="checkbox" id="lr"> לזכור במכשיר הזה</label>
+<button class="more" type="submit" style="margin:0">פתח</button><p id="le" role="alert" style="color:var(--dn);margin:0;min-height:1.4em"></p></form></div></div>
+<div id="app" hidden>
+<section class="band"><div class="wrap">
+<h1 id="title">פריצות אחרי מהלך גדול</h1>
+<p class="sub" id="lede"></p>
+<div class="ctl" role="group" aria-label="גרסת הבדיקה">
+ <label>יציאה בסגירה מתחת ל</label><div class="seg" data-k="t"><button data-v="10">ממוצע 10</button><button data-v="20">ממוצע 20</button></div>
+ <label>מכירת חצי ביום</label><div class="seg" data-k="p"><button data-v="3">3</button><button data-v="5">5</button></div>
+ <label>מסנן רוחב שוק (&gt;50% מעל ממוצע 50)</label><div class="seg" data-k="b"><button data-v="">בלי</button><button data-v="b">עם</button></div>
+</div>
+<div class="hero">
+ <div class="res"><div class="lab">תשואה שנתית ממוצעת</div><div class="big" id="cagr"></div><div style="font-size:14px;margin-top:6px" id="vs"></div>
+  <div class="kp"><div>ירידה מקסימלית<b id="dd"></b></div><div>אחוז עסקאות רווחיות<b id="win"></b></div><div>רווח ממוצע / הפסד ממוצע<b id="awl"></b></div><div>יחס רווח להפסד<b id="pf"></b></div><div>עסקאות<b id="nt"></b></div><div>זמן בשוק<b id="ex"></b></div></div></div>
+ <div class="chartbox"><div class="leg"><span><i style="background:var(--up)"></i>השיטה</span><span><i style="background:var(--spy)"></i>SPY</span><span id="range"></span></div><div class="fig"><svg id="eq" role="img" aria-label="עקומת הון של השיטה מול SPY"></svg></div></div>
+</div>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap">
+<h2>כל 8 הגרסאות</h2>
+<div class="scroll"><table><thead><tr><th>יציאה</th><th>מכירת חצי</th><th>מסנן רוחב</th><th class="r">תשואה שנתית</th><th class="r">ירידה מקס׳</th><th class="r">רווחיות</th><th class="r hm">יחס רווח/הפסד</th><th class="r hm">עסקאות</th></tr></thead><tbody id="vt"></tbody>
+<tfoot><tr><td colspan="3">SPY (קנה והחזק)</td><td class="r n" id="spyc"></td><td class="r n" id="spyd"></td><td colspan="3"></td></tr></tfoot></table></div>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap">
+<h2>איך העסקאות נסגרו</h2><div class="bars" id="why"></div>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap">
+<h2>העסקאות</h2>
+<div class="f" id="tf"></div>
+<div class="scroll"><table><thead><tr><th>מניה</th><th>כניסה</th><th class="r">מחיר</th><th class="r hm">סטופ</th><th>יציאה</th><th class="r hm">ימים</th><th class="r">תוצאה</th><th>סיבה</th><th class="r hm">מהלך / בסיס</th></tr></thead><tbody id="tt"></tbody></table></div>
+<button class="more" id="more" type="button">עוד 50</button>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap">
+<h2>החוקים שנבדקו</h2>
+<div class="rules">
+<div><h3>סינון</h3><p>המניה ב-2% העליונים של היקום בתשואה של חודש, 3 או 6 חודשים, ביום שלפני הפריצה. RS של 90 ומעלה (כמו באתר, מול מניות ה-S&P 500), ADR של 20 יום 5% ומעלה, מחיר מעל $3 ומחזור יומי ממוצע מעל $3M.</p></div>
+<div><h3>1. מהלך גדול</h3><p>עלייה של 30% ומעלה, מהשפל לשיא, תוך 25 ימי מסחר לכל היותר. השיא לפני 10–40 ימים ואין שיא גבוה יותר מאז.</p></div>
+<div><h3>2. התכנסות</h3><p>ירידה של 25% לכל היותר מהשיא. השפל בחצי השני גבוה מהשפל בחצי הראשון. הטווח היומי ב-5 הימים האחרונים קטן מזה של 5 הימים הראשונים. 70% מהסגירות מעל ממוצע 20.</p></div>
+<div><h3>3. פריצה וכניסה</h3><p>הגבוה של היום עובר את הגבוה של ההתכנסות. כניסה ב-ORH: לפי נרות של 5 דקות, הפריצה הראשונה של הגבוה מבין נר 5 הדקות הראשון לבין הגבוה של ההתכנסות, + 1 סנט.</p></div>
+<div><h3>סטופ</h3><p>שפל היום עד רגע הכניסה, ולא רחוק יותר מה-ADR של 20 יום. ביום הכניסה נבדק נר אחרי נר אם הסטופ נפגע.</p></div>
+<div><h3>ניהול</h3><p>מכירת חצי בסגירה של יום 3 או 5, והסטופ עובר למחיר הכניסה. את השאר מוכרים בסגירה הראשונה מתחת לממוצע 10 או 20.</p></div>
+<div><h3>גודל ועלויות</h3><p>סיכון של 0.5% מההון לעסקה, עד 25% מההון במניה אחת, עד 10 פוזיציות. עמלה והחלקה 0.1% לכל צד. כשיש יותר פריצות ממקומות פנויים, עדיפות לתשואה הגבוהה ב-3 חודשים.</p></div>
+</div>
+<p class="warn" style="margin-top:22px" id="caveat"></p>
+</div></section>
+</div>
+<script>
+{
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let D=null, S={t:'10',p:'5',b:'b'}, F='all', lim=50;
+try{ const s=JSON.parse(localStorage.getItem('btS')||'null'); if(s) S=Object.assign(S,s); }catch(e){}
+const key=()=>`t${S.t}p${S.p}${S.b}`, pc=(v,d=1)=>v==null?'—':(v>0?'+':'')+Number(v).toFixed(d)+'%', fd=d=>{ if(!d) return '—'; const q=d.split('-'); return `${+q[2]}.${+q[1]}.${q[0].slice(2)}`; };
+const cls=v=>v==null?'':v>0?'up':v<0?'dn':'';
+function draw(){ const s=$('eq'); if(!D) return; const W=s.clientWidth, H=s.clientHeight, a=D.v[key()].curve, b=D.spyCurve, n=a.length;
+  const all=a.concat(b), lo=Math.min(...all)*0.97, hi=Math.max(...all)*1.03, pad=W<520?8:40;
+  const x=i=>pad+(W-pad-8)*i/(n-1), y=v=>8+(H-36)*(1-(Math.log(v)-Math.log(lo))/(Math.log(hi)-Math.log(lo)));
+  const ln=(arr,c,w)=>`<polyline fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" points="${arr.map((v,i)=>x(i).toFixed(1)+','+y(v).toFixed(1)).join(' ')}"/>`;
+  let g=''; for(const v of [0.6,0.8,1,1.25,1.5,2,2.5]){ if(v<lo||v>hi) continue; g+=`<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="${v===1?1.5:1}"/>`+(W<520?'':`<text x="${pad-6}" y="${y(v)+4}" font-size="12" fill="var(--mut)" text-anchor="end" font-family="Space Grotesk" direction="ltr">${v>=1?'+':''}${Math.round((v-1)*100)}%</text>`); }
+  const yrs=[]; D.dates.forEach((d,i)=>{ const yy=d.slice(0,4); if(i&&yy!==D.dates[i-1].slice(0,4)) yrs.push([i,yy]); });
+  g+=yrs.map(([i,yy])=>`<text x="${x(i)}" y="${H-6}" font-size="12" fill="var(--mut)" text-anchor="middle" font-family="Space Grotesk">${W<520?yy.slice(2):yy}</text>`).join('');
+  s.innerHTML=g+ln(b,'var(--spy)',1.6)+ln(a,'var(--up)',2.4); }
+function render(){ if(!D) return; const v=D.v[key()], s=v.s;
+  document.querySelectorAll('.seg').forEach(g=>g.querySelectorAll('button').forEach(b=>{ const on=S[g.dataset.k]===b.dataset.v; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }));
+  $('cagr').textContent=pc(s.cagr); $('vs').innerHTML=`SPY באותה תקופה: <span class="n">${pc(D.spy.cagr)}</span> בשנה · סה״כ <span class="n">${pc(s.tot)}</span> מול <span class="n">${pc(D.spy.tot)}</span>`;
+  $('dd').textContent=pc(s.dd); $('win').textContent=s.win.toFixed(1)+'%'; $('awl').textContent=`${pc(s.aw)} / ${pc(s.al)}`; $('pf').textContent=s.pf==null?'—':s.pf.toFixed(2); $('nt').textContent=s.n; $('ex').textContent=s.expo+'%';
+  $('range').textContent=`${fd(D.from)} – ${fd(D.asOf)} · סולם לוגריתמי`;
+  const L={10:'ממוצע 10',20:'ממוצע 20'};
+  $('vt').innerHTML=Object.entries(D.v).map(([k,o])=>{ const m=k.match(/t(\d+)p(\d)(b?)/), q=o.s; return `<tr class="cl${k===key()?' sel':''}" data-k="${k}" tabindex="0"><td>${L[m[1]]}</td><td>יום ${m[2]}</td><td>${m[3]?'עם':'בלי'}</td><td class="r n ${cls(q.cagr)}">${pc(q.cagr)}</td><td class="r n">${pc(q.dd)}</td><td class="r n">${q.win.toFixed(1)}%</td><td class="r n hm">${q.pf==null?'—':q.pf.toFixed(2)}</td><td class="r n hm">${q.n}</td></tr>`; }).join('');
+  const tr=v.trades, R={}; tr.forEach(t=>{ const w=t[7]; (R[w]=R[w]||[]).push(t[6]); }); const mx=Math.max(...Object.values(R).map(a=>a.length));
+  $('why').innerHTML=Object.entries(R).sort((a,b)=>b[1].length-a[1].length).map(([w,a])=>{ const r=a.filter(x=>x!=null), av=r.length?r.reduce((p,c)=>p+c,0)/r.length:null; return `<div><span>${esc(w)}</span><span class="b" style="width:${(a.length/mx*100).toFixed(1)}%"></span><em><span class="n">${a.length}</span> · ממוצע <span class="n ${cls(av)}">${pc(av)}</span></em></div>`; }).join('');
+  const ws=['all',...Object.keys(R)]; $('tf').innerHTML=ws.map(w=>`<button type="button" data-f="${esc(w)}" class="${w===F?'on':''}" aria-pressed="${w===F}">${w==='all'?'הכל':esc(w)} <span class="n">${w==='all'?tr.length:R[w].length}</span></button>`).join('');
+  const sel=F==='all'?tr:tr.filter(t=>t[7]===F);
+  $('tt').innerHTML=sel.slice(0,lim).map(t=>`<tr><td><a class="n" href="https://wallstreeter.co.il/#stock/${encodeURIComponent(t[0])}"><b>${esc(t[0])}</b></a></td><td class="n">${fd(t[1])}</td><td class="r n">${Number(t[2]).toFixed(2)}</td><td class="r n hm">${Number(t[3]).toFixed(2)}</td><td class="n">${fd(t[4])}</td><td class="r n hm">${t[5]??'—'}</td><td class="r n ${cls(t[6])}">${pc(t[6])}</td><td>${esc(t[7])}</td><td class="r n hm">+${t[8]}% / ${t[9]}d</td></tr>`).join('');
+  $('more').hidden=sel.length<=lim;
+  const best=Object.values(D.v).reduce((m,o)=>o.s.cagr>m?o.s.cagr:m,-1e9);
+  $('lede').innerHTML=`הבדיקה רצה על <span class="n">${D.stocks}</span> מניות, מ-${fd(D.from)} עד ${fd(D.asOf)}. ${best<0?'כל 8 הגרסאות הסתיימו בהפסד':'הגרסה הטובה הגיעה ל-'+pc(best)+' בשנה'}, מול <span class="n">${pc(D.spy.cagr)}</span> בשנה ל-SPY. בחרו גרסה כדי לראות את העקומה והעסקאות שלה.`;
+  $('caveat').innerHTML=`הכניסה והסטופ ביום הכניסה מחושבים מנרות של 5 דקות (ORH); הימים שאחריו מנרות יומיים. היקום הוא המניות של היום, עם שווי שוק מעל $1B עכשיו, ולכן חסרות מניות שנמחקו או שהיו קטנות בעבר (הטיית שורדים). הבדיקה מתחילה ב-${fd(D.from)}, תקופה שבה SPY עלה ברוב הזמן. ביצועי עבר אינם מבטיחים ביצועים בעתיד. מידע בלבד, לא ייעוץ השקעות.`;
+  try{ localStorage.setItem('btS',JSON.stringify(S)); }catch(e){}
+  draw(); }
+document.addEventListener('click',e=>{ const b=e.target.closest('.seg button'); if(b){ S[b.parentElement.dataset.k]=b.dataset.v; lim=50; render(); return; }
+  const r=e.target.closest('tr.cl'); if(r){ const m=r.dataset.k.match(/t(\d+)p(\d)(b?)/); S={t:m[1],p:m[2],b:m[3]}; render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const f=e.target.closest('[data-f]'); if(f){ F=f.dataset.f; lim=50; render(); return; }
+  if(e.target.id==='more'){ lim+=50; render(); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.matches('tr.cl')) e.target.click(); });
+const ro=new ResizeObserver(draw); ro.observe($('eq'));
+const b64=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+async function unlock(pw){ const r=await fetch('lab.enc',{cache:'no-cache'}); if(!r.ok) throw new Error('nofile'); const E=await r.json();
+  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(E.salt),iterations:E.it,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(E.iv)},k,b64(E.ct)); return JSON.parse(new TextDecoder().decode(pt)); }
+async function open(pw,remember){ $('le').textContent='פותח…';
+  try{ D=await unlock(pw); }catch(e){ $('le').textContent=e.message==='nofile'?'עדיין אין תוצאות. הבדיקה לא רצה.':'הסיסמה לא נכונה.'; try{ localStorage.removeItem('labPw'); }catch(_){} return; }
+  if(remember){ try{ localStorage.setItem('labPw',pw); }catch(_){} }
+  $('lock').hidden=true; $('app').hidden=false; if(!D.v[key()]) S={t:'10',p:'5',b:'b'}; render(); }
+$('lf').addEventListener('submit',e=>{ e.preventDefault(); const pw=$('lp').value; if(!pw){ $('le').textContent='הזן סיסמה.'; return; } open(pw,$('lr').checked); });
+$('lp').addEventListener('input',()=>{ $('le').textContent=''; });
+try{ const pw=localStorage.getItem('labPw'); if(pw) open(pw,false); }catch(e){}
+}
+</script></body></html>
