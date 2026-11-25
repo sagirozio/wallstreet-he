@@ -16,25 +16,26 @@ if not KID or not SEC: sys.exit("ALPACA_KEY_ID / ALPACA_SECRET missing")
 req = json.loads(pathlib.Path("lab_req.json").read_text())
 by_day = defaultdict(list)
 for t, d in req: by_day[d].append(t)
-print("days", len(by_day), "requests", len(req))
+print("days", len(by_day), "requests", len(req), flush=True)
 
 def get(url):
     for k in range(5):
         try:
             r = urllib.request.Request(url, headers={"APCA-API-KEY-ID": KID, "APCA-API-SECRET-KEY": SEC, "Accept": "application/json"})
-            with urllib.request.urlopen(r, timeout=40) as f: return json.loads(f.read())
+            with urllib.request.urlopen(r, timeout=20) as f: return json.loads(f.read())
         except urllib.error.HTTPError as e:
-            print("http", e.code)
+            body = e.read()[:200].decode("utf-8", "replace")
+            print("http", e.code, body, flush=True)
             if e.code == 429: time.sleep(30); continue
             if e.code in (401, 403): sys.exit("Alpaca refused the keys (check the two secrets)")
-            time.sleep(5)
+            return None                       # a bad request won't get better on retry
         except Exception as e:
             print("err", type(e).__name__); time.sleep(5)
     return None
 
 out, n_ok = {}, 0
 for d, syms in sorted(by_day.items()):
-    q = {"symbols": ",".join(sorted(set(syms))), "timeframe": "5Min", "start": f"{d}T13:00:00Z", "end": f"{d}T21:00:00Z",
+    q = {"symbols": ",".join(sorted({x.replace("-", ".") for x in syms})), "timeframe": "5Min", "start": f"{d}T13:00:00Z", "end": f"{d}T21:00:00Z",
          "feed": "sip", "adjustment": "split", "limit": "10000"}
     tok = None
     while True:
@@ -42,10 +43,11 @@ for d, syms in sorted(by_day.items()):
         j = get("https://data.alpaca.markets/v2/stocks/bars?" + urllib.parse.urlencode(q))
         if not j: break
         for s, bars in (j.get("bars") or {}).items():
-            out.setdefault(f"{s}_{d}", []).extend([[b["t"], b["o"], b["h"], b["l"], b["c"], b["v"]] for b in bars])
+            out.setdefault(f"{s.replace('.', '-')}_{d}", []).extend([[b["t"], b["o"], b["h"], b["l"], b["c"], b["v"]] for b in bars])
         tok = j.get("next_page_token")
         if not tok: break
     time.sleep(0.35)        # well under 200 requests a minute
+    if len(out) and len(out) % 50 < len(syms): print("days done", sorted(by_day).index(d) + 1, "bars", len(out), flush=True)
 n_ok = len(out)
 print("bars for", n_ok, "of", len(req))
 
