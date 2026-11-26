@@ -126687,6 +126687,606 @@
  },
  "news": [
   {
+   "id": "2026-11-26-futures-thanksgiving",
+   "date": "2026-11-26",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "החוזים העתידיים עולים בבוקר חג ההודיה; הבורסה סגורה היום",
+   "body": "לפי JournalArta, בשעה 02:39 שעון ניו יורק עלו חוזי ה-S&P 500 ב-0.41% ל-7,225.50 נקודות, חוזי הנאסד״ק 100 ב-0.59% ל-26,253.50 וחוזי הדאו ב-0.23% ל-50,343, במחזור נמוך בהרבה מהממוצע. המסחר בוול סטריט סגור היום לחג ההודיה, ומחר יתקיים יום מסחר מקוצר.",
+   "src": "JournalArta",
+   "url": "https://journalarta.com/en/2026/11/26/sp-500-futures-edge-higher-as-tariff-relief-offsets-nvidia-risks/",
+   "time": "09:39"
+  },
+  {
+   "id": "2026-11-26-asia-rebound-ai",
+   "date": "2026-11-26",
+   "t": [],
+   "tag": "אסיה",
+   "tone": "pos",
+   "title": "אסיה מתאוששת: SoftBank ו-Kioxia מזנקות, הקוספי עולה ב-1.2%",
+   "body": "לפי AP, הניקיי עלה ב-1.3% ל-57,768.92 נקודות, הקוספי ב-1.2% ל-4,755.29 אחרי צניחה של 6.2% אתמול, ההאנג סנג ב-1.9% והטאייקס ב-2.6%. לפי Reuters, Kioxia עלתה בכ-12% ו-SoftBank Group ביותר מ-10%, אחרי ירידות של 14% ו-15% ביום רביעי; SK hynix עלתה ב-3.7%.",
+   "src": "AP / Reuters",
+   "url": "https://www.clickondetroit.com/business/2026/11/26/asian-shares-rebound-led-by-ai-stocks-after-wall-street-pares-sharp-losses/",
+   "time": "07:21"
+  },
+  {
+   "id": "2026-11-26-europe-open-tariff-relief",
+   "date": "2026-11-26",
+   "t": [],
+   "tag": "אירופה",
+   "tone": "pos",
+   "title": "אירופה עולה: ה-STOXX 600 מוסיף 1.3%, הדאקס 1.7%",
+   "body": "לפי Reuters, ה-STOXX 600 עלה ב-1.3%, הדאקס ב-1.7%, ה-CAC 40 ב-1.5% וה-FTSE 100 ב-1.3% בשעות הבוקר, אחרי שהצעות המכסים החדשות של ארה״ב נתפסו כפחות מזיקות מהחשש: לפי הדיווח הן לא יתווספו על מכסי יולי ולא צפויות להיכנס לתוקף לפני פברואר או מרץ. התשואה ל-10 שנים בארה״ב ירדה ל-4.848%.",
+   "src": "Reuters via Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/european-shares-as-benign-us-tariffs-and-thanksgiving-lull-offer-relief-5052089",
+   "time": "10:05"
+  },
+  {
+   "id": "2026-11-26-nvidia-halts-se-asia-servers",
+   "date": "2026-11-26",
+   "t": [
+    "NVDA",
+    "DELL",
+    "SMCI"
+   ],
+   "tag": "שבבים",
+   "tone": "neg",
+   "title": "FT: Nvidia עצרה משלוחי שרתי AI למלזיה, סינגפור, תאילנד ואינדונזיה",
+   "body": "לפי Financial Times, Nvidia הורתה לשותפות הייצור להפסיק לשלוח שרתים עם השבבים שלה לארבע המדינות, ו-Dell ו-Supermicro הודיעו ללקוחות שם שההזמנות לא יישלחו. הצעד מגיע אחרי כללי הייצוא שנכנסו לתוקף ב-19 בנובמבר ומחייבים רישיון אמריקאי למשלוח שבבי AI מתקדמים לאינדונזיה, מלזיה, סינגפור, תאילנד וברזיל; לא ברור אם העצירה זמנית. החברות לא הגיבו מיד.",
+   "src": "Financial Times via The Next Web",
+   "url": "https://thenextweb.com/news/nvidia-halts-server-shipments-southeast-asia",
+   "time": "10:25"
+  },
+  {
+   "id": "2026-11-26-oil-brent-third-gain",
+   "date": "2026-11-26",
+   "t": [],
+   "tag": "נפט",
+   "tone": "neu",
+   "title": "הברנט ב-$94.71, בדרך לעלייה של כ-5% השבוע",
+   "body": "לפי Reuters, בשעה 06:40 GMT עלה הברנט ב-10 סנט ל-$94.71 לחבית וה-WTI ב-31 סנט ל-$83.99, יום שלישי ברציפות של עליות. צבא איראן מסר שמכלית עלתה על מוקש ועלתה באש באזור מוגבל במצר הורמוז; שרי OPEC+ ייפגשו מ-29 בנובמבר על מדיניות התפוקה ל-2027.",
+   "src": "Reuters via The Irish Times",
+   "url": "https://www.irishtimes.com/business/markets/2026/11/26/oil-rises-on-supply-concerns-as-iran-claims-mine-strikes-on-ships/",
+   "time": "09:08"
+  },
+  {
+   "id": "2026-11-25-trump-stocks-election-post",
+   "date": "2026-11-25",
+   "t": [],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: ״המניות יורדות בחדות בגלל תוצאות הבחירות של 3 בנובמבר״",
+   "body": "בפוסט ב-Truth Social ביום רביעי כתב הנשיא טראמפ שהמניות יורדות בחדות בגלל תוצאות הבחירות לקונגרס ב-3 בנובמבר, וטען שבתוצאה אחרת השוק ״היה פורח״. הפוסט פורסם ביום שבו הנאסד״ק ירד בבוקר עד 4.6% וסגר בירידה של 0.6%.",
+   "src": "Truth Social via trumpstruth.org",
+   "url": "https://www.trumpstruth.org/statuses/43729",
+   "time": "19:14"
+  },
+  {
+   "id": "2026-11-25-reuters-doj-no-huang-probe",
+   "date": "2026-11-25",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "Reuters: משרד המשפטים לא חקר רשמית את הואנג לפני שטראמפ דחף להחזרתו",
+   "body": "לפי Reuters, שציטטה מקורות, משרד המשפטים לא ניהל חקירה רשמית בעניין ג׳נסן הואנג לפני שהנשיא טראמפ פעל להחזרתו לתפקיד מנכ״ל Nvidia; מסקנת התובע הכללי בלאנש התבססה על חקירות Super Micro ו-Megaspeed. סגן הנשיא ואנס אמר ביום רביעי לכתבים באוהיו: ״נאמר לנו שהוא לא נחקר״.",
+   "src": "Reuters via Yahoo News",
+   "url": "https://www.yahoo.com/news/politics/articles/justice-department-did-not-investigate-210505059.html",
+   "time": "23:05"
+  },
+  {
+   "id": "2026-11-25-wh-hedge-funds-unp-nsc",
+   "date": "2026-11-25",
+   "t": [
+    "UNP",
+    "NSC"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "Bloomberg: בכירים בבית הלבן נפגשו עם קרנות גידור על מיזוג Union Pacific ו-Norfolk Southern",
+   "body": "לפי Bloomberg, שציטטה אנשים המעורים בפרטים, בכירים בבית הלבן נפגשו בפגישה סגורה עם קבוצת משקיעים מקרנות גידור שמהמרות על השאלה אם המיזוג של $72 מיליארד בין Union Pacific ל-Norfolk Southern יאושר בידי הממשל. הדיווח הגדיר את הפגישה כחריגה.",
+   "src": "Bloomberg via Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=14d871b9b77955da23df2a29f9406a2a8f516c4e6f900d5e342e90cb65a92e4d",
+   "time": "22:57"
+  },
+  {
+   "id": "2026-11-25-spcx-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "SPCX"
+   ],
+   "tag": "חלל",
+   "tone": "pos",
+   "title": "SpaceX תעניק מניה לכל ״חשבון טראמפ״ פעיל",
+   "body": "SpaceX הודיעה ביום רביעי שתקצה מניית Class A חדשה לכל חשבון טראמפ פעיל, חשבונות ההשקעה לילדים שהושקו ב-4 ביולי עם הפקדה פדרלית של $1,000. אילון מאסק יכפיל באופן אישי את מספר המניות, והנשיאה גווין שוטוול הודיעה על מתנה אישית של יותר מ-2 מיליון מניות.",
+   "src": "SpaceX IR / Investing.com",
+   "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Invest-in-the-Next-Generation-of-Americans-2026-r_LYQ5cH94/default.aspx",
+   "time": "22:02"
+  },
+  {
+   "id": "2026-11-26-rklb-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "RKLB"
+   ],
+   "tag": "חלל",
+   "tone": "neu",
+   "title": "בכירי Rocket Lab מכרו מניות בכ-$4 מיליון",
+   "body": "לפי Stocktwits, סמנכ״ל הכספים, סמנכ״ל התפעול ובכירים נוספים ב-Rocket Lab מכרו מניות בכמעט $4 מיליון לפני שיגור Electron הקרוב. סמנכ״ל התפעול פרנק קליין מכר מניות ב-$2.23 מיליון, 58% מהסכום.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=716673a003d52e62148bb808e24ebb2524ebe0862d3eb3ea3cf7f1486eb29d68",
+   "time": "03:50"
+  },
+  {
+   "id": "2026-11-26-gme-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "GME"
+   ],
+   "tag": "משפט",
+   "tone": "pos",
+   "title": "GameStop: התביעה הייצוגית של בעלי המניות נדחתה ונחתם הסכם פשרה",
+   "body": "GameStop דיווחה בדיווח לרשות ניירות הערך (8-K) על דחיית תביעה ייצוגית של בעלי מניות ועל הסכם פשרה.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=5eeccceed53d3618cea6a589393db0a790459d86cac784402fc01281b31ca9ba",
+   "time": "03:49"
+  },
+  {
+   "id": "2026-11-26-fe-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "FE"
+   ],
+   "tag": "תשתיות",
+   "tone": "neu",
+   "title": "FirstEnergy חתמה על הסכמים למכירת מניות בהיקף של עד $1 מיליארד",
+   "body": "FirstEnergy דיווחה על הסכמי מכירה שיאפשרו לה להנפיק מניות רגילות בהיקף של עד $1 מיליארד.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=9a6d2b532b93e4c312b8ab439a07a83773840cc3c64027d96fed7091cf7cc449",
+   "time": "03:39"
+  },
+  {
+   "id": "2026-11-26-qsr-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "QSR"
+   ],
+   "tag": "מסעדות",
+   "tone": "neu",
+   "title": "Restaurant Brands הנפיקה אג״ח בדירוג השקעה ב-$1 מיליארד",
+   "body": "Restaurant Brands International, הבעלים של Burger King ו-Tim Hortons, השלימה את הנפקת האג״ח המובטחת הראשונה שלה בדירוג השקעה, בהיקף של $1 מיליארד, כדי לפרוע חלק מהלוואת Term Loan B. המניה עלתה מתחילת השנה ב-13%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=aa26774e1699c778f946893673ffd5c54a4c2ffe2d24892c107415244216d809",
+   "time": "03:15"
+  },
+  {
+   "id": "2026-11-26-cvi-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "CVI"
+   ],
+   "tag": "אנרגיה",
+   "tone": "neu",
+   "title": "CVR Energy השלימה הנפקת אג״ח של $1.25 מיליארד בריבית 9.25%",
+   "body": "CVR Energy השלימה הנפקה של אג״ח מובטחות בכירות בהיקף של $1.25 מיליארד, בריבית של 9.25% ולפירעון ב-2032.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=6cff6e3448daf4edd5b34d6d1add6ee93de07008b2dc56efdebe2be464b4d121",
+   "time": "04:09"
+  },
+  {
+   "id": "2026-11-26-amt-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "AMT"
+   ],
+   "tag": "נדל״ן",
+   "tone": "neu",
+   "title": "American Tower גייסה €1.2 מיליארד באג״ח",
+   "body": "American Tower השלימה הנפקה של €600 מיליון אג״ח בריבית 4.2% לפירעון ב-2031 ו-€600 מיליון בריבית 4.5% לפירעון ב-2034.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=5dca21ccfa8317cef9088ee8fa0b2ec44d3509b4345928ad6dff5fccb065ae69",
+   "time": "01:59"
+  },
+  {
+   "id": "2026-11-26-v-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "V"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Wedbush מתחילה לסקר את Visa בהמלצת Outperform",
+   "body": "בית ההשקעות Wedbush פתח סיקור על Visa בהמלצת Outperform (תשואת יתר). באותו יום פתח Wedbush סיקור גם על Quanta Services באותה המלצה.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=becffbc58fe9d66962c23a90659bd4d8bd2b94c59d5acec543f9220057ddd78a",
+   "time": "02:33"
+  },
+  {
+   "id": "2026-11-26-bbva-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "BBVA"
+   ],
+   "tag": "בנקים",
+   "tone": "neu",
+   "title": "BBVA מתכוונת למחוק את מניותיה מהבורסה בלונדון",
+   "body": "הבנק הספרדי BBVA הודיע על כוונה למחיקה מרצון של מניותיו מהמסחר בבורסה של לונדון.",
+   "src": "Fintel",
+   "url": "https://finnhub.io/api/news?id=12d5e9a164ce44349413034c0d90fcf602e31a1aef098bcfa9d0797ee9b2496a",
+   "time": "04:09"
+  },
+  {
+   "id": "2026-11-26-rci-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "RCI"
+   ],
+   "tag": "תקשורת",
+   "tone": "neu",
+   "title": "Rogers במגעים למכירת נתח בנכסי הספורט תמורת עד 8 מיליארד דולר קנדי",
+   "body": "לפי סמנכ״ל הכספים גלן ברנדט, Rogers Communications נמצאת במגעים ראשוניים עם משקיעים על מכירת נתח מיעוט בנכסי הספורט שלה, במטרה לגייס 5–8 מיליארד דולר קנדי ולהקטין את החוב.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=2e77a8c8a0a4ca4a725489697dd61c6ba43b4828c417945a971afb5f7ffb818d",
+   "time": "02:12"
+  },
+  {
+   "id": "2026-11-25-bz-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "BZ"
+   ],
+   "tag": "דוחות",
+   "tone": "neu",
+   "title": "Kanzhun: צמיחה של 11.7% ברבעון ורכישה עצמית של $500 מיליון",
+   "body": "Kanzhun, מפעילת פלטפורמת הגיוס BOSS Zhipin, דיווחה על עלייה של 11.7% בהכנסות הרבעון השלישי ל-2.42 מיליארד יואן ועל שולי רווח תפעולי מתואם של 44.5%, שיא. החברה צופה האטה ברבעון הרביעי בגלל היחלשות הביקוש לגיוס, והודיעה על תוכנית רכישה עצמית חדשה של $500 מיליון.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=97da3a890c744774bece121a7ac21cccf05e920c59bac0ef1fbf6cb65f6f226f",
+   "time": "17:14"
+  },
+  {
+   "id": "2026-11-26-vrtx-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "VRTX"
+   ],
+   "tag": "פארמה",
+   "tone": "neg",
+   "title": "Vertex יורדת במסחר המאוחר: ה-FDA דחה את ההחלטה על povetacicept",
+   "body": "Vertex מסרה שה-FDA הודיע לה ביום שלישי שהמועד להחלטה על אישור povetacicept לטיפול ב-IgA nephropathy יוארך בעד שלושה חודשים. המניה ירדה במסחר המאוחר, ומניית המתחרה Vera Therapeutics עלתה.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=a202495cb78a7849036abb4b33e72ffe7f3b386c192c1e7eaf0f802ed21cc714",
+   "time": "00:34"
+  },
+  {
+   "id": "2026-11-26-panw-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "PANW"
+   ],
+   "tag": "סייבר",
+   "tone": "neg",
+   "title": "Palo Alto יורדת במסחר המאוחר אחרי תביעה של מנהל לשעבר",
+   "body": "דן מקגיל, סגן נשיא אזורי לשעבר ב-Palo Alto Networks, הגיש ביום שישי תביעה בבית המשפט הפדרלי במנהטן שבה טען להונאה חשבונאית. החברה מכחישה את הטענות; המניה ירדה במסחר המאוחר ביום רביעי.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=234e2b2ec0c99fda453f9ed1daec6415bb2fed70bb1efb713e4b218214d54440",
+   "time": "01:25"
+  },
+  {
+   "id": "2026-11-25-eqnr-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "EQNR"
+   ],
+   "tag": "אנרגיה",
+   "tone": "neg",
+   "title": "Equinor מורידה את תחזית התפוקה ל-2026",
+   "body": "Equinor עדכנה את תחזית התפוקה בעקבות השבתות זמניות בשדות Bacalhau ו-Visund, שצפויות להפחית את התפוקה הממוצעת בשנה ב-15–20 אלף חביות שוות ערך ביום. לפי Newsquawk, צמיחת התפוקה ב-2026 צפויה כעת לעמוד על כ-3%, לעומת 4% קודם.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=bac91554c45b42767b2c6d510c87f5dcbf9601a27a3bd697fb9e99757bed452b",
+   "time": "18:15"
+  },
+  {
+   "id": "2026-11-26-mga-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "MGA"
+   ],
+   "tag": "רכב",
+   "tone": "pos",
+   "title": "Magna: רווח תפעולי מתואם של $683 מיליון ותוכנית רכישה עצמית",
+   "body": "Magna International דיווחה על רווח תפעולי (EBIT) מתואם של $683 מיליון ברבעון השלישי, עלייה של 11%, ועל עלייה של 38% ברווח המתואם למניה, לצד ירידה של 4% במכירות. החברה אישרה תוכנית רכישה עצמית חדשה ונמצאת בשיחות ראשוניות עם הפנטגון על רכיבים לרחפנים צבאיים.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=3b6497ffd26b2503cd197433d1b30eb02d82b4edbc73a7e5a4f5cc22327dcec3",
+   "time": "01:15"
+  },
+  {
+   "id": "2026-11-25-kr-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "KR"
+   ],
+   "tag": "קמעונאות",
+   "tone": "neu",
+   "title": "Kroger החלה לפטר עובדי מטה",
+   "body": "Kroger שלחה הודעות פיטורים למספר לא מפורט של עובדים, במסגרת תוכנית שהוכרזה מראש לקצץ כ-3,000 משרות בשלוש השנים הקרובות.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=521b053cf53bc029801c4c432b346e905a6b42f668a49011fdc6e9dc6a7d72d7",
+   "time": "18:17"
+  },
+  {
+   "id": "2026-11-25-mkc-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "MKC"
+   ],
+   "tag": "מזון",
+   "tone": "neu",
+   "title": "McCormick מציעה למכור את Colman’s כדי לקבל אישור לעסקת Unilever",
+   "body": "McCormick הציעה למכור את מותג החרדל Colman’s כדי להשיב לחששות רגולטור התחרות הבריטי מעסקת Unilever. הרגולטור הזהיר קודם שהעסקה עלולה לפגוע במתחרים בתחום התבלינים והרטבים.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=6a0bb19a74bcd0dc3f4e4db44ea25f1b3d7cc2678c962d0592aa07193f228ea7",
+   "time": "18:00"
+  },
+  {
+   "id": "2026-11-25-cnk-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "CNK"
+   ],
+   "tag": "בידור",
+   "tone": "pos",
+   "title": "Fitch מעלה את דירוג Cinemark ל-BB",
+   "body": "Fitch העלתה את דירוג האשראי של Cinemark ל-BB מ-BB- עם תחזית יציבה, והעלתה את דירוג החוב המובטח בשעבוד ראשון ל-BBB- מ-BB+. הנימוקים: התאוששות בקופות והפחתת המינוף.",
+   "src": "Investing.com",
+   "url": "https://finnhub.io/api/news?id=10960c21e4ffa9c672f87e792594482bcd3cbaed6fd4fd79101ed5ab4c1e71aa",
+   "time": "18:38"
+  },
+  {
+   "id": "2026-11-25-bcs-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "BCS"
+   ],
+   "tag": "בנקים",
+   "tone": "neg",
+   "title": "Barclays: פריצה ליחידת Best Egg חשפה 792 אלף רשומות",
+   "body": "Best Egg, יחידה של Barclays, דיווחה שפורץ חדר לאפליקציית Financial Health וחשף 792 אלף רשומות, כולל מספרי ביטוח לאומי ומספרי חשבונות. מתקפה נפרדת פגעה בכלי כרטיסי האשראי של Barclays.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=ddcaef2063a79f2746c3593f9b6831dd14dacc9bf9b06d32d8c767f6b1914cd6",
+   "time": "21:35"
+  },
+  {
+   "id": "2026-11-26-jnj-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "JNJ"
+   ],
+   "tag": "פארמה",
+   "tone": "pos",
+   "title": "Johnson & Johnson קיבלה אישור FDA מואץ ל-Rybrevant Faspro בסרטן ראש-צוואר",
+   "body": "ה-FDA העניק ל-Johnson & Johnson אישור מואץ ל-Rybrevant Faspro לטיפול במבוגרים עם סרטן ראש וצוואר מתקדם.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=ffdee7482fab9b66c1dc88580c966fce48ac5690a88a2117ff952f75678ea804",
+   "time": "01:16"
+  },
+  {
+   "id": "2026-11-26-mp-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "MP"
+   ],
+   "tag": "כרייה",
+   "tone": "neu",
+   "title": "בכירי MP Materials קנו מניות במיליוני דולרים",
+   "body": "בכירים ב-MP Materials קנו מניות של החברה במיליוני דולרים, אחרי שחזרה לרווחיות רבעונית. המניה ירדה בכ-40% בשלושת החודשים האחרונים.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=4db0c271ea982eefa7ed19bd94d07f61e60e80da7aeee0d200a862b5fee125c1",
+   "time": "01:17"
+  },
+  {
+   "id": "2026-11-25-agio-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "AGIO"
+   ],
+   "tag": "ביוטק",
+   "tone": "pos",
+   "title": "Agios עולה ב-8.4% על רקע אופטימיות למיזוגים בביוטק",
+   "body": "מניית Agios Pharmaceuticals עלתה ב-8.4% ביום רביעי, לפי Zacks על רקע אופטימיות לעסקאות מיזוג בביוטק אחרי עסקת Sanofi ו-Insmed. החברה עצמה לא פרסמה חדשות.",
+   "src": "Zacks via Yahoo",
+   "url": "https://finnhub.io/api/news?id=50e2e5ac0ad99c069dc6ba2fe208fc414121101636d135a58cde65a9376b4312",
+   "time": "18:18"
+  },
+  {
+   "id": "2026-11-25-glw-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "GLW"
+   ],
+   "tag": "תקשורת אופטית",
+   "tone": "neg",
+   "title": "Corning יורדת ב-7.6% עם המימוש במניות הסיבים ל-AI",
+   "body": "מניית Corning ירדה ב-7.58% ביום רביעי, בגל המכירות במניות הקשורות לסיבים אופטיים למרכזי נתונים. ברבעון האחרון עלו מכירות התקשורת האופטית של החברה ב-44%.",
+   "src": "GuruFocus via Yahoo",
+   "url": "https://finnhub.io/api/news?id=8c13768472f93a702eeca989532d6f4fe67b2cfb5e3590838a59dde865148bec",
+   "time": "19:21"
+  },
+  {
+   "id": "2026-11-25-amtm-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "AMTM"
+   ],
+   "tag": "ביטחון",
+   "tone": "pos",
+   "title": "Amentum מכריזה על רכישה עצמית של $500 מיליון",
+   "body": "לפי RBC, המעבר של Amentum להחזרת הון, ובכלל זה תוכנית רכישה עצמית חדשה של $500 מיליון, היה הנקודה הבולטת בדוח הרבעון הרביעי של שנת הכספים.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=3d77c1a22612e3375ed9a49ed4f132181815a83e917697dd0e795870afa7cce4",
+   "time": "18:40"
+  },
+  {
+   "id": "2026-11-26-wmt-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "WMT"
+   ],
+   "tag": "קמעונאות",
+   "tone": "neu",
+   "title": "מנכ״ל Walmart: ההכנסה או היסטוריית הקניות לא ישנו את המחיר",
+   "body": "מנכ״ל Walmart ג׳ון פרנר אמר שהכנסת הלקוח, היסטוריית הקניות שלו או הדחיפות שלו לא ישנו את המחיר שישלם. תגיות המדף הדיגיטליות מציגות מחירים שאושרו בידי Walmart, ובכ-2,300 סניפים בארה״ב כבר משתמשים בהן.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=7bf61d35bd2695e33a46a66a3071677153a2ae9b141a850c4e175b828f69f83e",
+   "time": "02:00"
+  },
+  {
+   "id": "2026-11-25-ggal-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "GGAL"
+   ],
+   "tag": "בנקים",
+   "tone": "neg",
+   "title": "Grupo Galicia: הרווח הנקי ירד ב-16% לעומת הרבעון הקודם",
+   "body": "Grupo Financiero Galicia הארגנטינית דיווחה על רווח נקי של 229 מיליארד פסו ברבעון השלישי, ירידה של 16% לעומת הרבעון הקודם, על רקע ירידת האינפלציה.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=8fcf6122d651472ee7ba0521cf8c846f035a395a0753a42a6180cad335182e3a",
+   "time": "21:12"
+  },
+  {
+   "id": "2026-11-25-bbar-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "BBAR"
+   ],
+   "tag": "בנקים",
+   "tone": "neg",
+   "title": "BBVA Argentina: הרווח הנקי צנח ב-57.7% ברבעון",
+   "body": "BBVA Argentina דיווחה על ירידה של 57.7% ברווח הנקי המותאם לאינפלציה ברבעון השלישי לעומת הרבעון הקודם.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=35cde2435ea0452f5710cd1cb9dea529a726e2f5e3357b0b1b99933ef92dc3e6",
+   "time": "19:12"
+  },
+  {
+   "id": "2026-11-25-nwg-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "NWG"
+   ],
+   "tag": "בנקים",
+   "tone": "neu",
+   "title": "NatWest מציבה יעד של 200 מיליארד ליש״ט בנכסי ניהול עושר",
+   "body": "NatWest Group הציבה יעד להגדלת הנכסים המנוהלים בתחום הבנקאות הפרטית וניהול העושר ליותר מ-200 מיליארד ליש״ט, לצד עלייה בחיסכון מעסקאות.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=06cfa0c248156c18beb41891ef967b901e7df05580657e1553e76a62c684aea1",
+   "time": "21:12"
+  },
+  {
+   "id": "2026-11-25-crwv-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "CRWV"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "neu",
+   "title": "דיווח: Morgan Stanley ו-MUFG מכינות ל-CoreWeave הלוואה של $4.5 מיליארד",
+   "body": "לפי הדיווח, Morgan Stanley ו-MUFG מכינות הלוואה של $4.5 מיליארד ל-CoreWeave, מגובה במעבדים גרפיים (GPU) הקשורים לעסקה עם Meta. ביום רביעי ירדה המניה בכ-10%.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=ede8b57fb063e032ab779ab3dd2306446dca21a34575a957245552dfc8092bfd",
+   "time": "23:02"
+  },
+  {
+   "id": "2026-11-26-ice-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "ICE"
+   ],
+   "tag": "בורסות",
+   "tone": "neu",
+   "title": "Societe Generale מרחיבה את סליקת ה-CDS ב-ICE",
+   "body": "Societe Generale הרחיבה את פעילות סליקת עסקאות ה-CDS שלה ב-ICE Clear Credit כך שתכלול גם CDS על חברות בודדות.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=ae1ef980bee515a119d8c97518d4eb47b9c438c5bd8503f5c2aa0394156f4ef4",
+   "time": "03:18"
+  },
+  {
+   "id": "2026-11-26-apld-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "APLD"
+   ],
+   "tag": "תשתיות AI",
+   "tone": "neg",
+   "title": "Applied Digital ירדה ב-14% בשבוע למרות חוזה של $5.4 מיליארד",
+   "body": "מניית Applied Digital ירדה ב-14% בשבוע האחרון, יחד עם הלקוחה CoreWeave, אף שחתמה על חוזה חכירה חדש בהיקף של $5.4 מיליארד עם ענקית ענן.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=58769d994e50edfe208b5613ff41219077bd3be03f76ff24a61ed063649ec05e",
+   "time": "01:37"
+  },
+  {
+   "id": "2026-11-25-b-midday",
+   "k": "stock",
+   "date": "2026-11-25",
+   "t": [
+    "B"
+   ],
+   "tag": "כרייה",
+   "tone": "neu",
+   "title": "Barrick: מנכ״ל החטיבה הבינלאומית נפגש עם ראש ממשלת מאלי",
+   "body": "מנכ״ל החטיבה הבינלאומית החדשה של Barrick Mining נפגש ביום רביעי עם ראש ממשלת מאלי, הביקור הראשון מאז הסדרת המחלוקת בין הצדדים.",
+   "src": "Investing.com",
+   "url": "https://finnhub.io/api/news?id=0426a1bb5a7a16620e7cd8838354cfe360d4509a89408c293523974df6be227c",
+   "time": "23:31"
+  },
+  {
+   "id": "2026-11-26-rio-midday",
+   "k": "stock",
+   "date": "2026-11-26",
+   "t": [
+    "RIO"
+   ],
+   "tag": "כרייה",
+   "tone": "neu",
+   "title": "Rio Tinto חתמה על הסכם מחודש עם קהילת Yinhawangka באוסטרליה",
+   "body": "Rio Tinto, קהילת Yinhawangka והתאגיד האבוריג׳יני YAC חתמו על הסכם השתתפות מחודש לגמרי לפעילות הכרייה בפילברה.",
+   "src": "Yahoo Finance",
+   "url": "https://finnhub.io/api/news?id=b653262687be44f0c91b10cdae61eff09aba3ec7a1ef9db2b17d6c7f14752681",
+   "time": "03:00"
+  },
+  {
    "id": "2026-11-25-close-dow-erases-drop",
    "date": "2026-11-25",
    "t": [],
