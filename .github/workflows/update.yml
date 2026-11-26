@@ -36,6 +36,8 @@ jobs:
         run: timeout 1500 python scripts/finnhub_fill.py || true
       - env: { FINNHUB_KEY: "${{ secrets.FINNHUB_KEY }}" }
         run: timeout 300 python scripts/calendar_auto.py || true
+      - env: { SEC_UA: "${{ secrets.SEC_UA }}" }
+        run: timeout 300 python scripts/calendar_sec.py || true
       - run: python scripts/sec_fill.py || true
       - run: timeout 300 python scripts/recap.py || true
       - run: timeout 120 python scripts/crypto.py || true

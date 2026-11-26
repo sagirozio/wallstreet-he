@@ -58,7 +58,7 @@ for i in range(5):
     items = []
     for it in top:
         o = oldi.get((lbl, it["t"]), {})
-        items.append({**it, **{k: v for k, v in o.items() if k in ("n", "at", "star", "il", "co", "time") and v not in (None, "")}})
+        items.append({**it, **{k: v for k, v in o.items() if k in ("n", "at", "star", "il", "co", "time", "sec") and v not in (None, "")}})
     # hand-added items Finnhub doesn't list
     items += [o for (dl, t), o in oldi.items() if dl == lbl and t not in got and not o.get("a")]
     items.sort(key=lambda x: (x.get("time") != "bmo", -U.get(x["t"], ("", 0))[1]))
@@ -70,7 +70,7 @@ hand = {t for _, t in hand_at}
 for x in days:
     x["items"] = [it for it in x["items"] if it["t"] not in hand or (x["d"], it["t"]) in hand_at]
 new = {"week": week,
-       "note": "החברות הגדולות שמדווחות השבוע (שווי שוק מעל מיליארד דולר), לפי Finnhub, עם תחזיות האנליסטים. 🇮🇱 = חברה ישראלית. השעות לפי שעון ניו יורק (ET), בישראל זה 7 שעות מאוחר יותר.",
+       "note": "החברות הגדולות שמדווחות השבוע (שווי שוק מעל מיליארד דולר), לפי Finnhub, עם תחזיות האנליסטים. 🇮🇱 = חברה ישראלית. השעות לפי שעון ניו יורק (ET), בישראל זה 7 שעות מאוחר יותר. ✓ = התאריך והשעה אומתו מול הדוח שהחברה הגישה ל-SEC.",
        "days": days}
 if {k: v for k, v in old.items() if k != "rev"} != new:
     new["rev"] = int(dt.datetime.now(ZoneInfo("Asia/Jerusalem")).strftime("%Y%m%d%H%M"))

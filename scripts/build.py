@@ -3,7 +3,7 @@
 data.json stays the single source of truth (scripts and the scheduled content runs edit it).
 This script derives everything the browser loads:
   index.html   – the app, with the light "core" data inlined (no profiles / per-stock lists)
-  core.json    – the same core data, polled by the page every 5 minutes
+  core.json    – the same core data, polled by the page (only when corev.json shows it changed)
   stocks.json  – the full stock universe (industry lists, exchanges, Hebrew names), loaded once in the background
   s/T.json     – per-stock details (profile, facts, next earnings date), loaded when a stock page opens
   stock/T.html – a static, indexable page per stock (for Google), linking into the app
@@ -132,6 +132,11 @@ _stk = (data.get("themes") or {}).get("stocks") or {}
 if _th.get("rows"): _th["rows"] = [{**r, "cnt": len(_stk.get(r.get("en"), []))} for r in _th["rows"]]
 core_txt = js(core)
 write("core.json", core_txt)
+# corev.json: a 10-character fingerprint of core.json. The page inlines the same fingerprint and polls this tiny file first;
+# core.json (~250KB) is fetched only when the fingerprint changed (a fresh page no longer downloads the data it already holds)
+import hashlib as _hl
+core_v = _hl.sha1(core_txt.encode()).hexdigest()[:10]
+write("corev.json", js({"v": core_v}))
 # ---- S&P 500 earnings, quarter by quarter (spxe.json, market page): the net income of the current members from their SEC filings (fund/),
 # summed over 12 months. A company's fiscal quarter counts in the calendar quarter that holds most of it (a quarter ending in Jan / Apr / Jul / Oct
 # goes to the quarter before, one ending in Feb / May / Aug / Nov to the quarter after). Only companies with every quarter of the range are
@@ -384,7 +389,7 @@ m_js = _re.search(r"<script>\nconst FALLBACK = __DATA__;\n(.*?)</script>\n</body
 if m_css and m_js:
     css_name = asset(minify(m_css.group(1), "css"), "css")
     js_name = asset(minify(m_js.group(1), "js"), "js")
-    page = (page[:m_js.start()] + '<script>const FALLBACK = __DATA__;</script>\n<script src="' + js_name + '" onerror="window.__unboot&&__unboot()"></script>\n</body>' + page[m_js.end():])
+    page = (page[:m_js.start()] + '<script>const FALLBACK = __DATA__; var CORE_V0 = "__COREV__";</script>\n<script src="' + js_name + '" onerror="window.__unboot&&__unboot()"></script>\n</body>' + page[m_js.end():])
     page = page[:m_css.start()] + '<link rel="stylesheet" href="' + css_name + '">\n<link rel="preload" as="script" href="' + js_name + '">\n' + page[m_css.end():]   # the script is at the end of a long page: start its download right away
     # keep the files of the last builds (a page opened a little earlier still finds its own), delete older ones
     kp = root / "assets/keep.json"
@@ -397,6 +402,7 @@ if m_css and m_js:
 else:
     print("WARNING: style/script block not found, index.html keeps them inline")
 page = page.replace("__DATA__", core_txt.replace("</", "<\\/"))
+page = page.replace("__COREV__", core_v)
 write("index.html", page)
 
 # ---------- static stock pages (SEO) ----------
