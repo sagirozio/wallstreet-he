@@ -1,0 +1,28 @@
+name: Lab daily bars 2015-2021 (encrypted artifact)
+# Daily bars of the site's stocks from Alpaca, encrypted, uploaded as a short-lived artifact (not committed).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [scripts/lab_daily.py]
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q cryptography
+      - run: git clone -q --depth 1 -b ohlc https://github.com/${{ github.repository }} /tmp/ohlc
+      - run: python -u scripts/lab_daily.py /tmp/ohlc
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lab-daily
+          path: lab_daily.enc
+          retention-days: 3
