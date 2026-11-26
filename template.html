@@ -2381,17 +2381,18 @@ function qvShowEtf(t,p){
   const r=etfRow(t)||{t,n:t,h:[]}, E=FALLBACK.etfs||{}, n=QV.L.length;
   const pc=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(2)}%</span>`, tile=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`;
   const wsum=(r.h||[]).reduce((a,x)=>a+(+x[2]||0),0);
-  p.innerHTML=`<div class="qvh">
-      <div class="qvid"><span dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="qvpos num">(${QV.i+1}/${n})</span>`:''}</span>${r.h&&r.h.length?`<span class="qvcp"><button data-ecopy="${esc(t)}" title="העתק את סימולי האחזקות">📋 העתק אחזקות</button></span>`:''}<small dir="auto">${esc(etfEn(t,r)||r.n||'')}</small></div>
-      ${n>1?`<span class="qvnav"><button data-qn="-1" aria-label="הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הבאה" ${QV.i<n-1?'':'disabled'}>‹</button></span>`:''}
-      <span class="qvmeta">${etfEn(t,r)&&r.n?`<span><bdi>${esc(r.n)}</bdi></span>`:''}<span>קרן סל (ETF)</span>${r.g?`<span>קבוצה: <bdi>${esc(r.g)}</bdi></span>`:''}</span>
-      <span class="qvtabs"><button data-qt="ch">גרף</button><button data-qt="hd">אחזקות</button></span>
-      <span class="qvact"><button class="qvx" aria-label="סגירה">✕</button></span></div>
-    <p class="qvdesc etfd" dir="rtl">${ETF_HE[t]?esc(ETF_HE[t]):`קרן סל (ETF) בנושא ${esc(r.n||'')}.`} ${r.h&&r.h.length&&wsum?`10 האחזקות הגדולות הן כ-${wsum.toFixed(0)}% מהקרן.`:''}</p>
-    <div class="qvq"><div class="qvp"><small>${r._lv?'לייב':E.asOf?'סגירת '+dm(E.asOf):'מחיר סגירה'}</small><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${pc(r.d)}</div>
-      <div class="qvt">${tile('5D',pc(r.w))}${tile('1M',pc(r.m))}${tile('3M',pc(r.q))}${tile('YTD',pc(r.ytd))}${tile('1Y',pc(r.y))}${tile('RS',r.rs!=null?r.rs:'—')}</div>${(()=>{ const I=r.i||{}; const T=[]; if(I.f) T.push(tile('מנפיק','<bdi>'+esc(I.f)+'</bdi>')); if(I.er!=null) T.push(tile('דמי ניהול שנתיים',I.er.toFixed(2)+'%')); if(I.aum!=null) T.push(tile('היקף נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M'))); if(I.inc) T.push(tile('הוקמה',I.inc.slice(0,4))); if(wsum) T.push(tile('10 האחזקות הגדולות',wsum.toFixed(0)+'%')); return T.length?`<div class="qvt qvti">${T.join('')}</div>`:''; })()}</div>
+  const I=r.i||{}, en=etfEn(t,r), c=(l,v)=>`<div><small>${l}</small><b class="num">${v}</b></div>`, p1=v=>v==null?'—':`<span class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${v.toFixed(1)}%</span>`;
+  /* the same frame as the stock card (q2): header with price, tags, one-line description, tabs, figures row */
+  p.innerHTML=`<div class="q2h">
+      <div class="q2id"><span class="q2lg" aria-hidden="true">${esc(t.slice(0,4))}</span><div><span class="q2tk" dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="q2pos num">${QV.i+1}/${n}</span>`:''}${r.h&&r.h.length?`<button class="q2cp" data-ecopy="${esc(t)}" title="העתק את סימולי האחזקות והוסף לרשימות" aria-label="העתק את סימולי האחזקות">⧉</button>`:''}</span><small dir="auto">${esc(en||r.n||'')}</small></div></div>
+      <div class="q2px"><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${r.d==null?'':`<span class="num ${r.d>=0?'up':'down'}" dir="ltr">${r.d>0?'+':''}${r.d.toFixed(2)}%</span>`}<small>${r._lv?'לייב':E.asOf?'נכון לסגירת '+dm(E.asOf):'מחיר סגירה'}</small></div>
+      <span class="q2ic">${n>1?`<button data-qn="-1" aria-label="הקרן הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הקרן הבאה" ${QV.i<n-1?'':'disabled'}>‹</button>`:''}<button class="qvx" aria-label="סגירה">✕</button></span></div>
+    <div class="q2tg">${en&&r.n?`<span><bdi>${esc(r.n)}</bdi></span>`:''}<span>קרן סל (ETF)</span>${r.g?`<span><bdi>${esc(r.g)}</bdi></span>`:''}${I.f?`<span><bdi>${esc(I.f)}</bdi></span>`:''}</div>
+    <p class="q2d" dir="rtl">${ETF_HE[t]?esc(ETF_HE[t]):`קרן סל (ETF) בנושא ${esc(r.n||'')}.`}</p>
+    <div class="q2tb qvtabs" role="tablist"><button data-qt="ch">גרף</button><button data-qt="hd">אחזקות</button></div>
+    <div class="q2st">${c('RS',r.rs??'—')}${c('YTD',p1(r.ytd))}${c('חודש',p1(r.m))}${c('שנה',p1(r.y))}${I.er!=null?c('דמי ניהול',I.er.toFixed(2)+'%'):''}${I.aum!=null?c('נכסים','$'+(I.aum>=1?I.aum.toFixed(1)+'B':Math.round(I.aum*1000)+'M')):''}${wsum?c('10 הגדולות',wsum.toFixed(0)+'%'):''}</div>
     <div class="qvb" id="qvBody"></div>
-    <a class="qvgo" href="#stock/${encodeURIComponent(t)}">לדף הקרן המלא ←</a>`;
+    <div class="q2f"><span>מידע בלבד, לא ייעוץ השקעות</span><a class="qvgo" href="#stock/${encodeURIComponent(t)}">לדף הקרן המלא ←</a></div>`;
   qvTab(QV.tab==='hd'?'hd':'ch');
 }
 function qvTabEtf(k,t){ QV.tab=k; const p=$('qv'), box=$('qvBody'), r=etfRow(t); if(!p||!box) return;
