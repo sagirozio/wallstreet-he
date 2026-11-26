@@ -62,12 +62,12 @@ for t, he, grp in ETFS:
     if hold: r["h"], r["hAt"] = hold, hAt
     # ID-card facts (issuer, expense ratio, assets, inception): refreshed weekly with the holdings, kept if Yahoo fails
     inf = o.get("i")
-    if not inf or hAt == today.isoformat():
+    if not inf or "en" not in inf or hAt == today.isoformat():
         try:
             i = yf.Ticker(t).info or {}
             er = i.get("netExpenseRatio", i.get("annualReportExpenseRatio"))
             inc = i.get("fundInceptionDate")
-            n = {"f": i.get("fundFamily"), "er": round(float(er), 3) if er is not None else None,
+            n = {"en": i.get("longName") or i.get("shortName"), "f": i.get("fundFamily"), "er": round(float(er), 3) if er is not None else None,
                  "aum": round(float(i["totalAssets"]) / 1e9, 2) if i.get("totalAssets") else None,
                  "inc": dt.datetime.utcfromtimestamp(int(inc)).strftime("%Y-%m-%d") if inc else None}
             n = {k: v for k, v in n.items() if v is not None}
@@ -76,6 +76,17 @@ for t, he, grp in ETFS:
             print("info failed", t, type(e).__name__)
     if inf: r["i"] = inf
     rows.append(r)
-data["etfs"] = {"asOf": str(px.index[-1].date()), "rows": rows}
+# English names of the sector and index ETFs (they have a page on the site too): Yahoo's long name, refreshed on Mondays or when missing
+XTRA = ["XLK", "XLF", "XLV", "XLE", "XLI", "XLY", "XLP", "XLU", "XLB", "XLRE", "XLC", "SPY", "QQQ", "DIA", "IWM"]
+en = dict((data.get("etfs") or {}).get("en") or {})
+for t in XTRA:
+    if t in en and today.weekday() != 0: continue
+    try:
+        i = yf.Ticker(t).info or {}
+        nm = i.get("longName") or i.get("shortName")
+        if nm: en[t] = nm
+    except Exception as e:
+        print("name failed", t, type(e).__name__)
+data["etfs"] = {"asOf": str(px.index[-1].date()), "rows": rows, "en": en}
 (root / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print("etfs", len(rows), "with holdings", sum(1 for r in rows if r.get("h")))

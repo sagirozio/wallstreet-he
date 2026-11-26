@@ -49,6 +49,11 @@ for i, chunk in enumerate(chunks):
             break
         except Exception as e:
             print("batch", i, "failed", type(e).__name__, str(e)[:120], flush=True); time.sleep(10)
+# the two index pages (#stock/SPX, #stock/NDX): Yahoo's index symbols, saved under the plain names
+INDEX = {k: v for k, v in {"^GSPC": "SPX", "^NDX": "NDX"}.items() if v not in uni}
+for sym, name in INDEX.items():
+    try: take(name, yf.Ticker(sym).history(period="10y", interval="1d", auto_adjust=False))
+    except Exception as e: print(sym, "failed", type(e).__name__, str(e)[:120], flush=True)
 print("ohlc:", len(out), "of", len(uni), "stocks +", len(EXTRA), "ETFs", flush=True)
 if not out: raise SystemExit("nothing downloaded, the ohlc branch stays as it is")
 
@@ -58,7 +63,7 @@ with tempfile.TemporaryDirectory() as d:
     old = subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", "ohlc", URL, str(tp)], capture_output=True)   # previous files (kept for stocks that failed now)
     if old.returncode != 0: tp.mkdir(parents=True, exist_ok=True)
     else: subprocess.run(["rm", "-rf", str(tp / ".git")])
-    keep = set(uni) | set(EXTRA) | {"_meta"}
+    keep = set(uni) | set(EXTRA) | set(INDEX.values()) | {"_meta"}
     for f in tp.glob("*.json"):
         if f.stem not in keep: f.unlink()          # left the site
     for t, j in out.items(): (tp / f"{t}.json").write_text(json.dumps(j, separators=(",", ":")), encoding="utf-8")
