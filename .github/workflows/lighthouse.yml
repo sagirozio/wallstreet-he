@@ -19,7 +19,7 @@ jobs:
       - run: npm i -g -s lighthouse@12
       - name: Score the pages
         run: |
-          for u in "" "#page/market" "#sectors" "#stock/NVDA" "#page/news"; do
+          for u in "" "#page/market" "#sectors" "#stock/NVDA" "#page/news"; do   # the hash pages share one HTML file
             for k in 1 2; do
               lighthouse "https://wallstreeter.co.il/$u" --quiet --chrome-flags="--headless=new --no-sandbox" --form-factor=mobile \
                 --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=r.json && break
@@ -28,5 +28,6 @@ jobs:
               const r=require("./r.json"), c=r.categories, a=r.audits, s=k=>c[k]&&c[k].score!=null?Math.round(c[k].score*100):"-";
               console.log(`${process.argv[1]||"/"}  perf ${s("performance")}  a11y ${s("accessibility")}  bp ${s("best-practices")}  seo ${s("seo")}  | FCP ${a["first-contentful-paint"].displayValue}  LCP ${a["largest-contentful-paint"].displayValue}  TBT ${a["total-blocking-time"].displayValue}  CLS ${a["cumulative-layout-shift"].displayValue}`);
               for (const [id,x] of Object.entries(a)) if (x.score!=null && x.score<0.9 && ["numeric","binary","metricSavings"].includes(x.scoreDisplayMode)) console.log("   -", x.title, x.displayValue||"");
+              for (const id of ["redirects","color-contrast","uses-responsive-images","render-blocking-resources","uses-long-cache-ttl"]) { const it=((a[id]||{}).details||{}).items||[]; it.slice(0,6).forEach(i=>console.log("     ·", id, JSON.stringify({u:i.url,w:i.wastedMs||i.wastedBytes,t:i.cacheLifetimeMs,n:i.node&&i.node.snippet&&i.node.snippet.slice(0,120),e:i.node&&i.node.explanation&&i.node.explanation.slice(0,140)}))); }
             ' "$u"
           done
