@@ -1,6 +1,6 @@
 """Daily OHLC + volume of every stock on the site (plus the ETFs with a card), for our own price chart.
 
-Yahoo (yfinance), 5 years, split-adjusted and not dividend-adjusted. One file per stock:
+Yahoo (yfinance), 10 years, split-adjusted and not dividend-adjusted. One file per stock:
 <T>.json = {"d":[dates],"o":[],"h":[],"l":[],"c":[],"v":[]}, pushed as a single commit to the `ohlc` branch
 (orphan, force-pushed like `px`, so it never grows the main history). The page reads it from raw.githubusercontent.com.
 A session that is still open is left out (the page draws today's candle from the live quote).
@@ -42,7 +42,7 @@ for i, chunk in enumerate(chunks):
     if not chunk: continue
     for k in range(2):
         try:
-            px = yf.download(chunk, period="5y", interval="1d", auto_adjust=False, group_by="ticker", threads=True, progress=False)
+            px = yf.download(chunk, period="10y", interval="1d", auto_adjust=False, group_by="ticker", threads=True, progress=False)
             got = set(px.columns.get_level_values(0))
             for t in chunk:
                 if t in got: take(t, px[t])

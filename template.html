@@ -1971,7 +1971,7 @@ function hubRows(){ const ix=stockIndex(), now=Date.now(), wk=new Date(now+7*864
 /* ---------- screener as a grid of small candle charts (desktop only): the same stocks in the same order as the table, 9 at a time.
    Each card loads the stock's 5-year daily file when it scrolls into view; price axis on the right, moving averages 50 and 200 ---------- */
 const HUBG={o:(()=>{ const d={m50:1,m200:1,vol:0}; try{ return Object.assign(d,JSON.parse(localStorage.getItem('hubgo')||'{}')); }catch(e){ return d; } })(), v:(()=>{ try{ return localStorage.getItem('hubv')||'t'; }catch(e){ return 't'; } })(), r:(()=>{ try{ return localStorage.getItem('hubgr')||'YTD'; }catch(e){ return 'YTD'; } })(), lim:9, io:null};
-const HUBG_R=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['5Y',0]];
+const HUBG_R=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['5Y',1260],['10Y',0]];
 const HUBG_MQ=matchMedia('(min-width:901px)'), hubGOn=()=>HUBG.v==='g'&&HUBG_MQ.matches;
 function hubGrid(){ const g=$('hubGrid'), t=$('hubTable'); if(!g||!t) return; const on=hubGOn();
   document.querySelectorAll('[data-hubv]').forEach(b=>{ const x=b.dataset.hubv===(on?'g':'t'); b.classList.toggle('on',x); b.setAttribute('aria-pressed',x); });
@@ -1987,8 +1987,8 @@ function hubGDraw(card,t,j){ const box=card.querySelector('.hgs'); if(!box) retu
   if(!j||!j.d||j.d.length<5){ box.innerHTML='<span class="hge">אין נתוני גרף</span>'; return; }
   const n=j.d.length, cl=j.c, ma=k=>{ const o=new Array(n).fill(null); let s=0; for(let i=0;i<n;i++){ s+=cl[i]; if(i>=k) s-=cl[i-k]; if(i>=k-1) o[i]=s/k; } return o; }, m50=ma(50), m200=ma(200);
   /* the range: the last N sessions, or from the first session of the year; 5Y in weekly candles (one per 5 sessions) so the candles stay readable */
-  const R=HUBG.r, y0=String(j.d[n-1]).slice(0,4); let a=R==='YTD'?Math.max(0,j.d.findIndex(d=>String(d).slice(0,4)===y0)):R==='5Y'?0:Math.max(0,n-(HUBG_R.find(x=>x[0]===R)||[0,126])[1]);
-  let C=[]; const step=R==='5Y'?5:1;
+  const R=HUBG.r, y0=String(j.d[n-1]).slice(0,4); let a=R==='YTD'?Math.max(0,j.d.findIndex(d=>String(d).slice(0,4)===y0)):R==='10Y'?0:Math.max(0,n-(HUBG_R.find(x=>x[0]===R)||[0,126])[1]);
+  let C=[]; const step=R==='10Y'?8:R==='5Y'?5:1;
   for(let i=a;i<n;i+=step){ const e=Math.min(n-1,i+step-1); let h=-1e9,l=1e9; for(let k=i;k<=e;k++){ if(j.h[k]>h) h=j.h[k]; if(j.l[k]<l) l=j.l[k]; } let v=0; for(let k=i;k<=e;k++) v+=(j.v&&j.v[k])||0; C.push({o:j.o[i],h,l,c:cl[e],a:HUBG.o.m50?m50[e]:null,b:HUBG.o.m200?m200[e]:null,v,d:j.d[e]}); }
   const L=liveQ(t); if(L&&L[0]&&LIVE&&LIVE.date>String(j.d[n-1])&&liveOn()){ const p=L[0]; C.push({o:L[4]||p,h:Math.max(L[2]||p,p),l:Math.min(L[3]||p,p),c:p,a:null,b:null,v:0,d:LIVE.date}); }
   const W=Math.max(220,Math.round(box.clientWidth||300)), H=Math.max(120,Math.round(box.clientHeight||170)), AX=46, pt=6, VH=HUBG.o.vol?Math.round(H*.17):0, pb=16+VH, cw=(W-AX-4)/C.length;   /* VH: the volume strip under the candles */
@@ -2000,7 +2000,7 @@ function hubGDraw(card,t,j){ const box=card.querySelector('.hgs'); if(!box) retu
   const yl0=Y(C[C.length-1].c); let g=''; for(let v=Math.ceil(lo/st)*st; v<=hi; v+=st){ const y=Math.round(Y(v))+.5; g+=`<line x1="0" x2="${W-AX}" y1="${y}" y2="${y}" class="gl"/>`+(Math.abs(y-yl0)<13||y<pt+4||y>H-pb-2?'':`<text x="${W-AX+4}" y="${y+3.5}" class="ax">${f(v)}</text>`); }   /* a level next to the last-price tag is not labelled, so they do not overlap */
   /* time labels: years for 5Y, months otherwise */
   const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; let lx=-99;
-  C.forEach((x,i)=>{ if(!i) return; const d=String(x.d), p=String(C[i-1].d), ny=d.slice(0,4)!==p.slice(0,4), nm=d.slice(5,7)!==p.slice(5,7); const lab=R==='5Y'?(ny?d.slice(0,4):''):R==='1M'?'':nm?(ny?d.slice(0,4):MON[+d.slice(5,7)-1]):''; if(!lab) return; const xx=X(i); if(xx-lx<38||xx>W-AX-14) return; lx=xx; g+=`<text x="${xx.toFixed(1)}" y="${H-3}" class="ax${ny?' yr':''}" text-anchor="middle">${lab}</text>`; });
+  C.forEach((x,i)=>{ if(!i) return; const d=String(x.d), p=String(C[i-1].d), ny=d.slice(0,4)!==p.slice(0,4), nm=d.slice(5,7)!==p.slice(5,7); const lab=(R==='5Y'||R==='10Y')?(ny?d.slice(0,4):''):R==='1M'?'':nm?(ny?d.slice(0,4):MON[+d.slice(5,7)-1]):''; if(!lab) return; const xx=X(i); if(xx-lx<38||xx>W-AX-14) return; lx=xx; g+=`<text x="${xx.toFixed(1)}" y="${H-3}" class="ax${ny?' yr':''}" text-anchor="middle">${lab}</text>`; });
   const ml=(k,col)=>{ let d='',on=false; C.forEach((x,i)=>{ const v=x[k]; if(v==null){ on=false; return; } d+=(on?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1); on=true; }); return d?`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.1"/>`:''; };
   g+=ml('b','#f5b942')+ml('a','#5b8cff');
   if(VH){ const vm=Math.max(1,...C.map(x=>x.v||0)), bw0=Math.max(1,Math.min(7,cw*0.62)); g+=C.map((x,i)=>x.v?`<rect x="${(X(i)-bw0/2).toFixed(1)}" y="${(H-16-x.v/vm*(VH-3)).toFixed(1)}" width="${bw0.toFixed(1)}" height="${(x.v/vm*(VH-3)).toFixed(1)}" fill="${x.c>=x.o?'#2ea463':'#ef4444'}" opacity=".38"/>`:'').join(''); }
@@ -2685,14 +2685,14 @@ function loadPx(t){ if(PXC[t]) return Promise.resolve(PXC[t]); return loadPxDate
 const pxF=v=>'$'+(v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)), pxD=d=>{ const p=String(d||'').split('-'); return p.length===3?`${+p[2]}.${+p[1]}`:String(d||''); };
 const PXDT={};   /* series with their own dates (sector ETFs) */
 /* range of the overview line (stock pages): 1M / 3M / 6M / YTD / 1Y from the px file (YTD + ~200 sessions before it), 5Y from the candle chart's file (ohlc branch, loaded on demand). Saved in this browser */
-const PX_RG=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['5Y',0]];
+const PX_RG=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['5Y',0],['10Y',0]];
 let PXR=(()=>{ try{ const v=localStorage.getItem('pxr'); return PX_RG.some(r=>r[0]===v)?v:'YTD'; }catch(e){ return 'YTD'; } })();
 /* F = the longest closes we have, FD = their dates, s = index where the chosen range starts */
 function pxBase(t,rg){ rg=rg||PXR; const full=(PXD||{}).full;
-  if(rg==='5Y'&&OC[t]&&OC[t].c&&OC[t].d) return {F:OC[t].c, FD:OC[t].d, s:0};
+  if((rg==='5Y'||rg==='10Y')&&OC[t]&&OC[t].c&&OC[t].d){ const L=OC[t].c.length, y5=String(OC[t].d[L-1]).slice(0,4)-5+String(OC[t].d[L-1]).slice(4); return {F:OC[t].c, FD:OC[t].d, s:rg==='10Y'?0:Math.max(0,OC[t].d.findIndex(d=>String(d)>=y5))}; }   /* the candle file holds up to 10 years */
   if(!PXF[t]||!full) return null;
   const F=PXF[t], k=Math.min(F.length,full.length), F2=F.slice(F.length-k), FD=full.slice(full.length-k);   /* line the two files up at their newest end */
-  if(rg==='YTD'||rg==='5Y') return {F:F2, FD, s:Math.max(0,k-(PXC[t]||F2).length)};
+  if(rg==='YTD'||rg==='5Y'||rg==='10Y') return {F:F2, FD, s:Math.max(0,k-(PXC[t]||F2).length)};
   const n=(PX_RG.find(r=>r[0]===rg)||[0,0])[1]; return {F:F2, FD, s:Math.max(0,k-n)}; }
 function pxSeries(t,rg){ let a0=PXC[t], D=PXDT[t]||(PXD||{}).dates; if(!a0||!D) return {};
   if(!PXDT[t]&&PXF[t]){ const B=pxBase(t,rg); if(B){ a0=B.F.slice(B.s); D=B.FD.slice(B.s); } }
@@ -2743,7 +2743,7 @@ function pxReports(t,D,A0){ const det=SDET[t]||{}, ed=det.ed||[], eh=det.eh||[],
 document.addEventListener('click',e=>{
   const rb=e.target.closest&&e.target.closest('.pxrg button'); if(rb){ const c=rb.closest('.pxc'), t=c&&c.dataset.px; PXR=rb.dataset.r; try{ localStorage.setItem('pxr',PXR); }catch(_){}
     const draw=()=>{ const box=c&&c.isConnected?c.parentElement:$('spPx'); if(box&&t) box.innerHTML=pxChart(t)+(box.id==='spPx'?cupSvg(t):''); };
-    if(PXR==='5Y'&&t&&!OC[t]){ rb.classList.add('ld'); ocEnsure(t).then(draw); } else draw(); return; }
+    if((PXR==='5Y'||PXR==='10Y')&&t&&!OC[t]){ rb.classList.add('ld'); ocEnsure(t).then(draw); } else draw(); return; }
   const b=e.target.closest&&e.target.closest('.pxtg button'); if(b){ const k=b.dataset.o; PXO[k]=PXO[k]?0:1; try{ localStorage.setItem('pxo2',JSON.stringify(PXO)); }catch(_){} const c=b.closest('.pxc'), t=c&&c.dataset.px, box=c&&c.parentElement; if(box&&t) box.innerHTML=pxChart(t); return; }
   const d=e.target.closest&&e.target.closest('.pxe'); if(d){ e.stopPropagation(); pxRep(d); }
 });
@@ -3340,7 +3340,7 @@ function briefShotBlob(){ return new Promise((res,rej)=>{ try{
 /* a stock as a picture: header (logo, site, date), the company with its price, "about the company" (text + head office, employees, site), the overview price line in the range chosen on the page, and two quarterly bar charts side by side (EPS and revenue; the last 4 quarters) */
 function spShotBlob(t){ return new Promise((res,rej)=>{ (async()=>{
   const s=stockIndex()[t]; if(!s) throw new Error('stock');
-  await Promise.all([loadPxDates(), loadPx(t), PXR==='5Y'&&!OC[t]?ocEnsure(t):null, FUNDC[t]?null:fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(f=>{ if(f&&f.q) FUNDC[t]=f; }).catch(()=>{})]);
+  await Promise.all([loadPxDates(), loadPx(t), (PXR==='5Y'||PXR==='10Y')&&!OC[t]?ocEnsure(t):null, FUNDC[t]?null:fetch('fund/'+encodeURIComponent(t)+'.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(f=>{ if(f&&f.q) FUNDC[t]=f; }).catch(()=>{})]);
   const light=document.documentElement.classList.contains('light'), BG=light?'#ffffff':'#121418', INK=light?'#111827':'#e6edf3', MUT=light?'#5b6470':'#8b949e', LN=light?'#e3e6eb':'#24272e', GRN=light?'#12733a':'#2ea463', RED=light?'#c41d1d':'#ef4444';
   const F='Heebo, Arial, Helvetica, sans-serif', W=600, P=24;
   const {a0,D}=pxSeries(t), pts=(a0||[]).map((v,i)=>[i,v]).filter(z=>z[1]!=null), hasPx=pts.length>2;
