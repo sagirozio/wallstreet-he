@@ -3500,7 +3500,7 @@ document.addEventListener('pointermove',ocHover);
 const OCP=new Map(); let PIN=null;
 document.addEventListener('pointerdown',e=>{ const svg=e.target.closest&&e.target.closest('.ocS'); if(!svg||e.pointerType!=='touch') return; OCP.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(OCP.size===2){ const box=ocBox(svg), g=box&&box._g; if(!g) return; ocKinStop(box); if(box._pend){ box._pend=null; OCPEND=null; } ocEnd(); const [a,b]=[...OCP.values()], r=svg.getBoundingClientRect(), mid=((a.x+b.x)/2-r.left)/r.width*g.W;
-    PIN={box,d:Math.hypot(a.x-b.x,a.y-b.y)||1,n:box._n,off:box._off||0,f:Math.max(0,Math.min(1,(mid-g.pl)/(g.W-g.pl-g.pr))),v:!!box._full&&Math.abs(a.y-b.y)>Math.abs(a.x-b.x)*1.4,lo:g.lo,hi:g.hi}; } });   /* full screen: fingers one above the other = zoom of the price axis */
+    PIN={box,d:Math.hypot(a.x-b.x,a.y-b.y)||1,n:box._n,off:box._off||0,f:Math.max(0,Math.min(1,(mid-g.pl)/(g.W-g.pl-g.pr))),v:false,lo:g.lo,hi:g.hi}; } });   /* a pinch always zooms the time axis, at any finger angle (the price scale: drag the price axis) */
 document.addEventListener('pointermove',e=>{ if(!OCP.has(e.pointerId)) return; OCP.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(!PIN||OCP.size<2) return;
   const box=PIN.box, [a,b]=[...OCP.values()], d=Math.hypot(a.x-b.x,a.y-b.y)||1; if(PIN.v){ const c=(PIN.lo+PIN.hi)/2, h=(PIN.hi-PIN.lo)/2*PIN.d/d; box._y=[c-h,c+h]; ocReq(box); return; }
   const L=box._L, ci=(L-PIN.n-PIN.off)+PIN.f*PIN.n, nn=Math.round(Math.max(box._min||15,Math.min(L,PIN.n*PIN.d/d)));
