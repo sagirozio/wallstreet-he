@@ -126741,6 +126741,21 @@
  },
  "news": [
   {
+   "id": "2026-11-25-kntk-targa-talks",
+   "date": "2026-11-25",
+   "k": "stock",
+   "t": [
+    "KNTK"
+   ],
+   "tag": "מיזוגים",
+   "tone": "pos",
+   "title": "Kinetik זינקה בכ-11.5% במסחר המאוחר על דיווח: Targa Resources במגעים לרכוש אותה",
+   "body": "לפי Bloomberg, Targa Resources (שווי של כ-$61.5 מיליארד) מנהלת מגעים לרכישת חברת הצנרת Kinetik (שווי של כ-$8.9 מיליארד), ועסקה עשויה להיחתם כבר בשבוע הבא. לפי הדיווח טרם התקבלה החלטה סופית, ו-Kinetik עשויה להישאר עצמאית או שיופיע מציע אחר.",
+   "src": "Investing.com (לפי Bloomberg)",
+   "url": "https://ca.investing.com/news/stock-market-news/kinetik-holdings-shares-surge-on-targa-takeover-talks-4981566",
+   "time": "23:18"
+  },
+  {
    "id": "2026-11-26-ras-tanura-loadings-halted",
    "date": "2026-11-26",
    "t": [],
