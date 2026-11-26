@@ -515,13 +515,16 @@ html.light .brp.g3{background:rgba(18,115,58,.18)}html.light .brp.g2{background:
 html:not(.light) .evpill.neg,html:not(.light) .sncp.out{color:#ff8a80}
 /* quick view on a phone: one toolbar row, drawing tools and the rest behind two buttons, one-line figures, four stats, one-line description */
 .ocd .ocq{display:none!important}
+.ocd .mab{font-weight:600;font-size:12.5px;letter-spacing:.3px}
 .occl[hidden]{display:none!important}
 @media(max-width:760px){
   #qv .ocbox:not(.full) .ocq{display:inline-flex!important}
-  #qv .ocbox:not(.full) .ocd:not(.more) .tvb>.macs,#qv .ocbox:not(.full) .ocd:not(.more) .tvb>.vol,#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocshot],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocstp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocalp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocau],#qv .ocbox:not(.full) .ocd:not(.more) .tvb>b{display:none!important}
+  #qv .ocbox:not(.full) .ocd:not(.more) .tvb>.vol,#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocshot],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocstp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocalp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocau],#qv .ocbox:not(.full) .ocd:not(.more) .tvb>b{display:none!important}
   #qv .ocbox:not(.full) .ocd:not(.more) .tvb>.sp:nth-of-type(n+3){display:none}
   #qv .ocbox:not(.full) .ocd.more .tvb{flex-wrap:wrap}
+  #qv .ocbox:not(.full) .ocd:not(.more) .tvb button{padding:0 5px;min-width:27px}#qv .ocbox:not(.full) .ocd:not(.more) .tvb>.sp{margin:0 2px}#qv .ocbox:not(.full) .ocd:not(.more) .tvb{flex-wrap:nowrap}
   #qv .ocbox:not(.full) .ocd:not(.draw) .oct{display:none}
+  #qv .ocbox:not(.full) .macs .mac:not(.set){display:none}   /* the averages live under the MA button: its panel shows, hides and edits each one */
   #qv .ocbox:not(.full) .oi{flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 10px}#qv .ocbox:not(.full) .oi::-webkit-scrollbar{display:none}#qv .ocbox:not(.full) .oi>*{flex:none}
   #qv .q2st{grid-template-columns:repeat(4,minmax(0,1fr))}#qv .q2st>div:nth-child(n+5){display:none}
   #qv .q2d{-webkit-line-clamp:1}
@@ -2949,7 +2952,7 @@ function ocMaVals(t,m,B){ const C=B._mv||(B._mv={}), k=(m.u||'D')+(m.k||'s')+m.n
 function ocVma(A,n){ const M=A._vm||(A._vm={}); if(M[n]) return M[n]; const r=new Array(A.length).fill(null), q=[]; let s=0;   /* a bar without volume (today's live candle) keeps the last value */
   for(let i=0;i<A.length;i++){ const v=A[i].v; if(!v){ r[i]=i?r[i-1]:null; continue; } q.push(v); s+=v; if(q.length>n) s-=q.shift(); if(q.length>=n) r[i]=s/n; } return M[n]=r; }
 const ocMaL=m=>(m.k==='e'?'E':'')+m.n+(m.u&&m.u!=='D'?m.u:'');
-function ocMaChips(box){ const el=box.querySelector('.ocMaC'); if(!el) return; el.innerHTML=`<button class="mac set" data-ocmset title="ממוצעים נעים: הוספה ועריכה (תקופה, SMA או EMA, צבע, עובי) וממוצע נע לנפח"><i class="fx">ƒx</i><span class="mtx"> ממוצעים</span></button>`+OCMA.map((m,i)=>`<button class="mac${m.on?'':' off'}" data-ocmt="${i}" title="לחיצה: הצגה או הסתרה של ממוצע ${ocMaL(m)}"><i style="background:${m.c};opacity:${m.o/100}"></i><bdi>${ocMaL(m)}</bdi></button>`).join(''); }
+function ocMaChips(box){ const el=box.querySelector('.ocMaC'); if(!el) return; el.innerHTML=`<button class="mac set" data-ocmset title="ממוצעים נעים: הוספה ועריכה (תקופה, SMA או EMA, צבע, עובי) וממוצע נע לנפח"><span class="mab">MA</span></button>`+OCMA.map((m,i)=>`<button class="mac${m.on?'':' off'}" data-ocmt="${i}" title="לחיצה: הצגה או הסתרה של ממוצע ${ocMaL(m)}"><i style="background:${m.c};opacity:${m.o/100}"></i><bdi>${ocMaL(m)}</bdi></button>`).join(''); }
 function ocMaPanel(box){ const el=box.querySelector('.ocMaP'); if(!el) return; const sel=(k,v,a)=>`<select data-ocm="${k}" aria-label="${k}">${a.map(([x,l])=>`<option value="${x}"${String(v)===String(x)?' selected':''}>${l}</option>`).join('')}</select>`, vm=OCPREF.vma;
   el.innerHTML=`<div class="mah"><b>ממוצעים נעים</b><span class="mhs">על מחירי הסגירה · נשמר בדפדפן הזה</span><button data-ocmset class="mx" aria-label="סגירה">×</button></div><div class="mhd"><span></span><span>צבע</span><span>תקופה</span><span>סוג</span><span>נר</span><span>שקיפות</span><span>עובי</span><span></span></div>`+
     (OCMA.length?OCMA.map((m,i)=>`<div class="mar" data-i="${i}"><input type="checkbox" data-ocm="on"${m.on?' checked':''} aria-label="הצגה"><input type="color" data-ocm="c" value="${m.c}" aria-label="צבע"><input type="number" data-ocm="n" min="2" max="700" step="1" value="${m.n}" inputmode="numeric" aria-label="תקופה">${sel('k',m.k||'s',[['s','SMA'],['e','EMA']])}${sel('u',m.u||'D',[['D','יומי'],['W','שבועי'],['M','חודשי']])}<span class="mapc"><input type="number" data-ocm="o" min="5" max="100" step="5" value="${m.o}" inputmode="numeric" aria-label="שקיפות באחוזים"><i>%</i></span><input type="number" data-ocm="w" min="0.5" max="8" step="0.5" value="${m.w}" inputmode="decimal" aria-label="עובי הקו"><button data-ocmdel title="מחיקה" aria-label="מחיקת ממוצע ${ocMaL(m)}">×</button></div>`).join(''):'<div class="mar mnone">אין ממוצעים.</div>')+
