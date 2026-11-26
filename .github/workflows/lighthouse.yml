@@ -1,0 +1,32 @@
+name: Lighthouse (live site, phone)
+# Speed, accessibility and best-practice scores of the live site as a phone sees it. Read the scores in the log.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/lighthouse.yml]
+  schedule:
+    - cron: "17 4 * * 0"     # Sunday morning
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm i -g -s lighthouse@12
+      - name: Score the pages
+        run: |
+          for u in "" "#page/market" "#sectors" "#stock/NVDA" "#page/news"; do
+            for k in 1 2; do
+              lighthouse "https://wallstreeter.co.il/$u" --quiet --chrome-flags="--headless=new --no-sandbox" --form-factor=mobile \
+                --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=r.json && break
+            done
+            node -e '
+              const r=require("./r.json"), c=r.categories, a=r.audits, s=k=>c[k]&&c[k].score!=null?Math.round(c[k].score*100):"-";
+              console.log(`${process.argv[1]||"/"}  perf ${s("performance")}  a11y ${s("accessibility")}  bp ${s("best-practices")}  seo ${s("seo")}  | FCP ${a["first-contentful-paint"].displayValue}  LCP ${a["largest-contentful-paint"].displayValue}  TBT ${a["total-blocking-time"].displayValue}  CLS ${a["cumulative-layout-shift"].displayValue}`);
+              for (const [id,x] of Object.entries(a)) if (x.score!=null && x.score<0.9 && ["numeric","binary","metricSavings"].includes(x.scoreDisplayMode)) console.log("   -", x.title, x.displayValue||"");
+            ' "$u"
+          done
