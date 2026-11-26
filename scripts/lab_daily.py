@@ -2,7 +2,7 @@
 
 The ticker list = the files of the ohlc branch (cloned to the path in argv[1]).
 Output lab_daily.enc: gzip(JSON {ticker: {d,o,h,l,c,v}}), AES-256-GCM with a random key wrapped by RSA-OAEP (scripts/lab_pub.pem).
-It is uploaded as a workflow artifact, not committed. The log shows counts only. Secrets: ALPACA_KEY_ID, ALPACA_SECRET.
+It goes to the orphan branch lab-data (force-pushed), never to main. The log shows counts only. Secrets: ALPACA_KEY_ID, ALPACA_SECRET.
 """
 import json, os, sys, time, gzip, base64, pathlib, urllib.request, urllib.parse, urllib.error
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM

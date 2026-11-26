@@ -1,12 +1,12 @@
-name: Lab daily bars 2015-2021 (encrypted artifact)
-# Daily bars of the site's stocks from Alpaca, encrypted, uploaded as a short-lived artifact (not committed).
+name: Lab daily bars 2015-2021 (encrypted)
+# Daily bars of the site's stocks from Alpaca, encrypted, force-pushed to the orphan branch lab-data (one commit, not main).
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths: [scripts/lab_daily.py]
 permissions:
-  contents: read
+  contents: write
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -21,8 +21,8 @@ jobs:
         env:
           ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
           ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: lab-daily
-          path: lab_daily.enc
-          retention-days: 3
+      - run: |
+          mkdir /tmp/ld && cp lab_daily.enc /tmp/ld/ && cd /tmp/ld
+          git init -q -b lab-data && git config user.name "lab" && git config user.email "lab@users.noreply.github.com"
+          git add lab_daily.enc && git commit -qm "Lab data (encrypted)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" lab-data
