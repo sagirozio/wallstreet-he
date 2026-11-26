@@ -1,5 +1,5 @@
 name: Lab 5-minute bars (encrypted)
-# Fetches the 5-minute bars of the days in lab_req.json from Alpaca and commits them encrypted (lab_min.enc).
+# Fetches the 5-minute bars of the days in lab_req.json from Alpaca, encrypted (lab_min.enc), force-pushed to the orphan branch lab-data.
 # Runs by hand, or when the list of days or the script changes. The log shows counts only.
 on:
   workflow_dispatch:
@@ -22,4 +22,8 @@ jobs:
         env:
           ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
           ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
-      - run: bash scripts/commit.sh "Lab 5-minute bars (encrypted)" lab_min.enc
+      - run: |
+          mkdir /tmp/ld && cp lab_min.enc /tmp/ld/ && cd /tmp/ld
+          git init -q -b lab-data && git config user.name "lab" && git config user.email "lab@users.noreply.github.com"
+          git add lab_min.enc && git commit -qm "Lab data (encrypted)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" lab-data
