@@ -3293,7 +3293,7 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
   if(V[V.length-1].a===L-1){ lo=Math.min(lo,lp); hi=Math.max(hi,lp); if(EX){ lo=Math.min(lo,EX.v[0]); hi=Math.max(hi,EX.v[0]); } }
   const pad=(hi-lo)*.06||hi*.01||1; lo=Math.max(0,lo-pad); hi+=pad; if(box._y){ lo=box._y[0]; hi=box._y[1]; }
   const cw=(W-pl-pr)/nn, X=i=>pl+cw*(i+.5), Xi=i=>pl+cw*(i-s0+.5), Y=v=>pt+(hi-v)/(hi-lo)*ph, UP=/^#[0-9a-f]{6}$/i.test(OCPREF.cu||'')?OCPREF.cu:'#2ea463', DN=/^#[0-9a-f]{6}$/i.test(OCPREF.cd||'')?OCPREF.cd:'#ef4444', R=v=>v.toFixed(1);
-  box._g={W,H,pl,pr,pt,pb,ph,cw,lo,hi,s0};
+  box._g={W,H,pl,pr,pt,pb,ph,cw,lo,hi,s0,vh:0,vmx:0};
   /* look: background colour, watermark, horizontal / vertical grid lines (the visitor's choice); the text and grid colours follow a light or a dark background */
   const BG=OCPREF.bg||'', dark=BG?ocLum(BG)<.55:!document.documentElement.classList.contains('light'), GR=dark?'#24272e':'#e3e6eb', TX=dark?'#7d8590':'#5b6470', INK=dark?'#e6edf3':'#111827';
   let o=BG?`<rect class="bg" width="${W}" height="${H}" fill="${BG}"/>`:'';
@@ -3310,7 +3310,7 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
      (one column and one colour by first open / last close, summed volume): otherwise they overlap and the colour drawn last smears over the other. Display only: the figures row stays per bar */
   const m=cw<1.6?Math.ceil(1.6/cw):1, vm=cv&&OCPREF.vma.on?ocVma(A,OCPREF.vma.n):null; box._vm=vm; let G=V;
   if(m>1){ G=[]; let cur=null; V.forEach(x=>{ const b=Math.floor(x.a/m); if(!cur||cur.b!==b){ cur={b,k0:x.k,k1:x.k,o:x.o,h:x.h,l:x.l,c:x.c,v:x.v||0,bs:[x]}; G.push(cur); } else { cur.k1=x.k; cur.h=Math.max(cur.h,x.h); cur.l=Math.min(cur.l,x.l); cur.c=x.c; cur.v+=x.v||0; cur.bs.push(x); } }); G.forEach(x=>{ x.k=(x.k0+x.k1)/2; }); }
-  const gw=cw*m, bw=Math.max(1,gw*.65), ww=Math.min(1,Math.max(.6,gw*.3)); let mv=1; if(cv){ G.forEach(x=>{ if(x.v>mv) mv=x.v; }); if(vm) V.forEach(x=>{ if(vm[x.a]*m>mv) mv=vm[x.a]*m; }); }
+  const gw=cw*m, bw=Math.max(1,gw*.65), ww=Math.min(1,Math.max(.6,gw*.3)); let mv=1; if(cv){ G.forEach(x=>{ if(x.v>mv) mv=x.v; }); if(vm) V.forEach(x=>{ if(vm[x.a]*m>mv) mv=vm[x.a]*m; }); box._g.vh=vh; box._g.vmx=mv/m; }   /* for the crosshair: the volume strip's height and the volume at its top */
   /* volume axis: two round levels on the price axis's side (K / M / B per bar; merged bars show the per-bar scale) */
   { let vax=''; if(cv&&mv>1&&vh>=28){ const per=mv/m, st=[1,2,2.5,5,10], e=Math.pow(10,Math.floor(Math.log10(per/2))); let s1=e; for(const f of st){ if(e*f*2<=per*.98) s1=e*f; } const vf=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?0:1).replace(/\.0$/,'')+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1).replace(/\.0$/,'')+'M':v>=1e3?Math.round(v/1e3)+'K':String(Math.round(v));
       [s1,s1*2].forEach(v=>{ const y=H-pb-v*m/mv*vh; if(y<H-pb-vh-2||y>H-pb-8) return; vax+=`<line x1="${W-pr}" x2="${W-pr+3}" y1="${R(y)}" y2="${R(y)}" stroke="${TX}" stroke-width=".8" opacity=".6"/><text x="${W-pr+6}" y="${R(y+3.5)}" font-size="10" fill="${TX}" opacity=".85">${vf(v)}</text>`; }); }
@@ -3595,9 +3595,9 @@ function ocClock(){ const els=document.querySelectorAll('.ocCl'); if(!els.length
 setInterval(()=>{ try{ ocClock(); }catch(e){} },30000);
 /* crosshair: stays where the pointer is, also while the chart is redrawn (dragging, drawing a line, live refresh) */
 function ocCross(box){ const svg=box.querySelector('.ocS'), g=box._g, V=box._V, C=svg&&svg.querySelector('.ocC'), hv=box._hv; if(!g||!V||!C||!hv) return; const S=c=>svg.querySelector('.'+c);
-  const kf=(hv.xx-g.pl)/g.cw-.5, x=V.find(c=>Math.abs(c.k-kf)<=.5), yc=Math.max(g.pt,Math.min(g.pt+g.ph,hv.yy)), pv=g.hi-(yc-g.pt)/g.ph*(g.hi-g.lo);
+  const kf=(hv.xx-g.pl)/g.cw-.5, x=V.find(c=>Math.abs(c.k-kf)<=.5), inV=g.vh>0&&hv.yy>g.H-g.pb-g.vh-4, yc=Math.max(g.pt,Math.min(inV?g.H-g.pb:g.pt+g.ph,hv.yy)), pv=g.hi-(yc-g.pt)/g.ph*(g.hi-g.lo), vv=inV?Math.max(0,(g.H-g.pb-yc)/g.vh*g.vmx):0, vf=v=>v>=1e9?(v/1e9).toFixed(2)+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?1:2)+'M':v>=1e3?Math.round(v/1e3)+'K':String(Math.round(v));   /* over the volume strip the crosshair reads volume, not price */
   C.style.display=''; const cx=x?g.pl+g.cw*(x.k+.5):Math.min(hv.xx,g.W-g.pr); S('ocX').setAttribute('x1',cx); S('ocX').setAttribute('x2',cx);
-  S('ocY').setAttribute('y1',yc); S('ocY').setAttribute('y2',yc); S('ocB').setAttribute('y',yc-9); S('ocT').setAttribute('y',yc+4); S('ocT').textContent=ocP(pv);
+  S('ocY').setAttribute('y1',yc); S('ocY').setAttribute('y2',yc); S('ocB').setAttribute('y',yc-9); S('ocT').setAttribute('y',yc+4); S('ocT').textContent=inV?vf(vv):ocP(pv);
   if(!x){ S('ocDT').textContent=''; S('ocDB').setAttribute('width',0); ocInfo(box); return; } S('ocDB').setAttribute('width',68);
   const tx=Math.max(g.pl+34,Math.min(g.W-g.pr-34,cx)); S('ocDB').setAttribute('x',tx-34); S('ocDT').setAttribute('x',tx); S('ocDT').textContent=ocDate(box,x.d);
   ocInfo(box,x); }
