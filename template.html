@@ -515,17 +515,23 @@ html.light .brp.g3{background:rgba(18,115,58,.18)}html.light .brp.g2{background:
 html:not(.light) .evpill.neg,html:not(.light) .sncp.out{color:#ff8a80}
 /* quick view on a phone: one toolbar row, drawing tools and the rest behind two buttons, one-line figures, four stats, one-line description */
 .ocd .ocq{display:none!important}
+.ocd .tvb [data-ocau]:not(.on){color:#f5b942}   /* manual price scale: the A is amber until auto is back */
 .ocd .mab{font-weight:600;font-size:12.5px;letter-spacing:.3px}
 .occl[hidden]{display:none!important}
 @media(max-width:760px){
-  #qv .ocbox:not(.full) .ocq{display:inline-flex!important}
-  #qv .ocbox:not(.full) .ocd:not(.more) .tvb>.vol,#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocshot],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocstp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocalp],#qv .ocbox:not(.full) .ocd:not(.more) .tvb [data-ocau],#qv .ocbox:not(.full) .ocd:not(.more) .tvb>b{display:none!important}
-  #qv .ocbox:not(.full) .ocd:not(.more) .tvb>.sp:nth-of-type(n+3){display:none}
-  #qv .ocbox:not(.full) .ocd.more .tvb{flex-wrap:wrap}
-  #qv .ocbox:not(.full) .ocd:not(.more) .tvb button{padding:0 5px;min-width:27px}#qv .ocbox:not(.full) .ocd:not(.more) .tvb>.sp{margin:0 2px}#qv .ocbox:not(.full) .ocd:not(.more) .tvb{flex-wrap:nowrap}
+  :is(#qv .ocbox,.ocbox.full) .ocq{display:inline-flex!important}
+  :is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb>.vol,:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb [data-ocshot],:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb [data-ocstp],:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb [data-ocalp],:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb [data-ocau],#qv .ocbox:not(.full) .ocd:not(.more) .tvb>b{display:none!important}
+  :is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb>.sp:nth-of-type(n+3){display:none}
+  :is(#qv .ocbox,.ocbox.full) .ocd.more .tvb{flex-wrap:wrap}
+  :is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb button{padding:0 5px;min-width:27px}:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb>.sp{margin:0 2px}:is(#qv .ocbox,.ocbox.full) .ocd:not(.more) .tvb{flex-wrap:nowrap}
   #qv .ocbox:not(.full) .ocd:not(.draw) .oct{display:none}
-  #qv .ocbox:not(.full) .macs .mac:not(.set){display:none}   /* the averages live under the MA button: its panel shows, hides and edits each one */
-  #qv .ocbox:not(.full) .oi{flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 10px}#qv .ocbox:not(.full) .oi::-webkit-scrollbar{display:none}#qv .ocbox:not(.full) .oi>*{flex:none}
+  :is(#qv .ocbox,.ocbox.full) .macs .mac:not(.set){display:none}   /* the averages live under the MA button: its panel shows, hides and edits each one */
+  :is(#qv .ocbox,.ocbox.full) .oi{flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 10px}:is(#qv .ocbox,.ocbox.full) .oi::-webkit-scrollbar{display:none}:is(#qv .ocbox,.ocbox.full) .oi>*{flex:none}
+  /* full screen, portrait: drawing tools are a narrow strip on the left of the chart (as in landscape), room under the time axis, a bigger close button */
+  :is(#qv,html) .ocbox.full [data-ocdraw]{display:none!important}
+  .ocbox.full .ocw{flex-direction:row}.ocbox.full .oct{flex-direction:column;border-bottom:0;border-right:1px solid var(--line);padding:0 3px 0 0}.ocbox.full .oct .sp{width:auto;height:1px;margin:3px 4px}.ocbox.full .oct button{width:34px;height:36px}
+  .ocbox.full .ocd{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  .ocbox.full [data-ocbig]{min-width:40px!important;margin-inline-start:4px}.ocbox.full [data-ocbig] .xx{font-size:19px}
   #qv .q2st{grid-template-columns:repeat(4,minmax(0,1fr))}#qv .q2st>div:nth-child(n+5){display:none}
   #qv .q2d{-webkit-line-clamp:1}
 }
@@ -2932,7 +2938,8 @@ const OC_TCH=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);   /*
 /* the enlarge button. Mouse: a taller chart in the page. Phone / narrow screen: the chart covers the whole screen (a fixed layer over the site; the page behind does not scroll),
    it follows the phone's rotation, and one finger moves it freely. Where the browser allows it (not on an iPhone) the browser's own bars are hidden too */
 function ocBig(box,on){ box._big=!!on; const full=box._big;   /* the enlarge button always opens the chart full screen (stock card, stock page, research, phone) */
-  if(full!==!!box._full){ box._full=full; box.classList.toggle('full',full); const any=!!document.querySelector('.ocbox.full'), de=document.documentElement; de.classList.toggle('ocfull',any);
+  if(full!==!!box._full){ box._full=full; if(full) box._y=null;   /* full screen opens with the automatic price scale */
+    box.classList.toggle('full',full); const any=!!document.querySelector('.ocbox.full'), de=document.documentElement; de.classList.toggle('ocfull',any);
     try{ if(full&&de.requestFullscreen&&!document.fullscreenElement){ OCFS=1; de.requestFullscreen({navigationUI:'hide'}).catch(()=>{ OCFS=0; }); } else if(!any&&OCFS&&document.fullscreenElement){ OCFS=0; document.exitFullscreen().catch(()=>{}); } }catch(e){} }
   if(box._g) ocDraw(box); if(!full&&!on) try{ box.scrollIntoView({block:'nearest'}); }catch(_){} }
 const ocFullOff=()=>document.querySelectorAll('.ocbox.full').forEach(b=>ocBig(b,false));
@@ -3498,6 +3505,8 @@ document.addEventListener('pointermove',e=>{ if(!OCP.has(e.pointerId)) return; O
   box._n=nn; box._off=ocClamp(box,L-nn-(ci-PIN.f*nn)); box._uz=1; ocReq(box); });
 const ocPinEnd=e=>{ OCP.delete(e.pointerId); if(OCP.size<2) PIN=null; };
 document.addEventListener('pointerup',ocPinEnd); document.addEventListener('pointercancel',ocPinEnd);
+let OCXT=0; const ocXOff=e=>{ if(e.pointerType!=='touch') return; clearTimeout(OCXT); OCXT=setTimeout(()=>{ document.querySelectorAll('.ocbox').forEach(b=>{ if(!b._hv||(OCD&&OCD.box===b)) return; b._hv=null; const c=b.querySelector('.ocS .ocC'); if(c) c.style.display='none'; ocInfo(b); }); },1800); };   /* the figures stay readable for a moment, then the chart is clean again */
+document.addEventListener('pointerup',ocXOff); document.addEventListener('pointercancel',ocXOff); document.addEventListener('pointerdown',e=>{ if(e.pointerType==='touch') clearTimeout(OCXT); },true);
 window.addEventListener('resize',()=>ocEach(ocDraw));
 document.addEventListener('pointerleave',e=>{ if(e.pointerType==='touch') return; const s=e.target; if(s&&s.classList&&s.classList.contains('ocS')){ const b=ocBox(s); if(b){ if(OCD&&OCD.box===b) return; b._hv=null; if(OCHB===b) OCHB=null; const c=s.querySelector('.ocC'); if(c) c.style.display='none'; ocInfo(b); } } },true);
 /* toolbar, tools, the selected line's bar, the alerts panel */
