@@ -26,15 +26,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 .logo{display:flex;align-items:center;gap:11px}.logo svg{width:40px;height:40px;flex:none}.logo b{display:block;font-size:20px;font-weight:800;color:var(--g2);letter-spacing:-.01em;text-align:right}.logo small{display:block;color:var(--muted);font-size:12.5px}
 .nl{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--muted)}.nl a:hover{color:var(--text)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:11px 20px;font-weight:700;font-size:15px;transition:background .15s,border-color .15s}
-.btn.p{background:var(--g1);color:#fff}.btn.p:hover{background:#15803d}.btn.s{border:1px solid var(--line);color:var(--text)}.btn.s:hover{border-color:#2f3846}.btn svg{width:17px;height:17px}
+.btn.p{background:#15803d;color:#fff}.btn.p:hover{background:#166534}.btn.s{border:1px solid var(--line);color:var(--text)}.btn.s:hover{border-color:#2f3846}.btn svg{width:17px;height:17px}
 .hero{position:relative;text-align:center;padding:72px 0 0}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--muted);background:rgba(13,17,23,.6)}.pill i{width:7px;height:7px;border-radius:50%;background:var(--g2);box-shadow:0 0 0 4px rgba(74,222,128,.15)}
 h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin:22px auto 18px;max-width:860px}h1 span{color:var(--g2)}
 .lead{font-size:19px;line-height:1.7;color:var(--muted);max-width:660px;margin:0 auto}.lead b{color:var(--text);font-weight:500}
 .cta{display:flex;gap:12px;justify-content:center;margin:32px 0 14px}.fine{font-size:13px;color:#7a8391}
 .frame{position:relative;margin:56px auto 0;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.65)}
-.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);direction:ltr}.bar i{width:10px;height:10px;border-radius:50%;background:#262d38}.bar span{margin:0 auto;font-size:12px;color:#6b7482;background:#0a0d12;border:1px solid var(--line);border-radius:7px;padding:3px 40px}
-.frame img{display:block;width:100%;height:auto}.frame.h img{max-height:520px;object-fit:cover;object-position:top}
+.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);direction:ltr}.bar i{width:10px;height:10px;border-radius:50%;background:#262d38}.bar span{margin:0 auto;font-size:12px;color:#8b94a3;background:#0a0d12;border:1px solid var(--line);border-radius:7px;padding:3px 40px}
+.frame picture{display:block}.frame img{display:block;width:100%;height:auto}.frame.h img{max-height:520px;object-fit:cover;object-position:top}
 .fade{position:absolute;inset:auto 0 0 0;height:140px;background:linear-gradient(transparent,var(--bg))}.fade.s{height:70px;background:linear-gradient(transparent,var(--panel))}
 /* the screenshots are the computer view; on phones a tap opens the full-size image */
 .zoom{display:block;pointer-events:none}
@@ -80,7 +80,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
   <p class="lead"><b>מזהים את מובילות השוק ומבינים לאן הכסף זורם.</b> תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך, מתעדכנים כל כמה דקות במסחר ובכל ערב אחרי הסגירה.</p>
   <div class="cta"><a class="btn p" href="/join" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#all">מה יש באתר</a></div>
   <div class="fine">ללא תשלום בתקופת ההשקה · מידע עובדתי בלבד, לא ייעוץ השקעות</div>
-  <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/stocks.jpg?v=c8e599" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img src="lp/stocks.jpg?v=c8e599" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"></a><div class="fade"></div></div>
+  <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/stocks.jpg?v=c8e599" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/stocks-750.webp?v=2e555c 750w, lp/stocks.webp?v=2e555c 1500w" sizes="(max-width: 800px) 100vw, 900px"><img src="lp/stocks.jpg?v=c8e599" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"></picture></a><div class="fade"></div></div>
   <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
 </section>
 
@@ -116,19 +116,19 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 
   <div class="feat"><div class="ft"><span class="n">01</span><h3>תעשיות וסקטורים</h3><p>דירוג של יותר מ-120 תעשיות ו-11 סקטורים, מהיום ועד שנה, כדי לראות לאן הכסף זורם.</p>
     <ul><li>כל תעשייה נפתחת למניות שמובילות אותה</li><li>העתקת כל הסימולים של תעשייה בלחיצה</li><li>מעבר בין סקטורים, תעשיות ותעודות סל</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/themes.jpg?v=f948d1" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img loading="lazy" src="lp/themes.jpg?v=f948d1" width="1300" height="699" alt="טבלת התעשיות: תשואה יומית, חודשית ושנתית ודירוג RS לכל תעשייה"></a><div class="fade s"></div></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/themes.jpg?v=f948d1" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/themes-750.webp?v=239831 750w, lp/themes.webp?v=239831 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/themes.jpg?v=f948d1" width="1300" height="699" alt="טבלת התעשיות: תשואה יומית, חודשית ושנתית ודירוג RS לכל תעשייה"></picture></a><div class="fade s"></div></div></div>
 
   <div class="feat r"><div class="ft"><span class="n">02</span><h3>תעודת זהות לכל מניה</h3><p>לחיצה על מניה פותחת את כל המידע עליה במקום אחד, בלי לעזוב את הרשימה.</p>
     <ul><li>גרף נרות עם ממוצעים נעים</li><li>נתונים רבעוניים בגרפים: הכנסות, רווח ותזרים</li><li>הדוח האחרון מול הצפי וצמיחה רבעונית</li><li>חדשות על המניה, בעברית</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/qv.jpg?v=9d9475" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img loading="lazy" src="lp/qv.jpg?v=9d9475" width="1300" height="957" alt="תעודת זהות של מניה: מחיר ונתונים רבעוניים בגרפים – הכנסות, רווח ותזרים מזומנים"></a><div class="fade s"></div></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/qv.jpg?v=9d9475" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/qv-750.webp?v=830975 750w, lp/qv.webp?v=830975 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/qv.jpg?v=9d9475" width="1300" height="957" alt="תעודת זהות של מניה: מחיר ונתונים רבעוניים בגרפים – הכנסות, רווח ותזרים מזומנים"></picture></a><div class="fade s"></div></div></div>
 
   <div class="feat"><div class="ft"><span class="n">03</span><h3>רוחב שוק</h3><p>הבריאות של השוק, לא רק המדד: כמה מניות עולות ויורדות, ומה מצבן מול הממוצעים.</p>
     <ul><li>שיאים ושפלים של 52 שבועות</li><li>אחוז המניות מעל ממוצע 50 ו-200</li><li>היסטוריה יומית</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/breadth.jpg?v=d8cbcc" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img loading="lazy" src="lp/breadth.jpg?v=d8cbcc" width="1300" height="990" alt="רוחב שוק: מספר המניות העולות והיורדות ואחוז המניות מעל הממוצעים"></a><div class="fade s"></div></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/breadth.jpg?v=d8cbcc" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/breadth-750.webp?v=cd7203 750w, lp/breadth.webp?v=cd7203 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/breadth.jpg?v=d8cbcc" width="1300" height="990" alt="רוחב שוק: מספר המניות העולות והיורדות ואחוז המניות מעל הממוצעים"></picture></a><div class="fade s"></div></div></div>
 
   <div class="feat r"><div class="ft"><span class="n">04</span><h3>דוחות רבעוניים</h3><p>עונת דוחות שלמה במסך אחד, עם תגובת המניה ומה החברה צופה להמשך.</p>
     <ul><li>רווח למניה והכנסות מול הצפי</li><li>לוח הדוחות של השבוע</li><li>מאגר של הדוחות האחרונים</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/earnings.jpg?v=00c7c2" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><img loading="lazy" src="lp/earnings.jpg?v=00c7c2" width="1300" height="760" alt="מאגר הדוחות: רווח למניה והכנסות מול הצפי לכל חברה"></a><div class="fade s"></div></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/earnings.jpg?v=00c7c2" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/earnings-750.webp?v=590fcc 750w, lp/earnings.webp?v=590fcc 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/earnings.jpg?v=00c7c2" width="1300" height="760" alt="מאגר הדוחות: רווח למניה והכנסות מול הצפי לכל חברה"></picture></a><div class="fade s"></div></div></div>
 
 </section>
 
