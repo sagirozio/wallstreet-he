@@ -57,6 +57,12 @@ for sym, name in INDEX.items():
 print("ohlc:", len(out), "of", len(uni), "stocks +", len(EXTRA), "ETFs", flush=True)
 if not out: raise SystemExit("nothing downloaded, the ohlc branch stays as it is")
 
+# the market-leadership lists of the research page are built from the same candles (leaders.json, committed with the nightly data)
+try:
+    import leaders
+    leaders.write(out)
+except Exception as e: print("leaders step failed", type(e).__name__, str(e)[:160], flush=True)
+
 with tempfile.TemporaryDirectory() as d:
     tp = pathlib.Path(d) / "w"
     g = lambda *a, cwd=None, check=True: subprocess.run(["git", "-c", "user.name=wallstreet-bot", "-c", "user.email=bot@users.noreply.github.com", *a], cwd=cwd or tp, check=check, capture_output=True)
