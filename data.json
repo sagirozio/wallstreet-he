@@ -44865,7 +44865,7 @@
   }
  ],
  "overview": {
-  "asOf": "27.11.2026 · 21:10",
+  "asOf": "27.11.2026 · 22:05",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44925,7 +44925,7 @@
   "brief": [
    {
     "h": "וול סטריט נועלת שבוע חזק ביום מקוצר",
-    "t": "המסחר המקוצר הסתיים ב-20:00 בעליות רחבות בהובלת מניות ה-AI; לפי TipRanks, הדאו רשם את העלייה השבועית הגדולה ביותר מאז אפריל 2025, Anthropic עלתה ב-10% ו-Amazon ב-4%.",
+    "t": "המסחר המקוצר הסתיים ב-20:00 בעליות רחבות בהובלת מניות ה-AI; לפי TipRanks, הדאו רשם את העלייה השבועית הגדולה ביותר מאז אפריל 2025, ובין המובילות Sandisk (16%) ומניות הזיכרון, Coherent ו-Applied Optoelectronics באופטיקה, ו-Anthropic (11%).",
     "tone": "pos"
    },
    {
@@ -44934,19 +44934,19 @@
     "tone": "pos"
    },
    {
-    "h": "שבבים: כללי הייצוא ו-Blackwell בשנגחאי",
-    "t": "לפי Bloomberg, שרתי Blackwell של Nvidia, בהם מתלה GB300 ששועבד להלוואה של כ-$14 מיליון, נמצאו במתקן בשנגחאי הקשור ל-Megaspeed שנכנסה לרשימה השחורה; לפי Reuters, כלל משרד המסחר מחייב רישיון לגישה סינית למחשוב מתקדם בחו״ל, וסנאטורים לוחצים על השר לוטניק.",
-    "tone": "neg"
+    "h": "Nvidia: טראמפ שוקל אחזקה, Blackwell בשנגחאי",
+    "t": "בראיון ל-New York Post אמר טראמפ ששקל אחזקה ממשלתית ב-Nvidia כמו ב-Intel; לפי Bloomberg, שרתי Blackwell נמצאו במתקן בשנגחאי הקשור ל-Megaspeed שנכנסה לרשימה השחורה, וסנאטורים לוחצים על השר לוטניק.",
+    "tone": "neu"
+   },
+   {
+    "h": "ביוטק: Vera מזנקת על עיכוב ל-Vertex",
+    "t": "Vera Therapeutics עלתה ב-16% אחרי שה-FDA דחה עד 28 בפברואר 2027 את ההחלטה על povetacicept של Vertex, התרופה המתחרה בנפרופתיה מסוג IgA.",
+    "tone": "pos"
    },
    {
     "h": "מתכות יקרות וכורים מזנקים",
     "t": "לפי Tickeron, חוזי הזהב עלו בכ-4.1% לכ-$3,681.90 והכסף בכ-10.4% לכ-$44.22, ותעודת הסל של כורי הזהב RING נסגרה בעלייה של 7.07%; לפי Reuters, הברנט נסחר ב-$96.60 לקראת פגישת OPEC+ ביום ראשון.",
     "tone": "pos"
-   },
-   {
-    "h": "גירעון סחר גבוה, התשואות עולות",
-    "t": "גירעון הסחר בסחורות באוקטובר התרחב ל-$149.5 מיליארד לעומת צפי של $133.1 מיליארד; לפי Kiplinger, תשואת ה-10 שנים עלתה ב-8.8 נקודות בסיס ל-4.936%, ולפי CME FedWatch העלאת ריבית ב-9 בדצמבר מתומחרת במלואה.",
-    "tone": "neu"
    }
   ],
   "macro": {
@@ -45018,7 +45018,7 @@
    "from": 19.3,
    "note": "המדד עלה ב-7.3% ל-28.29, אחרי שבבוקר טיפס מעל 33, אף שהמדדים מחקו את רוב הירידות בהמשך היום."
   },
-  "rev": 202611272110,
+  "rev": 202611272205,
   "market": {
    "note": "סגירה ביום רביעי, 25.11.2026, ערב חג ההודיה. בבוקר הנאסד״ק צנח בכ-4.6% והדאו בכ-1,105 נקודות במכירות במניות השבבים וה-AI, אבל המדדים מחקו את רוב הירידות והדאו סגר בעלייה. Nvidia ירדה ב-3.9%, Micron ב-4.5% ו-Amazon ב-3.1%, בזמן ש-Meta עלתה ב-3.4% ו-HP ב-11.5%; ענפי החומרים והנדל״ן היו מהמובילים. הברנט עלה ב-3.5% ל-$94.61 והביטקוין חזר מעל $60,000. מחר המסחר סגור, וביום שישי יסתיים ב-20:00 (שעון ישראל).",
    "idx": [
@@ -126738,6 +126738,126 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-27-trump-nvidia-stake",
+   "date": "2026-11-27",
+   "t": [
+    "NVDA",
+    "INTC"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ: שקלתי לקחת אחזקה ממשלתית ב-Nvidia, ״כנראה שעוד לא מאוחר״",
+   "body": "בראיון ל-New York Post אמר הנשיא טראמפ ששקל לקחת אחזקה ממשלתית ב-Nvidia, כפי שעשה הממשל ב-Intel, אך לא העלה זאת בשלב זה. לפי Decrypt, מניית Nvidia נסחרה ביום שישי ב-$148.74, ירידה של 0.4%.",
+   "src": "Decrypt (via KhanList)",
+   "url": "https://khanlist.com/story/nvidias-blackwell-chips-turn-up-in-china-as-trump-floats-ec7e593f",
+   "time": "19:09"
+  },
+  {
+   "id": "2026-11-27-trump-tsmc-arizona",
+   "date": "2026-11-27",
+   "t": [
+    "TSM"
+   ],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "טראמפ יוביל ב-4 בדצמבר את טקס הנחת אבן הפינה לשלב החמישי של TSMC באריזונה",
+   "body": "לפי הבית הלבן והחברה, הנשיא ישתתף בטקס ליד פיניקס. TSMC הודיעה ביולי על השקעה נוספת של $100 מיליארד בארה״ב, וההתחייבות הכוללת שלה עומדת על $265 מיליארד.",
+   "src": "FinancialMarkets",
+   "url": "https://www.financialmarkets.com/article/trump-says-huang-calls-his-return-to-nvidia-a-second-term-next-week-the-presiden",
+   "time": "12:39"
+  },
+  {
+   "id": "2026-11-27-memory-rally",
+   "date": "2026-11-27",
+   "t": [
+    "SNDK",
+    "MU",
+    "WDC",
+    "STX"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "מניות הזיכרון והאחסון מזנקות בהובלת Sandisk",
+   "body": "לפי TipRanks, Sandisk עלתה עד 14% לכ-$84, Micron עלתה ב-6%, ו-Western Digital ו-Seagate בכ-5%. מניות האחסון עלו אחרי ש-Kioxia ו-Nvidia הודיעו על שיתוף פעולה שבו נבדקו 144 כונני SSD של Kioxia על מערכת AI של Nvidia.",
+   "src": "TipRanks",
+   "url": "https://www.tipranks.com/news/sandisk-stock-sndk-soars-to-lead-a-rally-in-memory-and-storage-stocks-on-black-friday",
+   "time": "18:16"
+  },
+  {
+   "id": "2026-11-27-brazil-trabuco-reuters",
+   "date": "2026-11-27",
+   "t": [
+    "BBD"
+   ],
+   "tag": "עולם",
+   "tone": "pos",
+   "title": "Reuters: השווקים בברזיל ממשיכים לעלות אחרי מינוי יו״ר Bradesco לשר האוצר",
+   "body": "הריאל התחזק ביום שישי בעד 4.7% ל-5.47 לדולר והבובספה עלה בעד 3.9%, אחרי עלייה של 6% ביום חמישי. לואיז קרלוס טראבוקו, יו״ר Bradesco, קיבל את מינויו של לולה לשר האוצר.",
+   "src": "Reuters (via AOL)",
+   "url": "https://www.aol.com/articles/brazilian-markets-rally-lula-taps-121545000.html",
+   "time": "18:53"
+  },
+  {
+   "id": "2026-11-27-sndk-move",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Sandisk עלתה ב-16% והובילה את הראלי במניות הזיכרון",
+   "body": "לפי TipRanks, המניה עלתה בבוקר עד 14% לכ-$84, במקביל לעליות ב-Micron, Western Digital ו-Seagate, ואחרי ש-Kioxia ו-Nvidia הודיעו על שיתוף פעולה בכונני SSD למערכות AI.",
+   "src": "TipRanks",
+   "url": "https://www.tipranks.com/news/sandisk-stock-sndk-soars-to-lead-a-rally-in-memory-and-storage-stocks-on-black-friday",
+   "time": "18:16"
+  },
+  {
+   "id": "2026-11-27-vera-move",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "VERA"
+   ],
+   "tag": "ביוטק",
+   "tone": "pos",
+   "title": "Vera Therapeutics עלתה ב-16% אחרי שה-FDA דחה את ההחלטה על התרופה המתחרה של Vertex",
+   "body": "ה-FDA האריך את בדיקת povetacicept של Vertex לנפרופתיה מסוג IgA, והחלטה צפויה עד 28 בפברואר 2027 במקום 30 בנובמבר. לפי Reuters, Vertex ירדה ב-6.8% לפני הפתיחה.",
+   "src": "BigGo Finance; Reuters",
+   "url": "https://finance.biggo.com/news/942b3228-6431-4b0b-8bd8-ea26cc695f93",
+   "time": "11:47"
+  },
+  {
+   "id": "2026-11-27-sbs-move",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "SBS"
+   ],
+   "tag": "תשתיות",
+   "tone": "pos",
+   "title": "Sabesp עלתה ב-11% עם הראלי בברזיל אחרי מינוי שר האוצר",
+   "body": "לפי Tickeron, ה-ADR של חברת המים של סאו פאולו עלה ב-12.14% ל-$5.45 בבוקר, על רקע מינוי לואיז קרלוס טראבוקו לשר האוצר והעלייה של 6.07% בבובספה ביום חמישי.",
+   "src": "Tickeron",
+   "url": "https://tickeron.com/blogs/why-is-companhia-de-saneamento-b%C3%A1sico-do-estado-de-s%C3%A3o-paulo-sbs-stock-up-12-14-today-48399/",
+   "time": "18:22"
+  },
+  {
+   "id": "2026-11-27-aaoi-move",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "AAOI"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Applied Optoelectronics עלתה ב-10.5% עם ההתאוששות במניות האופטיקה",
+   "body": "לפי 24/7 Wall St., מניות האופטיקה התאוששו מהמכירות של יום רביעי עם חזרת התיאבון לסיכון: Coherent עלתה ב-12% ו-Applied Optoelectronics ו-Lumentum בכ-7% באמצע היום.",
+   "src": "24/7 Wall St.",
+   "url": "https://247wallst.com/investing/2026/11/27/coherent-jumps-12-as-optical-stocks-rebound-from-wednesdays-ai-selloff-applied-optoelectronics-and-lumentum-rise-7/",
+   "time": "19:06"
+  },
   {
    "id": "2026-11-27-precious-miners-close",
    "date": "2026-11-27",
