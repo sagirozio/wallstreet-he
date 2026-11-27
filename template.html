@@ -653,6 +653,30 @@ a.ixc{text-decoration:none;color:inherit}a.ixc:hover{border-color:var(--accent)}
 #wlMenu .wlmm{display:block;padding:8px;margin-top:4px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);text-decoration:none}
 #mpSel{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:8px;height:30px;padding:0 8px;font:inherit;font-size:13px;max-width:200px}
 #myFab .mfl{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* watchlist table */
+.wr.w2{padding:0;position:relative}.wr.w2 .wrm{display:grid;grid-template-columns:minmax(0,1fr) 96px 84px;gap:12px;align-items:center;padding:0 16px;min-height:44px}
+.wr.w2 .wrm:hover{background:var(--panel2)}.w2t{font:600 14.5px "JetBrains Mono",monospace;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wr.w2 .wrp{display:block;text-align:left;font-size:14px;color:var(--text);direction:ltr}.w2c{text-align:left;font-size:14px}
+.wr.w2.ed .wrm{padding-inline-end:48px}.wr.w2 .wrx{left:8px;top:50%;transform:translateY(-50%);width:32px;height:32px}
+.w2h{display:grid;grid-template-columns:minmax(0,1fr) 96px 84px;gap:12px;align-items:center;padding:4px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.w2h button{background:none;border:0;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;padding:4px 0;display:inline-flex;gap:4px;align-items:center;justify-content:flex-end;min-height:30px}.w2h button:first-child{justify-content:flex-start}
+.w2h button.on{color:var(--text);font-weight:600}.w2h button i{font-style:normal;font-size:9px}
+.wlt .wled{margin-inline-start:auto;border-color:transparent;background:none}.wlt .wled.on{color:var(--accent);border-color:var(--accent)}
+#watch .cardx,#watch #wAdd,#watch #wlBar{max-width:560px}
+/* watchlist workspace (wide screens) */
+.wsh{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;margin:0 0 10px}
+.wshn{display:flex;flex-direction:column;min-width:0}.wshn b{font:700 20px "JetBrains Mono",monospace;text-align:right}.wshn span{font-size:13.5px;color:var(--text)}.wshn small{font-size:12px;color:var(--muted)}
+.wshp{margin-inline-start:auto;text-align:left;line-height:1.35}.wshp>b{font-size:22px}.wshp>span{font-size:14px;font-weight:600;margin-inline-start:6px}.wshp small{display:block;color:var(--muted);font-size:11.5px}
+.wshl{font-size:12.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;white-space:nowrap}.wshl:hover{color:var(--text)}
+.wsst{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.wsst>div{padding:8px 14px;border-inline-start:1px solid var(--line);min-width:0}.wsst>div:first-child{border-inline-start:0}.wsst small{display:block;color:var(--muted);font-size:11px}.wsst b{font-size:14px}
+@media(min-width:1000px){body[data-pg="watch"] main.wrap{max-width:1480px}
+  body.wsws .wsg{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}
+  body.wsws #watch .cardx,body.wsws #watch #wAdd,body.wsws #watch #wlBar{max-width:none}
+  body.wsws .wsc{position:sticky;top:84px}
+  body.wsws #watchBody .wr.sel .wrm{background:var(--panel2);box-shadow:inset -3px 0 0 var(--accent)}
+  body.wsws #watch>.sub{display:none}body.wsws #myFab{display:none}body.wsws .wsst{margin:0 0 10px}}
+#watch #wAdd{flex-wrap:nowrap}#watch #wAdd input{flex:1 1 auto;min-width:0}
 main.wrap{min-height:100vh}#hubSum{min-height:64px}.sxf{min-height:32px}@media(max-width:640px){#hubSum{min-height:137px}.sxf{min-height:72px}}.ocd .ocsel .pop-c{flex-direction:column;gap:8px;padding:10px}.ocd .ocsel .pg{display:grid;grid-template-columns:repeat(10,22px);gap:4px}.ocd .ocsel .pg .gap{grid-column:1/-1;height:3px}.ocd .ocsel .pop .sw{width:22px;height:22px;border-radius:4px;padding:0;border:0;outline:0}.ocd .ocsel .pop .sw.on{box-shadow:0 0 0 2px #1c2128,0 0 0 4px #e6edf3}.ocd .ocsel .pr{display:flex;gap:4px;align-items:center;padding-top:8px;border-top:1px solid #30363d}.ocd .ocsel .padd{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;color:var(--text);cursor:pointer;position:relative;border-radius:4px}.ocd .ocsel .padd:hover{background:#2d333b}.ocd .ocsel .padd input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;margin:0;border:0}.ocd .ocsel .po{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}.ocd .ocsel .po input{flex:1;width:auto;height:auto;margin:0;padding:0;border:0;background:none;accent-color:#e6edf3}.ocd .ocsel .pov{min-width:44px;text-align:center;border:1px solid #30363d;border-radius:6px;padding:3px 0;color:var(--text)}.ocd [data-ocbig] .xx{display:none;font-size:17px;line-height:1}.ocd .ocS{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}html.ocfull,html.ocfull body{overflow:hidden!important;overscroll-behavior:none}html.ocfull .toasts{z-index:2100}.ocbox.full .ocd{position:fixed;inset:0;z-index:2000;margin:0;border:0;border-radius:0;display:flex;flex-direction:column;height:100vh;height:100dvh;box-sizing:border-box;background:var(--panel);touch-action:none;padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}.ocbox.full .tvb{margin:0 0 4px;flex:none}.ocbox.full .tvb>b{display:block}.ocbox.full [data-ocbig] svg{display:none}.ocbox.full [data-ocbig] .xx{display:block}.ocbox.full .tvb button,.ocbox.full .tvb .vol{height:34px}.ocbox.full .oi{flex:none}.ocbox.full .on2,.ocbox.full .occl{display:none}.ocbox.full .ocw{flex:1;min-height:0}.ocbox.full .ocp{min-height:0}.ocbox.full .ocS{position:absolute;left:0;top:0;height:100%!important;touch-action:none}.ocbox.full .map{position:absolute;top:calc(46px + env(safe-area-inset-top));left:8px;right:8px;z-index:6;max-width:none;max-height:calc(100% - 64px);overflow:auto;touch-action:pan-y;box-shadow:0 10px 30px rgba(0,0,0,.6)}.ocd .ocsel .pop{max-height:calc(100vh - 12px);overflow:auto;touch-action:pan-y}@media(orientation:portrait){.ocbox.full .oct button{width:42px;height:38px}}@media(orientation:landscape){.ocbox.full .tvb{flex-wrap:nowrap}.ocbox.full .oi{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-height:17px}.ocbox.full .ocw{flex-direction:row}.ocbox.full .oct{flex-direction:column;border-bottom:0;border-right:1px solid var(--line);padding:0 4px 0 0}.ocbox.full .oct .sp{width:auto;height:1px;margin:3px 4px}.ocbox.full .oct button{width:36px;height:34px}}.ocd .ocld{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}.ocd .seg{display:inline-flex;gap:2px}.ocd .on2 details{display:inline;margin-inline-start:6px}.ocd .on2 summary{display:inline;cursor:pointer;text-decoration:underline dotted}.ocd .on2 details[open]{display:block;margin:4px 0 0}.qvoc .ocd{margin:0 0 12px}.ocd .occl{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px}.ocd .occl.open{color:var(--text)}.ocd .occl i{width:7px;height:7px;border-radius:50%;background:#2ea463;display:block}.ocd.hold{border-color:var(--accent)}.ocd .ocS{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none;-webkit-user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}.ocd .macs{display:flex;flex-wrap:wrap;gap:4px}.ocd .oh .mac{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;color:var(--text)}.ocd .mac i{width:14px;height:3px;border-radius:2px;display:block}.ocd .mac.off{color:var(--muted);text-decoration:line-through}.ocd .mac.off i{background:var(--muted)!important}.ocd .mac.set{color:var(--muted)}.ocd .ocmb{display:none}@media(hover:none),(max-width:640px){.ocd .ocds,.ocd [data-oclk]{display:none}.ocd .ocmb{display:inline}.ocd{padding:8px 6px}.ocd .oh{gap:6px 10px}.ocd .oi{font-size:11px;gap:1px 9px;min-height:32px;align-content:flex-start}.ocd .tvb{flex-wrap:wrap;row-gap:2px}.ocd .tvb>b,.ocd .tvb .mtx,.ocd .tvb>.sp:first-of-type{display:none}.ocd .tvb button,.ocd .tvb .vol{padding:0 5px;min-width:28px}.ocd .tvb .sp{margin:0 2px}}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
@@ -1390,9 +1414,10 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
   <h2>מניות במעקב</h2>
   <p class="sub">רשימת מעקב אישית: מחיר, שינוי יומי ומה חדש בכל מניה (דוח, ידיעה, תנועה חריגה, קניות של מנהלים). אפשר לנהל עד 6 רשימות עם שמות. מחוברים? הרשימות נשמרות בחשבון ומופיעות בכל מכשיר.</p>
   
-  <div id="wlBar"></div>
+  <div class="wsg"><div class="wsl"><div id="wlBar"></div>
   <form class="thctl" id="wAdd"><input id="wQ" type="search" placeholder="הוספת מניה: סימול או שם, למשל NVDA או אפל" aria-label="הוספת מניה לרשימת המעקב"><button class="btn2" type="submit">הוסף</button></form>
-  <div class="cardx" id="watchBody"></div>
+  <div class="cardx" id="watchBody"></div></div>
+  <div class="wsc" id="wPane" hidden></div></div>
 </section>
 
 <section id="stocksHub" data-pg="stocks">
@@ -4491,13 +4516,13 @@ function wlRefresh(){ WATCH=wlCur().L.slice(); renderWatch(); wlBtns(); const m=
 function toggleWatch(t){ WATCH=inWatch(t)?WATCH.filter(x=>x!==t):[t,...WATCH].slice(0,60); saveWatch(); renderWatch(); wlBtns(); }
 function wlToggle(id,t){ const x=WL.find(y=>y.id===id); if(!x) return; if(x.L.includes(t)) x.L=x.L.filter(y=>y!==t); else { if(x.L.length>=60){ toast(`הרשימה "${x.n}" מלאה (60 מניות)`); return; } x.L=[t,...x.L]; } WLTS=Date.now(); WATCH=wlCur().L.slice(); wlStore(); try{ accPush(); }catch(e){} wlRefresh(); }
 function wlUse(id){ if(!WL.some(x=>x.id===id)) return; WLA=id; WATCH=wlCur().L.slice(); wlStore(); wlRefresh(); }   /* the list in use: per device, not a change to the lists */
-function wlNew(){ if(WL.length>=WL_MAX){ toast(`אפשר עד ${WL_MAX} רשימות`); return; } let k=WL.length+1; while(WL.some(x=>x.n==='רשימה '+k)) k++; const x={id:'w'+Date.now().toString(36).slice(-7),n:'רשימה '+k,L:[]}; WL.push(x); WLA=x.id; WLTS=Date.now(); WATCH=[]; wlStore(); try{ accPush(); }catch(e){} wlRefresh(); const i=$('wlName'); if(i){ i.focus(); i.select(); } }
+function wlNew(){ if(WL.length>=WL_MAX){ toast(`אפשר עד ${WL_MAX} רשימות`); return; } WEDIT=1;   /* a new list opens in edit mode: its name is the first thing to set */ let k=WL.length+1; while(WL.some(x=>x.n==='רשימה '+k)) k++; const x={id:'w'+Date.now().toString(36).slice(-7),n:'רשימה '+k,L:[]}; WL.push(x); WLA=x.id; WLTS=Date.now(); WATCH=[]; wlStore(); try{ accPush(); }catch(e){} wlRefresh(); const i=$('wlName'); if(i){ i.focus(); i.select(); } }
 function wlRename(id,n){ const x=WL.find(y=>y.id===id); n=String(n||'').trim().slice(0,24); if(!x||!n||n===x.n) return; x.n=n; WLTS=Date.now(); wlStore(); try{ accPush(); }catch(e){} wlRefresh(); }
 function wlDel(id){ if(WL.length<2) return; const x=WL.find(y=>y.id===id); if(!x) return; WL=WL.filter(y=>y.id!==id); if(WLA===id) WLA=WL[0].id; WLTS=Date.now(); WATCH=wlCur().L.slice(); wlStore(); try{ accPush(); }catch(e){} wlRefresh(); toast(`הרשימה "${x.n}" נמחקה`); }
 /* the lists bar on the watchlist page: a tab per list, a new list, the name of the list in use, delete (asks once more) */
 function renderWlBar(){ const el=$('wlBar'); if(!el) return; const c=wlCur(); if(el.contains(document.activeElement)&&document.activeElement.id==='wlName'&&el.dataset.id===c.id) return;   /* typing the name: leave the field alone */
-  el.dataset.id=c.id; el.innerHTML=`<div class="wlt" role="group" aria-label="רשימות מעקב">${WL.map(x=>`<button type="button" data-wlu="${x.id}" aria-pressed="${x.id===c.id}" class="${x.id===c.id?'on':''}"><bdi>${esc(x.n)}</bdi><small class="num">${x.L.length}</small></button>`).join('')}${WL.length<WL_MAX?'<button type="button" class="wlnew" data-wlnew>+ רשימה חדשה</button>':''}</div>`+
-    `<div class="wle"><label for="wlName">שם הרשימה</label><input id="wlName" maxlength="24" value="${esc(c.n)}" autocomplete="off">${WL.length>1?`<button type="button" class="tx" data-wldel="${c.id}">מחיקת הרשימה</button>`:''}</div>`; }
+  el.dataset.id=c.id; el.innerHTML=`<div class="wlt" role="group" aria-label="רשימות מעקב">${WL.map(x=>`<button type="button" data-wlu="${x.id}" aria-pressed="${x.id===c.id}" class="${x.id===c.id?'on':''}"><bdi>${esc(x.n)}</bdi><small class="num">${x.L.length}</small></button>`).join('')}${WL.length<WL_MAX?'<button type="button" class="wlnew" data-wlnew>+ רשימה חדשה</button>':''}<button type="button" class="wled${WEDIT?' on':''}" data-wedit aria-pressed="${!!WEDIT}">${WEDIT?'סיום':'עריכה'}</button></div>`+
+    (!WEDIT?'':`<div class="wle"><label for="wlName">שם הרשימה</label><input id="wlName" maxlength="24" value="${esc(c.n)}" autocomplete="off">${WL.length>1?`<button type="button" class="tx" data-wldel="${c.id}">מחיקת הרשימה</button>`:''}</div>`); }
 /* several lists: the star opens a small menu with a tick per list */
 function wlMenuFill(t){ const m=$('wlMenu'); if(!m) return; m.dataset.t=t; m.innerHTML=`<div class="wlmh"><b dir="ltr">${esc(t)}</b><span>ברשימות</span></div>`+WL.map(x=>{ const on=x.L.includes(t); return `<button type="button" aria-pressed="${on}" data-wlt="${x.id}" class="${on?'on':''}"><i aria-hidden="true">${on?'★':'☆'}</i><bdi>${esc(x.n)}</bdi><small class="num">${x.L.length}</small></button>`; }).join('')+`<a href="#watch" class="wlmm">ניהול הרשימות ←</a>`; }
 function wlMenu(btn,t){ let m=$('wlMenu'); if(!m){ m=document.createElement('div'); m.id='wlMenu'; m.setAttribute('role','group'); m.setAttribute('aria-label','רשימות מעקב'); m.hidden=true; document.body.appendChild(m); }
@@ -4523,11 +4548,41 @@ function watchEvents(t){
   if(x.ib) ev.push(['up',`מנהלים קנו ב-${fmtUsd(x.ib)} ב-30 יום`]);
   return {ev,ch,px:live?L[0]:null,live};
 }
-function watchRows(lim){
-  const ix=stockIndex();
-  return WATCH.slice(0,lim||60).map(t=>{ const s=ix[t]||{t,co:t}, w=watchEvents(t);
-    return `<div class="wr"><a class="wrm" href="#stock/${encodeURIComponent(t)}">${mono(t)}<span class="wrn"><b>${esc(t)}</b><small dir="auto">${esc(s.co||'')}</small></span><span class="wrp">${w.px!=null?`<span class="num">$${w.px.toFixed(2)}</span>`:''}${w.ch!=null?`<b class="num ${w.ch>=0?'up':'down'}">${pct(w.ch,2)}</b>`:'<b class="flat">—</b>'}</span></a>${w.ev.length?`<div class="wre">${w.ev.map(([c,x])=>`<span class="${c}">${esc(x)}</span>`).join('')}</div>`:''}<button type="button" class="wrx" data-wx="${esc(t)}" aria-label="הסרת ${esc(t)} מהרשימה">×</button></div>`; }).join('');
+/* the watchlist as the simplest table: symbol, price, the day's change. A click on a column's name sorts by it (again: the other way; a third time: back to the list's own order).
+   The remove buttons show only in edit mode. What is new on a stock (report, headline, insider buying) is in the row's tooltip and in the stock's card */
+let WSORT={k:'',d:-1}, WEDIT=0;
+function watchRows(lim,plain){
+  const ix=stockIndex(); let R=WATCH.map((t,i)=>{ const w=watchEvents(t), L=liveQ(t); return {t,i,w,co:(ix[t]||{}).co||'',px:L&&L[0]?L[0]:null}; });
+  if(!plain&&WSORT.k){ const k=WSORT.k, d=WSORT.d, val=r=>k==='t'?r.t:k==='p'?r.px:r.w.ch;
+    R.sort((a,b)=>{ const x=val(a), y=val(b); if(x==null) return y==null?a.i-b.i:1; if(y==null) return -1; return (x<y?-1:x>y?1:0)*(k==='t'?-d:d)||a.i-b.i; }); }   /* empty values last; symbols start A to Z */
+  const hb=(k,l)=>`<button type="button" data-wsort="${k}" class="${WSORT.k===k?'on':''}" title="מיון לפי ${l}">${l}${WSORT.k===k?`<i aria-hidden="true">${(k==='t'?-WSORT.d:WSORT.d)>0?'▲':'▼'}</i>`:''}</button>`;
+  const head=plain?'':`<div class="w2h">${hb('t','סימול')}${hb('p','מחיר')}${hb('c','יום')}</div>`;
+  return head+R.slice(0,lim||60).map(({t,w,co,px})=>{ const tip=[co,...w.ev.filter(([c,x])=>!/^(עולה|יורדת) /.test(x)).map(z=>z[1])].filter(Boolean).join(' · ');
+    return `<div class="wr w2${!plain&&WEDIT?' ed':''}" data-t="${esc(t)}"><a class="wrm" href="#stock/${encodeURIComponent(t)}"${tip?` title="${esc(tip)}"`:''}><b class="w2t" dir="ltr">${esc(t)}</b><span class="wrp">${px!=null?`<span class="num">$${px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)}</span>`:'<span class="num">—</span>'}</span>${w.ch!=null?`<b class="num w2c ${w.ch>=0?'up':'down'}" dir="ltr">${w.ch>0?'+':''}${w.ch.toFixed(2)}%</b>`:'<b class="w2c flat">—</b>'}</a>${!plain&&WEDIT?`<button type="button" class="wrx" data-wx="${esc(t)}" aria-label="הסרת ${esc(t)} מהרשימה">×</button>`:''}</div>`; }).join('');
 }
+/* ---------- the watchlist page on a wide screen is a workspace: the list on one side, the selected stock (price, chart, figures) on the other.
+   A click on a row, or the up / down arrows, moves between the stocks; the chart stays in view while the list scrolls. Narrow screens keep the plain list (a row opens the stock card) ---------- */
+let WSEL='';
+const wsWide=()=>!!(window.matchMedia&&matchMedia('(min-width:1000px)').matches);
+function renderWPane(){ const p=$('wPane'); if(!p) return; const on=wsWide()&&WATCH.length>0&&document.body.dataset.pg==='watch'; p.hidden=!on; document.body.classList.toggle('wsws',on); if(!on) return;
+  if(!WATCH.includes(WSEL)) WSEL=WATCH[0];
+  const t=WSEL, s=stockIndex()[t]||{t,co:t};
+  if(!p.firstChild) p.innerHTML='<div class="wsh" id="wsHead"></div><div class="wsst" id="wsSt"></div><div id="wsCd"></div>';
+  $('wsHead').innerHTML=`<div class="wshn"><b dir="ltr">${esc(t)}</b><span dir="auto">${esc(s.co||'')}</span>${s.sec?`<small><bdi>${esc(SEC_HE[s.sec]||s.sec)}</bdi>${s.ind?' · <bdi>'+esc(s.ind)+'</bdi>':''}</small>`:''}</div><div class="wshp">${qvPx(t)}</div><a class="wshl" href="#stock/${encodeURIComponent(t)}" data-full>לדף המניה ←</a>`;
+  $('wsSt').innerHTML=qvStats(t);
+  const box=$('wsCd'); if(box._t!==t) ocMount(box,t,{});
+  document.querySelectorAll('#watchBody .wr').forEach(r=>{ const on=r.dataset.t===t; r.classList.toggle('sel',on); const a=r.querySelector('.wrm'); if(a){ if(on) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); } }); }
+document.addEventListener('click',e=>{ if(!document.body.classList.contains('wsws')||e.metaKey||e.ctrlKey||e.shiftKey||e.button||!e.target.closest) return;
+  const f=e.target.closest('#wPane a[data-full]'); if(f){ e.preventDefault(); location.hash=f.getAttribute('href'); return; }   /* the full page, not the card */
+  const a=e.target.closest('#watchBody a.wrm'); if(!a) return; e.preventDefault(); WSEL=a.closest('.wr').dataset.t; renderWPane(); },true);
+document.addEventListener('keydown',e=>{ if((e.key!=='ArrowDown'&&e.key!=='ArrowUp')||e.altKey||e.ctrlKey||e.metaKey||!document.body.classList.contains('wsws')) return; const tg=e.target; if(tg&&/^(INPUT|SELECT|TEXTAREA)$/.test(tg.tagName)) return;
+  const q=$('qv'); if((q&&q.classList.contains('on'))||document.querySelector('.ocbox.full')) return;
+  const R=[...document.querySelectorAll('#watchBody .wr')].map(r=>r.dataset.t), i=R.indexOf(WSEL), j=Math.max(0,Math.min(R.length-1,i+(e.key==='ArrowDown'?1:-1))); e.preventDefault();
+  if(j!==i&&R[j]){ WSEL=R[j]; renderWPane(); const el=document.querySelector('#watchBody .wr.sel'); if(el) el.scrollIntoView({block:'nearest'}); } });
+window.addEventListener('hashchange',()=>setTimeout(()=>{ try{ renderWPane(); }catch(e){} },0)); window.addEventListener('resize',()=>{ try{ renderWPane(); }catch(e){} });
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-wsort],[data-wedit]'); if(!b) return; e.preventDefault();
+  if(b.dataset.wedit!=null) WEDIT=WEDIT?0:1; else { const k=b.dataset.wsort; if(WSORT.k!==k) WSORT={k,d:-1}; else if(WSORT.d===-1) WSORT.d=1; else WSORT={k:'',d:-1}; }
+  renderWatch(); });
 /* ---------- email alerts for the watchlist (signed-in users). Settings live in the account (unsafeMetadata.alerts);
    a GitHub Action (scripts/alerts.py) reads them through Clerk's server API after the close and sends one summary mail a day. ---------- */
 const AL_DEF={on:0,mv:5,er:1,vb:1,hi:1};
@@ -4584,9 +4639,10 @@ function placeMyHome(){ renderMyFab(); const h=$('homeWatch'); if(!h) return; co
 function renderWatch(){
   const b=$('watchBody'); if(!b) return; try{ renderWlBar(); }catch(e){}
   b.innerHTML = WATCH.length ? watchRows() : '<div class="empty">עוד אין מניות ברשימה. אפשר להוסיף כאן למעלה, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>';
-  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?(WL.length>1?`· ${wlCur().n} `:'')+`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
+  const h=$('homeWatch'); if(h){ h.classList.toggle('hidden',!WATCH.length); $('hwN').textContent=WATCH.length?(WL.length>1?`· ${wlCur().n} `:'')+`(${WATCH.length})`:''; if(WATCH.length) $('homeWatchBody').innerHTML=watchRows(8,1)+(WATCH.length>8?`<a class="ewmore" href="#watch" style="display:block;padding:10px 14px">לכל ${WATCH.length} המניות ←</a>`:''); }
   try{ placeMyHome(); }catch(e){}
   try{ renderWAlerts(); }catch(e){}
+  try{ renderWPane(); }catch(e){}
 }
 document.addEventListener('click',e=>{
   const w=e.target.closest&&e.target.closest('.wbtn[data-w]'); if(w){ e.preventDefault(); if(WL.length>1) wlMenu(w,w.dataset.w); else toggleWatch(w.dataset.w); return; }
