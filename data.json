@@ -126739,6 +126739,80 @@
  },
  "news": [
   {
+   "id": "2026-11-27-xp-brazil-rally",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "XP"
+   ],
+   "tag": "פיננסים",
+   "tone": "pos",
+   "title": "XP עולה בכ-16.1% במסחר המקדים עם הראלי בברזיל אחרי מינוי שר האוצר",
+   "body": "המניות הברזילאיות הנסחרות בארה״ב קפצו אחרי שלולה מינה את יו״ר Bradesco, לואיש קרלוס טרבוקו, לשר האוצר; לפי Chip Dispatch, XP נמנית עם 11 המניות הברזילאיות שעולות לפני הפתיחה.",
+   "src": "Chip Dispatch",
+   "url": "https://chipdispatch.com/articles/ai-chip-stocks-rebound-as-qqq-gains-1-97-after-bruising-month",
+   "time": "14:17"
+  },
+  {
+   "id": "2026-11-27-stoneco-brazil-rally",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "STNE"
+   ],
+   "tag": "פינטק",
+   "tone": "pos",
+   "title": "StoneCo עולה בכ-12.7% במסחר המקדים עם הראלי בברזיל אחרי מינוי שר האוצר",
+   "body": "המניות הברזילאיות הנסחרות בארה״ב קפצו אחרי שלולה מינה את יו״ר Bradesco, לואיש קרלוס טרבוקו, לשר האוצר; לפי Chip Dispatch, StoneCo נמנית עם 11 המניות הברזילאיות שעולות לפני הפתיחה.",
+   "src": "Chip Dispatch",
+   "url": "https://chipdispatch.com/articles/ai-chip-stocks-rebound-as-qqq-gains-1-97-after-bruising-month",
+   "time": "14:17"
+  },
+  {
+   "id": "2026-11-27-pagseguro-brazil-rally",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "PAGS"
+   ],
+   "tag": "פינטק",
+   "tone": "pos",
+   "title": "PagSeguro עולה בכ-11.3% במסחר המקדים עם הראלי בברזיל אחרי מינוי שר האוצר",
+   "body": "המניות הברזילאיות הנסחרות בארה״ב קפצו אחרי שלולה מינה את יו״ר Bradesco, לואיש קרלוס טרבוקו, לשר האוצר; לפי Chip Dispatch, PagSeguro נמנית עם 11 המניות הברזילאיות שעולות לפני הפתיחה.",
+   "src": "Chip Dispatch",
+   "url": "https://chipdispatch.com/articles/ai-chip-stocks-rebound-as-qqq-gains-1-97-after-bruising-month",
+   "time": "14:17"
+  },
+  {
+   "id": "2026-11-27-ultrapar-brazil-rally",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "UGP"
+   ],
+   "tag": "אנרגיה",
+   "tone": "pos",
+   "title": "Ultrapar עולה בכ-11.1% במסחר המקדים עם הראלי בברזיל אחרי מינוי שר האוצר",
+   "body": "המניות הברזילאיות הנסחרות בארה״ב קפצו אחרי שלולה מינה את יו״ר Bradesco, לואיש קרלוס טרבוקו, לשר האוצר; לפי Chip Dispatch, Ultrapar נמנית עם 11 המניות הברזילאיות שעולות לפני הפתיחה.",
+   "src": "Chip Dispatch",
+   "url": "https://chipdispatch.com/articles/ai-chip-stocks-rebound-as-qqq-gains-1-97-after-bruising-month",
+   "time": "14:17"
+  },
+  {
+   "id": "2026-11-27-jt-imperial-reuters",
+   "date": "2026-11-27",
+   "t": [
+    "MO"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Japan Tobacco נסגרה בעלייה של 4.5% בטוקיו על רקע הדיווחים על Imperial Brands",
+   "body": "לפי Reuters, מניית Japan Tobacco עלתה ב-4.5% מול עלייה של 1.7% ב-TOPIX, והחברה סירבה להגיב לדיווח של Bloomberg שהיא בוחנת רכישה עם שותף; Altria אמרה יום קודם שהיא שוקלת הצעה במזומן ל-Imperial, ו-Imperial מסרה שלא קיבלה פנייה אך תשקול כל הצעה.",
+   "src": "Reuters",
+   "url": "https://wtvbam.com/2026/11/27/japan-tobacco-shares-surge-on-talk-it-may-acquire-part-of-imperial/",
+   "time": "14:35"
+  },
+  {
    "id": "2026-11-27-treasury-yields-gdp",
    "date": "2026-11-27",
    "t": [],
