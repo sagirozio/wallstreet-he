@@ -44865,7 +44865,7 @@
   }
  ],
  "overview": {
-  "asOf": "26.11.2026 · 23:59",
+  "asOf": "27.11.2026 · 11:35",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44924,8 +44924,8 @@
   ],
   "brief": [
    {
-    "h": "וול סטריט סגורה לחג ההודיה; החוזים עולים",
-    "t": "הבורסות בארה״ב סגורות היום, ומחר יתקיים יום מסחר מקוצר שיסתיים ב-20:00; לפי JournalArta חוזי הנאסד״ק 100 עלו ב-153 נקודות ל-26,253.50 במחזור דליל, ולפי Adobe ההוצאה המקוונת עד 22 בנובמבר עלתה ב-9.1% ל-$82.5 מיליארד, עם תחזית של $12.9 מיליארד לבלאק פריידיי.",
+    "h": "החוזים מזנקים לפני יום מסחר מקוצר",
+    "t": "לפי Reuters, בבוקר עלו חוזי הנאסד״ק 100 ב-645.75 נקודות, חוזי ה-S&P 500 ב-119 נקודות וחוזי הדאו ב-446 נקודות; המסחר היום יסתיים ב-20:00, והקוספי נסגר ב-4,915.68 נקודות אחרי עלייה של 4.34% ומדדי השבבים בסין זינקו ביותר מ-16% אחרי הבטחת תמיכה של מועצת המדינה.",
     "tone": "pos"
    },
    {
@@ -45018,7 +45018,7 @@
    "from": 19.3,
    "note": "המדד עלה ב-7.3% ל-28.29, אחרי שבבוקר טיפס מעל 33, אף שהמדדים מחקו את רוב הירידות בהמשך היום."
   },
-  "rev": 202611262359,
+  "rev": 202611271135,
   "market": {
    "note": "סגירה ביום רביעי, 25.11.2026, ערב חג ההודיה. בבוקר הנאסד״ק צנח בכ-4.6% והדאו בכ-1,105 נקודות במכירות במניות השבבים וה-AI, אבל המדדים מחקו את רוב הירידות והדאו סגר בעלייה. Nvidia ירדה ב-3.9%, Micron ב-4.5% ו-Amazon ב-3.1%, בזמן ש-Meta עלתה ב-3.4% ו-HP ב-11.5%; ענפי החומרים והנדל״ן היו מהמובילים. הברנט עלה ב-3.5% ל-$94.61 והביטקוין חזר מעל $60,000. מחר המסחר סגור, וביום שישי יסתיים ב-20:00 (שעון ישראל).",
    "idx": [
@@ -126738,6 +126738,492 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-27-trump-troops-call-markets-iran",
+   "date": "2026-11-27",
+   "t": [
+    "NVDA"
+   ],
+   "tag": "טראמפ",
+   "tone": "neu",
+   "title": "טראמפ בשיחת חג ההודיה עם החיילים: ״הסגר הימי הגדול ביותר״ על איראן; ״קצת מודאג״ מהירידות בשוק",
+   "body": "בשיחת חג ההודיה עם חיילים אמר טראמפ, לפי התמליל, שארה״ב מקיימת ״את הסגר הימי הגדול ביותר שהיה אי פעם״ ושהיא ״נותנת להם כל הזדמנות להגיע לעסקה״. על השווקים אמר שהיו ״88 ימי שיא בשוק המניות״ ושהיה ״קצת מודאג״ כשראה ״ירידות די גדולות״ ביום הקודם; על מנכ״ל Nvidia אמר שיש לו ״שני מוצרים חדשים שעוקפים בהרבה את Blackwell״.",
+   "src": "The Singju Post (תמליל)",
+   "url": "https://singjupost.com/trumps-thanksgiving-2026-call-with-u-s-troops-full-transcript/",
+   "time": "11:20"
+  },
+  {
+   "id": "2026-11-27-reuters-us-pushed-venezuela-iraq-leave-opec",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "ממשל",
+   "tone": "neu",
+   "title": "Reuters: הממשל עודד את ונצואלה ועיראק לשקול לעזוב את OPEC",
+   "body": "לפי Reuters, שמצטט עשרה מקורות, הממשל האמריקאי עודד מוקדם יותר השנה את ונצואלה ועיראק לשקול יציאה מ-OPEC, וארה״ב מנעה מוונצואלה לשלם דמי חבר של כ-€2.8 מיליון מהחשבון שבו מוחזקים כספי המדינה. ראש ממשלת עיראק העלה את הנושא בישיבת ממשלה אך משרד הנפט שכנע אותו לוותר; משרד החוץ האמריקאי מסר שבכירים לא העלו את הנושא, ושני מקורות ב-OPEC אמרו שהארגון לא יסלק את ונצואלה.",
+   "src": "Reuters",
+   "url": "https://whbl.com/2026/11/27/exclusive-us-pushed-venezuela-iraq-to-consider-leaving-opec-sources-say/",
+   "time": "08:30"
+  },
+  {
+   "id": "2026-11-26-china-mofcom-rejects-20pct-tariff",
+   "date": "2026-11-26",
+   "t": [],
+   "tag": "סחר",
+   "tone": "neg",
+   "title": "משרד המסחר הסיני דוחה את המכס הנוסף של 20%: ״שומרים על הזכות לנקוט צעדים״",
+   "body": "משרד המסחר של סין כינה את חקירת סעיף 301 האמריקאית ״חד-צדדית והפרה של כללי ה-WTO״, קרא לשיחות ואמר שבייג׳ין שומרת על הזכות לנקוט ״צעדים נחוצים״, לפי Caixin. לפי הדיווח, הסחר הדו-צדדי בסחורות בינואר–אוקטובר הסתכם ב-$522.7 מיליארד, עלייה של 11%.",
+   "src": "Caixin Global",
+   "url": "https://www.caixinglobal.com/2026-11-27/china-rejects-us-proposal-for-additional-20-tariff-102509071.html",
+   "time": "19:23"
+  },
+  {
+   "id": "2026-11-27-futures-surge-black-friday",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "החוזים מזנקים לפני יום המסחר המקוצר; הנאסד״ק 100 עולה ב-2.47%",
+   "body": "לפי Reuters, בשעה 09:13 (שעון ישראל) חוזי הנאסד״ק 100 עלו ב-645.75 נקודות (2.47%), חוזי ה-S&P 500 ב-119 נקודות (1.65%) וחוזי הדאו ב-446 נקודות (0.89%). לפי CME FedWatch השווקים מתמחרים סיכוי של 99% להעלאת ריבית בדצמבר; המסחר היום יסתיים ב-20:00.",
+   "src": "Reuters",
+   "url": "https://www.investing.com/news/stock-market-news/wall-st-futures-surge-as-investors-return-from-holiday-5053052",
+   "time": "09:34"
+  },
+  {
+   "id": "2026-11-27-kospi-nikkei-rebound",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "אסיה",
+   "tone": "pos",
+   "title": "הקוספי זינק ב-4.34% והניקיי ב-2.11%; Samsung ו-SK hynix בראש",
+   "body": "הקוספי נסגר בעלייה של 4.34% ל-4,915.68 נקודות, עם עלייה של 4.55% ב-Samsung Electronics ל-179,100 וון ושל 5.41% ב-SK hynix ל-1.11 מיליון וון; לפי JoongAng Daily, העליות נתמכו בקניות של זרים ומוסדיים ובציפייה להרחבת קרן ייצוב השוק. בטוקיו הניקיי נסגר בעלייה של 2.11% ל-58,711.11 נקודות.",
+   "src": "Korea JoongAng Daily",
+   "url": "https://www.koreajoongangdaily.com/business/seoul-stocks-surge-434-as-tech-rally-meets-hopes-for-stronger-market-support/12994874",
+   "time": "09:40"
+  },
+  {
+   "id": "2026-11-27-china-state-council-market-support",
+   "date": "2026-11-27",
+   "t": [
+    "BABA"
+   ],
+   "tag": "אסיה",
+   "tone": "pos",
+   "title": "מועצת המדינה בסין מבטיחה תמיכה בשוק; מדדי השבבים זינקו ביותר מ-16%",
+   "body": "לפי Reuters, מועצת המדינה בראשות ראש הממשלה לי צ׳יאנג קראה לחזק את תפקיד ״הנבחרת הלאומית״ ו-Central Huijin כגורם מייצב בשוק ההון; מדדי שנגחאי ו-CSI300 עלו ביותר מ-3%, ה-STAR 50 ב-12% ומדדי השבבים ביותר מ-16%. בהונג קונג עלה ההנג סנג ב-2.34% ל-22,747 נקודות ומדד הטכנולוגיה ב-6.32%, לפי Dimsum Daily.",
+   "src": "Reuters / Dimsum Daily",
+   "url": "https://wkzo.com/2026/11/27/china-stocks-yuan-rally-after-beijing-vows-stronger-market-support/",
+   "time": "07:57"
+  },
+  {
+   "id": "2026-11-27-europe-tech-miners-advance",
+   "date": "2026-11-27",
+   "t": [
+    "ASML"
+   ],
+   "tag": "אירופה",
+   "tone": "pos",
+   "title": "אירופה ממשיכה להתאושש: STOXX 600 עולה ב-0.9%, הטכנולוגיה ב-2.3%",
+   "body": "לפי Reuters, ה-STOXX 600 עלה ב-0.9% ל-642.65 נקודות, עם עלייה של 2.3% בענף הטכנולוגיה ו-3.5% במניות הכרייה; ASML, ASM International ו-Infineon עלו ב-3.8%–4.5%. Sanofi ירדה ב-1.6% אחרי עלייה של כמעט 18% בחמשת ימי המסחר הקודמים, והמדד בדרך לעלייה שבועית אחרי הירידה השבועית החדה ביותר מאז מרץ 2025.",
+   "src": "Reuters",
+   "url": "https://1027wbow.com/2026/11/27/european-stocks-extend-recovery-as-tech-miners-advance/",
+   "time": "10:24"
+  },
+  {
+   "id": "2026-11-27-gold-rebounds-silver-6pct",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "סחורות",
+   "tone": "pos",
+   "title": "הזהב מתאושש משפל של שנה ועולה ל-$3,640; הכסף מזנק ב-6%",
+   "body": "לפי Reuters, הזהב במסחר המיידי עלה ב-2.1% ל-$3,640.84 לאונקיה ובדרך לעלייה שבועית של כ-3.1%, אחרי שפל של שנה; מתחילת נובמבר הוא עדיין יורד בכ-5%. הכסף עלה ב-6% ל-$43.96.",
+   "src": "Reuters",
+   "url": "https://ancstockinvestments.com/blog/2026/11/27/gold-heads-for-weekly-gain-after-one-year-low/",
+   "time": "09:58"
+  },
+  {
+   "id": "2026-11-27-tokyo-cpi-boj-tamura",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "ריבית",
+   "tone": "neu",
+   "title": "יפן: אינפלציית הליבה בטוקיו 2.9%, מתחת לצפי; חבר בבנק יפן: אפשר לדון בהעלאה בדצמבר",
+   "body": "מדד המחירים לצרכן בטוקיו ללא מזון טרי עלה בנובמבר ב-2.9% בשנה, לעומת 2.6% באוקטובר וצפי של 3.0%; המדד הכללי עלה ב-2.8%. חבר מועצת בנק יפן נאוקי טמורה אמר, לפי Jiji, שהבנק ידון בהעלאת ריבית נוספת בדצמבר או אחריו, והזהיר שתיקון במניות ה-AI עלול לפגוע בעסקים ובמשקי הבית.",
+   "src": "Investing.com / Jiji",
+   "url": "https://in.investing.com/news/economic-indicators/tokyo-cpi-firms-in-nov-core-inflation-slightly-misses-expectations-5727558",
+   "time": "01:30"
+  },
+  {
+   "id": "2026-11-27-china-industrial-profits-oct",
+   "date": "2026-11-27",
+   "t": [],
+   "tag": "אסיה",
+   "tone": "pos",
+   "title": "רווחי התעשייה בסין זינקו ב-20.1% באוקטובר",
+   "body": "לפי Xinhua, רווחי חברות התעשייה הגדולות בסין עלו באוקטובר ב-20.1% בשנה, 5.7 נקודות אחוז מהר יותר מבספטמבר; בינואר–אוקטובר הם עלו ב-16%. רווחי ענף האלקטרוניקה עלו ב-100% ורווחי הייצור עתיר הטכנולוגיה ב-50.9%.",
+   "src": "Xinhua",
+   "url": "https://english.news.cn/20261127/23d75e8b83314dfa90a078c79620f08b/c.html",
+   "time": "07:47"
+  },
+  {
+   "id": "2026-11-26-mdb-wells-fargo-survey",
+   "date": "2026-11-26",
+   "t": [
+    "MDB"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Wells Fargo חוזרת על המלצת קנייה ל-MongoDB לפני הדוח, יעד $475",
+   "body": "לפי TipRanks, Wells Fargo חזרה על המלצת Buy עם מחיר יעד של $475 לפני הדוח ב-1 בדצמבר. בסקר הלקוחות הראשון שלה, 72% אמרו שמוצרי AI יגדילו את ההוצאה שלהם ו-44% אמרו ש-MongoDB היא מסד הנתונים המועדף ליישומים חדשים.",
+   "src": "TipRanks",
+   "url": "https://www.tipranks.com/news/mongodb-stock-mdb-wells-fargo-says-buy-ahead-of-earnings-after-positive-customer-survey",
+   "time": "16:26",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-26-avgo-goldman-target-460",
+   "date": "2026-11-26",
+   "t": [
+    "AVGO"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "Goldman Sachs הורידה את מחיר היעד ל-Broadcom ל-$460 לפני הדוח",
+   "body": "לפי TheStreet, Goldman Sachs הורידה את מחיר היעד מ-$540 ל-$460 והשאירה המלצת Buy לפני הדוח ב-9 בדצמבר; הבנק הפחית את המכפיל ל-25 מ-30 בגלל ירידת המכפילים בענף, והשאיר את הערכת הרווח המנורמל של $18 למניה. ב-25 בנובמבר נגעה המניה בשפל של 52 שבועות של $278.",
+   "src": "TheStreet",
+   "url": "https://www.thestreet.com/investing/stocks/avgo-broadcom-stock-goldman-sachs-resets-avgo-stock-12-month-price-target-before-earnings",
+   "time": "18:33",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-rklb-101st-electron",
+   "date": "2026-11-27",
+   "t": [
+    "RKLB"
+   ],
+   "tag": "חלל",
+   "tone": "pos",
+   "title": "Rocket Lab שיגרה את משימת Electron ה-101 ושברה את שיא השיגורים השנתי",
+   "body": "Rocket Lab הודיעה שהמשימה ״Night Owls Never Sleep״ הציבה את לוויין המכ״ם StriX ה-14 של Synspective במסלול בגובה 569 ק״מ. זה השיגור ה-22 של החברה ב-2026, שיא שנתי; ל-Synspective הוזמנו 47 משימות, מהן 33 עוד לא שוגרו.",
+   "src": "Rocket Lab via StockTitan",
+   "url": "https://www.stocktitan.net/news/RKLB/mission-success-rocket-lab-launches-101st-electron-4aqq2uu5cydx.html",
+   "time": "03:38",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-sap-job-cuts-security-incident",
+   "date": "2026-11-27",
+   "t": [
+    "SAP"
+   ],
+   "tag": "טכנולוגיה",
+   "tone": "neg",
+   "title": "SAP בוחנת קיצוץ של 10 אלף משרות ומדווחת על ״פעילות חשודה״ במערכות",
+   "body": "לפי Bloomberg, SAP שוקלת לקצץ לפחות 10,000 משרות, לפחות 9% מכ-110 אלף עובדיה, במסגרת ארגון מחדש סביב AI. בנפרד, לפי Reuters, החברה זיהתה ״פעילות חשודה״ אך לא מצאה ראיות לגישה לא מורשית לנתוני לקוחות; המניה ירדה בכ-0.7% במסחר המקדים בגרמניה, לפי dpa-AFX.",
+   "src": "Reuters / Bloomberg",
+   "url": "https://www.business-standard.com/world-news/sap-flags-security-incident-says-no-evidence-of-customer-data-breach-126112700427_1.html",
+   "time": "09:06",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-tm-sales-ninth-month-decline",
+   "date": "2026-11-27",
+   "t": [
+    "TM"
+   ],
+   "tag": "רכב",
+   "tone": "neg",
+   "title": "מכירות Toyota ירדו בחודש התשיעי ברציפות; בסין צניחה של 25%",
+   "body": "לפי Bloomberg, המכירות העולמיות של Toyota כולל Daihatsu ירדו באוקטובר ב-6.3% ל-940,809 כלי רכב, והייצור ירד ב-9.4%. המכירות בסין ירדו ב-25%, ביפן ב-5.7% ובהודו ב-12%, ובארה״ב עלו ב-6.5%.",
+   "src": "Bloomberg via Free Malaysia Today",
+   "url": "https://www.freemalaysiatoday.com/category/business/2026/11/27/toyota-car-sales-fall-for-ninth-month-as-china-slump-worsens",
+   "time": "07:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-ba-qantas-787-order",
+   "date": "2026-11-27",
+   "t": [
+    "BA"
+   ],
+   "tag": "תעופה",
+   "tone": "pos",
+   "title": "Bloomberg: Qantas צפויה להעניק ל-Boeing את רוב הזמנה של כ-20 מטוסים",
+   "body": "לפי Bloomberg, Qantas קרובה להזמין כ-20 מטוסים לטווח ארוך, בעיקר Boeing 787 ומעט Airbus A350. לפי הדיווח ההחלטה לא סופית, ו-Qantas מסרה ש״לא התקבלו החלטות״.",
+   "src": "Investing.com (Bloomberg)",
+   "url": "https://www.investing.com/news/stock-market-news/qantas-set-to-award-boeing-bulk-of-20jet-order-bloomberg-reports-5052952",
+   "time": "07:55",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-hln-healthkart-talks",
+   "date": "2026-11-27",
+   "t": [
+    "HLN"
+   ],
+   "tag": "מיזוגים",
+   "tone": "neu",
+   "title": "Haleon במגעים מוקדמים לרכישת שליטה ב-HealthKart ההודית",
+   "body": "לפי Mint, Haleon מנהלת מגעים מוקדמים לרכישת נתח שליטה בחברת תוספי התזונה HealthKart, לפי שווי של $1.2–1.4 מיליארד, ונבחנת גם רכישה מלאה. הכנסות HealthKart בשנת הכספים 2026 הגיעו ל-2,052 קרור רופי; עדיין לא סוכמה עסקה.",
+   "src": "Mint via Matrix News",
+   "url": "https://web.matrixnews.in/news/ufa2sq5pcwwwo/haleon-in-early-talks-to-buy-controlling-stake-in-healthkart",
+   "time": "11:20",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-26-stla-france-plant-halts",
+   "date": "2026-11-26",
+   "t": [
+    "STLA"
+   ],
+   "tag": "רכב",
+   "tone": "neg",
+   "title": "Stellantis מאריכה את עצירות הייצור במפעלים בצרפת",
+   "body": "לפי Bloomberg, מפעל Rennes יעצור את הייצור מ-18 בדצמבר עד תחילת ינואר ומפעל Mulhouse ייעצר לכמה ימים בדצמבר ומ-23 בדצמבר עד 11 בינואר; משמרת הלילה ב-Sochaux תבוטל בינואר. רישומי Stellantis באירופה ירדו באוקטובר ב-8% ונתח השוק ירד ל-12.8% מ-14.4%.",
+   "src": "TipRanks (Bloomberg)",
+   "url": "https://www.tipranks.com/news/stellantis-plans-more-factory-shutdowns-as-sales-fall",
+   "time": "21:24",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-blk-singapore-cpf-frontrunner",
+   "date": "2026-11-27",
+   "t": [
+    "BLK"
+   ],
+   "tag": "ניהול השקעות",
+   "tone": "pos",
+   "title": "Bloomberg: BlackRock בין המובילות לנהל חלק מקרן הפנסיה של סינגפור",
+   "body": "לפי Bloomberg, BlackRock, JPMorgan (בשיתוף DBS) ו-Endowus מובילות במרוץ לנהל חלק מקרן ה-CPF של סינגפור, בהיקף של 701 מיליארד דולר סינגפורי, במסגרת תוכנית וולונטרית חדשה. הזוכים צפויים להיבחר במחצית הראשונה של 2027 והתוכנית תושק ב-2028; הדיונים מוקדמים.",
+   "src": "Bloomberg via Free Malaysia Today",
+   "url": "https://www.freemalaysiatoday.com/category/business/2026/11/27/jpmorgan-blackrock-bid-for-slice-of-us-543bil-singapore-fund",
+   "time": "05:15",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-rio-simandou-first-europe-cargo",
+   "date": "2026-11-27",
+   "t": [
+    "RIO"
+   ],
+   "tag": "כרייה",
+   "tone": "pos",
+   "title": "Simandou שלחה את משלוח עפרת הברזל הראשון לאירופה",
+   "body": "לפי נתוני Kpler, האונייה Cape Tavolo יצאה מנמל Morebaya בגינאה עם 79,081 טון עפרת ברזל מפרויקט Simandou, שבו שותפה Rio Tinto, בדרך לדנקירק בצרפת. הלקוח לא פורסם.",
+   "src": "Zhitong via Longbridge",
+   "url": "https://longbridge.com/en/news/306970194",
+   "time": "05:59",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-25-iff-eu-fragrance-cartel-fine",
+   "date": "2026-11-25",
+   "t": [
+    "IFF"
+   ],
+   "tag": "רגולציה",
+   "tone": "neg",
+   "title": "האיחוד האירופי קנס את IFF ב-€81.9 מיליון בפרשת קרטל הבשמים",
+   "body": "הנציבות האירופית הטילה קנסות של €471.9 מיליון בסך הכל על קרטל בתחום הבשמים: €252.4 מיליון על Givaudan, €137.7 מיליון על Firmenich ו-€81.9 מיליון על IFF. הקנס של IFF כולל הפחתה של 50% בזכות שיתוף פעולה ו-10% בזכות הסדר.",
+   "src": "Trend & Ticker",
+   "url": "https://trendandticker.com/news/markets/chemicals/2026-11-25/iff-fragrance-cartel-eu-fine-givaudan-firmenich",
+   "time": "22:47",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-baba-hk-jumps-state-council",
+   "date": "2026-11-27",
+   "t": [
+    "BABA"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "Alibaba עולה ב-6.6% בהונג קונג אחרי הבטחת התמיכה של בייג׳ין",
+   "body": "לפי Dimsum Daily, מניית Alibaba עלתה ב-6.6% בהונג קונג במסחר אחר הצהריים, בראלי שהגיע אחרי שמועצת המדינה התחייבה לתמוך בשוק ההון. מדד הטכנולוגיה של הונג קונג עלה ב-6.32%.",
+   "src": "Dimsum Daily",
+   "url": "https://www.dimsumdaily.hk/hang-seng-index-surges-over-500-points-in-afternoon-trading-as-tech-shares-rally%EF%BF%BC/",
+   "time": "07:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-tcehy-hk-rally",
+   "date": "2026-11-27",
+   "t": [
+    "TCEHY"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "Tencent עולה ב-3.5% בראלי הטכנולוגיה בהונג קונג",
+   "body": "לפי Dimsum Daily, Tencent עלתה ב-3.5% במסחר אחר הצהריים בהונג קונג, בראלי שהגיע אחרי הבטחת התמיכה של מועצת המדינה בשוק ההון; ההנג סנג עלה ב-2.34%.",
+   "src": "Dimsum Daily",
+   "url": "https://www.dimsumdaily.hk/hang-seng-index-surges-over-500-points-in-afternoon-trading-as-tech-shares-rally%EF%BF%BC/",
+   "time": "07:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-jd-hk-rally",
+   "date": "2026-11-27",
+   "t": [
+    "JD"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "JD.com עולה ב-3.9% בהונג קונג",
+   "body": "לפי Dimsum Daily, מניית JD.com עלתה ב-3.9% במסחר אחר הצהריים בהונג קונג, בראלי מניות הטכנולוגיה שאחרי הודעת מועצת המדינה על תמיכה בשוק. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Dimsum Daily",
+   "url": "https://www.dimsumdaily.hk/hang-seng-index-surges-over-500-points-in-afternoon-trading-as-tech-shares-rally%EF%BF%BC/",
+   "time": "07:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-xiacy-hk-rally",
+   "date": "2026-11-27",
+   "t": [
+    "XIACY"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "Xiaomi עולה ב-3.8% בהונג קונג",
+   "body": "לפי Dimsum Daily, מניית Xiaomi עלתה ב-3.8% במסחר אחר הצהריים בהונג קונג, בראלי מניות הטכנולוגיה שאחרי הודעת מועצת המדינה על תמיכה בשוק. המקור לא ציין סיבה ספציפית לחברה.",
+   "src": "Dimsum Daily",
+   "url": "https://www.dimsumdaily.hk/hang-seng-index-surges-over-500-points-in-afternoon-trading-as-tech-shares-rally%EF%BF%BC/",
+   "time": "07:57",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-bidu-hk-rally",
+   "date": "2026-11-27",
+   "t": [
+    "BIDU"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "Baidu עולה ב-3% בהונג קונג ל-HK$61.6",
+   "body": "לפי Longbridge, מניית Baidu עלתה ב-3% ל-HK$61.6 בשעה 13:29 בהונג קונג, במסגרת עליות מניות הטכנולוגיה אחרי הודעת התמיכה של בייג׳ין בשוק.",
+   "src": "Longbridge",
+   "url": "https://longbridge.com/en/news/306978879",
+   "time": "07:34",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-ntes-hk-rally",
+   "date": "2026-11-27",
+   "t": [
+    "NTES"
+   ],
+   "tag": "סין",
+   "tone": "pos",
+   "title": "NetEase עולה ב-3.2% בהונג קונג ל-HK$166.6",
+   "body": "לפי Longbridge, מניית NetEase עלתה ב-3.2% ל-HK$166.6 בשעה 13:29 בהונג קונג, במסגרת עליות מניות הטכנולוגיה אחרי הודעת התמיכה של בייג׳ין בשוק.",
+   "src": "Longbridge",
+   "url": "https://longbridge.com/en/news/306978879",
+   "time": "07:34",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-mpngy-q3-profit",
+   "date": "2026-11-27",
+   "t": [
+    "MPNGY"
+   ],
+   "tag": "דוחות",
+   "tone": "pos",
+   "title": "Meituan חזרה לרווח ברבעון השלישי; ההכנסות עלו ב-21.6%",
+   "body": "Meituan דיווחה על הכנסות של 115.6 מיליארד יואן ברבעון השלישי, עלייה של 21.6% בשנה ומעל צפי של 113.37 מיליארד, ועל רווח נקי של 2.1 מיליארד יואן לעומת הפסד של 18.6 מיליארד יואן ברבעון המקביל. פעילות המסחר המקומי רשמה רווח תפעולי של 5.7 מיליארד יואן, לעומת הפסד של 14.1 מיליארד שנה קודם.",
+   "src": "FinScans / Longbridge",
+   "url": "https://finscans.com/news/2026/11/27/meituan-swings-to-rmb21-billion-profit-in-q3-2026-on-216",
+   "time": "10:30",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-hsbc-india-finance-roles",
+   "date": "2026-11-27",
+   "t": [
+    "HSBC"
+   ],
+   "tag": "בנקים",
+   "tone": "neu",
+   "title": "Bloomberg: HSBC מעבירה תפקידי כספים בהודו לשלוש ערים",
+   "body": "לפי Bloomberg, HSBC מעבירה תפקידי כספים בהודו מהיידראבאד ופונה לצ׳נאי, גורגאון ובנגלור, ועובדים מעריכים שמאות תפקידים יושפעו. בסוף 2025 העסיק הבנק כ-47 אלף עובדים בהודו, ובאוגוסט העלה את יעד החיסכון בעלויות ל-$2 מיליארד מ-$1.5 מיליארד.",
+   "src": "Bloomberg via Longbridge",
+   "url": "https://longbridge.com/en/news/306962898",
+   "time": "04:36",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-26-race-ubs-target-465",
+   "date": "2026-11-26",
+   "t": [
+    "RACE"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "UBS העלתה את מחיר היעד ל-Ferrari ל-$465 ובחרה בה כמניית יוקרה מועדפת ל-2027",
+   "body": "לפי Investing.com, UBS העלתה את מחיר היעד ל-Ferrari מ-$450 ל-$465 עם המלצת Buy, ובחרה בה כמניית היוקרה המועדפת לשנת 2027. הבנק צופה צמיחה אורגנית של 4% במכירות הענף בשנה הבאה.",
+   "src": "Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/ubs-names-its-top-european-luxury-stock-picks-for-2027-5052152",
+   "time": "09:22",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-fsnuy-goldman-upgrade",
+   "date": "2026-11-27",
+   "t": [
+    "FSNUY"
+   ],
+   "tag": "אנליסטים",
+   "tone": "pos",
+   "title": "Goldman Sachs שדרגה את Fresenius לקנייה, יעד €67",
+   "body": "לפי Investing.com, Goldman Sachs העלתה את ההמלצה על Fresenius ל-Buy מ-Neutral ואת מחיר היעד ל-€67 מ-€52, כ-26.5% מעל מחיר הסגירה ביום חמישי של €52.95. הבנק מצביע על התרופות הביוסימילריות ועל העסקה עם WuXi Biologics, וקיצץ את הערכות הרווח התפעולי ל-2026–2030 ב-1%–4%.",
+   "src": "Investing.com",
+   "url": "https://uk.investing.com/news/stock-market-news/goldman-sachs-upgrades-fresenius-to-buy-sees-27-upside-on-biosimilars-5006114",
+   "time": "09:52",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-addyy-jpm-downgrade",
+   "date": "2026-11-27",
+   "t": [
+    "ADDYY"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "JPMorgan הורידה את ההמלצה על Adidas ל-Neutral",
+   "body": "לפי Seeking Alpha, JPMorgan הורידה את ההמלצה על Adidas ל-Neutral מ-Overweight עם מחיר יעד של €184, במסגרת תחזית זהירה יותר לענף מוצרי הספורט ב-2027 בגלל האטה בצמיחה.",
+   "src": "Seeking Alpha",
+   "url": "https://seekingalpha.com/news/4676939-puma-adidas-downgraded-by-jpmorgan-amid-slower-sportswear-growth",
+   "time": "09:26",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-pumsy-jpm-underweight",
+   "date": "2026-11-27",
+   "t": [
+    "PUMSY"
+   ],
+   "tag": "אנליסטים",
+   "tone": "neg",
+   "title": "JPMorgan הורידה את Puma ל-Underweight וחתכה את היעד ל-€21",
+   "body": "לפי TokenPost ו-Seeking Alpha, JPMorgan הורידה את ההמלצה על Puma ל-Underweight מ-Neutral וחתכה את מחיר היעד מ-€26 ל-€21, במסגרת תחזית זהירה לענף מוצרי הספורט ב-2027.",
+   "src": "TokenPost / Seeking Alpha",
+   "url": "https://www.tokenpost.com/news/investing/63325",
+   "time": "09:31",
+   "k": "stock"
+  },
+  {
+   "id": "2026-11-27-toely-nikkei-chip-rally",
+   "date": "2026-11-27",
+   "t": [
+    "TOELY"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Tokyo Electron עלתה ב-4.43% בראלי השבבים בטוקיו",
+   "body": "מניית Tokyo Electron נסגרה בעלייה של 4.43%, כשהניקיי עלה ב-2.11% ל-58,711.11 נקודות; Advantest עלתה ב-7.07% ו-Lasertec ב-9.98%. המקור לא ציין סיבה ספציפית למניות.",
+   "src": "The Library Estate",
+   "url": "https://thelibraryestate.com/japan-markets-closing-report-nov-27-2026/",
+   "time": "09:43",
+   "k": "stock"
+  },
   {
    "id": "2026-11-26-tariffs-china-40-vietnam-35-wyden",
    "date": "2026-11-26",
