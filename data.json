@@ -44865,7 +44865,7 @@
   }
  ],
  "overview": {
-  "asOf": "27.11.2026 · 12:20",
+  "asOf": "27.11.2026 · 13:10",
   "strip": [
    {
     "k": "נאסד״ק",
@@ -44925,7 +44925,7 @@
   "brief": [
    {
     "h": "החוזים מזנקים לפני יום מסחר מקוצר",
-    "t": "לפי Yahoo Finance, השבבים מובילים את העליות כשהחששות מרווחיות ה-AI נרגעים: Nvidia עולה במסחר המקדים בכמעט 4% ו-Micron ב-6%, ותשואת ה-10 שנים ירדה ל-4.84%; המסחר היום ייסגר ב-20:00 שעון ישראל.",
+    "t": "לפי Forbes, מניות הזיכרון שנפגעו בנובמבר מובילות: Sandisk עולה במסחר המקדים ב-10.8%, Micron ב-6.4% ו-Nvidia ב-4.2%, ו-Anthropic חזרה מעל מחיר ההנפקה; לפי TokenPost גם Applied Optoelectronics (10.2%) ו-Lumentum (9.7%) בראש; המסחר ייסגר ב-20:00 שעון ישראל.",
     "tone": "pos"
    },
    {
@@ -45018,7 +45018,7 @@
    "from": 19.3,
    "note": "המדד עלה ב-7.3% ל-28.29, אחרי שבבוקר טיפס מעל 33, אף שהמדדים מחקו את רוב הירידות בהמשך היום."
   },
-  "rev": 202611271220,
+  "rev": 202611271310,
   "market": {
    "note": "סגירה ביום רביעי, 25.11.2026, ערב חג ההודיה. בבוקר הנאסד״ק צנח בכ-4.6% והדאו בכ-1,105 נקודות במכירות במניות השבבים וה-AI, אבל המדדים מחקו את רוב הירידות והדאו סגר בעלייה. Nvidia ירדה ב-3.9%, Micron ב-4.5% ו-Amazon ב-3.1%, בזמן ש-Meta עלתה ב-3.4% ו-HP ב-11.5%; ענפי החומרים והנדל״ן היו מהמובילים. הברנט עלה ב-3.5% ל-$94.61 והביטקוין חזר מעל $60,000. מחר המסחר סגור, וביום שישי יסתיים ב-20:00 (שעון ישראל).",
    "idx": [
@@ -126738,6 +126738,82 @@
   "minVol": 0.8
  },
  "news": [
+  {
+   "id": "2026-11-27-ai-rebound-memory-anthropic-ipo",
+   "date": "2026-11-27",
+   "t": [
+    "SNDK",
+    "MU",
+    "ANT"
+   ],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "מניות ה-AI שנפגעו בנובמבר מובילות את הריבאונד; Anthropic מעל מחיר ההנפקה",
+   "body": "לפי Forbes, יצרניות הזיכרון והאחסון, שנפגעו מהקשות במכירות של נובמבר, רושמות מהעליות הגדולות במסחר המקדים: Sandisk עולה ב-10.8% ל-$81.56 ו-Micron ב-6.4% ל-$640. Anthropic עולה ב-3.6% ל-$85.73, מעל מחיר ההנפקה של $83, ו-AMD ב-5% ל-$426.60; הנאסד״ק 100 עדיין בדרך לחודש החלש ביותר שלו מאז דצמבר 2022.",
+   "src": "Forbes",
+   "url": "https://www.forbes.com/sites/siladityaray/2026/11/27/stock-futures-surge-as-battered-ai-shares-rebound-ahead-of-shorterned-friday-trading/",
+   "time": "12:29"
+  },
+  {
+   "id": "2026-11-27-sndk-premarket-memory-rebound",
+   "k": "stock",
+   "date": "2026-11-27",
+   "t": [
+    "SNDK"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Sandisk עולה ב-10.8% במסחר המקדים בריבאונד מניות הזיכרון",
+   "body": "לפי Forbes, Sandisk עולה ל-$81.56 כשמניות הזיכרון והאחסון, מהנפגעות העיקריות במכירות ה-AI של נובמבר, מובילות את העליות לפני הפתיחה.",
+   "src": "Forbes",
+   "url": "https://www.forbes.com/sites/siladityaray/2026/11/27/stock-futures-surge-as-battered-ai-shares-rebound-ahead-of-shorterned-friday-trading/",
+   "time": "12:29"
+  },
+  {
+   "id": "2026-11-27-aaoi-premarket-ai-rebound",
+   "k": "stock",
+   "date": "2026-11-27",
+   "t": [
+    "AAOI"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Applied Optoelectronics עולה ב-10.2% במסחר המקדים עם הריבאונד במניות ה-AI",
+   "body": "לפי TokenPost, המניה עלתה ב-10.21% לפני הפתיחה, כשהעלייה של יותר מ-4% ב-Nvidia הקלה את הלחץ על מניות ה-AI אחרי גל המכירות האחרון; גם Lumentum ו-CoreWeave עלו בחדות.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/63405",
+   "time": "11:08"
+  },
+  {
+   "id": "2026-11-27-lite-premarket-ai-rebound",
+   "k": "stock",
+   "date": "2026-11-27",
+   "t": [
+    "LITE"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Lumentum עולה ב-9.7% במסחר המקדים עם הריבאונד במניות ה-AI",
+   "body": "לפי TokenPost, המניה עלתה ב-9.74% לפני הפתיחה, כשהעלייה ב-Nvidia ״הקלה את הלחץ״ אחרי גל המכירות במניות ה-AI.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/63405",
+   "time": "11:08"
+  },
+  {
+   "id": "2026-11-27-mstr-premarket-crypto-shares",
+   "k": "stock",
+   "date": "2026-11-27",
+   "t": [
+    "MSTR"
+   ],
+   "tag": "קריפטו",
+   "tone": "pos",
+   "title": "Strategy עולה ב-6.1% במסחר המקדים עם מניות הקריפטו",
+   "body": "לפי TokenPost, העלייה ב-Nvidia ובמניות ה-AI לפני הפתיחה הרימה גם מניות הקשורות לקריפטו: Strategy עלתה ב-6.1% ו-Circle ב-5.34%.",
+   "src": "TokenPost",
+   "url": "https://www.tokenpost.com/news/investing/63405",
+   "time": "11:08"
+  },
   {
    "id": "2026-11-27-brazil-trabuco-ibovespa",
    "date": "2026-11-27",
