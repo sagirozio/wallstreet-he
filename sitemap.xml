@@ -316,6 +316,7 @@
 <url><loc>https://wallstreeter.co.il/stock/CALM.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/CALX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/CALY.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/CAMT.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/CARG.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/CARR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/CART.html</loc></url>
@@ -629,6 +630,7 @@
 <url><loc>https://wallstreeter.co.il/stock/EXC.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/EXE.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/EXEL.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/EXG.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/EXK.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/EXLS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/EXPD.html</loc></url>
@@ -950,6 +952,7 @@
 <url><loc>https://wallstreeter.co.il/stock/JCI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JD.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JEF.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/JFR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JHX.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JKHY.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/JMKE.html</loc></url>
@@ -1323,6 +1326,7 @@
 <url><loc>https://wallstreeter.co.il/stock/PAGP.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PAGS.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PANW.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/PAR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PARR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PATH.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/PATK.html</loc></url>
@@ -1579,6 +1583,7 @@
 <url><loc>https://wallstreeter.co.il/stock/SHW.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/SIBN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/SIG.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/SIGI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/SIMO.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/SIRI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/SITE.html</loc></url>
@@ -1726,7 +1731,6 @@
 <url><loc>https://wallstreeter.co.il/stock/TILE.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/TIMB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/TJX.html</loc></url>
-<url><loc>https://wallstreeter.co.il/stock/TK.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/TKC.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/TKO.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/TKR.html</loc></url>
@@ -1826,6 +1830,7 @@
 <url><loc>https://wallstreeter.co.il/stock/URGN.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/URI.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/UROY.html</loc></url>
+<url><loc>https://wallstreeter.co.il/stock/USA.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USAR.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USB.html</loc></url>
 <url><loc>https://wallstreeter.co.il/stock/USFD.html</loc></url>
