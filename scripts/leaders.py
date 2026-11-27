@@ -14,7 +14,8 @@ The lists
   climb  RS rating up 15 points or more in 20 sessions, now 70 or higher
   gap    up 8% or more on 1.5x average volume right after a report (last 90 days), and no close below that day's low since
   ind    the stock with the highest RS rating in each industry
-  accel  sales growth (year over year) higher in each of the last 3 quarters, RS 80 or higher
+  accel  last quarter: EPS up 25% or more and sales up 25% or more from the same quarter a year before (the two growth
+         figures O'Neil's "C" looks at); the last 4 quarters of both are shown, strongest RS first
   accum  last 25 sessions: up days on above-average volume minus down days on above-average volume
   quiet  within 5% of the 52-week high, with a narrower daily range and lower volume in the last 10 sessions than in the last 50
 """
@@ -139,11 +140,12 @@ def build(C):
     rows.sort(key=lambda r: (r[1], r[2]), reverse=True)
     L["gap"] = rows[:TOP]
 
-    # ---- sales growth by quarter (newest first), from the stock files ----
-    def sales(t):
+    # ---- sales and EPS growth by quarter (year over year, newest first), from the stock files ----
+    def growth(t):
         try: eh = json.loads((root / "s" / f"{t}.json").read_text(encoding="utf-8")).get("eh") or []
-        except Exception: return []
-        return [q.get("ry") for q in eh[:4]]
+        except Exception: return [], []
+        return [q.get("ry") for q in eh[:4]], [q.get("ay") for q in eh[:4]]
+    sales = lambda t: growth(t)[0]
 
     # ---- ind: the highest RS rating in each industry ----
     rows = []
@@ -155,13 +157,14 @@ def build(C):
     rows.sort(key=lambda r: (-r[2], -(r[3] or -999)))
     L["ind"] = rows[:40]
 
-    # ---- accel: sales growth higher in each of the last 3 quarters, RS 80+ ----
+    # ---- accel: last quarter's EPS and sales both up 25%+ from a year before ----
     rows = []
     for t in uni:
-        if RS.get(t, 0) < 80: continue
-        sg = sales(t)
-        if len(sg) == 4 and all(x is not None for x in sg) and sg[0] > sg[1] > sg[2] > sg[3]: rows.append([t, RS[t], sg[::-1], dist[t]])
-    rows.sort(key=lambda r: -r[2][-1])
+        if t not in RS: continue
+        sg, eg = growth(t)
+        if not sg or sg[0] is None or eg[0] is None or sg[0] < 25 or eg[0] < 25: continue
+        rows.append([t, RS[t], sg[::-1], eg[::-1], dist[t]])     # the series run old -> new; a missing quarter stays None
+    rows.sort(key=lambda r: (-r[1], -(r[4] or -999)))
     L["accel"] = rows[:TOP]
 
     # ---- accum: up days on above-average volume minus down days on above-average volume, last 25 sessions ----
