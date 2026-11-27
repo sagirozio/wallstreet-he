@@ -2460,7 +2460,7 @@ function qvShowEtf(t,p){
   /* the same frame as the stock card (q2): header with price, tags, one-line description, tabs, figures row */
   p.innerHTML=`<div class="q2h">
       <div class="q2id"><span class="q2lg" aria-hidden="true">${esc(t.slice(0,4))}</span><div><span class="q2tk" dir="ltr"><b class="num">${esc(t)}</b>${n>1?`<span class="q2pos num">${QV.i+1}/${n}</span>`:''}${r.h&&r.h.length?`<button class="q2cp" data-ecopy="${esc(t)}" title="העתק את סימולי האחזקות והוסף לרשימות" aria-label="העתק את סימולי האחזקות">⧉</button>`:''}</span><small dir="auto">${esc(en||r.n||'')}</small></div></div>
-      <div class="q2px"><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${r.d==null?'':`<span class="num ${r.d>=0?'up':'down'}" dir="ltr">${r.d>0?'+':''}${r.d.toFixed(2)}%</span>`}<small>${r._lv?'לייב':E.asOf?'נכון לסגירת '+dm(E.asOf):'מחיר סגירה'}</small></div>
+      <div class="q2px"><b class="num">${r.p!=null?'$'+(r.p>=1000?Math.round(r.p).toLocaleString('en-US'):r.p.toFixed(2)):'—'}</b> ${r.d==null?'':`<span class="num ${r.d>=0?'up':'down'}" dir="ltr">${r.d>0?'+':''}${r.d.toFixed(2)}%</span>`}<small>${r._lv?(mktOpen()?'לייב':'נכון לסגירת '+liveDay()):E.asOf?'נכון לסגירת '+dm(E.asOf):'מחיר סגירה'}</small></div>
       <span class="q2ic">${n>1?`<button data-qn="-1" aria-label="הקרן הקודמת" ${QV.i?'':'disabled'}>›</button><button data-qn="1" aria-label="הקרן הבאה" ${QV.i<n-1?'':'disabled'}>‹</button>`:''}<button class="qvx" aria-label="סגירה">✕</button></span></div>
     <div class="q2tg">${en&&r.n?`<span><bdi>${esc(r.n)}</bdi></span>`:''}<span>קרן סל (ETF)</span>${r.g?`<span><bdi>${esc(r.g)}</bdi></span>`:''}${I.f?`<span><bdi>${esc(I.f)}</bdi></span>`:''}</div>
     <p class="q2d" dir="rtl">${ETF_HE[t]?esc(ETF_HE[t]):`קרן סל (ETF) בנושא ${esc(r.n||'')}.`}</p>
@@ -2650,7 +2650,7 @@ function sxePaint(){ const box=$('sxeChart'); if(!box||!SXE||!SXE.v) return; con
 window.addEventListener('resize',()=>{ clearTimeout(sxePaint.t); sxePaint.t=setTimeout(()=>{ if(CURPG==='market') sxePaint(); },150); });
 function renderEtfs(){ const E=FALLBACK.etfs||{}, R=(E.rows||[]).map(etfLive), b=$('etfTable'); if(!b) return;
   if(!R.length){ b.innerHTML='<div class="empty">הנתונים יתעדכנו בריצה הלילית הקרובה.</div>'; return; }
-  $('etfAsOf').textContent=R.some(r=>r._lv)?`לייב · עודכן ${liveTm()}`:(E.asOf?`סגירת ${dm(E.asOf)}`:'');
+  $('etfAsOf').textContent=R.some(r=>r._lv)?liveTxt():(E.asOf?`סגירת ${dm(E.asOf)}`:'');
   const G=[...new Set(R.map(r=>r.g))];
   $('etfChips').innerHTML=[['','הכל'],...G.map(g=>[g,g])].map(([k,l])=>`<button data-eg="${esc(k)}" class="${ETF.g===k?'on':''}">${esc(l)}</button>`).join('');
   const C=[['d','1D'],['m','1M'],['q','3M'],['ytd','YTD'],['y','1Y']];
@@ -2785,7 +2785,7 @@ async function renderEtfPage(t,E,tok){
     /* the line chart reads the candle file: all ranges, averages */
     delete PXDT[t]; PXE[t]=1; PXF[t]=c; PXC[t]=c; }
   if(!E.asof) E.asof=E.kind==='th'?(FALLBACK.etfs||{}).asOf:E.kind==='sec'?((String((FALLBACK.sectors||{}).asOf||'').match(/(\d+)\.(\d+)\.(\d{4})/)||[]).slice(1).reverse().join('-')||null):null;
-  const lv=LIVE&&LIVE.etf&&liveOn()?LIVE.etf[t]:null; if(lv&&lv[0]){ E.p=lv[0]; if(lv[1]!=null) E.d=lv[1]; E.live=1; }
+  const lv=LIVE&&LIVE.etf&&liveOn()?LIVE.etf[t]:null; if(lv&&lv[0]){ E.p=lv[0]; if(lv[1]!=null) E.d=lv[1]; E.live=mktOpen()?1:0; E.asof=LIVE.date; }
   const isIx=E.kind==='ix', xl=isIx&&LIVE&&LIVE.idx?LIVE.idx[IDX_PG[t].lv]:null; if(xl&&xl[0]){ E.p=xl[0]; if(xl[1]!=null) E.d=xl[1]; E.asof=LIVE.date; E.live=mktOpen()&&LIVE.date===nyToday(); }
   const en=etfEn(t,E), I=E.i||{}, ix=stockIndex(), wsum=(E.h||[]).reduce((a,x)=>a+(+x[2]||0),0), f2=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2);
   const desc=(isIx&&IDX_PG[t].d)||ETF_HE[t]||(IDX_ETF[t]&&IDX_ETF[t][1])||(E.kind==='sec'?`קרן הסל של סקטור ה${E.n} במדד S&P 500 (סדרת Select Sector SPDR).`:`קרן סל (ETF) בנושא ${E.n}.`);
@@ -2908,7 +2908,10 @@ function liveReturns(){
   ((THEMES||{}).rows||[]).forEach(r=>{ r._b=r._b||Object.fromEntries(['d',...PKEYS].map(k=>[k,r[k]])); const v=LIVE_R&&LIVE_IND?LIVE_IND[r.en]:null;
     Object.assign(r, v!=null&&Math.abs(v)<=60?liveCompound(r._b,v):r._b); });
 }
-const liveStamp=()=>LIVE_R?`<span class="lvs"><i class="livedot"></i>לייב · עודכן ${esc(liveTm())}</span>`:(closeLbl()?`<span class="lvs">נכון לסגירת ${closeLbl()}</span>`:'');
+/* "live" is said only while the session is open. After the close, and until the nightly update, the prices on screen are today's close: the label says so */
+const liveDay=()=>{ const m=String((LIVE||{}).date||'').split('-'); return m.length===3?(+m[2])+'.'+(+m[1]):''; };
+const liveTxt=()=>mktOpen()?`לייב · עודכן ${liveTm()}`:`נכון לסגירת ${liveDay()}`;
+const liveStamp=()=>LIVE_R?(mktOpen()?`<span class="lvs"><i class="livedot"></i>לייב · עודכן ${esc(liveTm())}</span>`:`<span class="lvs">נכון לסגירת ${liveDay()}</span>`):(closeLbl()?`<span class="lvs">נכון לסגירת ${closeLbl()}</span>`:'');
 function liveAgg(){ try{ liveAgg0(); }finally{ try{ liveReturns(); }catch(e){} } }
 function liveAgg0(){
   LIVE_SEC=null; LIVE_IND=null; if(!liveOn()) return;
@@ -3025,7 +3028,7 @@ function pxSeries(t,rg){ let a0=PXC[t], D=PXDT[t]||(PXD||{}).dates; if(!a0||!D) 
     if(e&&e[0]){ if(D[D.length-1]===LIVE.date){ a0=[...a0.slice(0,-1),e[0]]; D=[...D.slice(0,-1),'עכשיו '+liveTm()]; } else if(LIVE.date>D[D.length-1]){ a0=[...a0,e[0]]; D=[...D,'עכשיו '+liveTm()]; } }
     return {a0,D}; }
   /* the daily file can lag a day (it is built from the morning history); live.json's price fills the newest day */
-  const L=LIVE&&LIVE.date&&LIVE.date>D[D.length-1]?(liveQ(t)||(PXE[t]&&LIVE.etf&&liveOn()?LIVE.etf[t]:null)):null; if(L&&L[0]&&Math.abs(L[1]||0)<=60){ a0=[...a0,L[0]]; D=[...D,LIVE_R?'עכשיו '+liveTm():LIVE.date]; } return {a0,D}; }
+  const L=LIVE&&LIVE.date&&LIVE.date>D[D.length-1]?(liveQ(t)||(PXE[t]&&LIVE.etf&&liveOn()?LIVE.etf[t]:null)):null; if(L&&L[0]&&Math.abs(L[1]||0)<=60){ a0=[...a0,L[0]]; D=[...D,LIVE_R&&mktOpen()?'עכשיו '+liveTm():LIVE.date]; } return {a0,D}; }
 function pxChart(t){
   PXPT=pxIsIdx(t); const {a0,D}=pxSeries(t); if(!a0||!D) return '';
   const a=a0.map((v,i)=>[i,v]).filter(x=>x[1]!=null); if(a.length<3) return '';
@@ -4357,7 +4360,7 @@ function renderFresh(){
   const pm=FALLBACK.premarket||{};
   const src={brief:OVERVIEW&&OVERVIEW.asOf, sectors:SECTORS&&SECTORS.asOf, themes:THEMES&&THEMES.asOf, breadth:FALLBACK.breadth&&FALLBACK.breadth.asOf,
     ytd:FALLBACK.ytd&&FALLBACK.ytd.asOf&&('נכון לסגירת '+FALLBACK.ytd.asOf), news:NEWS[0]&&NEWS[0].date, movers:(FALLBACK.movers||{}).asOf};
-  document.querySelectorAll('[data-fr]').forEach(el=>{ el.textContent=(LIVE_R&&['themes','sectors','breadth'].includes(el.dataset.fr))?`לייב · ${liveTm()}`:freshTxt(src[el.dataset.fr]); });
+  document.querySelectorAll('[data-fr]').forEach(el=>{ el.textContent=(LIVE_R&&['themes','sectors','breadth'].includes(el.dataset.fr))?(mktOpen()?`לייב · ${liveTm()}`:`נכון לסגירת ${liveDay()}`):freshTxt(src[el.dataset.fr]); });
   if(OVERVIEW&&OVERVIEW.asOf) document.querySelector('.stamp').textContent = freshTxt(OVERVIEW.asOf);
 }
 setInterval(renderFresh, 60000);
