@@ -672,7 +672,7 @@ tr:last-child td{border-bottom:0}
 .evaa{display:flex;height:22px;border-radius:6px;overflow:hidden;margin:8px 0 4px;font:600 11.5px 'JetBrains Mono',monospace}.evaa i{display:flex;align-items:center;justify-content:center;font-style:normal;color:#0c0d10}.evaa .bu{background:#2ea463}.evaa .ne{background:#7d8590}.evaa .be{background:#f85149}
 .evaal{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;font-size:12.5px}.evaal small{color:var(--muted)}
 .evgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}.evc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.evc h3{font-size:15px;margin:0 0 8px}
-.evfg{display:flex;align-items:baseline;gap:10px}.evfg b{font:700 40px 'JetBrains Mono',monospace}.evfg span{font-size:16px}
+:root{--fgmid:#d29922}html.light{--fgmid:#9a6700}.evfg{display:flex;align-items:baseline;gap:10px}.evfg b{font:700 40px 'JetBrains Mono',monospace}.evfg span{font-size:16px}
 .evg{position:relative;height:8px;border-radius:4px;margin:8px 0 4px;background:linear-gradient(to left,#f85149,#d29922 50%,#2ea463)}.evg i{position:absolute;top:-4px;width:3px;height:16px;background:#e3e7ec;border-radius:2px;transform:translateX(50%)}
 .evgl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
 .evp>div{display:grid;grid-template-columns:1fr 64px 70px;gap:8px;align-items:center;padding:5px 0;border-top:1px solid var(--line);font-size:13px}.evp>div:first-child{margin-top:8px}.evp b{display:block;font-weight:600}.evp small{color:var(--muted);font-size:11.5px}
@@ -1859,7 +1859,7 @@ function newsWhen(n){ const dd=n.tday||n.date, p=String(dd||'').split('-'), toda
 const newsSrc=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener"><bdi>${esc(n.src||'למקור')}</bdi> ↗</a>`:`<bdi>${esc(n.src||'')}</bdi>`;
 const newsTk=n=>(n.t||[]).slice(0,3).map(t=>STK_OK&&!stockIndex()[t]&&!CRYPTO[t]?`<span class="ntk">${esc(t)}</span>`:`<a class="ntk" href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`).join('');   /* no page for stocks outside the universe */
 const newsBig=n=>`<article class="sa">${newsIcon(n)}<div><h3>${esc(n.title)}</h3>${n.body?`<p>${esc(n.body)}</p>`:''}<small>${newsWhen(n)} · ${newsSrc(n)} ${newsTk(n)}</small></div></article>`;
-const newsLine=n=>{ const t=(n.t||[])[0]; return `<div class="sl">${t?`<a class="st" href="#stock/${encodeURIComponent(t)}" aria-label="${esc(t)}">${mono(t)}</a>`:`<span class="st">${newsIcon(n)}</span>`}<span class="sh" dir="rtl">${t?`<a href="#stock/${encodeURIComponent(t)}">${esc(n.title)}</a>`:esc(n.title)}</span><span class="ss">${newsWhen(n)} · ${newsSrc(n)}</span></div>`; };
+const newsLine=n=>{ const t=(n.t||[])[0]; return `<div class="sl">${t?`<a class="st" href="#stock/${encodeURIComponent(t)}" tabindex="-1" aria-hidden="true">${mono(t)}</a>`:`<span class="st">${newsIcon(n)}</span>`}<span class="sh" dir="rtl">${t?`<a href="#stock/${encodeURIComponent(t)}">${esc(n.title)}</a>`:esc(n.title)}</span><span class="ss">${newsWhen(n)} · ${newsSrc(n)}</span></div>`; };
 function renderNewsPage(){
   const box=$('newsAll'); if(!box) return;
   const q=$('nq').value.trim().toLowerCase(), wide=N_MQ.matches, hit=n=>!q||`${n.tag} ${n.title} ${n.body} ${(n.t||[]).join(' ')}`.toLowerCase().includes(q);
@@ -4675,7 +4675,7 @@ function renderEv(){
     return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" class="evsp">${ref!=null?`<line x1="0" x2="${W}" y1="${Y(ref)}" y2="${Y(ref)}" stroke="#7d8590" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/>`:''}<polyline points="${a.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ')}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`; };
   const cards=[];
   /* 1. fear / greed */
-  if(E.fg){ const F=E.fg, P=F.parts||{}, c=F.s<40?'var(--red)':F.s>60?'var(--green)':'#d29922';
+  if(E.fg){ const F=E.fg, P=F.parts||{}, c=F.s<40?'var(--red)':F.s>60?'var(--green)':'var(--fgmid)';
     const names={mom:['מומנטום','S&P 500 מול ממוצע 125 יום',v=>pct(v,1)],vix:['תנודתיות','VIX מול הטווח השנתי',v=>v.toFixed(1)],hy:['מרווח אשראי','מול הטווח השנתי',v=>v.toFixed(2)+'%'],br:['רוחב שוק','מניות מעל ממוצע 50',v=>Math.round(v)+'%'],hl:['שיאים מול שפלים','52 שבועות, S&P 500',v=>`${v[0]} / ${v[1]}`]};
     cards.push(`<div class="evc"><h3>מד פחד וחמדנות</h3><div class="evfg"><b style="color:${c}">${F.s}</b><span>${esc(F.lbl)}</span></div>
       <div class="evg"><i style="right:${F.s}%"></i></div><div class="evgl"><span>פחד קיצוני</span><span>ניטרלי</span><span>חמדנות קיצונית</span></div>
