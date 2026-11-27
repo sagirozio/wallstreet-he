@@ -126739,6 +126739,21 @@
  },
  "news": [
   {
+   "id": "2026-11-27-cohr-rally",
+   "date": "2026-11-27",
+   "k": "stock",
+   "t": [
+    "COHR"
+   ],
+   "tag": "שבבים",
+   "tone": "pos",
+   "title": "Coherent מזנקת בכ-9% עם ההתאוששות במניות ה-AI והאופטיקה",
+   "body": "לפי Investing.com, מניית Coherent עלתה ב-9.1% בבוקר המסחר ל-$213.98, כשהשוק ממשיך לתמחר את החזרתו של ג׳נסן הואנג לתפקיד מנכ״ל Nvidia. ברקע: תוכנית רכישה עצמית של עד $2 מיליארד שאושרה ב-18 בנובמבר, וקניות של כ-$50 מיליון של הדירקטור סטיבן פגליוקה.",
+   "src": "Investing.com",
+   "url": "https://ph.investing.com/news/stock-market-news/why-is-coherent-stock-surging-today-93CH-2723834",
+   "time": "17:00"
+  },
+  {
    "id": "2026-11-27-wall-street-open-ai-rebound",
    "date": "2026-11-27",
    "t": [],
