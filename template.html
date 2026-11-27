@@ -1756,7 +1756,7 @@ function renderMktStatus(){
   let cls='closed', txt;
   if(wk&&m>=570&&m<end){ cls='open'; txt=`<b>הבורסה פתוחה</b> · ${end<960?'יום מקוצר, ':''}נסגרת ב-${ilTime(end/60|0,end%60)}<span class="mlg"> שעון ישראל</span>`; }
   else if(wk&&m>=240&&m<570){ cls='pre'; txt=`<b>מסחר מקדים</b> · הבורסה נפתחת היום ב-${ilTime(9,30)}<span class="mlg"> שעון ישראל</span>${end<960?` · יום מקוצר, עד ${ilTime(13,0)}`:''}`; }
-  else if(wk&&end===960&&m>=960&&m<1200){ cls='post'; txt=`<b>מסחר מאוחר</b> · המסחר ממשיך עד ${ilTime(20,0)}`+postIdxTxt(); }
+  else if(wk&&m>=end&&m<(end===960?1200:1020)){ cls='post'; txt=`<b>מסחר מאוחר</b> · ${end<960?'יום מקוצר, ':''}המסחר ממשיך עד ${ilTime(end===960?20:17,0)}`+postIdxTxt(); }   /* after-hours: until 20:00 New York; on an early-close day (13:00) until 17:00 */
   else {
     const nd=new Date(ny); nd.setHours(0,0,0,0); if(!(wk&&m<240)) nd.setDate(nd.getDate()+1);
     while(nd.getDay()===0||nd.getDay()===6||MKT_HOL[mktIso(nd)]) nd.setDate(nd.getDate()+1);   /* the next session: not a weekend, not a holiday */
