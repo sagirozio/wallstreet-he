@@ -4590,7 +4590,8 @@ function anBlock(t,det,reps){
 async function refreshLive(){
   if (document.hidden || location.protocol==='file:') return;
   try {
-    let nv=''; try{ const v=await (await fetch('corev.json',{cache:'no-cache'})).json(); nv=(v&&v.v)||''; if(nv&&nv===CORE_V) return; }catch(e){}   /* tiny file: the same data -> nothing more to fetch */
+    let nv=''; try{ const v=await (await fetch('corev.json',{cache:'no-cache'})).json(); nv=(v&&v.v)||''; }catch(e){}
+    if(nv&&nv===CORE_V){ await loadIntra(); renderFresh(); return; }   /* tiny file: the same core data -> skip core.json, but the intraday tables (pre-market, sectors, breadth, movers) still refresh */
     const r = await fetch('core.json', {cache:'no-cache'}); if(!r.ok) return; if(nv) CORE_V=nv;   /* ETag: unchanged file = 304, no download */
     const d = await r.json(), same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
     if (d.sectors && !same(d.sectors,SECTORS)) { SECTORS={...d.sectors, mem:d.sectors.mem||(SECTORS||{}).mem, pyDates:d.sectors.pyDates||(SECTORS||{}).pyDates}; renderSec(); }
