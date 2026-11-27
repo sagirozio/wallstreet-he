@@ -59,8 +59,11 @@ if sys.argv[1:] == ["live"]:
     raise SystemExit(0)
 d = json.loads((root / "data.json").read_text(encoding="utf-8"))
 ny = dt.datetime.now(ZoneInfo("America/New_York")).date()
-exp = ny - dt.timedelta(days=1)                      # last completed session (holidays not modelled)
-while exp.weekday() >= 5: exp -= dt.timedelta(days=1)
+# NYSE full-day closures; shortcut: hard-coded through 2027, extend yearly
+HOL = {dt.date.fromisoformat(x) for x in ("2026-01-01 2026-01-19 2026-02-16 2026-04-03 2026-05-25 2026-06-19 2026-07-03 2026-09-07 "
+       "2026-11-26 2026-12-25 2027-01-01 2027-01-18 2027-02-15 2027-03-26 2027-05-31 2027-06-18 2027-07-05 2027-09-06 2027-11-25 2027-12-24").split()}
+exp = ny - dt.timedelta(days=1)                      # last completed session
+while exp.weekday() >= 5 or exp in HOL: exp -= dt.timedelta(days=1)
 def date_of(s):
     m = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", s or ""); return dt.date(int(m[3]), int(m[2]), int(m[1])) if m else None
 P = []
