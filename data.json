@@ -126739,6 +126739,22 @@
  },
  "news": [
   {
+   "id": "2026-11-27-dow-best-week-since-april-2025",
+   "date": "2026-11-27",
+   "t": [
+    "NVDA",
+    "META",
+    "AMZN"
+   ],
+   "tag": "וול סטריט",
+   "tone": "pos",
+   "title": "הדאו בדרך לשבוע הטוב ביותר מאז אפריל 2025",
+   "body": "לפי Dimsum Daily, בשעות הבוקר של ניו יורק הדאו ג׳ונס הוסיף כ-370 נקודות והיה בדרך לעלייה שבועית של כ-5%, הטובה ביותר מאז אפריל 2025; ה-S&P 500 עלה השבוע בכמעט 5% והנאסד״ק ביותר מ-5%. הזינוק של 31% ב-Nvidia ביום שני, עם חזרת ג׳נסן הואנג לתפקיד המנכ״ל, הוביל את המהלך, והיום Meta ו-Amazon עולות בכ-3%. המסחר ייסגר היום ב-20:00 שעון ישראל.",
+   "src": "Dimsum Daily",
+   "url": "https://www.dimsumdaily.hk/wall-street-stocks-climb-on-friday-to-cap-volatile-thanksgiving-week-with-strong-gains/",
+   "time": "17:48"
+  },
+  {
    "id": "2026-11-27-senators-lutnick-chip-leaks",
    "date": "2026-11-27",
    "t": [
