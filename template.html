@@ -4650,6 +4650,12 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('submit',e=>{ if(e.target.id!=='wAdd') return; e.preventDefault();
   const q=$('wQ').value.trim(); if(!q) return; const ix=stockIndex(), T=q.toUpperCase();
+  /* a pasted list (commas, spaces, lines; also "NASDAQ:MRNA" from other sites' exports): every symbol the site knows is added, in the pasted order */
+  const P=[...new Set(T.split(/[\s,;|]+/).map(x=>x.replace(/^[A-Z]+:/,'').replace(/[^A-Z0-9.\-]/g,'')).filter(Boolean))];
+  if(P.length>1&&P.filter(x=>ix[x]).length>=Math.max(1,P.length/2)){ const ok=P.filter(x=>ix[x]), bad=P.filter(x=>!ix[x]), add=ok.filter(x=>!inWatch(x)), room=60-WATCH.length, put=add.slice(0,Math.max(0,room));
+    if(put.length){ WATCH=[...WATCH,...put].slice(0,60); saveWatch(); renderWatch(); wlBtns(); }
+    $('wQ').value=''; const msg=(put.length?`נוספו ${put.length} מניות`:'לא נוספו מניות')+(ok.length-add.length?` · ${ok.length-add.length} כבר ברשימה`:'')+(add.length>put.length?` · ${add.length-put.length} לא נכנסו (עד 60 ברשימה)`:'')+(bad.length?` · לא נמצאו: ${bad.slice(0,6).join(', ')}${bad.length>6?' ועוד '+(bad.length-6):''}`:'');
+    $('wQ').placeholder=msg; toast(msg); return; }
   const hit=ix[T]?ix[T]:(searchStocks(q).filter(x=>!x.crypto&&!x.etf)[0]||null);
   if(hit){ if(!inWatch(hit.t)) toggleWatch(hit.t); $('wQ').value=''; $('wQ').placeholder='נוספה: '+hit.t+'. אפשר להוסיף עוד'; }
   else { $('wQ').value=''; $('wQ').placeholder='לא מצאנו "'+q+'". נסו סימול, למשל NVDA'; } });
