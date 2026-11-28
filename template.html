@@ -2539,7 +2539,7 @@ function hvcShow(a,t){ const k=++HVC.k, s=stockIndex()[t], E=s?null:etfAny(t); i
     let pu='',pd='',wu='',wd='';
     B.forEach((x,i)=>{ const cx=cw*(i+.5), up=x.c>=x.o, y1=Y(Math.max(x.o,x.c)), y2=Y(Math.min(x.o,x.c)), w=`M${R(cx)} ${R(Y(x.h))}V${R(Y(x.l))}`, r=`M${R(cx-bw/2)} ${R(y1)}h${R(bw)}v${R(Math.max(1,y2-y1))}h${R(-bw)}z`; if(up){ wu+=w; pu+=r; } else { wd+=w; pd+=r; } });
     c.innerHTML=`<div class="hvh"><b dir="ltr">${esc(t)}</b><span dir="auto">${esc(nm||'')}</span></div><div class="hvp"><b class="num">${px>=1000?Math.round(px).toLocaleString('en-US'):px.toFixed(2)}</b>${d==null?'':`<span class="num ${d>=0?'up':'down'}" dir="ltr">${d>0?'+':''}${d.toFixed(2)}%</span>`}</div>`+
-      `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><path d="${wu}" stroke="${UP}" stroke-width="1" fill="none"/><path d="${wd}" stroke="${DN}" stroke-width="1" fill="none"/><path d="${pu}" fill="${UP}"/><path d="${pd}" fill="${DN}"/></svg>`+
+      `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><g shape-rendering="crispEdges"><path d="${wu}" stroke="${UP}" stroke-width="1" fill="none"/><path d="${wd}" stroke="${DN}" stroke-width="1" fill="none"/><path d="${pu}" fill="${UP}"/><path d="${pd}" fill="${DN}"/></g></svg>`+
       `<div class="hvf"><span>${n>=120?'6 חודשים':n+' ימי מסחר'} <b class="num ${ch>=0?'up':'down'}" dir="ltr">${ch>0?'+':''}${ch.toFixed(1)}%</b></span>${rs!=null?`<span>RS <b class="num">${rs}</b></span>`:''}</div>`;
     c.hidden=false; const r=a.getBoundingClientRect(), w=c.offsetWidth, h=c.offsetHeight;
     c.style.left=Math.max(8,Math.min(innerWidth-w-8,r.right-w))+'px'; c.style.top=(r.bottom+8+h>innerHeight-8?Math.max(8,r.top-h-8):r.bottom+8)+'px'; }).catch(()=>{}); }
@@ -3344,6 +3344,12 @@ window.addEventListener('hashchange',ocFullOff);
 window.addEventListener('orientationchange',()=>{ setTimeout(()=>ocEach(ocDraw),120); setTimeout(()=>ocEach(ocDraw),450); });   /* some phones report the new size late */
 const ocBox=el=>el&&el.closest?el.closest('.ocbox'):null;
 const ocEach=fn=>document.querySelectorAll('.ocbox').forEach(b=>{ if(b._t&&b._g){ try{ fn(b); }catch(e){} } });
+/* the candles are drawn on the screen's pixel grid from where the chart sat when it was drawn. When that changes by a part of a pixel (content above it loaded,
+   the window moved to another screen, the browser zoom changed, an opening animation ended) the chart is drawn again; a plain scroll moves it by whole pixels and costs nothing */
+function ocGridChk(){ if(OCD||document.hidden) return; ocEach(b=>{ const svg=b.querySelector('.ocS'), g=b._g; if(!svg||!g.dpr) return; const r=svg.getBoundingClientRect(); if(!r.width) return;
+  const d=Math.max(1,Math.min(4,window.devicePixelRatio||1)), fr=v=>v-Math.floor(v+1e-6), off=(a,c)=>{ const x=Math.abs(a-c); return Math.min(x,1/d-x); }, ex=Math.abs(r.width-(svg.clientWidth||0))<1;
+  if(d!==g.dpr||ex!==g.ex||(ex&&(off(fr(r.left*d)/d,g.ox)>.02||off(fr(r.top*d)/d,g.oy)>.02))) ocReq(b); }); }
+{ let t=0; document.addEventListener('scroll',()=>{ if(t) return; t=requestAnimationFrame(()=>{ t=0; ocGridChk(); }); },{capture:true,passive:true}); setInterval(ocGridChk,1500); }
 function ocLiveTick(){ try{ ocAlertsCheck(); }catch(e){} if(OCD) return; ocEach(ocDraw); }   /* after every live.json refresh */
 /* averages. A moving average is computed on its own bar size and mapped onto the bars on screen: each bar takes the value of the last MA bar up to its date */
 function ocMaOf(A,n,kind){ const M=A._ma||(A._ma={}), key=(kind||'s')+n; if(M[key]) return M[key]; const r=new Array(A.length).fill(null); let s=0;
@@ -3565,7 +3571,7 @@ document.addEventListener('keydown',e=>{ const tg=e.target; if(tg&&/^(INPUT|SELE
 window.addEventListener('storage',e=>{ if(e.key==='ocDr'){ try{ const o=JSON.parse(e.newValue||'{}'); if(o&&typeof o==='object') OCDR=o; }catch(_){}
     try{ const o=JSON.parse(localStorage.getItem('ocDrT')||'{}'); if(o&&typeof o==='object') OCDT=o; Object.keys(OCDJ).forEach(t=>delete OCDJ[t]); Object.keys(OCDR).forEach(t=>{ OCDJ[t]=JSON.stringify(OCDR[t]); }); }catch(_){}   /* another tab drew: its stamps are ours too */
     ocAlRefresh(); ocEach(ocDraw); } });
-const ocP=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v>=100?v.toFixed(1):v.toFixed(2);   /* axis labels */
+const ocP=v=>v>=10000?Math.round(v).toLocaleString('en-US'):v>=1000?v.toFixed(1):v.toFixed(2);   /* the price tags on the axis (last price, crosshair, lines): cents below 1,000, as wide as the tag allows above */
 /* in the quick-view window the chart takes the height the window leaves, so the time axis and the volume are never cut off (at least 240px; never taller than usual) */
 function ocFitQv(svg,h){ try{ const q=svg.closest('.qvb'); if(!q) return h; const top=svg.getBoundingClientRect().top-q.getBoundingClientRect().top+q.scrollTop, cs=getComputedStyle(q);
   const rb=svg.closest('.ocd')&&svg.closest('.ocd').querySelector('.ocrb'); return Math.max(240,Math.min(h,Math.round(q.clientHeight-parseFloat(cs.paddingBottom||0)-top-58-(rb?rb.offsetHeight+4:0)))); }catch(e){ return h; } }
@@ -3583,7 +3589,13 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
   svg.style.touchAction=(box._tool||box._sel)?'none':'';
   const s0=L-nn-box._off, V=[];   /* the offset is fractional, so the chart moves smoothly and not bar by bar */
   for(let a=Math.max(0,Math.ceil(s0-1)); a<=Math.min(L-1,Math.floor(s0+nn)); a++){ const x=A[a]; V.push({d:x.d,o:x.o,h:x.h,l:x.l,c:x.c,v:x.v,k:a-s0,a}); } if(!V.length) return; box._V=V;
-  const full=!!box._full, W=Math.max(260,Math.round(svg.clientWidth||box.clientWidth||680)), sm=W<520, H0=ocFitQv(svg,sm?330:Math.round(Math.min(460,W*.53))), H=full?Math.max(170,svg.parentElement.clientHeight):box._big?Math.max(H0,Math.min(780,Math.round(innerHeight*.78))):H0, pl=sm?4:8, pr=sm?46:54, pt=10, pb=22, vh=full?Math.max(36,Math.round(H*.15)):sm?52:Math.round(H*.16), ph=H-pt-pb-(cv?vh+8:0);   /* full screen: the height the screen leaves */
+  /* sharpness: every straight edge (candles, wicks, volume, grid, price lines) is put on the screen's own pixel grid. DPR = device pixels per CSS pixel;
+     ox / oy = where the drawing starts inside a device pixel (the chart can sit at a fractional position on the page); the drawing's width is the exact width on screen,
+     so one unit is one CSS pixel. SN = the centre of a line n device pixels thick, SX / SY = an edge, both on the grid */
+  const r0=svg.getBoundingClientRect(), DPR=Math.max(1,Math.min(4,window.devicePixelRatio||1)), cw0=svg.clientWidth||0, exact=cw0>0&&Math.abs(r0.width-cw0)<1, fr=v=>v-Math.floor(v+1e-6),
+    ox=exact?fr(r0.left*DPR)/DPR:0, oy=exact?fr(r0.top*DPR)/DPR:0, SN=(v,o,n)=>(Math.round((v+o)*DPR-n/2)+n/2)/DPR-o, SX=v=>Math.round((v+ox)*DPR)/DPR-ox, SY=v=>Math.round((v+oy)*DPR)/DPR-oy,
+    F=v=>+v.toFixed(3), N1=Math.max(1,Math.round(DPR)), GN=Math.max(1,Math.round(DPR*.6)), CE=' shape-rendering="crispEdges"';
+  const full=!!box._full, W=Math.max(260,exact?+r0.width.toFixed(2):Math.round(cw0||box.clientWidth||680)), sm=W<520, H0=ocFitQv(svg,sm?330:Math.round(Math.min(460,W*.53))), H=full?Math.max(170,svg.parentElement.clientHeight):box._big?Math.max(H0,Math.min(780,Math.round(innerHeight*.78))):H0, pl=sm?4:8, pr=sm?46:54, pt=10, pb=22, vh=full?Math.max(36,Math.round(H*.15)):sm?52:Math.round(H*.16), ph=H-pt-pb-(cv?vh+8:0);   /* full screen: the height the screen leaves */
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.style.height=H+'px';
   /* latest price: the live quote while it is fresh, otherwise the last close; pre-market / after-hours price only during those hours */
   const q=ocQuote(t), D=ocData(t), dl=D[D.length-1], lp=q&&q[0]?q[0]:dl.c, lup=q&&q[1]!=null?q[1]>=0:dl.c>=(D.length>1?D[D.length-2].c:dl.o), EX=ocExt(t); box._ex=EX;
@@ -3597,8 +3609,8 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
       else if(!OCBAD[cs]){ OCBAD[cs]=1; ocEnsure(cs).then(j=>{ if(j) delete OCBAD[cs]; ocReq(box); }); } } } box._cm=CM;
   const lgw=!!OCPREF.lg; if(lgw&&lo>0&&hi>lo){ const r=Math.log(hi/lo)*.06||.01; lo*=Math.exp(-r); hi*=Math.exp(r); } else { const pad=(hi-lo)*.06||hi*.01||1; lo=Math.max(0,lo-pad); hi+=pad; } if(box._y){ lo=box._y[0]; hi=box._y[1]; }
   const LG=lgw&&lo>0&&hi>lo, lhi=LG?Math.log(hi):0, llo=LG?Math.log(lo):0;   /* logarithmic price scale: equal distances = equal % moves */
-  const cw=(W-pl-pr)/nn, X=i=>pl+cw*(i+.5), Xi=i=>pl+cw*(i-s0+.5), Y=LG?v=>pt+(lhi-Math.log(v>0?v:lo))/(lhi-llo)*ph:v=>pt+(hi-v)/(hi-lo)*ph, UP=/^#[0-9a-f]{6}$/i.test(OCPREF.cu||'')?OCPREF.cu:'#2ea463', DN=/^#[0-9a-f]{6}$/i.test(OCPREF.cd||'')?OCPREF.cd:'#ef4444', R=v=>v.toFixed(1);
-  box._g={W,H,pl,pr,pt,pb,ph,cw,lo,hi,s0,vh:0,vmx:0,lg:LG};
+  const cw=(W-pl-pr)/nn, X=i=>pl+cw*(i+.5), Xi=i=>pl+cw*(i-s0+.5), Y=LG?v=>pt+(lhi-Math.log(v>0?v:lo))/(lhi-llo)*ph:v=>pt+(hi-v)/(hi-lo)*ph, UP=/^#[0-9a-f]{6}$/i.test(OCPREF.cu||'')?OCPREF.cu:'#2ea463', DN=/^#[0-9a-f]{6}$/i.test(OCPREF.cd||'')?OCPREF.cd:'#ef4444', R=v=>v.toFixed(2);
+  box._g={W,H,pl,pr,pt,pb,ph,cw,lo,hi,s0,vh:0,vmx:0,lg:LG,dpr:DPR,ox,oy,gn:GN,ex:exact};
   /* look: background colour, watermark, horizontal / vertical grid lines (the visitor's choice); the text and grid colours follow a light or a dark background */
   const BG=OCPREF.bg||'', dark=BG?ocLum(BG)<.55:!document.documentElement.classList.contains('light'), GR=dark?'#24272e':'#e3e6eb', TX=dark?'#7d8590':'#5b6470', INK=dark?'#e6edf3':'#111827';
   let o=BG?`<rect class="bg" width="${W}" height="${H}" fill="${BG}"/>`:'';
@@ -3606,35 +3618,38 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
     o+=`<text class="wm" x="${pl+(W-pl-pr)/2}" y="${pt+ph/2}" font-size="${fs}" font-weight="${ww<2?400:700}" fill="${INK}"${ww>2?` stroke="${INK}" stroke-width="${(fs*.045).toFixed(1)}" stroke-linejoin="round"`:''} opacity="${(Math.max(2,Math.min(40,+OCPREF.wmo||6))*.7/100).toFixed(3)}" text-anchor="middle" dominant-baseline="middle">${esc(t)}, 1${tf}</text>`; }   /* smaller and fainter than before: the candles come first */
   const PTN=OCPREF.gh?[3,5,9][(+OCPREF.ghn||2)-1]||5:5, PT=LG?ocTicksLog(lo,hi,PTN+1):ocTicks(lo,hi,PTN), pf=v=>v>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(PT.dec);   /* round prices; the density setting = about how many */
   const _lpy=lp>=lo&&lp<=hi?Y(lp):-99;   /* the axis number under the last-price tag is not drawn (it showed through around the tag) */
-  PT.v.forEach(v=>{ const y=Y(v); if(y<pt+2||y>pt+ph-1) return; o+=(OCPREF.gh?`<line x1="${pl}" x2="${W-pr}" y1="${R(y)}" y2="${R(y)}" stroke="${GR}" stroke-width=".7"/>`:'')+(Math.abs(y-_lpy)<14?'':`<text x="${W-pr+6}" y="${R(y+4)}" font-size="11" fill="${TX}">${pf(v)}</text>`); });
+  PT.v.forEach(v=>{ const y=Y(v); if(y<pt+2||y>pt+ph-1) return; o+=(OCPREF.gh?`<line x1="${pl}" x2="${W-pr}" y1="${F(SN(y,oy,GN))}" y2="${F(SN(y,oy,GN))}" stroke="${GR}" stroke-width="${F(GN/DPR)}"${CE}/>`:'')+(Math.abs(y-_lpy)<14?'':`<text x="${W-pr+6}" y="${R(y+4)}" font-size="11" fill="${TX}">${pf(v)}</text>`); });
   const vn=OCPREF.gv?(sm?[3,4,6]:[4,7,11])[(+OCPREF.gvn||2)-1]||(sm?4:7):(sm?4:7), XT=ocXTicks(A,V,nn,tf,Math.max(2,Math.min(Math.round(vn*1.35),Math.floor((W-pl-pr)/46))));
-  XT.forEach(k=>{ const x=X(k.k); if(x<pl+12||x>W-pr-6) return; o+=(OCPREF.gv?`<line x1="${R(x)}" x2="${R(x)}" y1="${pt}" y2="${H-pb}" stroke="${GR}" stroke-width=".7"/>`:'')+`<text x="${R(x)}" y="${H-6}" font-size="11" fill="${k.y?INK:TX}"${k.y?' font-weight="600"':''} text-anchor="middle">${k.t}</text>`; });
+  XT.forEach(k=>{ const x=X(k.k); if(x<pl+12||x>W-pr-6) return; o+=(OCPREF.gv?`<line x1="${F(SN(x,ox,GN))}" x2="${F(SN(x,ox,GN))}" y1="${pt}" y2="${H-pb}" stroke="${GR}" stroke-width="${F(GN/DPR)}"${CE}/>`:'')+`<text x="${R(x)}" y="${H-6}" font-size="11" fill="${k.y?INK:TX}"${k.y?' font-weight="600"':''} text-anchor="middle">${k.t}</text>`; });
   o+='<!--VAX-->';
   const cid=box._id+'c'; o+=`<defs><clipPath id="${cid}"><rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}"/></clipPath></defs><g clip-path="url(#${cid})">`;
   /* candles and volume bars as a few paths (up / down), so years of bars stay fast. When the bars are narrower than ~1.6px several of them are drawn as one candle
      (one column and one colour by first open / last close, summed volume): otherwise they overlap and the colour drawn last smears over the other. Display only: the figures row stays per bar */
   const m=cw<1.6?Math.ceil(1.6/cw):1, vm=cv&&OCPREF.vma.on?ocVma(A,OCPREF.vma.n):null; box._vm=vm; let G=V;
   if(m>1){ G=[]; let cur=null; V.forEach(x=>{ const b=Math.floor(x.a/m); if(!cur||cur.b!==b){ cur={b,k0:x.k,k1:x.k,o:x.o,h:x.h,l:x.l,c:x.c,v:x.v||0,bs:[x]}; G.push(cur); } else { cur.k1=x.k; cur.h=Math.max(cur.h,x.h); cur.l=Math.min(cur.l,x.l); cur.c=x.c; cur.v+=x.v||0; cur.bs.push(x); } }); G.forEach(x=>{ x.k=(x.k0+x.k1)/2; }); }
-  const gw=cw*m, bw=Math.max(1,gw*.65), ww=Math.min(1,Math.max(.6,gw*.3)); let mv=1; if(cv){ G.forEach(x=>{ if(x.v>mv) mv=x.v; }); if(vm) V.forEach(x=>{ if(vm[x.a]*m>mv) mv=vm[x.a]*m; }); box._g.vh=vh; box._g.vmx=mv/m; }   /* for the crosshair: the volume strip's height and the volume at its top */
+  const gw=cw*m; let mv=1;
+  /* whole device pixels: WD = the wick, BD = the body. The body is as odd or as even as the wick, so the wick sits exactly in its middle, and one pixel at least stays empty between two candles */
+  const WD=Math.max(1,Math.round(DPR*Math.min(1,Math.max(.5,gw*.25)))); let BD=Math.max(WD,Math.round(gw*.7*DPR)); if(gw*DPR>=3) BD=Math.min(BD,Math.max(WD,Math.floor(gw*DPR)-1)); if((BD-WD)%2) BD=Math.max(WD,BD-1);
+  const bw=BD/DPR, ww=WD/DPR, MINH=N1/DPR, OW=gw<3?Math.max(1,Math.round(DPR*Math.max(.6,Math.min(1,gw*.5)))):Math.max(1,Math.round(DPR*Math.max(1,Math.min(2,gw*.18))));   /* OW = the line of an OHLC bar */ if(cv){ G.forEach(x=>{ if(x.v>mv) mv=x.v; }); if(vm) V.forEach(x=>{ if(vm[x.a]*m>mv) mv=vm[x.a]*m; }); box._g.vh=vh; box._g.vmx=mv/m; }   /* for the crosshair: the volume strip's height and the volume at its top */
   /* volume axis: two round levels on the price axis's side (K / M / B per bar; merged bars show the per-bar scale) */
   { let vax=''; if(cv&&mv>1&&vh>=28){ const per=mv/m, st=[1,2,2.5,5,10], e=Math.pow(10,Math.floor(Math.log10(per/2))); let s1=e; for(const f of st){ if(e*f*2<=per*.98) s1=e*f; } const vf=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?0:1).replace(/\.0$/,'')+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1).replace(/\.0$/,'')+'M':v>=1e3?Math.round(v/1e3)+'K':String(Math.round(v));
       [s1,s1*2].forEach(v=>{ const y=H-pb-v*m/mv*vh; if(y<H-pb-vh-2||y>H-pb-8) return; vax+=`<text x="${W-pr+6}" y="${R(y+3.5)}" font-size="10" fill="${TX}" opacity=".85">${vf(v)}</text>`; }); }
     o=o.replace('<!--VAX-->',vax); }
   let pu='',pd='',wu='',wd='',vu='',vd='',vuh='',vdh='',lp1=''; const va=cv&&OCPREF.vx!==0?ocVma(A,50):null;   /* unusual volume: a bar with at least twice its 50-bar average is drawn at full strength */
-  G.forEach(x=>{ const cx=X(x.k), up=x.c>=x.o;
-    if(cv&&x.v){ const h=x.v/mv*vh, q2=`M${R(cx-bw/2)} ${H-pb}v${R(-h)}h${R(bw)}v${R(h)}z`, big=va&&(x.bs||[x]).some(b=>va[b.a]>0&&b.v>=2*va[b.a]); if(big){ if(up) vuh+=q2; else vdh+=q2; } else if(up) vu+=q2; else vd+=q2; }
+  G.forEach(x=>{ const cx=X(x.k), up=x.c>=x.o, xl=Math.round((cx+ox)*DPR-WD/2), wx=xl/DPR-ox, bx=(xl-(BD-WD)/2)/DPR-ox;   /* wx / bx = the left edge of the wick / of the body */
+    if(cv&&x.v){ const yb=SY(H-pb), yt=Math.min(yb-1/DPR,SY(H-pb-x.v/mv*vh)), q2=`M${F(bx)} ${F(yb)}V${F(yt)}h${F(bw)}V${F(yb)}z`, big=va&&(x.bs||[x]).some(b=>va[b.a]>0&&b.v>=2*va[b.a]); if(big){ if(up) vuh+=q2; else vdh+=q2; } else if(up) vu+=q2; else vd+=q2; }
     if(!line){ let w2='', b2='';   /* a merged candle keeps each bar's own range (same column, one colour), so a price gap between two of its bars stays empty */
-      (x.bs||[x]).forEach(q3=>{ const yo=Y(q3.o), yc=Y(q3.c); w2+=`M${R(cx)} ${R(Y(q3.h))}V${R(Y(q3.l))}`;
-        if(ohlc){ if(gw>=3){ const tk=Math.min(Math.max(1.2,gw*.38),6); w2+=`M${R(cx-tk)} ${R(yo)}H${R(cx)}M${R(cx)} ${R(yc)}H${R(cx+tk)}`; } }   /* zoomed out (bars closer than 3px): high-low lines only, so the ticks do not run into each other */   /* OHLC bars: open tick left, close tick right */
-        else b2+=`M${R(cx-bw/2)} ${R(Math.min(yo,yc))}h${R(bw)}v${R(Math.max(1,Math.abs(yo-yc)))}h${R(-bw)}z`; });
+      (x.bs||[x]).forEach(q3=>{ const yo=Y(q3.o), yc=Y(q3.c), yh=SY(Y(q3.h)), yl=Math.max(yh+MINH,SY(Y(q3.l)));
+        if(ohlc){ const xc=SN(cx,ox,OW); w2+=`M${F(xc)} ${F(yh)}V${F(yl)}`; if(gw>=3){ const tk=Math.round(Math.min(Math.max(1.2,gw*.38),6)*DPR)/DPR; w2+=`M${F(xc-tk)} ${F(SN(yo,oy,OW))}H${F(xc)}M${F(xc)} ${F(SN(yc,oy,OW))}H${F(xc+tk)}`; } }   /* zoomed out (bars closer than 3px): high-low lines only, so the ticks do not run into each other */   /* OHLC bars: open tick left, close tick right */
+        else { const top=SY(Math.min(yo,yc)), bot=Math.max(top+MINH,SY(Math.max(yo,yc))); w2+=`M${F(wx)} ${F(yh)}h${F(ww)}V${F(yl)}h${F(-ww)}z`; b2+=`M${F(bx)} ${F(top)}h${F(bw)}V${F(bot)}h${F(-bw)}z`; } });   /* the wick is a filled column, not a stroke: its two edges are on the pixel grid */
       if(up){ wu+=w2; pu+=b2; } else { wd+=w2; pd+=b2; } } });
   if(line) V.forEach(x=>{ lp1+=(lp1?'L':'M')+R(X(x.k))+' '+R(Y(x.c)); });
-  if(vu) o+=`<path d="${vu}" fill="${UP}" opacity=".4"/>`; if(vd) o+=`<path d="${vd}" fill="${DN}" opacity=".4"/>`; if(vuh) o+=`<path class="vx" d="${vuh}" fill="${UP}" opacity=".95"/>`; if(vdh) o+=`<path class="vx" d="${vdh}" fill="${DN}" opacity=".95"/>`;
+  if(vu) o+=`<path d="${vu}" fill="${UP}" opacity=".4"${CE}/>`; if(vd) o+=`<path d="${vd}" fill="${DN}" opacity=".4"${CE}/>`; if(vuh) o+=`<path class="vx" d="${vuh}" fill="${UP}" opacity=".95"${CE}/>`; if(vdh) o+=`<path class="vx" d="${vdh}" fill="${DN}" opacity=".95"${CE}/>`;
   if(vm){ let d=''; V.forEach(x=>{ const v=vm[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(H-pb-v*m/mv*vh); }); if(d) o+=`<path d="${d}" fill="none" stroke="${OCPREF.vma.c}" stroke-width="1.3" stroke-linejoin="round"/>`; }
-  if(line) o+=`<path d="${lp1}" fill="none" stroke="${/^#[0-9a-f]{6}$/i.test(OCPREF.lc||'')?OCPREF.lc:INK}" stroke-width="${Math.max(.5,Math.min(8,+OCPREF.lw||1.7))}" stroke-linejoin="round"/>`;
-  else if(ohlc){ const bwid=gw<3?Math.max(.6,Math.min(1,gw*.5)):Math.max(1,Math.min(2,gw*.18)), hx=c=>/^#[0-9a-f]{6}$/i.test(c||''), BU=hx(OCPREF.bu)?OCPREF.bu:UP, BD=hx(OCPREF.bd)?OCPREF.bd:DN; if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${BU}" stroke-width="${bwid}"/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${BD}" stroke-width="${bwid}"/>`; }
-  else { if(wu) o+=`<path d="${wu}" fill="none" stroke="${UP}" stroke-width="${ww}"/><path class="cu" d="${pu}" fill="${UP}"/>`; if(wd) o+=`<path d="${wd}" fill="none" stroke="${DN}" stroke-width="${ww}"/><path class="cd" d="${pd}" fill="${DN}"/>`; }
-  MAS.forEach(m=>{ let d=''; V.forEach(x=>{ const v=m.v[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(Y(v)); }); if(d) o+=`<path class="ma" d="${d}" fill="none" stroke="${m.c}" stroke-opacity="${m.o/100}" stroke-width="${m.w}" stroke-linejoin="round"/>`; });
+  if(line) o+=`<path d="${lp1}" fill="none" stroke="${/^#[0-9a-f]{6}$/i.test(OCPREF.lc||'')?OCPREF.lc:INK}" stroke-width="${Math.max(.5,Math.min(8,+OCPREF.lw||1.7))}" stroke-linejoin="round" stroke-linecap="round"/>`;
+  else if(ohlc){ const bwid=F(OW/DPR), hx=c=>/^#[0-9a-f]{6}$/i.test(c||''), BU=hx(OCPREF.bu)?OCPREF.bu:UP, BDC=hx(OCPREF.bd)?OCPREF.bd:DN; if(wu) o+=`<path class="cu" d="${wu}" fill="none" stroke="${BU}" stroke-width="${bwid}"${CE}/>`; if(wd) o+=`<path class="cd" d="${wd}" fill="none" stroke="${BDC}" stroke-width="${bwid}"${CE}/>`; }
+  else { if(wu) o+=`<path d="${wu}" fill="${UP}"${CE}/><path class="cu" d="${pu}" fill="${UP}"${CE}/>`; if(wd) o+=`<path d="${wd}" fill="${DN}"${CE}/><path class="cd" d="${pd}" fill="${DN}"${CE}/>`; }
+  MAS.forEach(m=>{ let d=''; V.forEach(x=>{ const v=m.v[x.a]; if(v!=null) d+=(d?'L':'M')+R(X(x.k))+' '+R(Y(v)); }); if(d) o+=`<path class="ma" d="${d}" fill="none" stroke="${m.c}" stroke-opacity="${m.o/100}" stroke-width="${m.w}" stroke-linejoin="round" stroke-linecap="round"/>`; });
   if(CM){ let d=''; CM.P.forEach(([k,v])=>{ d+=(d?'L':'M')+R(X(k))+' '+R(Y(v)); }); o+=`<path class="cmp" d="${d}" fill="none" stroke="${OC_CMC}" stroke-width="1.6" stroke-linejoin="round"/>`; }
   /* the visitor's lines: trend lines, horizontal lines, alerts (dashed, with a bell) */
   let tags=''; const bell=(x,y,c,op)=>`<path transform="translate(${R(x)} ${R(y)}) scale(.72)" d="${OC_BELL}" fill="${c}" opacity="${op}"/>`, hdl=(x,y,c)=>`<circle cx="${R(x)}" cy="${R(y)}" r="${OC_TCH?7:5}" fill="${BG||'#0c0d10'}" stroke="${c}" stroke-width="2"/>`;
@@ -3659,14 +3674,14 @@ function ocDraw(box){ const svg=box.querySelector('.ocS'), t=box._t; if(box._rq)
     o+=`<g class="ms"><rect x="${R(x0)}" y="${R(y0)}" width="${R(mw)}" height="${R(mh)}" fill="${mc}" opacity=".16"/><path d="M${R((xa+xb)/2)} ${R(ya)}V${R(yb)}M${R(xa)} ${R((ya+yb)/2)}H${R(xb)}" stroke="${mc}" stroke-width="1" fill="none"/><rect x="${R(lx)}" y="${R(ly)}" width="${R(lw)}" height="36" rx="5" fill="${mc}"/><text x="${R(lx+lw/2)}" y="${R(ly+15)}" font-size="12" font-weight="600" fill="#fff" text-anchor="middle">${l1}</text><text x="${R(lx+lw/2)}" y="${R(ly+29)}" font-size="11" fill="#fff" opacity=".9" text-anchor="middle">${l2}</text></g>`; }
   if(box._pend&&box._tool!=='m'){ const p=box._pend, xa=Xi(p.a.i), ya=Y(p.a.p); o+=`<line x1="${R(xa)}" y1="${R(ya)}" x2="${R(Xi(p.cur.i))}" y2="${R(Y(p.cur.p))}" stroke="${OC_DRC[0]}" stroke-width="1.6"/>`+hdl(xa,ya,OC_DRC[0]); }
   o+='</g>';
-  const ly=Y(lp), lc=lup?UP:DN, lin=lp>=lo&&lp<=hi;   /* the latest price stays on the axis even when the chart is panned away; hidden when outside the visible price range */
-  if(lin) o+=`<line x1="${pl}" x2="${W-pr}" y1="${ly}" y2="${ly}" stroke="${lc}" stroke-dasharray="4 4"/>`;
+  const ly=SN(Y(lp),oy,N1), lc=lup?UP:DN, lin=lp>=lo&&lp<=hi;   /* the latest price stays on the axis even when the chart is panned away; hidden when outside the visible price range */
+  if(lin) o+=`<line x1="${pl}" x2="${W-pr}" y1="${F(ly)}" y2="${F(ly)}" stroke="${lc}" stroke-width="${F(N1/DPR)}" stroke-dasharray="4 4"${CE}/>`;
   o+=tags;
   if(CM){ const lv=CM.P[CM.P.length-1], cy=Y(lv[1]); if(cy>=pt&&cy<=pt+ph&&X(lv[0])>=pl){ const ty=lin&&Math.abs(cy-ly)<19?ly+(cy>=ly?19:-19):cy; o+=`<rect x="${W-pr+1}" y="${R(ty-9)}" width="${pr-2}" height="18" rx="3" fill="${OC_CMC}"/><text x="${W-pr+pr/2}" y="${R(ty+4)}" font-size="${CM.s.length>4?9:11}" font-weight="600" fill="#0c0d10" text-anchor="middle">${esc(CM.s)}</text>`; } }   /* the compared symbol's name on the axis, at the end of its line */
-  if(lin) o+=`<rect x="${W-pr+1}" y="${ly-9}" width="${pr-2}" height="18" rx="3" fill="${lc}"/><text x="${W-pr+pr/2}" y="${ly+4}" font-size="11" fill="#fff" text-anchor="middle">${ocP(lp)}</text>`;
-  if(EX&&EX.v[0]>=lo&&EX.v[0]<=hi){ const ay=Y(EX.v[0]), pre=EX.k==='pre', AC=pre?OC_PRE:OC_POST, ty=Math.abs(ay-ly)<19&&lin?ly+(ay>=ly?19:-19):ay;   /* pre-market (orange) / after-hours (blue): second dashed line + price tag; the tag steps aside when it would cover the price tag */
-    o+=`<line class="ext ${EX.k}" x1="${pl}" x2="${W-pr}" y1="${ay}" y2="${ay}" stroke="${AC}" stroke-dasharray="2 4"/><rect x="${W-pr+1}" y="${ty-9}" width="${pr-2}" height="18" rx="3" fill="${AC}"/><text x="${W-pr+pr/2}" y="${ty+4}" font-size="11" fill="${pre?'#0c0d10':'#fff'}" text-anchor="middle">${ocP(EX.v[0])}</text>`; }
-  o+=`<g class="ocC" style="display:none"><line class="ocX" y1="${pt}" y2="${H-pb}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><line class="ocY" x1="${pl}" x2="${W-pr}" stroke="#7d8590" stroke-width=".7" stroke-dasharray="3 3"/><rect class="ocB" x="${W-pr+1}" width="${pr-2}" height="18" rx="3" fill="#c5cbd3"/><text class="ocT" x="${W-pr+pr/2}" font-size="11" fill="#0c0d10" text-anchor="middle"></text><rect class="ocDB" y="${H-pb+2}" width="68" height="18" rx="3" fill="#c5cbd3"/><text class="ocDT" y="${H-pb+15}" font-size="11" fill="#0c0d10" text-anchor="middle"></text></g>`;
+  if(lin) o+=`<rect x="${W-pr+1}" y="${F(SY(ly-9))}" width="${pr-2}" height="18" rx="3" fill="${lc}"/><text x="${W-pr+pr/2}" y="${F(SY(ly-9)+13)}" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">${ocP(lp)}</text>`;
+  if(EX&&EX.v[0]>=lo&&EX.v[0]<=hi){ const ay=SN(Y(EX.v[0]),oy,N1), pre=EX.k==='pre', AC=pre?OC_PRE:OC_POST, ty=Math.abs(ay-ly)<19&&lin?ly+(ay>=ly?19:-19):ay;   /* pre-market (orange) / after-hours (blue): second dashed line + price tag; the tag steps aside when it would cover the price tag */
+    o+=`<line class="ext ${EX.k}" x1="${pl}" x2="${W-pr}" y1="${F(ay)}" y2="${F(ay)}" stroke="${AC}" stroke-width="${F(N1/DPR)}" stroke-dasharray="2 4"${CE}/><rect x="${W-pr+1}" y="${F(SY(ty-9))}" width="${pr-2}" height="18" rx="3" fill="${AC}"/><text x="${W-pr+pr/2}" y="${F(SY(ty-9)+13)}" font-size="11" fill="${pre?'#0c0d10':'#fff'}" text-anchor="middle">${ocP(EX.v[0])}</text>`; }
+  o+=`<g class="ocC" style="display:none"><line class="ocX" y1="${pt}" y2="${H-pb}" stroke="#7d8590" stroke-width="${F(GN/DPR)}" stroke-dasharray="3 3"${CE}/><line class="ocY" x1="${pl}" x2="${W-pr}" stroke="#7d8590" stroke-width="${F(GN/DPR)}" stroke-dasharray="3 3"${CE}/><rect class="ocB" x="${W-pr+1}" width="${pr-2}" height="18" rx="3" fill="#c5cbd3"/><text class="ocT" x="${W-pr+pr/2}" font-size="11" fill="#0c0d10" text-anchor="middle"></text><rect class="ocDB" y="${H-pb+2}" width="68" height="18" rx="3" fill="#c5cbd3"/><text class="ocDT" y="${H-pb+15}" font-size="11" fill="#0c0d10" text-anchor="middle"></text></g>`;
   svg.innerHTML=o; ocSelBar(box); if(box._hv) ocCross(box); else ocInfo(box); }
 const ocLum=h=>{ const v=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255); return .2126*v[0]+.7152*v[1]+.0722*v[2]; };
 const OC_BGS=['','#000000','#0b1220','#131722','#1e222d','#ffffff'];
@@ -3929,8 +3944,9 @@ setInterval(()=>{ try{ ocClock(); }catch(e){} },30000);
 /* crosshair: stays where the pointer is, also while the chart is redrawn (dragging, drawing a line, live refresh) */
 function ocCross(box){ const svg=box.querySelector('.ocS'), g=box._g, V=box._V, C=svg&&svg.querySelector('.ocC'), hv=box._hv; if(!g||!V||!C||!hv) return; const S=c=>svg.querySelector('.'+c);
   const kf=(hv.xx-g.pl)/g.cw-.5, x=V.find(c=>Math.abs(c.k-kf)<=.5), inV=g.vh>0&&hv.yy>g.H-g.pb-g.vh-4, yc=Math.max(g.pt,Math.min(inV?g.H-g.pb:g.pt+g.ph,hv.yy)), pv=ocVy(g,yc), vv=inV?Math.max(0,(g.H-g.pb-yc)/g.vh*g.vmx):0, vf=v=>v>=1e9?(v/1e9).toFixed(2)+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?1:2)+'M':v>=1e3?Math.round(v/1e3)+'K':String(Math.round(v));   /* over the volume strip the crosshair reads volume, not price */
-  C.style.display=''; const cx=x?g.pl+g.cw*(x.k+.5):Math.min(hv.xx,g.W-g.pr); S('ocX').setAttribute('x1',cx); S('ocX').setAttribute('x2',cx);
-  S('ocY').setAttribute('y1',yc); S('ocY').setAttribute('y2',yc); S('ocB').setAttribute('y',yc-9); S('ocT').setAttribute('y',yc+4); S('ocT').textContent=inV?vf(vv):ocP(pv);
+  C.style.display=''; const cx=x?g.pl+g.cw*(x.k+.5):Math.min(hv.xx,g.W-g.pr), sn=(v,o)=>g.dpr?+((Math.round((v+o)*g.dpr-g.gn/2)+g.gn/2)/g.dpr-o).toFixed(3):v, sx=sn(cx,g.ox), sy=sn(yc,g.oy);   /* the two hairlines on the pixel grid, like the candles */
+  S('ocX').setAttribute('x1',sx); S('ocX').setAttribute('x2',sx);
+  S('ocY').setAttribute('y1',sy); S('ocY').setAttribute('y2',sy); S('ocB').setAttribute('y',yc-9); S('ocT').setAttribute('y',yc+4); S('ocT').textContent=inV?vf(vv):ocP(pv);
   if(!x){ S('ocDT').textContent=''; S('ocDB').setAttribute('width',0); ocInfo(box); return; } S('ocDB').setAttribute('width',68);
   const tx=Math.max(g.pl+34,Math.min(g.W-g.pr-34,cx)); S('ocDB').setAttribute('x',tx-34); S('ocDT').setAttribute('x',tx); S('ocDT').textContent=ocDate(box,x.d);
   ocInfo(box,x); }
