@@ -3848,7 +3848,7 @@ function ocShotBlob(box){ return new Promise((res,rej)=>{ try{
       const cv=document.createElement('canvas'); cv.width=Math.round(W*S); cv.height=Math.round((g.H+HD)*S); const x=cv.getContext('2d'); x.scale(S,S); x.fillStyle=BG; x.fillRect(0,0,W,g.H+HD);
       /* right: logo + name */
       const F='Heebo, Arial, Helvetica, sans-serif'; let rx=W-12; if(logo){ x.drawImage(logo,rx-30,12,30,30); rx-=38; }
-      x.textBaseline='alphabetic'; x.direction='ltr'; x.textAlign='right'; x.fillStyle='#2ea463'; x.font='700 17px '+F; x.fillText('Wallstreeter',rx,28); x.fillStyle=MUT; x.font='11px '+F; x.fillText('wallstreeter.co.il',rx,42);
+      x.textBaseline='alphabetic'; x.direction='ltr'; x.textAlign='right'; x.fillStyle=INK; x.font='700 17px '+F; x.fillText('Wallstreeter',rx,28); x.fillStyle=MUT; x.font='11px '+F; x.fillText('wallstreeter.co.il',rx,42);
       /* left: symbol, bar size and the last date; under it, small, who took the screenshot */
       const A=box._A, last=A&&A[A.length-1]; x.textAlign='left'; x.fillStyle=INK; x.font='700 16px '+F; const t1=box._t+' · 1'+(box._tf||'D'); x.fillText(t1,12,28);
       if(last){ const w1=x.measureText(t1).width, pv=A.length>1?A[A.length-2].c:last.o, pc=(last.c/pv-1)*100; x.font='13px '+F; x.fillStyle=INK; const t2=ocP(last.c); x.fillText(t2,12+w1+10,28); x.fillStyle=pc>=0?'#2ea463':'#ef4444'; x.fillText((pc>=0?'+':'')+pc.toFixed(2)+'%',12+w1+16+x.measureText(t2).width,28); }
@@ -3909,7 +3909,7 @@ function briefShotBlob(){ return new Promise((res,rej)=>{ try{
     let S=Math.max(2,Math.min(8,Math.ceil(2700/W))); while(S>2&&W*S*H*S>15.5e6) S--;
     const cv=document.createElement('canvas'); cv.width=W*S; cv.height=Math.round(H*S); const x=cv.getContext('2d'); x.scale(S,S); x.fillStyle=BG; x.fillRect(0,0,W,H); x.textBaseline='alphabetic';
     /* header */
-    let rx=W-14; if(logo){ x.drawImage(logo,rx-30,12,30,30); rx-=38; } x.direction='ltr'; x.textAlign='right'; x.fillStyle=GRN; x.font='700 17px '+F; x.fillText('Wallstreeter',rx,28); x.fillStyle=MUT; x.font='11px '+F; x.fillText('wallstreeter.co.il',rx,42);
+    let rx=W-14; if(logo){ x.drawImage(logo,rx-30,12,30,30); rx-=38; } x.direction='ltr'; x.textAlign='right'; x.fillStyle=INK; x.font='700 17px '+F; x.fillText('Wallstreeter',rx,28); x.fillStyle=MUT; x.font='11px '+F; x.fillText('wallstreeter.co.il',rx,42);
     const dd=String(nyToday()).split('-'); x.textAlign='left'; x.fillStyle=MUT; x.font='12px '+F; x.fillText(dd.length===3?`${+dd[2]}.${+dd[1]}.${dd[0]}`:'',14,28);
     x.strokeStyle=LN; x.lineWidth=1; x.beginPath(); x.moveTo(0,56.5); x.lineTo(W,56.5); x.stroke();
     /* title + index line */
