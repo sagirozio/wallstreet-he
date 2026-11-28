@@ -708,6 +708,48 @@ button.sxr{cursor:pointer}button.sxr:hover{background:var(--panel2)}.sxr.on{back
 .sxb{position:relative;height:10px;display:block}.sxb i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--muted);opacity:.5}.sxb u{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--muted);opacity:.7}
 .sxr.on .sxb i{background:var(--sxg);opacity:1}.sxr.idx .sxb i{background:#5b8cff;opacity:1}.sxr.idx{color:var(--muted)}.sxr.all .sxn2{font-style:normal}
 @media(max-width:560px){.sxr{grid-template-columns:104px 1fr 54px;gap:8px;padding:3px 4px;min-height:38px}}
+:root{--hl:#e6edf3}html.light{--hl:#0f172a}
+#sdb,#tpb{display:none}
+/* desktop (1200px and wider): the menu is a fixed column at the side and a slim bar on top carries the market status, the indexes, the search and the account.
+   The old header, the menu row, the tab row and the running news strip are not shown there; phones and tablets keep them */
+@media(min-width:1200px){
+  body{padding-inline-start:216px;padding-top:44px}header,#navbar,#mvWrap{display:none!important}
+  #sdb{display:flex;flex-direction:column;position:fixed;inset-block:0;inset-inline-start:0;width:216px;background:var(--panel);border-inline-end:1px solid var(--line);z-index:31;overflow-y:auto;padding-bottom:12px}
+  #sdb .sdl{height:44px;flex:none;display:flex;align-items:center;gap:9px;padding:0 18px;border-bottom:1px solid var(--line);font-size:16.5px;font-weight:800;color:var(--hl);text-decoration:none;letter-spacing:-.01em}#sdb .sdl svg{width:22px;height:22px}
+  #sdbN{padding-top:10px}#sdbN p{font-size:11px;font-weight:600;color:var(--muted);margin:18px 20px 5px;letter-spacing:.06em}
+  #sdb a{flex:none;border:0;border-radius:0;text-align:start;white-space:normal;min-width:0}#sdb .sdl{border-bottom:1px solid var(--line)}
+  #sdbN a{display:block;min-height:0;line-height:1.45;padding:6px 20px;color:var(--text);text-decoration:none;font-size:13.5px;border-inline-start:2px solid transparent;background:none}#sdbN a:hover{color:var(--hl);background:var(--panel2);border-color:transparent}
+  #sdbN a.on{color:var(--hl);font-weight:600;border-inline-start-color:var(--accent);background:var(--blue-bg)}
+  #sdb .sdf{margin:auto 0 0;font-size:11px;color:var(--muted);padding:12px 20px 0;border-top:1px solid var(--line);line-height:1.5}
+  #tpb{display:flex;align-items:center;position:fixed;top:0;inset-inline:216px 0;height:44px;background:var(--bg);border-bottom:1px solid var(--line);padding:0 24px;z-index:30;font-size:12.5px;gap:0}
+  #tpSt{color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:7px;padding-inline-end:18px}#tpSt i{width:6px;height:6px;border-radius:50%;background:var(--muted);flex:none}#tpSt.open i{background:var(--green)}#tpSt.pre i,#tpSt.post i{background:var(--amber)}#tpSt b{font-weight:500;color:var(--text)}
+  #tpIx{display:flex;flex:1;min-width:0;overflow:hidden}#tpIx>*{display:flex;gap:7px;align-items:baseline;padding:0 14px;border-inline-start:1px solid var(--line);white-space:nowrap;color:var(--muted);text-decoration:none}
+  #tpIx b{font:500 12px "JetBrains Mono",monospace;color:var(--hl)}#tpIx em{font:400 12px "JetBrains Mono",monospace;font-style:normal}
+  #tpSr{flex:0 0 250px}#tpSr .gsearch{flex:none}#tpSr .gsearch input{height:30px;font-size:13px;border-radius:8px;padding-inline-end:10px}#tpSr .gqk{top:50%;transform:translateY(-50%)}
+  #tpAu{display:flex;align-items:center;gap:8px;margin-inline-start:12px}#tpAu .thbtn{width:30px;height:30px;border-radius:8px}#tpAu .gbtn,#tpAu button:not(.thbtn){min-height:0}
+  body.wsws .wsc{top:60px}
+  #clipFab{right:232px;bottom:20px}.toasts{inset-inline-start:232px;bottom:16px}
+  /* news page */
+  #newsArchive.on{display:grid;grid-template-columns:auto minmax(0,1fr) 240px;column-gap:26px;align-items:end}
+  #newsArchive>h2{margin:0 0 10px;font-size:22px}#nTabs{margin:0;gap:22px}#nTabs button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:0 0 10px;min-height:0;font-size:13.5px;color:var(--muted)}#nTabs button.on{color:var(--hl);border-color:var(--accent);font-weight:600;background:none}
+  #newsArchive .nctl{margin:0 0 7px;display:block}#newsArchive .nctl .search{width:100%}#newsArchive #nq{height:30px;font-size:13px;border-radius:8px}
+  #newsAll{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px}
+}
+.nxw{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:44px}.nxw a{color:inherit;text-decoration:none}.nxw a:hover{text-decoration:underline}
+.nxk{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em}.nxm{font-size:11.5px;color:var(--muted);margin-top:9px}
+.nxl{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:0 36px;padding-bottom:30px}
+.nxl .nxa h3{font-size:30px;line-height:1.22;font-weight:800;margin:8px 0 12px;color:var(--hl);letter-spacing:-.015em}.nxl .nxa p{font-size:15px;line-height:1.7;color:var(--text);margin:0}
+.nxs article{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:13px 0;border-top:1px solid var(--line)}.nxs article:first-child{border-top:0;padding-top:0}
+.nxs time{font:500 11.5px "JetBrains Mono",monospace;color:var(--muted);padding-top:3px}.nxs h4{font-size:14.5px;line-height:1.42;font-weight:600;margin:3px 0 2px;color:var(--hl)}.nxs small{font-size:11.5px;color:var(--muted)}
+.nxt{padding:0 0 30px}.nxh{display:flex;align-items:baseline;justify-content:space-between;border-top:2px solid var(--hl);padding-top:9px;margin-bottom:14px}.nxh h3{font-size:15px;margin:0;color:var(--hl);font-weight:700}
+.nxh button{background:none;border:0;padding:0;font:inherit;font-size:12px;color:var(--muted);cursor:pointer}.nxh button:hover{color:var(--hl)}
+.nxg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.nxg article{padding:0 20px;border-inline-start:1px solid var(--line)}.nxg article:first-child{padding-inline-start:0;border:0}.nxg article:last-child{padding-inline-end:0}
+.nxg h4{font-size:14.5px;line-height:1.45;font-weight:600;margin:0;color:var(--hl);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.nxr section{margin-bottom:28px}.nxr h3{font-size:15px;margin:0 0 4px;color:var(--hl);font-weight:700;border-top:2px solid var(--hl);padding-top:9px;display:flex;justify-content:space-between;align-items:baseline}.nxr h3 small{font-size:11px;font-weight:400;color:var(--muted)}
+.nxv a{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:8px;align-items:baseline;padding:6px 0;font-size:12.5px}.nxv b{font:600 12px "JetBrains Mono",monospace;color:var(--hl);direction:ltr;text-align:right}.nxv span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:right}.nxv em{font:400 12px "JetBrains Mono",monospace;font-style:normal}
+.nxn{padding:10px 0;border-top:1px solid var(--line)}.nxn:first-of-type{border-top:0}.nxn div{display:flex;justify-content:space-between;font:600 12px "JetBrains Mono",monospace;margin-bottom:3px;direction:ltr}.nxn div a{color:var(--hl)}.nxn div em{font-style:normal;font-weight:400}
+.nxn p{font-size:13px;line-height:1.42;margin:0;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nxc{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:12.5px}.nxc:first-of-type{border-top:0}.nxc span{color:var(--muted)}.nxc b{font:500 12px "JetBrains Mono",monospace;color:var(--hl);direction:ltr;text-align:right;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 main.wrap{min-height:100vh}#hubSum{min-height:64px}.sxf{min-height:32px}@media(max-width:640px){#hubSum{min-height:137px}.sxf{min-height:72px}}.ocd .ocsel .pop-c{flex-direction:column;gap:8px;padding:10px}.ocd .ocsel .pg{display:grid;grid-template-columns:repeat(10,22px);gap:4px}.ocd .ocsel .pg .gap{grid-column:1/-1;height:3px}.ocd .ocsel .pop .sw{width:22px;height:22px;border-radius:4px;padding:0;border:0;outline:0}.ocd .ocsel .pop .sw.on{box-shadow:0 0 0 2px #1c2128,0 0 0 4px #e6edf3}.ocd .ocsel .pr{display:flex;gap:4px;align-items:center;padding-top:8px;border-top:1px solid #30363d}.ocd .ocsel .padd{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;color:var(--text);cursor:pointer;position:relative;border-radius:4px}.ocd .ocsel .padd:hover{background:#2d333b}.ocd .ocsel .padd input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;margin:0;border:0}.ocd .ocsel .po{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}.ocd .ocsel .po input{flex:1;width:auto;height:auto;margin:0;padding:0;border:0;background:none;accent-color:#e6edf3}.ocd .ocsel .pov{min-width:44px;text-align:center;border:1px solid #30363d;border-radius:6px;padding:3px 0;color:var(--text)}.ocd [data-ocbig] .xx{display:none;font-size:17px;line-height:1}.ocd .ocS{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}html.ocfull,html.ocfull body{overflow:hidden!important;overscroll-behavior:none}html.ocfull .toasts{z-index:2100}.ocbox.full .ocd{position:fixed;inset:0;z-index:2000;margin:0;border:0;border-radius:0;display:flex;flex-direction:column;height:100vh;height:100dvh;box-sizing:border-box;background:var(--panel);touch-action:none;padding:max(6px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}.ocbox.full .tvb{margin:0 0 4px;flex:none}.ocbox.full .tvb>b{display:block}.ocbox.full [data-ocbig] svg{display:none}.ocbox.full [data-ocbig] .xx{display:block}.ocbox.full .tvb button,.ocbox.full .tvb .vol{height:34px}.ocbox.full .oi{flex:none}.ocbox.full .on2,.ocbox.full .occl{display:none}.ocbox.full .ocw{flex:1;min-height:0}.ocbox.full .ocp{min-height:0}.ocbox.full .ocS{position:absolute;left:0;top:0;height:100%!important;touch-action:none}.ocbox.full .map{position:absolute;top:calc(46px + env(safe-area-inset-top));left:8px;right:8px;z-index:6;max-width:none;max-height:calc(100% - 64px);overflow:auto;touch-action:pan-y;box-shadow:0 10px 30px rgba(0,0,0,.6)}.ocd .ocsel .pop{max-height:calc(100vh - 12px);overflow:auto;touch-action:pan-y}@media(orientation:portrait){.ocbox.full .oct button{width:42px;height:38px}}@media(orientation:landscape){.ocbox.full .tvb{flex-wrap:nowrap}.ocbox.full .oi{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-height:17px}.ocbox.full .ocw{flex-direction:row}.ocbox.full .oct{flex-direction:column;border-bottom:0;border-right:1px solid var(--line);padding:0 4px 0 0}.ocbox.full .oct .sp{width:auto;height:1px;margin:3px 4px}.ocbox.full .oct button{width:36px;height:34px}}.ocd .ocld{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}.ocd .seg{display:inline-flex;gap:2px}.ocd .on2 details{display:inline;margin-inline-start:6px}.ocd .on2 summary{display:inline;cursor:pointer;text-decoration:underline dotted}.ocd .on2 details[open]{display:block;margin:4px 0 0}.qvoc .ocd{margin:0 0 12px}.ocd .occl{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px}.ocd .occl.open{color:var(--text)}.ocd .occl i{width:7px;height:7px;border-radius:50%;background:#2ea463;display:block}.ocd.hold{border-color:var(--accent)}.ocd .ocS{display:block;width:100%;touch-action:pan-y;direction:ltr;cursor:crosshair;user-select:none;-webkit-user-select:none}.ocd .on2{color:var(--muted);font-size:11.5px;margin-top:4px}.ocd .macs{display:flex;flex-wrap:wrap;gap:4px}.ocd .oh .mac{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;color:var(--text)}.ocd .mac i{width:14px;height:3px;border-radius:2px;display:block}.ocd .mac.off{color:var(--muted);text-decoration:line-through}.ocd .mac.off i{background:var(--muted)!important}.ocd .mac.set{color:var(--muted)}.ocd .ocmb{display:none}@media(hover:none),(max-width:640px){.ocd .ocds,.ocd [data-oclk]{display:none}.ocd .ocmb{display:inline}.ocd{padding:8px 6px}.ocd .oh{gap:6px 10px}.ocd .oi{font-size:11px;gap:1px 9px;min-height:32px;align-content:flex-start}.ocd .tvb{flex-wrap:wrap;row-gap:2px}.ocd .tvb>b,.ocd .tvb .mtx,.ocd .tvb>.sp:first-of-type{display:none}.ocd .tvb button,.ocd .tvb .vol{padding:0 5px;min-width:28px}.ocd .tvb .sp{margin:0 2px}}
 .spchart{height:500px;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px;background:var(--panel)}@media(max-width:640px){.spchart{height:420px}}
 .sph3{font-size:17px;margin:18px 0 8px}
@@ -1221,6 +1263,8 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
   <div class="top"><a class="logo" href="#"><svg class="lgi" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="url(#lgg)"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg><span class="lgt"><span class="lgn"><span class="lgm" dir="ltr">Wallstreeter</span><b class="lge">וולסטריטר</b></span><small class="tagline">השוק האמריקאי, בגובה העיניים</small></span></a>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="stamp">עודכן: 16.11.2026 · נתוני מסחר עד סגירת יום שישי 13.11</div><span id="authBox" class="hidden"></span><button class="thbtn" id="thBtn" type="button" aria-label="מעבר בין מצב כהה למצב בהיר" title="מצב בהיר / כהה"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button><button class="bell hidden" id="bellBtn" aria-label="התראות">🔔 התראות <span class="cnt hidden" id="bellCnt">0</span></button></div></div>
 </div></header>
+<nav id="sdb" aria-label="תפריט האתר"><a class="sdl" href="#"><svg aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0b1220"/><g fill="#2ea463"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg><span dir="ltr">Wallstreeter</span></a><div id="sdbN"></div><p class="sdf">מידע בלבד, לא ייעוץ השקעות</p></nav>
+<div id="tpb"><span id="tpSt"></span><div id="tpIx"></div><span id="tpSr"></span><span id="tpAu"></span></div>
 <div class="navbar" id="navbar"><div class="wrap">
   <div class="nvrow">
     <nav id="nav" aria-label="ניווט ראשי"><a href="#" data-p="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>ראשי</a><a href="#page/market" data-p="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>שוק</a><a href="#page/research" data-p="research"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M21 21l-6-6"/><path d="M12 7h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5"/><path d="M10 13v1m0-8v1"/></svg>מחקר</a></nav>
@@ -1776,6 +1820,7 @@ function renderMktStatus(){
     txt=`<b>הבורסה סגורה${hol?' היום':''}</b>${hol?` · ${hol}`:''} · נפתחת ${diff===0?'היום':diff===1?'מחר':'ביום '+DAYS_HE[nd.getDay()]} ב-${ilTime(9,30)}${diff===0?`, מסחר מקדים מ-${ilTime(4,0)}`:''}${nh?` (יום מקוצר, עד ${ilTime(13,0)})`:''}`;
   }
   $('mktStatus').className='mstat '+cls; $('mktStatus').innerHTML=`<i></i><span>${txt}</span>`;
+  try{ TP_ST=[cls,cls==='open'?'הבורסה פתוחה':cls==='pre'?'מסחר מקדים':cls==='post'?'מסחר מאוחר':'הבורסה סגורה']; renderTop(); }catch(e){}   /* the top bar (desktop) says the same in two words */
 }
 function renderAgenda(){
   const c=CAL||{days:[]}, il=ilNow(), key=(d,m)=>m*100+d, tk=key(il.getDate(),il.getMonth()+1);
@@ -1871,6 +1916,7 @@ function route(){
   const navp=navArea(pg), NS={pg,m:MSUB,r:RSUB,x:XSUB};
   document.querySelectorAll('#nav a,#bnav a').forEach(a=>{ const on=a.dataset.p===navp; a.classList.toggle('on',on); on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'); });
   { const mb=$('bnMore'); if(mb) mb.classList.toggle('on',pg==='watch'||pg==='gloss'||pg==='legal'); try{ moreClose(); }catch(e){} }   /* phones: "more" is lit on the pages that live in its sheet */
+  try{ renderSide(navp,NS); }catch(e){}
   const sub=SUBNAV[navp], showSub=!!sub && pg!=='stock';
   $('subnav').classList.toggle('hidden',!showSub);
   if(showSub) $('subnav').innerHTML=sub.map(([hh,l,on])=>{ const o=on(NS); return `<a href="${hh}" class="${o?'on':''}"${o?' aria-current="page"':''}>${l}</a>`; }).join('');
@@ -1916,7 +1962,24 @@ document.addEventListener('click',e=>{ const r=e.target.closest&&e.target.closes
 /* phones, home page: the brief shows a headline and one line; a tap opens the rest */
 document.addEventListener('click',e=>{ const li=e.target.closest&&e.target.closest('#briefList li'); if(li&&!e.target.closest('a')) li.classList.toggle('open'); });
 try{ if(document.documentElement.classList.contains('light')){ const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content='#f6f7f9'; } }catch(e){}
-function setNavH(){ const n=$('navbar'); if(n) document.documentElement.style.setProperty('--navh', n.offsetHeight+'px'); }
+function setNavH(){ const n=$('navbar'); if(n) document.documentElement.style.setProperty('--navh', (SD_MQ.matches?44:n.offsetHeight)+'px'); }
+/* ---------- desktop shell: side menu + top bar (CSS shows them from 1200px). The menu lists every page of the two areas (the same SUBNAV the tab row uses);
+   the search box, the account button, the theme button and the alerts bell are the same elements as on phones, moved into the top bar and back, so their behaviour is one code path ---------- */
+const SD_MQ=matchMedia('(min-width:1200px)');
+function renderSide(navp,NS){ const el=$('sdbN'); if(!el) return; const cur=o=>o?' class="on" aria-current="page"':'', li=([hh,l,on])=>`<a href="${hh}"${cur(on(NS))}>${l}</a>`;
+  el.innerHTML=`<a href="#"${cur(navp==='home')}>ראשי</a><p>שוק</p>${SUBNAV.market.map(li).join('')}<p>מחקר</p>${SUBNAV.research.map(li).join('')}<p>אישי</p><a href="#watch"${cur(NS.pg==='watch')}>הרשימות שלי</a>`; }
+function sdPlace(){ const on=SD_MQ.matches, gs=document.querySelector('.gsearch'), put=(el,to)=>{ if(el&&to&&el.parentElement!==to) to.appendChild(el); };
+  if(on){ put(gs,$('tpSr')); ['authBox','thBtn','bellBtn'].forEach(id=>put($(id),$('tpAu'))); }
+  else { put(gs,document.querySelector('#navbar .nvrow')); const h=document.querySelector('header .top>div'); ['authBox','thBtn','bellBtn'].forEach(id=>put($(id),h)); }
+  try{ setNavH(); }catch(e){} try{ renderTop(); }catch(e){} }
+let TP_ST=['closed','הבורסה סגורה'];
+function renderTop(){ const s=$('tpSt'), x=$('tpIx'); if(!s||!x||!SD_MQ.matches) return;
+  let when=''; try{ when=LIVE&&LIVE.date?(mktOpen()?'לייב '+liveTm():'סגירת '+liveDay()):''; }catch(e){}
+  s.className=TP_ST[0]; s.innerHTML=`<i></i><b>${TP_ST[1]}</b>${when?`<span>· <bdi>${esc(when)}</bdi></span>`:''}`;
+  const I=(LIVE&&LIVE.idx)||{}, L=[['S&P 500','^GSPC','#stock/SPX'],['נאסד״ק','^IXIC',''],['ראסל 2000','^RUT',''],['VIX','^VIX','']];
+  x.innerHTML=L.map(([n,k,h])=>{ const v=I[k]; if(!v||v[0]==null) return ''; const c=v[1], body=`<span>${n}</span><b dir="ltr">${(+v[0]).toLocaleString('en-US',{maximumFractionDigits:2})}</b>${c==null?'':`<em class="${c>=0?'up':'down'}" dir="ltr">${c>0?'+':''}${(+c).toFixed(2)}%</em>`}`; return h?`<a href="${h}">${body}</a>`:`<div>${body}</div>`; }).join(''); }
+SD_MQ.addEventListener&&SD_MQ.addEventListener('change',()=>{ sdPlace(); try{ renderNewsPage(); }catch(e){} });
+try{ sdPlace(); }catch(e){}
 window.addEventListener('resize',setNavH);
 
 /* ---------- news ---------- */
@@ -1964,9 +2027,29 @@ function renderNewsPage(){
   else if(NVIEW==='main') box.innerHTML = main.length?main.slice(0,NML+9).map(newsBig).join('')+(main.length>NML+9?more('nMoreM',`עוד ידיעות (${main.length-NML-9})`):''):none;
   else if(NVIEW==='stock') box.innerHTML = st.length?`<div class="slb">${st.slice(0,40+NSL).map(newsLine).join('')}</div>`+(st.length>40+NSL?more('nMoreS',`עוד כותרות (${st.length-40-NSL})`):''):none;
   else if(NVIEW==='watch') box.innerHTML = !ws.size?'<div class="empty">אין מניות ברשימת המעקב. אפשר להוסיף בעמוד המניות, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>':wt.length?`<div class="slb">${wt.slice(0,40+NSL).map(newsLine).join('')}</div>`+(wt.length>40+NSL?more('nMoreS',`עוד כותרות (${wt.length-40-NSL})`):''):'<div class="empty">אין ידיעות על המניות שבמעקב בימים האחרונים.</div>';
+  else if(SD_MQ.matches&&!q&&main.length) box.innerHTML=newsDesk(all,main,st);
   else box.innerHTML = !all.length?none:`<div class="sag"><div><div class="sah">ראשיות</div>${main.slice(0,NML).map(newsBig).join('')||none}${main.length>NML?more('nMoreM',`עוד ידיעות ראשיות (${main.length-NML})`):''}</div>
     <div><div class="sah">מניות · כותרות אחרונות</div><div class="slb">${st.slice(0,sl0+NSL).map(newsLine).join('')||none}</div>${st.length>sl0+NSL?more('nMoreS',`עוד כותרות (${st.length-sl0-NSL})`):''}</div></div>`;
 }
+/* desktop front page: one lead story with its summary, four more headlines on a time column, then a block per subject (three headlines each) and a side column
+   (today's movers, stock headlines with the day's change, the week's earnings). Every item appears once. Phones keep the two lists above */
+const ND_T=[['שוק ומאקרו','v:main',n=>/וול סטריט|מאקרו|נפט|סחורות|ריבית|אג״ח|הפד|אינפלציה|תעסוקה/.test(n.tag||'')],['טראמפ וממשל','v:trump',n=>/טראמפ|ממשל|הבית הלבן|Trump/i.test((n.tag||'')+' '+(n.title||''))],
+  ['שבבים ו-AI','q:שבבים',n=>/שבבים|AI/.test(n.tag||'')],['דוחות','q:דוחות',n=>(n.tag||'')==='דוחות']];
+const ndTitle=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`:esc(n.title), ndMeta=n=>`<div class="nxm">${newsWhen(n)} · <bdi>${esc(n.src||'')}</bdi></div>`;
+function newsDesk(all,main,st){ const lead=main[0], sec=main.slice(1,5), used=new Set([lead,...sec]);
+  const blocks=ND_T.map(([name,go,f])=>{ const L=all.filter(n=>!used.has(n)&&f(n)).slice(0,3); if(!L.length) return ''; L.forEach(n=>used.add(n));
+    return `<section class="nxt"><div class="nxh"><h3>${name}</h3><button type="button" data-ndgo="${go}">עוד ←</button></div><div class="nxg">${L.map(n=>`<article><h4>${ndTitle(n)}</h4>${ndMeta(n)}</article>`).join('')}</div></section>`; }).join('');
+  newsDesk.st=st.filter(n=>!used.has(n));
+  return `<div class="nxw"><div><div class="nxl"><article class="nxa"><span class="nxk">${esc(lead.tag||'')}</span><h3>${ndTitle(lead)}</h3>${lead.body?`<p>${esc(lead.body)}</p>`:''}${ndMeta(lead)}</article>
+    <div class="nxs">${sec.map(n=>`<article><time>${esc(n.time||'')}</time><div><span class="nxk">${esc(n.tag||'')}</span><h4>${ndTitle(n)}</h4><small><bdi>${esc(n.src||'')}</bdi></small></div></article>`).join('')}</div></div>${blocks}</div><aside class="nxr" id="ndRail" aria-label="מזנקות, מניות בכותרות ודוחות השבוע">${newsRailHtml()}</aside></div>`; }
+function newsRailHtml(){ const pc=v=>`<em class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${(+v).toFixed(2)}%</em>`, ix=(()=>{ try{ return stockIndex(); }catch(e){ return {}; } })(), lk=t=>STK_OK&&!ix[t]?`<span>${esc(t)}</span>`:`<a href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`;
+  const m=FALLBACK.movers||{}, mv=[...(m.rows||[])].sort((a,b)=>b.p-a.p).slice(0,7), day=t=>{ const L=liveQ(t); return LIVE_R&&L&&L[1]!=null?L[1]:(ix[t]&&ix[t].r&&ix[t].r.d!=null?ix[t].r.d:null); };
+  const st=(newsDesk.st||[]).filter(n=>(n.t||[])[0]).slice(0,5), days=((CAL||{}).days||[]).filter(d=>(d.items||[]).length).slice(0,5);
+  return (mv.length?`<section><h3>${m.pre?'מזנקות במסחר המקדים':'מזנקות'}<small>${esc(String(m.asOf||''))}</small></h3><div class="nxv">${mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}"><b>${esc(r.t)}</b><span>${esc(r.n||'')}</span>${pc(r.p)}</a>`).join('')}</div></section>`:'')+
+    (st.length?`<section><h3>מניות בכותרות</h3>${st.map(n=>{ const t=n.t[0], d=day(t); return `<div class="nxn"><div>${lk(t)}${d==null?'':pc(d)}</div><p>${ndTitle(n)}</p></div>`; }).join('')}</section>`:'')+
+    (days.length?`<section><h3>דוחות השבוע<small><a href="#upcoming">ללוח ←</a></small></h3>${days.map(d=>`<div class="nxc"><span>${esc(d.d)}</span><b>${d.items.slice(0,4).map(i=>lk(i.t)).join('')}</b></div>`).join('')}</section>`:''); }
+function newsRail(){ const el=$('ndRail'); if(el&&el.isConnected) el.innerHTML=newsRailHtml(); }
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-ndgo]'); if(!b) return; const [k,v]=b.dataset.ndgo.split(':'); NML=6; NSL=0; if(k==='v'){ NVIEW=v; $('nq').value=''; } else { $('nq').value=v; } renderNewsPage(); try{ scrollTo({top:0}); }catch(x){} });
 $('nq').addEventListener('input',()=>{ NML=6; NSL=0; renderNewsPage(); });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#nTabs button'); if(b){ NVIEW=b.dataset.nv; NML=6; NSL=0; renderNewsPage(); return; }
   if(e.target.id==='nMoreM'){ NML+=10; renderNewsPage(); } else if(e.target.id==='nMoreS'){ NSL+=40; renderNewsPage(); } });
@@ -4428,6 +4511,7 @@ function freshTxt(s){
   return s;
 }
 function renderFresh(){
+  try{ renderTop(); newsRail(); }catch(e){}
   const pm=FALLBACK.premarket||{};
   const src={brief:OVERVIEW&&OVERVIEW.asOf, sectors:SECTORS&&SECTORS.asOf, themes:THEMES&&THEMES.asOf, breadth:FALLBACK.breadth&&FALLBACK.breadth.asOf,
     ytd:FALLBACK.ytd&&FALLBACK.ytd.asOf&&('נכון לסגירת '+FALLBACK.ytd.asOf), news:NEWS[0]&&NEWS[0].date, movers:(FALLBACK.movers||{}).asOf};
