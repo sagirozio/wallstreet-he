@@ -699,15 +699,15 @@ a.ixc{text-decoration:none;color:inherit}a.ixc:hover{border-color:var(--accent)}
 #hvc .hvp{display:flex;align-items:baseline;gap:8px;margin:2px 0 6px;direction:ltr;justify-content:flex-end}#hvc .hvp b{font-size:16px}#hvc .hvp span{font-size:13px;font-weight:600}
 #hvc svg{display:block}#hvc .hvf{display:flex;justify-content:space-between;gap:10px;margin-top:6px;font-size:12px;color:var(--muted)}
 :root{--sxg:#f5b942}html.light{--sxg:#a8690a}
-.ernc .sxs{stroke:var(--muted);stroke-width:1.25;opacity:.55}.ernc .sxi{stroke:#5b8cff;stroke-width:2}.ernc .sxa{stroke:var(--sxg);stroke-width:2.25}
+.ernc .sxeLs{stroke:var(--muted);stroke-width:1.25;opacity:.55}.ernc .sxeLi{stroke:#5b8cff;stroke-width:2}.ernc .sxeLa{stroke:var(--sxg);stroke-width:2.25}
 html.light .ernc .el{fill:#fff}.cmptt .sxtp{color:var(--muted);font-size:11.5px;margin-top:2px}
 .sxrk{display:flex;flex-direction:column;gap:2px;margin-top:12px;max-width:760px}
-.sxr{display:grid;grid-template-columns:minmax(96px,150px) 1fr 62px;align-items:center;gap:10px;width:100%;min-height:34px;padding:3px 8px;border:1px solid transparent;border-radius:8px;background:none;color:var(--text);font:inherit;font-size:13.5px;text-align:start}
-button.sxr{cursor:pointer}button.sxr:hover{background:var(--panel2)}.sxr.on{background:var(--panel2);border-color:var(--line);font-weight:600}
-.sxr .sxn2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sxr b{text-align:end;font-size:13px}
+.sxeRw{display:grid;grid-template-columns:minmax(96px,150px) 1fr 62px;align-items:center;gap:10px;width:100%;min-height:34px;padding:3px 8px;border:1px solid transparent;border-radius:8px;background:none;color:var(--text);font:inherit;font-size:13.5px;text-align:start}
+button.sxeRw{cursor:pointer}button.sxeRw:hover{background:var(--panel2)}.sxeRw.on{background:var(--panel2);border-color:var(--line);font-weight:600}
+.sxeRw .sxn2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sxeRw b{text-align:end;font-size:13px}
 .sxb{position:relative;height:10px;display:block}.sxb i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--muted);opacity:.5}.sxb u{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--muted);opacity:.7}
-.sxr.on .sxb i{background:var(--sxg);opacity:1}.sxr.idx .sxb i{background:#5b8cff;opacity:1}.sxr.idx{color:var(--muted)}.sxr.all .sxn2{font-style:normal}
-@media(max-width:560px){.sxr{grid-template-columns:104px 1fr 54px;gap:8px;padding:3px 4px;min-height:38px}}
+.sxeRw.on .sxb i{background:var(--sxg);opacity:1}.sxeRw.idx .sxb i{background:#5b8cff;opacity:1}.sxeRw.idx{color:var(--muted)}.sxeRw.all .sxn2{font-style:normal}
+@media(max-width:560px){.sxeRw{grid-template-columns:104px 1fr 54px;gap:8px;padding:3px 4px;min-height:38px}}
 :root{--hl:#e6edf3}html.light{--hl:#0f172a}
 #sdb,#tpb{display:none}
 /* desktop (1200px and wider): the menu is a fixed column at the side and a slim bar on top carries the market status, the indexes, the search and the account.
@@ -2758,9 +2758,9 @@ function sxeRank(){ const b=$('sxeRank'); if(!b||!SXE||!SXE.v) return; const D=S
   const rows=rank.map(k=>({k,v:S[k][n-1]})).concat([{k:'ALL',v:E[n-1]}]); if(Inow!=null) rows.push({k:'IDX',v:Inow}); rows.sort((x,y)=>y.v-x.v);
   const lo=Math.min(0,...rows.map(r=>r.v)), hi=Math.max(0,...rows.map(r=>r.v)), sp=(hi-lo)||1, z=(0-lo)/sp*100;
   b.innerHTML=rows.map(r=>{ const w=Math.abs(r.v)/sp*100, bar=`<span class="sxb" dir="ltr"><i style="left:${(r.v>=0?z:z-w).toFixed(2)}%;width:${Math.max(.6,w).toFixed(2)}%"></i>${lo<0?`<u style="left:${z.toFixed(2)}%"></u>`:''}</span>`, val=`<b class="num ${r.v>=0?'up':'down'}" dir="ltr">${pct(r.v,0)}</b>`;
-    if(r.k==='IDX') return `<div class="sxr idx"><span class="sxn2">מדד S&amp;P 500</span>${bar}${val}</div>`;
+    if(r.k==='IDX') return `<div class="sxeRw idx"><span class="sxn2">מדד S&amp;P 500</span>${bar}${val}</div>`;
     const pt=r.k!=='ALL'&&D.sn&&D.sn[r.k]&&D.sn[r.k][0]<D.sn[r.k][1]*.6;
-    return `<button type="button" class="sxr${r.k==='ALL'?' all':''}${SXE.sel===r.k?' on':''}" data-sxs="${r.k}" aria-pressed="${SXE.sel===r.k}"><span class="sxn2">${esc(sxeNm(r.k))}${pt?' *':''}</span>${bar}${val}</button>`; }).join(''); }
+    return `<button type="button" class="sxeRw${r.k==='ALL'?' all':''}${SXE.sel===r.k?' on':''}" data-sxs="${r.k}" aria-pressed="${SXE.sel===r.k}"><span class="sxn2">${esc(sxeNm(r.k))}${pt?' *':''}</span>${bar}${val}</button>`; }).join(''); }
 function sxePaint(){ const box=$('sxeChart'); if(!box||!SXE||!SXE.v) return; const D=SXE, {E,I,Inow,S,rank}=SXE.v, n=D.q.length, sel=SXE.sel, A=sxeSer(sel);
   const W=Math.max(300,Math.round(box.clientWidth||640)), sm=W<560, H=sm?230:290, L=sm?18:24, R=sm?48:58, T=14, B=26;
   const xs=[].concat(E,...rank.map(k=>S[k]),I?[...I,Inow]:[]), lo=Math.min(0,...xs), hi=Math.max(0,...xs), pad=(hi-lo)*.06||1, mn=lo-pad, mx=hi+pad;
@@ -2769,9 +2769,9 @@ function sxePaint(){ const box=$('sxeChart'); if(!box||!SXE||!SXE.v) return; con
   for(let v=Math.ceil(mn/step)*step; v<=mx; v+=step){ const y=Math.round(Y(v))+.5; g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" class="${Math.abs(v)<1e-9?'z':'gl'}"/><text x="${W-R+6}" y="${y+4}" class="ax">${v>0?'+':''}${v}%</text>`; }
   let lx=-99; D.q.forEach((q,i)=>{ const x=X(i); if(x-lx<(sm?44:54)||(lx>=0&&lx===X(0)&&x-lx<(sm?56:64))) return; lx=x; g+=`<text x="${f(x)}" y="${H-8}" class="ax" text-anchor="${i?'middle':'start'}">Q${Math.ceil(+q.slice(5,7)/3)} ${q.slice(2,4)}</text>`; });
   const line=(a,cls,ex)=>`<polyline fill="none" class="${cls}" stroke-linejoin="round" stroke-linecap="round" points="${a.map((v,i)=>f(X(i))+','+f(Y(v))).join(' ')}${ex||''}"/>`;
-  rank.forEach(k=>{ if(k!==sel) g+=line(S[k],'sxs'); });                      /* the other sectors: context */
-  if(I) g+=line(I,'sxi',` ${f(X(nx))},${f(Y(Inow))}`);
-  g+=line(A,'sxa');
+  rank.forEach(k=>{ if(k!==sel) g+=line(S[k],'sxeLs'); });                      /* the other sectors: context */
+  if(I) g+=line(I,'sxeLi',` ${f(X(nx))},${f(Y(Inow))}`);
+  g+=line(A,'sxeLa');
   const tag=(v,c,yy)=>`<rect x="${W-R+3}" y="${f(yy-9)}" width="${R-4}" height="18" rx="4" style="fill:${c}"/><text x="${W-R+3+(R-4)/2}" y="${f(yy+4)}" class="el" text-anchor="middle">${v>=0?'+':''}${Math.round(v)}%</text>`;
   let ye=Y(A[n-1]), yi=I?Y(Inow):null; if(I&&Math.abs(ye-yi)<19){ if(ye<yi){ ye-=(19-(yi-ye))/2; yi=ye+19; } else { yi-=(19-(ye-yi))/2; ye=yi+19; } }
   g+=`<circle cx="${f(X(n-1))}" cy="${f(Y(A[n-1]))}" r="3.5" style="fill:var(--sxg)"/>`+tag(A[n-1],'var(--sxg)',ye)+(I?`<circle cx="${f(X(nx))}" cy="${f(Y(Inow))}" r="3.5" style="fill:#5b8cff"/>`+tag(Inow,'#5b8cff',yi):'');
@@ -3422,6 +3422,9 @@ function ocBig(box,on){ box._big=!!on; const full=box._big;   /* the enlarge but
   if(!full&&box._home&&box._home!==box._t){ const t=box._t, h=box._home, o0=box._opt0||{}; box._home=null;   /* the symbol was swapped inside the full screen: open the new symbol where the chart lives */
     setTimeout(()=>{ try{ if(box.closest('#qv')&&(stockIndex()[t]||etfRow(t))) qvOpen(t,null,!stockIndex()[t]); else if(box.id==='ownCd'||box.closest('#qv')) location.hash='#stock/'+encodeURIComponent(t); else ocMount(box,h,o0); }catch(e){} },0); } }
 const ocFullOff=()=>document.querySelectorAll('.ocbox.full').forEach(b=>ocBig(b,false));
+/* a full-screen chart that was replaced while it was open (the next stock in the quick view, a new render) left the page in its full-screen state: the quick view
+   then filled the whole window on every later opening. With no full-screen chart on the page the state is cleared */
+function ocFullSync(){ const de=document.documentElement; if(!de.classList.contains('ocfull')||document.querySelector('.ocbox.full')) return; de.classList.remove('ocfull'); try{ if(OCFS&&document.fullscreenElement){ OCFS=0; document.exitFullscreen().catch(()=>{}); } }catch(e){} }
 document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&OCFS){ OCFS=0; ocFullOff(); } });   /* the phone's back button left the browser's full screen */
 window.addEventListener('hashchange',ocFullOff);
 window.addEventListener('orientationchange',()=>{ setTimeout(()=>ocEach(ocDraw),120); setTimeout(()=>ocEach(ocDraw),450); });   /* some phones report the new size late */
@@ -3429,7 +3432,7 @@ const ocBox=el=>el&&el.closest?el.closest('.ocbox'):null;
 const ocEach=fn=>document.querySelectorAll('.ocbox').forEach(b=>{ if(b._t&&b._g){ try{ fn(b); }catch(e){} } });
 /* the candles are drawn on the screen's pixel grid from where the chart sat when it was drawn. When that changes by a part of a pixel (content above it loaded,
    the window moved to another screen, the browser zoom changed, an opening animation ended) the chart is drawn again; a plain scroll moves it by whole pixels and costs nothing */
-function ocGridChk(){ if(OCD||document.hidden) return; ocEach(b=>{ const svg=b.querySelector('.ocS'), g=b._g; if(!svg||!g.dpr) return; const r=svg.getBoundingClientRect(); if(!r.width) return;
+function ocGridChk(){ try{ ocFullSync(); }catch(e){} if(OCD||document.hidden) return; ocEach(b=>{ const svg=b.querySelector('.ocS'), g=b._g; if(!svg||!g.dpr) return; const r=svg.getBoundingClientRect(); if(!r.width) return;
   const d=Math.max(1,Math.min(4,window.devicePixelRatio||1)), fr=v=>v-Math.floor(v+1e-6), off=(a,c)=>{ const x=Math.abs(a-c); return Math.min(x,1/d-x); }, ex=Math.abs(r.width-(svg.clientWidth||0))<1;
   if(d!==g.dpr||ex!==g.ex||(ex&&(off(fr(r.left*d)/d,g.ox)>.02||off(fr(r.top*d)/d,g.oy)>.02))) ocReq(b); }); }
 { let t=0; document.addEventListener('scroll',()=>{ if(t) return; t=requestAnimationFrame(()=>{ t=0; ocGridChk(); }); },{capture:true,passive:true}); setInterval(ocGridChk,1500); }
@@ -3451,7 +3454,7 @@ function ocMaPanel(box){ const el=box.querySelector('.ocMaP'); if(!el) return; c
     `<div class="maf">${OCMA.length<12?'<button data-ocmadd>+ הוסף ממוצע</button>':'<span>עד 12 ממוצעים</span>'}</div>`+
     `<div class="mvr"><label><input type="checkbox" data-ocvm="on"${vm.on?' checked':''}> ממוצע נע לנפח</label><input type="number" data-ocvm="n" min="2" max="300" step="1" value="${vm.n}" inputmode="numeric" aria-label="תקופת ממוצע הנפח"><input type="color" data-ocvm="c" value="${vm.c}" aria-label="צבע ממוצע הנפח"></div>`; }
 /* ocMount(container, symbol, {clock:false, label}) */
-function ocMount(box,t,opt){ if(!box) return; opt=opt||{}; ocKinStop(box); box._ms=null; if(!opt.keep){ box._home=null; if(box._full) ocBig(box,false); box._big=false; }   /* keep: the symbol was typed inside the full-screen chart, which stays open */ box.classList.add('ocbox'); box._t=t; box._opt=opt; box._id=box._id||('oc'+(++OCSEQ)); box._g=null; box._off=0; box._y=null; box._tf=OC_TF[OCPREF.tf]?OCPREF.tf:'D'; box._tool=''; box._sel=null; box._pend=null; box._hv=null; box._ss='';
+function ocMount(box,t,opt){ if(!box) return; opt=opt||{}; setTimeout(()=>{ try{ ocFullSync(); }catch(e){} },0); ocKinStop(box); box._ms=null; if(!opt.keep){ box._home=null; if(box._full) ocBig(box,false); box._big=false; }   /* keep: the symbol was typed inside the full-screen chart, which stays open */ box.classList.add('ocbox'); box._t=t; box._opt=opt; box._id=box._id||('oc'+(++OCSEQ)); box._g=null; box._off=0; box._y=null; box._tf=OC_TF[OCPREF.tf]?OCPREF.tf:'D'; box._tool=''; box._sel=null; box._pend=null; box._hv=null; box._ss='';
   box.innerHTML='<div class="ocd"><div class="sk ocsk" role="status" aria-label="טוען גרף"></div></div>';
   ocEnsure(t).then(j=>{ if(box._t!==t||!document.body.contains(box)) return;
     if(!j){ box.innerHTML='<div class="ocd"><div class="ocld">אין כרגע נתוני גרף לסימול הזה.</div></div>'; return; }
