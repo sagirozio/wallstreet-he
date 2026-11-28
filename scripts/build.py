@@ -176,8 +176,19 @@ if _E:
         sa, sb = sum(_T[t][a] for t in both), sum(_T[t][b] for t in both)
         _lvl.append(_lvl[-1] * sb / sa if sa > 0 else _lvl[-1]); _used.append(len(both))
     _last = [_T[t][_q4[-1]] for t in _T if _q4[-1] in _T[t]]
+    # the same chained 12-month index for each of the 11 sectors (members by the sector funds). A sector whose 12-month sum is
+    # zero or negative at any quarter is left out: a % change from a loss says nothing
+    _sec = {}; _secn = {}
+    for _k, _l in ((data.get("sectors") or {}).get("mem") or {}).items():
+        _ms = [t for t in _l if t in _T]; lv = [100.0]; ok = len(_ms) >= 5; used = 0
+        for a, b in zip(_q4, _q4[1:]):
+            both = [t for t in _ms if a in _T[t] and b in _T[t]]
+            sa, sb = sum(_T[t][a] for t in both), sum(_T[t][b] for t in both)
+            if sa <= 0 or sb <= 0 or len(both) < 5: ok = False; break
+            lv.append(lv[-1] * sb / sa); used = len(both)
+        if ok and len(lv) == len(_q4): _sec[_k] = [round(v, 2) for v in lv]; _secn[_k] = [used, len(_l)]
     write("spxe.json", js({"q": _q4, "e": [round(v, 2) for v in _lvl], "n": _used[-1] if _used else 0, "nmin": min(_used) if _used else 0,
-                           "of": len(_mem), "ttm": round(sum(_last) / 1e9), "src": "SEC EDGAR"}))
+                           "of": len(_mem), "ttm": round(sum(_last) / 1e9), "src": "SEC EDGAR", "s": _sec, "sn": _secn}))
 
 
 # ---------- stock universe ----------
