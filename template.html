@@ -730,12 +730,26 @@ button.sxeRw{cursor:pointer}button.sxeRw:hover{background:var(--panel2)}.sxeRw.o
   body.wsws .wsc{top:60px}
   #clipFab{right:232px;bottom:20px}.toasts{inset-inline-start:232px;bottom:16px}
   /* news page */
-  #newsArchive.on{display:grid;grid-template-columns:auto minmax(0,1fr) 240px;column-gap:26px;align-items:end}
-  #newsArchive>h2{margin:0 0 10px;font-size:22px}#nTabs{margin:0;gap:22px}#nTabs button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:0 0 10px;min-height:0;font-size:13.5px;color:var(--muted)}#nTabs button.on{color:var(--hl);border-color:var(--accent);font-weight:600;background:none}
-  #newsArchive .nctl{margin:0 0 7px;display:block}#newsArchive .nctl .search{width:100%}#newsArchive #nq{height:30px;font-size:13px;border-radius:8px}
-  #newsAll{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px}
+  #newsArchive.on{grid-template-columns:auto minmax(0,1fr) 240px;column-gap:26px}
+  #newsArchive .nctl{grid-column:auto;grid-row:auto;margin:0 0 7px}#newsArchive #nq{height:30px}
+  #newsAll{border-top:1px solid var(--line);padding-top:24px}
+  .nxw{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:44px}
 }
-.nxw{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:44px}.nxw a{color:inherit;text-decoration:none}.nxw a:hover{text-decoration:underline}
+/* news page header on every width: the title and the tabs (underlined text) on one row; the search under them, and beside them on desktop */
+#newsArchive.on{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;align-items:end}
+#newsArchive>h2{margin:0 0 10px;font-size:22px}#nTabs{margin:0;gap:20px;border-bottom:0}#nTabs button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:0 0 10px;min-height:0;font-size:13.5px;color:var(--muted)}#nTabs button.on{color:var(--hl);border-color:var(--accent);font-weight:600;background:none}
+#newsArchive .nctl{grid-column:1/-1;grid-row:3;margin:12px 0 0;display:block}#newsArchive .nctl .search{width:100%}#newsArchive #nq{height:36px;font-size:13px;border-radius:8px}
+#newsAll{grid-column:1/-1;grid-row:2;border-top:1px solid var(--line);padding-top:18px}
+#phIx{display:none}
+@media(max-width:760px){
+  .nvrow{position:relative}.nvrow .gsearch{flex:0 0 36px;margin-inline-start:auto}
+  .nvrow .gsearch input{height:36px;padding:0;border-radius:9px;color:transparent;background-position:center;cursor:pointer}.nvrow .gsearch input::placeholder{color:transparent}
+  .nvrow .gsearch:focus-within{position:absolute;inset-inline:0;top:0;z-index:6}.nvrow .gsearch:focus-within input{height:38px;padding:0 38px 0 12px;color:var(--text);background-position:right 11px center;cursor:text}.nvrow .gsearch:focus-within input::placeholder{color:var(--muted)}
+  #phIx{display:flex;align-items:center;height:32px;margin:0 -16px 8px;padding:0 4px;border-block:1px solid var(--line);font-size:12px;white-space:nowrap;overflow-x:auto;scrollbar-width:none}#phIx::-webkit-scrollbar{display:none}
+  #phIx>*{display:flex;gap:6px;align-items:baseline;padding:0 12px;border-inline-start:1px solid var(--line);color:var(--muted);text-decoration:none;flex:none}#phIx>span{border:0;align-items:center}#phIx>span i{width:6px;height:6px;border-radius:50%;background:var(--muted)}#phIx>span.open i{background:var(--green)}#phIx>span.pre i,#phIx>span.post i{background:var(--amber)}
+  #phIx b{font:500 12px "JetBrains Mono",monospace;color:var(--hl)}#phIx em{font:400 12px "JetBrains Mono",monospace;font-style:normal}
+}
+.nxw a{color:inherit;text-decoration:none}.nxw a:hover{text-decoration:underline}
 .nxk{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em}.nxm{font-size:11.5px;color:var(--muted);margin-top:9px}
 .nxl{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:0 36px;padding-bottom:30px}
 .nxl .nxa h3{font-size:30px;line-height:1.22;font-weight:800;margin:8px 0 12px;color:var(--hl);letter-spacing:-.015em}.nxl .nxa p{font-size:15px;line-height:1.7;color:var(--text);margin:0}
@@ -750,6 +764,12 @@ button.sxeRw{cursor:pointer}button.sxeRw:hover{background:var(--panel2)}.sxeRw.o
 .nxn{padding:10px 0;border-top:1px solid var(--line)}.nxn:first-of-type{border-top:0}.nxn div{display:flex;justify-content:space-between;font:600 12px "JetBrains Mono",monospace;margin-bottom:3px;direction:ltr}.nxn div a{color:var(--hl)}.nxn div em{font-style:normal;font-weight:400}
 .nxn p{font-size:13px;line-height:1.42;margin:0;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .nxc{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:12.5px}.nxc:first-of-type{border-top:0}.nxc span{color:var(--muted)}.nxc b{font:500 12px "JetBrains Mono",monospace;color:var(--hl);direction:ltr;text-align:right;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:760px){
+  .nxl{display:block;padding-bottom:6px}.nxl .nxa h3{font-size:23px;line-height:1.25}.nxl .nxa p{font-size:14.5px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .nxs{margin-top:18px}.nxs article:first-child{border-top:1px solid var(--line);padding-top:13px}
+  .nxt{padding:0 0 22px}.nxg{display:block}.nxg article{padding:11px 0;border:0;border-top:1px solid var(--line)}.nxg article:first-child{border-top:0;padding-top:4px}
+  .nxr section{margin:0 0 22px}.nxr{margin-top:8px}
+}
 /* screener, desktop: one line per stock (symbol + name), the same row height, padding, borders and hover as the leadership table; sector and industry are in the row's tooltip and in the filters */
 @media(min-width:761px){
   #stocksHub .sxr{padding:8px 14px;font-size:13.5px;border-top:1px solid var(--line);min-height:41px}#stocksHub a.sxr:hover{background:var(--panel2)}
@@ -1280,6 +1300,7 @@ html.light header{background:linear-gradient(180deg,#f5f5f6,#f7f7f8)}html.light 
     <nav id="nav" aria-label="ניווט ראשי"><a href="#" data-p="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>ראשי</a><a href="#page/market" data-p="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>שוק</a><a href="#page/research" data-p="research"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M21 21l-6-6"/><path d="M12 7h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5"/><path d="M10 13v1m0-8v1"/></svg>מחקר</a></nav>
     <div class="gsearch" role="search"><input id="gq" type="search" autocomplete="off" enterkeyhint="search" placeholder="חיפוש מניה: אנבידיה, NVDA, Apple…" aria-label="חיפוש מניה לפי שם או טיקר" aria-controls="gqRes" aria-keyshortcuts="/"><kbd class="gqk" aria-hidden="true">/</kbd><div class="gres hidden" id="gqRes" role="listbox"></div></div>
   </div>
+  <div id="phIx" aria-label="מצב השוק והמדדים"></div>
   <div class="subnav hidden" id="subnav"></div>
 </div></div>
 <div class="mvstrip hidden" id="mvWrap"><a class="mvl" href="#page/news">חדשות</a><div class="mvs"><div class="in" id="mvStrip"></div></div></div>
@@ -1894,7 +1915,7 @@ let CURPG=null, MSUB='snapshot', RSUB='earnings', XSUB='sectors';
 document.addEventListener('click',e=>{ const hd=e.target.closest&&e.target.closest('section.fold>h2,section.fold>.hh'); if(!hd||e.target.closest('a,button')) return; hd.parentNode.classList.toggle('open'); });
 (function(){ const mq=matchMedia('(max-width:760px)'), lg=document.querySelector('header .logo'), row=document.querySelector('.nvrow'), top=document.querySelector('header .top');
   const fit=()=>{ if(!lg||!row||!top) return; const ab=document.getElementById('authBox'), th=document.getElementById('thBtn'), bx=top.querySelector('div[style]');   /* th = the light / dark button, kept next to the sign-in button */ if(mq.matches){ if(lg.parentNode!==row) row.insertBefore(lg,row.firstChild); if(ab&&ab.parentNode!==row) row.appendChild(ab); if(th&&th.parentNode!==row) row.appendChild(th); } else { if(lg.parentNode!==top) top.insertBefore(lg,top.firstChild); if(ab&&bx&&ab.parentNode!==bx) bx.insertBefore(ab,bx.firstChild); if(th&&bx&&th.previousElementSibling!==ab) ab.after(th); } };
-  fit(); mq.addEventListener&&mq.addEventListener('change',fit); })();
+  fit(); window.phFit=fit; mq.addEventListener&&mq.addEventListener('change',fit); })();
 function pageOf(h){
   if(!h||h==='#') return ['home',null];
   if(h==='#page/market'||h==='#leaders') return ['market',$('breadth')];   /* #leaders: the old tracking lists, removed; the link opens the market page */
@@ -1986,14 +2007,17 @@ function renderSide(navp,NS){ const el=$('sdbN'); if(!el) return; const cur=o=>o
   el.innerHTML=`${a('#','ראשי',navp==='home')}<p>שוק</p>${SUBNAV.market.map(li).join('')}<p>מחקר</p>${SUBNAV.research.map(li).join('')}<p>אישי</p>${a('#watch','הרשימות שלי',NS.pg==='watch')}`; }
 function sdPlace(){ const on=SD_MQ.matches, gs=document.querySelector('.gsearch'), put=(el,to)=>{ if(el&&to&&el.parentElement!==to) to.appendChild(el); };
   if(on){ put(gs,$('tpSr')); ['authBox','thBtn','bellBtn'].forEach(id=>put($(id),$('tpAu'))); }
-  else { put(gs,document.querySelector('#navbar .nvrow')); const h=document.querySelector('header .top>div'); ['authBox','thBtn','bellBtn'].forEach(id=>put($(id),h)); }
+  else { put(gs,document.querySelector('#navbar .nvrow')); const h=document.querySelector('header .top>div'); ['authBox','thBtn','bellBtn'].forEach(id=>{ const el=$(id); if(el&&el.closest('#tpAu')) h.appendChild(el); }); try{ window.phFit&&window.phFit(); }catch(e){} }   /* phones: the logo row takes the account button again */
   try{ setNavH(); }catch(e){} try{ renderTop(); }catch(e){} }
 let TP_ST=['closed','הבורסה סגורה'];
-function renderTop(){ const s=$('tpSt'), x=$('tpIx'); if(!s||!x||!SD_MQ.matches) return;
+const PH_MQ=matchMedia('(max-width:760px)');
+function renderTop(){ const s=$('tpSt'), x=$('tpIx'), ph=$('phIx'); if(!s||!x) return; if(!SD_MQ.matches&&!PH_MQ.matches){ if(ph) ph.innerHTML=''; return; }
   let when=''; try{ when=LIVE&&LIVE.date?(mktOpen()?'לייב '+liveTm():'סגירת '+liveDay()):''; }catch(e){}
   s.className=TP_ST[0]; s.innerHTML=`<i></i><b>${TP_ST[1]}</b>${when?`<span>· <bdi>${esc(when)}</bdi></span>`:''}`;
   const I=(LIVE&&LIVE.idx)||{}, L=[['S&P 500','^GSPC','#stock/SPX'],['נאסד״ק','^IXIC',''],['ראסל 2000','^RUT',''],['VIX','^VIX','']];
-  x.innerHTML=L.map(([n,k,h])=>{ const v=I[k]; if(!v||v[0]==null) return ''; const c=v[1], body=`<span>${n}</span><b dir="ltr">${(+v[0]).toLocaleString('en-US',{maximumFractionDigits:2})}</b>${c==null?'':`<em class="${c>=0?'up':'down'}" dir="ltr">${c>0?'+':''}${(+c).toFixed(2)}%</em>`}`; return h?`<a href="${h}">${body}</a>`:`<div>${body}</div>`; }).join(''); }
+  x.innerHTML=L.map(([n,k,h])=>{ const v=I[k]; if(!v||v[0]==null) return ''; const c=v[1], body=`<span>${n}</span><b dir="ltr">${(+v[0]).toLocaleString('en-US',{maximumFractionDigits:2})}</b>${c==null?'':`<em class="${c>=0?'up':'down'}" dir="ltr">${c>0?'+':''}${(+c).toFixed(2)}%</em>`}`; return h?`<a href="${h}">${body}</a>`:`<div>${body}</div>`; }).join('');
+  if(ph) ph.innerHTML=PH_MQ.matches?`<span class="${TP_ST[0]}"><i></i>${TP_ST[1].replace('הבורסה ','')}</span>${x.innerHTML}`:''; }   /* phones: the same status and indexes as a strip that scrolls sideways */
+PH_MQ.addEventListener&&PH_MQ.addEventListener('change',()=>{ try{ renderTop(); setNavH(); }catch(e){} });
 SD_MQ.addEventListener&&SD_MQ.addEventListener('change',()=>{ sdPlace(); try{ renderNewsPage(); }catch(e){} });
 try{ sdPlace(); }catch(e){}
 window.addEventListener('resize',setNavH);
@@ -2043,7 +2067,7 @@ function renderNewsPage(){
   else if(NVIEW==='main') box.innerHTML = main.length?main.slice(0,NML+9).map(newsBig).join('')+(main.length>NML+9?more('nMoreM',`עוד ידיעות (${main.length-NML-9})`):''):none;
   else if(NVIEW==='stock') box.innerHTML = st.length?`<div class="slb">${st.slice(0,40+NSL).map(newsLine).join('')}</div>`+(st.length>40+NSL?more('nMoreS',`עוד כותרות (${st.length-40-NSL})`):''):none;
   else if(NVIEW==='watch') box.innerHTML = !ws.size?'<div class="empty">אין מניות ברשימת המעקב. אפשר להוסיף בעמוד המניות, או ללחוץ על "☆ מעקב" בדף של כל מניה.</div>':wt.length?`<div class="slb">${wt.slice(0,40+NSL).map(newsLine).join('')}</div>`+(wt.length>40+NSL?more('nMoreS',`עוד כותרות (${wt.length-40-NSL})`):''):'<div class="empty">אין ידיעות על המניות שבמעקב בימים האחרונים.</div>';
-  else if(SD_MQ.matches&&!q&&main.length) box.innerHTML=newsDesk(all,main,st);
+  else if(!q&&main.length) box.innerHTML=newsDesk(all,main,st);
   else box.innerHTML = !all.length?none:`<div class="sag"><div><div class="sah">ראשיות</div>${main.slice(0,NML).map(newsBig).join('')||none}${main.length>NML?more('nMoreM',`עוד ידיעות ראשיות (${main.length-NML})`):''}</div>
     <div><div class="sah">מניות · כותרות אחרונות</div><div class="slb">${st.slice(0,sl0+NSL).map(newsLine).join('')||none}</div>${st.length>sl0+NSL?more('nMoreS',`עוד כותרות (${st.length-sl0-NSL})`):''}</div></div>`;
 }
@@ -2055,16 +2079,17 @@ const ndTitle=n=>n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener">$
 function newsDesk(all,main,st){ const lead=main[0], sec=main.slice(1,5), used=new Set([lead,...sec]);
   const blocks=ND_T.map(([name,go,f])=>{ const L=all.filter(n=>!used.has(n)&&f(n)).slice(0,3); if(!L.length) return ''; L.forEach(n=>used.add(n));
     return `<section class="nxt"><div class="nxh"><h3>${name}</h3><button type="button" data-ndgo="${go}">עוד ←</button></div><div class="nxg">${L.map(n=>`<article><h4>${ndTitle(n)}</h4>${ndMeta(n)}</article>`).join('')}</div></section>`; }).join('');
-  newsDesk.st=st.filter(n=>!used.has(n));
+  newsDesk.st=st.filter(n=>!used.has(n)); const wide=SD_MQ.matches;   /* desktop: one side column. Narrower: the movers right after the lead, the rest of the side column at the end */
   return `<div class="nxw"><div><div class="nxl"><article class="nxa"><span class="nxk">${esc(lead.tag||'')}</span><h3>${ndTitle(lead)}</h3>${lead.body?`<p>${esc(lead.body)}</p>`:''}${ndMeta(lead)}</article>
-    <div class="nxs">${sec.map(n=>`<article><time>${esc(n.time||'')}</time><div><span class="nxk">${esc(n.tag||'')}</span><h4>${ndTitle(n)}</h4><small><bdi>${esc(n.src||'')}</bdi></small></div></article>`).join('')}</div></div>${blocks}</div><aside class="nxr" id="ndRail" aria-label="מזנקות, מניות בכותרות ודוחות השבוע">${newsRailHtml()}</aside></div>`; }
-function newsRailHtml(){ const pc=v=>`<em class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${(+v).toFixed(2)}%</em>`, ix=(()=>{ try{ return stockIndex(); }catch(e){ return {}; } })(), lk=t=>STK_OK&&!ix[t]?`<span>${esc(t)}</span>`:`<a href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`;
-  const m=FALLBACK.movers||{}, mv=[...(m.rows||[])].sort((a,b)=>b.p-a.p).slice(0,7), day=t=>{ const L=liveQ(t); return LIVE_R&&L&&L[1]!=null?L[1]:(ix[t]&&ix[t].r&&ix[t].r.d!=null?ix[t].r.d:null); };
+    <div class="nxs">${sec.map(n=>`<article><time>${esc(n.time||'')}</time><div><span class="nxk">${esc(n.tag||'')}</span><h4>${ndTitle(n)}</h4><small><bdi>${esc(n.src||'')}</bdi></small></div></article>`).join('')}</div></div>${wide?'':`<div class="nxr" id="ndRail" data-part="mv">${newsRailHtml('mv')}</div>`}${blocks}${wide?'':`<div class="nxr" id="ndRail2" data-part="rest">${newsRailHtml('rest')}</div>`}</div>${wide?`<aside class="nxr" id="ndRail" data-part="all" aria-label="מזנקות, מניות בכותרות ודוחות השבוע">${newsRailHtml('all')}</aside>`:''}</div>`; }
+function newsRailHtml(part){ const pc=v=>`<em class="${v>=0?'up':'down'}" dir="ltr">${v>0?'+':''}${(+v).toFixed(2)}%</em>`, ix=(()=>{ try{ return stockIndex(); }catch(e){ return {}; } })(), lk=t=>STK_OK&&!ix[t]?`<span>${esc(t)}</span>`:`<a href="#stock/${encodeURIComponent(t)}">${esc(t)}</a>`;
+  const m=FALLBACK.movers||{}, mv=[...(m.rows||[])].sort((a,b)=>b.p-a.p).slice(0,part==='all'?7:5), day=t=>{ const L=liveQ(t); return LIVE_R&&L&&L[1]!=null?L[1]:(ix[t]&&ix[t].r&&ix[t].r.d!=null?ix[t].r.d:null); };
   const st=(newsDesk.st||[]).filter(n=>(n.t||[])[0]).slice(0,5), days=((CAL||{}).days||[]).filter(d=>(d.items||[]).length).slice(0,5);
-  return (mv.length?`<section><h3>${m.pre?'מזנקות במסחר המקדים':'מזנקות'}<small>${esc(String(m.asOf||''))}</small></h3><div class="nxv">${mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}"><b>${esc(r.t)}</b><span>${esc(r.n||'')}</span>${pc(r.p)}</a>`).join('')}</div></section>`:'')+
-    (st.length?`<section><h3>מניות בכותרות</h3>${st.map(n=>{ const t=n.t[0], d=day(t); return `<div class="nxn"><div>${lk(t)}${d==null?'':pc(d)}</div><p>${ndTitle(n)}</p></div>`; }).join('')}</section>`:'')+
-    (days.length?`<section><h3>דוחות השבוע<small><a href="#upcoming">ללוח ←</a></small></h3>${days.map(d=>`<div class="nxc"><span>${esc(d.d)}</span><b>${d.items.slice(0,4).map(i=>lk(i.t)).join('')}</b></div>`).join('')}</section>`:''); }
-function newsRail(){ const el=$('ndRail'); if(el&&el.isConnected) el.innerHTML=newsRailHtml(); }
+  const A=mv.length?`<section><h3>${m.pre?'מזנקות במסחר המקדים':'מזנקות'}<small>${esc(String(m.asOf||''))}</small></h3><div class="nxv">${mv.map(r=>`<a href="#stock/${encodeURIComponent(r.t)}"><b>${esc(r.t)}</b><span>${esc(r.n||'')}</span>${pc(r.p)}</a>`).join('')}</div></section>`:'',
+    B=(st.length?`<section><h3>מניות בכותרות</h3>${st.map(n=>{ const t=n.t[0], d=day(t); return `<div class="nxn"><div>${lk(t)}${d==null?'':pc(d)}</div><p>${ndTitle(n)}</p></div>`; }).join('')}</section>`:'')+
+    (days.length?`<section><h3>דוחות השבוע<small><a href="#upcoming">ללוח ←</a></small></h3>${days.map(d=>`<div class="nxc"><span>${esc(d.d)}</span><b>${d.items.slice(0,4).map(i=>lk(i.t)).join('')}</b></div>`).join('')}</section>`:'');
+  return part==='mv'?A:part==='rest'?B:A+B; }
+function newsRail(){ ['ndRail','ndRail2'].forEach(id=>{ const el=$(id); if(el&&el.isConnected) el.innerHTML=newsRailHtml(el.dataset.part||'all'); }); }
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-ndgo]'); if(!b) return; const [k,v]=b.dataset.ndgo.split(':'); NML=6; NSL=0; if(k==='v'){ NVIEW=v; $('nq').value=''; } else { $('nq').value=v; } renderNewsPage(); try{ scrollTo({top:0}); }catch(x){} });
 $('nq').addEventListener('input',()=>{ NML=6; NSL=0; renderNewsPage(); });
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('#nTabs button'); if(b){ NVIEW=b.dataset.nv; NML=6; NSL=0; renderNewsPage(); return; }
