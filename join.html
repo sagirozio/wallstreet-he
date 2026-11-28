@@ -57,6 +57,15 @@ h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin
 .chk{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin:26px 0 0;color:var(--muted);font-size:14px}.chk span:before{content:"✓ ";color:var(--g2)}
 footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;color:#7a8391;font-size:13px;line-height:1.9}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer a{color:var(--muted);text-decoration:underline}
 @media(max-width:1100px){.allg{grid-template-columns:repeat(3,1fr)}}
+.q3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}.q3 a{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px;display:block;transition:border-color .15s}.q3 a:hover{border-color:#34405a}
+.q3 small{display:block;color:var(--g2);font:600 12px 'JetBrains Mono',monospace;letter-spacing:.04em;margin-bottom:10px}.q3 h3{margin:0 0 8px;font-size:21px;line-height:1.3}.q3 p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.6}.q3 span{color:#c9d0da;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}.tags span{border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12.5px;color:#c9d0da;background:rgba(13,17,23,.6)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}.steps div{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px}.steps i{font:600 13px 'JetBrains Mono',monospace;color:var(--g2);font-style:normal;display:block;margin-bottom:10px}.steps b{display:block;font-size:17px;margin-bottom:6px}.steps p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+.faq{max-width:820px;margin:34px 0 0}.faq details{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-top:10px;padding:0 20px}.faq summary{cursor:pointer;padding:16px 0;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";color:var(--muted);font-weight:400}.faq details[open] summary:after{content:"–"}.faq summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:6px}.faq p{margin:0 0 16px;color:#c9d0da;font-size:15.5px;line-height:1.7}
+.feat.big{grid-template-columns:5fr 6fr;gap:14px 56px;align-items:end;margin-top:104px}.feat.big .frame{grid-column:1/-1;margin-top:14px}.feat.big .frame img{max-height:none}.feat.big .fl ul{margin:0}.feat.big .ft p{margin-bottom:0}
+@media(min-width:1101px){.allg{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:860px){.q3,.steps{grid-template-columns:1fr}.feat.big{grid-template-columns:1fr;gap:16px;margin-top:72px}.feat.big .frame{grid-column:auto;margin-top:8px}}
+
 @media(max-width:860px){.wrap{padding:0 18px}h1{font-size:36px}.lead{font-size:17px}.cta{flex-direction:column;align-items:stretch}.btn{justify-content:center}.nl{gap:0}.nl a:not(.btn){display:none}.logo small{display:none}
 .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border:0;border-top:1px solid var(--line)}.stats div:nth-child(4){border-top:1px solid var(--line)}.stats div{padding:16px 18px}.stats b{font-size:24px}
 .feat,.feat.r{grid-template-columns:1fr;gap:26px;margin-top:64px}.feat.r .ft{order:0}.h2,.join h2{font-size:30px}.all{margin-top:80px}.allg{grid-template-columns:1fr;gap:12px;margin-top:24px}.join{padding:36px 22px;margin-top:80px}.sec{padding-top:80px}.hero{padding-top:40px}.frame{margin-top:40px}.bar span{padding:3px 18px}
@@ -71,70 +80,102 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 44px;colo
 <div class="wrap">
 <nav aria-label="ניווט ראשי"><a class="logo" href="/join" aria-label="וולסטריטר Wallstreeter – לאתר"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#4ade80"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0b1220"/><rect x=".75" y=".75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#1f2a3d" stroke-width="1.5"/><g fill="#ffffff"><rect x="13" y="34" width="8" height="16" rx="2"/><rect x="16" y="30" width="2" height="24" rx="1"/><rect x="28" y="26" width="8" height="20" rx="2"/><rect x="31" y="21" width="2" height="29" rx="1"/><rect x="43" y="16" width="8" height="22" rx="2"/><rect x="46" y="11" width="2" height="31" rx="1"/></g></svg>
   <span><b dir="ltr">Wallstreeter</b><small>וולסטריטר · השוק האמריקאי, בגובה העיניים</small></span></a>
-  <div class="nl"><a href="#all">כלים</a><a href="#join">הצטרפות</a><a class="btn s" href="/join" data-join="in">התחברות</a></div></nav>
+  <div class="nl"><a href="#tools">כלים</a><a href="#faq">שאלות</a><a href="#join">הצטרפות</a><a class="btn s" href="/join" data-join="in">התחברות</a></div></nav>
 
 <main>
 <section class="hero">
-  <span class="pill"><i></i>כלי מחקר · נתונים בלייב במהלך המסחר</span>
-  <h1>כלי מחקר לשוק ההון האמריקאי.<br><span>בעברית ובמקום אחד.</span></h1>
-  <p class="lead"><b>מזהים את מובילות השוק ומבינים לאן הכסף זורם.</b> תעשיות וסקטורים, רוחב שוק, דוחות רבעוניים וחדשות על המניות שלך, מתעדכנים כל כמה דקות במסחר ובכל ערב אחרי הסגירה.</p>
-  <div class="cta"><a class="btn p" href="/join" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#all">מה יש באתר</a></div>
+  <span class="pill"><i></i>19 כלי מחקר · מתעדכן בזמן המסחר</span>
+  <h1>כל מה שקורה בוול סטריט.<br><span>בעברית, במסך אחד.</span></h1>
+  <p class="lead"><b>מה מצב השוק, מי מובילה אותו ומה אמרו הדוחות.</b> סורק מניות, מנהיגות שוק, גרף מקצועי, רוחב שוק, סקטורים, דוחות וחדשות על כ-2,000 מניות אמריקאיות.</p>
+  <div class="cta"><a class="btn p" href="/join" data-join><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>הרשמה חינם עם Google</a><a class="btn s" href="#tools">סיור בכלים</a></div>
   <div class="fine">ללא תשלום בתקופת ההשקה · מידע עובדתי בלבד, לא ייעוץ השקעות</div>
-  <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/stocks.jpg?v=c8e599" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/stocks-750.webp?v=2e555c 750w, lp/stocks.webp?v=2e555c 1500w" sizes="(max-width: 800px) 100vw, 900px"><img src="lp/stocks.jpg?v=c8e599" width="1500" height="1053" alt="טבלת המניות באתר: מחיר, שינוי יומי, חודשי ומתחילת השנה, דירוג RS ושווי שוק"></picture></a><div class="fade"></div></div>
-  <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">120+</b><small>תעשיות מדורגות</small></div><div><b>5 דק׳</b><small>עדכון מחירים במסחר</small></div><div><b class="num">1,700+</b><small>דוחות רבעוניים במאגר</small></div></div>
+  <div class="frame h"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>wallstreeter.co.il</span></div><a class="zoom" href="lp/n-hero.jpg?v=5dc2e2" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-hero-750.webp?v=5fa728 750w, lp/n-hero.webp?v=5fa728 1500w" sizes="(max-width: 800px) 100vw, 900px"><img src="lp/n-hero.jpg?v=5dc2e2" width="1500" height="1000" alt="דף הבית של האתר: מצב הבורסה, המדדים, סיכום השוק, חדשות אחרונות ומניות שזינקו היום"></picture></a><div class="fade"></div></div>
+  <div class="stats"><div><b>כ-2,000</b><small>מניות מעל מיליארד דולר</small></div><div><b class="num">139</b><small>תעשיות מדורגות</small></div><div><b>10 שנים</b><small>של נרות יומיים לכל מניה</small></div><div><b class="num">1,800+</b><small>דוחות רבעוניים במאגר</small></div></div>
 </section>
+
+<section class="sec" id="q"><div class="lbl">בשביל מה זה</div><h2 class="h2">שלוש שאלות. תשובה לכל אחת בכמה שניות.</h2><p class="sub">במקום עשר לשוניות פתוחות באנגלית, מסך אחד בעברית לכל שאלה.</p>
+  <div class="q3">
+    <a href="#f-market"><small>01 · השוק</small><h3>מה מצב השוק היום?</h3><p>כמה מניות עולות וכמה יורדות, אילו סקטורים ותעשיות מובילים, ומה קורה בריבית ובמאקרו.</p><span>רוחב שוק · סקטורים ותעשיות · מאקרו ←</span></a>
+    <a href="#f-leaders"><small>02 · המניות</small><h3>אילו מניות מובילות?</h3><p>סינון של כ-2,000 מניות לפי כוח יחסי, צמיחה ומרחק מהשיא, ותשע רשימות מנהיגות שמתעדכנות כל ערב.</p><span>סורק המניות · מנהיגות שוק ←</span></a>
+    <a href="#f-chart"><small>03 · החברה</small><h3>מה קורה במניה שלי?</h3><p>גרף של 10 שנים, הדוח האחרון מול הצפי, צמיחה רבעונית, וחדשות בעברית על המניה.</p><span>גרף מקצועי · דוחות · חדשות ←</span></a>
+  </div></section>
 
 <section class="sec" id="live" hidden><div class="lbl">נתון חי מהאתר</div><h2 class="h2">חמש התעשיות החזקות ביום המסחר האחרון.</h2><p class="sub">כך נראית הטבלה בתוך האתר: כל תעשייה עם תשואה יומית ושבועית, מדורגות לפי היום.</p>
   <div class="lv" id="lvBox" style="margin-top:28px"><div class="lvh"><span>תעשייה</span><span id="lvAs"></span></div><div id="lvRows"></div></div>
   <p class="lvn">מתוך <span id="lvN"></span> תעשיות עם 3 מניות ומעלה. <a href="/join" data-join>לכל הטבלה, בחינם</a></p></section>
 
-<section class="sec" id="who"><div class="lbl">למי זה מתאים</div><h2 class="h2">לסוחרים ולמשקיעים.</h2><p class="sub">מקום אחד בעברית במקום עשר לשוניות פתוחות.</p>
+
+<section class="sec" id="tools"><div class="lbl">סיור בכלים</div><h2 class="h2">שבעה מסכים שעושים את רוב העבודה.</h2><p class="sub">כל הצילומים מהאתר עצמו. נתונים עובדתיים בלבד, בלי המלצות ובלי רעש.</p>
+
+<span id="f-leaders"></span>
+  <div class="feat big"><div class="ft"><span class="n">01</span><h3>סורק המניות</h3><p>כ-2,000 מניות בטבלה אחת. ממיינים, מסננים, ומגיעים מכל השוק לכמה עשרות מניות לבדיקה.</p></div><div class="ft fl"><ul><li>מחיר, שינוי יומי, חודשי ומתחילת השנה</li><li>דירוג כוח יחסי (RS) מ-1 עד 99 ותנודתיות יומית (ADR)</li><li>צמיחה רבעונית ושנתית, מכפיל רווח ומרחק מהשיא</li><li>העתקת כל הסימולים בלחיצה, לפלטפורמת המסחר</li></ul><div class="tags"><span>ענקיות</span><span>זינקו היום</span><span>קרוב לשיא</span><span>RS 90+</span><span>מדווחות השבוע</span></div></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-screener.jpg?v=c00aa6" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-screener-750.webp?v=acf9aa 750w, lp/n-screener.webp?v=acf9aa 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-screener.jpg?v=c00aa6" width="1300" height="600" alt="סורק המניות: טבלה עם מחיר, שינויים, דירוג RS, צמיחה ומכפיל לכל מניה"></picture></a><div class="fade s"></div></div></div>
+
+  <div class="feat big"><div class="ft"><span class="n">02</span><h3>מנהיגות שוק</h3><p>תשע רשימות שמתעדכנות כל ערב. לכל רשימה הכלל שלה כתוב מעליה, כך שברור למה מניה נמצאת בה.</p></div><div class="ft fl"><ul><li>מניות שהחזיקו כשהמדד ירד</li><li>קו RS בשיא לפני שהמחיר בשיא</li><li>המובילה בכל תעשייה, לפי כוח יחסי</li><li>צמיחה של 25% ומעלה במכירות וברווח</li><li>ימי צבירה, קפיצה על דוח, ועוד</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-leaders.jpg?v=f2e27c" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-leaders-750.webp?v=5a313b 750w, lp/n-leaders.webp?v=5a313b 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-leaders.jpg?v=f2e27c" width="1300" height="600" alt="מנהיגות שוק: רשימת המובילות בכל תעשייה עם דירוג RS ומרחק מהשיא"></picture></a><div class="fade s"></div></div></div>
+
+<span id="f-chart"></span>
+  <div class="feat big"><div class="ft"><span class="n">03</span><h3>גרף מקצועי לכל מניה</h3><p>10 שנים של נרות, חדים בכל מסך. כלי ציור, התראות והשוואה, וכל מה שציירת נשמר בחשבון.</p></div><div class="ft fl"><ul><li>נרות יומיים, שבועיים וחודשיים, וסקאלה לוגריתמית</li><li>ממוצעים נעים לבחירה, ונפח מסחר עם הדגשת ימים חריגים</li><li>קווי מגמה, קווים אופקיים, סרגל מדידה והתראות מחיר</li><li>השוואה למניה אחרת או למדד, ומסך מלא</li><li>צילום הגרף לשיתוף בלחיצה</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-chart.jpg?v=25b8d1" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-chart-750.webp?v=b84698 750w, lp/n-chart.webp?v=b84698 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-chart.jpg?v=25b8d1" width="1300" height="700" alt="דף מניה: גרף נרות של שנה עם ממוצעים נעים ונפח מסחר"></picture></a><div class="fade s"></div></div></div>
+
+<span id="f-market"></span>
+  <div class="feat big"><div class="ft"><span class="n">04</span><h3>סקטורים, תעשיות ותעודות סל</h3><p>11 סקטורים ו-139 תעשיות מדורגים מהיום ועד שנה, כדי לראות לאן הכסף זורם.</p></div><div class="ft fl"><ul><li>כל תעשייה נפתחת למניות שמובילות אותה</li><li>תשואה יומית, שבועית, חודשית ומתחילת השנה</li><li>תעודות סל לפי נושא, עם האחזקות שלהן</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-sectors.jpg?v=9c7830" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-sectors-750.webp?v=09b797 750w, lp/n-sectors.webp?v=09b797 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-sectors.jpg?v=9c7830" width="1300" height="470" alt="טבלת הסקטורים: תשואות לתקופות שונות ודירוג RS לכל סקטור"></picture></a><div class="fade s"></div></div></div>
+
+  <div class="feat big"><div class="ft"><span class="n">05</span><h3>רוחב שוק ומאקרו</h3><p>הבריאות של השוק, לא רק המדד. כמה מניות באמת משתתפות בעלייה או בירידה.</p></div><div class="ft fl"><ul><li>עולות מול יורדות, שיאים ושפלים של 52 שבועות</li><li>אחוז המניות מעל ממוצע 50 ו-200</li><li>ריבית, אינפלציה ותעסוקה, וציפיות השוק מהפד</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-breadth.jpg?v=836bd2" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-breadth-750.webp?v=e2ecdd 750w, lp/n-breadth.webp?v=e2ecdd 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-breadth.jpg?v=836bd2" width="1300" height="430" alt="רוחב שוק: עולות מול יורדות ואחוז המניות מעל הממוצעים, יום אחרי יום"></picture></a><div class="fade s"></div></div></div>
+
+  <div class="feat big"><div class="ft"><span class="n">06</span><h3>דוחות ורווחים</h3><p>עונת דוחות שלמה במקום אחד: מי מדווחת, מה היה מול הצפי, ואיך הגיבה המניה.</p></div><div class="ft fl"><ul><li>לוח השבוע: מי מדווחת ומתי, עם תחזיות האנליסטים</li><li>מאגר של יותר מ-1,800 דוחות: רווח והכנסות מול הצפי</li><li>רווחי 11 הסקטורים מול המדד, על גרף אחד</li><li>אחזקות הקרנות הגדולות (13F)</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-earnings.jpg?v=beebc8" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-earnings-750.webp?v=178df9 750w, lp/n-earnings.webp?v=178df9 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-earnings.jpg?v=beebc8" width="1300" height="760" alt="רווחי הסקטורים מול המדד: גרף ודירוג של השינוי ברווחים בכל סקטור"></picture></a><div class="fade s"></div></div></div>
+
+  <div class="feat big"><div class="ft"><span class="n">07</span><h3>חדשות בעברית</h3><p>חדשות וול סטריט בעברית, מסודרות כמו עיתון כלכלי, עם קישור למקור בכל ידיעה.</p></div><div class="ft fl"><ul><li>כתבה ראשית ומדורים: שוק ומאקרו, ממשל, שבבים ו-AI, דוחות</li><li>מניות בכותרות עם השינוי היומי</li><li>לשונית לחדשות על המניות שברשימות שלך</li></ul></div>
+    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/n-news.jpg?v=982a48" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך"><picture><source type="image/webp" srcset="lp/n-news-750.webp?v=48ca8d 750w, lp/n-news.webp?v=48ca8d 1300w" sizes="(max-width: 800px) 100vw, 1080px"><img loading="lazy" src="lp/n-news.jpg?v=982a48" width="1300" height="760" alt="דף החדשות: כתבה ראשית, כותרות אחרונות, מזנקות ומניות בכותרות"></picture></a><div class="fade s"></div></div></div>
+
+</section>
+
+<section class="all" id="all" aria-label="כל הכלים באתר"><div class="lbl">כל הכלים באתר</div><h2 class="h2">19 כלים, חשבון אחד.</h2>
+  <div class="allg">
+    <div class="grp"><h3>שוק</h3><ul><li><b>רוחב שוק</b><span>עולות מול יורדות, שיאים ושפלים, מניות מעל הממוצעים</span></li><li><b>סקטורים ותעשיות</b><span>דירוג 11 סקטורים ו-139 תעשיות</span></li><li><b>תעודות סל</b><span>תעודות לפי נושא, עם האחזקות</span></li><li><b>מאקרו וריבית</b><span>ריבית, אינפלציה ותעסוקה, וציפיות השוק מהפד</span></li><li><b>לוח השבוע</b><span>מי מדווחת השבוע ומתי</span></li><li><b>הנפקות</b><span>מה נכנס למסחר ומי הגישה בקשה</span></li><li><b>חדשות בעברית</b><span>ידיעות מוול סטריט, עם קישור למקור</span></li></ul></div>
+    <div class="grp"><h3>מחקר</h3><ul><li><b>סורק המניות</b><span>כ-2,000 מניות עם סינון, מיון והעתקת סימולים</span></li><li><b>מנהיגות שוק</b><span>תשע רשימות שמתעדכנות כל ערב</span></li><li><b>השוואת גרפים</b><span>עד 4 מניות, סקטורים או S&amp;P 500 על גרף אחד</span></li><li><b>מאגר הדוחות</b><span>רווח והכנסות מול הצפי, ותגובת המניה</span></li><li><b>קרנות גדולות (13F)</b><span>האחזקות שהקרנות דיווחו ל-SEC</span></li><li><b>רווחים מול המדד</b><span>רווחי 11 הסקטורים מול S&amp;P 500</span></li><li><b>מחקר מבוסס ראיות</b><span>פחד וחמדנות, תנודתיות, מרווחי אשראי ועונתיות</span></li></ul></div>
+    <div class="grp"><h3>מניה</h3><ul><li><b>דף מניה</b><span>הדוח האחרון, צמיחה רבעונית, פיננסים וחדשות</span></li><li><b>גרף מקצועי</b><span>10 שנות נרות, כלי ציור, השוואה וצילום</span></li></ul></div>
+    <div class="grp"><h3>אישי</h3><ul><li><b>רשימות מעקב</b><span>עד 6 רשימות, נשמרות בחשבון ומופיעות בכל מכשיר</span></li><li><b>התראות מחיר</b><span>קו בגרף שמתריע כשהמחיר חוצה אותו</span></li><li><b>מילון מונחים</b><span>הסבר קצר לכל מדד ומונח באתר</span></li></ul></div>
+  </div></section>
+
+<section class="sec" id="who"><div class="lbl">למי זה מתאים</div><h2 class="h2">לסוחרים ולמשקיעים.</h2><p class="sub">אותם נתונים, שתי דרכי עבודה.</p>
   <div class="who">
     <div><div class="wb"><span class="wl">סוחרים</span><h3>מחקר מהיר, בלי רעש</h3><ul>
-      <li><b>סינון מהיר:</b> סורק, מובילות שוק ו-RS מצמצמים כ-2,000 מניות לכמה עשרות לבדיקה.</li>
+      <li><b>סינון מהיר:</b> הסורק, מנהיגות השוק ודירוג RS מצמצמים כ-2,000 מניות לכמה עשרות לבדיקה.</li>
       <li><b>הקשר שוק:</b> רוחב שוק, סקטורים ותעשיות מראים איפה הכסף זורם.</li>
       <li><b>דוחות:</b> מי מדווחת השבוע, ומה הייתה תגובת המניה בעבר.</li>
-      <li><b>סדר עבודה:</b> רשימת מעקב והעתקת רשימות סימולים לפלטפורמת המסחר.</li></ul></div></div>
+      <li><b>סדר עבודה:</b> רשימות מעקב, גרף לצד הרשימה, והעתקת סימולים לפלטפורמת המסחר.</li></ul></div></div>
     <div><div class="wb"><span class="wl">משקיעים</span><h3>להבין חברה ושוק</h3><ul>
-      <li><b>כרטיס לכל מניה:</b> גרף, דוח אחרון, צמיחה רבעונית וחדשות במקום אחד.</li>
+      <li><b>דף לכל מניה:</b> גרף, דוח אחרון, צמיחה רבעונית וחדשות במקום אחד.</li>
       <li><b>תמונה רחבה:</b> סקטורים, תעשיות ותעודות סל לאורך זמן.</li>
       <li><b>נתוני רקע:</b> פחד וחמדנות, תנודתיות ועונתיות, בלי תחזיות.</li>
       <li><b>הכל בעברית:</b> חדשות, דוחות ומילון מונחים.</li></ul></div></div>
   </div>
   <p class="whn">מידע עובדתי בלבד, בלי המלצות. הנתונים בעיכוב קל ולא מיועדים למסחר בזמן אמת.</p></section>
 
-<section class="all" id="all" aria-label="כל הכלים באתר"><div class="lbl">כל הכלים באתר</div><h2 class="h2">16 כלים, חשבון אחד.</h2>
-  <div class="allg">
-    <div class="grp"><h3>שוק</h3><ul><li><b>תמונת מצב</b><span>הסקטורים והתעשיות החזקים והחלשים החודש</span></li><li><b>רוחב שוק</b><span>עולות מול יורדות, שיאים ושפלים, מניות מעל הממוצעים</span></li><li><b>מאקרו וריבית</b><span>ריבית, אינפלציה ותעסוקה בארה״ב וציפיות השוק מהפד</span></li></ul></div>
-    <div class="grp"><h3>מניות</h3><ul><li><b>טבלת המניות</b><span>כ-2,000 מניות עם סינון, מיון והעתקת סימולים</span></li><li><b>סורק מניות</b><span>סינון לפי ביצועים, RS, שווי שוק ומכפילים</span></li><li><b>השוואת גרפים</b><span>עד 4 מניות, סקטורים או S&P 500 על גרף אחד</span></li><li><b>תעודת זהות למניה</b><span>גרף, הדוח האחרון, צמיחה רבעונית וחדשות</span></li></ul></div>
-    <div class="grp"><h3>מחקר</h3><ul><li><b>מובילות השוק</b><span>פריצות בנפח חריג, קו RS בשיא ומניות שנכנסו ל-<bdi dir="ltr" style="white-space:nowrap">RS 90+</bdi></span></li><li><b>סקטורים ותעשיות</b><span>דירוג 11 סקטורים ויותר מ-120 תעשיות</span></li><li><b>מחקר מבוסס ראיות</b><span>פחד וחמדנות, תנודתיות, מרווחי אשראי ועונתיות</span></li></ul></div>
-    <div class="grp"><h3>דוחות</h3><ul><li><b>מאגר הדוחות</b><span>רווח למניה והכנסות מול הצפי, ותגובת המניה</span></li><li><b>לוח השבוע</b><span>מי מדווחת השבוע ומתי</span></li><li><b>הנפקות</b><span>מה נכנס למסחר ומי הגישה בקשה להנפקה</span></li></ul></div>
-    <div class="grp"><h3>אישי</h3><ul><li><b>רשימת מעקב</b><span>המניות שלך, נשמרות בחשבון</span></li><li><b>חדשות בעברית</b><span>ידיעות מוול סטריט, וחדשות על המניות שלך</span></li><li><b>מילון מונחים</b><span>הסבר קצר לכל מדד ומונח באתר</span></li></ul></div>
+<section class="sec" id="how"><div class="lbl">איך מתחילים</div><h2 class="h2">שלושה צעדים, פחות מדקה.</h2>
+  <div class="steps">
+    <div><i>01</i><b>נרשמים עם Google</b><p>לחיצה אחת, בלי סיסמה חדשה ובלי כרטיס אשראי.</p></div>
+    <div><i>02</i><b>בונים רשימת מעקב</b><p>מוסיפים מניות אחת אחת, או מדביקים רשימה שלמה של סימולים.</p></div>
+    <div><i>03</i><b>פותחים את האתר כל יום</b><p>מצב השוק, המובילות, והחדשות על המניות שלך. בטלפון ובמחשב.</p></div>
   </div></section>
 
-<section class="sec" id="tools"><div class="lbl">מבט מקרוב</div><h2 class="h2">כל מה שצריך כדי לחקור את השוק.</h2><p class="sub">מי מובילה, איזו תעשייה מתחזקת ומה אמרו הדוחות. נתונים עובדתיים בלבד, בלי המלצות ובלי רעש.</p>
-
-  <div class="feat"><div class="ft"><span class="n">01</span><h3>תעשיות וסקטורים</h3><p>דירוג של יותר מ-120 תעשיות ו-11 סקטורים, מהיום ועד שנה, כדי לראות לאן הכסף זורם.</p>
-    <ul><li>כל תעשייה נפתחת למניות שמובילות אותה</li><li>העתקת כל הסימולים של תעשייה בלחיצה</li><li>מעבר בין סקטורים, תעשיות ותעודות סל</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/themes.jpg?v=f948d1" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/themes-750.webp?v=239831 750w, lp/themes.webp?v=239831 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/themes.jpg?v=f948d1" width="1300" height="699" alt="טבלת התעשיות: תשואה יומית, חודשית ושנתית ודירוג RS לכל תעשייה"></picture></a><div class="fade s"></div></div></div>
-
-  <div class="feat r"><div class="ft"><span class="n">02</span><h3>תעודת זהות לכל מניה</h3><p>לחיצה על מניה פותחת את כל המידע עליה במקום אחד, בלי לעזוב את הרשימה.</p>
-    <ul><li>גרף נרות עם ממוצעים נעים</li><li>נתונים רבעוניים בגרפים: הכנסות, רווח ותזרים</li><li>הדוח האחרון מול הצפי וצמיחה רבעונית</li><li>חדשות על המניה, בעברית</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/qv.jpg?v=9d9475" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/qv-750.webp?v=830975 750w, lp/qv.webp?v=830975 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/qv.jpg?v=9d9475" width="1300" height="957" alt="תעודת זהות של מניה: מחיר ונתונים רבעוניים בגרפים – הכנסות, רווח ותזרים מזומנים"></picture></a><div class="fade s"></div></div></div>
-
-  <div class="feat"><div class="ft"><span class="n">03</span><h3>רוחב שוק</h3><p>הבריאות של השוק, לא רק המדד: כמה מניות עולות ויורדות, ומה מצבן מול הממוצעים.</p>
-    <ul><li>שיאים ושפלים של 52 שבועות</li><li>אחוז המניות מעל ממוצע 50 ו-200</li><li>היסטוריה יומית</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/breadth.jpg?v=d8cbcc" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/breadth-750.webp?v=cd7203 750w, lp/breadth.webp?v=cd7203 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/breadth.jpg?v=d8cbcc" width="1300" height="990" alt="רוחב שוק: מספר המניות העולות והיורדות ואחוז המניות מעל הממוצעים"></picture></a><div class="fade s"></div></div></div>
-
-  <div class="feat r"><div class="ft"><span class="n">04</span><h3>דוחות רבעוניים</h3><p>עונת דוחות שלמה במסך אחד, עם תגובת המניה ומה החברה צופה להמשך.</p>
-    <ul><li>רווח למניה והכנסות מול הצפי</li><li>לוח הדוחות של השבוע</li><li>מאגר של הדוחות האחרונים</li></ul></div>
-    <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="lp/earnings.jpg?v=00c7c2" target="_blank" rel="noopener" aria-label="הגדלת צילום המסך מהמחשב"><picture><source type="image/webp" srcset="lp/earnings-750.webp?v=590fcc 750w, lp/earnings.webp?v=590fcc 1300w" sizes="(max-width: 800px) 100vw, 900px"><img loading="lazy" src="lp/earnings.jpg?v=00c7c2" width="1300" height="760" alt="מאגר הדוחות: רווח למניה והכנסות מול הצפי לכל חברה"></picture></a><div class="fade s"></div></div></div>
-
-</section>
+<section class="sec" id="faq"><div class="lbl">שאלות נפוצות</div><h2 class="h2">לפני שנרשמים.</h2>
+  <div class="faq">
+    <details><summary>כמה זה עולה?</summary><p>האתר פתוח בחינם בתקופת ההשקה. ההרשמה עם חשבון Google, בלי כרטיס אשראי.</p></details>
+    <details><summary>זה ייעוץ השקעות?</summary><p>לא. האתר מציג נתונים ועובדות בלבד, בלי המלצות קנייה או מכירה. ההחלטות נשארות שלך.</p></details>
+    <details><summary>הנתונים בזמן אמת?</summary><p>המחירים מתעדכנים כל כמה דקות בזמן המסחר, בעיכוב קל. הדירוגים, הטבלאות והרשימות מתעדכנים כל ערב אחרי הסגירה. האתר לא מיועד למסחר בזמן אמת.</p></details>
+    <details><summary>אילו מניות יש באתר?</summary><p>מניות שנסחרות בארה״ב, בשווי שוק של מיליארד דולר ומעלה ובמחזור ממוצע של חצי מיליון מניות ביום ומעלה: כ-2,000 מניות ב-139 תעשיות.</p></details>
+    <details><summary>מאיפה הנתונים?</summary><p>נתוני שוק מ-Yahoo Finance, Finnhub ו-Massive, ודוחות כספיים מהדיווחים של החברות ל-SEC.</p></details>
+    <details><summary>זה עובד בטלפון?</summary><p>כן. האתר מותאם לטלפון ולמחשב, והרשימות והציורים בגרף נשמרים בחשבון ומופיעים בשניהם.</p></details>
+  </div></section>
 
 <section class="join" id="join"><h2>מתחילים בחינם.</h2><p>הרשמה עם חשבון Google בשניות. בלי כרטיס אשראי.</p>
   <a class="btn p" href="/join" data-join>הרשמה עם Google</a>
-  <div class="chk"><span>כל הכלים פתוחים</span><span>רשימת מעקב אישית</span><span>בטלפון ובמחשב</span></div></section>
+  <div class="chk"><span>כל 19 הכלים פתוחים</span><span>רשימות מעקב אישיות</span><span>בטלפון ובמחשב</span></div></section>
 </main>
 </div>
 <footer><div class="wrap"><span>האתר מיועד למידע ולמידה בלבד ואינו ייעוץ השקעות.<br>נתוני שוק: Yahoo Finance · Finnhub · Massive · SEC EDGAR · גרפים: <a href="https://www.tradingview.com/" rel="noopener">TradingView</a></span><span>צור קשר: <a href="mailto:sagirozio@gmail.com">sagirozio@gmail.com</a><br><a href="/#terms">תנאי שימוש</a> · <a href="/#accessibility">הצהרת נגישות</a></span></div></footer>
